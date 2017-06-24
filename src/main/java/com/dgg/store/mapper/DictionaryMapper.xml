@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dgg.store.mapper.DictionaryMapper">
+  <resultMap id="BaseResultMap" type="com.dgg.store.util.pojo.Dictionary">
+    <id column="dict_id" jdbcType="VARCHAR" property="dictId" />
+    <result column="par_dict_id" jdbcType="VARCHAR" property="parDictId" />
+    <result column="dict_name" jdbcType="VARCHAR" property="dictName" />
+    <result column="dict_code" jdbcType="VARCHAR" property="dictCode" />
+    <result column="dict_create_date" jdbcType="TIMESTAMP" property="dictCreateDate" />
+    <result column="sort" jdbcType="VARCHAR" property="sort" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    dict_id, par_dict_id, dict_name, dict_code, dict_create_date, sort
+  </sql>
+  <select id="selectByExample" parameterType="com.dgg.store.util.pojo.DictionaryExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from dictionary
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from dictionary
+    where dict_id = #{dictId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from dictionary
+    where dict_id = #{dictId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.dgg.store.util.pojo.DictionaryExample">
+    delete from dictionary
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.dgg.store.util.pojo.Dictionary">
+    insert into dictionary (dict_id, par_dict_id, dict_name, 
+      dict_code,sort
+      )
+    values (#{dictId,jdbcType=VARCHAR}, #{parDictId,jdbcType=VARCHAR}, #{dictName,jdbcType=VARCHAR}, 
+      #{dictCode,jdbcType=VARCHAR},#{sort}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.dgg.store.util.pojo.Dictionary">
+    insert into dictionary
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="dictId != null">
+        dict_id,
+      </if>
+      <if test="parDictId != null">
+        par_dict_id,
+      </if>
+      <if test="dictName != null">
+        dict_name,
+      </if>
+      <if test="dictCode != null">
+        dict_code,
+      </if>
+      <if test="dictCreateDate != null">
+        dict_create_date,
+      </if>
+      <if test="sort != null">
+        sort,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="dictId != null">
+        #{dictId,jdbcType=VARCHAR},
+      </if>
+      <if test="parDictId != null">
+        #{parDictId,jdbcType=VARCHAR},
+      </if>
+      <if test="dictName != null">
+        #{dictName,jdbcType=VARCHAR},
+      </if>
+      <if test="dictCode != null">
+        #{dictCode,jdbcType=VARCHAR},
+      </if>
+      <if test="dictCreateDate != null">
+        #{dictCreateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sort != null">
+        #{sort,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.dgg.store.util.pojo.DictionaryExample" resultType="java.lang.Long">
+    select count(*) from dictionary
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update dictionary
+    <set>
+      <if test="record.dictId != null">
+        dict_id = #{record.dictId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.parDictId != null">
+        par_dict_id = #{record.parDictId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dictName != null">
+        dict_name = #{record.dictName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dictCode != null">
+        dict_code = #{record.dictCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dictCreateDate != null">
+        dict_create_date = #{record.dictCreateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.sort != null">
+        sort = #{record.sort,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update dictionary
+    set dict_id = #{record.dictId,jdbcType=VARCHAR},
+      par_dict_id = #{record.parDictId,jdbcType=VARCHAR},
+      dict_name = #{record.dictName,jdbcType=VARCHAR},
+      dict_code = #{record.dictCode,jdbcType=VARCHAR},
+      dict_create_date = #{record.dictCreateDate,jdbcType=TIMESTAMP},
+      sort = #{record.sort,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dgg.store.util.pojo.Dictionary">
+    update dictionary
+    <set>
+      <if test="parDictId != null">
+        par_dict_id = #{parDictId,jdbcType=VARCHAR},
+      </if>
+      <if test="dictName != null">
+        dict_name = #{dictName,jdbcType=VARCHAR},
+      </if>
+      <if test="dictCode != null">
+        dict_code = #{dictCode,jdbcType=VARCHAR},
+      </if>
+      <if test="dictCreateDate != null">
+        dict_create_date = #{dictCreateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sort != null">
+        sort = #{sort,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where dict_id = #{dictId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dgg.store.util.pojo.Dictionary">
+    update dictionary
+    set par_dict_id = #{parDictId,jdbcType=VARCHAR},
+      dict_name = #{dictName,jdbcType=VARCHAR},
+      dict_code = #{dictCode,jdbcType=VARCHAR},
+      dict_create_date = #{dictCreateDate,jdbcType=TIMESTAMP},
+      sort = #{sort,jdbcType=VARCHAR}
+    where dict_id = #{dictId,jdbcType=VARCHAR}
+  </update>
+
+
+
+
+
+
+
+
+
+
+
+  <insert id="insertParentDict" parameterType="com.dgg.store.util.pojo.ParentDictionary">
+    insert into parent_dictionary (par_dict_id, par_dict_name, par_dict_create_date)
+    values (#{parDictId,jdbcType=VARCHAR}, #{parDictName,jdbcType=VARCHAR}, NOW())
+  </insert>
+
+  <resultMap id="ParDictMap" type="com.dgg.store.util.pojo.ParentDictionary">
+    <id column="par_dict_id" jdbcType="VARCHAR" property="parDictId" />
+    <result column="par_dict_name" jdbcType="VARCHAR" property="parDictName" />
+    <result column="par_dict_create_date" jdbcType="TIMESTAMP" property="parDictCreateDate" />
+  </resultMap>
+  <select id="findParDict" resultMap="ParDictMap">
+    SELECT par_dict_id,par_dict_name,par_dict_create_date
+    FROM parent_dictionary
+    ORDER BY sort
+  </select>
+
+  <delete id="cleanDict" parameterType="com.dgg.store.util.vo.DictionaryVO">
+    DELETE FROM dictionary
+    WHERE par_dict_id = #{parDictId}
+  </delete>
+
+  <delete id="deleteParDict" parameterType="com.dgg.store.util.pojo.ParentDictionary">
+    DELETE FROM parent_dictionary
+    WHERE par_dict_id = #{parDictId}
+  </delete>
+
+
+
+</mapper>

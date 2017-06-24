@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dgg.store.mapper.GoodsBrowseMapper">
+    <resultMap id="GoodsVOMap" type="com.dgg.store.util.vo.goods.GoodsInfoVO">
+        <id column="goods_id" property="goodsId" jdbcType="VARCHAR"/>
+        <result column="goods_name" property="goodsName" jdbcType="VARCHAR"/>
+        <result column="goods_price" property="goodsPrice" jdbcType="FLOAT"/>
+        <result column="image_path" property="goodsImages" jdbcType="VARCHAR"/>
+        <result column="goods_sales" property="goodsSales" jdbcType="INTEGER"/>
+        <result column="count" property="pageCount" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <resultMap id="GoodsDetailVOMap" type="com.dgg.store.util.vo.goods.GoodsDetailVO">
+        <id column="goods_id" property="goodsId" jdbcType="VARCHAR"/>
+        <result column="goods_name" property="goodsName" jdbcType="VARCHAR"/>
+        <result column="goods_attr" property="goodsAttr" jdbcType="VARCHAR"/>
+        <result column="goods_price" property="goodsPrice" jdbcType="FLOAT"/>
+        <result column="goods_count" property="goodsCount" jdbcType="INTEGER"/>
+        <result column="goods_freight" property="goodsFreight" jdbcType="INTEGER"/>
+        <result column="goods_sales" property="goodsSales" jdbcType="INTEGER"/>
+        <collection property="goodsImages" ofType="java.lang.String">
+            <result column="goods_images" jdbcType="VARCHAR"/>
+        </collection>
+        <collection property="standards" ofType="com.dgg.store.util.pojo.GoodsStandard">
+            <result column="standard_name" property="standardName" jdbcType="VARCHAR"/>
+            <result column="standard_id" property="standardId" jdbcType="VARCHAR"/>
+            <result column="standard_price" property="standardPrice" jdbcType="VARCHAR"/>
+            <result column="standard_count" property="standardCount" jdbcType="VARCHAR"/>
+        </collection>
+    </resultMap>
+
+    <resultMap id="TypeVOMap" type="com.dgg.store.util.vo.goods.GoodsTypeVO">
+        <id column="goods_type_id" property="goodsTypeId" jdbcType="VARCHAR"/>
+        <result column="goods_type_name" property="goodsTypeName" jdbcType="VARCHAR"/>
+        <result column="goods_type_pid" property="goodsTypePid" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <resultMap id="StandardMap" type="com.dgg.store.util.pojo.GoodsStandard">
+        <result column="standard_price" property="standardPrice" jdbcType="FLOAT"/>
+        <result column="standard_count" property="standardCount" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <select id="findGoodsType" resultMap="TypeVOMap">
+        SELECT goods_type_id, goods_type_name
+        FROM dgg_store.goods_typeinfo
+        WHERE goods_type_pid = #{typeId}
+    </select>
+
+    <select id="findAllGoodsType" resultMap="TypeVOMap">
+        SELECT gt.goods_type_id, gt.goods_type_name,gt.goods_type_pid
+        FROM dgg_store.goods_typeinfo gt
+    </select>
+
+    <select id="findGoodsList" resultMap="GoodsVOMap">
+        SELECT gd.goods_id,gd.goods_name,gd.goods_price,gd.goods_sales,imgsp.image_path,
+          (SELECT COUNT(0) FROM dgg_store.goodsinfo gd WHERE img.goods_img_type = 1 AND gd.goods_type_id = #{typeId}) count
+        FROM dgg_store.goodsinfo gd
+        INNER JOIN dgg_store.goods_image img
+        ON img.goods_id = gd.goods_id
+        INNER JOIN dgg_store.image_space imgsp
+        ON imgsp.image_id = img.image_id
+        WHERE img.goods_img_type = 1 AND gd.goods_type_id = #{typeId}
+        LIMIT #{pageNum},#{pageSize}
+    </select>
+
+    <select id="findGoodsDetail" resultMap="GoodsDetailVOMap">
+        SELECT gd.goods_id,gd.goods_name, gd.goods_price,gd.goods_sales,gd.goods_attr,
+          gd.goods_count,tof.template_default_price goods_freight,img.image_path goods_images,
+          gs.standard_name,gs.standard_id,gs.standard_price,gs.standard_count
+        FROM dgg_store.goodsinfo gd
+        INNER JOIN dgg_store.template_of_freight tof
+        ON gd.template_freight_id = tof.template_freight_id
+        INNER JOIN dgg_store.goods_image gi
+        ON gi.goods_id = gd.goods_id
+        INNER JOIN dgg_store.image_space img
+        ON img.image_id = gi.image_id
+        LEFT JOIN dgg_store.goods_standard gs
+        ON gs.goods_id = gd.goods_id
+        WHERE gd.goods_id = #{goodsId}
+    </select>
+
+    <select id="findGoodsStandard" resultMap="StandardMap">
+        SELECT gs.standard_price,gs.standard_count
+        FROM dgg_store.goods_standard gs
+        WHERE standard_id = #{standardId}
+    </select>
+
+    <select id="findGoodsDescribe" resultType="java.lang.String">
+        SELECT gd.goods_describe
+        FROM dgg_store.goodsinfo gd
+        WHERE gd.goods_id = #{goodsId}
+    </select>
+
+    <select id="findGoodsDescribeImg" resultType="java.lang.String">
+        SELECT image_path
+        FROM dgg_store.image_space
+        WHERE image_id = #{id}
+    </select>
+
+    <select id="findChildType" resultMap="TypeVOMap">
+        SELECT gt.goods_type_id, gt.goods_type_name,gt.goods_type_pid
+        FROM dgg_store.goods_typeinfo gt
+        WHERE gt.goods_type_pid = #{typeId}
+    </select>
+
+    <select id="findChildTypeId" resultType="java.lang.String">
+        SELECT gt.goods_type_id
+        FROM dgg_store.goods_typeinfo gt
+        WHERE gt.goods_type_pid = #{typeId}
+    </select>
+</mapper>

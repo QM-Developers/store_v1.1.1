@@ -1,0 +1,298 @@
+{
+  "state": 1,
+  "token": null,
+  "result": [
+    {
+      "goodsTypeId": "2267430251874ea69ea82834c558977a",
+      "goodsTypeName": "饲料",
+      "goodsTypePid": "0",
+      "parent": null,
+      "children": [
+        {
+          "goodsTypeId": "0b49ef854bb74ff9b9317132dba053d7",
+          "goodsTypeName": "中猪料",
+          "goodsTypePid": "2267430251874ea69ea82834c558977a",
+          "parent": null,
+          "children": [],
+          "pageNum": 0,
+          "pageSize": 0
+        },
+        {
+          "goodsTypeId": "273b080cc35f4b04946db52daca07798",
+          "goodsTypeName": "保育类",
+          "goodsTypePid": "2267430251874ea69ea82834c558977a",
+          "parent": null,
+          "children": [],
+          "pageNum": 0,
+          "pageSize": 0
+        },
+        {
+          "goodsTypeId": "2a2dc78ea7df40ae90a60bb49619df05",
+          "goodsTypeName": "原料",
+          "goodsTypePid": "2267430251874ea69ea82834c558977a",
+          "parent": null,
+          "children": [],
+          "pageNum": 0,
+          "pageSize": 0
+        },
+        {
+          "goodsTypeId": "7671e2616d2a496a866bcab01553c35f",
+          "goodsTypeName": "公猪料",
+          "goodsTypePid": "2267430251874ea69ea82834c558977a",
+          "parent": null,
+          "children": [],
+          "pageNum": 0,
+          "pageSize": 0
+        },
+        {
+          "goodsTypeId": "b6ec605c1e3e4ebb932f287567720f79",
+          "goodsTypeName": "大猪料",
+          "goodsTypePid": "2267430251874ea69ea82834c558977a",
+          "parent": null,
+          "children": [],
+          "pageNum": 0,
+          "pageSize": 0
+        },
+        {
+          "goodsTypeId": "c357720497e44bdb8720941fe39a1f05",
+          "goodsTypeName": "教槽类",
+          "goodsTypePid": "2267430251874ea69ea82834c558977a",
+          "parent": null,
+          "children": [],
+          "pageNum": 0,
+          "pageSize": 0
+        },
+        {
+          "goodsTypeId": "d792326c2d264e529b39c35d8dbc3d2e",
+          "goodsTypeName": "母猪料",
+          "goodsTypePid": "2267430251874ea69ea82834c558977a",
+          "parent": null,
+          "children": [],
+          "pageNum": 0,
+          "pageSize": 0
+        },
+        {
+          "goodsTypeId": "f9d0297d747645579b6219abd65c171f",
+          "goodsTypeName": "仔猪类",
+          "goodsTypePid": "2267430251874ea69ea82834c558977a",
+          "parent": null,
+          "children": [],
+          "pageNum": 0,
+          "pageSize": 0
+        }
+      ],
+      "pageNum": 0,
+      "pageSize": 0
+    },
+    {
+      "goodsTypeId": "286f09ac9e744088ad7ae9dbf8b5c70e",
+      "goodsTypeName": "药品",
+      "goodsTypePid": "0",
+      "parent": null,
+      "children": [
+        {
+          "goodsTypeId": "07d6d3ebc7dd440eb381d7771e73a156",
+          "goodsTypeName": "解热镇痛",
+          "goodsTypePid": "286f09ac9e744088ad7ae9dbf8b5c70e",
+          "parent": null,
+          "children": [],
+          "pageNum": 0,
+          "pageSize": 0
+        },
+        {
+          "goodsTypeId": "28107e61d0934057866afc846aace9cc",
+          "goodsTypeName": "消毒药",
+          "goodsTypePid": "286f09ac9e744088ad7ae9dbf8b5c70e",
+          "parent": null,
+          "children": [],
+          "pageNum": 0,
+          "pageSize": 0
+        },
+        {
+          "goodsTypeId": "3d2c59e310f6445eb2a9b331eb8209e7",
+          "goodsTypeName": "驱虫类",
+          "goodsTypePid": "286f09ac9e744088ad7ae9dbf8b5c70e",
+          "parent": null,
+          "children": [],
+          "pageNum": 0,
+          "pageSize": 0
+        },
+        {
+          "goodsTypeId": "625453c2a7ee467ebdb8d91541878470",
+          "goodsTypeName": "抗病毒类",
+          "goodsTypePid": "286f09ac9e744088ad7ae9dbf8b5c70e",
+          "parent": null,
+          "children": [],
+          "pageNum": 0,
+          "pageSize": 0
+        },
+        {
+          "goodsTypeId": "6916f2f3ec854d57bae01e051c375cae",
+          "goodsTypeName": "促生长类",
+          "goodsTypePid": "286f09ac9e744088ad7ae9dbf8b5c70e",
+          "parent": null,
+          "children": [],
+          "pageNum": 0,
+          "pageSize": 0
+        },
+        {
+          "goodsTypeId": "89bc17872c6640afac79a5a10c4065dd",
+          "goodsTypeName": "多维",
+          "goodsTypePid": "286f09ac9e744088ad7ae9dbf8b5c70e",
+          "parent": null,
+          "children": [],
+          "pageNum": 0,
+          "pageSize": 0
+        },
+        {
+          "goodsTypeId": "9167c97dd7b44ccb86844325447cb386",
+          "goodsTypeName": "兽药大礼包",
+          "goodsTypePid": "286f09ac9e744088ad7ae9dbf8b5c70e",
+          "parent": null,
+          "children": [],
+          "pageNum": 0,
+          "pageSize": 0
+        },
+        {
+          "goodsTypeId": "a0efbbe0f502482b928c21fee5af1adb",
+          "goodsTypeName": "脱霉剂",
+          "goodsTypePid": "286f09ac9e744088ad7ae9dbf8b5c70e",
+          "parent": null,
+          "children": [],
+          "pageNum": 0,
+          "pageSize": 0
+        },
+        {
+          "goodsTypeId": "b01a5c281eee4f1cb2d1ab8b119ea597",
+          "goodsTypeName": "免疫增强剂",
+          "goodsTypePid": "286f09ac9e744088ad7ae9dbf8b5c70e",
+          "parent": null,
+          "children": [],
+          "pageNum": 0,
+          "pageSize": 0
+        },
+        {
+          "goodsTypeId": "bf2e42c223d44faaa9bea5db2b50113b",
+          "goodsTypeName": "营养保健类",
+          "goodsTypePid": "286f09ac9e744088ad7ae9dbf8b5c70e",
+          "parent": null,
+          "children": [],
+          "pageNum": 0,
+          "pageSize": 0
+        },
+        {
+          "goodsTypeId": "d34083c958924feda89049b52a463533",
+          "goodsTypeName": "消化道",
+          "goodsTypePid": "286f09ac9e744088ad7ae9dbf8b5c70e",
+          "parent": null,
+          "children": [],
+          "pageNum": 0,
+          "pageSize": 0
+        },
+        {
+          "goodsTypeId": "e00c1be89ba549c2a8d24110746c428c",
+          "goodsTypeName": "环境改良剂",
+          "goodsTypePid": "286f09ac9e744088ad7ae9dbf8b5c70e",
+          "parent": null,
+          "children": [],
+          "pageNum": 0,
+          "pageSize": 0
+        },
+        {
+          "goodsTypeId": "e6567211ccbb49e78da89b858e162e98",
+          "goodsTypeName": "抗菌消炎",
+          "goodsTypePid": "286f09ac9e744088ad7ae9dbf8b5c70e",
+          "parent": null,
+          "children": [],
+          "pageNum": 0,
+          "pageSize": 0
+        }
+      ],
+      "pageNum": 0,
+      "pageSize": 0
+    },
+    {
+      "goodsTypeId": "583fdc38ee8c4b5aa6be0b9497da9594",
+      "goodsTypeName": "设备",
+      "goodsTypePid": "0",
+      "parent": null,
+      "children": [
+        {
+          "goodsTypeId": "201e884d225d40bd8e31cbc56b7df81e",
+          "goodsTypeName": "人工授精",
+          "goodsTypePid": "583fdc38ee8c4b5aa6be0b9497da9594",
+          "parent": null,
+          "children": [],
+          "pageNum": 0,
+          "pageSize": 0
+        },
+        {
+          "goodsTypeId": "52c03e15d23747559990472b909cf931",
+          "goodsTypeName": "温控环控",
+          "goodsTypePid": "583fdc38ee8c4b5aa6be0b9497da9594",
+          "parent": null,
+          "children": [],
+          "pageNum": 0,
+          "pageSize": 0
+        },
+        {
+          "goodsTypeId": "6d905405704c4358a199c6b96c814012",
+          "goodsTypeName": "管理辅助",
+          "goodsTypePid": "583fdc38ee8c4b5aa6be0b9497da9594",
+          "parent": null,
+          "children": [],
+          "pageNum": 0,
+          "pageSize": 0
+        },
+        {
+          "goodsTypeId": "a90311d9c1e143658622922edb76f0d8",
+          "goodsTypeName": "注射工具",
+          "goodsTypePid": "583fdc38ee8c4b5aa6be0b9497da9594",
+          "parent": null,
+          "children": [],
+          "pageNum": 0,
+          "pageSize": 0
+        },
+        {
+          "goodsTypeId": "d9a1c7aa8b8f4d50b6887cf81f60d4c3",
+          "goodsTypeName": "成套设备",
+          "goodsTypePid": "583fdc38ee8c4b5aa6be0b9497da9594",
+          "parent": null,
+          "children": [],
+          "pageNum": 0,
+          "pageSize": 0
+        }
+      ],
+      "pageNum": 0,
+      "pageSize": 0
+    },
+    {
+      "goodsTypeId": "c3428a9f163f462a86fc93fc0ab02317",
+      "goodsTypeName": "种苗",
+      "goodsTypePid": "0",
+      "parent": null,
+      "children": [
+        {
+          "goodsTypeId": "4b6533e3a7214dd39eafd2076b9d9813",
+          "goodsTypeName": "内三元",
+          "goodsTypePid": "c3428a9f163f462a86fc93fc0ab02317",
+          "parent": null,
+          "children": [],
+          "pageNum": 0,
+          "pageSize": 0
+        },
+        {
+          "goodsTypeId": "9fb6e69754ff423aadeb949d64e2888e",
+          "goodsTypeName": "外三元",
+          "goodsTypePid": "c3428a9f163f462a86fc93fc0ab02317",
+          "parent": null,
+          "children": [],
+          "pageNum": 0,
+          "pageSize": 0
+        }
+      ],
+      "pageNum": 0,
+      "pageSize": 0
+    }
+  ]
+}

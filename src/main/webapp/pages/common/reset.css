@@ -1,0 +1,90 @@
+html,
+body,
+div,
+ul,
+li,
+ol,
+a,
+input,
+textarea,
+p,
+dl,
+dt,
+dd {
+	margin: 0;
+	padding: 0;
+}
+
+ul li {
+	list-style: none;
+}
+
+a {
+	text-decoration: none;
+	cursor: pointer;
+}
+
+a,
+input,
+img,
+textarea,
+span,
+div {
+	outline: 0;
+	-webkit-tap-highlight-color: rgba(255, 0, 0, 0);
+}
+
+
+* {
+	margin: 0;
+	padding: 0;
+}
+html{
+	padding: 0 20px ;
+}
+
+
+body {
+	
+	
+	max-width: 100%;
+	min-width: 1000px;
+	height: 100%;
+	box-sizing: border-box;
+	/*background: #e7e7e7 ;*/
+	position: relative;
+	font-family: '微软雅黑';
+	/*font-family: Helvetica,Arial,PingFangSC-Regular,Microsoft Yahei,Verdana,sans-serif;*/
+	font-size: 16px;
+}
+body ul{
+	padding: 0;
+	margin: 0;
+}
+
+
+
+table{
+	margin: 0 !important;
+}
+.color-ccc{
+	color: #CCCCCC;
+}
+
+/*@media  (min-width:1381px ) {
+    body{
+	font-size: .2rem;		
+	}
+	.companyprofile-span{
+		width: 15%;
+	}
+}*/
+/*@media (max-width: 1380px){
+	
+	body{
+	font-size: .16rem;		
+	}
+	.companyprofile-span{
+		width: 12%;
+	}
+}*/

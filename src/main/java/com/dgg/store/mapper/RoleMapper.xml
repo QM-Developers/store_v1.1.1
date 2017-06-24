@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dgg.store.mapper.RoleMapper">
+    <resultMap id="BaseResultMap" type="com.dgg.store.util.pojo.Role">
+    <id column="role_id" jdbcType="INTEGER" property="roleId" />
+    <result column="role_name" jdbcType="VARCHAR" property="roleName" />
+    <result column="role_text" jdbcType="VARCHAR" property="roleText" />
+    <result column="role_create_date" jdbcType="TIMESTAMP" property="roleCreateDate" />
+    </resultMap>
+
+    <resultMap id="treeMap" type="com.dgg.store.util.vo.core.TreeVO">
+    <result column="permission_id" property="id" jdbcType="VARCHAR"/>
+    <result column="permission_name" property="name" jdbcType="VARCHAR"/>
+    <result column="permission_pid" property="pId" jdbcType="VARCHAR"/>
+    </resultMap>
+    <select id="findPermissionByRole" resultMap="treeMap" parameterType="com.dgg.store.util.pojo.Role">
+        SELECT p.permission_id, p.permission_name, p.permission_pid
+        FROM permission p
+        <if test="roleId != null and roleId != ''">
+            LEFT JOIN user_permission_re upr
+            ON upr.permission_id = p.permission_id
+            WHERE upr.role_id = #{roleId}
+        </if>
+        ORDER BY sort
+    </select>
+
+    <delete id="cleanPermissions">
+        DELETE FROM dgg_store.role_permission_re
+        WHERE role_id = #{roleId}
+    </delete>
+
+    <insert id="insertPermissionToRole">
+        INSERT INTO dgg_store.role_permission_re(permission_id, role_id)
+        VALUES
+        (#{permissionId},#{roleId})
+    </insert>
+
+    <select id="findHadPermission" resultType="java.lang.Integer">
+        SELECT COUNT(1)
+        FROM user_permission_re
+        WHERE role_id = #{roleId}
+        AND permission_id =
+        (SELECT permission_id
+        FROM permission
+        WHERE permission_url = #{permissionUrl}
+        )
+    </select>
+
+    <select id="findRoles" resultMap="BaseResultMap">
+        SELECT r.role_id,r.role_name,r.role_text
+        FROM dgg_store.role r
+    </select>
+
+    <select id="findRoleById" resultMap="BaseResultMap">
+        SELECT r.role_name,r.role_text
+        FROM dgg_store.role r
+        WHERE r.role_id = #{roleId}
+    </select>
+
+    <insert id="insertRole" parameterType="com.dgg.store.util.pojo.Role">
+        INSERT INTO dgg_store.role(role_name, role_text)
+        VALUES
+        (#{roleName},#{roleText})
+    </insert>
+
+    <update id="updateRole" parameterType="com.dgg.store.util.pojo.Role">
+        UPDATE dgg_store.role
+        <set>
+            <if test="roleName != null and roleName != ''">
+                role_name = #{roleName},
+            </if>
+            <if test="roleText != null and roleText != ''">
+                role_text = #{roleText},
+            </if>
+        </set>
+        WHERE role_id = #{roleId}
+    </update>
+
+    <delete id="deleteRole">
+        DELETE FROM dgg_store.role
+        WHERE role_id = #{roleId}
+    </delete>
+</mapper>

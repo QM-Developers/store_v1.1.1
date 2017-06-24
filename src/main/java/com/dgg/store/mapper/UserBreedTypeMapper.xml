@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dgg.store.mapper.UserBreedTypeMapper">
+  <resultMap id="BaseResultMap" type="com.dgg.store.util.pojo.UserBreedType">
+    <id column="user_breed_type_id" jdbcType="VARCHAR" property="userBreedTypeId" />
+    <result column="user_place_id" jdbcType="VARCHAR" property="userPlaceId" />
+    <result column="user_breed_type" jdbcType="VARCHAR" property="userBreedType" />
+    <result column="user_breed_variety" jdbcType="VARCHAR" property="userBreedVariety" />
+    <result column="user_breed_num" jdbcType="VARCHAR" property="userBreedNum" />
+    <result column="user_sell_num" jdbcType="VARCHAR" property="userSellNum" />
+    <result column="user_breed_style" jdbcType="VARCHAR" property="userBreedStyle" />
+    <result column="user_fodder_type" jdbcType="VARCHAR" property="userFodderType" />
+    <result column="user_fodder_style" jdbcType="VARCHAR" property="userFodderStyle" />
+    <result column="user_fodder_num" jdbcType="INTEGER" property="userFodderNum" />
+    <result column="is_deleted" jdbcType="TINYINT" property="isDeleted" />
+    <result column="delete_date" jdbcType="DATE" property="deleteDate" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    user_breed_type_id, user_place_id, user_breed_type, user_breed_variety, user_breed_num, 
+    user_sell_num, user_breed_style, user_fodder_type, user_fodder_style, user_fodder_num, 
+    is_deleted, delete_date
+  </sql>
+  <select id="selectByExample" parameterType="com.dgg.store.util.pojo.UserBreedTypeExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from user_breed_type
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from user_breed_type
+    where user_breed_type_id = #{userBreedTypeId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from user_breed_type
+    where user_breed_type_id = #{userBreedTypeId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.dgg.store.util.pojo.UserBreedTypeExample">
+    delete from user_breed_type
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.dgg.store.util.pojo.UserBreedType">
+    insert into user_breed_type (user_breed_type_id, user_place_id, user_breed_type, 
+      user_breed_variety, user_breed_num, user_sell_num, 
+      user_breed_style, user_fodder_type, user_fodder_style, 
+      user_fodder_num, is_deleted, delete_date
+      )
+    values (#{userBreedTypeId,jdbcType=VARCHAR}, #{userPlaceId,jdbcType=VARCHAR}, #{userBreedType,jdbcType=VARCHAR}, 
+      #{userBreedVariety,jdbcType=VARCHAR}, #{userBreedNum,jdbcType=VARCHAR}, #{userSellNum,jdbcType=VARCHAR}, 
+      #{userBreedStyle,jdbcType=VARCHAR}, #{userFodderType,jdbcType=VARCHAR}, #{userFodderStyle,jdbcType=VARCHAR}, 
+      #{userFodderNum,jdbcType=INTEGER}, #{isDeleted,jdbcType=TINYINT}, #{deleteDate,jdbcType=DATE}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.dgg.store.util.pojo.UserBreedType">
+    insert into user_breed_type
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userBreedTypeId != null">
+        user_breed_type_id,
+      </if>
+      <if test="userPlaceId != null">
+        user_place_id,
+      </if>
+      <if test="userBreedType != null">
+        user_breed_type,
+      </if>
+      <if test="userBreedVariety != null">
+        user_breed_variety,
+      </if>
+      <if test="userBreedNum != null">
+        user_breed_num,
+      </if>
+      <if test="userSellNum != null">
+        user_sell_num,
+      </if>
+      <if test="userBreedStyle != null">
+        user_breed_style,
+      </if>
+      <if test="userFodderType != null">
+        user_fodder_type,
+      </if>
+      <if test="userFodderStyle != null">
+        user_fodder_style,
+      </if>
+      <if test="userFodderNum != null">
+        user_fodder_num,
+      </if>
+      <if test="isDeleted != null">
+        is_deleted,
+      </if>
+      <if test="deleteDate != null">
+        delete_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="userBreedTypeId != null">
+        #{userBreedTypeId,jdbcType=VARCHAR},
+      </if>
+      <if test="userPlaceId != null">
+        #{userPlaceId,jdbcType=VARCHAR},
+      </if>
+      <if test="userBreedType != null">
+        #{userBreedType,jdbcType=VARCHAR},
+      </if>
+      <if test="userBreedVariety != null">
+        #{userBreedVariety,jdbcType=VARCHAR},
+      </if>
+      <if test="userBreedNum != null">
+        #{userBreedNum,jdbcType=VARCHAR},
+      </if>
+      <if test="userSellNum != null">
+        #{userSellNum,jdbcType=VARCHAR},
+      </if>
+      <if test="userBreedStyle != null">
+        #{userBreedStyle,jdbcType=VARCHAR},
+      </if>
+      <if test="userFodderType != null">
+        #{userFodderType,jdbcType=VARCHAR},
+      </if>
+      <if test="userFodderStyle != null">
+        #{userFodderStyle,jdbcType=VARCHAR},
+      </if>
+      <if test="userFodderNum != null">
+        #{userFodderNum,jdbcType=INTEGER},
+      </if>
+      <if test="isDeleted != null">
+        #{isDeleted,jdbcType=TINYINT},
+      </if>
+      <if test="deleteDate != null">
+        #{deleteDate,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.dgg.store.util.pojo.UserBreedTypeExample" resultType="java.lang.Long">
+    select count(*) from user_breed_type
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update user_breed_type
+    <set>
+      <if test="record.userBreedTypeId != null">
+        user_breed_type_id = #{record.userBreedTypeId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userPlaceId != null">
+        user_place_id = #{record.userPlaceId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userBreedType != null">
+        user_breed_type = #{record.userBreedType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userBreedVariety != null">
+        user_breed_variety = #{record.userBreedVariety,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userBreedNum != null">
+        user_breed_num = #{record.userBreedNum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userSellNum != null">
+        user_sell_num = #{record.userSellNum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userBreedStyle != null">
+        user_breed_style = #{record.userBreedStyle,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userFodderType != null">
+        user_fodder_type = #{record.userFodderType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userFodderStyle != null">
+        user_fodder_style = #{record.userFodderStyle,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userFodderNum != null">
+        user_fodder_num = #{record.userFodderNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.isDeleted != null">
+        is_deleted = #{record.isDeleted,jdbcType=TINYINT},
+      </if>
+      <if test="record.deleteDate != null">
+        delete_date = #{record.deleteDate,jdbcType=DATE},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update user_breed_type
+    set user_breed_type_id = #{record.userBreedTypeId,jdbcType=VARCHAR},
+      user_place_id = #{record.userPlaceId,jdbcType=VARCHAR},
+      user_breed_type = #{record.userBreedType,jdbcType=VARCHAR},
+      user_breed_variety = #{record.userBreedVariety,jdbcType=VARCHAR},
+      user_breed_num = #{record.userBreedNum,jdbcType=VARCHAR},
+      user_sell_num = #{record.userSellNum,jdbcType=VARCHAR},
+      user_breed_style = #{record.userBreedStyle,jdbcType=VARCHAR},
+      user_fodder_type = #{record.userFodderType,jdbcType=VARCHAR},
+      user_fodder_style = #{record.userFodderStyle,jdbcType=VARCHAR},
+      user_fodder_num = #{record.userFodderNum,jdbcType=INTEGER},
+      is_deleted = #{record.isDeleted,jdbcType=TINYINT},
+      delete_date = #{record.deleteDate,jdbcType=DATE}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dgg.store.util.pojo.UserBreedType">
+    update user_breed_type
+    <set>
+      <if test="userPlaceId != null">
+        user_place_id = #{userPlaceId,jdbcType=VARCHAR},
+      </if>
+      <if test="userBreedType != null">
+        user_breed_type = #{userBreedType,jdbcType=VARCHAR},
+      </if>
+      <if test="userBreedVariety != null">
+        user_breed_variety = #{userBreedVariety,jdbcType=VARCHAR},
+      </if>
+      <if test="userBreedNum != null">
+        user_breed_num = #{userBreedNum,jdbcType=VARCHAR},
+      </if>
+      <if test="userSellNum != null">
+        user_sell_num = #{userSellNum,jdbcType=VARCHAR},
+      </if>
+      <if test="userBreedStyle != null">
+        user_breed_style = #{userBreedStyle,jdbcType=VARCHAR},
+      </if>
+      <if test="userFodderType != null">
+        user_fodder_type = #{userFodderType,jdbcType=VARCHAR},
+      </if>
+      <if test="userFodderStyle != null">
+        user_fodder_style = #{userFodderStyle,jdbcType=VARCHAR},
+      </if>
+      <if test="userFodderNum != null">
+        user_fodder_num = #{userFodderNum,jdbcType=INTEGER},
+      </if>
+      <if test="isDeleted != null">
+        is_deleted = #{isDeleted,jdbcType=TINYINT},
+      </if>
+      <if test="deleteDate != null">
+        delete_date = #{deleteDate,jdbcType=DATE},
+      </if>
+    </set>
+    where user_breed_type_id = #{userBreedTypeId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dgg.store.util.pojo.UserBreedType">
+    update user_breed_type
+    set user_place_id = #{userPlaceId,jdbcType=VARCHAR},
+      user_breed_type = #{userBreedType,jdbcType=VARCHAR},
+      user_breed_variety = #{userBreedVariety,jdbcType=VARCHAR},
+      user_breed_num = #{userBreedNum,jdbcType=VARCHAR},
+      user_sell_num = #{userSellNum,jdbcType=VARCHAR},
+      user_breed_style = #{userBreedStyle,jdbcType=VARCHAR},
+      user_fodder_type = #{userFodderType,jdbcType=VARCHAR},
+      user_fodder_style = #{userFodderStyle,jdbcType=VARCHAR},
+      user_fodder_num = #{userFodderNum,jdbcType=INTEGER},
+      is_deleted = #{isDeleted,jdbcType=TINYINT},
+      delete_date = #{deleteDate,jdbcType=DATE}
+    where user_breed_type_id = #{userBreedTypeId,jdbcType=VARCHAR}
+  </update>
+</mapper>

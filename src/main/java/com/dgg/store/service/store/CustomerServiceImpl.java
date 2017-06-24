@@ -1,0 +1,129 @@
+package com.dgg.store.service.store;
+
+import com.dgg.store.dao.store.CustomerDao;
+import com.dgg.store.util.core.constant.Constant;
+import com.dgg.store.util.core.generator.IDGenerator;
+import com.dgg.store.util.pojo.MyTeam;
+import com.dgg.store.util.vo.CustomerGroupVO;
+import com.dgg.store.util.vo.CustomerVO;
+import com.dgg.store.util.vo.core.ResultVO;
+import com.dgg.store.util.vo.core.SessionVO;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
+@Service
+public class CustomerServiceImpl implements CustomerService
+{
+    @Autowired
+    private CustomerDao dao;
+
+    @Override
+    public ResultVO insertStoreUser(CustomerVO customerVO, SessionVO sessionVO)
+    {
+        customerVO.setUserId(sessionVO.getUserId());
+        customerVO.setCustomerId(IDGenerator.generator());
+        customerVO.setUserStatus(Constant.USERST_0);
+        customerVO.setRoleId(Integer.parseInt(Constant.ROLE_DEFAULT_USER));
+        customerVO.setMyTeamId(sessionVO.getMyTeamId());
+
+        Integer result = dao.insertStoreUser(customerVO);
+        if (result < 1)
+            throw new RuntimeException("添加客户失败");
+        else
+            result = dao.insertCustomerGroup(customerVO);
+        if (result < 1)
+            throw new RuntimeException("添加客户失败");
+
+        ResultVO resultVO = new ResultVO(result < 1 ? 0 : 1, sessionVO.getToken());
+
+        return resultVO;
+    }
+
+    @Override
+    public ResultVO findCustomerByGroup(SessionVO sessionVO, CustomerVO customerVO)
+    {
+        List<CustomerVO> result = dao.findCustomerByGroup(customerVO.getCustomerGroupId(),sessionVO.getUserId());
+
+        ResultVO resultVO = new ResultVO(result.size() < 1 ? 0 : 1, sessionVO.getToken(), result);
+
+        return resultVO;
+    }
+
+    @Override
+    public ResultVO findCustomerInfo(SessionVO sessionVO, CustomerVO customerVO)
+    {
+        CustomerVO result = dao.findCustomerInfo(customerVO.getCustomerId());
+
+        ResultVO resultVO = new ResultVO(result == null ? 0 : 1, sessionVO.getToken(), result);
+
+        return resultVO;
+    }
+
+    @Override
+    public ResultVO insertCooperation(SessionVO sessionVO, MyTeam myTeam)
+    {
+        myTeam.setMyTeamUid(sessionVO.getUserId());
+
+        Integer result = dao.insertCooperation(myTeam);
+
+        ResultVO resultVO = new ResultVO(result, sessionVO.getToken());
+
+        return resultVO;
+    }
+
+    @Override
+    public ResultVO findCooperation(SessionVO sessionVO)
+    {
+        List<MyTeam> result = dao.findCooperation(sessionVO.getUserId());
+
+        ResultVO resultVO = new ResultVO(result.size() < 1 ? 0 : 1, sessionVO.getToken(), result);
+
+        return resultVO;
+    }
+
+    @Override
+    public ResultVO findPartner(SessionVO sessionVO, String cooperId)
+    {
+        List<CustomerVO> result = dao.findPartner(Integer.parseInt(cooperId));
+
+        ResultVO resultVO = new ResultVO(result.size() < 1 ? 0 : 1, sessionVO.getToken(), result);
+
+        return resultVO;
+    }
+
+    @Override
+    public ResultVO insertCustomerToCooper(SessionVO sessionVO, CustomerVO customerVO)
+    {
+        customerVO.setUserId(IDGenerator.generator());
+        Integer result = dao.insertStoreUser(customerVO);
+
+        ResultVO resultVO = new ResultVO(result,sessionVO.getToken());
+
+        return resultVO;
+    }
+
+    @Override
+    public ResultVO updateCustomer(SessionVO sessionVO, CustomerVO customerVO)
+    {
+        if("".equals(customerVO.getMyTeamId()))
+            customerVO.setMyTeamId(sessionVO.getMyTeamId());
+        dao.insertCustomerHistory(customerVO.getCustomerId());
+        Integer result = dao.updateCustomer(customerVO);
+
+        ResultVO resultVO = new ResultVO(result,sessionVO.getToken());
+
+        return resultVO;
+    }
+
+    @Override
+    public ResultVO findCustomerGroup(SessionVO sessionVO)
+    {
+        List<CustomerGroupVO> result = dao.findCustomerGroup();
+
+        ResultVO resultVO = new ResultVO(result.size() < 1 ? 0 : 1, sessionVO.getToken(), result);
+
+        return resultVO;
+    }
+}

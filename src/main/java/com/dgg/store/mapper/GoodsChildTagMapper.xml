@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dgg.store.mapper.GoodsChildTagMapper">
+  <resultMap id="BaseResultMap" type="com.dgg.store.util.pojo.GoodsChildTag">
+    <id column="goods_child_tag_id" jdbcType="VARCHAR" property="goodsChildTagId" />
+    <result column="goods_parent_tag_id" jdbcType="VARCHAR" property="goodsParentTagId" />
+    <result column="goods_child_tag_text" jdbcType="VARCHAR" property="goodsChildTagText" />
+    <result column="is_deleted" jdbcType="TINYINT" property="isDeleted" />
+    <result column="delete_date" jdbcType="DATE" property="deleteDate" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    goods_child_tag_id, goods_parent_tag_id, goods_child_tag_text, is_deleted, delete_date
+  </sql>
+  <select id="selectByExample" parameterType="com.dgg.store.util.pojo.GoodsChildTagExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from goods_child_tag
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from goods_child_tag
+    where goods_child_tag_id = #{goodsChildTagId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from goods_child_tag
+    where goods_child_tag_id = #{goodsChildTagId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.dgg.store.util.pojo.GoodsChildTagExample">
+    delete from goods_child_tag
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.dgg.store.util.pojo.GoodsChildTag">
+    insert into goods_child_tag (goods_child_tag_id, goods_parent_tag_id, 
+      goods_child_tag_text, is_deleted, delete_date
+      )
+    values (#{goodsChildTagId,jdbcType=VARCHAR}, #{goodsParentTagId,jdbcType=VARCHAR}, 
+      #{goodsChildTagText,jdbcType=VARCHAR}, #{isDeleted,jdbcType=TINYINT}, #{deleteDate,jdbcType=DATE}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.dgg.store.util.pojo.GoodsChildTag">
+    insert into goods_child_tag
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="goodsChildTagId != null">
+        goods_child_tag_id,
+      </if>
+      <if test="goodsParentTagId != null">
+        goods_parent_tag_id,
+      </if>
+      <if test="goodsChildTagText != null">
+        goods_child_tag_text,
+      </if>
+      <if test="isDeleted != null">
+        is_deleted,
+      </if>
+      <if test="deleteDate != null">
+        delete_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="goodsChildTagId != null">
+        #{goodsChildTagId,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsParentTagId != null">
+        #{goodsParentTagId,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsChildTagText != null">
+        #{goodsChildTagText,jdbcType=VARCHAR},
+      </if>
+      <if test="isDeleted != null">
+        #{isDeleted,jdbcType=TINYINT},
+      </if>
+      <if test="deleteDate != null">
+        #{deleteDate,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.dgg.store.util.pojo.GoodsChildTagExample" resultType="java.lang.Long">
+    select count(*) from goods_child_tag
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update goods_child_tag
+    <set>
+      <if test="record.goodsChildTagId != null">
+        goods_child_tag_id = #{record.goodsChildTagId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.goodsParentTagId != null">
+        goods_parent_tag_id = #{record.goodsParentTagId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.goodsChildTagText != null">
+        goods_child_tag_text = #{record.goodsChildTagText,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isDeleted != null">
+        is_deleted = #{record.isDeleted,jdbcType=TINYINT},
+      </if>
+      <if test="record.deleteDate != null">
+        delete_date = #{record.deleteDate,jdbcType=DATE},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update goods_child_tag
+    set goods_child_tag_id = #{record.goodsChildTagId,jdbcType=VARCHAR},
+      goods_parent_tag_id = #{record.goodsParentTagId,jdbcType=VARCHAR},
+      goods_child_tag_text = #{record.goodsChildTagText,jdbcType=VARCHAR},
+      is_deleted = #{record.isDeleted,jdbcType=TINYINT},
+      delete_date = #{record.deleteDate,jdbcType=DATE}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dgg.store.util.pojo.GoodsChildTag">
+    update goods_child_tag
+    <set>
+      <if test="goodsParentTagId != null">
+        goods_parent_tag_id = #{goodsParentTagId,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsChildTagText != null">
+        goods_child_tag_text = #{goodsChildTagText,jdbcType=VARCHAR},
+      </if>
+      <if test="isDeleted != null">
+        is_deleted = #{isDeleted,jdbcType=TINYINT},
+      </if>
+      <if test="deleteDate != null">
+        delete_date = #{deleteDate,jdbcType=DATE},
+      </if>
+    </set>
+    where goods_child_tag_id = #{goodsChildTagId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dgg.store.util.pojo.GoodsChildTag">
+    update goods_child_tag
+    set goods_parent_tag_id = #{goodsParentTagId,jdbcType=VARCHAR},
+      goods_child_tag_text = #{goodsChildTagText,jdbcType=VARCHAR},
+      is_deleted = #{isDeleted,jdbcType=TINYINT},
+      delete_date = #{deleteDate,jdbcType=DATE}
+    where goods_child_tag_id = #{goodsChildTagId,jdbcType=VARCHAR}
+  </update>
+</mapper>

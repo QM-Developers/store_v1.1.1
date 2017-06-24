@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dgg.store.mapper.GoodsinfoMapper">
+    <resultMap id="BaseResultMap" type="com.dgg.store.util.vo.goods.GoodsInfoVO">
+        <id column="goods_id" jdbcType="VARCHAR" property="goodsId"/>
+        <result column="goods_type_id" jdbcType="VARCHAR" property="goodsTypeId"/>
+        <result column="template_freight_id" jdbcType="VARCHAR" property="templateFreightId"/>
+        <result column="goods_name" jdbcType="VARCHAR" property="goodsName"/>
+        <result column="goods_price" jdbcType="REAL" property="goodsPrice"/>
+        <result column="goods_count" jdbcType="INTEGER" property="goodsCount"/>
+        <result column="goods_freight" jdbcType="INTEGER" property="goodsFreight"/>
+        <result column="my_team_id" jdbcType="INTEGER" property="myTeamId"/>
+    </resultMap>
+
+    <resultMap id="TypeVOMap" type="com.dgg.store.util.vo.goods.GoodsTypeVO">
+        <id column="goods_type_id" jdbcType="VARCHAR" property="goodsTypeId"/>
+        <result column="goods_type_name" jdbcType="VARCHAR" property="goodsTypeName"/>
+        <result column="goods_type_pid" jdbcType="VARCHAR" property="goodsTypePid"/>
+    </resultMap>
+
+    <resultMap id="AttrMap" type="com.dgg.store.util.pojo.GoodsTypeAttr">
+        <id column="goods_type_attr_id" jdbcType="VARCHAR" property="goodsTypeAttrId" />
+        <result column="goods_type_id" jdbcType="VARCHAR" property="goodsTypeId" />
+        <result column="goods_type_attr_name" jdbcType="VARCHAR" property="goodsTypeAttrName" />
+        <result column="goods_type_attr_value" jdbcType="VARCHAR" property="goodsTypeAttrValue" />
+        <result column="const" jdbcType="VARCHAR" property="goodsTypeAttrConst" />
+        <result column="input_type" jdbcType="VARCHAR" property="goodsTypeAttrInputType" />
+    </resultMap>
+
+    <resultMap id="ImageSpaceMap" type="com.dgg.store.util.pojo.ImageSpace">
+        <id column="image_id" property="imageId" jdbcType="VARCHAR"></id>
+        <result column="image_path" property="imagePath" jdbcType="VARCHAR"></result>
+    </resultMap>
+
+    <insert id="insertGoodsinfo" parameterType="com.dgg.store.util.vo.goods.GoodsInfoVO">
+        INSERT INTO goodsinfo (goods_id, goods_type_id, goods_name, goods_price, goods_count,
+          goods_describe, template_freight_id,
+          my_team_id, goods_attr)
+        VALUES
+        (#{goodsId},#{goodsTypeId},#{goodsName},#{goodsPrice},#{goodsCount},
+          #{goodsDescribe},#{templateFreightId},
+          #{myTeamId},#{goodsAttr})
+    </insert>
+
+    <select id="findTypeAndParent" resultMap="TypeVOMap">
+        SELECT gt.goods_type_id,gt.goods_type_name,gt.goods_type_pid
+        FROM goods_typeinfo gt
+        WHERE gt.goods_type_id = #{typePid}
+    </select>
+
+    <select id="findGoodsType" resultMap="TypeVOMap">
+        SELECT gt.goods_type_id,gt.goods_type_name,gt.goods_type_pid
+        FROM goods_typeinfo gt
+        WHERE gt.goods_type_id = #{typeId}
+    </select>
+
+    <select id="findTypeAttr" resultMap="AttrMap">
+        SELECT gta.goods_type_attr_name, gta.goods_type_attr_value, gta.goods_type_attr_const const, gta.goods_type_attr_input_type input_type
+        FROM goods_type_attr gta
+        WHERE gta.goods_type_id = #{typeId}
+    </select>
+
+    <insert id="insertImgToSpace">
+        INSERT INTO image_space (image_id, my_team_id, image_path)
+        VALUES (#{imageId},#{myTeamId},#{imagePath})
+    </insert>
+
+    <insert id="insertImgToGoods" parameterType="com.dgg.store.util.vo.goods.GoodsImgVO">
+        INSERT INTO goods_image(goods_id, image_id, goods_img_type, sort)
+        VALUES
+        (#{goodsId},#{imageId},#{goodsImgType},#{sort})
+    </insert>
+
+    <select id="findImages" resultMap="ImageSpaceMap">
+        SELECT image_id, image_path
+        FROM dgg_store.image_space
+        WHERE my_team_id = #{myTeamId}
+    </select>
+
+    <insert id="insertStandardToGoods" parameterType="com.dgg.store.util.pojo.GoodsStandard">
+        INSERT INTO goods_standard(standard_id, goods_id, standard_name, standard_price, standard_count)
+        VALUES
+        (#{standardId},#{goodsId},#{standardName},#{standardPrice},#{standardCount})
+    </insert>
+</mapper>

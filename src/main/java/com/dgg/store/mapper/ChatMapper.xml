@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dgg.store.mapper.ChatMapper">
+    <resultMap id="ChatHistoryMap" type="com.dgg.store.util.pojo.ChatHistory">
+        <result column="send_user_id" property="sendUserId" jdbcType="VARCHAR"/>
+        <result column="receive_user_id" property="receiveUserId" jdbcType="VARCHAR"/>
+        <result column="data_type" property="dataType" jdbcType="INTEGER"/>
+        <result column="send_data" property="sendData" jdbcType="VARCHAR"/>
+        <result column="send_time" property="sendTime" jdbcType="DATE"/>
+        <result column="is_read" property="isRead" jdbcType="INTEGER"/>
+
+        <result column="user_img" property="userImg" jdbcType="VARCHAR"/>
+        <result column="friend_remark_name" property="friendRemarkName" jdbcType="VARCHAR"/>
+        <result column="user_sex" property="userSex" jdbcType="VARCHAR"/>
+        <result column="user_name" property="userName" jdbcType="VARCHAR"/>
+        <result column="count" property="count" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <insert id="insertChatMessage" parameterType="com.dgg.store.util.pojo.ChatHistory">
+        INSERT INTO chat_history
+        (send_user_id, receive_user_id, data_type, send_data)
+        VALUES
+        (#{sendUserId},#{receiveUserId},#{dataType},#{sendData})
+    </insert>
+
+    <select id="findNotReadChatHistoryCount" parameterType="com.dgg.store.util.pojo.ChatHistory" resultMap="ChatHistoryMap">
+        SELECT COUNT(1) count,ch.send_user_id ,
+          u.user_name,u.user_img,u.user_sex,
+          f.friend_remark_name
+        FROM chat_history ch
+        INNER JOIN user u
+        ON u.user_id = ch.send_user_id
+        LEFT JOIN friend f
+        ON f.user_id = ch.send_user_id AND f.friend_user_id = ch.receive_user_id
+        WHERE ch.receive_user_id = #{receiveUserId}
+        AND ch.is_read = #{isRead}
+        GROUP BY ch.send_user_id
+    </select>
+
+    <select id="findChatHistory" parameterType="com.dgg.store.util.pojo.ChatHistory" resultMap="ChatHistoryMap">
+        SELECT send_user_id,data_type,send_data,send_time,
+          u.user_name,u.user_img,u.user_sex
+        FROM chat_history ch
+        INNER JOIN user u
+        ON u.user_id = ch.send_user_id
+        WHERE 1 = 1
+        <if test="sendUserId != null and sendUserId != ''">
+            AND ch.send_user_id = #{sendUserId}
+        </if>
+        <if test="receiveUserId != null and receiveUserId != ''">
+            AND ch.receive_user_id = #{receiveUserId}
+        </if>
+        <if test="isRead != null">
+            AND ch.is_read = #{isRead}
+        </if>
+        <if test="dataType != null and dataType != 0">
+            AND ch.data_type = #{dataType}
+        </if>
+        ORDER BY ch.send_time DESC
+        LIMIT #{pageNum},#{pageSize}
+    </select>
+
+    <update id="updateChatHistory" parameterType="com.dgg.store.util.pojo.ChatHistory">
+        UPDATE chat_history
+        <set>
+            <if test="isRead != null">
+                is_read = #{isRead},
+            </if>
+        </set>
+        WHERE 1 = 1
+        <if test="sendUserId != null and sendUserId != ''">
+            AND send_user_id = #{sendUserId}
+        </if>
+        <if test="receiveUserId != null and receiveUserId != ''">
+            AND receive_user_id = #{receiveUserId}
+        </if>
+    </update>
+</mapper>

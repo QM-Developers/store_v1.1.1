@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dgg.store.mapper.MyMapper">
+    <resultMap id="MyInfoVOMap" type="com.dgg.store.util.vo.MyInfoVO">
+        <result column="user_name" property="userName" jdbcType="VARCHAR"/>
+        <result column="user_phone" property="userPhone" jdbcType="VARCHAR"/>
+        <result column="user_address" property="userAddress" jdbcType="VARCHAR"/>
+        <result column="user_area" property="userArea" jdbcType="VARCHAR"/>
+        <result column="user_img" property="userImg" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <resultMap id="MyAddressVO" type="com.dgg.store.util.vo.MyAddressVO">
+        <result column="user_address_id" property="userAddressId" jdbcType="VARCHAR"/>
+        <result column="user_address_phone" property="userPhone" jdbcType="VARCHAR"/>
+        <result column="user_address_area" property="userArea" jdbcType="VARCHAR"/>
+        <result column="user_address_text" property="userAddress" jdbcType="VARCHAR"/>
+        <result column="user_address_name" property="userName" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <select id="findMyInfo" resultMap="MyInfoVOMap">
+        SELECT u.user_name,u.user_phone,u.user_address,u.user_area,u.user_img
+        FROM user u
+        WHERE u.user_id = #{userId}
+    </select>
+
+    <select id="findMyAddress" resultMap="MyAddressVO">
+        SELECT sa.user_address_id,sa.user_address_text, sa.user_address_phone, sa.user_address_area,sa.user_address_name
+        FROM shopping_address sa
+        WHERE sa.user_id = #{userId}
+    </select>
+
+    <insert id="insertMyAddress" parameterType="com.dgg.store.util.vo.MyAddressVO">
+        INSERT INTO shopping_address(user_address_id, user_id,user_address_name,
+          user_address_text, user_address_phone,user_address_area,user_address_default)
+        VALUES
+        (#{userAddressId},#{userId},#{userName},
+          #{userAddress},#{userPhone},#{userArea},#{userAddressDefault})
+    </insert>
+
+    <update id="updateMyAddress" parameterType="com.dgg.store.util.vo.MyAddressVO">
+        UPDATE shopping_address
+        <set>
+            <if test="userPhone != null">
+                user_address_phone = #{userPhone},
+            </if>
+            <if test="userArea != null">
+                user_address_area = #{userArea},
+            </if>
+            <if test="userAddress != null">
+                user_address_text = #{userAddress},
+            </if>
+            <if test="userName != null">
+                user_address_name = #{userName},
+            </if>
+            shopping_address.user_address_default = #{userAddressDefault}
+        </set>
+        WHERE user_address_id = #{userAddressId}
+    </update>
+
+    <update id="updateAddressNotDefault">
+        UPDATE shopping_address
+        SET shopping_address.user_address_default = 0
+        WHERE shopping_address.user_id = #{userId}
+    </update>
+
+    <delete id="deleteMyAddress">
+        DELETE FROM shopping_address
+        WHERE user_address_id = #{addressId}
+    </delete>
+
+    <select id="findUserImgPath" resultType="java.lang.String">
+        SELECT user_img
+        FROM user
+        WHERE user_id = #{userId}
+    </select>
+
+    <update id="updateUserImg">
+        UPDATE user
+        <set>
+            user_img = #{userImg,jdbcType=VARCHAR}
+        </set>
+        WHERE user_id = #{userId}
+    </update>
+
+    <update id="updateAddressToDefault">
+        UPDATE shopping_address SET user_address_default = 1
+        WHERE user_address_id =
+        (SELECT user_address_id FROM
+        (SELECT user_address_id FROM shopping_address WHERE user_id = #{userId} LIMIT 0,1) temp)
+    </update>
+</mapper>

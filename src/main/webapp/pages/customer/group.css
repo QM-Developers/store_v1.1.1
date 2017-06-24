@@ -1,0 +1,18 @@
+.am-popup {
+     left:40%;
+     width: auto;
+     height: auto;
+ }
+
+.btn-white{
+    background-color: white;
+}
+
+.btn-white:hover{
+    background-color: #f5f5f5;
+}
+
+.btn-toggle{
+    width:173px;
+    margin-top: -1px;
+}

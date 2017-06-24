@@ -1,0 +1,648 @@
+.bor-no {
+    border: none;
+}
+
+.qm-header {
+    height: 62px;
+    margin: 14px 0 11px 0;
+    background: #1468ff;
+    border-bottom: 2px solid #00ff7b;
+}
+
+.qm-header button {
+    background: #1468ff;
+    border: none;
+    font-size: 18px;
+    line-height: initial;
+    text-align: center;
+    color: #fff;
+}
+
+.qm-but1 {
+    width: 90px;
+    height: 60px;
+}
+
+.qm-but2 {
+    width: 90px;
+    height: 60px;
+}
+
+.qm-header-left {
+    width: 50%;
+    float: left;
+}
+
+.qm-header-right {
+    width: 50%;
+    margin-top: 10px;
+}
+
+.qm-put-box {
+    width: 300px;
+    height: 35px;
+    margin-right: 41px;
+    border-left: 1px solid #ccc;
+    border-top-left-radius: 2px;
+    border-bottom-left-radius: 4px;
+}
+
+.qm-header-put {
+    display: inline-block;
+    float: left;
+    width: 259px;
+    height: 34px;
+    border: none;
+}
+
+.qm-header-span {
+    display: inline-block;
+    width: 40px;
+    height: 35px;
+    cursor: pointer;
+    background: url(../images/seo.jpg) no-repeat;
+}
+
+.qm-header-op {
+    background: #fff;
+}
+
+.qm-header-op:hover {
+    background: #1467ff;
+}
+
+/**/
+
+.qm-search {
+    height: 56px;
+    background: #8adbff;
+}
+
+.qm-search-u {
+    padding: 0;
+    margin: 0;
+}
+
+.qm-search-u .qm-search-li {
+    padding: 0;
+    margin-top: 11px;
+    float: left;
+    margin-left: 20px;
+    height: 36px;
+    background: #fff;
+    border: 1px solid #CCCCCC;
+    border-radius: 5px;
+}
+
+.qm-search-u .qm-search-li:nth-child(3) {
+    min-width: 200px;
+}
+
+.qm-search-u .qm-search-li:last-child {
+    border: none;
+    text-align: center;
+    background: #8adbff;
+}
+
+#qm-search-time .qm-search-li3 {
+    display: inline-block;
+    width: 46%;
+    height: 100%;
+    text-align: center;
+    line-height: 36px;
+    border: none;
+    background: #fff;
+}
+
+.qm-search-u .qm-search-li input {
+    width: 100%;
+    height: 100%;
+    border: none;
+    border-radius: 5px;
+}
+
+.qm-but-li8 {
+    background: #8adbff;
+    border: none;
+    width: 100%;
+    height: 100%;
+}
+
+#search-div {
+    display: none;
+    min-width: 1000px;
+    max-width: 1267px;
+    box-sizing: border-box;
+    margin: 10px auto;
+    border: 1px solid #fff;
+    border-radius: 5px;
+    background: #fff;
+}
+
+.qm-c-company {
+    margin: 20px 41px 16px 41px;
+}
+
+.qm-c-p {
+    margin-bottom: 16px;
+    font-size: 18px;
+}
+
+.qm-c-ul {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    max-height: 200px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.qm-c-li {
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+    padding-left: 15px;
+}
+
+.qm-c-li:hover {
+    border-top: 1px solid #CCC;
+    border-bottom: 1px solid #CCC;
+    background: #8bdbff;
+}
+
+#emptydata {
+    max-width: 1269px;
+    min-width: 1000px;
+    margin: auto;
+    background: #fff;
+    padding-bottom: 20px;
+    box-sizing: border-box;
+    border: 1px solid #e7e7e7;
+    border-radius: 5px;
+}
+
+.poptime {
+    width: 100%;
+    height: 32px;
+    border-radius: 5px;
+}
+
+.poptime1 {
+    border: 1px solid #CCCCCC;
+    height: 37px;
+}
+
+/*时间按钮*/
+
+.qm-time-but {
+    border: none;
+    float: right;
+    width: 15%;
+    height: 100%;
+    padding: 0;
+    background: #fff;
+}
+
+.qm-time-but:hover {
+    background: #fff;
+}
+
+.am-popup {
+    height: auto;
+}
+
+/*集团*/
+
+#Corporation {
+    display: block;
+}
+
+#Corporation .qm-team1-box {
+    float: left;
+    height: 257px;
+    padding: 0px 30px 0px 30px;
+    background: #f7f7f7;
+    border-radius: 5px;
+    border-top: 0px;
+}
+
+#Corporation th {
+    background: #e7e7e7;
+    border-top: 2px solid #02abe6;
+    text-align: center;
+    width: 20%;
+}
+
+.am-table {
+    margin: 0;
+}
+
+#Corporation td {
+    border: 0;
+    border-bottom: 1px solid #CCCCCC;
+    text-align: center;
+    background: #f7f7f7;
+    height: 38px;
+    width: 20%;
+}
+
+.paging {
+    padding: 0 41px;
+    width: 100%;
+    height: 30px;
+    margin-top: 10px;
+}
+
+.paging div {
+    border: 1px solid #ccc;
+    width: 90px;
+    float: right;
+    text-align: center;
+}
+
+.paging .pagingmodle {
+    border: 0;
+}
+
+/*公司*/
+
+#Company {
+    display: none;
+}
+
+.qm-team1-tab {
+    height: 43px;
+    margin: 0;
+    padding: 0 30px 0 30px;
+    border-bottom: 0;
+    border-radius: 5px;
+    background: #f7f7f7;
+}
+
+#Company .qm-team1-box {
+    float: left;
+    height: 250px;
+    overflow: auto;
+    padding: 0px 30px 0px 30px;
+    background: #f7f7f7;
+
+    border-radius: 5px;
+    border-top: 0px;
+}
+
+#Company th {
+    border-top: 2px solid #02abe6;
+    background: #e7e7e7;
+    text-align: center;
+    width: 20%;
+}
+
+#Company td {
+    border: 0;
+    border-bottom: 1px solid #CCCCCC;
+    text-align: center;
+    background: #f7f7f7;
+    height: 40px;
+    width: 20%;
+}
+
+/*部门*/
+
+#Department {
+    display: none;
+}
+
+#Department .qm-team1 .qm-team1-box {
+    float: left;
+    max-height: 471px;
+    overflow: auto;
+    padding: 0 30px;
+    background: #f7f7f7;
+    border-radius: 5px;
+    border-top: 0px;
+}
+
+#Department th {
+    border-top: 2px solid #02abe6;
+    padding: 0;
+    background: #e7e7e7;
+    width: 15%;
+    height: 40px;
+    line-height: 40px;
+}
+
+#Department th:last-child {
+    width: 30%;
+}
+
+#Department td {
+    padding: 0;
+    border: 0;
+    border-bottom: 1px solid #CCCCCC;
+    background: #f7f7f7;
+    height: 40px;
+    line-height: 40px;
+    width: 15%;
+}
+
+.select-but {
+    margin-top: -5px;
+    margin-right: 30px;
+}
+
+.personnel-details {
+    border: 1px solid #CCCCCC;
+}
+
+#Department td:last-child {
+    width: 30%;
+}
+
+#Department .qm-team-input span {
+    width: 12%;
+}
+
+.qm-team {
+    margin: 0px 41px 0 41px;
+}
+
+.groupdata-title {
+    margin-bottom: 10px;
+    border-bottom: 3px solid #03afef;
+    height: 50px;
+    line-height: 50px;
+}
+
+.qm-team input {
+    padding: 0;
+    border: 0;
+    border-radius: 5px;
+    background: #fff;
+    height: 30px;
+}
+
+.qm-team-input {
+    height: 53px;
+}
+
+.qm-team-input span {
+    display: inline-block;
+    width: 10%;
+    padding: 3px 0 0 0;
+    margin: 0 0 0 20px;
+}
+
+.qm-c-compile {
+    height: 160px;
+}
+
+/*个人*/
+
+#Personal {
+    display: none;
+}
+
+#Personal .qm-team-input span {
+    display: inline-block;
+    width: 12%;
+    padding: 0;
+    margin: 0 0 0 20px;
+}
+
+#Personal .poptime input {
+    width: 83%;
+    border: none;
+}
+
+#Personal .poptime input {
+    border: none;
+}
+
+/*-----弹窗1*/
+
+.pop-one {
+    display: none;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    width: 500px;
+    margin: -250px 0 0 -250px;
+    z-index: 25;
+}
+
+.Prompt-box {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.1);
+    display: none;
+}
+
+.pop-one1 {
+    height: 150px;
+    margin: -150px 0 0 -250px;
+    background: #56c4ec;
+}
+
+.prompt-frame1 {
+    height: 110px;
+    line-height: 110px;
+    text-align: center;
+    font-size: 20px;
+    border-bottom: 1px solid #fff;
+}
+
+.prompt-frame2 {
+    box-sizing: border-box;
+    width: 100%;
+    height: 40px;
+}
+
+.prompt-frame2 .prompt-frame-left {
+    height: 40px;
+    width: 50%;
+    cursor: pointer;
+    line-height: 40px;
+    text-align: center;
+    font-size: 20px;
+    float: left;
+}
+
+.prompt-frame2 .prompt-frame-right {
+    height: 40px;
+    width: 50%;
+    cursor: pointer;
+    line-height: 40px;
+    text-align: center;
+    font-size: 20px;
+    float: right;
+}
+
+.qm-newteam {
+    height: 50px;
+    line-height: 50px;
+    font-size: 20px;
+    text-align: center;
+    background: #1467ff;
+    color: #000;
+    border-top: 1px solid #96a79d;
+}
+
+.qm-popone-ul {
+    margin: 0;
+    padding: 0;
+}
+
+.qm-popone-li {
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    background: #d9d9d9;
+    color: #000000;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+.qm-popone-li .qm-popone-li-a {
+    display: block;
+    width: 100%;
+    height: 100%;
+    color: #000000;
+}
+
+.qm-popone-li:hover {
+    background: #00abf0;
+    color: #fff;
+}
+
+.qm-c-compile1 {
+    width: 65px;
+    height: 30px;
+    background: #71bcfd;
+    line-height: 30px;
+    text-align: center;
+    border-radius: 5px;
+}
+
+/*弹窗2*/
+
+.poptwo-c-ul {
+    margin: 0;
+    padding: 0;
+}
+
+.poptwo-c-li {
+    box-sizing: border-box;
+    height: 55px;
+    padding-top: 10px;
+}
+
+.poptwo-c-li input {
+    height: 35px;
+    width: 100%;
+}
+
+.poptwo-c-li div {
+    padding: 0;
+}
+
+.poptwo-c-li .pop-div1 {
+    height: 100%;
+    text-align: right;
+    padding: 3px 10px 0 0;
+}
+
+.poptwo-c-li .pop-div2 {
+    height: 100%;
+}
+
+.poptwo-c-li input {
+    border: 1px solid #CCCCCC;
+    border-radius: 5px;
+}
+
+.poptwo-c-li select {
+    border: 1px solid #CCCCCC;
+    border-radius: 5px;
+    width: 100%;
+    height: 35px;
+}
+
+.poptwo-li-but8 {
+    padding: 15px 94px;
+    text-align: right;
+}
+
+.poptwo-li-but8 button {
+    width: 100px;
+    height: 40px;
+    border: none;
+    background: #71bcfd;
+}
+
+.am-popup .popthree {
+    margin: auto;
+    width: 440px;
+    display: block;
+    background: #fff;
+    box-sizing: border-box;
+    letter-spacing: 2px
+}
+
+.poptime .pop-input {
+    width: 85%;
+    float: left;
+    border: none;
+}
+
+.poptwo-c-lia {
+    margin-right: 10px;
+    padding-left: 21px;
+    background: url(../images/yuandian.png) -19px -4px no-repeat;
+}
+
+.poptwo-c-lia1 {
+    background: url(../images/yuandian.png) -19px -36px no-repeat;
+}
+
+.del-but-box {
+    clear: both;
+    max-width: 1269px;
+    min-width: 1000px;
+    margin: 10px auto;
+
+    padding: 0 41px;
+    box-sizing: border-box;
+    height: 80px;
+}
+
+.del-but {
+
+    width: 100px;
+    height: 40px;
+    background: #71bcfd;
+    margin: 10px 40px 0 40px;
+    border: none;
+    float: right;
+    border-radius: 5px;
+}
+
+.qm-site {
+    border: 0;
+    display: block;
+    width: 450px;
+    background: #dcd2d2;
+}
+
+.qm-site a {
+    padding: 4px;
+}
+
+.am-nav-tabs,
+.am-tabs-bd {
+    border: 0;
+}
+
+/*--------分割符-----------------*/

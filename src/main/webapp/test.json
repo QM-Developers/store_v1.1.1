@@ -1,0 +1,104 @@
+{
+  "state": 1,
+  "token": null,
+  "pageCount": 0,
+  "result": {
+    "id": "10001",
+    "name": "青麦科技",
+    "checked": false,
+    "pId": null,
+    "url": null,
+    "children": [
+      {
+        "id": "3cfcbbf53e9341e09b668d4f81b75b68",
+        "name": "农训科技",
+        "checked": false,
+        "pId": "10001",
+        "url": null,
+        "children": [
+          {
+            "id": "2e8bc86dd70842ecb30109155e89063c",
+            "name": "业务部",
+            "checked": false,
+            "pId": "3cfcbbf53e9341e09b668d4f81b75b68",
+            "url": null,
+            "children": null
+          },
+          {
+            "id": "2e8bc86dd70842ecb30109155e89063d",
+            "name": "人事部",
+            "checked": false,
+            "pId": "3cfcbbf53e9341e09b668d4f81b75b68",
+            "url": null,
+            "children": null
+          },
+          {
+            "id": "2e8bc86dd70842ecb30109155e89063e",
+            "name": "财务部",
+            "checked": false,
+            "pId": "3cfcbbf53e9341e09b668d4f81b75b68",
+            "url": null,
+            "children": null
+          },
+          {
+            "id": "ce6a51fae02d45b4b7b038784c9f66c8",
+            "name": "技术部",
+            "checked": false,
+            "pId": "3cfcbbf53e9341e09b668d4f81b75b68",
+            "url": null,
+            "children": null
+          },
+          {
+            "id": "cff57b8c9c4645f99385f67626762530",
+            "name": "总经办",
+            "checked": false,
+            "pId": "3cfcbbf53e9341e09b668d4f81b75b68",
+            "url": null,
+            "children": null
+          }
+        ]
+      },
+      {
+        "id": "b982623fdcc94be6acacfdeec2cfa6c9",
+        "name": "顶呱呱广告",
+        "checked": false,
+        "pId": "10001",
+        "url": null,
+        "children": [
+          {
+            "id": "5738a30351294dd3a48fa1b86245e5db",
+            "name": "人事部",
+            "checked": false,
+            "pId": "b982623fdcc94be6acacfdeec2cfa6c9",
+            "url": null,
+            "children": null
+          },
+          {
+            "id": "7020f883bda0453d94f86af7f42e3c9a",
+            "name": "财务部",
+            "checked": false,
+            "pId": "b982623fdcc94be6acacfdeec2cfa6c9",
+            "url": null,
+            "children": null
+          },
+          {
+            "id": "b8ecd65582134f54aa307998ea668060",
+            "name": "业务部",
+            "checked": false,
+            "pId": "b982623fdcc94be6acacfdeec2cfa6c9",
+            "url": null,
+            "children": null
+          },
+          {
+            "id": "dea0063616c44c649dd1c4779187e0c1",
+            "name": "总经办",
+            "checked": false,
+            "pId": "b982623fdcc94be6acacfdeec2cfa6c9",
+            "url": null,
+            "children": null
+          }
+        ]
+      }
+    ]
+  }
+}

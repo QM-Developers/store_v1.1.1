@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+
+
+    <!-- 自动扫描 -->
+    <context:component-scan base-package="com.dgg"></context:component-scan>
+
+
+    <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="order" value="1"/>
+        <property name="locations">
+            <list>
+                <value>/WEB-INF/datasource/datasource.properties</value>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="frameworkDataSource" class="org.apache.commons.dbcp2.BasicDataSource">
+        <property name="driverClassName">
+            <value>${framework.jdbc.driver}</value>
+        </property>
+        <property name="url">
+            <value>${framework.jdbc.url}</value>
+        </property>
+        <property name="username">
+            <value>${framework.jdbc.username}</value>
+        </property>
+        <property name="password">
+            <value>${framework.jdbc.password}</value>
+        </property>
+    </bean>
+
+
+    <bean id="frameworkSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="frameworkDataSource"/>
+        <property name="configLocation" value="/WEB-INF/mybatis/mybatis-config.xml"/>
+        <property name="mapperLocations">
+            <list>
+                <!--<value>classpath:com/dgg/store/mapper/*.xml</value>-->
+                <!--<value>classpath*:com/dgg/store/mapper/StoreAuthorityMapper.xml</value>-->
+            </list>
+        </property>
+    </bean>
+
+
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="sqlSessionFactoryBeanName" value="frameworkSessionFactory"/>
+        <property name="basePackage" value="com.dgg.store.mapper"/>
+    </bean>
+
+    <bean id="frameworkTransactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="frameworkDataSource"/>
+    </bean>
+
+    <tx:advice id="frameworkTxAdvice" transaction-manager="frameworkTransactionManager">
+        <tx:attributes>
+            <tx:method name="get*" propagation="SUPPORTS" read-only="true"/>
+            <tx:method name="select*" read-only="true"/>
+            <tx:method name="find*" read-only="true"/>
+            <tx:method name="update*"/>
+            <tx:method name="delete*"/>
+            <tx:method name="insert*"/>
+            <tx:method name="login*"/>
+            <tx:method name="*" propagation="REQUIRED" read-only="true"/>
+        </tx:attributes>
+    </tx:advice>
+
+    <aop:config>
+        <aop:pointcut id="frameworkServicePointCut" expression="execution(* com.dgg.store.service..*.*(..))"/>
+        <aop:advisor pointcut-ref="frameworkServicePointCut" advice-ref="frameworkTxAdvice"/>
+    </aop:config>
+</beans>

@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dgg.store.mapper.UserMapper">
+    <resultMap id="BaseResultMap" type="com.dgg.store.util.pojo.User">
+        <id column="user_id" jdbcType="VARCHAR" property="userId"/>
+        <result column="role_id" jdbcType="INTEGER" property="roleId"/>
+        <result column="role_name" jdbcType="VARCHAR" property="roleName"/>
+        <result column="user_name" jdbcType="VARCHAR" property="userName"/>
+        <result column="user_password" jdbcType="VARCHAR" property="userPassword"/>
+        <result column="user_sex" jdbcType="VARCHAR" property="userSex"/>
+        <result column="user_phone" jdbcType="VARCHAR" property="userPhone"/>
+        <result column="user_birthday" jdbcType="DATE" property="userBirthday"/>
+        <result column="user_address" jdbcType="VARCHAR" property="userAddress"/>
+        <result column="user_area" jdbcType="VARCHAR" property="userArea"/>
+        <result column="user_email" jdbcType="VARCHAR" property="userEmail"/>
+        <result column="user_create_date" jdbcType="TIMESTAMP" property="userCreateDate"/>
+        <result column="user_last_login_time" jdbcType="TIMESTAMP" property="userLastLoginTime"/>
+        <result column="user_status" jdbcType="VARCHAR" property="userStatus"/>
+        <result column="user_img" jdbcType="VARCHAR" property="userImg"/>
+        <result column="user_nickname" jdbcType="VARCHAR" property="userNickname"/>
+        <result column="hx_name" jdbcType="VARCHAR" property="hxName"/>
+        <result column="hx_password" jdbcType="VARCHAR" property="hxPassword"/>
+        <result column="token" jdbcType="VARCHAR" property="token"/>
+    </resultMap>
+
+    <resultMap id="SessionVOMap" type="com.dgg.store.util.vo.core.SessionVO">
+        <result column="user_id" property="userId" jdbcType="VARCHAR"/>
+        <result column="role_id" property="roleId" jdbcType="INTEGER"/>
+        <result column="token" property="token" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <resultMap id="RoleMap" type="com.dgg.store.util.pojo.Role">
+        <id column="role_id" property="roleId" jdbcType="INTEGER"/>
+        <result column="role_name" property="roleName" jdbcType="VARCHAR"/>
+        <result column="role_text" property="roleText" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <insert id="insert" parameterType="com.dgg.store.util.pojo.User">
+        insert into user (user_id, role_id, user_name,
+        user_password, user_sex, user_phone,
+        user_birthday, user_address, user_area,
+        user_email, user_create_date, user_last_login_time,
+        user_status, user_qq, uesr_wechat,
+        user_img, user_nickname, hx_name,
+        hx_password, token)
+        values (#{userId,jdbcType=VARCHAR}, #{roleId,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR},
+        #{userPassword,jdbcType=VARCHAR}, #{userSex,jdbcType=VARCHAR}, #{userPhone,jdbcType=VARCHAR},
+        #{userBirthday,jdbcType=DATE}, #{userAddress,jdbcType=VARCHAR}, #{userArea,jdbcType=VARCHAR},
+        #{userEmail,jdbcType=VARCHAR}, NOW(), #{userLastLoginTime,jdbcType=TIMESTAMP},
+        #{userStatus,jdbcType=VARCHAR}, #{userQq,jdbcType=VARCHAR}, #{uesrWechat,jdbcType=VARCHAR},
+        #{userImg,jdbcType=VARCHAR}, #{userNickname,jdbcType=VARCHAR}, #{hxName,jdbcType=VARCHAR},
+        #{hxPassword,jdbcType=VARCHAR}, #{token,jdbcType=VARCHAR}
+    </insert>
+
+    <select id="findStores" resultMap="BaseResultMap">
+        SELECT u.user_id,u.role_id,u.user_name,u.user_address,u.user_area,u.user_phone,r.role_name
+        FROM user u
+        INNER JOIN role r
+        ON r.role_id = u.role_id
+        WHERE u.role_id &gt; 1002
+    </select>
+
+    <select id="findRolesByStore" resultMap="RoleMap" parameterType="com.dgg.store.util.vo.core.SessionVO">
+        SELECT r.role_id,r.role_name,r.role_text
+        FROM role r
+    </select>
+
+    <update id="updateUserById" parameterType="com.dgg.store.util.pojo.User">
+        update user
+        <set>
+            <if test="roleId != null and roleId != ''">
+                role_id = #{roleId,jdbcType=INTEGER},
+            </if>
+            <if test="userName != null and userName != ''">
+                user_name = #{userName,jdbcType=VARCHAR},
+            </if>
+            <if test="userPassword != null and userPassword != ''">
+                user_password = #{userPassword,jdbcType=VARCHAR},
+            </if>
+            <if test="userSex != null and userSex != ''">
+                user_sex = #{userSex,jdbcType=VARCHAR},
+            </if>
+            <if test="userPhone != null and userPhone != ''">
+                user_phone = #{userPhone,jdbcType=VARCHAR},
+            </if>
+            <if test="userBirthday != null and userBirthday != ''">
+                user_birthday = #{userBirthday,jdbcType=DATE},
+            </if>
+            <if test="userAddress != null and userAddress != ''">
+                user_address = #{userAddress,jdbcType=VARCHAR},
+            </if>
+            <if test="userArea != null and userArea != ''">
+                user_area = #{userArea,jdbcType=VARCHAR},
+            </if>
+            <if test="userEmail != null and userEmail != ''">
+                user_email = #{userEmail,jdbcType=VARCHAR},
+            </if>
+            <if test="userCreateDate != null and userCreateDate != ''">
+                user_create_date = #{userCreateDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="userLastLoginTime != null and userLastLoginTime != ''">
+                user_last_login_time = #{userLastLoginTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="userStatus != null and userStatus != ''">
+                user_status = #{userStatus,jdbcType=VARCHAR},
+            </if>
+            <if test="userQq != null and userQq != ''">
+                user_qq = #{userQq,jdbcType=VARCHAR},
+            </if>
+            <if test="uesrWechat != null and uesrWechat != ''">
+                uesr_wechat = #{uesrWechat,jdbcType=VARCHAR},
+            </if>
+            <if test="userImg != null and userImg != ''">
+                user_img = #{userImg,jdbcType=VARCHAR},
+            </if>
+            <if test="userNickname != null and userNickname != ''">
+                user_nickname = #{userNickname,jdbcType=VARCHAR},
+            </if>
+            <if test="hxName != null and hxName != ''">
+                hx_name = #{hxName,jdbcType=VARCHAR},
+            </if>
+            <if test="hxPassword != null and hxPassword != ''">
+                hx_password = #{hxPassword,jdbcType=VARCHAR},
+            </if>
+            <if test="token != null and token != ''">
+                token = #{token,jdbcType=VARCHAR},
+            </if>
+        </set>
+        WHERE user_id = #{userId}
+    </update>
+
+    <delete id="deleteUserById">
+        DELETE FROM user
+        WHERE user_id = #{userId}
+    </delete>
+
+    <select id="findUserSessionVOById" resultMap="SessionVOMap">
+        SELECT u.user_id,u.role_id,u.user_phone,u.user_password,u.token
+        FROM user u
+        WHERE u.user_Id = #{userId}
+    </select>
+
+    <select id="findUserByPhone" resultMap="BaseResultMap">
+        SELECT u.user_id,u.user_status,u.user_name,u.user_img,u.user_phone,u.my_team_id,u.hx_name,u.hx_password,u.user_area,u.token,u.role_id
+        FROM dgg_store.user u
+        WHERE u.user_phone = #{userPhone}
+        AND u.my_team_id IN
+        (#{teamId},(SELECT my_team_id t FROM dgg_store.my_team t WHERE t.my_team_pid = #{teamId}))
+    </select>
+
+    <select id="findChildrenTeam" resultType="java.lang.String">
+      SELECT mt.my_team_id
+      FROM dgg_store.my_team mt
+      WHERE my_team_pid = #{teamId}
+    </select>
+
+    <select id="findUserTeam" resultType="java.lang.String">
+        SELECT u.my_team_id
+        FROM dgg_store.user u
+        WHERE u.user_phone = #{userPhone}
+    </select>
+</mapper>

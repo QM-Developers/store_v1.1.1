@@ -1,0 +1,316 @@
+html,body,div,ul,li,ol,a,input,textarea,p,dl,dt,dd{margin:0;padding:0;}
+ul li{list-style: none;}
+a{text-decoration: none;cursor: pointer;}
+html{height: 800px;width:100%;}
+body{height: 800px;background: #fff;position: relative;font-family: '微软雅黑';font-size:14px;width:100%;}
+a,input,img,textarea,span,div{outline: 0;-webkit-tap-highlight-color:rgba(255,0,0,0);}
+header{
+	width:322px;
+	height: 45px;
+	background: #ececea;
+	border-bottom: 1px solid #ddd;
+}
+
+.am-popup {
+	width: auto;
+	height: auto;
+}
+
+/*header.listfixed{
+}*/
+
+.header{
+
+	margin:0 20px;
+	text-align: center;
+	color: #4e4a49;
+	font-size: 1em;
+	height: 35px;
+	line-height: 45px;
+	position: relative;
+	padding-top: 10px;
+}
+.header input{
+	display: block;
+	width: 80%;
+	margin: auto;
+	height: 21px !important;
+
+}
+
+
+
+#letter{
+	width: 100px;
+	height: 100px;
+	border-radius: 5px;
+	font-size: 75px;
+	color: #555;
+	text-align: center;
+	line-height: 100px;
+	background: rgba(145,145,145,0.6);
+	position: fixed;
+	left: 50%;
+	top: 50%;
+	margin:-50px 0px 0px -50px;
+	z-index: 99;
+	display: none;
+}
+#letter img{
+	width: 50px;
+	height: 50px;
+	float: left;
+	margin:25px 0px 0px 25px;
+}
+.sort_box{
+	box-sizing: border-box;
+	width: 300px;
+	height: 765px;
+
+	overflow: auto;
+}
+.sort_list{
+	padding:10px 60px 10px 80px;
+	position: relative;
+	/* height: 40px;*/
+	line-height: 40px;
+	border-bottom:1px solid #ddd;
+}
+
+.sort_list .num_logo{
+	width: 50px;
+	height: 50px;
+	border-radius: 10px;
+	overflow: hidden;
+	position: absolute;
+	top: 5px;
+	left: 20px;
+}
+.sort_list .num_logo img{
+	width: 50px;
+	height: 50px;
+}
+.sort_list .num_name{
+	color: #000;
+}
+
+.sort_letter{
+	height: 30px;
+	line-height: 30px;
+	padding-left: 20px;
+	color:#787878;
+	font-size: 14px;
+	border-bottom:1px solid #ddd;
+}
+.initials{
+	position: absolute;
+	top: 130px;
+	left: 300px;
+	height: 80%;
+	width: 20px;
+	text-align: center;
+	font-size: 12px;
+	z-index: 99;
+	background: rgba(145,145,145,0);
+}
+.initials ul{
+	padding: 0;
+}
+.initials li{
+
+	width: 18px;
+	line-height: 18px;
+	text-align: center;
+}
+.initials li img{
+	width: 14px;
+}
+#listseek{
+	display: none;
+	position: absolute;
+	top:50px;
+	left: 0px;
+	z-index: 999;
+	width: 100%;
+	height: 400px;
+	margin-top: -15px;
+	overflow: auto;
+	background: #A6E1EC;
+}
+#listseek .seek_list{
+	/*padding:5px;*/
+	position: relative;
+	height: 50px;
+	line-height: 50px;
+	border-bottom:1px solid #ddd;
+}
+
+#listseek .seek_list .seek_logo{
+	width: 40px;
+	height: 40px;
+	border-radius: 10px;
+
+	position: absolute;
+	top: 5px;
+	left: 20px;
+}
+#listseek .seek_list .seek_logo img{
+	display: block;
+	width: 40px;
+	height: 40px;
+}
+#add_find {
+	z-index: 999;
+	width: 100px;
+	height: 50px;
+	position: absolute;
+	top: 80px;
+	left: 330px;
+}
+
+#add_find .add_find_a{
+	display: block;
+	width: 100px;
+	height: 50px;
+	line-height: 50px;
+	text-align: center;
+	color: #222222;
+}
+/*内容区*/
+#friend_cont{
+	position: absolute;
+	top: 76px;
+	right: 0;
+	width: calc(100% - 330px);
+	height: calc(100% - 60px);
+
+}
+#friend_cont .cont_box{
+	width: 500px;
+	height: 500px;
+	margin: auto;
+	margin-top: 100px;
+
+}
+#friend_cont .cont_box .cont_a{
+	width: 340px;
+	height: 90px;
+	float: left;
+}
+#friend_cont .cont_box .cont_a .cont_spanleft{
+	display: inline-block;
+	float: left;
+	width: 80px;
+	height: 30px;
+}
+#friend_cont .cont_box .cont_a .cont_spanright{
+	display: inline-block;
+	float: left;
+	width: 260px;
+	height: 30px;
+}
+#friend_cont .cont_box .cont_b{
+	width: 160px;
+	height: 90px;
+	float: left;
+
+
+
+}
+#friend_cont .cont_box .cont_b img{
+	display: inline-block;
+	width: 90px;
+	height: 90px;
+}
+#friend_cont .cont_box .cont_c{
+	width: 500px;
+	height: 400px;
+	float: left;
+	padding-top: 30px;
+
+}
+#friend_cont .cont_box .cont_c div{
+	width: 500px;
+	height: 40px;
+
+
+}
+
+#friend_cont .cont_box .cont_c div span{
+	display: inline-block;
+	width: 70px;
+	height: 40px;
+	line-height: 40px;
+	float: left;
+
+}
+#friend_cont .cont_box .cont_c div input{
+	display: inline-block;
+	width: 360px;
+	height: 25px;
+	float: left;
+	margin-top: 7px;
+
+}
+#friend_cont .cont_box .cont_c .cont_cthree{
+
+	width: 500px;
+	height: 165px;
+}
+#friend_cont .cont_box .cont_c .cont_cthree span{
+	float: left;
+}
+#friend_cont .cont_box .cont_c .cont_cthree textarea{
+	width: 360px;
+	height: 160px;
+	float: left;
+	margin-top: 7px;
+}
+.add_i{
+	width: 140px;
+	height: 140px;
+	margin-left: 1.5rem;
+	margin-top: 0.5rem;
+}
+.add_s{
+	width: 400px;
+	height: 140px;
+	margin-left: 1.5rem;
+	margin-top: 0.5rem;
+}
+.add_s span{
+	display: block;
+	width: 400px;
+	height: 40px;
+	line-height: 40px;
+	margin-bottom: 10px;
+}
+.add_s span i{
+	display: inline-block;
+	width: 60px;
+	text-align: right;
+	font-style: normal;
+}
+
+.add_s span em{
+	margin-left: 10px;
+	font-style: normal;
+}
+
+.add_f{
+	width: 100%;
+	height: 40px;
+
+}
+.add_f1{
+	width: 100%;
+	height: 40px;
+	line-height: 40px;
+	text-align: center;
+}
+.add_f2{
+	width: 100px;
+	height: 50px;
+	text-align: center;
+	line-height:50px; 
+}

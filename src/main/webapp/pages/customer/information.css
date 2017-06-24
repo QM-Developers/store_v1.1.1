@@ -1,0 +1,50 @@
+body{
+	    background: #fff;
+}
+.info{
+	float: left;
+	width: 100%;
+	 text-align:center;}
+.top{ margin:5px auto; color:#990000; text-align:center;}
+
+.am-popup {
+	width: auto;
+	height: auto;
+}
+
+.cpm_select input{
+	display: inline-block !important;
+	height: 37px;
+	padding: 0 !important;
+}
+.cpm_frith_cont_ul{
+	display: none;
+}
+.cpm_frith_cont_ul {
+	z-index: 999;
+	position: absolute;
+	top: 37px;
+	left: 15px;
+	width: 95%;
+	list-style: none;
+	display: none;
+	background: #E1E1E1;
+	
+}
+.cpm_frith_cont_ul div{
+	height: 30px;
+	line-height: 30px;
+}
+.cpm_frith_cont_ul div:hover{
+	background: #3BB4F2;
+}
+
+.am-list>li>b{
+	margin-left: 15px;
+}
+
+.am-text-sm{
+	margin-top: 2px;
+	cursor: pointer;
+	float:right;
+}

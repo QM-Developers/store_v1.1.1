@@ -1,0 +1,256 @@
+html,body,div,ul,li,ol,a,input,textarea,p,dl,dt,dd{margin:0;padding:0;}
+ul li{list-style: none;}
+a{text-decoration: none;cursor: pointer;}
+html{height: 765px;width:100%;}
+body{height: 765px;background: #fff;position: relative;font-family: '微软雅黑';width:100%;}
+a,input,img,textarea,span,div{outline: 0;-webkit-tap-highlight-color:rgba(255,0,0,0);}
+header{
+    width:322px;
+    height: 45px;
+    background: #ececea;
+    border-bottom: 1px solid #ddd;
+}
+/*header.fixed{*/
+    /*position: absolute;*/
+    /*left: 0;*/
+    /*top: 90px;*/
+    /*z-index: 99;*/
+/*}*/
+a{
+	color: #222222;
+}
+.header{
+	
+    margin:0 20px;
+    text-align: center;
+    color: #4e4a49;
+    font-size: 1em;
+    height: 46px;
+    line-height: 45px;
+    position: relative;
+}
+.header input{
+	width: 80%;
+	margin: auto;
+	height: 25px;
+	margin-top:10px;
+}
+
+
+
+#letter{
+    width: 100px;
+    height: 100px;
+    border-radius: 5px;
+    font-size: 75px;
+    color: #555;
+    text-align: center;
+    line-height: 100px;
+    background: rgba(145,145,145,0.6);
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin:-50px 0px 0px -50px;
+    z-index: 99;
+    display: none;
+}
+#letter img{
+    width: 50px;
+    height: 50px;
+    float: left;
+    margin:25px 0px 0px 25px;
+}
+.sort_box{
+    width: 300px;
+    height: 765px;
+    overflow: auto;
+}
+.sort_list{
+    padding:0px 60px 0px 80px;
+    position: relative;
+    height:60px;
+    line-height: 60px;
+    border-bottom:1px solid #ddd;
+}
+
+.sort_list .num_logo{
+    width: 50px;
+    height: 50px;
+    border-radius: 10px;
+    overflow: hidden;
+    position: absolute;
+    top: 5px;
+    left: 20px;
+}
+.sort_list .num_logo img{
+    width: 50px;
+    height: 50px;
+}
+.sort_list .num_name{
+    color: #000;
+}
+
+.sort_letter{
+    height: 30px;
+    line-height: 30px;
+    padding-left: 20px;
+    color:#787878;
+    font-size: 14px;
+    border-bottom:1px solid #ddd;
+}
+.initials{
+    position: absolute;
+    top: 141px;
+    left: 300px;
+    height: 100%;
+    width: 20px;
+    text-align: center;
+    font-size: 12px;
+    z-index: 99;
+    background: rgba(145,145,145,0);
+}
+.initials li{
+	width: 18px;
+	line-height: 18px;
+	text-align: center;
+}
+.initials li img{
+    width: 14px;
+}
+#listseek{
+	display: none;
+	position: absolute;
+	top:45px;
+	left: 0px;
+	z-index: 999;
+	width: 100%;
+    height: 400px;
+    margin-top: -15px;
+    overflow: auto;
+    background: #A6E1EC;
+}
+#listseek .seek_list{	
+    position: relative;
+    height: 50px;
+    line-height: 50px;
+    border-bottom:1px solid #ddd;
+}
+
+#listseek .seek_list .seek_logo{
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+   
+    position: absolute;
+    top: 5px;
+    left: 20px;
+}
+#listseek .seek_list .seek_logo img{
+	display: block;
+    width: 40px;
+    height: 40px;
+}
+
+
+/*右侧*/
+
+#team_box {
+	
+	width: 70%;
+	position: absolute;
+	top: 110px;
+	left: 322px;
+	
+}
+
+#team_box_header {
+	width: 100%;
+	height: 40px;
+	line-height: 40px;
+	text-align: center;
+	border-radius: 10px;
+}
+
+
+/*城市三级联动*/
+
+#team_ul_box .ul_team li .ul_team_span {
+	display: inline-block;
+	width: 80px;
+	height: 50px;
+	float: left;
+	line-height: 50px;
+	text-align: right;
+}
+
+#team_ul_box .ul_team li .info {
+	float: left;
+	width: 50%;
+	text-align: center;
+}
+.am-form-group .am-u-sm-9 {
+	margin-top: 10px;
+}
+.top {
+	margin: 5px auto;
+	color: #990000;
+	text-align: center;
+}
+
+/*.info select {*/
+	/*display: inline-block;*/
+	/*border: 1px #ccc solid;*/
+	/*background: #FFFFFF;*/
+	/*width: 32.8%;*/
+/*}*/
+
+/*.info #show {*/
+	/*color: #3399FF;*/
+/*}*/
+
+.bottom {
+	text-align: right;
+	font-size: 12px;
+	color: #CCCCCC;
+	width: 1000px;
+}
+/**/
+
+.am-form-group .am-u-sm-10 .resetbtn{
+	width: 15%;
+	float: right;
+	    background: rgba(152, 151, 138, 0.34);
+	    color: #333333;
+}
+.am-form-group .am-u-sm-10 .sign_a{
+	color: #222222;
+}
+.am-form-group .am-u-sm-10 .sign_b{
+	color: #C10802;
+}
+.add_dropdown{
+	width: 100% !important;
+}
+.add_dropdown .add_dropdown_div{
+	background: #f5f5f5;
+	padding: 0;
+	width: 30%;
+	height: 37px;
+	line-height: 37px;
+	float: left;
+}
+.am-form-group .add_but{
+	float: right !important;
+}
+.am-form-group .am-form-label{
+	padding: 0;
+    line-height: 37px;
+}
+.am-form-group .add_feature{
+	margin-top: 5px;
+}
+
+.am-popup {
+    width: auto;
+    height: auto;
+}

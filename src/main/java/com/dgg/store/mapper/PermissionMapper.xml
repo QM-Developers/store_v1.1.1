@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dgg.store.mapper.PermissionMapper">
+    <resultMap id="BaseResultMap" type="com.dgg.store.util.pojo.Permission">
+        <id column="permission_id" jdbcType="VARCHAR" property="permissionId"/>
+        <result column="permission_name" jdbcType="VARCHAR" property="permissionName"/>
+        <result column="permission_url" jdbcType="VARCHAR" property="permissionUrl"/>
+        <result column="permission_pid" jdbcType="VARCHAR" property="permissionPid"/>
+        <result column="sort" jdbcType="VARCHAR" property="sort"/>
+        <result column="is_deleted" jdbcType="TINYINT" property="isDeleted"/>
+        <result column="delete_date" jdbcType="DATE" property="deleteDate"/>
+    </resultMap>
+
+    <resultMap id="treeMap" type="com.dgg.store.util.vo.core.TreeVO">
+        <result column="permission_id" property="id" jdbcType="VARCHAR"/>
+        <result column="permission_name" property="name" jdbcType="VARCHAR"/>
+        <result column="permission_pid" property="pId" jdbcType="VARCHAR"/>
+        <result column="permission_url" property="url" jdbcType="VARCHAR"/>
+    </resultMap>
+    <select id="findPermissionTree" resultMap="treeMap" parameterType="com.dgg.store.util.pojo.Role">
+        SELECT p.permission_id, p.permission_name, p.permission_url, p.permission_pid
+        FROM permission p
+        ORDER BY sort
+    </select>
+
+    <delete id="cleanPermissionRE" parameterType="com.dgg.store.util.pojo.Permission">
+        DELETE FROM user_permission_re
+        WHERE permission_id = #{permissionId}
+    </delete>
+
+    <delete id="delete">
+        DELETE FROM dgg_store.permission
+        WHERE permission_id = #{permissionId}
+    </delete>
+
+    <update id="updatePermission" parameterType="com.dgg.store.util.pojo.Permission">
+        UPDATE dgg_store.permission
+        <set>
+            <if test="permissionName != null and permissionName != ''">
+                permission_name = #{permissionName},
+            </if>
+            <if test="permissionUrl != null and permissionUrl != ''">
+                permission_url = #{permissionUrl},
+            </if>
+            <if test="permissionPid != null and permissionPid != ''">
+                permission_pid = #{permissionPid},
+            </if>
+        </set>
+        WHERE permission_id = #{permissionId}
+    </update>
+
+    <insert id="insert" parameterType="com.dgg.store.util.pojo.Permission">
+        INSERT INTO permission (permission_id, permission_name, permission_url, permission_pid)
+        VALUES
+        (#{permissionId},#{permissionName},#{permissionUrl},#{permissionPid})
+    </insert>
+
+    <select id="findPermissionById" resultMap="BaseResultMap">
+        SELECT p.permission_id, p.permission_name, p.permission_url, p.permission_pid
+        FROM dgg_store.permission p
+        WHERE p.permission_id = #{permissionId}
+    </select>
+</mapper>

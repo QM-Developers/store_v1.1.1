@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dgg.store.mapper.FreightMapper">
+  <resultMap id="BaseResultMap" type="com.dgg.store.util.vo.goods.TemplateOfFreightVO">
+    <id column="template_freight_id" jdbcType="VARCHAR" property="templateFreightId" />
+    <result column="user_id" jdbcType="VARCHAR" property="userId" />
+    <result column="template_freight_name" jdbcType="VARCHAR" property="templateFreightName"/>
+    <result column="template_delivery_time" jdbcType="INTEGER" property="templateDeliveryTime"/>
+    <result column="template_freight_isfree" jdbcType="TINYINT" property="templateFreightIsfree"/>
+    <result column="template_charge_model" jdbcType="TINYINT" property="templateChargeModel"/>
+    <result column="template_default_num" jdbcType="INTEGER" property="templateDefaultNum"/>
+    <result column="template_default_price" jdbcType="INTEGER" property="templateDefaultPrice"/>
+    <result column="template_add_num" jdbcType="INTEGER" property="templateAddNum"/>
+    <result column="template_add_price" jdbcType="INTEGER" property="templateAddPrice"/>
+    <!--<collection property="areaFreightList" ofType="com.dgg.store.util.vo.goods.AreaFreightVO">-->
+      <!--<result column="area_freight_id" property="areaFreightId" jdbcType="VARCHAR"/>-->
+      <!--<result column="area_first_num" property="areaFirstNum" jdbcType="VARCHAR"/>-->
+      <!--<result column="area_first_price" property="areaFirstPrice" jdbcType="VARCHAR"/>-->
+      <!--<result column="area_continue_num" property="areaContinueNum" jdbcType="VARCHAR"/>-->
+      <!--<result column="area_continue_price" property="areaContinuePrice" jdbcType="VARCHAR"/>-->
+      <!--<collection property="areaIdList" column="area_name"/>-->
+    <!--</collection>-->
+  </resultMap>
+
+  <insert id="insert" parameterType="com.dgg.store.util.vo.goods.TemplateOfFreightVO">
+    insert into dgg_store.template_of_freight (template_freight_id, user_id, template_freight_name,
+      template_freight_isfree,
+      template_default_num,
+      template_default_price, template_add_num, template_add_price
+      )
+    values (#{templateFreightId,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, #{templateFreightName,jdbcType=VARCHAR}, 
+      #{templateFreightIsfree,jdbcType=TINYINT},
+      #{templateDefaultNum,jdbcType=INTEGER},
+      #{templateDefaultPrice,jdbcType=INTEGER}, #{templateAddNum,jdbcType=INTEGER}, #{templateAddPrice,jdbcType=INTEGER}
+      )
+  </insert>
+
+  <select id="findFreightTempsByUserId" resultMap="BaseResultMap">
+    SELECT tf.template_freight_id,tf.template_freight_name,tf.template_freight_isfree,tf.template_default_num,tf.template_default_price,
+      tf.template_add_num,tf.template_add_price
+    FROM dgg_store.template_of_freight tf
+    WHERE tf.user_id = #{userId}
+  </select>
+
+  <delete id="deleteFreightTemp">
+    DELETE FROM dgg_store.template_of_freight
+    WHERE template_freight_id = #{freightId}
+  </delete>
+
+  <select id="findFreight" resultMap="BaseResultMap">
+    SELECT tf.template_freight_id,tf.template_freight_name,tf.template_freight_isfree,tf.template_default_num,tf.template_default_price,
+        tf.template_add_num,tf.template_add_price,
+        af.area_freight_id,af.area_first_num,af.area_first_price,af.area_continue_num,af.area_continue_price,
+        ch.Name area_name
+    FROM dgg_store.template_of_freight tf
+    LEFT JOIN dgg_store.area_freight af
+    ON af.template_freight_id = tf.template_freight_id
+    LEFT JOIN dgg_store.area_id ai
+    ON ai.area_freight_id = af.area_freight_id
+    INNER JOIN dgg_store.china ch
+    ON ch.Id = ai.area_id
+    WHERE tf.template_freight_id = #{freightId}
+  </select>
+
+  <insert id="insertAreaId">
+    INSERT INTO dgg_store.area_id (area_freight_id, area_id)
+    VALUES
+    <foreach collection="areaIds" index="index" item="aId" open="" separator=")," close=")">
+      (#{fId},#{aId}
+    </foreach>
+  </insert>
+
+  <insert id="insertAreaFreight" parameterType="com.dgg.store.util.vo.goods.AreaFreightVO">
+    INSERT INTO dgg_store.area_freight (area_freight_id, template_freight_id, area_first_num,
+      area_first_price, area_continue_num, area_continue_price)
+    VALUES (#{areaFreightId},#{templateFreightId},#{areaFirstNum},
+      #{areaFirstPrice},#{areaContinueNum},#{areaContinuePrice})
+  </insert>
+</mapper>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!-- 自动扫描 -->
+    <context:component-scan base-package="com.dgg.store.service"></context:component-scan>
+    <context:component-scan base-package="com.dgg.store.dao"></context:component-scan>
+
+
+    <bean id="frameworkDataSource" class="org.apache.commons.dbcp2.BasicDataSource">
+        <property name="driverClassName">
+            <value>com.mysql.jdbc.Driver</value>
+        </property>
+        <property name="url">
+            <value>jdbc:mysql://127.0.0.1:3306/store_v1_1_1?useUnicode=true&amp;characterEncoding=utf-8</value>
+        </property>
+        <property name="username">
+            <value>yf</value>
+        </property>
+        <property name="password">
+            <value>Dggyf@321</value>
+        </property>
+    </bean>
+
+
+    <bean id="frameworkSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="frameworkDataSource"/>
+        <!--<property name="configLocation" value="WEB-INF/mybatis/mybatis-config.xml"/>-->
+        <!--<property name="mapperLocations" value="classpath*:/com/dgg/store/mapper/TestMapper.xml"/>-->
+            <!--<list>-->
+                <!--<value>classpath*:com/dgg/store/mapper/StoreAuthorityMapper.xml</value>-->
+            <!--</list>-->
+        <!--</property>-->
+    </bean>
+
+
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="sqlSessionFactoryBeanName" value="frameworkSessionFactory"/>
+        <property name="basePackage" value="com.dgg.store.mapper"/>
+    </bean>
+
+    <bean id="frameworkTransactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="frameworkDataSource"/>
+    </bean>
+
+    <!--<tx:advice id="frameworkTxAdvice" transaction-manager="frameworkTransactionManager">-->
+        <!--<tx:attributes>-->
+            <!--<tx:method name="get*" propagation="SUPPORTS" read-only="true"/>-->
+            <!--<tx:method name="select*" propagation="SUPPORTS" read-only="true"/>-->
+            <!--<tx:method name="find*" propagation="REQUIRED" read-only="true"/>-->
+            <!--<tx:method name="update*" propagation="SUPPORTS" read-only="true"/>-->
+            <!--<tx:method name="delete*" propagation="SUPPORTS" read-only="true"/>-->
+            <!--<tx:method name="*" propagation="REQUIRED" read-only="false"/>-->
+        <!--</tx:attributes>-->
+    <!--</tx:advice>-->
+
+    <!--<aop:config>-->
+        <!--<aop:pointcut id="frameworkServicePointCut" expression="execution(* com.crm.service..*.*(..))"/>-->
+        <!--<aop:advisor pointcut-ref="frameworkServicePointCut" advice-ref="frameworkTxAdvice"/>-->
+    <!--</aop:config>-->
+
+</beans>

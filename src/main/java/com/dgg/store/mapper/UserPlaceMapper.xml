@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dgg.store.mapper.UserPlaceMapper">
+  <resultMap id="UserPlaceMap" type="com.dgg.store.util.vo.UserPlaceVO">
+    <id column="user_place_id" jdbcType="VARCHAR" property="userPlaceId"/>
+    <result column="user_id" jdbcType="VARCHAR" property="userId"/>
+    <result column="user_place_acreage" jdbcType="INTEGER" property="userPlaceAcreage"/>
+    <result column="user_employee_num" jdbcType="INTEGER" property="userEmployeeNum"/>
+    <result column="user_place_address" jdbcType="VARCHAR" property="userPlaceAddress"/>
+    <result column="user_place_area" jdbcType="VARCHAR" property="userPlaceArea"/>
+    <result column="user_place_type" jdbcType="VARCHAR" property="userPlaceType"/>
+    <result column="user_place_name" jdbcType="VARCHAR" property="userPlaceName"/>
+    <result column="breed_count" jdbcType="INTEGER" property="breedCount"/>
+    <result column="hardware_count" jdbcType="INTEGER" property="hardwareCount"/>
+  </resultMap>
+
+  <resultMap id="UserBreedTypeMap" type="com.dgg.store.util.pojo.UserBreedType">
+    <id column="user_breed_type_id" jdbcType="VARCHAR" property="userBreedTypeId" />
+    <result column="user_place_id" jdbcType="VARCHAR" property="userPlaceId" />
+    <result column="user_breed_type" jdbcType="VARCHAR" property="userBreedType" />
+    <result column="user_breed_variety" jdbcType="VARCHAR" property="userBreedVariety" />
+    <result column="user_breed_num" jdbcType="VARCHAR" property="userBreedNum" />
+    <result column="user_sell_num" jdbcType="VARCHAR" property="userSellNum" />
+    <result column="user_breed_style" jdbcType="VARCHAR" property="userBreedStyle" />
+    <result column="user_fodder_type" jdbcType="VARCHAR" property="userFodderType" />
+    <result column="user_fodder_style" jdbcType="VARCHAR" property="userFodderStyle" />
+    <result column="user_fodder_num" jdbcType="INTEGER" property="userFodderNum" />
+  </resultMap>
+
+  <resultMap id="HardwareMap" type="com.dgg.store.util.pojo.UserPlaceHardware">
+    <id column="user_hardware_id" jdbcType="VARCHAR" property="userHardwareId" />
+    <result column="user_place_id" jdbcType="VARCHAR" property="userPlaceId" />
+    <result column="user_hardware_name" jdbcType="VARCHAR" property="userHardwareName" />
+    <result column="user_hardware_num" jdbcType="INTEGER" property="userHardwareNum" />
+  </resultMap>
+
+  <delete id="deleteUserPlace" parameterType="com.dgg.store.util.pojo.UserPlace">
+    DELETE FROM user_place
+    WHERE user_place_id = #{userPlaceId}
+  </delete>
+
+  <insert id="insertUserPlace" parameterType="com.dgg.store.util.pojo.UserPlace">
+    insert into dgg_store.user_place (user_place_id, user_id, user_place_name,
+    user_place_acreage,user_employee_num,
+    user_place_address, user_place_area, user_place_type
+    )
+    values (#{userPlaceId,jdbcType=VARCHAR}, #{customerId,jdbcType=VARCHAR}, #{userPlaceName,jdbcType=VARCHAR},
+    #{userPlaceAcreage,jdbcType=INTEGER}, #{userEmployeeNum,jdbcType=INTEGER},
+    #{userPlaceAddress,jdbcType=VARCHAR}, #{userPlaceArea,jdbcType=VARCHAR}, #{userPlaceType,jdbcType=VARCHAR}
+    )
+  </insert>
+
+  <update id="updateUserPlace" parameterType="com.dgg.store.util.pojo.UserPlace">
+    update user_place
+    <set>
+      <if test="userPlaceAcreage != null">
+        user_place_acreage = #{userPlaceAcreage,jdbcType=INTEGER},
+      </if>
+      <if test="userEmployeeNum != null">
+        user_employee_num = #{userEmployeeNum,jdbcType=INTEGER},
+      </if>
+      <if test="userPlaceAddress != null">
+        user_place_address = #{userPlaceAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="userPlaceArea != null">
+        user_place_area = #{userPlaceArea,jdbcType=VARCHAR},
+      </if>
+      <if test="userPlaceType != null">
+        user_place_type = #{userPlaceType,jdbcType=VARCHAR},
+      </if>
+      <if test="userPlaceName != null">
+        user_place_name = #{userPlaceName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where user_place_id = #{userPlaceId,jdbcType=VARCHAR}
+  </update>
+
+  <select id="findPlacesTitle" resultMap="UserPlaceMap">
+    SELECT up.user_place_id,up.user_place_name
+    FROM user_place up
+    INNER JOIN user u
+    ON u.user_id = up.user_id
+    WHERE u.user_id =  #{userId}
+  </select>
+
+  <select id="findPlace" resultMap="UserPlaceMap">
+    SELECT up.user_place_id,up.user_place_acreage,up.user_employee_num,up.user_place_address,up.user_place_area,up.user_place_type,up.user_place_name
+    FROM user_place up
+    WHERE up.user_place_id = #{placeId}
+  </select>
+
+  <select id="findSinglePlace" resultMap="UserPlaceMap">
+    SELECT up.user_place_id,up.user_place_acreage,up.user_employee_num,up.user_place_address,up.user_place_area,up.user_place_type,up.user_place_name,
+    (SELECT COUNT(0) from user_place_hardware uph WHERE up.user_place_id = uph.user_place_id) hardware_count,
+    (SELECT COUNT(0) from user_breed_type ubt WHERE up.user_place_id = ubt.user_place_id) breed_count
+    FROM user_place up
+    INNER JOIN user u
+    ON u.user_id = up.user_id
+    WHERE u.user_id = #{userId}
+    LIMIT 1
+  </select>
+
+  <select id="findAllPlace" resultMap="UserPlaceMap">
+    SELECT up.user_place_id,up.user_place_acreage,up.user_employee_num,up.user_place_address,up.user_place_area,up.user_place_type,up.user_place_name,
+    (SELECT COUNT(0) from user_place_hardware uph WHERE up.user_place_id = uph.user_place_id) hardware_count,
+    (SELECT COUNT(0) from user_breed_type ubt WHERE up.user_place_id = ubt.user_place_id) breed_count
+    FROM user_place up
+    INNER JOIN user u
+    ON u.user_id = up.user_id
+    WHERE u.user_id = #{userId}
+  </select>
+
+  <select id="findHardwareById" resultMap="HardwareMap">
+    SELECT uph.user_hardware_id,uph.user_hardware_name,uph.user_hardware_num
+    FROM user_place_hardware uph
+    WHERE uph.user_hardware_id = #{hardwareId}
+  </select>
+
+  <select id="findPlaceHardware" resultMap="HardwareMap">
+    SELECT uph.user_hardware_id,uph.user_hardware_name,uph.user_hardware_num
+    FROM user_place_hardware uph
+    WHERE uph.user_place_id = #{placeId}
+  </select>
+
+  <update id="updateHardwareById" parameterType="com.dgg.store.util.pojo.UserPlaceHardware">
+    UPDATE user_place_hardware
+    <set>
+      <if test="userHardwareName != null">
+        user_hardware_name = #{userHardwareName},
+      </if>
+      <if test="userHardwareNum != null">
+        user_hardware_num = #{userHardwareNum},
+      </if>
+    </set>
+    WHERE user_hardware_id = #{userHardwareId}
+  </update>
+
+  <insert id="insertPlaceHardware" parameterType="com.dgg.store.util.pojo.UserPlaceHardware">
+    insert into user_place_hardware (user_hardware_id, user_place_id, user_hardware_name,
+    user_hardware_num)
+    values (#{userHardwareId,jdbcType=VARCHAR}, #{userPlaceId,jdbcType=VARCHAR}, #{userHardwareName,jdbcType=VARCHAR},
+    #{userHardwareNum,jdbcType=INTEGER})
+  </insert>
+
+  <insert id="insertBreedType" parameterType="com.dgg.store.util.pojo.UserBreedType">
+    insert into user_breed_type (user_breed_type_id, user_place_id, user_breed_type,
+    user_breed_variety, user_breed_num, user_sell_num,
+    user_breed_style, user_fodder_type, user_fodder_style,
+    user_fodder_num)
+    values (#{userBreedTypeId,jdbcType=VARCHAR}, #{userPlaceId,jdbcType=VARCHAR}, #{userBreedType,jdbcType=VARCHAR},
+    #{userBreedVariety,jdbcType=VARCHAR}, #{userBreedNum,jdbcType=VARCHAR}, #{userSellNum,jdbcType=VARCHAR},
+    #{userBreedStyle,jdbcType=VARCHAR}, #{userFodderType,jdbcType=VARCHAR}, #{userFodderStyle,jdbcType=VARCHAR},
+    #{userFodderNum,jdbcType=INTEGER})
+  </insert>
+
+  <update id="updateBreedTypeById" parameterType="com.dgg.store.util.pojo.UserBreedType">
+    update user_breed_type
+    <set>
+      <if test="userBreedType != null">
+        user_breed_type = #{userBreedType,jdbcType=VARCHAR},
+      </if>
+      <if test="userBreedVariety != null">
+        user_breed_variety = #{userBreedVariety,jdbcType=VARCHAR},
+      </if>
+      <if test="userBreedNum != null">
+        user_breed_num = #{userBreedNum,jdbcType=VARCHAR},
+      </if>
+      <if test="userSellNum != null">
+        user_sell_num = #{userSellNum,jdbcType=VARCHAR},
+      </if>
+      <if test="userBreedStyle != null">
+        user_breed_style = #{userBreedStyle,jdbcType=VARCHAR},
+      </if>
+      <if test="userFodderType != null">
+        user_fodder_type = #{userFodderType,jdbcType=VARCHAR},
+      </if>
+      <if test="userFodderStyle != null">
+        user_fodder_style = #{userFodderStyle,jdbcType=VARCHAR},
+      </if>
+      <if test="userFodderNum != null">
+        user_fodder_num = #{userFodderNum,jdbcType=INTEGER},
+      </if>
+    </set>
+    WHERE user_breed_type_id = #{userBreedTypeId}
+  </update>
+
+  <select id="findBreedTypeById" resultMap="UserBreedTypeMap">
+    SELECT ubt.user_breed_type_id, ubt.user_breed_type, ubt.user_breed_variety,ubt.user_breed_num,ubt.user_sell_num,ubt.user_breed_style,ubt.user_fodder_type,ubt.user_fodder_style,ubt.user_fodder_num
+    FROM user_breed_type ubt
+    WHERE ubt.user_breed_type_id = #{typeId}
+  </select>
+
+  <select id="findBreedTypes" parameterType="com.dgg.store.util.pojo.UserBreedType" resultMap="UserBreedTypeMap">
+    SELECT ubt.user_breed_type_id, ubt.user_breed_type, ubt.user_breed_variety,ubt.user_breed_num,ubt.user_sell_num,ubt.user_breed_style,ubt.user_fodder_type,ubt.user_fodder_style,ubt.user_fodder_num
+    FROM user_breed_type ubt
+    WHERE ubt.user_place_id = #{placeId}
+  </select>
+
+  <insert id="insertPlaceHistory">
+    insert into user_place_records(user_place_area, user_employee_num, user_place_address, user_place_type, user_place_id, user_place_name, user_place_acreage,create_date)
+    select user_place_area, user_employee_num, user_place_address, user_place_type, user_place_id, user_place_name, user_place_acreage,now()
+    from user_place
+    where user_place_id = #{placeId}
+  </insert>
+
+    <insert id="insertHardwareHistory">
+        insert into user_place_hardware_records(user_hardware_id, user_place_id, user_hardware_name, user_hardware_num,create_date)
+        select user_hardware_id, user_place_id, user_hardware_name, user_hardware_num,now()
+        from user_place_hardware
+        where user_hardware_id = #{hardwareId}
+    </insert>
+
+    <insert id="insertBreedHistory">
+        insert into user_breed_type_records(user_breed_type_id, user_place_id, user_breed_type, user_breed_variety, user_breed_num, user_sell_num, user_breed_style, user_fodder_type, user_fodder_style, user_fodder_num,create_date)
+        select user_breed_type_id, user_place_id, user_breed_type, user_breed_variety, user_breed_num, user_sell_num, user_breed_style, user_fodder_type, user_fodder_style, user_fodder_num,now()
+        from user_breed_type
+        where user_breed_type_id = #{typeId}
+    </insert>
+</mapper>

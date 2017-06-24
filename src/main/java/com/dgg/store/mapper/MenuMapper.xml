@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dgg.store.mapper.MenuMapper">
+  <resultMap id="BaseResultMap" type="com.dgg.store.util.pojo.Menu">
+    <id column="menu_id" jdbcType="INTEGER" property="menuId" />
+    <result column="menu_name" jdbcType="VARCHAR" property="menuName" />
+    <result column="menu_url" jdbcType="VARCHAR" property="menuUrl" />
+    <result column="menu_pid" jdbcType="INTEGER" property="menuPid" />
+    <result column="menu_icon" jdbcType="VARCHAR" property="menuIcon" />
+    <result column="menu_isHeader" jdbcType="TINYINT" property="menuIsheader" />
+    <result column="sort" jdbcType="VARCHAR" property="sort" />
+    <result column="is_deleted" jdbcType="TINYINT" property="isDeleted" />
+    <result column="delete_date" jdbcType="DATE" property="deleteDate" />
+  </resultMap>
+
+  <insert id="insert" parameterType="com.dgg.store.util.pojo.Menu">
+    insert into menu (menu_id, menu_name, menu_url, 
+      menu_pid, menu_icon, menu_isHeader, 
+      sort, is_deleted, delete_date
+      )
+    values (#{menuId,jdbcType=INTEGER}, #{menuName,jdbcType=VARCHAR}, #{menuUrl,jdbcType=VARCHAR}, 
+      #{menuPid,jdbcType=INTEGER}, #{menuIcon,jdbcType=VARCHAR}, #{menuIsheader,jdbcType=TINYINT}, 
+      #{sort,jdbcType=VARCHAR}, #{isDeleted,jdbcType=TINYINT}, #{deleteDate,jdbcType=DATE}
+      )
+  </insert>
+
+  <resultMap id="MenuVOMap" type="com.dgg.store.util.vo.MenuVO">
+    <id column="menu_id" property="id" jdbcType="VARCHAR"/>
+    <result column="menu_pid" property="parentId" jdbcType="VARCHAR"/>
+    <result column="sort" property="order" jdbcType="VARCHAR"/>
+    <result column="menu_isHeader" property="isHeader" jdbcType="VARCHAR"/>
+    <result column="menu_name" property="name" jdbcType="VARCHAR"/>
+    <result column="menu_url" property="url" jdbcType="VARCHAR"/>
+    <result column="menu_icon" property="icon" jdbcType="VARCHAR"/>
+  </resultMap>
+  <select id="findMenus" resultMap="MenuVOMap">
+    SELECT m.menu_id, m.menu_name, m.menu_url, m.menu_pid, m.sort, m.menu_icon, m.menu_isHeader
+    FROM menu m
+    ORDER BY m.sort
+  </select>
+
+  <select id="findCustomerGroups" resultMap="MenuVOMap">
+    select cg.customer_group_id menu_id,cg.customer_group_name menu_name
+    from customers_groups cg
+    where cg.user_id = #{userId}
+  </select>
+
+</mapper>

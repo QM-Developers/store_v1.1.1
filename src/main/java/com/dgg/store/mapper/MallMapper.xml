@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dgg.store.mapper.MallMapper">
+  <resultMap id="BaseResultMap" type="com.dgg.store.util.pojo.Mall">
+    <id column="store_mall_id" jdbcType="VARCHAR" property="storeMallId" />
+    <result column="my_team_id" jdbcType="INTEGER" property="myTeamId" />
+    <result column="store_mall_name" jdbcType="VARCHAR" property="storeMallName" />
+    <result column="store_mall_create_date" jdbcType="TIMESTAMP" property="storeMallCreateDate" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    store_mall_id, my_team_id, store_mall_name, store_mall_create_date
+  </sql>
+  <select id="selectByExample" parameterType="com.dgg.store.util.pojo.MallExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from mall
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from mall
+    where store_mall_id = #{storeMallId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from mall
+    where store_mall_id = #{storeMallId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.dgg.store.util.pojo.MallExample">
+    delete from mall
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.dgg.store.util.pojo.Mall">
+    insert into mall (store_mall_id, my_team_id, store_mall_name, 
+      store_mall_create_date)
+    values (#{storeMallId,jdbcType=VARCHAR}, #{myTeamId,jdbcType=INTEGER}, #{storeMallName,jdbcType=VARCHAR}, 
+      #{storeMallCreateDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.dgg.store.util.pojo.Mall">
+    insert into mall
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="storeMallId != null">
+        store_mall_id,
+      </if>
+      <if test="myTeamId != null">
+        my_team_id,
+      </if>
+      <if test="storeMallName != null">
+        store_mall_name,
+      </if>
+      <if test="storeMallCreateDate != null">
+        store_mall_create_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="storeMallId != null">
+        #{storeMallId,jdbcType=VARCHAR},
+      </if>
+      <if test="myTeamId != null">
+        #{myTeamId,jdbcType=INTEGER},
+      </if>
+      <if test="storeMallName != null">
+        #{storeMallName,jdbcType=VARCHAR},
+      </if>
+      <if test="storeMallCreateDate != null">
+        #{storeMallCreateDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.dgg.store.util.pojo.MallExample" resultType="java.lang.Long">
+    select count(*) from mall
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update mall
+    <set>
+      <if test="record.storeMallId != null">
+        store_mall_id = #{record.storeMallId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.myTeamId != null">
+        my_team_id = #{record.myTeamId,jdbcType=INTEGER},
+      </if>
+      <if test="record.storeMallName != null">
+        store_mall_name = #{record.storeMallName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.storeMallCreateDate != null">
+        store_mall_create_date = #{record.storeMallCreateDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update mall
+    set store_mall_id = #{record.storeMallId,jdbcType=VARCHAR},
+      my_team_id = #{record.myTeamId,jdbcType=INTEGER},
+      store_mall_name = #{record.storeMallName,jdbcType=VARCHAR},
+      store_mall_create_date = #{record.storeMallCreateDate,jdbcType=TIMESTAMP}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dgg.store.util.pojo.Mall">
+    update mall
+    <set>
+      <if test="myTeamId != null">
+        my_team_id = #{myTeamId,jdbcType=INTEGER},
+      </if>
+      <if test="storeMallName != null">
+        store_mall_name = #{storeMallName,jdbcType=VARCHAR},
+      </if>
+      <if test="storeMallCreateDate != null">
+        store_mall_create_date = #{storeMallCreateDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where store_mall_id = #{storeMallId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dgg.store.util.pojo.Mall">
+    update mall
+    set my_team_id = #{myTeamId,jdbcType=INTEGER},
+      store_mall_name = #{storeMallName,jdbcType=VARCHAR},
+      store_mall_create_date = #{storeMallCreateDate,jdbcType=TIMESTAMP}
+    where store_mall_id = #{storeMallId,jdbcType=VARCHAR}
+  </update>
+</mapper>

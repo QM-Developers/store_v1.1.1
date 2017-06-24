@@ -1,0 +1,145 @@
+
+.newdata {
+	clear: both;
+	max-width: 1269px;
+    min-width: 1000px;
+    margin:10px auto;
+    background: #fff;
+    padding:0 41px;
+    box-sizing: border-box;
+    border: 1px solid #e7e7e7;
+    border-radius: 5px;
+}
+
+.newdata .qm-team-input span {
+	display: inline-block;
+	width: 12%;
+	padding: 0;
+	margin: 0 0 0 20px;
+}
+
+.newdata .poptime input {
+	width: 83%;
+	border: none;
+}
+
+.newdata .poptime input {
+	border: none;
+}
+
+.groupdata-title {
+	margin-bottom: 10px;
+	border-bottom: 3px solid #03afef;
+	height: 50px;
+	line-height: 50px;
+}
+.qm-team div{
+	padding: 0;
+}
+.qm-team input {
+	padding: 0;
+	border: 1px solid #CCCCCC;
+	border-radius: 5px;
+	background: #fff;
+	height: 30px;
+}
+.qm-team .disabled-border{
+	border: 0;
+}
+.qm-team-input {
+	height: 53px;
+}
+
+.qm-team-input span {
+	text-align: center;
+	display: inline-block;
+	width: 10%;
+	padding: 3px 0 0 0;
+	margin: 2px 0 0 20px;
+}
+.qm-team select{
+	width: 100%;
+	height: 30px;
+		border-radius: 5px;
+}
+.qm-c-compile {
+	height: 160px;
+}
+.groupdata-title {
+	margin-bottom: 10px;
+	border-bottom: 3px solid #03afef;
+	height: 50px;
+	line-height: 50px;
+}
+.poptime {
+	border: 1px solid #CCCCCC;
+	width: 100%;
+	height: 32px;
+	border-radius: 5px;
+}
+.qm-time-but {
+	border: none;
+	float: right;
+	width: 15%;
+	height: 100%;
+	padding: 0;
+	background: #fff;
+}
+.poptwo-c-lia {
+	margin-right: 10px;
+	padding-left: 21px;
+	background: url(../images/yuandian.png) -19px -4px no-repeat;
+}
+
+.poptwo-c-lia1 {
+	background: url(../images/yuandian.png) -19px -36px no-repeat;
+}
+.newdata-picture {
+	width: 306px;
+	height: 168px;
+	border: 1px dashed #999999;
+	float: left;
+	margin-right: 168px;
+	margin-bottom: 20px;
+
+}
+.newdata-picture img{
+	max-width: 306px;
+	max-height: 168px;
+	width: 100%;
+	height: 100%;
+}
+.newdata-picture .newdata-picture-i{
+	display: block;
+
+	width: 120px;
+	height: 50px;
+	background: #7fdbff;
+	border: 1px solid #7fdbff;
+	border-radius:5px ;
+	margin: 55px auto;
+	font-style:normal;
+	line-height: 50px;
+	text-align: center;
+}
+.del-but-box {
+	clear: both;
+	max-width: 1269px;
+    min-width: 1000px;
+    margin:10px auto;
+   
+    padding:0 41px;
+    box-sizing: border-box;
+	height: 80px;
+}
+
+.del-but {
+	
+	width: 100px;
+	height: 40px;
+	background: #71bcfd;
+	margin: 10px 40px 0 40px;
+	border: none;
+	float: left;
+	border-radius: 5px;
+}

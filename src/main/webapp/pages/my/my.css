@@ -1,0 +1,162 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    background: #fff;
+}
+
+.img_box {
+    width: 300px;
+    height: 100px;
+    margin-left: 15%;
+    margin-bottom: 20px;
+}
+
+.portrait_box {
+    width: 100px;
+    height: 100px;
+    float: left;
+    margin-right: 20px;
+}
+
+.portrait_user_img{
+    cursor: pointer;
+}
+
+.portrait_user_img:hover{
+    box-shadow: 0px 0px 8px 2px #888888;
+}
+
+.portrait_box img {
+    display: block;
+    width: 100px;
+    height: 100px;
+
+}
+
+#site_box {
+    height: 400px;
+    width: 50%;
+    margin: auto;
+}
+
+#site_box div {
+    padding: 0;
+}
+
+#site_box label {
+    padding: 0;
+    margin: 0;
+}
+
+.info {
+    width: 100%;
+}
+
+.top {
+    margin: 5px auto;
+    color: #990000;
+    text-align: center;
+}
+
+.info select {
+    box-sizing: border-box;
+    border: 1px #ccc solid;
+    background: #FFFFFF;
+    float: left;
+    height: 37px;
+}
+
+#s_province {
+    width: 33%;
+}
+
+#s_city {
+    width: 33%;
+}
+
+#s_county {
+    width: 34%;
+}
+
+.bottom {
+    text-align: right;
+    font-size: 12px;
+    color: #CCCCCC;
+    width: 1000px;
+}
+
+#site_box .am-form-group {
+    float: left;
+    width: 100%;
+    height: 40px;
+    margin-bottom: 10px;
+}
+
+#site_box .am-form-group .add_label {
+    width: 15% !important;
+    height: 40px;
+    line-height: 40px;
+    margin: 0;
+    float: left;
+    text-align: right;
+    padding-right: 5px;
+}
+
+#site_box .am-form-group .add_selectdiv {
+    float: left;
+    width: 80%;
+    height: 40px;
+}
+
+#site_box .am-form-group .add_selectdiv input {
+    display: block;
+    width: 100%;
+    height: 37px;
+    border: 1px solid #ccc;
+    padding: 8px;
+}
+
+#add_sitelast {
+    width: 200px;
+    height: 50px;
+    float: right;
+    margin-right: 14px;
+}
+
+#add_sitelast div {
+    width: 50%;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    float: right;
+    cursor: pointer;
+}
+
+#site_table {
+    width: 50%;
+    margin: auto;
+}
+
+#site_table table {
+    width: 100%;
+}
+
+#site_table table tr {
+    border-bottom: 1px solid #CCCCCC;
+}
+
+#site_table table tr th {
+    width: 20%;
+    text-align: center;
+}
+
+#site_table table tr td {
+    height: 30px;
+    max-height: 60px;
+    text-align: center;
+    padding: 5px;
+    font-size: 1.4rem;
+}

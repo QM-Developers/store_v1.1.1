@@ -29,6 +29,15 @@ public class FriendsController
         return service.findFriendRequest(sessionVO);
     }
 
+    @RequestMapping(value = "user_findFriendRequestById",method = RequestMethod.POST)
+    @ResponseBody
+    public ResultVO findFriendRequestById(HttpServletRequest request,FriendRequest friendRequest)
+    {
+        SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
+
+        return service.findFriendRequestById(sessionVO,friendRequest);
+    }
+
     @RequestMapping(value = "user_addFriendRequest", method = RequestMethod.POST)
     @ResponseBody
     public ResultVO addFriendRequest(HttpServletRequest request, FriendRequest friendRequest)

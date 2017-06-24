@@ -5,6 +5,7 @@ import java.util.Date;
 public class ChatHistory
 {
     public static final int TEXT = 0x00000001;
+    public static final int REQUEST = 0x00000002;
     public static final int NOT_READ = 0;
     public static final int IS_READ = 1;
 

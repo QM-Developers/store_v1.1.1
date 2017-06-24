@@ -6,7 +6,25 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="886cbd15-c3a0-40c9-bb8e-62f10811888a" name="Default" comment="框架搭建" />
+    <list default="true" id="886cbd15-c3a0-40c9-bb8e-62f10811888a" name="Default" comment="框架搭建">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/query.sql" afterPath="$PROJECT_DIR$/query.sql" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/dgg/store/controller/common/FriendsController.java" afterPath="$PROJECT_DIR$/src/main/java/com/dgg/store/controller/common/FriendsController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/dgg/store/dao/common/FriendsDao.java" afterPath="$PROJECT_DIR$/src/main/java/com/dgg/store/dao/common/FriendsDao.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/dgg/store/dao/common/FriendsDaoImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/dgg/store/dao/common/FriendsDaoImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/dgg/store/listener/WebInitListener.java" afterPath="$PROJECT_DIR$/src/main/java/com/dgg/store/listener/WebInitListener.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/dgg/store/mapper/FriendsMapper.java" afterPath="$PROJECT_DIR$/src/main/java/com/dgg/store/mapper/FriendsMapper.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/dgg/store/mapper/FriendsMapper.xml" afterPath="$PROJECT_DIR$/src/main/java/com/dgg/store/mapper/FriendsMapper.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/dgg/store/service/common/FriendsService.java" afterPath="$PROJECT_DIR$/src/main/java/com/dgg/store/service/common/FriendsService.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/dgg/store/service/common/FriendsServiceImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/dgg/store/service/common/FriendsServiceImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/dgg/store/socket/NettyClient.java" afterPath="$PROJECT_DIR$/src/main/java/com/dgg/store/socket/NettyClient.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/dgg/store/socket/NettyClientFactory.java" afterPath="$PROJECT_DIR$/src/main/java/com/dgg/store/socket/NettyClientFactory.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/dgg/store/socket/NettyClientHandle.java" afterPath="$PROJECT_DIR$/src/main/java/com/dgg/store/socket/NettyClientHandle.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/dgg/store/util/core/constant/Constant.java" afterPath="$PROJECT_DIR$/src/main/java/com/dgg/store/util/core/constant/Constant.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/dgg/store/util/pojo/ChatHistory.java" afterPath="$PROJECT_DIR$/src/main/java/com/dgg/store/util/pojo/ChatHistory.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/pages/friend/qm-friend.js" afterPath="$PROJECT_DIR$/src/main/webapp/pages/friend/qm-friend.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/pages/friend/qm-friend.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/pages/friend/qm-friend.jsp" />
+    </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -42,16 +60,12 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="WebInitListener.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/dgg/store/listener/WebInitListener.java">
+      <file leaf-file-name="FriendsController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/dgg/store/controller/common/FriendsController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="432">
-              <caret line="21" column="21" lean-forward="false" selection-start-line="21" selection-start-column="21" selection-end-line="21" selection-end-column="21" />
-              <folding>
-                <element signature="imports" expanded="false" />
-                <element signature="e#518#519#0" expanded="false" />
-                <element signature="e#582#583#0" expanded="false" />
-              </folding>
+            <state relative-caret-position="1632">
+              <caret line="80" column="70" lean-forward="false" selection-start-line="80" selection-start-column="70" selection-end-line="80" selection-end-column="70" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -59,88 +73,71 @@
       <file leaf-file-name="qm-friend.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/webapp/pages/friend/qm-friend.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3864">
-              <caret line="452" column="54" lean-forward="false" selection-start-line="452" selection-start-column="54" selection-end-line="452" selection-end-column="54" />
+            <state relative-caret-position="3432">
+              <caret line="452" column="0" lean-forward="false" selection-start-line="452" selection-start-column="0" selection-end-line="452" selection-end-column="0" />
               <folding>
-                <element signature="e#558#716#0" expanded="false" />
-                <element signature="e#793#1494#0" expanded="false" />
-                <element signature="e#1565#2573#0" expanded="false" />
-                <element signature="e#2668#3556#0" expanded="false" />
-                <element signature="e#3639#3905#0" expanded="false" />
-                <element signature="e#3977#6714#0" expanded="false" />
-                <element signature="e#6787#7182#0" expanded="false" />
-                <element signature="e#7258#7656#0" expanded="false" />
-                <element signature="e#7736#7833#0" expanded="false" />
-                <element signature="e#8383#10001#0" expanded="false" />
-                <element signature="e#10104#11236#0" expanded="false" />
-                <element signature="e#11308#11643#0" expanded="false" />
-                <element signature="e#11705#12137#0" expanded="false" />
-                <element signature="e#12386#13346#0" expanded="false" />
-                <element signature="e#13386#13603#0" expanded="false" />
-                <element signature="e#13728#14762#0" expanded="false" />
-                <element signature="e#14818#15137#0" expanded="false" />
-                <element signature="e#16596#17220#0" expanded="false" />
-                <element signature="e#17253#17958#0" expanded="false" />
-                <element signature="e#19676#20064#0" expanded="false" />
-                <element signature="e#20107#21206#0" expanded="false" />
-                <element signature="e#21599#23146#0" expanded="false" />
-                <element signature="e#23186#24988#0" expanded="false" />
-                <element signature="e#25020#25186#0" expanded="false" />
-                <element signature="e#25215#25306#0" expanded="false" />
-                <element signature="e#25327#25394#0" expanded="false" />
-                <element signature="e#25421#25512#0" expanded="false" />
-                <element signature="e#25541#25602#0" expanded="false" />
-                <element signature="e#25628#25676#0" expanded="false" />
-                <marker date="1498204932505" expanded="true" signature="12620:12633" ph="..." />
-                <marker date="1498204932505" expanded="true" signature="13214:13227" ph="..." />
-                <marker date="1498204932505" expanded="true" signature="18588:18601" ph="..." />
-                <marker date="1498204932505" expanded="true" signature="24116:24130" ph="..." />
+                <element signature="e#579#737#0" expanded="false" />
+                <element signature="e#814#1515#0" expanded="false" />
+                <element signature="e#1586#2594#0" expanded="false" />
+                <element signature="e#2689#3577#0" expanded="false" />
+                <element signature="e#3660#4006#0" expanded="false" />
+                <element signature="e#4078#4711#0" expanded="false" />
+                <element signature="e#4774#6746#0" expanded="false" />
+                <element signature="e#6819#7184#0" expanded="false" />
+                <element signature="e#7260#7658#0" expanded="false" />
+                <element signature="e#7738#8075#0" expanded="false" />
+                <element signature="e#8148#8544#0" expanded="false" />
+                <element signature="e#8625#10243#0" expanded="false" />
+                <element signature="e#10346#11478#0" expanded="false" />
+                <element signature="e#11560#11879#0" expanded="false" />
+                <element signature="e#11947#12380#0" expanded="false" />
+                <element signature="e#12629#13589#0" expanded="false" />
+                <element signature="e#13629#14118#0" expanded="false" />
+                <element signature="e#14243#15277#0" expanded="false" />
+                <element signature="e#15320#15606#0" expanded="false" />
+                <element signature="e#15662#15981#0" expanded="false" />
+                <element signature="e#16071#17404#0" expanded="false" />
+                <element signature="e#17440#18064#0" expanded="false" />
+                <element signature="e#18097#18802#0" expanded="false" />
+                <element signature="e#18853#19313#0" expanded="false" />
+                <element signature="e#19361#20109#0" expanded="false" />
+                <element signature="e#20239#20478#0" expanded="false" />
+                <element signature="e#20521#20909#0" expanded="false" />
+                <element signature="e#20952#22051#0" expanded="false" />
+                <element signature="e#22100#22424#0" expanded="false" />
+                <element signature="e#22444#23991#0" expanded="false" />
+                <element signature="e#24031#25833#0" expanded="false" />
+                <element signature="e#25865#26031#0" expanded="false" />
+                <element signature="e#26060#26151#0" expanded="false" />
+                <element signature="e#26172#26239#0" expanded="false" />
+                <element signature="e#26266#26357#0" expanded="false" />
+                <element signature="e#26386#26447#0" expanded="false" />
+                <element signature="e#26473#26521#0" expanded="false" />
+                <marker date="1498295875006" expanded="true" signature="12863:12876" ph="..." />
+                <marker date="1498295875006" expanded="true" signature="13457:13470" ph="..." />
+                <marker date="1498295875006" expanded="true" signature="19432:19445" ph="..." />
+                <marker date="1498295875006" expanded="true" signature="24961:24975" ph="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="pom.xml" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/pom.xml">
+      <file leaf-file-name="FriendsService.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/dgg/store/service/common/FriendsService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2238">
-              <caret line="214" column="60" lean-forward="true" selection-start-line="214" selection-start-column="60" selection-end-line="214" selection-end-column="60" />
+            <state relative-caret-position="360">
+              <caret line="18" column="54" lean-forward="true" selection-start-line="18" selection-start-column="54" selection-end-line="18" selection-end-column="54" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="NettyClientFactory.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/dgg/store/socket/NettyClientFactory.java">
+      <file leaf-file-name="FriendsServiceImpl.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/dgg/store/service/common/FriendsServiceImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="312">
-              <caret line="14" column="22" lean-forward="false" selection-start-line="14" selection-start-column="22" selection-end-line="14" selection-end-column="22" />
+            <state relative-caret-position="93">
+              <caret line="182" column="0" lean-forward="true" selection-start-line="182" selection-start-column="0" selection-end-line="182" selection-end-column="0" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TestController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/dgg/store/controller/common/TestController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="504">
-              <caret line="32" column="24" lean-forward="false" selection-start-line="32" selection-start-column="24" selection-end-line="32" selection-end-column="24" />
-              <folding>
-                <element signature="imports" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="NettyClient.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/dgg/store/socket/NettyClient.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="504">
-              <caret line="30" column="58" lean-forward="false" selection-start-line="30" selection-start-column="58" selection-end-line="30" selection-end-column="58" />
-              <folding>
-                <element signature="e#1246#2083#0" expanded="false" />
-                <element signature="e#2082#2083#0" expanded="false" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -161,9 +158,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>Co</find>
-      <find>Friend</find>
-      <find>FriendVO</find>
       <find>userName</find>
       <find>BaseResultMap</find>
       <find>addFriendRequest</find>
@@ -172,7 +166,6 @@
       <find>FriendRequest</find>
       <find>手机</find>
       <find>updateFriendRequest</find>
-      <find>findFriendRequest</find>
       <find>request.setO</find>
       <find>userSex</find>
       <find>大老板</find>
@@ -191,6 +184,10 @@
       <find>chatView(</find>
       <find>updateChatListNotifyNum</find>
       <find>appendChatList(</find>
+      <find>user_findFriendDataById</find>
+      <find>findFriendDataById</find>
+      <find>user_findFriendRequest</find>
+      <find>findFriendRequest</find>
     </findStrings>
     <replaceStrings>
       <replace>user</replace>
@@ -239,7 +236,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/resources/filter.ini" />
         <option value="$PROJECT_DIR$/src/main/java/com/dgg/store/controller/common/GoodsBrowseController.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/script/js/myjs.js" />
         <option value="$PROJECT_DIR$/src/main/java/com/dgg/store/util/pojo/MyOrderList.java" />
@@ -248,7 +244,6 @@
         <option value="$PROJECT_DIR$/src/main/java/com/dgg/store/util/vo/core/ResultVO.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/pages/team/qm-department.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/pages/team/qm-personage.jsp" />
-        <option value="$PROJECT_DIR$/src/main/java/com/dgg/store/util/core/constant/Constant.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/dgg/store/util/vo/friend/FriendsVO.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/dgg/store/util/pojo/FriendRequest.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/pages/friend/qm-friend.css" />
@@ -261,10 +256,7 @@
         <option value="$PROJECT_DIR$/src/main/java/com/dgg/store/util/pojo/Chat.java" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/2fab1a59-02a2-44f6-827a-6c01dfe65f27/console.sql" />
         <option value="$PROJECT_DIR$/src/main/java/com/dgg/store/service/common/MyServiceImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/dgg/store/service/common/FriendsService.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/dgg/store/util/vo/friend/FriendVO.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/dgg/store/controller/common/FriendsController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/dgg/store/util/pojo/ChatHistory.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/dgg/store/controller/common/ChatController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/dgg/store/service/common/ChatService.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/dgg/store/dao/common/ChatDao.java" />
@@ -272,23 +264,28 @@
         <option value="$PROJECT_DIR$/src/main/java/com/dgg/store/mapper/ChatMapper.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/dgg/store/mapper/ChatMapper.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/dgg/store/service/common/ChatServiceImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/webapp/pages/friend/qm-friend.jsp" />
         <option value="$PROJECT_DIR$/src/main/java/com/dgg/store/dao/common/FriendsDao.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/dgg/store/dao/common/FriendsDaoImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/dgg/store/mapper/FriendsMapper.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/dgg/store/mapper/FriendsMapper.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/com/dgg/store/service/common/FriendsServiceImpl.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/spring/application-context.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/dgg/store/servlet/WebInitServlet.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" />
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/dgg/store/socket/MarshallingCodeCFactory.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/dgg/store/socket/NettyClientFactory.java" />
         <option value="$PROJECT_DIR$/src/main/resources/netty.ini" />
-        <option value="$PROJECT_DIR$/src/main/java/com/dgg/store/socket/NettyClientHandle.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/dgg/store/socket/NettyClient.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/dgg/store/listener/WebInitListener.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/dgg/store/controller/common/TestController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/dgg/store/util/core/netty/NettyUtil.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/dgg/store/util/pojo/ChatHistory.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/dgg/store/util/core/constant/Constant.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/dgg/store/socket/NettyClient.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/dgg/store/socket/NettyClientHandle.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/dgg/store/controller/common/FriendsController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/dgg/store/service/common/FriendsService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/dgg/store/socket/NettyClientFactory.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/dgg/store/listener/WebInitListener.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/dgg/store/mapper/FriendsMapper.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/dgg/store/mapper/FriendsMapper.xml" />
+        <option value="$PROJECT_DIR$/src/main/webapp/pages/friend/qm-friend.jsp" />
+        <option value="$PROJECT_DIR$/src/main/java/com/dgg/store/service/common/FriendsServiceImpl.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/pages/friend/qm-friend.js" />
       </list>
     </option>
@@ -330,8 +327,9 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
       <pane id="Scratches" />
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -414,63 +412,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="WEB-INF" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="store_v1.1.1" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="store_v1.1.1" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="webapp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="pages" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="store_v1.1.1" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="store_v1.1.1" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="webapp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pages" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="friend" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -521,46 +463,15 @@
               <option name="myItemId" value="store" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="util" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="store_v1.1.1" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="store_v1.1.1" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="store" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="D:/zz-netty/netty_chat" />
     <property name="js.eslint.eslintPackage" value="" />
     <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.15" />
@@ -578,12 +489,12 @@
     <property name="settings.editor.splitter.proportion" value="0.25342464" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="D:\WorkSpace\store_v1.1.1\src\main\webapp\pages\common" />
-      <recent name="D:\WorkSpace\store_v1.1.1\src\main\webapp\pages\friend" />
-      <recent name="D:\WorkSpace\store_v1.1.0\src\main\webapp\pages\team" />
-      <recent name="D:\WorkSpace\store_v1.1.0\src\main\webapp\pages\customer" />
-      <recent name="D:\WorkSpace\store_v1.1.0\src\main\webapp\pages" />
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="com.dgg.store.mapper" />
+      <recent name="com.dgg.store.dao.common" />
+      <recent name="com.dgg.store.service.common" />
+      <recent name="com.dgg.store..common" />
+      <recent name="com.dgg.store.dao.store" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="com.dgg.store.service" />
@@ -596,18 +507,18 @@
       <recent name="D:\WorkSpace\store_v1.1.0\src\main\webapp\pages\common" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.dgg.store.util.core.netty" />
       <recent name="com.dgg.store.socket" />
       <recent name="com.dgg.store.util.factory" />
       <recent name="com.dgg.store.util.vo" />
       <recent name="com.dgg.store.util.pojo" />
-      <recent name="com.dgg.store.util.core" />
     </key>
-    <key name="CreateClassDialog.RecentsKey">
-      <recent name="com.dgg.store.mapper" />
-      <recent name="com.dgg.store.dao.common" />
-      <recent name="com.dgg.store.service.common" />
-      <recent name="com.dgg.store..common" />
-      <recent name="com.dgg.store.dao.store" />
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\WorkSpace\store_v1.1.1\src\main\webapp\pages\common" />
+      <recent name="D:\WorkSpace\store_v1.1.1\src\main\webapp\pages\friend" />
+      <recent name="D:\WorkSpace\store_v1.1.0\src\main\webapp\pages\team" />
+      <recent name="D:\WorkSpace\store_v1.1.0\src\main\webapp\pages\customer" />
+      <recent name="D:\WorkSpace\store_v1.1.0\src\main\webapp\pages" />
     </key>
   </component>
   <component name="RunManager" selected="Tomcat Server.Tomcat 8.5.11">
@@ -1265,7 +1176,8 @@
       <workItem from="1498091541523" duration="21796000" />
       <workItem from="1498177365407" duration="13056000" />
       <workItem from="1498197229238" duration="5317000" />
-      <workItem from="1498264168574" duration="19000" />
+      <workItem from="1498264168574" duration="182000" />
+      <workItem from="1498264659541" duration="15918000" />
     </task>
     <servers />
   </component>
@@ -1302,7 +1214,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1757495000" />
+    <option name="totallyTimeSpent" value="1773576000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1331,6 +1243,7 @@
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.6251354" sideWeight="0.48400852" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32936078" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3066089" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32936078" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1339,7 +1252,7 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3277311" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32936078" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32936078" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17643923" sideWeight="0.48970747" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21695095" sideWeight="0.48970747" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.20149253" sideWeight="0.51029253" order="6" side_tool="true" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -1347,7 +1260,6 @@
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3066089" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Database Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32502708" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32719395" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
@@ -1386,40 +1298,15 @@
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="597" />
+      <option name="time" value="598" />
     </breakpoint-manager>
-    <watches-manager>
-      <configuration name="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory">
-        <watch expression="new String(str.getBytes(&quot;GBK&quot;),&quot;UTF-8&quot;)" language="JAVA" />
-      </configuration>
-    </watches-manager>
+    <watches-manager />
   </component>
   <component name="antWorkspaceConfiguration">
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/pages/index/qm-index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/pages/index/qm-index.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/pages/common/reset.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
-          <caret line="24" column="20" lean-forward="true" selection-start-line="24" selection-start-column="20" selection-end-line="24" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/pages/common/SendMessage.class.js" />
     <entry file="file://$PROJECT_DIR$/src/main/webapp/pages/team/qm-department.jsp">
       <provider selected="true" editor-type-id="text-editor">
@@ -1491,13 +1378,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/dgg/store/util/pojo/ChatHistory.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="648">
-          <caret line="33" column="22" lean-forward="false" selection-start-line="33" selection-start-column="16" selection-end-line="33" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/dgg/store/mapper/ChatMapper.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-699">
@@ -1547,67 +1427,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/pages/friend/qm-friend.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="103" column="85" lean-forward="true" selection-start-line="103" selection-start-column="85" selection-end-line="103" selection-end-column="85" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/dgg/store/controller/common/FriendsController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="525">
-          <caret line="37" column="29" lean-forward="true" selection-start-line="37" selection-start-column="29" selection-end-line="37" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/dgg/store/service/common/FriendsService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="12" column="13" lean-forward="false" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/dgg/store/dao/common/FriendsDao.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="530">
           <caret line="29" column="51" lean-forward="true" selection-start-line="29" selection-start-column="51" selection-end-line="29" selection-end-column="51" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/dgg/store/dao/common/FriendsDaoImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="530">
-          <caret line="79" column="46" lean-forward="false" selection-start-line="79" selection-start-column="46" selection-end-line="79" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/dgg/store/mapper/FriendsMapper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="504">
-          <caret line="30" column="28" lean-forward="false" selection-start-line="30" selection-start-column="12" selection-end-line="30" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/dgg/store/util/pojo/FriendRequest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="648">
-          <caret line="27" column="27" lean-forward="false" selection-start-line="27" selection-start-column="19" selection-end-line="27" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/dgg/store/mapper/FriendsMapper.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="693">
-          <caret line="155" column="13" lean-forward="false" selection-start-line="155" selection-start-column="13" selection-end-line="155" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/dgg/store/service/common/FriendsServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="40" column="0" lean-forward="false" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -1631,13 +1454,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="3" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/dgg/store/filter/LoginFilter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-353">
-          <caret line="14" column="13" lean-forward="false" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
         </state>
       </provider>
     </entry>
@@ -1683,39 +1499,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/dgg/store/socket/MarshallingCodeCFactory.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="96">
-          <caret line="7" column="13" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/dgg/store/socket/NettyClientHandle.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="264">
-          <caret line="11" column="34" lean-forward="false" selection-start-line="11" selection-start-column="34" selection-end-line="11" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/dgg/store/util/core/constant/Constant.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="405">
-          <caret line="93" column="11" lean-forward="true" selection-start-line="93" selection-start-column="11" selection-end-line="93" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/dgg/store/listener/WebInitListener.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="432">
-          <caret line="21" column="21" lean-forward="false" selection-start-line="21" selection-start-column="21" selection-end-line="21" selection-end-column="21" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#518#519#0" expanded="false" />
-            <element signature="e#582#583#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/dgg/store/controller/common/TestController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="504">
@@ -1726,71 +1509,225 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="70">
+          <caret line="189" column="54" lean-forward="true" selection-start-line="189" selection-start-column="54" selection-end-line="189" selection-end-column="54" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/dgg/store/socket/MarshallingCodeCFactory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="96">
+          <caret line="7" column="13" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/dgg/store/util/core/netty/NettyUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/dgg/store/util/pojo/ChatHistory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="168">
+          <caret line="7" column="35" lean-forward="false" selection-start-line="7" selection-start-column="35" selection-end-line="7" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/dgg/store/util/core/constant/Constant.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1509">
+          <caret line="112" column="64" lean-forward="true" selection-start-line="112" selection-start-column="64" selection-end-line="112" selection-end-column="64" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/io/netty/netty-all/4.1.11.Final/netty-all-4.1.11.Final.jar!/io/netty/util/CharsetUtil.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="15" column="19" lean-forward="false" selection-start-line="15" selection-start-column="19" selection-end-line="15" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/dgg/store/socket/NettyClient.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="504">
-          <caret line="30" column="58" lean-forward="false" selection-start-line="30" selection-start-column="58" selection-end-line="30" selection-end-column="58" />
+        <state relative-caret-position="501">
+          <caret line="43" column="60" lean-forward="true" selection-start-line="43" selection-start-column="60" selection-end-line="43" selection-end-column="60" />
           <folding>
-            <element signature="e#1246#2083#0" expanded="false" />
-            <element signature="e#2082#2083#0" expanded="false" />
+            <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/dgg/store/filter/LoginFilter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="24">
+          <caret line="14" column="13" lean-forward="false" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/dgg/store/socket/NettyClientFactory.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="312">
-          <caret line="14" column="22" lean-forward="false" selection-start-line="14" selection-start-column="22" selection-end-line="14" selection-end-column="22" />
+          <caret line="13" column="41" lean-forward="false" selection-start-line="13" selection-start-column="41" selection-end-line="13" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/dgg/store/socket/NettyClientHandle.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="168">
+          <caret line="8" column="13" lean-forward="true" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/dgg/store/listener/WebInitListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="528">
+          <caret line="27" column="33" lean-forward="true" selection-start-line="27" selection-start-column="33" selection-end-line="27" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/dgg/store/dao/common/FriendsDaoImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="336">
+          <caret line="31" column="28" lean-forward="false" selection-start-line="31" selection-start-column="28" selection-end-line="31" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/dgg/store/util/pojo/FriendRequest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="23" column="28" lean-forward="false" selection-start-line="23" selection-start-column="19" selection-end-line="23" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/dgg/store/mapper/FriendsMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="427">
+          <caret line="74" column="40" lean-forward="false" selection-start-line="74" selection-start-column="40" selection-end-line="74" selection-end-column="40" />
+          <folding>
+            <marker date="1498287786622" expanded="true" signature="2292:2451" ph="SELECT user_... user" />
+            <marker date="1498287786622" expanded="true" signature="3188:3395" ph="INSERT INTO friend_request... " />
+            <marker date="1498287786622" expanded="true" signature="3538:4046" ph="SELECT fq.re... friend_request" />
+            <marker date="1498287786622" expanded="true" signature="5057:5213" ph="INSERT INTO friend... " />
+            <marker date="1498287786622" expanded="true" signature="5296:5618" ph="SELECT f.fri... friend" />
+            <marker date="1498287786622" expanded="true" signature="5517:5576" ph="SELECT frien... friend" />
+            <marker date="1498287786622" expanded="true" signature="5701:5984" ph="SELECT f.fri... friend" />
+            <marker date="1498287786622" expanded="true" signature="6071:6336" ph="SELECT f.fri... friend" />
+            <marker date="1498287786622" expanded="true" signature="6451:6780" ph="UPDATE frien... " />
+            <marker date="1498287786622" expanded="true" signature="6924:7034" ph="SELECT COUNT... friend" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/dgg/store/mapper/FriendsMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="312">
+          <caret line="17" column="0" lean-forward="true" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/dgg/store/interceptor/TokenInterceptor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="393">
+          <caret line="33" column="42" lean-forward="true" selection-start-line="33" selection-start-column="42" selection-end-line="33" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/pages/friend/qm-friend.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="328">
+          <caret line="261" column="4" lean-forward="false" selection-start-line="261" selection-start-column="4" selection-end-line="261" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/dgg/store/controller/common/FriendsController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1632">
+          <caret line="80" column="70" lean-forward="false" selection-start-line="80" selection-start-column="70" selection-end-line="80" selection-end-column="70" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/pages/friend/qm-friend.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3864">
-          <caret line="452" column="54" lean-forward="false" selection-start-line="452" selection-start-column="54" selection-end-line="452" selection-end-column="54" />
+        <state relative-caret-position="3432">
+          <caret line="452" column="0" lean-forward="false" selection-start-line="452" selection-start-column="0" selection-end-line="452" selection-end-column="0" />
           <folding>
-            <element signature="e#558#716#0" expanded="false" />
-            <element signature="e#793#1494#0" expanded="false" />
-            <element signature="e#1565#2573#0" expanded="false" />
-            <element signature="e#2668#3556#0" expanded="false" />
-            <element signature="e#3639#3905#0" expanded="false" />
-            <element signature="e#3977#6714#0" expanded="false" />
-            <element signature="e#6787#7182#0" expanded="false" />
-            <element signature="e#7258#7656#0" expanded="false" />
-            <element signature="e#7736#7833#0" expanded="false" />
-            <element signature="e#8383#10001#0" expanded="false" />
-            <element signature="e#10104#11236#0" expanded="false" />
-            <element signature="e#11308#11643#0" expanded="false" />
-            <element signature="e#11705#12137#0" expanded="false" />
-            <element signature="e#12386#13346#0" expanded="false" />
-            <element signature="e#13386#13603#0" expanded="false" />
-            <element signature="e#13728#14762#0" expanded="false" />
-            <element signature="e#14818#15137#0" expanded="false" />
-            <element signature="e#16596#17220#0" expanded="false" />
-            <element signature="e#17253#17958#0" expanded="false" />
-            <element signature="e#19676#20064#0" expanded="false" />
-            <element signature="e#20107#21206#0" expanded="false" />
-            <element signature="e#21599#23146#0" expanded="false" />
-            <element signature="e#23186#24988#0" expanded="false" />
-            <element signature="e#25020#25186#0" expanded="false" />
-            <element signature="e#25215#25306#0" expanded="false" />
-            <element signature="e#25327#25394#0" expanded="false" />
-            <element signature="e#25421#25512#0" expanded="false" />
-            <element signature="e#25541#25602#0" expanded="false" />
-            <element signature="e#25628#25676#0" expanded="false" />
-            <marker date="1498204932505" expanded="true" signature="12620:12633" ph="..." />
-            <marker date="1498204932505" expanded="true" signature="13214:13227" ph="..." />
-            <marker date="1498204932505" expanded="true" signature="18588:18601" ph="..." />
-            <marker date="1498204932505" expanded="true" signature="24116:24130" ph="..." />
+            <element signature="e#579#737#0" expanded="false" />
+            <element signature="e#814#1515#0" expanded="false" />
+            <element signature="e#1586#2594#0" expanded="false" />
+            <element signature="e#2689#3577#0" expanded="false" />
+            <element signature="e#3660#4006#0" expanded="false" />
+            <element signature="e#4078#4711#0" expanded="false" />
+            <element signature="e#4774#6746#0" expanded="false" />
+            <element signature="e#6819#7184#0" expanded="false" />
+            <element signature="e#7260#7658#0" expanded="false" />
+            <element signature="e#7738#8075#0" expanded="false" />
+            <element signature="e#8148#8544#0" expanded="false" />
+            <element signature="e#8625#10243#0" expanded="false" />
+            <element signature="e#10346#11478#0" expanded="false" />
+            <element signature="e#11560#11879#0" expanded="false" />
+            <element signature="e#11947#12380#0" expanded="false" />
+            <element signature="e#12629#13589#0" expanded="false" />
+            <element signature="e#13629#14118#0" expanded="false" />
+            <element signature="e#14243#15277#0" expanded="false" />
+            <element signature="e#15320#15606#0" expanded="false" />
+            <element signature="e#15662#15981#0" expanded="false" />
+            <element signature="e#16071#17404#0" expanded="false" />
+            <element signature="e#17440#18064#0" expanded="false" />
+            <element signature="e#18097#18802#0" expanded="false" />
+            <element signature="e#18853#19313#0" expanded="false" />
+            <element signature="e#19361#20109#0" expanded="false" />
+            <element signature="e#20239#20478#0" expanded="false" />
+            <element signature="e#20521#20909#0" expanded="false" />
+            <element signature="e#20952#22051#0" expanded="false" />
+            <element signature="e#22100#22424#0" expanded="false" />
+            <element signature="e#22444#23991#0" expanded="false" />
+            <element signature="e#24031#25833#0" expanded="false" />
+            <element signature="e#25865#26031#0" expanded="false" />
+            <element signature="e#26060#26151#0" expanded="false" />
+            <element signature="e#26172#26239#0" expanded="false" />
+            <element signature="e#26266#26357#0" expanded="false" />
+            <element signature="e#26386#26447#0" expanded="false" />
+            <element signature="e#26473#26521#0" expanded="false" />
+            <marker date="1498295875006" expanded="true" signature="12863:12876" ph="..." />
+            <marker date="1498295875006" expanded="true" signature="13457:13470" ph="..." />
+            <marker date="1498295875006" expanded="true" signature="19432:19445" ph="..." />
+            <marker date="1498295875006" expanded="true" signature="24961:24975" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/dgg/store/service/common/FriendsServiceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2238">
-          <caret line="214" column="60" lean-forward="true" selection-start-line="214" selection-start-column="60" selection-end-line="214" selection-end-column="60" />
+        <state relative-caret-position="93">
+          <caret line="182" column="0" lean-forward="true" selection-start-line="182" selection-start-column="0" selection-end-line="182" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/dgg/store/service/common/FriendsService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="18" column="54" lean-forward="true" selection-start-line="18" selection-start-column="54" selection-end-line="18" selection-end-column="54" />
           <folding />
         </state>
       </provider>

@@ -4,4 +4,4 @@ git st
 git add *
 git add ./idea
 git commit -m "script-commit"
-git push origin dev1
+git push origin master

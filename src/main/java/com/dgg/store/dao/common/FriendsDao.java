@@ -11,7 +11,7 @@ public interface FriendsDao
 
     Integer insertFriendRequest(FriendRequest request);
 
-    List<FriendRequest> findFriendRequest(String userId);
+    List<FriendRequest> findFriendRequest(FriendRequest condition);
 
     Integer updateFriendRequest(FriendRequest request);
 

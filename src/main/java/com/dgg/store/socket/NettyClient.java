@@ -1,5 +1,6 @@
 package com.dgg.store.socket;
 
+import com.dgg.store.util.core.constant.Constant;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
@@ -9,7 +10,9 @@ import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
 import io.netty.handler.codec.DelimiterBasedFrameDecoder;
 import io.netty.handler.codec.string.StringDecoder;
+import io.netty.handler.codec.string.StringEncoder;
 import io.netty.handler.timeout.IdleStateHandler;
+import io.netty.util.CharsetUtil;
 
 public class NettyClient
 {
@@ -35,9 +38,10 @@ public class NettyClient
                         @Override
                         protected void initChannel(SocketChannel ch) throws Exception
                         {
-                            ch.pipeline().addLast(new IdleStateHandler(readerIdleTimeSeconds,writerIdleTimeSeconds,0));
+                            ch.pipeline().addLast(new IdleStateHandler(readerIdleTimeSeconds, writerIdleTimeSeconds, 0));
                             ch.pipeline().addLast(new DelimiterBasedFrameDecoder(maxFrameLength, delimiter));
-                            ch.pipeline().addLast(new StringDecoder());
+                            ch.pipeline().addLast(new StringDecoder(CharsetUtil.UTF_8));
+                            ch.pipeline().addLast(new StringEncoder(CharsetUtil.UTF_8));
                             ch.pipeline().addLast(new NettyClientHandle());
                             ch.pipeline().addLast(MarshallingCodeCFactory.buildMarshallingDecoder());
                             ch.pipeline().addLast(MarshallingCodeCFactory.buildMarshallingEncoder());
@@ -47,7 +51,21 @@ public class NettyClient
             f.channel().closeFuture().sync();
         } finally
         {
-            group.shutdownGracefully();
+//            group.shutdownGracefully();
+            reConnectServer();
+        }
+    }
+
+    private void reConnectServer()
+    {
+        try
+        {
+            Thread.sleep(5000);
+            System.err.println("客户端进行断线重连");
+            connect(Constant.NETTY_PORT, Constant.NETTY_HOST);
+        } catch (Exception e)
+        {
+            e.printStackTrace();
         }
     }
 

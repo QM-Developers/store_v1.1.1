@@ -20,7 +20,7 @@ var friendJS = {
     /**
      * 发送消息对象
      */
-    messageType: {TEXT: 0x00000001},
+    messageType: {TEXT: 0x00000001, REQUEST: 0x00000002},
     message: {myTeamId: "", sendUserId: "", dataType: "", receiveUserId: "", sendData: ""},
 
     /**
@@ -124,7 +124,8 @@ var friendJS = {
 
         myjs.ajax_post(url, params, function (data)
         {
-            $("#friend-request-count").text(parseInt(data.result) > 99 ? "99+" : data.result);
+            friendJS.updateNotifyNum(parseInt(data.result), $("#friend-notify-num"));
+            friendJS.updateNotifyNum(parseInt(data.result), $("#friend-request-count"));
         });
     },
 
@@ -133,7 +134,9 @@ var friendJS = {
      */
     findFriendRequest: function ()
     {
-        var today = new Date(Date.parse(new Date())).format("yyyy-MM-dd");
+        ListfixedA();
+        if(parseInt($("#friend-request-count").attr("num")) < 1)
+            return;
         friendJS.updateRequestIsRead();
         var url = path + "/user_findFriendRequest.action";
         var params = {};
@@ -141,53 +144,56 @@ var friendJS = {
         myjs.ajax_post(url, params, function (data)
         {
             data = data.result;
-            var item = "";
-            var time = "";
+            var today = new Date(Date.parse(new Date())).format("yyyy-MM-dd");
             var lastTime = "";
-            var state = "";
-            var stateText = "";
-
-            for (var i = 0; i < data.length; i++)
-            {
-                time = new Date(data[i]["createDate"]).format("yyyy-MM-dd");
-                var icon = data[i]["userSex"] == "sex_0" ? "am-icon-female" : "am-icon-male";
-                if (time == today)
-                    time = "今天";
-                if (time != lastTime)
-                    item += '<div class="newfriend-now-title">' + time + '</div>';
-                switch (data[i]["requestState"])
-                {
-                    case friendJS.requestState.FRIEND_REQUEST:
-                        var args = data[i]["requestId"] + "=" + data[i]["userId"] + "=" + data[i]["friendOrigin"];
-                        state = '<span onclick="PromptSel(friendJS.optTypes.agree,\'是否同意添加 ' + data[i]["userName"] + ' 为好友\',\'' + args + '\')">同意</span>' +
-                            '<span onclick="PromptSel(friendJS.optTypes.negative,\'是否拒绝添加 ' + data[i]["userName"] + '\',\'' + args + '\')">拒绝</span>';
-                        stateText = "申请加为好友";
-                        break;
-                    case friendJS.requestState.FRIEND_AGREE:
-                        state = "已同意";
-                        stateText = "";
-                        break;
-                    case friendJS.requestState.FRIEND_NEGATIVE:
-                        state = '已拒绝';
-                        stateText = "";
-                        break;
-                }
-                item += '<div class="newfriend-now-cont">';
-                item += '<div class="newfriend-now-img"><img src="' + path + data[i]["userImg"] + '"/></div>';
-                item += '<div class="newfriend-now-span">';
-                item += '<span class="newfriend-now-name">' + data[i]["userName"] + '<i class="' + icon + '"></i></span>';
-                item += '<span class="newfriend-now-state">' + stateText + '</span>';
-                item += '<span class="newfriend-now-describe">' + data[i]["requestInfo"] + '</span>';
-                item += '<div class="newfriend-now-sel">' + state + '</div>';
-                item += '</div>';
-                item += '</div>';
-                lastTime = time;
-            }
-
             $("#friend-request-list").empty();
-            $("#friend-request-list").append(item);
-            ListfixedA();
+            for (var i = 0; i < data.length; i++)
+                lastTime = friendJS.appendRequestList(today, data[i], lastTime);
         });
+    },
+
+    appendRequestList: function (today, data, lastTime)
+    {
+        var item = "";
+        var time = new Date(data["createDate"]).format("yyyy-MM-dd");
+        var icon = data["userSex"] == "sex_0" ? "am-icon-female" : "am-icon-male";
+        var state = "";
+        var stateText = "";
+        var timeText = "";
+        if (time == today)
+            timeText = "今天";
+        if (time != lastTime)
+            item += '<div class="newfriend-now-title">' + timeText + '</div>';
+        switch (data["requestState"])
+        {
+            case friendJS.requestState.FRIEND_REQUEST:
+                var args = data["requestId"] + "=" + data["userId"] + "=" + data["friendOrigin"];
+                state = '<span onclick="PromptSel(friendJS.optTypes.agree,\'是否同意添加 ' + data["userName"] + ' 为好友\',\'' + args + '\')">同意</span>' +
+                    '<span onclick="PromptSel(friendJS.optTypes.negative,\'是否拒绝添加 ' + data["userName"] + '\',\'' + args + '\')">拒绝</span>';
+                stateText = "申请加为好友";
+                break;
+            case friendJS.requestState.FRIEND_AGREE:
+                state = "已同意";
+                stateText = "";
+                break;
+            case friendJS.requestState.FRIEND_NEGATIVE:
+                state = '已拒绝';
+                stateText = "";
+                break;
+        }
+        item += '<div class="newfriend-now-cont">';
+        item += '<div class="newfriend-now-img"><img src="' + path + data["userImg"] + '"/></div>';
+        item += '<div class="newfriend-now-span">';
+        item += '<span class="newfriend-now-name">' + data["userName"] + '<i class="' + icon + '"></i></span>';
+        item += '<span class="newfriend-now-state">' + stateText + '</span>';
+        item += '<span class="newfriend-now-describe">' + data["requestInfo"] + '</span>';
+        item += '<div class="newfriend-now-sel">' + state + '</div>';
+        item += '</div>';
+        item += '</div>';
+        lastTime = time;
+
+        $("#friend-request-list").append(item);
+        return lastTime;
     },
 
     /**
@@ -201,8 +207,6 @@ var friendJS = {
         params["requestId"] = args[0];
         params["friendId"] = args[1];
         params["friendOrigin"] = args[2];
-
-        console.log(params);
 
         myjs.ajax_post(url, params, function (data)
         {
@@ -235,8 +239,14 @@ var friendJS = {
      */
     updateRequestIsRead: function ()
     {
+        var num = parseInt($("#friend-notify-num").attr("num"));
+        if (num < 1)
+            return;
+
         var url = path + "/user_updateRequestIsRead.action";
         myjs.ajax_post(url);
+        friendJS.updateNotifyNum(-num, $("#friend-notify-num"));
+        friendJS.updateNotifyNum(-num, $("#friend-request-count"));
     },
 
     /**
@@ -345,7 +355,7 @@ var friendJS = {
     {
         var fid = $("#friend-user-id").val();
         var name = $("#friend-name-text").text();
-        var img = $("#friend-img").attr("src").replace(path,"");
+        var img = $("#friend-img").attr("src").replace(path, "");
         var icon = $("#friend-sex").val() == "sex_0" ? "am-icon-female" : "am-icon-male";
         var remark = $("#friend-remark-text").text();
         if ($("#" + fid).length < 1)
@@ -386,9 +396,17 @@ var friendJS = {
     receiveData: function (json)
     {
         var data = JSON.parse(json);
-        friendJS.receiveMessage(data["sendUserId"], data["userName"],
-            data["userImg"], data["userSex"],
-            data["sendData"], data["friendRemarkName"]);
+        switch (parseInt(data["dataType"]))
+        {
+            case friendJS.messageType.TEXT:
+                friendJS.receiveMessage(data["sendUserId"], data["userName"],
+                    data["userImg"], data["userSex"],
+                    data["sendData"], data["friendRemarkName"]);
+                break;
+            case friendJS.messageType.REQUEST:
+                friendJS.receiveRequest(data);
+                break;
+        }
     },
 
     /**
@@ -421,6 +439,14 @@ var friendJS = {
         $(chatView).append(item);
         friendJS.updateChatListNotifyNum(fid, 1);
         friendJS.updateNotifyNum(1, $("#chat-notify-num"));
+    },
+
+    receiveRequest: function (data)
+    {
+        var today = new Date(Date.parse(new Date())).format("yyyy-MM-dd");
+        friendJS.appendRequestList(today, JSON.parse(data["sendData"]), "");
+        friendJS.updateNotifyNum(1, $("#friend-notify-num"));
+        friendJS.updateNotifyNum(1, $("#friend-request-count"));
     },
 
     updateChatListNotifyNum: function (fid, num)
@@ -550,7 +576,7 @@ var friendJS = {
     showChatView: function (fid, name)
     {
         if ($("#" + fid + "_chat").length < 1)
-            friendJS.appendChatView(fid,name);
+            friendJS.appendChatView(fid, name);
         $(".chatroom").hide();
         friendJS.updateChatHistoryIsRead(fid);
         $("#" + fid + "_chat").parent(".chatroom").show();

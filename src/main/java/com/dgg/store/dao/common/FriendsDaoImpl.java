@@ -27,9 +27,9 @@ public class FriendsDaoImpl implements FriendsDao
     }
 
     @Override
-    public List<FriendRequest> findFriendRequest(String userId)
+    public List<FriendRequest> findFriendRequest(FriendRequest condition)
     {
-        return mapper.findFriendRequest(userId);
+        return mapper.findFriendRequest(condition);
     }
 
     @Override

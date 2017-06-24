@@ -61,13 +61,19 @@
         VALUES (#{requestId},#{userId},#{friendId},#{requestInfo},#{requestState},#{friendOrigin})
     </insert>
 
-    <select id="findFriendRequest" resultMap="FriendRequestMap">
+    <select id="findFriendRequest" parameterType="com.dgg.store.util.pojo.FriendRequest" resultMap="FriendRequestMap">
         SELECT fq.request_id,fq.request_info,fq.create_date,fq.request_state,fq.friend_origin,
             u.user_id,u.user_name,u.user_img,u.user_sex
         FROM friend_request fq
         INNER JOIN user u
         ON u.user_id = fq.user_id
-        WHERE friend_id = #{userId}
+        WHERE 1 = 1
+        <if test="userId != null and userId != ''">
+            AND friend_id = #{userId}
+        </if>
+        <if test="requestId != null and requestId != ''">
+            AND request_id = #{requestId}
+        </if>
         ORDER BY fq.create_date DESC
     </select>
 

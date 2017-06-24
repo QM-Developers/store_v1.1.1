@@ -50,7 +50,7 @@
 
                             <div class="listfixed-addfriend-right">
                                 <span>新的朋友</span>
-                                <span class="listfixed-circle" style="display: none;" id="friend-request-count"></span></div>
+                                <span class="listfixed-circle" style="display: none;" num="0" id="friend-request-count"></span></div>
                             <a href="###" class="listfixed-a" onclick="friendJS.findFriendRequest();"></a>
                         </div>
                         <div class="listseek">

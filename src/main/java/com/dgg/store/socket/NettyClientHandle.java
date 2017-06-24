@@ -9,6 +9,7 @@ public class NettyClientHandle extends ChannelInboundHandlerAdapter
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception
     {
+        System.out.println("连接服务器成功");
         NettyClient.context = ctx;
     }
 

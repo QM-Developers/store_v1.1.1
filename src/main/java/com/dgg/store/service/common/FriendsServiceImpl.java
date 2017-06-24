@@ -1,8 +1,13 @@
 package com.dgg.store.service.common;
 
+import com.alibaba.fastjson.JSONObject;
 import com.dgg.store.dao.common.FriendsDao;
+import com.dgg.store.socket.NettyClient;
+import com.dgg.store.socket.NettyClientFactory;
 import com.dgg.store.util.core.constant.Constant;
 import com.dgg.store.util.core.generator.IDGenerator;
+import com.dgg.store.util.core.netty.NettyUtil;
+import com.dgg.store.util.pojo.ChatHistory;
 import com.dgg.store.util.pojo.FriendRequest;
 import com.dgg.store.util.vo.friend.FriendVO;
 import com.dgg.store.util.vo.core.ResultVO;
@@ -45,15 +50,31 @@ public class FriendsServiceImpl implements FriendsService
         result = dao.insertFriendRequest(request);
         resultVO.setState(result);
 
+        sendRequest(sessionVO,request);
+
         return resultVO;
     }
 
     @Override
     public ResultVO findFriendRequest(SessionVO sessionVO)
     {
-        List<FriendRequest> result = dao.findFriendRequest(sessionVO.getUserId());
+        FriendRequest condition = new FriendRequest();
+        condition.setUserId(sessionVO.getUserId());
+        List<FriendRequest> result = dao.findFriendRequest(condition);
 
-        ResultVO resultVO = new ResultVO(result.size() < 1 ? 0 : 1, sessionVO.getToken(), result);
+        ResultVO resultVO = new ResultVO(1, sessionVO.getToken(), result);
+
+        return resultVO;
+    }
+
+    @Override
+    public ResultVO findFriendRequestById(SessionVO sessionVO, FriendRequest request)
+    {
+        FriendRequest condition = new FriendRequest();
+        condition.setFriendId(request.getFriendId());
+        List<FriendRequest> result = dao.findFriendRequest(condition);
+
+        ResultVO resultVO = new ResultVO(1, sessionVO.getToken(), result.size() > 0 ? result.get(0) : result);
 
         return resultVO;
     }
@@ -133,9 +154,24 @@ public class FriendsServiceImpl implements FriendsService
         else
             result = 1;
 
+        sendRequest(sessionVO,request);
+
         ResultVO resultVO = new ResultVO(result, sessionVO.getToken());
 
         return resultVO;
+    }
+
+    private void sendRequest(SessionVO sessionVO, FriendRequest request)
+    {
+        ChatHistory history = new ChatHistory();
+        history.setMyTeamId(sessionVO.getMyTeamId());
+        history.setUserId(sessionVO.getUserId());
+        history.setSendUserId(sessionVO.getUserId());
+        history.setReceiveUserId(request.getFriendId());
+        history.setSendData(request.getRequestId());
+        history.setDataType(ChatHistory.REQUEST);
+
+        NettyUtil.writeAndFlushString(NettyClient.context, JSONObject.toJSONString(history) + Constant.delimiterStr);
     }
 
     @Override
@@ -174,6 +210,8 @@ public class FriendsServiceImpl implements FriendsService
         else
             result = 1;
 
+        sendRequest(sessionVO,request);
+
         ResultVO resultVO = new ResultVO(result, sessionVO.getToken());
 
         return resultVO;
@@ -210,11 +248,11 @@ public class FriendsServiceImpl implements FriendsService
     }
 
     @Override
-    public ResultVO updateFriendRemark(SessionVO sessionVO,FriendVO friendVO)
+    public ResultVO updateFriendRemark(SessionVO sessionVO, FriendVO friendVO)
     {
         int result = dao.updateFriendRemark(friendVO);
 
-        ResultVO resultVO = new ResultVO(result,sessionVO.getToken(),result);
+        ResultVO resultVO = new ResultVO(result, sessionVO.getToken(), result);
 
         return resultVO;
     }

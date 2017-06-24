@@ -12,7 +12,7 @@ public interface FriendsMapper
 
     Integer insertFriendRequest(FriendRequest request);
 
-    List<FriendRequest> findFriendRequest(@Param("userId") String userId);
+    List<FriendRequest> findFriendRequest(FriendRequest condition);
 
     Integer updateFriendRequest(FriendRequest request);
 

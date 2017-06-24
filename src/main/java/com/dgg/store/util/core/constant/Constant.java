@@ -8,6 +8,8 @@ public class Constant
     public static final String EMPTY = "";
     public static final String STRING_45 = "-";
 
+    public static final String delimiterStr = "_#_";
+
     /**
      * 字符串常量
      */
@@ -87,20 +89,27 @@ public class Constant
     public static final String WAITING_ESTIMATE = "order_st_waiting_estimate";  // 等待评价
     public static final String ORDER_SUCCEEDED = "order_st_succeeded";    // 交易成功
 
+    public static String NETTY_HOST;
+    public static int NETTY_PORT;
+
     static
     {
         ClassLoader classloader = Thread.currentThread().getContextClassLoader();
-        Properties prop = new Properties();
+        Properties uploadPath = new Properties();
+        Properties netty = new Properties();
         try
         {
-            prop.load(classloader.getResourceAsStream("uploadPath.ini"));
+            uploadPath.load(classloader.getResourceAsStream("uploadPath.ini"));
+            netty.load(classloader.getResourceAsStream("netty.ini"));
         } catch (IOException e)
         {
             e.printStackTrace();
         }
-        USER_PLACE_IMG_PATH = prop.getProperty("USER_PLACE_IMG_PATH");
-        USER_PERSONAL_INFO_IMG_PATH = prop.getProperty("USER_PERSONAL_INFO_IMG_PATH");
-        USER_HEAD_PORTRAIT_IMG_PATH = prop.getProperty("USER_HEAD_PORTRAIT_IMG_PATH");
-        USER_IMAGE_SPACE_PATH = prop.getProperty("USER_IMAGE_SPACE_PATH");
+        USER_PLACE_IMG_PATH = uploadPath.getProperty("USER_PLACE_IMG_PATH");
+        USER_PERSONAL_INFO_IMG_PATH = uploadPath.getProperty("USER_PERSONAL_INFO_IMG_PATH");
+        USER_HEAD_PORTRAIT_IMG_PATH = uploadPath.getProperty("USER_HEAD_PORTRAIT_IMG_PATH");
+        USER_IMAGE_SPACE_PATH = uploadPath.getProperty("USER_IMAGE_SPACE_PATH");
+        NETTY_HOST = netty.getProperty("HOST");
+        NETTY_PORT = Integer.valueOf(netty.getProperty("PORT"));
     }
 }

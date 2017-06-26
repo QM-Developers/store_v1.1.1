@@ -6,6 +6,7 @@ body {
 	width: 100%;
 	font-family: '微软雅黑';
 	background: #1468ff;
+	overflow: hidden;
 }
 
 .qm-header {
@@ -26,37 +27,63 @@ body {
 .qm-header .qm-logo {
 	float: left;
 	width: 210px;
-	height: 60px;
+	height: 50px;
 	color: #eeffff;
-	font-size: 29px;
-	line-height: 60px;
+	font-size: 20px;
+	line-height: 50px;
 	text-align: center;
+}
+
+.logo-box {
+	width: 120px;
+	height: 40px;
+	float: left;
+	margin: 5px 0 0 20px;
+}
+
+.logo-box img {
+	display: block;
+	width: 120px;
+	height: 40px;
 }
 
 .qm-header .qm-quit {
 	float: right;
-	width: 48px;
-	height: 60px;
-	line-height: 60px;
+	width: 70px;
+	height: 50px;
+	line-height: 50px;
 	text-align: center;
 	font-size: 20px;
 }
 
+.qm-quit .qm-index-off {
+	width: 100%;
+	height: 100%;
+	line-height: 50px;
+	text-align: center;
+	color: #acafa6;
+	background: url(../../images/css.png) -500px -8px no-repeat;
+}
+
 .main {
 	width: 100%;
-	height: calc(100% - 60px);
+	height: calc(100% - 50px);
 	text-align: left;
 }
 
 .main_left {
 	width: 210px;
-	background: #00acef;
+	background: #1367fe;
 }
 
 .main_right {
-	overflow: auto;
 	height: 100%;
+	overflow: auto;
+	background: #FFFFFF;
 }
+
+
+/**/
 
 .picBox {
 	width: 15px;
@@ -71,33 +98,35 @@ body {
 
 /*-------*/
 
-#sidebar-img {
+.sidebar-img {
 	width: 100%;
-	height: 230px;
-	background: #dedede;
-	padding-top: 34px;
+	height: 100px;
+	background: #1367fe;
+	padding: 20px 0;
+	color: #FFFFFF;
+	border-bottom: 2px solid #00ff7c;
 }
 
-#sidebar-img img {
-	display: block;
-	width: 110px;
-	height: 110px;
-	margin: auto;
+.sidebar-img img {
+	display: inline-block;
+	width: 58px;
+	height: 58px;
+	float: left;
+	margin: 0 5px;
 }
 
-#sidebar-img .sidebar-text {
-	width: 100%;
-	height: 85px;
+.sidebar-img .sidebar-text {
+	width: 140px;
+	float: left;
+	margin-top: 10px;
+	font-size: 14px;
 	box-sizing: border-box;
 }
 
-#sidebar-img .sidebar-text span {
+.sidebar-img .sidebar-text span {
 	display: block;
 	font-style: normal;
 	width: 100%;
-	height: 42px;
-	line-height: 42px;
-	padding-left: 36px;
 }
 
 #menu-list-box .menu-list {
@@ -111,8 +140,8 @@ body {
 	color: #fff;
 }
 
-#menu-list-box .am-panel a {
-	background: #00acef;
+#menu-list-box .am-panel .panel-a {
+	background: #1367fe;
 	color: #fff;
 	padding-left: 0;
 }
@@ -128,16 +157,25 @@ body {
 	background: #00ff2a;
 }
 
-#menu-list-box .menu-li a {
+#menu-list-box .menu-li .menu-li-a {
 	box-sizing: border-box;
+	padding: 7px 0;
 	padding-left: 45px;
-	background: #00acef;
+	background: #1367fe;
 	color: #fff;
 }
-
-#menu-list-box .menu-li a:hover {
+.num-circle{
+	border-radius: 10px;
+    background: red;
+    width: 20px;
+    height: 20px;
+    font-size: 14px;
+    text-align: center;
+    line-height: 20px;
+}
+#menu-list-box .menu-li .menu-li-a:hover {
 	margin-left: 10px;
-	background: #1468ff;
+	background: #00abf0;
 	color: #fff;
 }
 
@@ -146,25 +184,37 @@ body {
 }
 
 #menu-list-box .menu-list .menu-div {
+	display: none;
 	position: absolute;
-	top: -5px;
+	top: 0px;
 	right: -107px;
 	width: 107px;
 	display: block;
 	z-index: 20;
 	background: #c8c8c8;
-	border-top: 5px solid #c8c8c8;
 	border-top-left-radius: 5px;
 	border-top-right-radius: 5px;
 }
 
+.menu-div .menu-lichild a {
+	display: block;
+	width: 100%;
+	height: 100%;
+	color: #000000;
+	padding: 0;
+	border-bottom: 1px solid #fff;
+}
+
+.menu-div .menu-lichild a:hover {
+	background: #e6e6e6;
+}
+
 #menu-list-box .menu-lichild {
 	width: 107px;
-	height: 50px;
-	line-height: 50px;
+	height: 39px;
+	line-height: 39px;
 	text-align: center;
-	border-top: 1px solid #fff;
-	border-left: 1px solid #fff;
+	background: #00abf0;
 	color: #5c5c5c;
 }
 
@@ -187,4 +237,15 @@ body {
 
 .sidebar-but:hover span {
 	line-height: 60px;
+}
+
+.picclik-box {
+	width: 100%;
+	height: 100%;
+	background: #FFFFFF;
+}
+
+.picclik-box:hover {
+	cursor: pointer;
+	background: #40AFFE;
 }

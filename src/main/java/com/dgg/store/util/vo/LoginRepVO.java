@@ -10,8 +10,6 @@ public class LoginRepVO
     private String userImg;
     private String userPhone;
     private String myTeamId;
-    private String hxUserName;
-    private String hxPassword;
     private String userArea;
     private String token;
     private String departmentId;
@@ -28,8 +26,6 @@ public class LoginRepVO
         this.userName = user.getUserName();
         this.userImg = user.getUserImg();
         this.userPhone = user.getUserPhone();
-        this.hxUserName = user.getHxName();
-        this.hxPassword = user.getHxPassword();
         this.userArea = user.getUserArea();
         this.token = user.getToken();
     }
@@ -62,26 +58,6 @@ public class LoginRepVO
     public void setUserPhone(String userPhone)
     {
         this.userPhone = userPhone;
-    }
-
-    public String getHxUserName()
-    {
-        return hxUserName;
-    }
-
-    public void setHxUserName(String hxUserName)
-    {
-        this.hxUserName = hxUserName;
-    }
-
-    public String getHxPassword()
-    {
-        return hxPassword;
-    }
-
-    public void setHxPassword(String hxPassword)
-    {
-        this.hxPassword = hxPassword;
     }
 
     public String getUserArea()

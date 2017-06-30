@@ -28,4 +28,8 @@ public interface CustomerMapper
     Integer insertCustomerHistory(@Param("userId") String customerId);
 
     List<CustomerGroupVO> findCustomerGroup();
+
+    int insertCustomerRecord(CustomerVO customerVO);
+
+    Integer insertCustomer(CustomerVO customerVO);
 }

@@ -75,4 +75,16 @@ public class CustomerDaoImpl implements CustomerDao
         return mapper.findCustomerGroup();
     }
 
+    @Override
+    public int insertCustomerRecord(CustomerVO customerVO)
+    {
+        return mapper.insertCustomerRecord(customerVO);
+    }
+
+    @Override
+    public Integer insertCustomer(CustomerVO customerVO)
+    {
+        return mapper.insertCustomer(customerVO);
+    }
+
 }

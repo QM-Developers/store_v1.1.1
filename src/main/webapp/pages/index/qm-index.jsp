@@ -25,7 +25,7 @@
 <body>
 <div class="qm-header">
     <div class="logo-box">
-        <img src="../../images/ceshi3.jpg"/>
+        <img src="../images/ceshi3.jpg"/>
     </div>
     <div class="qm-logo">
         青麦科技
@@ -44,7 +44,7 @@
     <div class="main_left" id="frmTitle" name="fmTitle">
         <!--1-->
         <div class="sidebar-img">
-            <img src='../../images/ceshi3.jpg' alt="..." class="am-img-thumbnail ">
+            <img src='../images/ceshi3.jpg' alt="..." class="am-img-thumbnail ">
             <div class="sidebar-text">
                 <span><i>姓名 : </i>梦悠然</span><span><i>账号 : </i>1314520</span>
 
@@ -75,7 +75,7 @@
 
                 <li class="am-panel">
                     <a class="panel-a" data-am-collapse="{parent: '#collapase-nav-2', target: '#user-nav2'}" onclick="IconTab(this)">
-                        <i class="am-icon-users am-margin-left-sm"></i>团队管理
+                        <i class="am-icon-users am-margin-left-sm"></i>我的工作台
                         <i class="am-icon-angle-double-right am-fr am-margin-right"></i>
                     </a>
 
@@ -95,7 +95,6 @@
                                     <a target="iframepage" href="../customer/qm-departmentlist.html">下属部门</a></div>
                                 <div class='menu-lichild'>
                                     <a target="iframepage" href="../customer/qm-departmentlist.html">其他部门</a></div>
-
                             </div>
                         </li>
 
@@ -104,17 +103,18 @@
                             <a target="iframepage" href="../management/qm-companyprofile.html" class="am-cf menu-li-a"><span class="am-icon-angle-double-right am-fr am-margin-right"></span>企业信息</a>
                         </li>
                         <li class="menu-li">
-
-                            <a target="iframepage" href="../friend/qm-friend.html" class="am-cf menu-li-a"><span class="am-icon-angle-double-right am-fr am-margin-right"></span>聊天</a>
+                            <a target="iframepage" href="../friend/qm-friend.jsp" class="am-cf menu-li-a">
+                                <span class="am-icon-angle-double-right am-fr am-margin-right"></span>我的好友
+                            </a>
                         </li>
                         <li class="menu-li myclient">
                             <a target="iFrame0" href="javascript:void(0)" class="am-cf menu-li-a"><span class="am-icon-angle-double-right am-fr am-margin-right"></span>
                                 我的客户</a>
                             <div class='menu-div myclientlist' style="display: none;">
-                                <div class='menu-lichild'><a target="iframepage" href="">个体</a></div>
-                                <div class='menu-lichild'><a target="iframepage" href="">经销商</a></div>
-                                <div class='menu-lichild'><a target="iframepage" href="">合作农户</a></div>
-                                <div class='menu-lichild'><a target="iframepage" href="">合作社</a></div>
+                                <div class='menu-lichild'><a target="iframepage" href="${path}/pages/customer/qm-grouplistt.jsp?c_g_0">个体</a></div>
+                                <div class='menu-lichild'><a target="iframepage" href="${path}/pages/customer/qm-grouplistt.jsp?c_g_1">经销商</a></div>
+                                <div class='menu-lichild'><a target="iframepage" href="${path}/pages/customer/qm-grouplistt.jsp?c_g_2">合作农户</a></div>
+                                <div class='menu-lichild'><a target="iframepage" href="${path}/pages/customer/qm-grouplistt.jsp?c_g_3">合作社</a></div>
                             </div>
                         </li>
                     </ul>
@@ -132,7 +132,7 @@
     </div>
 
     <div class="main_right" id="mainright">
-        <iframe src="" id="iframepage" name="iframepage" frameBorder=0 scrolling="0" width="100%" height="99.99%"></iframe>
+        <iframe src="../map.jsp" id="iframepage" name="iframepage" frameBorder=0 scrolling="0" width="100%" height="99.99%"></iframe>
     </div>
 
 </div>
@@ -167,11 +167,9 @@
 
     IconTab = function (item)
     {
-        console.log("1111")
         var $icon = $(item).find("i").eq(1);
         if ($icon.hasClass("am-icon-angle-double-right"))
         {
-            console.log("1111")
             $icon.removeClass("am-icon-angle-double-right")
             $icon.addClass("am-icon-angle-double-down")
         } else

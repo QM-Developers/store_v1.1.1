@@ -41,7 +41,7 @@
     </insert>
 
     <insert id="insertCustomerGroup" parameterType="com.dgg.store.util.vo.CustomerVO">
-        INSERT INTO customers(customer_group_id, customer_id,user_id)
+        INSERT INTO customer(customer_group_id, customer_id,user_id)
         VALUES
         (#{customerGroupId},#{customerId},#{userId})
     </insert>
@@ -55,14 +55,27 @@
     </select>
 
     <select id="findCustomerByGroup" resultMap="CustomerVOMap">
-        select u.user_id,u.user_name,u.user_img,u.user_phone,u.user_status,c.customer_remard,cg.customer_group_name,u.user_area
-        from customers c
-        inner join customers_groups cg
-        on cg.customer_group_id = c.customer_group_id
-        inner join user u
-        on u.user_id = c.customer_id
-        where cg.customer_group_id = #{groupId}
-        and c.user_id = #{userId}
+        SELECT u.user_id,u.user_name,u.user_sex,u.user_phone,dt_state.dict_name user_status,cg.customer_group_name
+        FROM customer c
+        INNER JOIN customer_group cg
+        ON cg.customer_group_id = c.customer_group_id
+        INNER JOIN user u
+        ON u.user_id = c.user_id
+        INNER JOIN dictionary dt_state
+        ON dt_state.dict_code = u.user_status
+        WHERE cg.customer_group_id = #{groupId}
+        AND c.promoter_id = #{userId}
+        UNION
+        SELECT u.user_id,u.user_name,u.user_sex,u.user_phone,dt_state.dict_name user_status,cg.customer_group_name
+        FROM customer c
+        INNER JOIN customer_group cg
+        ON cg.customer_group_id = c.customer_group_id
+        INNER JOIN user_record u
+        ON u.user_id = c.user_id
+        INNER JOIN dictionary dt_state
+        ON dt_state.dict_code = u.user_status
+        WHERE cg.customer_group_id = #{groupId}
+        AND c.promoter_id = #{userId}
     </select>
 
     <select id="findPartner" resultMap="CustomerVOMap">
@@ -72,10 +85,10 @@
     </select>
 
     <select id="findCustomerGroup" resultMap="CustomerGroupMap">
-        select customer_group_id,dt.dict_name customer_group_name
-        from customers_groups
-        inner join dictionary dt
-        on customer_group_name = dt.dict_code
+        SELECT customer_group_id,dt.dict_name customer_group_name
+        FROM customer_group
+        INNER JOIN dictionary dt
+        ON customer_group_name = dt.dict_code
     </select>
 
     <insert id="insertCooperation" useGeneratedKeys="true" keyProperty="myTeamId" parameterType="com.dgg.store.util.pojo.MyTeam">
@@ -113,9 +126,29 @@
     </update>
 
     <insert id="insertCustomerHistory">
-        insert into user_records(user_id, team_classify_id, my_team_id, role_id, user_name, user_password, user_sex, user_phone, user_birthday, user_address, user_area, user_email, user_last_login_time, user_status, user_qq, uesr_wechat, user_img, user_nickname, hx_name, hx_password,user_create_date)
-        select user_id, team_classify_id, my_team_id, role_id, user_name, user_password, user_sex, user_phone, user_birthday, user_address, user_area, user_email, user_last_login_time, user_status, user_qq, uesr_wechat, user_img, user_nickname, hx_name, hx_password,now()
-        from user
-        where user_id = #{userId}
+        INSERT INTO user_records(user_id, team_classify_id, my_team_id, role_id, user_name, user_password, user_sex, user_phone, user_birthday, user_address, user_area, user_email, user_last_login_time, user_status, user_qq, uesr_wechat, user_img, user_nickname, hx_name, hx_password,user_create_date)
+        SELECT user_id, team_classify_id, my_team_id, role_id, user_name, user_password, user_sex, user_phone, user_birthday, user_address, user_area, user_email, user_last_login_time, user_status, user_qq, uesr_wechat, user_img, user_nickname, hx_name, hx_password,now()
+        FROM user
+        WHERE user_id = #{userId}
+    </insert>
+
+    <insert id="insertCustomerRecord" parameterType="com.dgg.store.util.vo.CustomerVO">
+        INSERT INTO user_record(
+            user_id, my_team_id, role_id,
+            user_name, user_sex, user_phone,
+            user_birthday, user_address, user_area,
+            user_status,user_identity, lng_and_lat)
+        VALUES (#{userId},#{myTeamId},#{roleId},
+            #{userName},#{userSex},#{userPhone},
+            #{userBirthday},#{userAddress},#{userArea},
+            #{userStatus},#{userIdentity},#{lngAndLat})
+    </insert>
+
+    <insert id="insertCustomer" parameterType="com.dgg.store.util.vo.CustomerVO">
+        INSERT INTO customer (
+            user_id, customer_id, customer_group_id,
+            credit_rating, promoter_id)
+        VALUES (#{userId},#{customerId},#{customerGroupId},
+            #{creditRating},#{promoterId})
     </insert>
 </mapper>

@@ -7,8 +7,6 @@ import com.dgg.store.util.vo.core.SessionVO;
 
 public interface CustomerService
 {
-    ResultVO insertStoreUser(CustomerVO customerVO, SessionVO sessionVO);
-
     ResultVO findCustomerByGroup(SessionVO sessionVO, CustomerVO customerVO);
 
     ResultVO findCustomerInfo(SessionVO sessionVO,CustomerVO customerVO);
@@ -24,4 +22,6 @@ public interface CustomerService
     ResultVO updateCustomer(SessionVO sessionVO, CustomerVO customerVO);
 
     ResultVO findCustomerGroup(SessionVO sessionVO);
+
+    ResultVO insertCustomerRecord(CustomerVO customerVO, SessionVO sessionVO);
 }

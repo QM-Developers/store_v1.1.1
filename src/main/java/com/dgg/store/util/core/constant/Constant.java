@@ -59,8 +59,8 @@ public class Constant
     /**
      * 用户状态码
      */
-    public static final String USERST_1 = "u_st_1"; // 用户刚建档状态
-    public static final String USERST_0 = "u_st_0"; // 用户刚建账状态
+    public static final String USERST_0 = "u_st_0"; // 用户刚建档状态
+    public static final String USERST_1 = "u_st_1"; // 用户刚建账状态
     public static final String USERST_2 = "u_st_2"; // 用户已注册状态
 
     /**

@@ -1,0 +1,166 @@
+
+
+.incidentbox {
+	max-width: 1200px;
+	min-width: 1000px;
+	margin-top: 10px;
+	
+	border-radius: 5px;
+}
+.goods-box{
+	padding: 0 20px;
+}
+.goods-box1 {
+	width: 100%;
+	height: 44px;
+	padding: 5px 0;
+	min-width: 600px;
+}
+
+.goods-box2 {
+	width: 100%;
+	padding: 5px 0;
+	min-width: 600px;
+}
+
+.goods-box1-1 {
+	width:10%;
+	max-width: 90px;
+	line-height: 34px;
+	text-align: center;
+	float: left;
+}
+
+.goods-title {
+	width: 100%;
+	font-size: 18px;
+	font-weight: 600;
+	min-width: 90px;
+	line-height: 34px;
+	padding-left: 15px;
+	float: left;
+	border-bottom: 2px solid #00acf1;
+}
+
+.goods-box1-2 {
+	width: 15%;
+	height: 34px;
+	float: left;
+	    line-height: 34px;
+	    margin-right: 10px;
+}
+.goods-box1-2 select{
+	width: 100%;
+	height: 100%;
+	
+}
+.goods-box2-2 {
+	width: 90%;
+	height: 34px;
+	float: left;
+	resize: none;
+	height: 118px;
+}
+
+.data-del-off {
+	clear: both;
+	max-width: 1269px;
+	min-width: 1000px;
+	box-sizing: border-box;
+	height: 60px;
+	padding-right: 25px;
+}
+
+.del-but {
+	width: 100px;
+	height: 40px;
+	background: #FFFFFF;
+	margin: 10px 0px 0 40px;
+	float: right;
+	border: 1px solid #CCCCCC;
+	border-radius: 5px;
+}
+
+
+/*弹窗*/
+
+.pop-one {
+	position: fixed;
+	left: 50%;
+	top: 50%;
+	width: 500px;
+	z-index: 25;
+}
+
+.pop-one1 {
+	height: 200px;
+	margin: -425px 0 0 -180px;
+	background: #FFFFFF;
+	border: 1px solid #1345fe;
+}
+
+.prompt-title {
+	width: 100%;
+	height: 40px;
+	line-height: 40px;
+	text-align: center;
+	color: #FFFFFF;
+	background: #1367fe;
+}
+
+.prompt-box {
+	
+	display: none;
+	z-index: 999;
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	/*background: rgba(0, 0, 0, 0.1);*/
+}
+
+.prompt-frame1 {
+	height: 110px;
+	line-height: 110px;
+	text-align: center;
+	font-size: 20px;
+	border-bottom: 1px solid #fff;
+}
+
+.prompt-frame2 {
+	box-sizing: border-box;
+	width: 100%;
+	height: 40px;
+}
+
+.prompt-frame-box {
+	width: 240px;
+	margin: auto;
+}
+
+.prompt-frame2 .prompt-frame-left {
+	height: 40px;
+	width: 100px;
+	cursor: pointer;
+	line-height: 40px;
+	text-align: center;
+	font-size: 20px;
+	float: left;
+	border: 1px solid #CCCCCC;
+	border-radius: 5px;
+}
+
+.prompt-frame2 .prompt-frame-right {
+	height: 40px;
+	width: 100px;
+	cursor: pointer;
+	line-height: 40px;
+	text-align: center;
+	font-size: 20px;
+	float: right;
+	border: 1px solid #CCCCCC;
+	border-radius: 5px;
+	
+	
+}

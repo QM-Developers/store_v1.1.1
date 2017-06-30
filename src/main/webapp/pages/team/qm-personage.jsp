@@ -119,7 +119,7 @@
 <script type="text/javascript" src="${path}/script/jquery/jquery-3.0.0.min.js"></script>
 <script type="text/javascript" src="${path}/script/Amaze/assets/js/amazeui.min.js"></script>
 <script type="text/javascript" src="${path}/script/js/myjs.js"></script>
-<script type="text/javascript" src="${path}/pages/team/control.js"></script>
+<script type="text/javascript" src="${path}/pages/common/control.js"></script>
 <script type="text/javascript" src="${path}/script/js/date.js"></script>
 
 </html>

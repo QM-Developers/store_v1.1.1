@@ -8,7 +8,6 @@
 
 <!DOCTYPE html>
 <html>
-
 <head>
     <meta charset="UTF-8">
     <title>公司列表</title>
@@ -52,25 +51,6 @@
             <div class="groupdata-title">
                 <h4 class="qm-c-p">公司列表</h4>
             </div>
-            <!--<div>
-                <ul>
-                    <li>分公司名称</li>
-                    <li>负责人</li>
-                    <li>联系电话</li>
-                    <li>地址</li>
-                    <li>操作</li>
-                </ul>
-                <ul>
-                    <li>青麦软件鹤山市分公司</li>
-                    <li>李四</li>
-                    <li>10086010110</li>
-                    <li>鹤山市文华路381鹤山市文华路381</li>
-                    <li>青麦软件鹤山市分公司</li>
-                    <li>
-                        <a class="personnel-details" href="">详细信息</a>
-                    </li>
-                </ul>
-            </div>-->
             <div class="am-u-sm-10 qm-team1-tab">
                 <table class="am-table ">
                     <thead>
@@ -79,7 +59,6 @@
                         <th>负责人</th>
                         <th>联系电话</th>
                         <th>地址</th>
-
                         <th>操作</th>
                     </tr>
                     </thead>
@@ -174,7 +153,7 @@
 <script type="text/javascript" src="${path}/script/jquery/jquery-3.0.0.min.js"></script>
 <script type="text/javascript" src="${path}/script/Amaze/assets/js/amazeui.min.js"></script>
 <script type="text/javascript" src="${path}/script/js/myjs.js"></script>
-<script type="text/javascript" src="${path}/pages/team/control.js"></script>
+<script type="text/javascript" src="${path}/pages/common/control.js"></script>
 <script type="text/javascript" src="${path}/script/js/date.js"></script>
 
 </html>

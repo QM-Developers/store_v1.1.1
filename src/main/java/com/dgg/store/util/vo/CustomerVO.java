@@ -4,13 +4,17 @@ public class CustomerVO
 {
     private String userId;
     private String customerId;
+    private String promoterId;
     private String userName;
     private String userPhone;
     private String userArea;
     private String userAddress;
     private String userSex;
     private String userBirthday;
-    private String customerRemard;
+    private String lngAndLat;
+    private String customerRemark;
+    private Integer creditRating;
+    private String userIdentity;
     private String userImg;
     private String customerGroupName;
     private String customerGroupId;
@@ -38,14 +42,14 @@ public class CustomerVO
         this.userPhone = userPhone;
     }
 
-    public String getCustomerRemard()
+    public String getCustomerRemark()
     {
-        return customerRemard;
+        return customerRemark;
     }
 
-    public void setCustomerRemard(String customerRemard)
+    public void setCustomerRemark(String customerRemark)
     {
-        this.customerRemard = customerRemard;
+        this.customerRemark = customerRemark;
     }
 
     public String getUserImg()
@@ -166,5 +170,45 @@ public class CustomerVO
     public void setCustomerId(String customerId)
     {
         this.customerId = customerId;
+    }
+
+    public Integer getCreditRating()
+    {
+        return creditRating;
+    }
+
+    public void setCreditRating(Integer creditRating)
+    {
+        this.creditRating = creditRating;
+    }
+
+    public String getPromoterId()
+    {
+        return promoterId;
+    }
+
+    public void setPromoterId(String promoterId)
+    {
+        this.promoterId = promoterId;
+    }
+
+    public String getUserIdentity()
+    {
+        return userIdentity;
+    }
+
+    public void setUserIdentity(String userIdentity)
+    {
+        this.userIdentity = userIdentity;
+    }
+
+    public String getLngAndLat()
+    {
+        return lngAndLat;
+    }
+
+    public void setLngAndLat(String lngAndLat)
+    {
+        this.lngAndLat = lngAndLat;
     }
 }

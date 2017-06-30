@@ -27,4 +27,8 @@ public interface CustomerDao
     Integer insertCustomerHistory(String customerId);
 
     List<CustomerGroupVO> findCustomerGroup();
+
+    int insertCustomerRecord(CustomerVO customerVO);
+
+    Integer insertCustomer(CustomerVO customerVO);
 }

@@ -6,8 +6,6 @@
         <result column="user_name" property="userName" jdbcType="VARCHAR"/>
         <result column="user_phone" property="userPhone" jdbcType="VARCHAR"/>
         <result column="user_img" property="userImg" jdbcType="VARCHAR"/>
-        <result column="hx_password" property="hxUserName" jdbcType="VARCHAR"/>
-        <result column="hx_name" property="hxPassword" jdbcType="VARCHAR"/>
         <result column="user_area" property="userArea" jdbcType="VARCHAR"/>
         <result column="role_id" property="roleId" jdbcType="VARCHAR"/>
         <result column="my_team_id" property="myTeamId" jdbcType="VARCHAR"/>
@@ -16,7 +14,7 @@
     </resultMap>
 
     <select id="findLoginUser" parameterType="com.dgg.store.util.vo.LoginVO" resultMap="LoginRepMap">
-        SELECT u.user_id, u.user_name, u.user_phone, u.user_img, u.hx_password, u.hx_name, u.user_area, u.token, u.role_id,u.my_team_id,u.team_department_id,td.department_type
+        SELECT u.user_id, u.user_name, u.user_phone, u.user_img,u.user_area, u.token, u.role_id,u.my_team_id,u.team_department_id,td.department_type
         FROM user u
         LEFT JOIN team_department td
         ON td.team_department_id = u.team_department_id
@@ -33,7 +31,7 @@
     </update>
 
     <select id="findLoginUserByPhone" parameterType="com.dgg.store.util.vo.LoginVO" resultMap="LoginRepMap">
-        SELECT u.user_id, u.user_name, u.user_phone, u.user_img, u.hx_password, u.hx_name, u.user_area, u.token, u.role_id,u.my_team_id
+        SELECT u.user_id, u.user_name, u.user_phone, u.user_img, u.user_area, u.token, u.role_id,u.my_team_id
         FROM user u
         WHERE u.user_phone = #{userPhone}
         AND u.my_team_id = #{myTeamId}

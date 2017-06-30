@@ -20,13 +20,13 @@ public class CustomerController
     @Autowired
     private CustomerService service;
 
-    @RequestMapping(value = "/s/addUserByStore", method = RequestMethod.POST)
+    @RequestMapping(value = "/s/addCustomerRecord", method = RequestMethod.POST)
     @ResponseBody
-    public ResultVO addUserByStore(CustomerVO customerVO, HttpServletRequest request)
+    public ResultVO addCustomerRecord(CustomerVO customerVO, HttpServletRequest request)
     {
         SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
 
-        return service.insertStoreUser(customerVO, sessionVO);
+        return service.insertCustomerRecord(customerVO, sessionVO);
     }
 
     @RequestMapping(value = "/s/addCooperation", method = RequestMethod.POST)

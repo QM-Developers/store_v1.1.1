@@ -20,9 +20,11 @@ drop table if exists customer;
 create table customer
 (
    user_id              varchar(35) not null default '',
+   promoter_id			varchar(35) not null default '',
    customer_id			varchar(35) not null default '',
    customer_group_id    varchar(35) not null default '',
    customer_remard      varchar(20) not null default '',
+   credit_rating		tinyint not null default 0,
    primary key (customer_id)
 );
 
@@ -389,6 +391,7 @@ create table user
    team_department_id	varchar(35) not null default '',
    role_id              int not null default 0,
    user_name            varchar(20) not null default '',
+   user_identity 		varchar(18) not null default '',
    user_password        varchar(50) not null default '',
    user_sex             varchar(10) not null default '',
    user_phone           varchar(20) not null default '',
@@ -403,8 +406,6 @@ create table user
    uesr_wechat          varchar(20) not null default '',
    user_img             varchar(150) not null default '',
    user_nickname        varchar(30) not null default '',
-   hx_name              varchar(30) not null default '',
-   hx_password          varchar(35) not null default '',
    token                varchar(50) not null default '',
    is_deleted           tinyint not null default 0,
    delete_date          datetime,
@@ -687,7 +688,7 @@ alter table role AUTO_INCREMENT=1000;
 
 /*用户档案表*/
 drop table if exists user_record;
-create table user_history
+create table user_record
 select * from user where 1=2 ;
 
 /*用户表更改记录*/

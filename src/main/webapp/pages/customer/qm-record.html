@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="../../script/Amaze/assets/css/amazeui.min.css" />
+		<link rel="stylesheet" type="text/css" href="../../../reset.css" />
+		<link rel="stylesheet" type="text/css" href="qm-record.css" />
+	</head>
+
+	<body>
+		<div class="bodybox">
+
+			<div class="Corporationlist">
+				<div class="am-g qm-team1">
+					<div class="groupdata-title">
+						<div class="qm-list">客户跟进记录</div>
+
+					</div>
+
+					<div class="am-u-sm-12 qm-team1-box">
+
+						<div class="attr-list-body  am-panel-default ">
+							<div class=" goodssize">
+								<table>
+									<tr>
+										<th>序号</th>
+										<th>标题</th>
+										<th>时间</th>
+										<th class="tab4"><span class="tab4-span">添加事件</span></th>
+									</tr>
+									<tr>
+										<td>1</td>
+										<td>做什么事情</td>
+										<td>20017-6-29</td>
+										<td class="tab4">
+											<a href="javascript:void(0);" class="tab4-a" onclick="Incidentbox()">查看/编辑</a>
+										</td>
+									</tr>
+									<tr>
+										<td>1</td>
+										<td>做什么事情</td>
+										<td>20017-6-29</td>
+										<td class="tab4">
+											<a href="javascript:void(0);" class="tab4-a" onclick="Incidentbox()">查看/编辑</a>
+										</td>
+									</tr>
+							
+								</table>
+
+							</div>
+						</div>
+						<div class="paging">
+
+							<div class="pagingright">
+								下一页
+							</div>
+							<div class="pagingmodle">
+								<span>1</span>/<span>4</span>
+							</div>
+
+							<div class="pagingleft">
+								上一页
+							</div>
+							<div class="paging-num-box">
+								记录显示:<span class="paging-num">30</span>
+								<span class="paging-num">20</span>
+								<span class="paging-num">10</span>
+							</div>
+						</div>
+					</div>
+
+				</div>
+
+			</div>
+
+		</div>
+
+		<!--弹窗-->
+		<div class="incidentbox">
+			<div class="goods-box1">
+				<div class="goods-title">事件信息</div>
+			</div>
+			<div class="goods-box1">
+				<div class="goods-box1-1">标题</div>
+				<div class="goods-box1-2">
+					<input type="text" class="am-form-field am-input-sm">
+				</div>
+
+			</div>
+			<div class="goods-box1">
+				<div class="goods-box1-1">时间</div>
+				<div class="goods-box1-2">
+					<input type="text" class="am-form-field am-input-sm">
+				</div>
+
+			</div>
+			<div class="am-g goods-box2">
+				<div class="goods-box1-1">内容</div>
+				<textarea class="goods-box2-2"></textarea>
+
+			</div>
+			<div class="am-g goods-box2 ">
+				<div class="goods-box1-1">内容</div>
+				<textarea class="goods-box2-2"></textarea>
+
+			</div>
+			<div class="am-g  data-del-off ">
+
+				<div>
+					<button class="del-but" onclick="Incidentboxhide()">取消</button>
+				</div>
+
+				<div>
+					<button class="del-but">保存</button>
+				</div>
+
+			</div>
+		</div>
+		<!--<div class="am-g">
+
+			<div class="del-but-box">
+				<button class="del-but">返回</button>
+			</div>
+
+		</div>-->
+
+	</body>
+	<script src="../../script/jquery/jquery-3.0.0.min.js"></script>
+	<script src="../../script/Amaze/assets/js/amazeui.min.js"></script>
+	<script type="text/javascript" src="../../script/js/myjs.js"></script>
+	<script type="text/javascript" src="../customer/control.js"></script>
+	<script type="text/javascript">
+		Incidentbox = function() {
+			$(".incidentbox").css("display", "block")
+		}
+		Incidentboxhide = function() {
+			$(".incidentbox").css("display", "none")
+		}
+	</script>
+
+</html>

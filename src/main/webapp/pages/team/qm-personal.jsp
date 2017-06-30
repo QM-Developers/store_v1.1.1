@@ -93,7 +93,7 @@
 <script type="text/javascript" src="${path}/script/Amaze/assets/js/amazeui.min.js"></script>
 <script type="text/javascript" src="${path}/script/js/myjs.js"></script>
 <script type="text/javascript" src="${path}/script/js/date.js"></script>
-<script type="text/javascript" src="${path}/pages/team/control.js"></script>
+<script type="text/javascript" src="${path}/pages/common/control.js"></script>
 <script type="text/javascript" src="${path}/pages/team/qm-personal.js"></script>
 
 <script type="text/javascript">

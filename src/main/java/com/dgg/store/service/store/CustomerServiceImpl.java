@@ -20,33 +20,11 @@ public class CustomerServiceImpl implements CustomerService
     private CustomerDao dao;
 
     @Override
-    public ResultVO insertStoreUser(CustomerVO customerVO, SessionVO sessionVO)
-    {
-        customerVO.setUserId(sessionVO.getUserId());
-        customerVO.setCustomerId(IDGenerator.generator());
-        customerVO.setUserStatus(Constant.USERST_0);
-        customerVO.setRoleId(Integer.parseInt(Constant.ROLE_DEFAULT_USER));
-        customerVO.setMyTeamId(sessionVO.getMyTeamId());
-
-        Integer result = dao.insertStoreUser(customerVO);
-        if (result < 1)
-            throw new RuntimeException("添加客户失败");
-        else
-            result = dao.insertCustomerGroup(customerVO);
-        if (result < 1)
-            throw new RuntimeException("添加客户失败");
-
-        ResultVO resultVO = new ResultVO(result < 1 ? 0 : 1, sessionVO.getToken());
-
-        return resultVO;
-    }
-
-    @Override
     public ResultVO findCustomerByGroup(SessionVO sessionVO, CustomerVO customerVO)
     {
-        List<CustomerVO> result = dao.findCustomerByGroup(customerVO.getCustomerGroupId(),sessionVO.getUserId());
+        List<CustomerVO> result = dao.findCustomerByGroup(customerVO.getCustomerGroupId(), sessionVO.getUserId());
 
-        ResultVO resultVO = new ResultVO(result.size() < 1 ? 0 : 1, sessionVO.getToken(), result);
+        ResultVO resultVO = new ResultVO(1, sessionVO.getToken(), result);
 
         return resultVO;
     }
@@ -99,7 +77,7 @@ public class CustomerServiceImpl implements CustomerService
         customerVO.setUserId(IDGenerator.generator());
         Integer result = dao.insertStoreUser(customerVO);
 
-        ResultVO resultVO = new ResultVO(result,sessionVO.getToken());
+        ResultVO resultVO = new ResultVO(result, sessionVO.getToken());
 
         return resultVO;
     }
@@ -107,12 +85,12 @@ public class CustomerServiceImpl implements CustomerService
     @Override
     public ResultVO updateCustomer(SessionVO sessionVO, CustomerVO customerVO)
     {
-        if("".equals(customerVO.getMyTeamId()))
+        if ("".equals(customerVO.getMyTeamId()))
             customerVO.setMyTeamId(sessionVO.getMyTeamId());
         dao.insertCustomerHistory(customerVO.getCustomerId());
         Integer result = dao.updateCustomer(customerVO);
 
-        ResultVO resultVO = new ResultVO(result,sessionVO.getToken());
+        ResultVO resultVO = new ResultVO(result, sessionVO.getToken());
 
         return resultVO;
     }
@@ -123,6 +101,46 @@ public class CustomerServiceImpl implements CustomerService
         List<CustomerGroupVO> result = dao.findCustomerGroup();
 
         ResultVO resultVO = new ResultVO(result.size() < 1 ? 0 : 1, sessionVO.getToken(), result);
+
+        return resultVO;
+    }
+
+    @Override
+    public ResultVO insertCustomerRecord(CustomerVO customerVO, SessionVO sessionVO)
+    {
+        Integer result = 1;
+        int i = 0;
+        int count = 2;
+
+        while (result > 0)
+        {
+            switch (i)
+            {
+                case 0:
+                    customerVO.setUserId(IDGenerator.generator());
+                    customerVO.setUserStatus(Constant.USERST_0);
+                    customerVO.setRoleId(Integer.parseInt(Constant.ROLE_DEFAULT_USER));
+                    customerVO.setMyTeamId(sessionVO.getMyTeamId());
+                    result = dao.insertCustomerRecord(customerVO);
+                    break;
+                case 1:
+                    customerVO.setCustomerId(IDGenerator.generator());
+                    customerVO.setPromoterId(sessionVO.getUserId());
+                    result = dao.insertCustomer(customerVO);
+                    break;
+                default:
+                    result = 0;
+                    break;
+            }
+            i++;
+        }
+
+        if (i - 1 < count)
+            throw new RuntimeException(Constant.STR_ADD_FAILED);
+        else
+            result = 1;
+
+        ResultVO resultVO = new ResultVO(result, sessionVO.getToken());
 
         return resultVO;
     }

@@ -7,38 +7,27 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="886cbd15-c3a0-40c9-bb8e-62f10811888a" name="Default" comment="框架搭建">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/pages/customer/qm-groupdata.jsp" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/需求分析/权限列表 杨发 .xls" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/需求分析/合作社需求分析_v1.0.doc" afterPath="$PROJECT_DIR$/需求分析/合作社需求分析_v1.0.doc" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/需求分析/待完善.txt" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources/2fab1a59-02a2-44f6-827a-6c01dfe65f27.xml" afterPath="$PROJECT_DIR$/.idea/dataSources/2fab1a59-02a2-44f6-827a-6c01dfe65f27.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DGG-Store-v1.1.1.cdb" afterPath="$PROJECT_DIR$/DGG-Store-v1.1.1.cdb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DGG-Store-v1.1.1.cdm" afterPath="$PROJECT_DIR$/DGG-Store-v1.1.1.cdm" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/query.sql" afterPath="$PROJECT_DIR$/query.sql" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/dgg/store/controller/store/CustomerController.java" afterPath="$PROJECT_DIR$/src/main/java/com/dgg/store/controller/store/CustomerController.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/dgg/store/dao/store/CustomerDao.java" afterPath="$PROJECT_DIR$/src/main/java/com/dgg/store/dao/store/CustomerDao.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/dgg/store/dao/store/CustomerDaoImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/dgg/store/dao/store/CustomerDaoImpl.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/dgg/store/mapper/CustomerMapper.java" afterPath="$PROJECT_DIR$/src/main/java/com/dgg/store/mapper/CustomerMapper.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/dgg/store/mapper/CustomerMapper.xml" afterPath="$PROJECT_DIR$/src/main/java/com/dgg/store/mapper/CustomerMapper.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/dgg/store/mapper/LoginMapper.xml" afterPath="$PROJECT_DIR$/src/main/java/com/dgg/store/mapper/LoginMapper.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/dgg/store/service/store/CustomerService.java" afterPath="$PROJECT_DIR$/src/main/java/com/dgg/store/service/store/CustomerService.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/dgg/store/service/store/CustomerServiceImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/dgg/store/service/store/CustomerServiceImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/dgg/store/util/core/constant/Constant.java" afterPath="$PROJECT_DIR$/src/main/java/com/dgg/store/util/core/constant/Constant.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/dgg/store/util/vo/CustomerVO.java" afterPath="$PROJECT_DIR$/src/main/java/com/dgg/store/util/vo/CustomerVO.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/dgg/store/util/vo/LoginRepVO.java" afterPath="$PROJECT_DIR$/src/main/java/com/dgg/store/util/vo/LoginRepVO.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/pages/common/reset.css" afterPath="$PROJECT_DIR$/src/main/webapp/pages/common/reset.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/pages/index/qm-index.css" afterPath="$PROJECT_DIR$/src/main/webapp/pages/index/qm-index.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/pages/common/control.js" afterPath="$PROJECT_DIR$/src/main/webapp/pages/common/control.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/pages/customer/qm-group.css" afterPath="$PROJECT_DIR$/src/main/webapp/pages/customer/qm-group.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/pages/customer/qm-group.js" afterPath="$PROJECT_DIR$/src/main/webapp/pages/customer/qm-group.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/pages/customer/qm-group.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/pages/customer/qm-group.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/pages/customer/qm-grouplistt.css" afterPath="$PROJECT_DIR$/src/main/webapp/pages/customer/qm-grouplistt.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/pages/customer/qm-grouplistt.js" afterPath="$PROJECT_DIR$/src/main/webapp/pages/customer/qm-grouplistt.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/pages/customer/qm-grouplistt.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/pages/customer/qm-grouplistt.jsp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/pages/index/qm-index.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/pages/index/qm-index.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/pages/team/qm-corporation.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/pages/team/qm-corporation.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/pages/team/qm-corporationlist.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/pages/team/qm-corporationlist.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/pages/team/qm-departmentlist.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/pages/team/qm-departmentlist.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/pages/team/qm-mydepartment.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/pages/team/qm-mydepartment.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/pages/team/qm-personage.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/pages/team/qm-personage.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/pages/team/qm-personal.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/pages/team/qm-personal.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/test.json" afterPath="$PROJECT_DIR$/src/main/webapp/test.json" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store-v1.1.1.sql" afterPath="$PROJECT_DIR$/store-v1.1.1.sql" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/webapp/pages/images/Checked.jpg" afterPath="$PROJECT_DIR$/src/main/webapp/pages/images/checked.jpg" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/webapp/pages/team/control.js" afterPath="$PROJECT_DIR$/src/main/webapp/pages/common/control.js" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -68,64 +57,82 @@
         <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
       </PATH_ELEMENT>
     </PATH>
+    <PATH>
+      <PATH_ELEMENT>
+        <option name="myItemId" />
+        <option name="myItemType" value="com.intellij.database.view.DatabaseStructure$Root" />
+      </PATH_ELEMENT>
+      <PATH_ELEMENT>
+        <option name="myItemId" value="store_v1_1_1@localhost" />
+        <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
+      </PATH_ELEMENT>
+      <PATH_ELEMENT>
+        <option name="myItemId" />
+        <option name="myItemType" value="com.intellij.database.view.DatabaseStructure$GroupNode" />
+      </PATH_ELEMENT>
+    </PATH>
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FavoritesManager">
     <favorites_list name="store_v1.1.0" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="qm-friend.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/pages/friend/qm-friend.js">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="qm-personage.jsp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/pages/team/qm-personage.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1680">
-              <caret line="397" column="36" lean-forward="false" selection-start-line="397" selection-start-column="36" selection-end-line="397" selection-end-column="36" />
+            <state relative-caret-position="573">
+              <caret line="118" column="0" lean-forward="false" selection-start-line="118" selection-start-column="0" selection-end-line="121" selection-end-column="78" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="qm-index.jsp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/pages/management/qm-index.jsp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="2856">
+              <caret line="119" column="72" lean-forward="false" selection-start-line="119" selection-start-column="72" selection-end-line="119" selection-end-column="72" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="qm-managementLogin.jsp" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/pages/management/qm-managementLogin.jsp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="336">
+              <caret line="29" column="40" lean-forward="true" selection-start-line="29" selection-start-column="40" selection-end-line="29" selection-end-column="40" />
               <folding>
-                <marker date="1498813379506" expanded="true" signature="12863:12876" ph="..." />
-                <marker date="1498813379506" expanded="true" signature="13457:13470" ph="..." />
-                <marker date="1498813379506" expanded="true" signature="19432:19445" ph="..." />
-                <marker date="1498813379506" expanded="true" signature="24961:24975" ph="..." />
+                <element signature="n#style#0;n#body#0;n#html#0;n#!!top" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="qm-groupdata.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/pages/customer/qm-groupdata.js">
+      <file leaf-file-name="qm-member.jsp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/pages/management/qm-member.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="96">
-              <caret line="4" column="6" lean-forward="true" selection-start-line="4" selection-start-column="6" selection-end-line="4" selection-end-column="6" />
+            <state relative-caret-position="69">
+              <caret line="203" column="18" lean-forward="true" selection-start-line="203" selection-start-column="18" selection-end-line="203" selection-end-column="18" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="qm-friend.jsp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/pages/friend/qm-friend.jsp">
+      <file leaf-file-name="qm-index.jsp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/pages/index/qm-index.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-840">
-              <caret line="18" column="0" lean-forward="true" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="qm-grouplistt.jsp" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/pages/customer/qm-grouplistt.jsp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="213">
-              <caret line="50" column="25" lean-forward="true" selection-start-line="50" selection-start-column="25" selection-end-line="50" selection-end-column="25" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="qm-grouplistt.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/pages/customer/qm-grouplistt.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="10" column="44" lean-forward="true" selection-start-line="10" selection-start-column="44" selection-end-line="10" selection-end-column="44" />
-              <folding />
+            <state relative-caret-position="511">
+              <caret line="80" column="100" lean-forward="false" selection-start-line="80" selection-start-column="100" selection-end-line="80" selection-end-column="100" />
+              <folding>
+                <element signature="n#style#0;n#div#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#li#1;n#ul#0;n#li#0;n#ul#1;n#div#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#li#2;n#ul#0;n#li#0;n#ul#1;n#div#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#li#4;n#ul#0;n#li#0;n#ul#1;n#div#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#li#5;n#ul#0;n#li#0;n#ul#1;n#div#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#li#6;n#ul#0;n#li#0;n#ul#1;n#div#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -146,12 +153,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>chatView</find>
-      <find>chatView(</find>
-      <find>updateChatListNotifyNum</find>
-      <find>appendChatList(</find>
-      <find>user_findFriendDataById</find>
-      <find>findFriendDataById</find>
       <find>user_findFriendRequest</find>
       <find>findFriendRequest</find>
       <find>聊天</find>
@@ -176,6 +177,12 @@
       <find>re</find>
       <find>customer-group</find>
       <find>customerGroupId</find>
+      <find>产品</find>
+      <find>CustomerVOMap</find>
+      <find>分类</find>
+      <find>insertCustomerHistory</find>
+      <find>lng_and_lat</find>
+      <find>updateCustomer</find>
     </findStrings>
     <replaceStrings>
       <replace>user</replace>
@@ -224,13 +231,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/spring/application-context.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/com/dgg/store/servlet/WebInitServlet.java" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" />
-        <option value="$PROJECT_DIR$/pom.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/com/dgg/store/socket/MarshallingCodeCFactory.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/netty.ini" />
-        <option value="$PROJECT_DIR$/src/main/java/com/dgg/store/controller/common/TestController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/dgg/store/util/core/netty/NettyUtil.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/dgg/store/util/pojo/ChatHistory.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/dgg/store/socket/NettyClient.java" />
@@ -245,36 +245,43 @@
         <option value="$PROJECT_DIR$/src/main/java/com/dgg/store/service/common/FriendsServiceImpl.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/pages/index/qm-index.css" />
         <option value="$PROJECT_DIR$/src/main/webapp/pages/customer/qm-sitedata.jsp" />
-        <option value="$PROJECT_DIR$/src/main/webapp/pages/customer/qm-grouplistt.css" />
         <option value="$PROJECT_DIR$/src/main/webapp/pages/customer/qm-groupdata.css" />
-        <option value="$PROJECT_DIR$/src/main/webapp/pages/customer/qm-group.js" />
-        <option value="$PROJECT_DIR$/src/main/java/com/dgg/store/controller/store/CustomerController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/dgg/store/service/store/CustomerService.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/dgg/store/util/core/constant/Constant.java" />
-        <option value="$PROJECT_DIR$/src/main/webapp/pages/customer/qm-group.jsp" />
-        <option value="$PROJECT_DIR$/src/main/webapp/pages/customer/qm-group.css" />
         <option value="$PROJECT_DIR$/src/main/java/com/dgg/store/mapper/LoginMapper.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/dgg/store/util/vo/LoginRepVO.java" />
-        <option value="$PROJECT_DIR$/src/main/webapp/pages/common/control.js" />
         <option value="$PROJECT_DIR$/src/main/webapp/pages/common/map.js" />
         <option value="$PROJECT_DIR$/src/main/webapp/pages/map.html" />
         <option value="$PROJECT_DIR$/src/main/webapp/pages/map.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/test.json" />
-        <option value="$PROJECT_DIR$/src/main/java/com/dgg/store/util/vo/CustomerVO.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/dgg/store/dao/store/CustomerDao.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/dgg/store/dao/store/CustomerDaoImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/dgg/store/mapper/CustomerMapper.java" />
-        <option value="$APPLICATION_CONFIG_DIR$/consoles/db/2fab1a59-02a2-44f6-827a-6c01dfe65f27/console.sql" />
-        <option value="$PROJECT_DIR$/src/main/webapp/pages/index/qm-index.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/pages/team/qm-corporationlist.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/pages/common/dragMap.js" />
         <option value="$PROJECT_DIR$/src/main/webapp/pages/friend/qm-friend.js" />
-        <option value="$PROJECT_DIR$/src/main/java/com/dgg/store/service/store/CustomerServiceImpl.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/pages/customer/qm-groupdata.js" />
-        <option value="$PROJECT_DIR$/src/main/webapp/pages/customer/qm-groupdata.jsp" />
-        <option value="$PROJECT_DIR$/src/main/java/com/dgg/store/mapper/CustomerMapper.xml" />
-        <option value="$PROJECT_DIR$/src/main/webapp/pages/customer/qm-grouplistt.js" />
+        <option value="$PROJECT_DIR$/src/main/webapp/pages/customer/qm-grouplistt.css" />
         <option value="$PROJECT_DIR$/src/main/webapp/pages/customer/qm-grouplistt.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/pages/customer/groupheader.html" />
+        <option value="$PROJECT_DIR$/src/main/webapp/pages/customer/qm-grouplistt.js" />
+        <option value="$PROJECT_DIR$/src/main/webapp/pages/customer/qm-groupdata.jsp" />
+        <option value="$APPLICATION_CONFIG_DIR$/consoles/db/2fab1a59-02a2-44f6-827a-6c01dfe65f27/console.sql" />
+        <option value="$PROJECT_DIR$/src/main/webapp/pages/common/control.js" />
+        <option value="$PROJECT_DIR$/src/main/java/com/dgg/store/util/vo/CustomerVO.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/dgg/store/service/store/CustomerService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/dgg/store/dao/store/CustomerDao.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/dgg/store/dao/store/CustomerDaoImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/dgg/store/mapper/CustomerMapper.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/dgg/store/controller/store/CustomerController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/dgg/store/mapper/CustomerMapper.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/com/dgg/store/service/store/CustomerServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/webapp/pages/customer/qm-group.css" />
+        <option value="$PROJECT_DIR$/src/main/webapp/pages/customer/qm-group.js" />
+        <option value="$PROJECT_DIR$/src/main/webapp/pages/customer/qm-group.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/pages/management/add-departments.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/pages/management/qm-companyprofile.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/pages/management/qm-enterpriselistt.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/pages/management/qm-index.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/pages/management/qm-member.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/pages/index/qm-index.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/pages/management/qm-managementLogin.jsp" />
       </list>
     </option>
   </component>
@@ -315,6 +322,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
@@ -407,36 +416,6 @@
               <option name="myItemId" value="main" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="webapp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pages" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="customer" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="store_v1.1.1" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="store_v1.1.1" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -466,14 +445,12 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="D:/zz-netty/netty_chat" />
     <property name="js.eslint.eslintPackage" value="" />
     <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.15" />
@@ -491,22 +468,22 @@
     <property name="settings.editor.splitter.proportion" value="0.25342464" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="D:\WorkSpace\store_v1.1.1\src\main\webapp\pages\common" />
-      <recent name="D:\WorkSpace\store_v1.1.1\src\main\webapp\pages\friend" />
-      <recent name="D:\WorkSpace\store_v1.1.0\src\main\webapp\pages\team" />
-      <recent name="D:\WorkSpace\store_v1.1.0\src\main\webapp\pages\customer" />
-      <recent name="D:\WorkSpace\store_v1.1.0\src\main\webapp\pages" />
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="com.dgg.store.mapper" />
+      <recent name="com.dgg.store.dao.common" />
+      <recent name="com.dgg.store.service.common" />
+      <recent name="com.dgg.store..common" />
+      <recent name="com.dgg.store.dao.store" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="com.dgg.store.service" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\WorkSpace\store_v1.1.1\src\main\webapp\pages\common" />
+      <recent name="D:\WorkSpace\store_v1.1.1\src\main\webapp\pages\management" />
       <recent name="D:\WorkSpace\store_v1.1.1\src\main\webapp\pages\customer" />
+      <recent name="D:\WorkSpace\store_v1.1.1\src\main\webapp\pages\common" />
       <recent name="D:\WorkSpace\store_v1.1.1\src\main\webapp\pages" />
       <recent name="D:\WorkSpace\store_v1.1.1\src\main\webapp\pages\index" />
-      <recent name="D:\WorkSpace\store_v1.1.1\src\main\webapp\pages\friend" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="com.dgg.store.util.core.netty" />
@@ -515,12 +492,12 @@
       <recent name="com.dgg.store.util.vo" />
       <recent name="com.dgg.store.util.pojo" />
     </key>
-    <key name="CreateClassDialog.RecentsKey">
-      <recent name="com.dgg.store.mapper" />
-      <recent name="com.dgg.store.dao.common" />
-      <recent name="com.dgg.store.service.common" />
-      <recent name="com.dgg.store..common" />
-      <recent name="com.dgg.store.dao.store" />
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\WorkSpace\store_v1.1.1\src\main\webapp\pages\customer" />
+      <recent name="D:\WorkSpace\store_v1.1.1\src\main\webapp\pages\common" />
+      <recent name="D:\WorkSpace\store_v1.1.1\src\main\webapp\pages\friend" />
+      <recent name="D:\WorkSpace\store_v1.1.0\src\main\webapp\pages\team" />
+      <recent name="D:\WorkSpace\store_v1.1.0\src\main\webapp\pages\customer" />
     </key>
   </component>
   <component name="RunManager" selected="Tomcat Server.Tomcat 8.5.11">
@@ -1185,6 +1162,7 @@
       <workItem from="1498695947547" duration="20948000" />
       <workItem from="1498727452983" duration="3754000" />
       <workItem from="1498790037923" duration="18386000" />
+      <workItem from="1498868667041" duration="27751000" />
     </task>
     <servers />
   </component>
@@ -1221,7 +1199,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1820770000" />
+    <option name="totallyTimeSpent" value="1848521000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1245,10 +1223,10 @@
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22068231" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.15938166" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.14687775" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.7269772" sideWeight="0.48400852" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.7833153" sideWeight="0.48400852" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32936078" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3066089" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -1259,7 +1237,7 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3277311" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32936078" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32936078" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17377399" sideWeight="0.48970747" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1748401" sideWeight="0.48970747" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.20149253" sideWeight="0.51029253" order="6" side_tool="true" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -1305,7 +1283,7 @@
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="603" />
+      <option name="time" value="609" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1314,131 +1292,13 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/pages/customer/qm-groupdata.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="307">
-          <caret line="156" column="23" lean-forward="false" selection-start-line="156" selection-start-column="23" selection-end-line="156" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/pages/images/css.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/pages/images/username.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/pages/images/bigcompile.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/pages/images/yuandian.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/pages/customer/qm-group.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="654">
-          <caret line="34" column="0" lean-forward="false" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/dgg/store/util/core/constant/Constant.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="298">
-          <caret line="35" column="31" lean-forward="false" selection-start-line="35" selection-start-column="31" selection-end-line="35" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/pages/customer/qm-group.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="6" column="0" lean-forward="true" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/pages/customer/qm-group.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="95">
-          <caret line="13" column="26" lean-forward="true" selection-start-line="13" selection-start-column="26" selection-end-line="13" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/dgg/store/util/vo/LoginVO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="48">
-          <caret line="2" column="13" lean-forward="false" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/dgg/store/util/vo/LoginRepVO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1008">
-          <caret line="60" column="5" lean-forward="false" selection-start-line="60" selection-start-column="5" selection-end-line="60" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/dgg/store/mapper/LoginMapper.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="192">
-          <caret line="8" column="4" lean-forward="false" selection-start-line="8" selection-start-column="4" selection-end-line="8" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/pages/common/control.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="528">
-          <caret line="58" column="44" lean-forward="false" selection-start-line="58" selection-start-column="44" selection-end-line="58" selection-end-column="44" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/pages/dictionary/dictionary.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="10" column="41" lean-forward="false" selection-start-line="10" selection-start-column="41" selection-end-line="10" selection-end-column="41" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/pages/common/reset.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="456">
-          <caret line="19" column="1" lean-forward="true" selection-start-line="19" selection-start-column="1" selection-end-line="19" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/pages/customer/qm-connect.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/pages/customer/qm-grouplistt.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="24">
-          <caret line="63" column="17" lean-forward="false" selection-start-line="63" selection-start-column="17" selection-end-line="63" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/dgg/store/controller/store/DictionaryController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="552">
           <caret line="38" column="8" lean-forward="false" selection-start-line="38" selection-start-column="8" selection-end-line="38" selection-end-column="8" />
           <folding>
-            <element signature="e#1238#1239#0" expanded="true" />
-            <element signature="e#1289#1290#0" expanded="true" />
+            <element signature="e#1238#1239#0" expanded="false" />
+            <element signature="e#1289#1290#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1447,7 +1307,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="672">
           <caret line="48" column="13" lean-forward="true" selection-start-line="48" selection-start-column="13" selection-end-line="48" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1455,7 +1314,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="432">
           <caret line="21" column="0" lean-forward="true" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1471,7 +1329,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="720">
           <caret line="185" column="24" lean-forward="true" selection-start-line="157" selection-start-column="8" selection-end-line="185" selection-end-column="24" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1479,7 +1336,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-963">
           <caret line="17" column="13" lean-forward="false" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1487,7 +1343,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1896">
           <caret line="25" column="13" lean-forward="false" selection-start-line="25" selection-start-column="13" selection-end-line="25" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1495,7 +1350,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-771">
           <caret line="15" column="13" lean-forward="false" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1503,52 +1357,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-771">
           <caret line="14" column="13" lean-forward="false" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/dgg/store/dao/store/CustomerDao.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="669">
-          <caret line="32" column="50" lean-forward="false" selection-start-line="32" selection-start-column="50" selection-end-line="32" selection-end-column="50" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/dgg/store/dao/store/CustomerDaoImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="741">
-          <caret line="86" column="47" lean-forward="true" selection-start-line="86" selection-start-column="47" selection-end-line="86" selection-end-column="47" />
-          <folding>
-            <element signature="e#1912#1913#0" expanded="true" />
-            <element signature="e#1974#1975#0" expanded="true" />
-            <element signature="e#2052#2053#0" expanded="true" />
-            <element signature="e#2108#2109#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/2fab1a59-02a2-44f6-827a-6c01dfe65f27/console.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/dgg/store/mapper/CustomerMapper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="669">
-          <caret line="33" column="26" lean-forward="false" selection-start-line="33" selection-start-column="12" selection-end-line="33" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/../crm_z/web/WEB-INF/lib/spring-aop-3.2.9.RELEASE-sources.jar!/org/springframework/aop/support/AopUtils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="173">
-          <caret line="333" column="0" lean-forward="false" selection-start-line="333" selection-start-column="0" selection-end-line="333" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1556,7 +1364,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1568,19 +1375,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/pages/index/qm-index.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="453">
-          <caret line="116" column="128" lean-forward="false" selection-start-line="116" selection-start-column="128" selection-end-line="116" selection-end-column="128" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/pages/index/qm-index.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="846">
           <caret line="44" column="15" lean-forward="false" selection-start-line="44" selection-start-column="15" selection-end-line="44" selection-end-column="15" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1600,22 +1398,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/pages/map.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="678">
-          <caret line="122" column="9" lean-forward="false" selection-start-line="122" selection-start-column="9" selection-end-line="122" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/dgg/store/util/vo/CustomerVO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="6" column="29" lean-forward="false" selection-start-line="6" selection-start-column="19" selection-end-line="6" selection-end-column="29" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/pages/common/dragMap.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="144">
@@ -1624,87 +1406,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/dgg/store/controller/store/CustomerController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="431">
-          <caret line="37" column="33" lean-forward="true" selection-start-line="37" selection-start-column="33" selection-end-line="37" selection-end-column="33" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/dgg/store/service/store/CustomerService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="13" column="13" lean-forward="false" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/dgg/store/service/store/CustomerServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="312">
-          <caret line="24" column="60" lean-forward="false" selection-start-line="24" selection-start-column="60" selection-end-line="24" selection-end-column="60" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/pages/friend/qm-friend.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1680">
-          <caret line="397" column="36" lean-forward="false" selection-start-line="397" selection-start-column="36" selection-end-line="397" selection-end-column="36" />
-          <folding>
-            <marker date="1498813379506" expanded="true" signature="12863:12876" ph="..." />
-            <marker date="1498813379506" expanded="true" signature="13457:13470" ph="..." />
-            <marker date="1498813379506" expanded="true" signature="19432:19445" ph="..." />
-            <marker date="1498813379506" expanded="true" signature="24961:24975" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/pages/customer/qm-groupdata.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="96">
-          <caret line="4" column="6" lean-forward="true" selection-start-line="4" selection-start-column="6" selection-end-line="4" selection-end-column="6" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/dgg/store/mapper/CustomerMapper.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="605">
-          <caret line="56" column="38" lean-forward="false" selection-start-line="56" selection-start-column="38" selection-end-line="56" selection-end-column="38" />
-          <folding>
-            <marker date="1498816279672" expanded="true" signature="2135:2512" ph="insert into user... " />
-            <marker date="1498816279672" expanded="true" signature="2623:2751" ph="INSERT INTO customers... " />
-            <marker date="1498816279672" expanded="true" signature="2836:3099" ph="select u.use... customers" />
-            <marker date="1498816279672" expanded="true" signature="3187:3638" ph="SELECT u.use... customer" />
-            <marker date="1498816279672" expanded="true" signature="3187:4119" ph="SELECT u.use... " />
-            <marker date="1498816279672" expanded="true" signature="3661:4119" ph="SELECT u.use... customer" />
-            <marker date="1498816279672" expanded="true" signature="4199:4338" ph="SELECT u.use... user" />
-            <marker date="1498816279672" expanded="true" signature="4427:4591" ph="SELECT custo... customer_group" />
-            <marker date="1498816279672" expanded="true" signature="4745:4903" ph="INSERT INTO my_team... " />
-            <marker date="1498816279672" expanded="true" signature="4983:5113" ph="SELECT t.my_... my_team" />
-            <marker date="1498816279672" expanded="true" signature="5219:5846" ph="UPDATE user " />
-            <marker date="1498816279672" expanded="true" signature="5910:6527" ph="insert into user_records... " />
-            <marker date="1498816279672" expanded="true" signature="6212:6527" ph="select user_... user" />
-            <marker date="1498816279672" expanded="true" signature="6639:7064" ph="INSERT INTO user_record... " />
-            <marker date="1498816279672" expanded="true" signature="7170:7388" ph="INSERT INTO customer... " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/pages/customer/qm-groupdata.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="859">
-          <caret line="87" column="89" lean-forward="true" selection-start-line="87" selection-start-column="89" selection-end-line="87" selection-end-column="89" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/pages/friend/qm-friend.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-840">
-          <caret line="18" column="0" lean-forward="true" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+        <state relative-caret-position="432">
+          <caret line="18" column="0" lean-forward="false" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1717,19 +1422,320 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/pages/customer/group.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="456">
+          <caret line="25" column="29" lean-forward="true" selection-start-line="25" selection-start-column="29" selection-end-line="25" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/pages/customer/qm-grouplistt.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="407">
+          <caret line="59" column="20" lean-forward="true" selection-start-line="59" selection-start-column="20" selection-end-line="59" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/pages/customer/groupheader.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1440">
+          <caret line="60" column="0" lean-forward="true" selection-start-line="60" selection-start-column="0" selection-end-line="60" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/pages/customer/qm-groupsearch.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="480">
+          <caret line="20" column="0" lean-forward="true" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/pages/customer/qm-record.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="24">
+          <caret line="21" column="57" lean-forward="true" selection-start-line="21" selection-start-column="57" selection-end-line="21" selection-end-column="57" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/pages/customer/group.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1848">
+          <caret line="77" column="30" lean-forward="true" selection-start-line="77" selection-start-column="30" selection-end-line="77" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/pages/customer/qm-groupdata.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="504">
+          <caret line="87" column="28" lean-forward="false" selection-start-line="87" selection-start-column="28" selection-end-line="90" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/pages/customer/qm-grouplistt.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="10" column="44" lean-forward="true" selection-start-line="10" selection-start-column="44" selection-end-line="10" selection-end-column="44" />
+        <state relative-caret-position="336">
+          <caret line="14" column="31" lean-forward="false" selection-start-line="14" selection-start-column="31" selection-end-line="14" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/pages/customer/qm-groupdata.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="702">
+          <caret line="44" column="0" lean-forward="false" selection-start-line="44" selection-start-column="0" selection-end-line="45" selection-end-column="85" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/pages/map.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="462">
+          <caret line="80" column="0" lean-forward="false" selection-start-line="80" selection-start-column="0" selection-end-line="83" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/2fab1a59-02a2-44f6-827a-6c01dfe65f27/console.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/pages/common/control.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="418">
+          <caret line="155" column="47" lean-forward="false" selection-start-line="155" selection-start-column="34" selection-end-line="155" selection-end-column="47" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/../crm_z/web/WEB-INF/lib/spring-aop-3.2.9.RELEASE-sources.jar!/org/springframework/aop/support/AopUtils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="123">
+          <caret line="333" column="0" lean-forward="false" selection-start-line="333" selection-start-column="0" selection-end-line="333" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/dgg/store/util/vo/CustomerVO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2496">
+          <caret line="218" column="5" lean-forward="false" selection-start-line="218" selection-start-column="5" selection-end-line="218" selection-end-column="5" />
+          <folding>
+            <element signature="e#4101#4102#0" expanded="true" />
+            <element signature="e#4163#4164#0" expanded="true" />
+            <element signature="e#4215#4216#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/pages/friend/qm-friend.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="846">
+          <caret line="397" column="36" lean-forward="false" selection-start-line="397" selection-start-column="36" selection-end-line="397" selection-end-column="36" />
+          <folding>
+            <marker date="1498813379506" expanded="true" signature="12863:12876" ph="..." />
+            <marker date="1498813379506" expanded="true" signature="13457:13470" ph="..." />
+            <marker date="1498813379506" expanded="true" signature="19432:19445" ph="..." />
+            <marker date="1498813379506" expanded="true" signature="24961:24975" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/dgg/store/dao/store/CustomerDao.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="530">
+          <caret line="38" column="5" lean-forward="false" selection-start-line="38" selection-start-column="5" selection-end-line="38" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/dgg/store/dao/store/CustomerDaoImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="429">
+          <caret line="104" column="56" lean-forward="false" selection-start-line="104" selection-start-column="56" selection-end-line="104" selection-end-column="56" />
+          <folding>
+            <element signature="e#2483#2484#0" expanded="true" />
+            <element signature="e#2548#2549#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/dgg/store/mapper/CustomerMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="530">
+          <caret line="39" column="31" lean-forward="false" selection-start-line="39" selection-start-column="8" selection-end-line="39" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/dgg/store/mapper/CustomerMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="789">
+          <caret line="214" column="23" lean-forward="true" selection-start-line="214" selection-start-column="23" selection-end-line="214" selection-end-column="23" />
+          <folding>
+            <element signature="n#select#1;n#mapper#0;n#!!top" expanded="false" />
+            <marker date="1498894887726" expanded="true" signature="2544:2921" ph="insert into user... " />
+            <marker date="1498894887726" expanded="true" signature="3032:3160" ph="INSERT INTO customers... " />
+            <marker date="1498894887726" expanded="true" signature="3245:3745" ph="SELECT u.use... customer" />
+            <marker date="1498894887726" expanded="true" signature="3833:4315" ph="SELECT u.use... " />
+            <marker date="1498894887726" expanded="true" signature="4395:4534" ph="SELECT u.use... user" />
+            <marker date="1498894887726" expanded="true" signature="4623:4787" ph="SELECT custo... customer_group" />
+            <marker date="1498894887726" expanded="true" signature="4941:5099" ph="INSERT INTO my_team... " />
+            <marker date="1498894887726" expanded="true" signature="5179:5309" ph="SELECT t.my_... my_team" />
+            <marker date="1498894887726" expanded="true" signature="5415:5831" ph="UPDATE user " />
+            <marker date="1498894887726" expanded="true" signature="5415:5858" ph="UPDATE custo... " />
+            <marker date="1498894887726" expanded="true" signature="5922:6769" ph="INSERT INTO user_history... " />
+            <marker date="1498894887726" expanded="true" signature="6274:6769" ph="SELECT user_... user_view" />
+            <marker date="1498894887726" expanded="true" signature="6725:6769" ph="select user_... user" />
+            <marker date="1498894887726" expanded="true" signature="6881:7306" ph="INSERT INTO user_record... " />
+            <marker date="1498894887726" expanded="true" signature="7412:7630" ph="INSERT INTO customer... " />
+            <marker date="1498894887726" expanded="true" signature="7742:7760" ph="UPDATE user_... " />
+            <marker date="1498894887726" expanded="true" signature="7742:8793" ph="UPDATE user_... " />
+            <marker date="1498894887726" expanded="true" signature="8903:9947" ph="UPDATE user " />
+            <marker date="1498894887726" expanded="true" signature="10044:10182" ph="SELECT COUNT... user_history" />
+            <marker date="1498894887726" expanded="true" signature="10119:10181" ph="SELECT user_... customer" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/dgg/store/controller/store/CustomerController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="600">
+          <caret line="46" column="41" lean-forward="false" selection-start-line="46" selection-start-column="41" selection-end-line="46" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/dgg/store/service/store/CustomerService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="576">
+          <caret line="27" column="13" lean-forward="false" selection-start-line="27" selection-start-column="13" selection-end-line="27" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/dgg/store/service/store/CustomerServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="549">
+          <caret line="176" column="0" lean-forward="false" selection-start-line="176" selection-start-column="0" selection-end-line="176" selection-end-column="0" />
+          <folding>
+            <element signature="method#insertCustomerRecord#0;class#CustomerServiceImpl#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/pages/customer/qm-group.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="562">
+          <caret line="337" column="14" lean-forward="true" selection-start-line="337" selection-start-column="14" selection-end-line="337" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/pages/customer/qm-group.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="778">
+          <caret line="109" column="1" lean-forward="true" selection-start-line="109" selection-start-column="1" selection-end-line="109" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/pages/customer/qm-group.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="688">
+          <caret line="62" column="42" lean-forward="false" selection-start-line="62" selection-start-column="42" selection-end-line="62" selection-end-column="42" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/pages/customer/qm-grouplistt.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="213">
-          <caret line="50" column="25" lean-forward="true" selection-start-line="50" selection-start-column="25" selection-end-line="50" selection-end-column="25" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="11" selection-end-column="37" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/pages/management/add-departments.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="336">
+          <caret line="14" column="0" lean-forward="false" selection-start-line="14" selection-start-column="0" selection-end-line="16" selection-end-column="96" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/pages/management/qm-companyprofile.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="672">
+          <caret line="148" column="0" lean-forward="false" selection-start-line="148" selection-start-column="0" selection-end-line="150" selection-end-column="72" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/pages/team/qm-personage.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="573">
+          <caret line="118" column="0" lean-forward="false" selection-start-line="118" selection-start-column="0" selection-end-line="121" selection-end-column="78" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/pages/management/qm-enterpriselistt.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="312">
+          <caret line="13" column="0" lean-forward="false" selection-start-line="13" selection-start-column="0" selection-end-line="14" selection-end-column="82" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/pages/management/qm-index.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2856">
+          <caret line="119" column="72" lean-forward="false" selection-start-line="119" selection-start-column="72" selection-end-line="119" selection-end-column="72" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/pages/management/qm-member.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="69">
+          <caret line="203" column="18" lean-forward="true" selection-start-line="203" selection-start-column="18" selection-end-line="203" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/pages/index/qm-index.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="511">
+          <caret line="80" column="100" lean-forward="false" selection-start-line="80" selection-start-column="100" selection-end-line="80" selection-end-column="100" />
+          <folding>
+            <element signature="n#style#0;n#div#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#li#1;n#ul#0;n#li#0;n#ul#1;n#div#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#li#2;n#ul#0;n#li#0;n#ul#1;n#div#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#li#4;n#ul#0;n#li#0;n#ul#1;n#div#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#li#5;n#ul#0;n#li#0;n#ul#1;n#div#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#li#6;n#ul#0;n#li#0;n#ul#1;n#div#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/pages/management/qm-managementLogin.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="336">
+          <caret line="29" column="40" lean-forward="true" selection-start-line="29" selection-start-column="40" selection-end-line="29" selection-end-column="40" />
+          <folding>
+            <element signature="n#style#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

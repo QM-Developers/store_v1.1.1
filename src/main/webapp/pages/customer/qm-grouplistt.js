@@ -13,7 +13,6 @@ var qm_goruplist = {
         myjs.ajax_post(url, params, function (data)
         {
             data = data.result;
-            console.log(data);
             var item = "";
             for (var i = 0; i < data.length; i++)
                 item += '<tr>' +

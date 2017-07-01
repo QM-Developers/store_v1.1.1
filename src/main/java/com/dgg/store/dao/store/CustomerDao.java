@@ -14,7 +14,7 @@ public interface CustomerDao
 
     List<CustomerVO> findCustomerByGroup(String customerGroupId, String userId);
 
-    CustomerVO findCustomerInfo(String userId);
+    CustomerVO findCustomerInfo(String customerId);
 
     List<MyTeam> findCooperation(String userId);
 
@@ -31,4 +31,10 @@ public interface CustomerDao
     int insertCustomerRecord(CustomerVO customerVO);
 
     Integer insertCustomer(CustomerVO customerVO);
+
+    Integer updateCustomerRecord(CustomerVO customerVO);
+
+    Integer updateCustomerUser(CustomerVO customerVO);
+
+    int findCustomerUpdateCount(String customerId);
 }

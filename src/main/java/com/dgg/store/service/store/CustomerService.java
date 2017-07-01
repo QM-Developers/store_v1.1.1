@@ -24,4 +24,6 @@ public interface CustomerService
     ResultVO findCustomerGroup(SessionVO sessionVO);
 
     ResultVO insertCustomerRecord(CustomerVO customerVO, SessionVO sessionVO);
+
+    ResultVO findCustomerUpdateCount(SessionVO sessionVO,CustomerVO customerVO);
 }

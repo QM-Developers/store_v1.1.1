@@ -401,6 +401,7 @@ create table user
    user_email           varchar(100) not null default '',
    user_create_date     datetime not null default now(),
    user_last_login_time datetime not null default now(),
+   user_update_time 	datetime not null default now(),
    user_status          varchar(10) not null default '',
    user_qq              varchar(20) not null default '',
    uesr_wechat          varchar(20) not null default '',

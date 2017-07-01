@@ -13,7 +13,7 @@ public interface CustomerMapper
 
     Integer insertCustomerGroup(CustomerVO customerVO);
 
-    CustomerVO findCustomerInfo(@Param("userId") String userId);
+    CustomerVO findCustomerInfo(@Param("customerId") String customerId);
 
     List<CustomerVO> findCustomerByGroup(@Param("groupId") String customerGroupId,@Param("userId") String userId);
 
@@ -25,11 +25,17 @@ public interface CustomerMapper
 
     Integer updateCustomer(CustomerVO customerVO);
 
-    Integer insertCustomerHistory(@Param("userId") String customerId);
+    Integer insertCustomerHistory(@Param("customerId") String customerId);
 
     List<CustomerGroupVO> findCustomerGroup();
 
     int insertCustomerRecord(CustomerVO customerVO);
 
     Integer insertCustomer(CustomerVO customerVO);
+
+    Integer updateCustomerRecord(CustomerVO customerVO);
+
+    Integer updateCustomerUser(CustomerVO customerVO);
+
+    int findCustomerUpdateCount(@Param("customerId") String customerId);
 }

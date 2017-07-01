@@ -1,5 +1,7 @@
 package com.dgg.store.util.vo;
 
+import java.util.Date;
+
 public class CustomerVO
 {
     private String userId;
@@ -11,16 +13,17 @@ public class CustomerVO
     private String userAddress;
     private String userSex;
     private String userBirthday;
+    private String userIdentity;
+    private String userImg;
+    private String userStatus;
     private String lngAndLat;
     private String customerRemark;
     private Integer creditRating;
-    private String userIdentity;
-    private String userImg;
     private String customerGroupName;
     private String customerGroupId;
-    private String userStatus;
     private String myTeamId;
     private Integer roleId;
+    private Date userUpdateTime;
 
     public String getCustomerGroupId()
     {
@@ -210,5 +213,15 @@ public class CustomerVO
     public void setLngAndLat(String lngAndLat)
     {
         this.lngAndLat = lngAndLat;
+    }
+
+    public Date getUserUpdateTime()
+    {
+        return userUpdateTime;
+    }
+
+    public void setUserUpdateTime(Date userUpdateTime)
+    {
+        this.userUpdateTime = userUpdateTime;
     }
 }

@@ -85,10 +85,36 @@ public class CustomerServiceImpl implements CustomerService
     @Override
     public ResultVO updateCustomer(SessionVO sessionVO, CustomerVO customerVO)
     {
-        if ("".equals(customerVO.getMyTeamId()))
-            customerVO.setMyTeamId(sessionVO.getMyTeamId());
-        dao.insertCustomerHistory(customerVO.getCustomerId());
-        Integer result = dao.updateCustomer(customerVO);
+        Integer result = 1;
+        int i = 0;
+        int count = 3;
+
+        while (result > 0)
+        {
+            switch (i)
+            {
+                case 0:
+                    result = dao.insertCustomerHistory(customerVO.getCustomerId());
+                    break;
+                case 1:
+                    result = dao.updateCustomerRecord(customerVO);
+                    if (result == 0)
+                        result = dao.updateCustomerUser(customerVO);
+                    break;
+                case 2:
+                    result = dao.updateCustomer(customerVO);
+                    break;
+                default:
+                    result = 0;
+                    break;
+            }
+            i++;
+        }
+
+        if (i - 1 < count)
+            throw new RuntimeException(Constant.STR_ADD_FAILED);
+        else
+            result = 1;
 
         ResultVO resultVO = new ResultVO(result, sessionVO.getToken());
 
@@ -141,6 +167,16 @@ public class CustomerServiceImpl implements CustomerService
             result = 1;
 
         ResultVO resultVO = new ResultVO(result, sessionVO.getToken());
+
+        return resultVO;
+    }
+
+    @Override
+    public ResultVO findCustomerUpdateCount(SessionVO sessionVO,CustomerVO customerVO)
+    {
+        int result = dao.findCustomerUpdateCount(customerVO.getCustomerId());
+
+        ResultVO resultVO = new ResultVO(1,sessionVO.getToken(),result);
 
         return resultVO;
     }

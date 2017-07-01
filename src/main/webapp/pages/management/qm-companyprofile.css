@@ -1,0 +1,256 @@
+
+
+/*seo*/
+
+.companylist {
+	display: block;
+	/*max-width: 1267px;*/
+	/*min-width: 1000px;*/
+	height: 550px;
+	box-sizing: border-box;
+	margin: 10px auto;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	background: #fff;
+}
+
+.companyprofile-title {
+	margin-bottom: 10px;
+	border-bottom: 3px solid #03afef;
+	height: 50px;
+	line-height: 50px;
+}
+
+.companyprofile-leftcont {
+	width: 44%;
+	min-width: 400px;
+	float: left;
+}
+
+.companyprofile-rightcont {
+	width: 56%;
+	margin-top: 40px;
+	min-width: 50px;
+	float: left;
+	
+}
+.companyprofile-butbox{
+	width: 75%;
+	float: left;
+	padding: 0;
+	
+	
+}
+.companyprofile-but{
+	width: 100px;
+	
+	line-height: 40px;
+}
+.companyprofile-buttext{
+	font-size: 14px;
+	display: block;
+}
+
+.companyprofile-imgbox{
+	width: 100%;
+	margin-top: 10px;
+	float: left;
+}
+.companyprofile-imgbox img{
+	display: block;
+	width: 300px;
+	height: 300px;
+	float: left;
+	margin-left:100px;
+	border: 1px solid #CCCCCC;
+}
+.companyprofile-preview{
+	width: 120px;
+	
+	float: left;
+	text-align: center;
+	line-height: 40px;
+	margin-top: 130px;
+	margin-left: 36px;
+	
+	border: 1px solid #CCCCCC;
+}
+/*个人*/
+
+.personage {
+	/*max-width: 1267px;
+	min-width: 1000px;*/
+	height: 300px;
+	margin: auto;
+	background: #fff;
+	padding-bottom: 20px;
+	box-sizing: border-box;
+	border: 1px solid #e7e7e7;
+	border-radius: 5px;
+}
+
+.qm-c-p {
+	    padding-left: 10px;
+	margin-bottom: 0;
+	font-size: 18px;
+}
+
+/*时间按钮*/
+
+.qm-time-but {
+	display: none;
+	border: none;
+	float: right;
+	width: 15%;
+	height: 100%;
+	padding: 0;
+	background: #fff;
+}
+
+.qm-time-but:hover {
+	background: #fff;
+}
+
+.am-popup {
+	height: auto;
+}
+
+.companyprofile-info{
+	height: 50px;
+}
+
+.qm-team input {
+	padding: 0;
+	width: 70%;
+	height: 36px;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	background: #fff;
+	float: left;
+}
+
+.qm-team-input {
+	height: 44px;
+	padding: 4px 0;
+}
+
+ .companyprofile-span {
+	
+	width: 15%;
+	min-width: 90px;
+	/*height: 30px;*/
+	float: left;
+	line-height: 36px;
+	text-align: center;
+	
+	margin: 0 0 0 20px;
+}
+
+.companyprofile-selbox {
+	width: 70%;
+	height: 36px;
+	float: left;
+	padding: 0;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+}
+
+.companyprofile-selbox select {
+	width: 100%;
+	height: 100%;
+	border: 0;
+	outline: none;
+	vertical-align: baseline;
+}
+
+
+/*弹窗2*/
+
+.poptwo-c-ul {
+	margin: 0;
+	padding: 0;
+}
+
+.poptwo-c-li {
+	box-sizing: border-box;
+	height: 55px;
+	padding-top: 10px
+}
+
+.poptwo-c-li input {
+	height: 35px;
+	width: 100%;
+	border: 1px solid #CCCCCC;
+	border-radius: 5px;
+}
+
+.poptwo-c-li div {
+	padding: 0;
+}
+
+.poptwo-c-li .pop-div1 {
+	height: 100%;
+	text-align: right;
+	padding: 3px 10px 0 0;
+}
+
+.poptwo-c-li .pop-div2 {
+	height: 100%;
+}
+
+.poptwo-c-lia {
+	margin-right: 10px;
+	padding-left: 21px;
+	background: url(../../images/yuandian.png) -19px -4px no-repeat;
+}
+
+.poptwo-c-lia1 {
+	background: url(../../images/yuandian.png) -19px -36px no-repeat;
+}
+
+.poptime {
+	width: 100%;
+	height: 32px;
+	border-radius: 5px;
+}
+
+.poptime input {
+	width: 83%;
+	border: none;
+}
+
+.companyprofile-preserve{
+	width: 100%;
+	height: 60px;
+	
+}
+.preserve-but{
+	width: 100px;
+	height: 40px;
+	padding: 2px 20px;
+	margin:10px 0 0 95px;
+	text-align: center;
+	line-height:40px ;
+	background: #FFFFFF;
+	border: 1px solid #ccc;
+}
+
+
+
+/*@media  (min-width:1381px ) {
+    body{
+	font-size: .2rem;		
+	}
+	.companyprofile-span{
+		width: 15%;
+	}
+}
+@media (max-width: 1380px){
+	
+	body{
+	font-size: .16rem;		
+	}
+	.companyprofile-span{
+		width: 12%;
+	}
+}*/

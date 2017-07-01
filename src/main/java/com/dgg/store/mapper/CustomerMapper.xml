@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dgg.store.mapper.CustomerMapper">
     <resultMap id="CustomerVOMap" type="com.dgg.store.util.vo.CustomerVO">
-        <result column="user_id" property="customerId" jdbcType="VARCHAR"/>
+        <result column="user_id" property="userId" jdbcType="VARCHAR"/>
         <result column="user_name" property="userName" jdbcType="VARCHAR"/>
         <result column="user_img" property="userImg" jdbcType="VARCHAR"/>
         <result column="user_phone" property="userPhone" jdbcType="VARCHAR"/>
@@ -10,11 +10,16 @@
         <result column="user_sex" property="userSex" jdbcType="VARCHAR"/>
         <result column="user_birthday" property="userBirthday" jdbcType="VARCHAR"/>
         <result column="user_address" property="userAddress" jdbcType="VARCHAR"/>
+        <result column="user_identity" property="userIdentity" jdbcType="VARCHAR"/>
+        <result column="user_status" property="userStatus" jdbcType="VARCHAR"/>
         <result column="my_team_id" property="myTeamId" jdbcType="VARCHAR"/>
-        <result column="customer_remard" property="customerRemard" jdbcType="VARCHAR"/>
+        <result column="customer_id" property="customerId" jdbcType="VARCHAR"/>
+        <result column="customer_remark" property="customerRemark" jdbcType="VARCHAR"/>
         <result column="customer_group_name" property="customerGroupName" jdbcType="VARCHAR"/>
         <result column="customer_group_id" property="customerGroupId" jdbcType="VARCHAR"/>
-        <result column="user_status" property="userStatus" jdbcType="VARCHAR"/>
+        <result column="credit_rating" property="creditRating" jdbcType="INTEGER"/>
+        <result column="lng_and_lat" property="lngAndLat" jdbcType="VARCHAR"/>
+        <result column="user_update_time" property="userUpdateTime" jdbcType="DATE"/>
     </resultMap>
 
     <resultMap id="MyTeamMap" type="com.dgg.store.util.pojo.MyTeam">
@@ -47,30 +52,27 @@
     </insert>
 
     <select id="findCustomerInfo" resultMap="CustomerVOMap">
-        select u.user_name,u.user_status,u.user_phone,u.user_img,u.user_sex,u.user_birthday,u.user_address,u.user_area,u.my_team_id,c.customer_group_id
-        from customers c
-        right join user u
-        on u.user_id = c.user_id
-        where u.user_id = #{userId}
-    </select>
-
-    <select id="findCustomerByGroup" resultMap="CustomerVOMap">
-        SELECT u.user_id,u.user_name,u.user_sex,u.user_phone,dt_state.dict_name user_status,cg.customer_group_name
+        SELECT u.user_name,dt_state.dict_name user_status,u.user_phone,u.user_img,
+            u.user_sex,u.user_birthday,u.user_address,
+            u.user_area,u.user_create_date,u.lng_and_lat,
+            u.user_identity,c.credit_rating,c.customer_group_id,
+            u.user_update_time
         FROM customer c
-        INNER JOIN customer_group cg
-        ON cg.customer_group_id = c.customer_group_id
-        INNER JOIN user u
+        INNER JOIN user_view u
         ON u.user_id = c.user_id
         INNER JOIN dictionary dt_state
         ON dt_state.dict_code = u.user_status
-        WHERE cg.customer_group_id = #{groupId}
-        AND c.promoter_id = #{userId}
-        UNION
-        SELECT u.user_id,u.user_name,u.user_sex,u.user_phone,dt_state.dict_name user_status,cg.customer_group_name
+        WHERE c.customer_id = #{customerId}
+    </select>
+
+    <select id="findCustomerByGroup" resultMap="CustomerVOMap">
+        SELECT u.user_name,u.user_sex,u.user_phone,dt_state.dict_name user_status,
+          c.customer_id,
+          cg.customer_group_name
         FROM customer c
         INNER JOIN customer_group cg
         ON cg.customer_group_id = c.customer_group_id
-        INNER JOIN user_record u
+        INNER JOIN user_view u
         ON u.user_id = c.user_id
         INNER JOIN dictionary dt_state
         ON dt_state.dict_code = u.user_status
@@ -104,32 +106,29 @@
     </select>
 
     <update id="updateCustomer" parameterType="com.dgg.store.util.vo.CustomerVO">
-        UPDATE user
+        UPDATE customer
         <set>
-            <if test="userName != null">
-                user_name = #{userName},
+            <if test="customerRemark != null">
+                customer_remark = #{customerRemark},
             </if>
-            <if test="userArea != null">
-                user_area = #{userArea},
+            <if test="creditRating != null">
+                credit_rating = #{creditRating},
             </if>
-            <if test="userAddress != null">
-                user_address = #{userAddress},
-            </if>
-            <if test="userSex != null">
-                user_sex = #{userSex},
-            </if>
-            <if test="userBirthday != null">
-                user_birthday = #{userBirthday},
+            <if test="promoterId != null and promoterId != ''">
+                promoter_id = #{promoterId},
             </if>
         </set>
-        WHERE user_phone = #{userPhone} AND my_team_id = #{myTeamId}
+        WHERE customer_id = #{customerId}
     </update>
 
     <insert id="insertCustomerHistory">
-        INSERT INTO user_records(user_id, team_classify_id, my_team_id, role_id, user_name, user_password, user_sex, user_phone, user_birthday, user_address, user_area, user_email, user_last_login_time, user_status, user_qq, uesr_wechat, user_img, user_nickname, hx_name, hx_password,user_create_date)
-        SELECT user_id, team_classify_id, my_team_id, role_id, user_name, user_password, user_sex, user_phone, user_birthday, user_address, user_area, user_email, user_last_login_time, user_status, user_qq, uesr_wechat, user_img, user_nickname, hx_name, hx_password,now()
-        FROM user
-        WHERE user_id = #{userId}
+        INSERT INTO user_history
+        (user_id, my_team_id, team_department_id, role_id, user_name, user_password, user_sex, user_phone, user_birthday, user_address, user_area, user_email, user_create_date, user_last_login_time, user_status, user_qq, uesr_wechat, user_img, user_nickname, token, is_deleted, delete_date, lng_and_lat, user_identity)
+        SELECT u.user_id, u.my_team_id, u.team_department_id, u.role_id, u.user_name, u.user_password, u.user_sex, u.user_phone, u.user_birthday, u.user_address, u.user_area, u.user_email, u.user_create_date, u.user_last_login_time, u.user_status, u.user_qq, u.uesr_wechat, u.user_img, u.user_nickname, u.token, u.is_deleted, u.delete_date, u.lng_and_lat, u.user_identity
+        FROM user_view u
+        INNER JOIN customer c
+        ON c.user_id = u.user_id
+        WHERE c.customer_id = #{customerId}
     </insert>
 
     <insert id="insertCustomerRecord" parameterType="com.dgg.store.util.vo.CustomerVO">
@@ -151,4 +150,69 @@
         VALUES (#{userId},#{customerId},#{customerGroupId},
             #{creditRating},#{promoterId})
     </insert>
+
+    <update id="updateCustomerRecord" parameterType="com.dgg.store.util.vo.CustomerVO">
+        UPDATE user_record
+        <set>
+            <if test="userName != null and userName != ''">
+                user_name = #{userName},
+            </if>
+            <if test="userSex != null and userSex != ''">
+                user_sex = #{userSex},
+            </if>
+            <if test="userPhone != null and userPhone != ''">
+                user_phone = #{userPhone},
+            </if>
+            <if test="userBirthday != null and userBirthday != ''">
+                user_birthday = #{userBirthday},
+            </if>
+            <if test="userIdentity != null and userIdentity != ''">
+                user_identity = #{userIdentity},
+            </if>
+            <if test="userArea != null and userArea != ''">
+                user_area = #{userArea},
+            </if>
+            <if test="userAddress != null and userAddress != ''">
+                user_address = #{userAddress},
+            </if>
+            user_update_time = NOW(),
+        </set>
+        WHERE user_id = (SELECT user_id FROM customer WHERE customer_id = #{customerId})
+    </update>
+
+    <update id="updateCustomerUser" parameterType="com.dgg.store.util.vo.CustomerVO">
+        UPDATE user
+        <set>
+            <if test="userName != null and userName != ''">
+                user_name = #{userName},
+            </if>
+            <if test="userSex != null and userSex != ''">
+                user_sex = #{userSex},
+            </if>
+            <if test="userPhone != null and userPhone != ''">
+                user_phone = #{userPhone},
+            </if>
+            <if test="userBirthday != null and userBirthday != ''">
+                user_birthday = #{userBirthday},
+            </if>
+            <if test="userIdentity != null and userIdentity != ''">
+                user_identity = #{userIdentity},
+            </if>
+            <if test="userArea != null and userArea != ''">
+                user_area = #{userArea},
+            </if>
+            <if test="userAddress != null and userAddress != ''">
+                user_address = #{userAddress},
+            </if>
+            user_update_time = NOW(),
+        </set>
+        WHERE user_id = (SELECT user_id FROM customer WHERE customer_id = #{customerId})
+    </update>
+
+    <select id="findCustomerUpdateCount" resultType="java.lang.Integer">
+        SELECT COUNT(1)
+        FROM user_history
+        WHERE user_id =
+        (SELECT user_id FROM customer WHERE customer_id = #{customerId});
+    </select>
 </mapper>

@@ -34,9 +34,9 @@ public class CustomerDaoImpl implements CustomerDao
     }
 
     @Override
-    public CustomerVO findCustomerInfo(String userId)
+    public CustomerVO findCustomerInfo(String customerId)
     {
-        return mapper.findCustomerInfo(userId);
+        return mapper.findCustomerInfo(customerId);
     }
 
     @Override
@@ -85,6 +85,24 @@ public class CustomerDaoImpl implements CustomerDao
     public Integer insertCustomer(CustomerVO customerVO)
     {
         return mapper.insertCustomer(customerVO);
+    }
+
+    @Override
+    public Integer updateCustomerRecord(CustomerVO customerVO)
+    {
+        return mapper.updateCustomerRecord(customerVO);
+    }
+
+    @Override
+    public Integer updateCustomerUser(CustomerVO customerVO)
+    {
+        return mapper.updateCustomerUser(customerVO);
+    }
+
+    @Override
+    public int findCustomerUpdateCount(String customerId)
+    {
+        return mapper.findCustomerUpdateCount(customerId);
     }
 
 }

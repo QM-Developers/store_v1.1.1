@@ -10,58 +10,66 @@
     <script type="text/javascript">
         var path = "${path}";
         var basePath = "${basePath}";
-
-        var groupId = document.URL.split("?")[1];
     </script>
-    <meta charset="UTF-8">
-    <title></title>
     <link rel="stylesheet" type="text/css" href="${path}/script/Amaze/assets/css/amazeui.min.css"/>
     <link rel="stylesheet" type="text/css" href="${path}/pages/common/reset.css"/>
-    <link rel="stylesheet" type="text/css" href="${path}/pages/customer/qm-grouplistt.css"/>
+    <link rel="stylesheet" type="text/css" href="${path}/pages/management/qm-enterpriselistt.css"/>
 </head>
 
 <body>
-<div class="groupheader">
+<div class=" department-header">
+    <!--头部容器-->
+    <div class=" department-header-left">
+        <button class="department-but1"><a href="add-departments.jsp">添加部门</a></button>
+        <button class="department-but1"><a href="qm-member.jsp">添加成员</a></button>
 
+    </div>
 </div>
-
 <div class="emptydata">
-    <!---->
     <div class="Corporationlist">
         <div class="am-g qm-team1">
             <div class="groupdata-title">
-                <div class="qm-list">客户列表</div>
-                <div class="qm-compile">
-                    <select name="">
-                        <option value="">有/无账号</option>
-                        <option value="">已建账号</option>
-                        <option value=""></option>
-                    </select>
-                </div>
-
+                <div class="qm-list">公司列表</div>
+                <div class="qm-compile"><span class="qm-compile-but">编辑部门</span><i class="compile-icon"></i></div>
+                <div class="qm-compile-seek"><input type="" name="" id="" value=""/><span></span></div>
             </div>
+
             <div class="am-u-sm-12 qm-team1-box">
+
                 <table class="am-table ">
-                    <thead>
+
+                    <tbody>
                     <tr>
                         <th>姓名</th>
                         <th>性别</th>
                         <th>联系电话</th>
-                        <th>客户类型</th>
-                        <th>建账状态</th>
+                        <th>部门</th>
+                        <th>职位</th>
                         <th>操作</th>
                     </tr>
-                    </thead>
-                    <tbody id="customer-list">
+                    <tr>
+                        <td>忘忧果</td>
+                        <td>男</td>
+                        <td>10086010110</td>
+                        <td>财务部</td>
+                        <td>负责人</td>
+
+                        <td>
+                            <a class="personnel-details" href="">编辑</a>
+                        </td>
+                    </tr>
+
                     </tbody>
                 </table>
                 <div class="paging">
+
                     <div class="pagingright">
                         下一页
                     </div>
                     <div class="pagingmodle">
                         <span>1</span>/<span>4</span>
                     </div>
+
                     <div class="pagingleft">
                         上一页
                     </div>
@@ -72,18 +80,24 @@
                     </div>
                 </div>
             </div>
+
         </div>
+
     </div>
+
 </div>
+<!--<div class="am-g">
+
+    <div class="del-but-box">
+        <button class="del-but">返回</button>
+    </div>
+
+</div>-->
+
 </body>
 <script type="text/javascript" src="${path}/script/jquery/jquery-3.0.0.min.js"></script>
 <script type="text/javascript" src="${path}/script/Amaze/assets/js/amazeui.min.js"></script>
 <script type="text/javascript" src="${path}/script/js/myjs.js"></script>
 <script type="text/javascript" src="${path}/pages/common/control.js"></script>
-<script type="text/javascript" src="${path}/pages/customer/qm-grouplistt.js"></script>
-
-<script type="text/javascript">
-    qm_goruplist.init();
-</script>
 
 </html>

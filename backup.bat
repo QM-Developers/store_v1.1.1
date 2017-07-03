@@ -1,4 +1,4 @@
-mysqldump -uyf -pDggyf@321 dgg_store>./dgg_store-v1.1.1.sql
+mysqldump -uyf -pDggyf@321 store_v1_1_1>./dgg_store-v1.1.1.sql
 
 git st
 git add *

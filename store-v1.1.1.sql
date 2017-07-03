@@ -23,6 +23,7 @@ create table customer
    promoter_id			varchar(35) not null default '',
    customer_id			varchar(35) not null default '',
    customer_group_id    varchar(35) not null default '',
+   my_team_id 			varchar(35) not null default '',
    customer_remard      varchar(20) not null default '',
    credit_rating		tinyint not null default 0,
    primary key (customer_id)

@@ -14,6 +14,10 @@
     <link rel="stylesheet" type="text/css" href="${path}/script/Amaze/assets/css/amazeui.min.css"/>
     <link rel="stylesheet" type="text/css" href="${path}/pages/common/reset.css"/>
     <link rel="stylesheet" type="text/css" href="${path}/pages/management/qm-enterpriselistt.css"/>
+
+    <script type="text/javascript">
+        var departmentId = document.URL.split("?")[1];
+    </script>
 </head>
 
 <body>
@@ -99,5 +103,10 @@
 <script type="text/javascript" src="${path}/script/Amaze/assets/js/amazeui.min.js"></script>
 <script type="text/javascript" src="${path}/script/js/myjs.js"></script>
 <script type="text/javascript" src="${path}/pages/common/control.js"></script>
+<script type="text/javascript" src="${path}/pages/management/qm-enterpriselistt.js"></script>
+
+<script type="text/javascript">
+    qm_memberList.init();
+</script>
 
 </html>

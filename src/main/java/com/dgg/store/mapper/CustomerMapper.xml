@@ -146,9 +146,9 @@
     <insert id="insertCustomer" parameterType="com.dgg.store.util.vo.CustomerVO">
         INSERT INTO customer (
             user_id, customer_id, customer_group_id,
-            credit_rating, promoter_id)
+            credit_rating, promoter_id,my_team_id)
         VALUES (#{userId},#{customerId},#{customerGroupId},
-            #{creditRating},#{promoterId})
+            #{creditRating},#{promoterId},#{myTeamId})
     </insert>
 
     <update id="updateCustomerRecord" parameterType="com.dgg.store.util.vo.CustomerVO">

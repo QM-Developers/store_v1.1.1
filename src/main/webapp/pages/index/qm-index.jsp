@@ -11,7 +11,6 @@
     <script type="text/javascript">
         var path = "${path}";
         var basePath = "${basePath}";
-        var roleId = "${sessionScope.loginInfo.roleId}";
     </script>
     <meta charset="utf-8"/>
     <meta http-equiv="content-type" content=""/>
@@ -20,6 +19,10 @@
     <link rel="stylesheet" href="${path}/script/Amaze/assets/css/amazeui.css"/>
     <link rel="stylesheet" href="${path}/script/Amaze/assets/css/admin.css">
     <link rel="stylesheet" type="text/css" href="${path}/pages/index/qm-index.css"/>
+
+    <script type="text/javascript">
+        var roleId = "${sessionScope.loginInfo.roleId}";
+    </script>
 </head>
 
 <body>
@@ -78,7 +81,9 @@
                     </a>
                     <ul class="am-list am-collapse admin-sidebar-sub" id="user-nav2">
                         <li class="menu-li">
-                            <a target="_blank" href="${path}/pages/management/qm-managementLogin.jsp" class="am-cf menu-li-a"><span class="am-icon-angle-double-right am-fr am-margin-right"></span>系统管理</a>
+                            <a target="_blank" href="${path}/qm-sys-login.jsp" class="am-cf menu-li-a">
+                                <span class="am-icon-angle-double-right am-fr am-margin-right"></span>系统管理
+                            </a>
                         </li>
                         <li class="menu-li mygroup" onmouseenter="Mouseon(this)" onmouseleave="Mouseout(this)">
                             <a target="iFrame0" href="javascript:void(0)" class="am-cf menu-li-a"><span class="am-icon-angle-double-right am-fr am-margin-right"></span>

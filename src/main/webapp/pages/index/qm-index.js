@@ -1,57 +1,56 @@
+var qm_index = {
+    toManage: function ()
+    {
+        window.open(path + "/qm-sys-login.jsp");
+    },
+};
+
 var status = 1;
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-function getStyleAttr(obj, attr) {
-	//最终样式
-	var styleObj = obj.currentStyle || getComputedStyle(obj, null);
-	return styleObj[attr];
+function getStyleAttr(obj, attr)
+{
+    //最终样式
+    var styleObj = obj.currentStyle || getComputedStyle(obj, null);
+    return styleObj[attr];
 }
 
-function switchSysBar(item) {
-	
-	var switchPoint = document.getElementById("switchPoint");//获取小按钮
-	var frmTitle = document.getElementById("frmTitle");//获取iframe	
-	
+function switchSysBar(item)
+{
 
-	if(1 == window.status) {
-		window.status = 0;		
+    var switchPoint = document.getElementById("switchPoint");//获取小按钮
+    var frmTitle = document.getElementById("frmTitle");//获取iframe
 
-		frmTitle.style.display = "none"
-	} else {
-		window.status = 1;		
 
-		frmTitle.style.display = ""
-	}
+    if (1 == window.status)
+    {
+        window.status = 0;
+
+        frmTitle.style.display = "none"
+    } else
+    {
+        window.status = 1;
+
+        frmTitle.style.display = ""
+    }
 
 }
-function iFrameHeight() {
+function iFrameHeight()
+{
 
-	var ifm = document.getElementById("iframepage");
-	var subWeb = document.frames ? document.frames["iframepage"].document :
-		ifm.contentDocument;
-	if(ifm != null && subWeb != null) {
-		ifm.height = subWeb.body.scrollHeight;
-	}
+    var ifm = document.getElementById("iframepage");
+    var subWeb = document.frames ? document.frames["iframepage"].document :
+        ifm.contentDocument;
+    if (ifm != null && subWeb != null)
+    {
+        ifm.height = subWeb.body.scrollHeight;
+    }
 }
 
 
-
-  Menu = function(){
-	$(".client").css("display","block")
+Menu = function ()
+{
+    $(".client").css("display", "block")
 }
 
 //Menuli = function(item) {

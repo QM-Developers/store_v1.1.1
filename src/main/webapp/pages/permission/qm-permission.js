@@ -14,14 +14,6 @@ var permissionJS = {
             };
 
             $.fn.zTree.init($("#permissionTree"), setting, data);
-            var item = "";
-            item += '<option value="0">--无--</option>';
-            for (var i = 0; i < data.length; i++)
-                if (myjs.isNull(data[i]["url"]))
-                    item += '<option value="' + data[i]["id"] + '">' + data[i]["name"] + '</option>';
-
-            $("#permissionPid").empty();
-            $("#permissionPid").append(item);
         });
     },
 
@@ -30,7 +22,15 @@ var permissionJS = {
         $("#permissionName").val(treeNode.name);
         $("#permissionUrl").val(treeNode.url);
         $("#permissionId").val(treeNode.id);
+        $("#permissionPid").empty();
+        var item = '';
         var pNode = treeNode.getParentNode();
+        if (!myjs.isNull(pNode))
+            item += '<option value="' + pNode.id + '">' + pNode.name + '</option>';
+        else
+            item = '<option value="0">无</option>';
+
+        $("#permissionPid").append(item);
     },
 
     saveOrUpdatePermission: function ()
@@ -41,7 +41,7 @@ var permissionJS = {
             'permissionId': permissionId,
             'permissionName': $("#permissionName").val(),
             'permissionUrl': $("#permissionUrl").val(),
-            'permissionPid': $("#permissionPid").val()
+            'permissionPid':$("#permissionPid").val()
         };
 
         if (myjs.isNull(permissionId))
@@ -55,24 +55,35 @@ var permissionJS = {
         });
     },
 
-    addPermission: function ()
+    addPermission:function ()
     {
         $("#permissionId").val('');
         $("#permissionName").val('');
         $("#permissionUrl").val('');
+        $("#permissionPid").empty();
+
+        var treeObj = $.fn.zTree.getZTreeObj("permissionTree");
+        var nodes = treeObj.getSelectedNodes();
+        var treeNode = nodes[0];
+        var item = '';
+        item += '<option value="0">无</option>';
+        if (!myjs.isNull(treeNode))
+            item += '<option value="' + treeNode.id + '">' + treeNode.name + '</option>';
+
+        $("#permissionPid").append(item);
     },
 
-    delPermission: function ()
+    delPermission:function ()
     {
         var treeObj = $.fn.zTree.getZTreeObj("permissionTree");
         var nodes = treeObj.getSelectedNodes();
 
-        if (myjs.isNull(nodes))
+        if(myjs.isNull(nodes))
         {
             alert("请选择一条权限");
             return;
         }
-        if (nodes[0].isParent)
+        if(nodes[0].isParent)
         {
             alert("不能选择权限集合");
             return;
@@ -81,19 +92,14 @@ var permissionJS = {
         if (confirm("确定删除吗？"))
         {
             var url = path + "/s/deletePermission.action";
-            var params = {'permissionId': $("#permissionId").val()};
+            var params = { 'permissionId' :$("#permissionId").val()};
 
-            myjs.ajax_post(url, params, function (data)
+            myjs.ajax_post(url,params,function (data)
             {
+                console.log(data);
                 permissionJS.initTree();
             });
         }
     },
 
-    cancelUpdate:function ()
-    {
-        $("#permissionId").val("");
-        $("#permissionName").val("");
-        $("#permissionUrl").val("");
-    },
 };

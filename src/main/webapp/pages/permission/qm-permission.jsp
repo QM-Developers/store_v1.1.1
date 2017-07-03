@@ -36,11 +36,11 @@
                 </div>
                 <br/>
                 <div class="">
-                    <button type="button" onclick="permissionJS.saveOrUpdatePermission();" class="am-btn am-btn-primary am-btn-sm">保 存
+                    <button type="button" onclick="permissionJS.saveOrUpdatePermission()" class="am-btn am-btn-primary am-btn-sm">保 存
                     </button>
-                    <button type="button" onclick="permissionJS.cancelUpdate();" class="am-btn am-btn-default am-btn-sm">取 消</button>
+                    <button type="button" class="am-btn am-btn-default am-btn-sm">取 消</button>
                 </div>
-                <hidden id="permissionId"/>
+                <hidden id="permissionId" value=""></hidden>
             </div>
         </div>
     </div>

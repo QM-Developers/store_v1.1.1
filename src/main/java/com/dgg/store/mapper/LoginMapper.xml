@@ -14,15 +14,22 @@
     </resultMap>
 
     <select id="findLoginUser" parameterType="com.dgg.store.util.vo.LoginVO" resultMap="LoginRepMap">
-        SELECT u.user_id, u.user_name, u.user_phone, u.user_img,u.user_area, u.token, u.role_id,u.my_team_id,u.team_department_id,td.department_type
-        FROM user u
-        LEFT JOIN team_department td
-        ON td.team_department_id = u.team_department_id
-        WHERE u.user_phone = #{userPhone}
-        AND u.user_password = #{userPassword}
-        AND u.my_team_id IN
-        (SELECT my_team_id t FROM my_team t WHERE t.my_team_pid = #{myTeamId} OR t.my_team_id = #{myTeamId})
+            SELECT u.user_id, u.user_name, u.user_phone, u.user_img,u.user_area, u.token, u.role_id,u.my_team_id,u.team_department_id
+            FROM user u
+            LEFT JOIN customer c
+            ON c.my_team_id = u.my_team_id
+            WHERE u.user_phone = #{userPhone}
+            AND u.user_password = #{userPassword}
+            AND (u.my_team_id = #{myTeamId} OR c.my_team_id = #{myTeamId})
     </select>
+    <!--&#45;&#45;         SELECT u.user_id, u.user_name, u.user_phone, u.user_img,u.user_area, u.token, u.role_id,u.my_team_id,u.team_department_id,td.department_type-->
+    <!--&#45;&#45;         FROM user u-->
+    <!--&#45;&#45;         LEFT JOIN team_department td-->
+    <!--&#45;&#45;         ON td.team_department_id = u.team_department_id-->
+    <!--&#45;&#45;         WHERE u.user_phone = #{userPhone}-->
+    <!--&#45;&#45;         AND u.user_password = #{userPassword}-->
+    <!--&#45;&#45;         AND u.my_team_id IN-->
+    <!--&#45;&#45;         (SELECT my_team_id t FROM my_team t WHERE t.my_team_pid = #{myTeamId} OR t.my_team_id = #{myTeamId})-->
 
     <update id="updateToken">
         UPDATE user

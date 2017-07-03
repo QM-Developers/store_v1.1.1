@@ -23,7 +23,6 @@
     <div class=" department-header-left">
         <button class="department-but1"><a href="add-departments.jsp">添加部门</a></button>
         <button class="department-but1"><a href="qm-member.jsp">添加成员</a></button>
-
     </div>
 </div>
 <div class="Corporation">
@@ -32,26 +31,20 @@
             <h4 class="qm-c-p">新建部门</h4>
         </div>
         <div class="qm-teambox">
-
             <div class="qm-team-input">
-                <span class="companyprofile-span">公司名称:</span><input/>
+                <span class="companyprofile-span">部门名称:</span><input/>
             </div>
-
             <div class=" qm-team-input">
-
                 <span class="companyprofile-span">成立时间:</span>
-
                 <div class="poptime">
-                    <input class=" pop-input" type="" name="" value=""/>
+                    <input class="pop-input"/>
                     <button onclick="QmTime(this)" class="am-btn am-btn-default databut am-icon-calendar qm-time-but" data-am-datepicker="{format: 'yyyy-mm-dd'}" type="button"></button>
                 </div>
-
             </div>
         </div>
         <div class="jurisdiction-box">
             <div class="jurisdiction-but" onclick="Power()">权限管理</div>
         </div>
-
     </div>
     <div class="position">
 
@@ -61,12 +54,11 @@
         <div class="position-contbox" id="Contbox">
             <div class="position-cont">
                 <div class="position-input">
-                    <input type="" name="" id="" value=""/>
+                    <input id=""/>
                 </div>
                 <div class="position-duty" onclick="DutyPower()">职位权限</div>
                 <div class="position-del" onclick="Delduty(this)">x</div>
             </div>
-
         </div>
     </div>
 </div>
@@ -105,7 +97,7 @@
         <div class="duty-frame1 duty-one2">
             <div class="duty-input">
                 <span>职位名称</span>
-                <input type=""/>
+                <input/>
             </div>
             <div>
                 <table class="am-table" style="border-collapse: collapse;">
@@ -215,7 +207,7 @@
         <div class="duty-frame1 duty-one2">
             <div class="duty-input">
                 <span>部门名称</span>
-                <input type=""/>
+                <input/>
             </div>
             <div class="duty-table">
                 <table class="am-table" style="border-collapse: collapse;">
@@ -416,7 +408,7 @@
     {
         var $dutynode = '<div class="position-cont">' +
             '<div class="position-input">' +
-            '<input type="" name="" id="" value="" />' +
+            '<input id="" />' +
             '</div>' +
             '<div class="position-duty" onclick="DutyPower()">职位权限</div>' +
             '<div class="position-del" onclick="Delduty(this)">x</div>' +
@@ -427,7 +419,10 @@
 
     Delduty = function (item)
     {
-        $(item).parents(".position-cont").remove()
+        var $cont = $(item).parents('#Contbox').find(".position-cont").length;
+        if ($cont == 1)
+            return;
+        $(item).parents(".position-cont").remove();
     }
     PromptOff = function (item)
     {

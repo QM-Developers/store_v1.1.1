@@ -24,17 +24,17 @@
     </select>
 
     <delete id="cleanPermissionRE" parameterType="com.dgg.store.util.pojo.Permission">
-        DELETE FROM user_permission_re
+        DELETE FROM role_permission_re
         WHERE permission_id = #{permissionId}
     </delete>
 
     <delete id="delete">
-        DELETE FROM dgg_store.permission
+        DELETE FROM permission
         WHERE permission_id = #{permissionId}
     </delete>
 
     <update id="updatePermission" parameterType="com.dgg.store.util.pojo.Permission">
-        UPDATE dgg_store.permission
+        UPDATE permission
         <set>
             <if test="permissionName != null and permissionName != ''">
                 permission_name = #{permissionName},
@@ -57,7 +57,7 @@
 
     <select id="findPermissionById" resultMap="BaseResultMap">
         SELECT p.permission_id, p.permission_name, p.permission_url, p.permission_pid
-        FROM dgg_store.permission p
+        FROM permission p
         WHERE p.permission_id = #{permissionId}
     </select>
 </mapper>

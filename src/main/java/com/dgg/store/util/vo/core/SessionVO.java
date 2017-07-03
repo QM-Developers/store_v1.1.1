@@ -3,6 +3,7 @@ package com.dgg.store.util.vo.core;
 public class SessionVO
 {
     private String userId;
+    private String userPhone;
     private String userName;
     private String userImg;
     private String roleId;
@@ -89,5 +90,15 @@ public class SessionVO
     public void setDepartmentType(String departmentType)
     {
         this.departmentType = departmentType;
+    }
+
+    public String getUserPhone()
+    {
+        return userPhone;
+    }
+
+    public void setUserPhone(String userPhone)
+    {
+        this.userPhone = userPhone;
     }
 }

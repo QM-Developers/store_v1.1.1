@@ -51,6 +51,7 @@ public class LoginServiceImpl implements LoginService
 
         sessionVO.setRoleId(vo.getRoleId());
         sessionVO.setUserId(vo.getUserId());
+        sessionVO.setUserPhone(vo.getUserPhone());
         sessionVO.setUserName(vo.getUserName());
         sessionVO.setUserImg(vo.getUserImg());
         sessionVO.setMyTeamId(vo.getMyTeamId());

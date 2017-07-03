@@ -71,7 +71,7 @@ table {
 	height: 20px;
 	margin-top: 10px;
 	float: right;
-	background: url(../../images/compile.png) no-repeat;
+	background: url(../images/compile.png) no-repeat;
 }
 
 .qm-compile-seek {
@@ -96,7 +96,7 @@ table {
 	float: right;
 	width: 36px;
 	height: 32px;
-	background:url(../../images/css.png) -175px -15px no-repeat;
+	background:url(../images/css.png) -175px -15px no-repeat;
 	background-color: #CCCCCC;
 }
 

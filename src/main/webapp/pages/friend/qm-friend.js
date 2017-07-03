@@ -582,6 +582,9 @@ var friendJS = {
         $("#" + fid + "_chat").parent(".chatroom").show();
     },
 
+    /**
+     * 更新好友备注信息
+     */
     updateFriendRemark: function ()
     {
         var url = path + "/user_updateFriendRemark.action";
@@ -596,6 +599,9 @@ var friendJS = {
         });
     },
 
+    /**
+     * 获取未读消息
+     */
     findNotReadMessage: function ()
     {
         var url = path + "/user_findNotReadChatHistoryCount.action";

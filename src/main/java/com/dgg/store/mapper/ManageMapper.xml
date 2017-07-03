@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dgg.store.mapper.ManageMapper">
+    <resultMap id="MenuVO" type="com.dgg.store.util.vo.manage.ManageMenuVO">
+        <result column="name" property="menuName" jdbcType="VARCHAR"/>
+        <result column="id" property="id" jdbcType="VARCHAR"/>
+        <result column="count" property="number" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <select id="findLoginUser" parameterType="com.dgg.store.util.vo.LoginVO" resultType="java.lang.Integer">
+        SELECT COUNT(1)
+        FROM user u
+        WHERE u.user_id = #{userId}
+        AND u.user_password = #{userPassword}
+    </select>
+
+    <select id="findTeamAndMemberCount" resultMap="MenuVO">
+        SELECT mt.my_team_name name,(SELECT COUNT(1) FROM user WHERE my_team_id = mt.my_team_id) count
+        FROM my_team mt
+        WHERE my_team_id = #{myTeamId}
+    </select>
+
+    <select id="findDepartmentAndMemberCount" resultMap="MenuVO">
+        SELECT td.team_department_name name,td.team_department_id id,(SELECT COUNT(1) FROM user WHERE team_department_id = td.team_department_id) count
+        FROM team_department td
+        WHERE td.my_team_id = #{myTeamId}
+    </select>
+</mapper>

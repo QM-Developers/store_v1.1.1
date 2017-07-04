@@ -24,7 +24,7 @@
 <div class=" department-header">
     <!--头部容器-->
     <div class=" department-header-left">
-        <button class="department-but1"><a href="add-departments.jsp">添加部门</a></button>
+        <button class="department-but1"><a href="qm-departments.jsp">添加部门</a></button>
         <button class="department-but1"><a href="qm-member.jsp">添加成员</a></button>
 
     </div>

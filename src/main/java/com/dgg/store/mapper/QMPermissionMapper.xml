@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dgg.store.mapper.QMPermissionMapper">
+    <resultMap id="TreeMap" type="com.dgg.store.util.vo.core.TreeVO">
+        <result column="qm_permission_id" property="id" jdbcType="VARCHAR"/>
+        <result column="qm_permission_name" property="name" jdbcType="VARCHAR"/>
+        <result column="qm_permission_pid" property="pId" jdbcType="VARCHAR"/>
+        <result column="qm_permission_describe" property="url" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <insert id="insertQMPermission" parameterType="com.dgg.store.util.vo.permission.QMPermissionVO">
+        INSERT INTO qm_permission
+          (qm_permission_id, qm_permission_name, qm_permission_describe,
+          qm_permission_pid)
+        VALUES
+          (#{permissionId},#{permissionName},#{permissionDescribe},
+          #{permissionPid})
+    </insert>
+
+    <select id="findQMPermissionTree" resultMap="TreeMap">
+        SELECT qm_permission_id, qm_permission_name, qm_permission_describe,
+          qm_permission_pid
+        FROM qm_permission
+    </select>
+
+    <insert id="insertQMPermissionRe">
+        INSERT INTO qm_permission_re
+          (permission_id, qm_permission_id)
+        VALUES
+        <foreach collection="ids" index="index" item="id" open="" separator="," close="">
+            (#{permissionId},#{id})
+        </foreach>
+    </insert>
+
+    <delete id="cleanQMPermissionRe">
+        DELETE FROM qm_permission_re
+        WHERE permission_id = #{permissionId}
+    </delete>
+
+    <update id="updateQMPermission" parameterType="com.dgg.store.util.vo.permission.QMPermissionVO">
+        UPDATE qm_permission
+        <set>
+            <if test="permissionName != null and permissionName != ''">
+                qm_permission_name = #{permissionName},
+            </if>
+            <if test="permissionDescribe != null and permissionDescribe != ''">
+                qm_permission_describe = #{permissionDescribe},
+            </if>
+            <if test="permissionPid != null and permissionPid != ''">
+                qm_permission_pid = #{permissionPid},
+            </if>
+        </set>
+        WHERE qm_permission_id = #{permissionId}
+    </update>
+</mapper>

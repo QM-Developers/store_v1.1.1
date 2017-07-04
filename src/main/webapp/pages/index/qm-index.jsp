@@ -28,7 +28,7 @@
 <body>
 <div class="qm-header">
     <div class="logo-box">
-        <img src="../../images/ceshi3.jpg"/>
+        <img src="../images/ceshi3.jpg"/>
     </div>
     <div class="qm-logo">
         青麦科技
@@ -47,7 +47,7 @@
     <div class="main_left" id="frmTitle" name="fmTitle">
         <!--1-->
         <div class="sidebar-img">
-            <img src='../../images/ceshi3.jpg' alt="..." class="am-img-thumbnail ">
+            <img src='../images/ceshi3.jpg' alt="..." class="am-img-thumbnail ">
             <div class="sidebar-text">
                 <span><i>姓名 : </i>梦悠然</span><span><i>账号 : </i>1314520</span>
             </div>
@@ -127,7 +127,9 @@
                         </li>
 
                         <li class="menu-li">
-                            <a target="iframepage" href="../friend/qm-friend.html" class="am-cf menu-li-a"><span class="am-icon-angle-double-right am-fr am-margin-right"></span>我的好友</a>
+                            <a target="iframepage" href="../friend/qm-friend.jsp" class="am-cf menu-li-a">
+                                <span class="am-icon-angle-double-right am-fr am-margin-right"></span>我的好友
+                            </a>
                         </li>
                         <li class="menu-li myclient" onmouseenter="Mouseon(this)" onmouseleave="Mouseout(this)">
                             <a target="iFrame0" href="javascript:void(0)" class="am-cf menu-li-a"><span class="am-icon-angle-double-right am-fr am-margin-right"></span>
@@ -202,10 +204,8 @@
     //----------
 
     IconTab = function(item) {
-        console.log("1111")
         var $icon = $(item).find("i").eq(1);
         if($icon.hasClass("am-icon-angle-double-right")) {
-            console.log("1111")
             $icon.removeClass("am-icon-angle-double-right")
             $icon.addClass("am-icon-angle-double-down")
         } else {
@@ -224,12 +224,10 @@
         if(1 == window.status) {
             window.status = 0;
             //		Mainright.style.marginLeft = "0px";
-
             frmTitle.style.display = "none"
         } else {
             window.status = 1;
             //		Mainright.style.marginLeft = "190px";
-
             frmTitle.style.display = ""
         }
 

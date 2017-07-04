@@ -1,11 +1,9 @@
 package com.dgg.store.controller.store;
 
-import com.dgg.store.service.store.ManageService;
+import com.dgg.store.service.store.QMPermissionService;
 import com.dgg.store.util.core.constant.Constant;
-import com.dgg.store.util.vo.LoginVO;
 import com.dgg.store.util.vo.core.ResultVO;
 import com.dgg.store.util.vo.core.SessionVO;
-import com.dgg.store.util.vo.manage.MemberVO;
 import com.dgg.store.util.vo.permission.QMPermissionVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,35 +14,35 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.servlet.http.HttpServletRequest;
 
 @Controller
-public class ManageController
+public class QMPermissionController
 {
     @Autowired
-    private ManageService service;
+    private QMPermissionService service;
 
-    @RequestMapping(value = "/s/login",method = RequestMethod.POST)
+    @RequestMapping(value = "/s/findQMPermissionTree.action",method = RequestMethod.POST)
     @ResponseBody
-    public ResultVO login(HttpServletRequest request, LoginVO loginVO)
+    public ResultVO findQMPermissionTree(HttpServletRequest request)
     {
         SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
 
-        return service.findLoginUser(sessionVO,loginVO);
+        return service.findQMPermissionTree(sessionVO);
     }
 
-    @RequestMapping(value = "/s/findTeamAndMemberCount",method = RequestMethod.POST)
+    @RequestMapping(value = "/s/addQMPermission",method = RequestMethod.POST)
     @ResponseBody
-    public ResultVO findTeamAndMemberCount(HttpServletRequest request)
+    public ResultVO addQMPermission(HttpServletRequest request, QMPermissionVO permission)
     {
         SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
 
-        return service.findTeamAndMemberCount(sessionVO);
+        return service.insertQMPermission(sessionVO,permission);
     }
 
-    @RequestMapping(value = "/s/findMemberList",method = RequestMethod.POST)
+    @RequestMapping(value = "/s/updateQMPermission",method = RequestMethod.POST)
     @ResponseBody
-    public ResultVO findMemberList(HttpServletRequest request, MemberVO memberVO)
+    public ResultVO updateQMPermission(HttpServletRequest request,QMPermissionVO permission)
     {
         SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
 
-        return service.findMemberList(sessionVO,memberVO);
+        return service.updateQMPermission(sessionVO,permission);
     }
 }

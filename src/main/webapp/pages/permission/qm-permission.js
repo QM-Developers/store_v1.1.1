@@ -1,5 +1,38 @@
-var permissionJS = {
+var qm_permission = {
     initTree: function ()
+    {
+        qm_permission.findPermissionTree();
+        qm_permission.findQMPermissionTree();
+    },
+
+    findQMPermissionTree:function ()
+    {
+        var url = path + "/s/findQMPermissionTree.action";
+
+        myjs.ajax_post(url, null, function (data)
+        {
+            data = data.result;
+            var setting = {
+                data: {
+                    simpleData: {enable: true},
+                    key: {url: ''}
+                },
+                callback: {onClick: qm_permission.zTreeOnClick}
+            };
+
+            $.fn.zTree.init($("#qm-permission-tree"), setting, data);
+
+            var item = "";
+            item += '<option value="0">--无--</option>';
+            for (var i = 0; i < data.length; i++)
+                if (myjs.isNull(data[i]["url"]))
+                    item += '<option value="' + data[i]["id"] + '">' + data[i]["name"] + '</option>';
+            $("#permissionPid").empty();
+            $("#permissionPid").append(item);
+        });
+    },
+
+    findPermissionTree:function ()
     {
         var url = path + "/s/findPermissionTree.action";
 
@@ -10,7 +43,10 @@ var permissionJS = {
                     simpleData: {enable: true},
                     key: {url: ''}
                 },
-                callback: {onClick: permissionJS.zTreeOnClick}
+                check: {
+                    enable: true
+                },
+                callback: {onClick: qm_permission.zTreeOnClick}
             };
 
             $.fn.zTree.init($("#permissionTree"), setting, data);
@@ -20,38 +56,37 @@ var permissionJS = {
     zTreeOnClick: function (event, treeId, treeNode)
     {
         $("#permissionName").val(treeNode.name);
-        $("#permissionUrl").val(treeNode.url);
+        $("#permissionDescribe").val(treeNode.url);
         $("#permissionId").val(treeNode.id);
-        $("#permissionPid").empty();
-        var item = '';
-        var pNode = treeNode.getParentNode();
-        if (!myjs.isNull(pNode))
-            item += '<option value="' + pNode.id + '">' + pNode.name + '</option>';
-        else
-            item = '<option value="0">无</option>';
-
-        $("#permissionPid").append(item);
     },
 
     saveOrUpdatePermission: function ()
     {
+        var permissionRe = "";
+        var treeObj = $.fn.zTree.getZTreeObj("permissionTree");
+        var nodes = treeObj.getChangeCheckedNodes();
+        for(var i = 0;i<nodes.length;i++)
+            if(!nodes[i].isParent)
+                permissionRe += nodes[i].id+",";
+
         var permissionId = $("#permissionId").val();
         var url = '';
         var params = {
             'permissionId': permissionId,
             'permissionName': $("#permissionName").val(),
-            'permissionUrl': $("#permissionUrl").val(),
-            'permissionPid':$("#permissionPid").val()
+            'permissionDescribe': $("#permissionDescribe").val(),
+            'permissionPid':$("#permissionPid").val(),
+            'permissionRe':permissionRe
         };
 
         if (myjs.isNull(permissionId))
-            url = path + "/s/addPermission.action";
+            url = path + "/s/addQMPermission.action";
         else
-            url = path + "/s/updatePermission.action";
+            url = path + "/s/updateQMPermission.action";
 
         myjs.ajax_post(url, params, function (data)
         {
-            permissionJS.initTree();
+            qm_permission.initTree();
         });
     },
 
@@ -59,18 +94,7 @@ var permissionJS = {
     {
         $("#permissionId").val('');
         $("#permissionName").val('');
-        $("#permissionUrl").val('');
-        $("#permissionPid").empty();
-
-        var treeObj = $.fn.zTree.getZTreeObj("permissionTree");
-        var nodes = treeObj.getSelectedNodes();
-        var treeNode = nodes[0];
-        var item = '';
-        item += '<option value="0">无</option>';
-        if (!myjs.isNull(treeNode))
-            item += '<option value="' + treeNode.id + '">' + treeNode.name + '</option>';
-
-        $("#permissionPid").append(item);
+        $("#permissionDescribe").val('');
     },
 
     delPermission:function ()
@@ -97,7 +121,7 @@ var permissionJS = {
             myjs.ajax_post(url,params,function (data)
             {
                 console.log(data);
-                permissionJS.initTree();
+                qm_permission.initTree();
             });
         }
     },

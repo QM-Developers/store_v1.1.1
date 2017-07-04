@@ -256,6 +256,7 @@ CREATE TABLE `friend` (
 
 LOCK TABLES `friend` WRITE;
 /*!40000 ALTER TABLE `friend` DISABLE KEYS */;
+INSERT INTO `friend` VALUES ('e84dcfbf349447d4891fd5667ce2d965','89d9317fb3834353bcf2a507bee2eb84','89d9317fb3834353bcf2a507bee2eb82','手机号/名字查找','',''),('f539b1e525994bf49fba7e059d5f15cd','89d9317fb3834353bcf2a507bee2eb82','89d9317fb3834353bcf2a507bee2eb84','手机号/名字查找','','');
 /*!40000 ALTER TABLE `friend` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -285,6 +286,7 @@ CREATE TABLE `friend_request` (
 
 LOCK TABLES `friend_request` WRITE;
 /*!40000 ALTER TABLE `friend_request` DISABLE KEYS */;
+INSERT INTO `friend_request` VALUES ('a2c18e3338ec4509b35c6c260eb4541e','89d9317fb3834353bcf2a507bee2eb82','89d9317fb3834353bcf2a507bee2eb84','手机号/名字查找','','agree',1,'2017-07-04 08:38:49'),('f82fde7689a941b99ed9fb8ab22cfc22','89d9317fb3834353bcf2a507bee2eb84','89d9317fb3834353bcf2a507bee2eb82','手机号/名字查找','','agree',1,'2017-07-04 08:38:54');
 /*!40000 ALTER TABLE `friend_request` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -675,6 +677,58 @@ LOCK TABLES `permission` WRITE;
 /*!40000 ALTER TABLE `permission` DISABLE KEYS */;
 INSERT INTO `permission` VALUES ('42b95b8f711447c49038e922c6f6167d','根据手机或姓名查找用户','/user_findUserByPhoneOrName','e7d92c8a7a914cc1ac4c69f19e6280a9','',0,NULL),('5d4c37102aa943f48a679cca07fe2bb3','客户管理','','0','',0,NULL),('649663c1e3e247708df7de7c0018fb3b','登录组织管理','/s/login','71e4956673c14543a2ed8c8e3c65e0a4','',0,NULL),('678dba65e68f4bf88648e81d5bd9be8a','查找分类下的客户','/s/findCustomerByGroup','5d4c37102aa943f48a679cca07fe2bb3','',0,NULL),('6bb47e49d7cc470680a586da0bd85f33','发起添加好友申请','/user_addFriendRequest','e7d92c8a7a914cc1ac4c69f19e6280a9','',0,NULL),('71478daa45b54bc3a94f81a11f5c292f','设置好友申请为已读','/user_updateRequestIsRead','e7d92c8a7a914cc1ac4c69f19e6280a9','',0,NULL),('71e4956673c14543a2ed8c8e3c65e0a4','组织管理','','0','',0,NULL),('942f55f2332646a581de2bc6540f03a1','查找客户更新次数','/s/findCustomerUpdateCount','5d4c37102aa943f48a679cca07fe2bb3','',0,NULL),('b18ea1a89d0948c4a293a6d21b47afeb','查找部门下成员','/s/findMemberList','71e4956673c14543a2ed8c8e3c65e0a4','',0,NULL),('c442c7be80f7428eae971888176647c4','获取好友申请总数','/user_findFriendRequestCount','e7d92c8a7a914cc1ac4c69f19e6280a9','',0,NULL),('c901587599ad40c7a1f2dd6c0e7ccbb1','查看客户详情','/s/findCustomerInfo','5d4c37102aa943f48a679cca07fe2bb3','',0,NULL),('c9c6b6a0f3a040e2a02cf93f7c886400','更新好友备注','/user_updateFriendRemark','e7d92c8a7a914cc1ac4c69f19e6280a9','',0,NULL),('caa3b16c0cd04f31ae63681d53c95fd4','获取未读消息总数','/user_findNotReadChatHistoryCount','e7d92c8a7a914cc1ac4c69f19e6280a9','',0,NULL),('cb6831e81c274cc8b6d1e3f81847ea35','获取好友申请','/user_findFriendRequest','e7d92c8a7a914cc1ac4c69f19e6280a9','',0,NULL),('cede163f9abd4bcca09e11714c61bb05','客户建档','/s/addCustomerRecord','5d4c37102aa943f48a679cca07fe2bb3','',0,NULL),('d31989274caa46c59e8e6990101586cb','查看好友列表','/user_findFriendList','e7d92c8a7a914cc1ac4c69f19e6280a9','',0,NULL),('e2db4bd557094c43879fc49b0607da36','查看好友详情','/user_findFriendData','e7d92c8a7a914cc1ac4c69f19e6280a9','',0,NULL),('e7d92c8a7a914cc1ac4c69f19e6280a9','我的好友','','0','',0,NULL),('eec5a2fa74d749d49c8d1a6777f60332','获取未读消息','/user_findNotReadChatHistory','e7d92c8a7a914cc1ac4c69f19e6280a9','',0,NULL),('f88e3b58298f475192a346608da993bf','拒绝好友申请','/user_negativeFriendRequest','e7d92c8a7a914cc1ac4c69f19e6280a9','',0,NULL),('fa3c507ecc664802841f4eb53ded32a3','同意好友申请','/user_agreeFriendRequest','e7d92c8a7a914cc1ac4c69f19e6280a9','',0,NULL);
 /*!40000 ALTER TABLE `permission` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `qm_permission`
+--
+
+DROP TABLE IF EXISTS `qm_permission`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `qm_permission` (
+  `qm_permission_id` varchar(35) NOT NULL,
+  `qm_permission_name` varchar(20) NOT NULL DEFAULT '',
+  `qm_permission_describe` varchar(100) NOT NULL DEFAULT '',
+  `qm_permission_pid` varchar(35) NOT NULL DEFAULT '0',
+  `sort` tinyint(4) NOT NULL DEFAULT '1',
+  `is_deleted` tinyint(4) NOT NULL DEFAULT '0',
+  `delete_date` date DEFAULT NULL,
+  PRIMARY KEY (`qm_permission_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `qm_permission`
+--
+
+LOCK TABLES `qm_permission` WRITE;
+/*!40000 ALTER TABLE `qm_permission` DISABLE KEYS */;
+INSERT INTO `qm_permission` VALUES ('986b810014e44d2c9d5b383f2a83da3c','我的好友使用权','查找、添加好友，删除好友，推荐好友，添加好友备注','c80bfab8902c402ba3019dfca8cf3a61',1,0,NULL),('c80bfab8902c402ba3019dfca8cf3a61','我的好友','','worker_permission',1,0,NULL),('personal_permission','人事权','','0',1,0,NULL),('worker_permission','办事权','','0',1,0,NULL);
+/*!40000 ALTER TABLE `qm_permission` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `qm_permission_re`
+--
+
+DROP TABLE IF EXISTS `qm_permission_re`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `qm_permission_re` (
+  `permission_id` varchar(35) NOT NULL,
+  `qm_permission_id` varchar(35) NOT NULL DEFAULT ''
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `qm_permission_re`
+--
+
+LOCK TABLES `qm_permission_re` WRITE;
+/*!40000 ALTER TABLE `qm_permission_re` DISABLE KEYS */;
+INSERT INTO `qm_permission_re` VALUES ('986b810014e44d2c9d5b383f2a83da3c','42b95b8f711447c49038e922c6f6167d'),('986b810014e44d2c9d5b383f2a83da3c','caa3b16c0cd04f31ae63681d53c95fd4'),('986b810014e44d2c9d5b383f2a83da3c','cb6831e81c274cc8b6d1e3f81847ea35'),('986b810014e44d2c9d5b383f2a83da3c','d31989274caa46c59e8e6990101586cb'),('986b810014e44d2c9d5b383f2a83da3c','e2db4bd557094c43879fc49b0607da36'),('986b810014e44d2c9d5b383f2a83da3c','eec5a2fa74d749d49c8d1a6777f60332'),('986b810014e44d2c9d5b383f2a83da3c','f88e3b58298f475192a346608da993bf'),('986b810014e44d2c9d5b383f2a83da3c','c9c6b6a0f3a040e2a02cf93f7c886400'),('986b810014e44d2c9d5b383f2a83da3c','c442c7be80f7428eae971888176647c4'),('986b810014e44d2c9d5b383f2a83da3c','6bb47e49d7cc470680a586da0bd85f33'),('986b810014e44d2c9d5b383f2a83da3c','71478daa45b54bc3a94f81a11f5c292f'),('986b810014e44d2c9d5b383f2a83da3c','fa3c507ecc664802841f4eb53ded32a3');
+/*!40000 ALTER TABLE `qm_permission_re` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -1308,4 +1362,4 @@ SET character_set_client = @saved_cs_client;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-07-03 18:04:40
+-- Dump completed on 2017-07-04 18:12:14

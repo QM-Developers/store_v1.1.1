@@ -8,6 +8,7 @@ import com.dgg.store.util.vo.core.ResultVO;
 import com.dgg.store.util.vo.core.SessionVO;
 import com.dgg.store.util.vo.manage.ManageMenuVO;
 import com.dgg.store.util.vo.manage.MemberVO;
+import com.dgg.store.util.vo.permission.QMPermissionVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

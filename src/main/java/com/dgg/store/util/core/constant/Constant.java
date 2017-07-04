@@ -11,6 +11,12 @@ public class Constant
     public static final String delimiterStr = "_#_";
 
     /**
+     * 权限分类
+     */
+    public static final String WORKER_PERMISSION = "worker_permission"; // 办事权
+    public static final String PERSONAL_PERMISSION = "personal_permission"; // 人事权
+
+    /**
      * 字符串常量
      */
     public static final String STR_CORPORATION_MANAGER = "总裁办";

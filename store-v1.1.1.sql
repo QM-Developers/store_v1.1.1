@@ -302,6 +302,31 @@ create table permission
 );
 
 /*==============================================================*/
+/* 客户权限
+/*==============================================================*/
+drop table if exists qm_permission;
+create table qm_permission
+(
+   qm_permission_id        varchar(35) not null,
+   qm_permission_name      varchar(20) not null default '',
+   qm_permission_describe	varchar(100) not null default '',
+   qm_permission_pid       varchar(35) not null default '0',
+   sort                 tinyint not null default 1,
+   is_deleted           tinyint not null default 0,
+   delete_date          date,
+   primary key (qm_permission_id)
+);
+
+/*==============================================================*/
+/* 客户权限与实际权限关联表
+/*==============================================================*/
+create table qm_permission_re
+(
+   permission_id        varchar(35) not null,
+   qm_permission_id   varchar(35) not null default ''
+);
+
+/*==============================================================*/
 /* 用户角色
 /*==============================================================*/
 create table role
@@ -449,7 +474,7 @@ create table user_menu_re
 );
 
 /*==============================================================*/
-/* 用户拥有的权限
+/* 角色拥有的权限
 /*==============================================================*/
 drop table if exists role_permission_RE;
 create table role_permission_RE

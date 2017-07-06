@@ -32,14 +32,14 @@ public class MyTeamController
         return service.insertMyTeam(sessionVO,teamVO);
     }
 
-    @RequestMapping(value = "/s/addDepartment",method = RequestMethod.POST)
-    @ResponseBody
-    public ResultVO addDepartment(HttpServletRequest request, TeamDepartment department)
-    {
-        SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
-
-        return service.insertDepartment(sessionVO,department);
-    }
+//    @RequestMapping(value = "/s/addDepartment",method = RequestMethod.POST)
+//    @ResponseBody
+//    public ResultVO addDepartment(HttpServletRequest request, TeamDepartment department)
+//    {
+//        SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
+//
+//        return service.insertDepartment(sessionVO,department);
+//    }
 
     @RequestMapping(value = "/s/addDepartmentMember",method = RequestMethod.POST)
     @ResponseBody
@@ -50,14 +50,14 @@ public class MyTeamController
         return service.insertDepartmentMember(sessionVO,memberVO);
     }
 
-    @RequestMapping(value = "/s/findDepartmentList",method = RequestMethod.POST)
-    @ResponseBody
-    public ResultVO findDepartmentList(HttpServletRequest request, MyTeam team)
-    {
-        SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
-
-        return service.findDepartmentList(sessionVO,team);
-    }
+//    @RequestMapping(value = "/s/findDepartmentList",method = RequestMethod.POST)
+//    @ResponseBody
+//    public ResultVO findDepartmentList(HttpServletRequest request, MyTeam team)
+//    {
+//        SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
+//
+//        return service.findDepartmentList(sessionVO,team);
+//    }
 
     @RequestMapping(value = "/s/findCCDepartmentList",method = RequestMethod.POST)
     @ResponseBody
@@ -95,14 +95,14 @@ public class MyTeamController
         return service.findCDepartmentList(sessionVO,teamVO);
     }
 
-    @RequestMapping(value = "/s/findDepartmentInfo",method = RequestMethod.POST)
-    @ResponseBody
-    public ResultVO findDepartmentInfo(HttpServletRequest request,TeamDepartment department)
-    {
-        SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
-
-        return service.findDepartmentInfo(sessionVO,department);
-    }
+//    @RequestMapping(value = "/s/findDepartmentInfo",method = RequestMethod.POST)
+//    @ResponseBody
+//    public ResultVO findDepartmentInfo(HttpServletRequest request,TeamDepartment department)
+//    {
+//        SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
+//
+//        return service.findDepartmentInfo(sessionVO,department);
+//    }
 
     @RequestMapping(value = "/s/findDepartmentMember",method = RequestMethod.POST)
     @ResponseBody

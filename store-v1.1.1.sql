@@ -274,6 +274,27 @@ create table team_department
 );
 
 /*==============================================================*/
+/* 部门职位
+/*==============================================================*/
+drop table if exists department_position;
+create table department_position
+(
+	position_id varchar(35) not null primary key,
+    position_name varchar(10) not null default '',
+    team_department_id varchar(35) not null default ''
+);
+
+/*==============================================================*/
+/* 职位权限关联表
+/*==============================================================*/
+drop table if exists position_permission_re;
+create table position_permission_re
+(
+	position_id varchar(35) not null default '',
+    qm_permission_id varchar(35) not null default ''
+);
+
+/*==============================================================*/
 /* 父类字典
 /*==============================================================*/
 create table parent_dictionary
@@ -433,6 +454,8 @@ create table user
    uesr_wechat          varchar(20) not null default '',
    user_img             varchar(150) not null default '',
    user_nickname        varchar(30) not null default '',
+   user_card_front      text,
+   user_card_back       text,
    token                varchar(50) not null default '',
    is_deleted           tinyint not null default 0,
    delete_date          datetime,

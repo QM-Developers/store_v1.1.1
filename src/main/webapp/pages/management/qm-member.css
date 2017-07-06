@@ -41,10 +41,12 @@
 
 .newdata .qm-team-input span {
 	display: inline-block;
-	width: 12%;
+	width: 30%;
 	line-height: 34px;
 	padding: 0;
 	margin: 0 0 0 20px;
+    float: left;
+    padding-right: 5px;
 }
 
 .newdata .poptime input {
@@ -77,18 +79,30 @@
 }
 
 .qm-team .qm-team-input {
+	width: 50%;
 	height: 45px;
+	float: left;
 	padding: 5px 0;
 }
-
-.qm-team-input span {
-	text-align: center;
-	display: inline-block;
-	width: 10%;
-	padding: 3px 0 0 0;
-	margin: 2px 0 0 20px;
+.qm-team-input .pop-div2{
+    margin-top: 3px;
 }
-
+.qm-team-input span {
+     text-align: right;
+     display: inline-block;
+     width: 30%;
+     padding: 3px 0 0 0;
+     margin: 2px 0 0 20px;
+ }
+.qm-team-input input {
+    width: 50%;
+    float: left;
+}
+.qm-team-div{
+    height: 34px;
+    width: 50%;
+    float: left;
+}
 .qm-team select {
 	width: 100%;
 	height: 100%;
@@ -121,11 +135,11 @@
 .poptwo-c-lia {
 	margin-right: 10px;
 	padding-left: 21px;
-	background: url(../../images/yuandian.png) -19px -4px no-repeat;
+	background: url(../images/yuandian.png) -19px -4px no-repeat;
 }
 
 .poptwo-c-lia1 {
-	background: url(../../images/yuandian.png) -19px -36px no-repeat;
+	background: url(../images/yuandian.png) -19px -36px no-repeat;
 }
 
 .newdata-picture {
@@ -157,7 +171,16 @@
 	line-height: 50px;
 	text-align: center;
 }
+.webuploader-pick{
+    width: 100%;
+    height: 100%;
+    background: inherit;
+    color: inherit;
+}
+.webuploader-pick-hour{
+    background: #CCCCCC;
 
+}
 .del-but-box {
 	clear: both;
 	max-width: 1269px;

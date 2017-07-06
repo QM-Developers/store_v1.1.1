@@ -5,13 +5,15 @@ import com.dgg.store.util.core.constant.Constant;
 import com.dgg.store.util.vo.LoginVO;
 import com.dgg.store.util.vo.core.ResultVO;
 import com.dgg.store.util.vo.core.SessionVO;
+import com.dgg.store.util.vo.manage.DepartmentVO;
 import com.dgg.store.util.vo.manage.MemberVO;
-import com.dgg.store.util.vo.permission.QMPermissionVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -47,4 +49,68 @@ public class ManageController
 
         return service.findMemberList(sessionVO,memberVO);
     }
+
+    @RequestMapping(value = "/s/findDepartmentList",method = RequestMethod.POST)
+    @ResponseBody
+    public ResultVO findDepartmentList(HttpServletRequest request,DepartmentVO department)
+    {
+        SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
+
+        return service.findDepartmentList(sessionVO,department);
+    }
+
+    @RequestMapping(value = "/s/addDepartment",method = RequestMethod.POST)
+    @ResponseBody
+    public ResultVO addDepartment(HttpServletRequest request, DepartmentVO department)
+    {
+        SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
+
+        return service.insertDepartment(sessionVO,department);
+    }
+
+    @RequestMapping(value = "/s/updateDepartment",method = RequestMethod.POST)
+    @ResponseBody
+    public ResultVO updateDepartment(HttpServletRequest request,DepartmentVO department)
+    {
+        SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
+
+        return service.updateDepartment(sessionVO,department);
+    }
+
+    @RequestMapping(value = "/s/findDepartmentInfo",method = RequestMethod.POST)
+    @ResponseBody
+    public ResultVO findDepartmentInfo(HttpServletRequest request,DepartmentVO department)
+    {
+        SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
+
+        return service.findDepartmentInfo(sessionVO,department);
+    }
+
+    @RequestMapping(value = "/s/deleteDepartment",method = RequestMethod.POST)
+    @ResponseBody
+    public ResultVO deleteDepartment(HttpServletRequest request,DepartmentVO department)
+    {
+        SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
+
+        return service.deleteDepartment(sessionVO,department);
+    }
+
+    @RequestMapping(value = "/s/findPositionList",method = RequestMethod.POST)
+    @ResponseBody
+    public ResultVO findPositionList(HttpServletRequest request,DepartmentVO department)
+    {
+        SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
+
+        return service.findPositionList(sessionVO,department);
+    }
+
+    @RequestMapping(value = "/s/insertCardFront",method = RequestMethod.POST)
+    @ResponseBody
+    public ResultVO insertCardFront(@RequestParam(value = "cardFront", required = false) MultipartFile file, HttpServletRequest request)
+    {
+        SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
+
+        return service.insertCardFront(sessionVO,file,request.getSession().getServletContext().getRealPath("/"));
+    }
+
 }

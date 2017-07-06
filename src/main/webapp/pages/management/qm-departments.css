@@ -284,7 +284,10 @@
 	float: left;
 	background: #72bbff;
 }
-
+.prompt-frame2 .prompt-one-left{
+	margin: auto;
+	float: inherit;
+}
 .prompt-frame2 .prompt-frame-right {
 	height: 40px;
 	width: 100px;

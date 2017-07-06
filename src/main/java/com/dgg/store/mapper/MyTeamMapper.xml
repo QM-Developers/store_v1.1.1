@@ -21,19 +21,6 @@
         <result column="count" property="count" jdbcType="INTEGER"/>
     </resultMap>
 
-    <resultMap id="DepartmentVOMap" type="com.dgg.store.util.vo.team.DepartmentVO">
-        <id column="team_department_id" property="teamDepartmentId" jdbcType="VARCHAR"/>
-        <result column="my_team_id" property="myTeamId" jdbcType="VARCHAR"/>
-        <result column="team_department_name" property="teamDepartmentName" jdbcType="VARCHAR"/>
-        <result column="department_type" property="departmentType" jdbcType="VARCHAR"/>
-        <result column="my_team_name" property="corporationName" jdbcType="VARCHAR"/>
-        <result column="my_team_area" property="departmentArea" jdbcType="VARCHAR"/>
-        <result column="my_team_address" property="departmentAddress" jdbcType="VARCHAR"/>
-        <result column="user_name" property="userName" jdbcType="VARCHAR"/>
-        <result column="user_phone" property="userPhone" jdbcType="VARCHAR"/>
-        <result column="create_date" property="createDate" jdbcType="DATE"/>
-    </resultMap>
-
     <resultMap id="DepartmentMemberVOMap" type="com.dgg.store.util.vo.team.DepartmentMemberVO">
         <result column="user_id" property="userId" jdbcType="VARCHAR"/>
         <result column="user_name" property="userName" jdbcType="VARCHAR"/>
@@ -95,15 +82,6 @@
         FROM dgg_store.team_department td
         WHERE td.my_team_id = (SELECT mt.my_team_pid from dgg_store.my_team mt where mt.my_team_id =  #{teamId})
         AND td.team_department_name =  #{departmentName}
-    </select>
-
-    <select id="findDepartmentInfo" resultMap="DepartmentVOMap">
-        SELECT td.team_department_id,td.team_department_name,td.create_date,td.department_type,
-			mt.my_team_name,mt.my_team_id,mt.my_team_area,mt.my_team_address
-        FROM dgg_store.team_department td
-        INNER JOIN dgg_store.my_team mt
-        ON mt.my_team_id = td.my_team_id
-        WHERE td.team_department_id = #{departmentId}
     </select>
 
     <select id="findDepartmentMemberCount" resultType="java.lang.Integer">
@@ -212,13 +190,6 @@
         </set>
         WHERE u.user_id = #{userId}
     </update>
-
-    <select id="findDepartmentManager" resultMap="DepartmentVOMap">
-        SELECT u.user_id,u.user_phone,u.user_name
-        FROM dgg_store.user u
-        WHERE u.team_department_id = #{departmentId}
-        AND u.role_id > #{roleId}
-    </select>
 
     <select id="findDepartmentTree" resultMap="TreeMap">
         SELECT td.team_department_id id,td.team_department_name name,td.my_team_id pid

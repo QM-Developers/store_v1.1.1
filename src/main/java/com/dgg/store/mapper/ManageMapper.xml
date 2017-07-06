@@ -7,6 +7,37 @@
         <result column="count" property="number" jdbcType="INTEGER"/>
     </resultMap>
 
+    <resultMap id="MemberVO" type="com.dgg.store.util.vo.manage.MemberVO">
+        <result column="" property="userId" jdbcType="VARCHAR"/>
+        <result column="" property="userName" jdbcType="VARCHAR"/>
+        <result column="" property="userSex" jdbcType="VARCHAR"/>
+        <result column="" property="userPhone" jdbcType="VARCHAR"/>
+        <result column="" property="userIdentity" jdbcType="VARCHAR"/>
+        <result column="" property="departmentId" jdbcType="VARCHAR"/>
+        <result column="" property="positionId" jdbcType="VARCHAR"/>
+        <result column="" property="userCardFront" jdbcType="VARCHAR"/>
+        <result column="" property="userCardBack" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <resultMap id="PositionVO" type="com.dgg.store.util.vo.manage.PositionVO">
+        <result column="position_id" property="positionId" jdbcType="VARCHAR"/>
+        <result column="position_name" property="positionName" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <resultMap id="DepartmentVO" type="com.dgg.store.util.vo.manage.DepartmentVO">
+        <result column="team_department_id" property="departmentId" jdbcType="VARCHAR"/>
+        <result column="team_department_name" property="departmentName" jdbcType="VARCHAR"/>
+        <result column="create_date" property="createDate" jdbcType="DATE"/>
+        <collection property="positionList" ofType="com.dgg.store.util.vo.manage.PositionVO">
+            <result column="position_id" property="positionId" jdbcType="VARCHAR"/>
+            <result column="position_name" property="positionName" jdbcType="VARCHAR"/>
+            <collection property="perPosReList" ofType="com.dgg.store.util.vo.manage.PerPosRe">
+                <result column="position_id" property="positionId" jdbcType="VARCHAR"/>
+                <result column="qm_permission_id" property="permissionId" jdbcType="VARCHAR"/>
+            </collection>
+        </collection>
+    </resultMap>
+
     <select id="findLoginUser" parameterType="com.dgg.store.util.vo.LoginVO" resultType="java.lang.Integer">
         SELECT COUNT(1)
         FROM user u
@@ -24,5 +55,90 @@
         SELECT td.team_department_name name,td.team_department_id id,(SELECT COUNT(1) FROM user WHERE team_department_id = td.team_department_id) count
         FROM team_department td
         WHERE td.my_team_id = #{myTeamId}
+    </select>
+
+    <insert id="insertDepartment" parameterType="com.dgg.store.util.vo.manage.DepartmentVO">
+        INSERT INTO team_department
+          (team_department_id, team_department_name, create_date, my_team_id)
+        VALUES
+          (#{departmentId},#{departmentName},#{createDate},#{myTeamId})
+    </insert>
+
+    <insert id="insertPosition" parameterType="java.util.List">
+        INSERT INTO department_position
+        (position_id, position_name, team_department_id)
+        VALUES
+        <foreach collection="list" index="i" item="item" open="" separator=")," close=")">
+            (#{item.positionId},#{item.positionName},#{item.teamDepartmentId}
+        </foreach>
+    </insert>
+
+    <insert id="insertPerPosRe" parameterType="java.util.List">
+        INSERT INTO position_permission_re
+        (position_id, qm_permission_id)
+        VALUES
+        <foreach collection="list" index="i" item="item" open="" separator=")," close=")">
+            (#{item.positionId},#{item.permissionId}
+        </foreach>
+    </insert>
+
+    <select id="findDepartmentInfo" resultMap="DepartmentVO">
+        SELECT td.team_department_name,td.create_date,
+            dp.position_id,dp.position_name,
+            ppr.qm_permission_id
+        FROM team_department td
+        LEFT JOIN department_position dp
+        ON dp.team_department_id = td.team_department_id
+        LEFT JOIN position_permission_re ppr
+        ON ppr.position_id = dp.position_id
+        WHERE td.team_department_id = #{departmentId}
+    </select>
+
+    <update id="updateDepartment" parameterType="com.dgg.store.util.vo.manage.DepartmentVO">
+        UPDATE team_department
+        <set>
+            <if test="departmentName != null and departmentName != ''">
+                team_department_name = #{departmentName},
+            </if>
+            <if test="createDate != null">
+                create_date = #{createDate}
+            </if>
+        </set>
+        WHERE team_department_id = #{departmentId}
+    </update>
+
+    <delete id="cleanPosition">
+        DELETE FROM department_position
+        WHERE team_department_id = #{departmentId}
+    </delete>
+
+    <delete id="cleanPerPosRe">
+        DELETE FROM position_permission_re
+        WHERE position_id IN
+        (SELECT position_id FROM department_position
+        WHERE team_department_id = #{departmentId})
+    </delete>
+
+    <delete id="deleteDepartment">
+        DELETE FROM team_department
+        WHERE team_department_id = #{departmentId}
+    </delete>
+
+    <select id="findDepartmentMemberCount" resultType="java.lang.Integer">
+        SELECT COUNT(1)
+        FROM user
+        WHERE team_department_id = #{departmentId}
+    </select>
+
+    <select id="findDepartmentList" resultMap="DepartmentVO">
+        SELECT team_department_id,team_department_name
+        FROM team_department
+        WHERE my_team_id = #{myTeamId}
+    </select>
+
+    <select id="findPositionList" resultMap="PositionVO">
+        SELECT dp.position_id,dp.position_name
+        FROM department_position dp
+        WHERE dp.team_department_id = #{departmentId}
     </select>
 </mapper>

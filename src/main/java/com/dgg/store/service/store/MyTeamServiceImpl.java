@@ -10,13 +10,11 @@ import com.dgg.store.util.vo.core.SearchVO;
 import com.dgg.store.util.vo.core.SessionVO;
 import com.dgg.store.util.vo.core.TreeVO;
 import com.dgg.store.util.vo.team.DepartmentMemberVO;
-import com.dgg.store.util.vo.team.DepartmentVO;
 import com.dgg.store.util.vo.team.MyTeamVO;
 import com.dgg.store.util.vo.team.TeamDepartmentVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -84,18 +82,7 @@ public class MyTeamServiceImpl implements MyTeamService
     @Override
     public ResultVO findDepartmentInfo(SessionVO sessionVO, TeamDepartment department)
     {
-        DepartmentVO result = dao.findDepartmentInfo(department.getTeamDepartmentId(), Constant.ROLE_TEAM_PERSONAL);
-        result.setMemberCount(dao.findDepartmentMemberCount(department.getTeamDepartmentId()));
-        DepartmentVO manager = dao.findDepartmentManager(department.getTeamDepartmentId(), Constant.ROLE_TEAM_PERSONAL);
-        if (manager != null)
-        {
-            result.setUserName(manager.getUserName());
-            result.setUserPhone(manager.getUserPhone());
-        }
-
-        ResultVO resultVO = new ResultVO(result == null ? 0 : 1, sessionVO.getToken(), result);
-
-        return resultVO;
+        return null;
     }
 
     @Override

@@ -203,6 +203,31 @@ INSERT INTO `customer_group` VALUES ('c_g_0','个体户',''),('c_g_1','经销商
 UNLOCK TABLES;
 
 --
+-- Table structure for table `department_position`
+--
+
+DROP TABLE IF EXISTS `department_position`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `department_position` (
+  `position_id` varchar(35) NOT NULL,
+  `position_name` varchar(10) NOT NULL DEFAULT '',
+  `team_department_id` varchar(35) NOT NULL DEFAULT '',
+  PRIMARY KEY (`position_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `department_position`
+--
+
+LOCK TABLES `department_position` WRITE;
+/*!40000 ALTER TABLE `department_position` DISABLE KEYS */;
+INSERT INTO `department_position` VALUES ('4ae60c74c30143feb898d721a1299dd7','负责人','6256feb92d844cd5951d7cfe01d922ed'),('5f759af244784603bc4ffc6f7dab8508','成员','27a9c57b4c69441aa569ef4ae1a9ef7c'),('6d163a17a8b842dd98de4b059b893664','成员','6256feb92d844cd5951d7cfe01d922ed'),('6d163a17a8b842dd98de4b059b893666','负责人','27a9c57b4c69441aa569ef4ae1a9ef7d'),('b63366bffb23473cbbd2b00225e05620','负责人','27a9c57b4c69441aa569ef4ae1a9ef7c');
+/*!40000 ALTER TABLE `department_position` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `dictionary`
 --
 
@@ -680,6 +705,29 @@ INSERT INTO `permission` VALUES ('42b95b8f711447c49038e922c6f6167d','根据手�
 UNLOCK TABLES;
 
 --
+-- Table structure for table `position_permission_re`
+--
+
+DROP TABLE IF EXISTS `position_permission_re`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `position_permission_re` (
+  `position_id` varchar(35) NOT NULL DEFAULT '',
+  `qm_permission_id` varchar(35) NOT NULL DEFAULT ''
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `position_permission_re`
+--
+
+LOCK TABLES `position_permission_re` WRITE;
+/*!40000 ALTER TABLE `position_permission_re` DISABLE KEYS */;
+INSERT INTO `position_permission_re` VALUES ('4ae60c74c30143feb898d721a1299dd7','986b810014e44d2c9d5b383f2a83da3c'),('b63366bffb23473cbbd2b00225e05620',''),('5f759af244784603bc4ffc6f7dab8508','986b810014e44d2c9d5b383f2a83da3c');
+/*!40000 ALTER TABLE `position_permission_re` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `qm_permission`
 --
 
@@ -872,7 +920,7 @@ CREATE TABLE `team_department` (
 
 LOCK TABLES `team_department` WRITE;
 /*!40000 ALTER TABLE `team_department` DISABLE KEYS */;
-INSERT INTO `team_department` VALUES ('27a9c57b4c69441aa569ef4ae1a9ef7c','总经办','',NULL,'0','2017-06-06 10:20:45','10001'),('27a9c57b4c69441aa569ef4ae1a9ef7d','财务部','',NULL,'0','2017-06-06 10:20:45','10001');
+INSERT INTO `team_department` VALUES ('27a9c57b4c69441aa569ef4ae1a9ef7c','总经办','',NULL,'0','2017-06-06 00:00:00','10001'),('27a9c57b4c69441aa569ef4ae1a9ef7d','财务部','',NULL,'0','2017-06-06 10:20:45','10001'),('6256feb92d844cd5951d7cfe01d922ed','技术部','',NULL,'0','2017-06-26 00:00:00','10001');
 /*!40000 ALTER TABLE `team_department` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -942,6 +990,9 @@ CREATE TABLE `user` (
   `user_identity` varchar(18) NOT NULL DEFAULT '',
   `lng_and_lat` varchar(30) NOT NULL DEFAULT '',
   `user_update_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `user_card_front` text,
+  `user_card_back` text,
+  `position_id` varchar(35) NOT NULL DEFAULT '',
   PRIMARY KEY (`user_id`),
   KEY `FK_user_role_re` (`role_id`),
   KEY `FK_user_team_re` (`my_team_id`),
@@ -958,7 +1009,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES ('89d9317fb3834353bcf2a507bee2eb82','10001','27a9c57b4c69441aa569ef4ae1a9ef7c',1002,'张三','825682eafec59c2e1632828195133a52','男','13688888888','2017-06-14','x胡同y巷z号','北京市 西城区','','2017-06-14 10:38:46','2017-06-14 10:38:46','','','','/upload/img/user/head_portrait/89d9317fb3834353bcf2a507bee2eb82/34ac4d747a35414dbf249b6add3e8348.jpg','','',0,NULL,'','','2017-07-01 11:56:19'),('89d9317fb3834353bcf2a507bee2eb83','10001','27a9c57b4c69441aa569ef4ae1a9ef7d',1002,'李四','825682eafec59c2e1632828195133a52','女','13699999999','2017-06-14','z胡同y巷x号','北京市 西城区','','2017-06-14 10:38:46','2017-06-14 10:38:46','','','','','','',0,NULL,'','','2017-07-01 11:56:19'),('89d9317fb3834353bcf2a507bee2eb84','10001','27a9c57b4c69441aa569ef4ae1a9ef7c',1002,'王五','825682eafec59c2e1632828195133a52','男','13677777777','2017-06-14','a胡同b巷c号','北京市 西城区','','2017-06-14 10:38:46','2017-06-14 10:38:46','','','','/upload/img/user/head_portrait/89d9317fb3834353bcf2a507bee2eb82/34ac4d747a35414dbf249b6add3e8348.jpg','','',0,NULL,'','','2017-07-01 11:56:19');
+INSERT INTO `user` VALUES ('89d9317fb3834353bcf2a507bee2eb82','10001','27a9c57b4c69441aa569ef4ae1a9ef7c',1002,'张三','825682eafec59c2e1632828195133a52','男','13688888888','2017-06-14','x胡同y巷z号','北京市 西城区','','2017-06-14 10:38:46','2017-06-14 10:38:46','','','','/upload/img/user/head_portrait/89d9317fb3834353bcf2a507bee2eb82/34ac4d747a35414dbf249b6add3e8348.jpg','','',0,NULL,'','','2017-07-01 11:56:19',NULL,NULL,''),('89d9317fb3834353bcf2a507bee2eb83','10001','27a9c57b4c69441aa569ef4ae1a9ef7d',1002,'李四','825682eafec59c2e1632828195133a52','女','13699999999','2017-06-14','z胡同y巷x号','北京市 西城区','','2017-06-14 10:38:46','2017-06-14 10:38:46','','','','','','',0,NULL,'','','2017-07-01 11:56:19',NULL,NULL,''),('89d9317fb3834353bcf2a507bee2eb84','10001','27a9c57b4c69441aa569ef4ae1a9ef7c',1002,'王五','825682eafec59c2e1632828195133a52','男','13677777777','2017-06-14','a胡同b巷c号','北京市 西城区','','2017-06-14 10:38:46','2017-06-14 10:38:46','','','','/upload/img/user/head_portrait/89d9317fb3834353bcf2a507bee2eb82/34ac4d747a35414dbf249b6add3e8348.jpg','','',0,NULL,'','','2017-07-01 11:56:19',NULL,NULL,'');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1091,7 +1142,9 @@ CREATE TABLE `user_history` (
   `delete_date` datetime DEFAULT NULL,
   `user_identity` varchar(18) NOT NULL DEFAULT '',
   `lng_and_lat` varchar(30) NOT NULL DEFAULT '',
-  `user_update_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `user_update_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `user_card_front` text,
+  `user_card_back` text
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -1101,7 +1154,6 @@ CREATE TABLE `user_history` (
 
 LOCK TABLES `user_history` WRITE;
 /*!40000 ALTER TABLE `user_history` DISABLE KEYS */;
-INSERT INTO `user_history` VALUES ('2adc216eae0d4378ba5fecb854cf5469','10001','',1001,'sadf','','男','fsadf234','2017-05-31','sdfa','广东省江门市蓬江区仓后街道五邑家教中心','','2017-06-30 17:46:29','2017-06-30 17:46:29','u_st_0','','','','','',0,NULL,'s324dsf','113.088505,22.587459','2017-07-01 16:11:04'),('2adc216eae0d4378ba5fecb854cf5469','10001','',1001,'sadf','','男','fsadf234','2017-05-31','sdfa','广东省江门市蓬江区仓后街道五邑家教中心','','2017-06-30 17:46:29','2017-06-30 17:46:29','u_st_0','','','','','',0,NULL,'s324dsf','113.088505,22.587459','2017-07-01 16:15:39'),('2adc216eae0d4378ba5fecb854cf5469','10001','',1001,'ddds','','女','13579896362','2017-05-31','青麦科技','广东省江门市蓬江区堤东街道江华一路68号','','2017-06-30 17:46:29','2017-06-30 17:46:29','u_st_0','','','','','',0,NULL,'451213465798451264','113.088505,22.587459','2017-07-01 16:15:48');
 /*!40000 ALTER TABLE `user_history` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1285,7 +1337,9 @@ CREATE TABLE `user_record` (
   `delete_date` datetime DEFAULT NULL,
   `user_identity` varchar(18) NOT NULL DEFAULT '',
   `lng_and_lat` varchar(30) NOT NULL DEFAULT '',
-  `user_update_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `user_update_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `user_card_front` text,
+  `user_card_back` text
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -1295,7 +1349,6 @@ CREATE TABLE `user_record` (
 
 LOCK TABLES `user_record` WRITE;
 /*!40000 ALTER TABLE `user_record` DISABLE KEYS */;
-INSERT INTO `user_record` VALUES ('01dfbb7afca947e39ab5d56fa299a792','10001','',1001,'3rf3r','','男','123123','2017-05-29','asd234','广东省江门市蓬江区堤东街道大更','','2017-06-30 16:55:15','2017-06-30 16:55:15','u_st_0','','','','','',0,NULL,'sdfa','113.088505,22.587459','2017-07-01 11:56:28'),('9d83089d2354465ea6eb9a66026fe014','10001','',1001,'3421','','男','sdfas','2017-05-29','cvasd','广东省江门市蓬江区堤东街道大更','','2017-06-30 17:05:18','2017-06-30 17:05:18','u_st_0','','','','','',0,NULL,'12312323','113.088505,22.587459','2017-07-01 11:56:28'),('3bd0bdabcd014462b0d2afa3ffc20d46','10001','',1001,'13','','男','sdf','2017-05-29','cxvbxfv','广东省江门市蓬江区堤东街道大更','','2017-06-30 17:09:30','2017-06-30 17:09:30','u_st_0','','','','','',0,NULL,'sdfdf','113.088505,22.587459','2017-07-01 11:56:28'),('d61bcdd1e05a490eb6398dd1c87a8f07','10001','',1001,'133123','','男','sdfsdf','2017-05-29','cxvbxfv','广东省江门市蓬江区堤东街道大更','','2017-06-30 17:13:42','2017-06-30 17:13:42','u_st_0','','','','','',0,NULL,'sdfdfasdaf','113.088505,22.587459','2017-07-01 11:56:28'),('2adc216eae0d4378ba5fecb854cf5469','10001','',1001,'ddds','','女','13579896362','2017-05-31','青麦科技','广东省江门市蓬江区堤东街道江华一路68号','','2017-06-30 17:46:29','2017-06-30 17:46:29','u_st_0','','','','','',0,NULL,'451213465798451264','113.088505,22.587459','2017-07-01 16:15:48');
 /*!40000 ALTER TABLE `user_record` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1362,4 +1415,4 @@ SET character_set_client = @saved_cs_client;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-07-04 18:12:14
+-- Dump completed on 2017-07-06 18:01:41

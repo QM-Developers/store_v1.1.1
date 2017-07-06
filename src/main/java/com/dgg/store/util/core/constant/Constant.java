@@ -6,6 +6,7 @@ import java.util.Properties;
 public class Constant
 {
     public static final String EMPTY = "";
+    public static final String COMMA = ",";
     public static final String STRING_45 = "-";
 
     public static final String delimiterStr = "_#_";

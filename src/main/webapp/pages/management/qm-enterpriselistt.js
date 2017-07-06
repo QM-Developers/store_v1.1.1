@@ -6,12 +6,17 @@ var qm_memberList = {
 
     findMemberList: function ()
     {
-        var url = path + ".action";
-        var params = {};
-
-        myjs.ajax_post(url,params,function (data)
-        {
-
-        });
+        // var url = path + ".action";
+        // var params = {};
+        //
+        // myjs.ajax_post(url,params,function (data)
+        // {
+        //
+        // });
     },
+
+    toDepartmentInfo:function ()
+    {
+        window.location.href = "qm-departments.jsp?"+departmentId;
+    }
 };

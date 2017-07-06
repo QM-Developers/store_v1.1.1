@@ -1,7 +1,7 @@
 package com.dgg.store.mapper;
 
 import com.dgg.store.util.vo.LoginVO;
-import com.dgg.store.util.vo.manage.ManageMenuVO;
+import com.dgg.store.util.vo.manage.*;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -13,4 +13,26 @@ public interface ManageMapper
     ManageMenuVO findTeamAndMemberCount(@Param("myTeamId") String myTeamId);
 
     List<ManageMenuVO> findDepartmentAndMemberCount(@Param("myTeamId") String myTeamId);
+
+    Integer insertDepartment(DepartmentVO department);
+
+    Integer insertPosition(@Param("list") List<PositionVO> positionList);
+
+    Integer insertPerPosRe(@Param("list") List<PerPosRe> perPosReList);
+
+    DepartmentVO findDepartmentInfo(@Param("departmentId") String departmentId);
+
+    Integer updateDepartment(DepartmentVO department);
+
+    Integer cleanPosition(@Param("departmentId") String departmentId);
+
+    Integer cleanPerPosRe(@Param("departmentId") String departmentId);
+
+    Integer deleteDepartment(@Param("departmentId") String departmentId);
+
+    Integer findDepartmentMemberCount(@Param("departmentId") String departmentId);
+
+    List<DepartmentVO> findDepartmentList(@Param("myTeamId") String myTeamId);
+
+    List<MemberVO> findPositionList(@Param("departmentId") String departmentId);
 }

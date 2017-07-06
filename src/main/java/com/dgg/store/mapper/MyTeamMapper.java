@@ -5,7 +5,6 @@ import com.dgg.store.util.pojo.TeamDepartment;
 import com.dgg.store.util.vo.core.SearchVO;
 import com.dgg.store.util.vo.core.TreeVO;
 import com.dgg.store.util.vo.team.DepartmentMemberVO;
-import com.dgg.store.util.vo.team.DepartmentVO;
 import com.dgg.store.util.vo.team.MyTeamVO;
 import com.dgg.store.util.vo.team.TeamDepartmentVO;
 import org.apache.ibatis.annotations.Param;
@@ -19,8 +18,6 @@ public interface MyTeamMapper
     Integer insertDepartment(TeamDepartment department);
 
     List<TeamDepartment> findDepartmentList(@Param("teamId") String myTeamId);
-
-    DepartmentVO findDepartmentInfo(@Param("departmentId") String teamDepartmentId, @Param("personal") String personal);
 
     Integer insertDepartmentMember(DepartmentMemberVO memberVO);
 
@@ -45,8 +42,6 @@ public interface MyTeamMapper
     Integer updateDepartment(DepartmentMemberVO memberVO);
 
     Integer findDepartmentMemberCount(@Param("departmentId") String teamDepartmentId);
-
-    DepartmentVO findDepartmentManager(@Param("departmentId") String teamDepartmentId,@Param("roleId") String roleId);
 
     MyTeamVO findCompanyPrincipal(@Param("teamId") String myTeamId, @Param("departmentType") String departmentType,@Param("roleId") String roleId);
 

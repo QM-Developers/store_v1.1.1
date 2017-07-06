@@ -4,13 +4,21 @@ public class MemberVO
 {
     private String userId;
 
-    private String name;
+    private String userName;
 
-    private String sex;
+    private String userSex;
 
-    private String phone;
+    private String userPhone;
 
-    private String departmentName;
+    private String userIdentity;
+
+    private String departmentId;
+
+    private String positionId;
+
+    private String userCardFront;
+
+    private String userCardBack;
 
     public String getUserId()
     {
@@ -22,43 +30,83 @@ public class MemberVO
         this.userId = userId;
     }
 
-    public String getName()
+    public String getUserName()
     {
-        return name;
+        return userName;
     }
 
-    public void setName(String name)
+    public void setUserName(String userName)
     {
-        this.name = name;
+        this.userName = userName;
     }
 
-    public String getSex()
+    public String getUserSex()
     {
-        return sex;
+        return userSex;
     }
 
-    public void setSex(String sex)
+    public void setUserSex(String userSex)
     {
-        this.sex = sex;
+        this.userSex = userSex;
     }
 
-    public String getPhone()
+    public String getUserPhone()
     {
-        return phone;
+        return userPhone;
     }
 
-    public void setPhone(String phone)
+    public void setUserPhone(String userPhone)
     {
-        this.phone = phone;
+        this.userPhone = userPhone;
     }
 
-    public String getDepartmentName()
+    public String getUserIdentity()
     {
-        return departmentName;
+        return userIdentity;
     }
 
-    public void setDepartmentName(String departmentName)
+    public void setUserIdentity(String userIdentity)
     {
-        this.departmentName = departmentName;
+        this.userIdentity = userIdentity;
+    }
+
+    public String getDepartmentId()
+    {
+        return departmentId;
+    }
+
+    public void setDepartmentId(String departmentId)
+    {
+        this.departmentId = departmentId;
+    }
+
+    public String getPositionId()
+    {
+        return positionId;
+    }
+
+    public void setPositionId(String positionId)
+    {
+        this.positionId = positionId;
+    }
+
+    public String getUserCardFront()
+    {
+        return userCardFront;
+    }
+
+    public void setUserCardFront(String userCardFront)
+    {
+        this.userCardFront = userCardFront;
+    }
+
+    public String getUserCardBack()
+    {
+        return userCardBack;
+    }
+
+    public void setUserCardBack(String userCardBack)
+    {
+        this.userCardBack = userCardBack;
     }
 }

@@ -34,8 +34,8 @@
         <div class="am-g qm-team1">
             <div class="groupdata-title">
                 <div class="qm-list">公司列表</div>
-                <div class="qm-compile"><span class="qm-compile-but">编辑部门</span><i class="compile-icon"></i></div>
-                <div class="qm-compile-seek"><input type="" name="" id="" value=""/><span></span></div>
+                <div class="qm-compile"><span onclick="qm_memberList.toDepartmentInfo();" class="qm-compile-but">编辑部门</span><i class="compile-icon"></i></div>
+                <div class="qm-compile-seek"><input/><span></span></div>
             </div>
 
             <div class="am-u-sm-12 qm-team1-box">

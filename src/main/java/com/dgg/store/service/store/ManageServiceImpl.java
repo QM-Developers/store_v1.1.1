@@ -2,15 +2,15 @@ package com.dgg.store.service.store;
 
 import com.dgg.store.dao.store.ManageDao;
 import com.dgg.store.util.core.constant.Constant;
+import com.dgg.store.util.core.generator.IDGenerator;
 import com.dgg.store.util.core.shiro.CryptographyUtil;
 import com.dgg.store.util.vo.LoginVO;
 import com.dgg.store.util.vo.core.ResultVO;
 import com.dgg.store.util.vo.core.SessionVO;
-import com.dgg.store.util.vo.manage.ManageMenuVO;
-import com.dgg.store.util.vo.manage.MemberVO;
-import com.dgg.store.util.vo.permission.QMPermissionVO;
+import com.dgg.store.util.vo.manage.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,7 +27,7 @@ public class ManageServiceImpl implements ManageService
         loginVO.setUserPassword(CryptographyUtil.md5(loginVO.getUserPassword(), Constant.SALT));
         int result = dao.findLoginUser(loginVO);
 
-        ResultVO resultVO = new ResultVO(1,sessionVO.getToken(),result);
+        ResultVO resultVO = new ResultVO(1, sessionVO.getToken(), result);
 
         return resultVO;
     }
@@ -39,13 +39,194 @@ public class ManageServiceImpl implements ManageService
         result.add(dao.findTeamAndMemberCount(sessionVO.getMyTeamId()));
         result.addAll(dao.findDepartmentAndMemberCount(sessionVO.getMyTeamId()));
 
-        ResultVO resultVO = new ResultVO(1,sessionVO.getToken(),result);
+        ResultVO resultVO = new ResultVO(1, sessionVO.getToken(), result);
 
         return resultVO;
     }
 
     @Override
     public ResultVO findMemberList(SessionVO sessionVO, MemberVO memberVO)
+    {
+        return null;
+    }
+
+    @Override
+    public ResultVO insertDepartment(SessionVO sessionVO, DepartmentVO department)
+    {
+        Integer result = 1;
+        int i = 0;
+        int count = 3;
+
+        List<PositionVO> positionList = new ArrayList<>();
+        List<PerPosRe> perPosReList = new ArrayList<>();
+
+        while (result > 0)
+        {
+            switch (i)
+            {
+                case 0:
+                    department.setMyTeamId(sessionVO.getMyTeamId());
+                    department.setDepartmentId(IDGenerator.generator());
+                    result = dao.insertDepartment(department);
+                    break;
+                case 1:
+                    String[] positionNames = department.getPosition().split(Constant.COMMA);
+                    for (String name : positionNames)
+                        positionList.add(new PositionVO(IDGenerator.generator(), name, department.getDepartmentId()));
+                    result = dao.insertPosition(positionList);
+                    break;
+                case 2:
+                    String[] permission = department.getPermission().split(Constant.STRING_45);
+                    for (int j = 0; j < positionList.size() && j < permission.length; j++)
+                    {
+                        String[] ps = permission[j].split(Constant.COMMA);
+                        for (String per : ps)
+                            perPosReList.add(new PerPosRe(per, positionList.get(j).getPositionId()));
+                    }
+                    result = perPosReList.size() > 1 ? dao.insertPerPosRe(perPosReList) : 1;
+                    break;
+                default:
+                    result = 0;
+                    break;
+            }
+            i++;
+        }
+
+        if (i - 1 < count)
+            throw new RuntimeException(Constant.STR_ADD_FAILED);
+        else
+            result = 1;
+
+        ResultVO resultVO = new ResultVO(result, sessionVO.getToken());
+
+        return resultVO;
+    }
+
+    @Override
+    public ResultVO findDepartmentInfo(SessionVO sessionVO, DepartmentVO department)
+    {
+        DepartmentVO result = dao.findDepartmentInfo(department.getDepartmentId());
+
+        ResultVO resultVO = new ResultVO(1, sessionVO.getToken(), result);
+
+        return resultVO;
+    }
+
+    @Override
+    public ResultVO updateDepartment(SessionVO sessionVO, DepartmentVO department)
+    {
+        Integer result = 1;
+        int i = 0;
+        int count = 4;
+
+        List<PositionVO> positionList = new ArrayList<>();
+        List<PerPosRe> perPosReList = new ArrayList<>();
+
+        while (result > 0)
+        {
+            switch (i)
+            {
+                case 0:
+                    result = dao.updateDepartment(department);
+                    break;
+                case 1:
+                    dao.cleanPerPosRe(department.getDepartmentId());
+                    result = dao.cleanPosition(department.getDepartmentId());
+                    break;
+                case 2:
+                    String[] positionNames = department.getPosition().split(Constant.COMMA);
+                    for (String name : positionNames)
+                        positionList.add(new PositionVO(IDGenerator.generator(), name, department.getDepartmentId()));
+                    result = dao.insertPosition(positionList);
+                    break;
+                case 3:
+                    String[] permission = department.getPermission().split(Constant.STRING_45);
+                    for (int j = 0; j < positionList.size() && j < permission.length; j++)
+                    {
+                        String[] ps = permission[j].split(Constant.COMMA);
+                        for (String per : ps)
+                            perPosReList.add(new PerPosRe(per, positionList.get(j).getPositionId()));
+                    }
+                    result = dao.insertPerPosRe(perPosReList);
+                    break;
+                default:
+                    result = 0;
+                    break;
+            }
+            i++;
+        }
+
+        if (i - 1 < count)
+            throw new RuntimeException(Constant.STR_ADD_FAILED);
+        else
+            result = 1;
+
+        ResultVO resultVO = new ResultVO(result, sessionVO.getToken());
+
+        return resultVO;
+    }
+
+    @Override
+    public ResultVO deleteDepartment(SessionVO sessionVO, DepartmentVO department)
+    {
+        Integer result = 1;
+        int i = 0;
+        int count = 2;
+
+        Integer memberCount = dao.findDepartmentMemberCount(department.getDepartmentId());
+        if (memberCount > 0)
+            return new ResultVO(2, sessionVO.getToken());
+
+        while (result > 0)
+        {
+            switch (i)
+            {
+                case 0:
+                    dao.cleanPerPosRe(department.getDepartmentId());
+                    result = dao.cleanPosition(department.getDepartmentId());
+                    break;
+                case 1:
+                    result = dao.deleteDepartment(department.getDepartmentId());
+                    break;
+                default:
+                    result = 0;
+                    break;
+            }
+            i++;
+        }
+
+        if (i - 1 < count)
+            throw new RuntimeException(Constant.STR_ADD_FAILED);
+        else
+            result = 1;
+
+        ResultVO resultVO = new ResultVO(result, sessionVO.getToken());
+
+        return resultVO;
+    }
+
+    @Override
+    public ResultVO findDepartmentList(SessionVO sessionVO, DepartmentVO department)
+    {
+        List<DepartmentVO> result = dao.findDepartmentList(sessionVO.getMyTeamId());
+
+        ResultVO resultVO = new ResultVO(1,sessionVO.getToken(),result);
+
+        return resultVO;
+    }
+
+    @Override
+    public ResultVO findPositionList(SessionVO sessionVO, DepartmentVO department)
+    {
+        List<MemberVO> result = dao.findPositionList(department.getDepartmentId());
+
+        ResultVO resultVO = new ResultVO(1,sessionVO.getToken(),result);
+
+        return resultVO;
+    }
+
+    @Override
+    public ResultVO insertCardFront(SessionVO sessionVO, MultipartFile file, String realPath)
     {
         return null;
     }

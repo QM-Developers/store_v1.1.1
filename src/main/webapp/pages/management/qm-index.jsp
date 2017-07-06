@@ -7,7 +7,7 @@
 %>
 <div class="qm-header">
     <div class="logo-box">
-        <img src="../images/ceshi3.jpg"/>
+        <img src="${path}/pages/images/ceshi3.jpg"/>
     </div>
     <div class="qm-logo">
         青麦科技
@@ -25,7 +25,7 @@
     <div class="main_left" id="frmTitle" name="fmTitle">
         <!--1-->
         <div class="sidebar-img">
-            <img src='../images/ceshi3.jpg' alt="..." class="am-img-thumbnail ">
+            <img src='${path}/pages/images/ceshi3.jpg' alt="..." class="am-img-thumbnail ">
             <div class="sidebar-text">
                 <span><i>姓名 : </i>梦悠然</span><span><i>账号 : 1314520</i></span>
 

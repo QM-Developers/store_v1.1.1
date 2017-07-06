@@ -15,6 +15,10 @@
     <link rel="stylesheet" type="text/css" href="${path}/script/Amaze/assets/css/amazeui.min.css"/>
     <link rel="stylesheet" type="text/css" href="${path}/pages/common/reset.css"/>
     <link rel="stylesheet" type="text/css" href="${path}/pages/management/qm-departments.css"/>
+
+    <script type="text/javascript">
+        var departmentId = document.URL.split("?")[1];
+    </script>
 </head>
 
 <body>
@@ -39,50 +43,53 @@
                 <span class="companyprofile-span">成立时间:</span>
                 <div class="poptime">
                     <input id="create-date" class="pop-input"/>
-                    <button onclick="QmTime(this)" class="am-btn am-btn-default databut am-icon-calendar qm-time-but" data-am-datepicker="{format: 'yyyy-mm-dd'}" type="button"></button>
+                    <button onclick="QmTime(this);" class="am-btn am-btn-default databut am-icon-calendar qm-time-but" data-am-datepicker="{format: 'yyyy-mm-dd'}" type="button"></button>
                 </div>
             </div>
         </div>
     </div>
     <div class="position">
         <div class="jurisdiction-box position-box">
-            <div class="jurisdiction-but position-but" onclick="Addduty()"><i></i>添加职位</div>
+            <div class="jurisdiction-but position-but" onclick="Addduty('')"><i></i>添加职位</div>
         </div>
         <div class="position-contbox" id="Contbox">
-            <div class="position-cont">
-                <div class="position-input">
-                    <input/>
-                </div>
-                <hidden id="position-id-0"/>
-                <div class="position-duty" onclick="qm_department.permissionWindow(this,'position-id-0');">职位权限</div>
-                <div class="position-del" onclick="Delduty(this)">x</div>
-            </div>
         </div>
     </div>
 </div>
 <div class="position-butbox">
-    <div class="position-confirm" onclick="qm_department.addDepartment();">确定</div>
-    <div class="position-cancel">取消</div>
-    <div class="position-delduty" onclick="Delall()">删除</div>
+    <div class="position-confirm" onclick="qm_department.addOrUpdateDepartment();">确定</div>
+    <div class="position-cancel" onclick="qm_department.goBack()">返回</div>
+    <div class="position-delduty" onclick="qm_department.deleteWindow()">删除</div>
 </div>
 
 <!--删除确认-->
 <div id="Delall" class="prompt-box Del-all">
     <div id="Prompt" class="pop-one pop-one1">
-        <div class="prompt-title">删除部门提示</div>
+        <div class="prompt-title">删除提示</div>
         <div class="prompt-frame1">
-            该部门有成员存在，不能删除
         </div>
         <div class="prompt-frame2">
             <div class="prompt-frame-box">
                 <div class="prompt-frame-left" onclick="PromptOff(this)">
                     取消
                 </div>
-                <div class="prompt-frame-right">
+                <div onclick="qm_department.onPositiveClick()" class="prompt-frame-right">
                     确定
                 </div>
             </div>
+        </div>
+    </div>
+</div>
 
+<div id="delete-info" class="prompt-box Del-all">
+    <div class="pop-one pop-one1">
+        <div class="prompt-title">删除提示</div>
+        <div class="prompt-frame1">
+        </div>
+        <div class="prompt-frame2">
+            <div class="prompt-frame-left prompt-one-left" onclick="PromptOff(this)">
+                确定
+            </div>
         </div>
     </div>
 </div>
@@ -108,7 +115,7 @@
                 </table>
             </div>
         </div>
-        <div class="duty-frame2">
+        <div class="duty-frame2 ">
             <div class="duty-frame-box">
                 <div onclick="qm_department.permissionClick()" class="duty-frame-left">确定</div>
                 <div class="duty-frame-right" onclick="Dutyoff()">取消</div>
@@ -120,27 +127,26 @@
 </body>
 <script type="text/javascript" src="${path}/script/jquery/jquery-3.0.0.min.js"></script>
 <script type="text/javascript" src="${path}/script/Amaze/assets/js/amazeui.min.js"></script>
+<script type="text/javascript" src="${path}/script/js/date.js"></script>
 <script type="text/javascript" src="${path}/script/js/myjs.js"></script>
 <script type="text/javascript" src="${path}/pages/common/control.js"></script>
-<script type="text/javascript" src="${path}/pages/management/qm-departments.js"></script>
+<script type="text/javascript" src="${path}/pages/common/Constant.js"></script>
 
 <script type="text/javascript">
-    qm_department.init();
-</script>
-
-<script type="text/javascript">
-    Addduty = function ()
+    Addduty = function (name, permission)
     {
         var count = $(".position-cont").length;
+        var id = "position-id-" + count;
         var $dutynode = '<div class="position-cont">' +
             '<div class="position-input">' +
-            '<input/>' +
+            '<input value="' + name + '"/>' +
             '</div>' +
-            '<hidden id="position-id-' + count + '"/>' +
+            '<hidden id="' + id + '"/>' +
             '<div class="position-duty" onclick="qm_department.permissionWindow(this,\'position-id-' + count + '\')">职位权限</div>' +
             '<div class="position-del" onclick="Delduty(this)">x</div>' +
             '</div>';
         $("#Contbox").append($dutynode);
+        return id;
     }
 
     Delduty = function (item)
@@ -154,9 +160,10 @@
     {
         $(item).parents(".Del-all").css("display", "none")
     }
-    Delall = function ()
+    Delall = function (text)
     {
-        $("#Delall").css("display", "block")
+        $("#Delall .prompt-frame1").html(text);
+        $("#Delall").css("display", "block");
     }
     DutyPower = function ()
     {
@@ -164,6 +171,7 @@
     }
     Dutyoff = function ()
     {
+
         $(".duty-Power").css("display", "none")
     }
     Power = function ()
@@ -175,6 +183,12 @@
         $(".department-power").css("display", "none")
     }
 
+</script>
+
+<script type="text/javascript" src="${path}/pages/management/qm-departments.js"></script>
+
+<script type="text/javascript">
+    qm_department.init();
 </script>
 
 </html>

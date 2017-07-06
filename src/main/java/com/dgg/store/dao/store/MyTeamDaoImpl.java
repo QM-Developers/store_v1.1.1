@@ -6,7 +6,6 @@ import com.dgg.store.util.pojo.TeamDepartment;
 import com.dgg.store.util.vo.core.SearchVO;
 import com.dgg.store.util.vo.core.TreeVO;
 import com.dgg.store.util.vo.team.DepartmentMemberVO;
-import com.dgg.store.util.vo.team.DepartmentVO;
 import com.dgg.store.util.vo.team.MyTeamVO;
 import com.dgg.store.util.vo.team.TeamDepartmentVO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,12 +35,6 @@ public class MyTeamDaoImpl implements MyTeamDao
     public List<TeamDepartment> findDepartmentList(String myTeamId)
     {
         return mapper.findDepartmentList(myTeamId);
-    }
-
-    @Override
-    public DepartmentVO findDepartmentInfo(String teamDepartmentId,String personal)
-    {
-        return mapper.findDepartmentInfo(teamDepartmentId,personal);
     }
 
     @Override
@@ -114,12 +107,6 @@ public class MyTeamDaoImpl implements MyTeamDao
     public Integer findDepartmentMemberCount(String teamDepartmentId)
     {
         return mapper.findDepartmentMemberCount(teamDepartmentId);
-    }
-
-    @Override
-    public DepartmentVO findDepartmentManager(String teamDepartmentId,String roleId)
-    {
-        return mapper.findDepartmentManager(teamDepartmentId,roleId);
     }
 
     @Override

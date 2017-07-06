@@ -5,7 +5,6 @@ import com.dgg.store.util.pojo.TeamDepartment;
 import com.dgg.store.util.vo.core.SearchVO;
 import com.dgg.store.util.vo.core.TreeVO;
 import com.dgg.store.util.vo.team.DepartmentMemberVO;
-import com.dgg.store.util.vo.team.DepartmentVO;
 import com.dgg.store.util.vo.team.MyTeamVO;
 import com.dgg.store.util.vo.team.TeamDepartmentVO;
 
@@ -18,8 +17,6 @@ public interface MyTeamDao
     Integer insertDepartment(TeamDepartment department);
 
     List<TeamDepartment> findDepartmentList(String myTeamId);
-
-    DepartmentVO findDepartmentInfo(String teamDepartmentId,String personal);
 
     Integer insertDepartmentMember(DepartmentMemberVO memberVO);
 
@@ -44,8 +41,6 @@ public interface MyTeamDao
     Integer updateDepartment(DepartmentMemberVO memberVO);
 
     Integer findDepartmentMemberCount(String teamDepartmentId);
-
-    DepartmentVO findDepartmentManager(String teamDepartmentId,String roleId);
 
     MyTeamVO findCompanyPrincipal(String myTeamId, String departmentManager, String roleTeamPersonal);
 

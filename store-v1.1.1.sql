@@ -308,7 +308,7 @@ create table parent_dictionary
 -- INSERT INTO `parent_dictionary` VALUES ('297ebc9fd0f640fca9f04c8fc067414e','填写类型','2017-05-17 15:51:15',''),('58c359e4f354459aa2d9692a50ca3e19','是否必填','2017-05-17 15:51:15',''),('7358aa8f92bd43dfb8e9472a7a4c74f5','订单状态','2017-05-17 15:51:15',''),('7c91ff9e7e3b47a7ba42b4d4ea78ab5a','付款方式','2017-05-17 15:51:15',''),('9fb5903640b340b795bc68481f1b48e3','客户分组','2017-05-17 15:51:15',''),('b3a5fa19c94d4a18b5b6c75ce8d3c828','图片类型','2017-05-17 15:51:15',''),('ca970ab6c3d847b0b14cc6cd64ea253c','用户状态','2017-05-17 15:51:15','');
 
 /*==============================================================*/
-/* 用户权限
+/* 操作权限
 /*==============================================================*/
 create table permission
 (
@@ -339,7 +339,7 @@ create table qm_permission
 );
 
 /*==============================================================*/
-/* 客户权限与实际权限关联表
+/* 客户权限与操作权限关联表
 /*==============================================================*/
 create table qm_permission_re
 (
@@ -348,7 +348,16 @@ create table qm_permission_re
 );
 
 /*==============================================================*/
-/* 用户角色
+/* 客户权限与个人关联
+/*==============================================================*/
+create table user_qm_permission_re
+(
+   user_id            varchar(35) not null,
+   qm_permission_id   varchar(35) not null default ''
+);
+
+/*==============================================================*/
+/* 角色
 /*==============================================================*/
 create table role
 (
@@ -442,7 +451,7 @@ create table user
    user_password        varchar(50) not null default '',
    user_sex             varchar(10) not null default '',
    user_phone           varchar(20) not null default '',
-   user_birthday        date not null,
+   user_birthday        date,
    user_address         varchar(50) not null default '',
    user_area            varchar(50) not null default '',
    user_email           varchar(100) not null default '',

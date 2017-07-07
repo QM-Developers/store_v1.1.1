@@ -42,10 +42,7 @@ public class Constant
      */
     public static final String ROLE_DEFAULT_USER = "1001";  // 普通用户
     public static final String ROLE_MANAGER = "1002";   // 超级管理员
-    public static final String ROLE_TEAM_PERSONAL = "1003"; // 普通员工
-    public static final String ROLE_TEAM_PRESIDENT = "1004";  // 集团总裁
-    public static final String ROLE_TEAM_COMPANY_MANAGER = "1005";   // 公司经理
-    public static final String ROLE_TEAM_DEPARTMENT_MANAGER = "1006"; // 部门主管
+    public static final String ROLE_BUSINESS = "1003"; // 普通员工
 
     /**
      * 团队类型
@@ -85,6 +82,7 @@ public class Constant
     public static final String USER_PERSONAL_INFO_IMG_PATH; // 用户个人信息图片路径
     public static final String USER_HEAD_PORTRAIT_IMG_PATH; // 用户头像图片路径
     public static final String USER_IMAGE_SPACE_PATH;   // 用户图片空间路径
+    public static final String USER_ID_CARD_PATH;   // 身份证图片路径
 
     /**
      * 订单状态
@@ -116,6 +114,7 @@ public class Constant
         USER_PERSONAL_INFO_IMG_PATH = uploadPath.getProperty("USER_PERSONAL_INFO_IMG_PATH");
         USER_HEAD_PORTRAIT_IMG_PATH = uploadPath.getProperty("USER_HEAD_PORTRAIT_IMG_PATH");
         USER_IMAGE_SPACE_PATH = uploadPath.getProperty("USER_IMAGE_SPACE_PATH");
+        USER_ID_CARD_PATH = uploadPath.getProperty("USER_ID_CARD_PATH");
         NETTY_HOST = netty.getProperty("HOST");
         NETTY_PORT = Integer.valueOf(netty.getProperty("PORT"));
     }

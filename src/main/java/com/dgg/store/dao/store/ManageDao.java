@@ -17,7 +17,7 @@ public interface ManageDao
 
     Integer insertPosition(List<PositionVO> positionList);
 
-    Integer insertPerPosRe(List<PerPosRe> perPosReList);
+    Integer insertPerPosRe(List<PerPosReVO> perPosReList);
 
     DepartmentVO findDepartmentInfo(String departmentId);
 
@@ -34,4 +34,10 @@ public interface ManageDao
     List<DepartmentVO> findDepartmentList(String myTeamId);
 
     List<MemberVO> findPositionList(String departmentId);
+
+    Integer insertMember(MemberVO member);
+
+    Integer insertPerUserRe(List<PerUserReVO> perUserReList);
+
+    List<MemberVO> findMemberList(MemberVO memberVO);
 }

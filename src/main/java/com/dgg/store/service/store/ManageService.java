@@ -29,4 +29,8 @@ public interface ManageService
     ResultVO findPositionList(SessionVO sessionVO, DepartmentVO department);
 
     ResultVO insertCardFront(SessionVO sessionVO, MultipartFile file, String realPath);
+
+    ResultVO insertCardBack(SessionVO sessionVO, MultipartFile file, String realPath);
+
+    ResultVO insertMember(SessionVO sessionVO, MemberVO member);
 }

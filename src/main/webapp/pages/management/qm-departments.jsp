@@ -133,7 +133,7 @@
 <script type="text/javascript" src="${path}/pages/common/Constant.js"></script>
 
 <script type="text/javascript">
-    Addduty = function (name, permission)
+    Addduty = function (name, positionId)
     {
         var count = $(".position-cont").length;
         var id = "position-id-" + count;
@@ -141,9 +141,9 @@
             '<div class="position-input">' +
             '<input value="' + name + '"/>' +
             '</div>' +
-            '<hidden id="' + id + '"/>' +
+            '<hidden id="' + id + '" position-id=' + positionId + '/>' +
             '<div class="position-duty" onclick="qm_department.permissionWindow(this,\'position-id-' + count + '\')">职位权限</div>' +
-            '<div class="position-del" onclick="Delduty(this)">x</div>' +
+            '<div class="position-del" onclick="qm_department.deletePosition(this)">x</div>' +
             '</div>';
         $("#Contbox").append($dutynode);
         return id;

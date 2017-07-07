@@ -34,15 +34,16 @@
         <div class="am-g qm-team1">
             <div class="groupdata-title">
                 <div class="qm-list">公司列表</div>
-                <div class="qm-compile"><span onclick="qm_memberList.toDepartmentInfo();" class="qm-compile-but">编辑部门</span><i class="compile-icon"></i></div>
+                <div class="qm-compile">
+                    <span onclick="qm_memberList.toDepartmentInfo();" class="qm-compile-but">编辑部门</span><i class="compile-icon"></i>
+                </div>
                 <div class="qm-compile-seek"><input/><span></span></div>
             </div>
 
             <div class="am-u-sm-12 qm-team1-box">
 
                 <table class="am-table ">
-
-                    <tbody>
+                    <thead>
                     <tr>
                         <th>姓名</th>
                         <th>性别</th>
@@ -51,29 +52,16 @@
                         <th>职位</th>
                         <th>操作</th>
                     </tr>
-                    <tr>
-                        <td>忘忧果</td>
-                        <td>男</td>
-                        <td>10086010110</td>
-                        <td>财务部</td>
-                        <td>负责人</td>
-
-                        <td>
-                            <a class="personnel-details" href="">编辑</a>
-                        </td>
-                    </tr>
-
-                    </tbody>
+                    </thead>
+                    <tbody id="member-list"></tbody>
                 </table>
                 <div class="paging">
-
                     <div class="pagingright">
                         下一页
                     </div>
                     <div class="pagingmodle">
                         <span>1</span>/<span>4</span>
                     </div>
-
                     <div class="pagingleft">
                         上一页
                     </div>

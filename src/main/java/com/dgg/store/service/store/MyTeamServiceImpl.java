@@ -88,9 +88,9 @@ public class MyTeamServiceImpl implements MyTeamService
     @Override
     public ResultVO insertDepartmentMember(SessionVO sessionVO, DepartmentMemberVO memberVO)
     {
-        memberVO.setUserId(IDGenerator.generator());
-        memberVO.setUserStatus(Constant.USERST_1);
-        memberVO.setRoleId(Constant.ROLE_TEAM_PERSONAL);
+//        memberVO.setUserId(IDGenerator.generator());
+//        memberVO.setUserStatus(Constant.USERST_1);
+//        memberVO.setRoleId(Constant.ROLE_TEAM_PERSONAL);
 
         Integer result = dao.insertDepartmentMember(memberVO);
         if (result < 1)
@@ -124,19 +124,19 @@ public class MyTeamServiceImpl implements MyTeamService
     @Override
     public ResultVO findCompanyInfo(SessionVO sessionVO, MyTeamVO team)
     {
-        MyTeamVO result = dao.findCompanyInfo(team.getMyTeamId());
-        MyTeamVO principal = dao.findCompanyPrincipal(team.getMyTeamId(), Constant.DEPARTMENT_MANAGER, Constant.ROLE_TEAM_PERSONAL);
+//        MyTeamVO result = dao.findCompanyInfo(team.getMyTeamId());
+//        MyTeamVO principal = dao.findCompanyPrincipal(team.getMyTeamId(), Constant.DEPARTMENT_MANAGER, Constant.ROLE_TEAM_PERSONAL);
 
-        if (principal != null)
-        {
-            result.setUserName(principal.getUserName());
-            result.setUserPhone(principal.getUserPhone());
-            result.setUserId(principal.getUserId());
-        }
+//        if (principal != null)
+//        {
+//            result.setUserName(principal.getUserName());
+//            result.setUserPhone(principal.getUserPhone());
+//            result.setUserId(principal.getUserId());
+//        }
+//
+//        ResultVO resultVO = new ResultVO(result == null ? 0 : 1, sessionVO.getToken(), result);
 
-        ResultVO resultVO = new ResultVO(result == null ? 0 : 1, sessionVO.getToken(), result);
-
-        return resultVO;
+        return null;
     }
 
     @Override
@@ -151,7 +151,7 @@ public class MyTeamServiceImpl implements MyTeamService
             switch (i)
             {
                 case 0:
-                    result = dao.updateRoleByDepartment(memberVO.getTeamDepartmentId(), Constant.ROLE_TEAM_PERSONAL);
+//                    result = dao.updateRoleByDepartment(memberVO.getTeamDepartmentId(), Constant.ROLE_TEAM_PERSONAL);
                     break;
                 case 1:
                     result = dao.updateRoleByUser(memberVO.getUserId(), memberVO.getRoleId());
@@ -206,17 +206,17 @@ public class MyTeamServiceImpl implements MyTeamService
     @Override
     public ResultVO findCDepartmentList(SessionVO sessionVO, MyTeamVO teamVO)
     {
-        List<TeamDepartmentVO> result = dao.findCDepartmentList(teamVO.getMyTeamId(), Constant.ROLE_TEAM_PERSONAL);
+//        List<TeamDepartmentVO> result = dao.findCDepartmentList(teamVO.getMyTeamId(), Constant.ROLE_TEAM_PERSONAL);
+//
+//        ResultVO resultVO = new ResultVO(result.size() < 1 ? 0 : 1, sessionVO.getToken(), result);
 
-        ResultVO resultVO = new ResultVO(result.size() < 1 ? 0 : 1, sessionVO.getToken(), result);
-
-        return resultVO;
+        return null;
     }
 
     @Override
     public ResultVO updateDepartment(SessionVO sessionVO, DepartmentMemberVO memberVO)
     {
-        memberVO.setRoleId(Constant.ROLE_TEAM_PERSONAL);
+//        memberVO.setRoleId(Constant.ROLE_TEAM_PERSONAL);
         Integer result = dao.updateDepartment(memberVO);
 
         ResultVO resultVO = new ResultVO(result, sessionVO.getToken());

@@ -1,16 +1,16 @@
 package com.dgg.store.util.vo.manage;
 
-public class PerPosRe
+public class PerPosReVO
 {
     private String permissionId;
 
     private String positionId;
 
-    public PerPosRe()
+    public PerPosReVO()
     {
     }
 
-    public PerPosRe(String permissionId, String positionId)
+    public PerPosReVO(String permissionId, String positionId)
     {
         this.permissionId = permissionId;
         this.positionId = positionId;

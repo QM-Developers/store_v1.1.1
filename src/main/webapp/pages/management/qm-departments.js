@@ -121,7 +121,7 @@ var qm_department = {
                 for (var j = 0; j < perPosReList.length; j++)
                     if (!myjs.isNull(perPosReList[j]["permissionId"]))
                         permission += perPosReList[j]["permissionId"] + ",";
-                var id = Addduty(positionList[i]["positionName"]);
+                var id = Addduty(positionList[i]["positionName"],positionList[i]["positionId"]);
                 $("#" + id).val(permission);
             }
         });
@@ -137,6 +137,13 @@ var qm_department = {
     {
         $("#delete-info .prompt-frame1").html(text);
         $("#delete-info").css("display", "block");
+    },
+
+    deletePosition:function (item)
+    {
+
+
+        Delduty(item);
     },
 
     onPositiveClick:function ()

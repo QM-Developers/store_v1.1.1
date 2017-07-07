@@ -150,15 +150,41 @@
 	margin-right: 150px;
 	margin-bottom: 20px;
 	background: #FFFFFF;
+	position: relative;
 }
-
+.newdata-picture .img-cont-box{
+    z-index: 100;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
 .newdata-picture img {
-	max-width: 306px;
-	max-height: 168px;
-	width: 100%;
-	height: 100%;
+    width: 100%;
+    height: 100%;
 }
-
+.img-cont-box .clickoff{
+    display: none;
+    width: 20px;
+    height: 20px;
+    z-index: 200;
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: red;
+    line-height: 20px;
+    text-align: center;
+}
+.add-progress{
+    margin: 0;
+    height: 10px;
+    width: 100%;
+    z-index: 300;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
 .newdata-picture .newdata-picture-i {
 	display: block;
 	width: 120px;

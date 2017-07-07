@@ -18,7 +18,7 @@ public interface ManageMapper
 
     Integer insertPosition(@Param("list") List<PositionVO> positionList);
 
-    Integer insertPerPosRe(@Param("list") List<PerPosRe> perPosReList);
+    Integer insertPerPosRe(@Param("list") List<PerPosReVO> perPosReList);
 
     DepartmentVO findDepartmentInfo(@Param("departmentId") String departmentId);
 
@@ -35,4 +35,10 @@ public interface ManageMapper
     List<DepartmentVO> findDepartmentList(@Param("myTeamId") String myTeamId);
 
     List<MemberVO> findPositionList(@Param("departmentId") String departmentId);
+
+    Integer insertMember(MemberVO member);
+
+    Integer insertPerUserRe(@Param("list") List<PerUserReVO> perUserReList);
+
+    List<MemberVO> findMemberList(MemberVO memberVO);
 }

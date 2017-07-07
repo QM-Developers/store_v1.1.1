@@ -16,7 +16,9 @@
     <link rel="stylesheet" href="${path}/script/webuploader-0.1.5/webuploader.css">
     <link rel="stylesheet" type="text/css" href="${path}/pages/management/qm-member.css"/>
 
-
+    <script type="text/javascript">
+        var userId = document.URL.split("?")[1];
+    </script>
 </head>
 
 <body>
@@ -44,26 +46,23 @@
                 <span>性　　别 : </span>
                 <!--poptwo-c-lia1-->
                 <div class="pop-div2 sex" id="user-sex">
-                    <a href="###" name="male" onclick="PopInput(this)" class="poptwo-c-lia  man">男</a>
+                    <a href="###" name="male" onclick="PopInput(this)" class="poptwo-c-lia man poptwo-c-lia1">男</a>
                     <a href="###" onclick="PopInput(this)" name="woman" class="poptwo-c-lia woman">女</a>
                 </div>
             </div>
-            <div class=" qm-team-input">
+            <div class="qm-team-input">
                 <span>手机号码 : </span><input id="user-phone" placeholder="登录账号"/>
             </div>
-            <div class=" qm-team-input">
-                <span>登录密码 : </span><input/>
-            </div>
-            <div class=" qm-team-input">
+            <div class="qm-team-input">
                 <span>身份证号 : </span><input id="user-identity"/>
             </div>
-            <div class=" qm-team-input">
+            <div class="qm-team-input">
                 <span>所属部门 : </span>
                 <div class="qm-team-div">
                     <select id="department-list" onchange="qm_member.findPositionList(value)" style="height: 100%;"></select>
                 </div>
             </div>
-            <div class=" qm-team-input">
+            <div class="qm-team-input">
                 <span>工作职位 : </span>
                 <div class="qm-team-div">
                     <select id="position-list"></select>
@@ -80,10 +79,24 @@
             <div>身份证照片 :</div>
         </div>
         <div class="newdata-picture">
-            <i class="newdata-picture-i" id="card-front">添加照片</i>
+            <div onmouseenter="Imgon(this)" style="display: none" onmouseleave="Imgout(this)" class="img-cont-box">
+                <span class="clickoff" onclick="qm_member.removeImage(this,'front');">X</span>
+                <div class="am-progress add-progress am-progress-striped">
+                    <div class="am-progress-bar am-progress-bar-secondary"></div>
+                </div>
+                <img  src="" id="img-card-front"/>
+            </div>
+            <i class="newdata-picture-i" id="btn-card-front">添加照片</i>
         </div>
         <div class="newdata-picture">
-            <i class="newdata-picture-i">添加照片</i>
+            <div onmouseenter="Imgon(this)" style="display: none;" onmouseleave="Imgout(this)" class="img-cont-box">
+                <span class="clickoff" onclick="qm_member.removeImage(this,'back');">X</span>
+                <div class="am-progress add-progress am-progress-striped">
+                    <div class="am-progress-bar am-progress-bar-secondary"></div>
+                </div>
+                <img  src="" id="img-card-back"/>
+            </div>
+            <i class="newdata-picture-i" id="btn-card-back">添加照片</i>
         </div>
     </div>
 </div>
@@ -142,6 +155,18 @@
     Dutyoff = function ()
     {
         $(".duty-Power").css("display", "none")
+    }
+    Imgon =function(item){
+        $(item).find('.clickoff').css('display','block')
+    }
+    Imgout =function(item){
+        $(item).find('.clickoff').css('display','none')
+    }
+    clickoff=function(item){
+        $(item).parents('.img-cont-box').css('display','none');
+    }
+    clickon=function(item){
+        $(item).parents('.img-cont-box').css('display','block');
     }
 </script>
 

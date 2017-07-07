@@ -1,49 +1,51 @@
 var qm_member = {
-    cardFront:null,
-    cardBack:null,
+    cardFront: null,
+    cardBack: null,
+    cardFrontResult: "",
+    cardBackResult: "",
 
-    init:function ()
+    init: function ()
     {
         qm_member.findDepartmentList();
         qm_member.initPermission();
         qm_member.initWebUpload();
     },
 
-    findDepartmentList:function ()
+    findDepartmentList: function ()
     {
         var url = path + "/s/findDepartmentList.action";
         var params = {};
 
-        myjs.ajax_post(url,params,function (data)
+        myjs.ajax_post(url, params, function (data)
         {
             data = data.result;
             var item = "";
-            for(var i = 0;i<data.length;i++)
-                item += '<option value="'+data[i]["departmentId"]+'">'+data[i]["departmentName"]+'</option>';
+            for (var i = 0; i < data.length; i++)
+                item += '<option value="' + data[i]["departmentId"] + '">' + data[i]["departmentName"] + '</option>';
             $("#department-list").append(item);
             qm_member.findPositionList(data[0]["departmentId"]);
         });
     },
 
-    findPositionList:function (did)
+    findPositionList: function (did)
     {
         var url = path + "/s/findPositionList.action";
         var params = {};
 
         params["departmentId"] = did;
 
-        myjs.ajax_post(url,params,function (data)
+        myjs.ajax_post(url, params, function (data)
         {
             data = data.result;
             var item = "";
-            for(var i = 0;i<data.length;i++)
-                item +='<option value="'+data[i]["positionId"]+'">'+data[i]["positionName"]+'</option>';
+            for (var i = 0; i < data.length; i++)
+                item += '<option value="' + data[i]["positionId"] + '">' + data[i]["positionName"] + '</option>';
             $("#position-list").empty();
             $("#position-list").append(item);
         });
     },
 
-    initPermission:function ()
+    initPermission: function ()
     {
         var url = path + "/s/findQMPermissionTree.action";
         var params = {};
@@ -72,27 +74,31 @@ var qm_member = {
                 return data[i]["children"];
     },
 
-    addMember:function ()
+    addMember: function ()
     {
-        var url = path + "/s/.action";
+        var url = path + "/s/addMember.action";
         var params = {};
 
         params["userName"] = $("#user-name").val();
-        params["userName"] = $("#user-name").val();
-        params["userName"] = $("#user-name").val();
-        params["userName"] = $("#user-name").val();
-        params["userName"] = $("#user-name").val();
-        params["userName"] = $("#user-name").val();
-        params["userName"] = $("#user-name").val();
-        params["userName"] = $("#user-name").val();
-        params["userName"] = $("#user-name").val();
-        params["userName"] = $("#user-name").val();
+        params["userSex"] = $("#user-sex>a.poptwo-c-lia1").text();
+        params["userPhone"] = $("#user-phone").val();
+        params["userIdentity"] = $("#user-identity").val();
+        params["departmentId"] = $("#department-list").val();
+        params["positionId"] = $("#position-list").val();
+        params["userCardFront"] = $("#img-card-front").attr("result");
+        params["userCardBack"] = $("#img-card-back").attr("result");
+        params["permission"] = $("#permission").val();
+
+        myjs.ajax_post(url,params,function (data)
+        {
+            console.log(data);
+        });
     },
 
-    permissionClick:function ()
+    permissionClick: function ()
     {
         var permission = "";
-        var permissionItem = $("#worker-permission").find("input[type='checkbox']:checked");
+        var permissionItem = $("#personal-permission").find("input[type='checkbox']:checked");
         for (var i = 0; i < permissionItem.length; i++)
             permission += $(permissionItem[i]).val() + ",";
         $("#permission").val(permission);
@@ -107,12 +113,12 @@ var qm_member = {
             // swf文件路径
             swf: path + '/script/script/webuploader-0.1.5/Uploader.swf',
             // 文件接收服务端。
-            server: path + '/s/uploadToImgSpace.action',
+            server: path + '/s/insertCardFront.action',
             threads: 1,  // 上传并发数
             // 选择文件的按钮。可选。
             // 内部根据当前运行是创建，可能是input元素，也可能是flash.
-            pick: '#card-front',
-            fileVal: 'img',
+            pick: '#btn-card-front',
+            fileVal: 'cardFront',
             // 只允许选择图片文件。
             accept: {
                 title: 'Images',
@@ -121,80 +127,91 @@ var qm_member = {
             }
         };
         qm_member.cardFront = WebUploader.create(setting);
-        setting.server = path + "/s/";
-        qm_member.cardBack= WebUploader.create(setting);
 
-        qm_member.uploader.on('fileQueued', function (file)
+        setting.pick = "#btn-card-back";
+        setting.fileVal = "cardBack";
+        setting.server = path + "/s/insertCardBack.action";
+        qm_member.cardBack = WebUploader.create(setting);
+
+        function onPick(uploadItem, imgItem)
         {
-            var $list = $("#upload-list");
-
-            var $li = $('<div onclick="gdReleaseJS.onSelectImg(this);" class="imgbox am-img-thumbnail">' +
-                    '<a id="' + file.id + '"><img style="width: 100%;height: 100%" src=""/></a>' +
-                    '</div>'),
-                $img = $li.find('img');
-
-            // $list为容器jQuery实例
-            $list.append($li);
-
-            qm_member.uploader.makeThumb(file, function (error, src)
+            uploadItem.on('fileQueued', function (file)
             {
-                if (error)
+                imgItem.val(file.id);
+                uploadItem.makeThumb(file, function (error, src)
                 {
-                    $img.replaceWith('<span>不能预览</span>');
-                    return;
-                }
-                $img.attr('src', src);
-            }, 124, 124);
-        });
+                    if (error)
+                    {
+                        imgItem.replaceWith('<span>不能预览</span>');
+                        return;
+                    }
+                    imgItem.attr('src', src);
+                }, 304, 166);
+                clickon(imgItem[0]);
+            });
+        }
 
-        // 文件上传过程中创建进度条实时显示。
-        qm_member.uploader.on('uploadProgress', function (file, percentage)
+        function uploadProgress(uploadItem,imgItem)
         {
-            var $li = $('#' + file.id),
-                $percent = $li.find('.upload-progress');
+            var percent = imgItem.prev("div").children("div");
 
-            // 避免重复创建
-            if (!$percent.length)
+            uploadItem.on('uploadProgress', function (file, percentage)
             {
-                $percent = $('<div class="upload-progress am-progress am-progress-striped am-progress-sm am-active ">' +
-                    '<div class="am-progress-bar am-progress-bar-secondary"  style="width: 0%"></div>' +
-                    '</div>').appendTo($li).find('.upload-progress');
-            }
+                percent.css('width', percentage * 100 + '%');
+            });
+        }
 
-            $percent.css('width', percentage * 100 + '%');
-        });
-
-        // 文件上传成功，给item添加成功class, 用样式标记上传成功。
-        qm_member.uploader.on('uploadSuccess', function (file, data)
+        function onSuccess(uploadItem, imgItem)
         {
-            var $li = $('#' + file.id), $percent = $li.find('.upload-progress');
+            uploadItem.on('uploadSuccess', function (file, data)
+            {
+                $(imgItem).attr("result", data.result);
+                var percent = imgItem.prev("div");
+                percent.hide();
+            });
+        }
 
-            $li.find("img").attr("real-path", data.result);
-
-            if ($percent.length)
-                $percent.remove();
-
-            $li.append('<div class="b-shade"><span>700x700</span></div>');
-            //     <div class="b-shade">
-            //     <span>700x700</span>
-            // </div>
-        });
-
-        // 文件上传失败，显示上传出错。
-        qm_member.uploader.on('uploadError', function (file)
+        function uploadComplete(uploadItem, imgItem)
         {
-            var $li = $('#' + file.id), $percent = $li.find('.upload-progress');
+            uploadItem.on('uploadComplete', function (file)
+            {
 
-            if ($percent.length)
-                $percent.remove();
+            });
+        }
 
-            $percent = $('<div class="upload-progress" style="color: red;width: 65px">上传失败</div>').appendTo($li);
-        });
-
-        // 完成上传完了，成功或者失败，先删除进度条。
-        qm_member.uploader.on('uploadComplete', function (file)
+        function uploadError(uploadItem, imgItem)
         {
+            uploadItem.on('uploadError', function (file)
+            {
 
-        });
+            });
+        }
+
+        onPick(qm_member.cardFront, $("#img-card-front"));
+        onPick(qm_member.cardBack, $("#img-card-back"));
+        onSuccess(qm_member.cardFront, $("#img-card-front"));
+        onSuccess(qm_member.cardBack, $("#img-card-back"));
+        uploadProgress(qm_member.cardFront, $("#img-card-front"));
+        uploadProgress(qm_member.cardBack, $("#img-card-back"));
+        uploadComplete(qm_member.cardFront, $("#img-card-front"));
+        uploadComplete(qm_member.cardBack, $("#img-card-back"));
+        uploadError(qm_member.cardFront, $("#img-card-front"));
+        uploadError(qm_member.cardBack, $("#img-card-back"));
     },
+
+    removeImage: function (item, flag)
+    {
+        console.log($(item).next("img").val());
+        if (flag == "front")
+            qm_member.cardFront.removeFile($(item).next("img").val(), true);
+        else
+            qm_member.cardBack.removeFile($(item).next("img").val(), true);
+        clickoff(item);
+    },
+
+    upload: function ()
+    {
+        qm_member.cardFront.upload();
+        qm_member.cardBack.upload();
+    }
 };

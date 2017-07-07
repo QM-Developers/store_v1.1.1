@@ -10,15 +10,27 @@ public class MemberVO
 
     private String userPhone;
 
+    private String userStatus;
+
+    private String myTeamId;
+
     private String userIdentity;
+
+    private String roleId;
 
     private String departmentId;
 
+    private String departmentName;
+
     private String positionId;
+
+    private String positionName;
 
     private String userCardFront;
 
     private String userCardBack;
+
+    private String permission;
 
     public String getUserId()
     {
@@ -108,5 +120,65 @@ public class MemberVO
     public void setUserCardBack(String userCardBack)
     {
         this.userCardBack = userCardBack;
+    }
+
+    public String getPermission()
+    {
+        return permission;
+    }
+
+    public void setPermission(String permission)
+    {
+        this.permission = permission;
+    }
+
+    public String getUserStatus()
+    {
+        return userStatus;
+    }
+
+    public void setUserStatus(String userStatus)
+    {
+        this.userStatus = userStatus;
+    }
+
+    public String getRoleId()
+    {
+        return roleId;
+    }
+
+    public void setRoleId(String roleId)
+    {
+        this.roleId = roleId;
+    }
+
+    public String getMyTeamId()
+    {
+        return myTeamId;
+    }
+
+    public void setMyTeamId(String myTeamId)
+    {
+        this.myTeamId = myTeamId;
+    }
+
+    public String getDepartmentName()
+    {
+        return departmentName;
+    }
+
+    public void setDepartmentName(String departmentName)
+    {
+        this.departmentName = departmentName;
+    }
+
+    public String getPositionName()
+    {
+        return positionName;
+    }
+
+    public void setPositionName(String positionName)
+    {
+        this.positionName = positionName;
     }
 }

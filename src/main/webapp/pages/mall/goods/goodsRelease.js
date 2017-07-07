@@ -223,6 +223,7 @@ var gdReleaseJS = {
 
         gdReleaseJS.uploader.on('fileQueued', function (file)
         {
+            console.log(file);
             var $list = $("#upload-list");
 
             var $li = $('<div onclick="gdReleaseJS.onSelectImg(this);" class="imgbox am-img-thumbnail">' +
@@ -241,7 +242,7 @@ var gdReleaseJS = {
                     return;
                 }
                 $img.attr('src', src);
-            }, 124, 124);
+            },500,500);
         });
 
         // 文件上传过程中创建进度条实时显示。

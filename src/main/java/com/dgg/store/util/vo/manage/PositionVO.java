@@ -12,7 +12,7 @@ public class PositionVO
 
     private String QMPermissionId;
 
-    private List<PerPosRe> perPosReList;
+    private List<PerPosReVO> perPosReList;
 
     public PositionVO()
     {
@@ -65,12 +65,12 @@ public class PositionVO
         this.QMPermissionId = QMPermissionId;
     }
 
-    public List<PerPosRe> getPerPosReList()
+    public List<PerPosReVO> getPerPosReList()
     {
         return perPosReList;
     }
 
-    public void setPerPosReList(List<PerPosRe> perPosReList)
+    public void setPerPosReList(List<PerPosReVO> perPosReList)
     {
         this.perPosReList = perPosReList;
     }

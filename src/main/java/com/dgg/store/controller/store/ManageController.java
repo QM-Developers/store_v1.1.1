@@ -68,6 +68,15 @@ public class ManageController
         return service.insertDepartment(sessionVO,department);
     }
 
+    @RequestMapping(value = "/s/addMember",method = RequestMethod.POST)
+    @ResponseBody
+    public ResultVO addMember(HttpServletRequest request,MemberVO member)
+    {
+        SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
+
+        return service.insertMember(sessionVO,member);
+    }
+
     @RequestMapping(value = "/s/updateDepartment",method = RequestMethod.POST)
     @ResponseBody
     public ResultVO updateDepartment(HttpServletRequest request,DepartmentVO department)
@@ -111,6 +120,15 @@ public class ManageController
         SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
 
         return service.insertCardFront(sessionVO,file,request.getSession().getServletContext().getRealPath("/"));
+    }
+
+    @RequestMapping(value = "/s/insertCardBack",method = RequestMethod.POST)
+    @ResponseBody
+    public ResultVO insertCardBack(@RequestParam(value = "cardBack", required = false) MultipartFile file, HttpServletRequest request)
+    {
+        SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
+
+        return service.insertCardBack(sessionVO,file,request.getSession().getServletContext().getRealPath("/"));
     }
 
 }

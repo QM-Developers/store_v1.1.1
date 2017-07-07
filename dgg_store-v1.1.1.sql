@@ -519,6 +519,7 @@ CREATE TABLE `image_space` (
 
 LOCK TABLES `image_space` WRITE;
 /*!40000 ALTER TABLE `image_space` DISABLE KEYS */;
+INSERT INTO `image_space` VALUES ('20fa865f112540de98726fd7bb1001db','10001','/upload/img/user/space/89d9317fb3834353bcf2a507bee2eb82/63f55d8427214035a2fa3fae34a20731.jpg'),('baa912c755314185a2df85752961ec9c','10001','/upload/img/user/space/89d9317fb3834353bcf2a507bee2eb82/4e58c0ecc06f4d8c8729eece9a7955f4.jpg');
 /*!40000 ALTER TABLE `image_space` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -973,7 +974,7 @@ CREATE TABLE `user` (
   `user_password` varchar(50) NOT NULL DEFAULT '',
   `user_sex` varchar(10) NOT NULL DEFAULT '',
   `user_phone` varchar(20) NOT NULL DEFAULT '',
-  `user_birthday` date NOT NULL,
+  `user_birthday` date DEFAULT NULL,
   `user_address` varchar(50) NOT NULL DEFAULT '',
   `user_area` varchar(50) NOT NULL DEFAULT '',
   `user_email` varchar(100) NOT NULL DEFAULT '',
@@ -1009,7 +1010,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES ('89d9317fb3834353bcf2a507bee2eb82','10001','27a9c57b4c69441aa569ef4ae1a9ef7c',1002,'张三','825682eafec59c2e1632828195133a52','男','13688888888','2017-06-14','x胡同y巷z号','北京市 西城区','','2017-06-14 10:38:46','2017-06-14 10:38:46','','','','/upload/img/user/head_portrait/89d9317fb3834353bcf2a507bee2eb82/34ac4d747a35414dbf249b6add3e8348.jpg','','',0,NULL,'','','2017-07-01 11:56:19',NULL,NULL,''),('89d9317fb3834353bcf2a507bee2eb83','10001','27a9c57b4c69441aa569ef4ae1a9ef7d',1002,'李四','825682eafec59c2e1632828195133a52','女','13699999999','2017-06-14','z胡同y巷x号','北京市 西城区','','2017-06-14 10:38:46','2017-06-14 10:38:46','','','','','','',0,NULL,'','','2017-07-01 11:56:19',NULL,NULL,''),('89d9317fb3834353bcf2a507bee2eb84','10001','27a9c57b4c69441aa569ef4ae1a9ef7c',1002,'王五','825682eafec59c2e1632828195133a52','男','13677777777','2017-06-14','a胡同b巷c号','北京市 西城区','','2017-06-14 10:38:46','2017-06-14 10:38:46','','','','/upload/img/user/head_portrait/89d9317fb3834353bcf2a507bee2eb82/34ac4d747a35414dbf249b6add3e8348.jpg','','',0,NULL,'','','2017-07-01 11:56:19',NULL,NULL,'');
+INSERT INTO `user` VALUES ('1afd2aa301914b87a178987dfffefcc2','10001','27a9c57b4c69441aa569ef4ae1a9ef7c',1003,'赵6','','男','13657981326',NULL,'','','','2017-07-07 17:16:26','2017-07-07 17:16:26','u_st_1','','','','','',0,NULL,'135621567845465420','','2017-07-07 17:16:26','/WEB-INF/upload/img/id_card/4d69b8cb68c84988aa74e389287fe2a7.jpg','/WEB-INF/upload/img/id_card/11bcde7361d54d61b6f5d192e57f8645.jpg','5f759af244784603bc4ffc6f7dab8508'),('41370f132bd44bca943e2fe5dd9862ab','10001','27a9c57b4c69441aa569ef4ae1a9ef7c',1003,'赵六','','男','13657981326',NULL,'','','','2017-07-07 17:16:19','2017-07-07 17:16:19','u_st_1','','','','','',0,NULL,'135621567845465420','','2017-07-07 17:16:19','/WEB-INF/upload/img/id_card/4d69b8cb68c84988aa74e389287fe2a7.jpg','/WEB-INF/upload/img/id_card/11bcde7361d54d61b6f5d192e57f8645.jpg','5f759af244784603bc4ffc6f7dab8508'),('89d9317fb3834353bcf2a507bee2eb82','10001','27a9c57b4c69441aa569ef4ae1a9ef7c',1002,'张三','825682eafec59c2e1632828195133a52','男','13688888888','2017-06-14','x胡同y巷z号','北京市 西城区','','2017-06-14 10:38:46','2017-06-14 10:38:46','','','','/upload/img/user/head_portrait/89d9317fb3834353bcf2a507bee2eb82/34ac4d747a35414dbf249b6add3e8348.jpg','','',0,NULL,'','','2017-07-01 11:56:19',NULL,NULL,'b63366bffb23473cbbd2b00225e05620'),('89d9317fb3834353bcf2a507bee2eb83','10001','27a9c57b4c69441aa569ef4ae1a9ef7d',1002,'李四','825682eafec59c2e1632828195133a52','女','13699999999','2017-06-14','z胡同y巷x号','北京市 西城区','','2017-06-14 10:38:46','2017-06-14 10:38:46','','','','','','',0,NULL,'','','2017-07-01 11:56:19',NULL,NULL,'6d163a17a8b842dd98de4b059b893666'),('89d9317fb3834353bcf2a507bee2eb84','10001','27a9c57b4c69441aa569ef4ae1a9ef7c',1002,'王五','825682eafec59c2e1632828195133a52','男','13677777777','2017-06-14','a胡同b巷c号','北京市 西城区','','2017-06-14 10:38:46','2017-06-14 10:38:46','','','','/upload/img/user/head_portrait/89d9317fb3834353bcf2a507bee2eb82/34ac4d747a35414dbf249b6add3e8348.jpg','','',0,NULL,'','','2017-07-01 11:56:19',NULL,NULL,'5f759af244784603bc4ffc6f7dab8508');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1306,6 +1307,29 @@ LOCK TABLES `user_place_history` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `user_qm_permission_re`
+--
+
+DROP TABLE IF EXISTS `user_qm_permission_re`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `user_qm_permission_re` (
+  `user_id` varchar(35) NOT NULL,
+  `qm_permission_id` varchar(35) NOT NULL DEFAULT ''
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `user_qm_permission_re`
+--
+
+LOCK TABLES `user_qm_permission_re` WRITE;
+/*!40000 ALTER TABLE `user_qm_permission_re` DISABLE KEYS */;
+INSERT INTO `user_qm_permission_re` VALUES ('0f82fac92fe4431a9a7ef66c26207bd8','986b810014e44d2c9d5b383f2a83da3c'),('ba98c457e25a48a78f1aeaa4062351a4','986b810014e44d2c9d5b383f2a83da3c'),('642f36253272427c8fb0bf153116aefc','986b810014e44d2c9d5b383f2a83da3c'),('41370f132bd44bca943e2fe5dd9862ab',''),('1afd2aa301914b87a178987dfffefcc2','986b810014e44d2c9d5b383f2a83da3c');
+/*!40000 ALTER TABLE `user_qm_permission_re` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `user_record`
 --
 
@@ -1415,4 +1439,4 @@ SET character_set_client = @saved_cs_client;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-07-06 18:01:41
+-- Dump completed on 2017-07-07 18:04:34

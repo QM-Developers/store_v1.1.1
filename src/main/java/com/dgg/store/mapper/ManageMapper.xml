@@ -8,15 +8,20 @@
     </resultMap>
 
     <resultMap id="MemberVO" type="com.dgg.store.util.vo.manage.MemberVO">
-        <result column="" property="userId" jdbcType="VARCHAR"/>
-        <result column="" property="userName" jdbcType="VARCHAR"/>
-        <result column="" property="userSex" jdbcType="VARCHAR"/>
-        <result column="" property="userPhone" jdbcType="VARCHAR"/>
-        <result column="" property="userIdentity" jdbcType="VARCHAR"/>
-        <result column="" property="departmentId" jdbcType="VARCHAR"/>
-        <result column="" property="positionId" jdbcType="VARCHAR"/>
-        <result column="" property="userCardFront" jdbcType="VARCHAR"/>
-        <result column="" property="userCardBack" jdbcType="VARCHAR"/>
+        <result column="user_id" property="userId" jdbcType="VARCHAR"/>
+        <result column="user_name" property="userName" jdbcType="VARCHAR"/>
+        <result column="user_sex" property="userSex" jdbcType="VARCHAR"/>
+        <result column="user_phone" property="userPhone" jdbcType="VARCHAR"/>
+        <result column="user_status" property="userStatus" jdbcType="VARCHAR"/>
+        <result column="my_team_id" property="myTeamId" jdbcType="VARCHAR"/>
+        <result column="user_identity" property="userIdentity" jdbcType="VARCHAR"/>
+        <result column="role_id" property="roleId" jdbcType="VARCHAR"/>
+        <result column="team_department_id" property="departmentId" jdbcType="VARCHAR"/>
+        <result column="team_department_name" property="departmentName" jdbcType="VARCHAR"/>
+        <result column="position_id" property="positionId" jdbcType="VARCHAR"/>
+        <result column="position_name" property="positionName" jdbcType="VARCHAR"/>
+        <result column="user_card_front" property="userCardFront" jdbcType="VARCHAR"/>
+        <result column="user_card_back" property="userCardBack" jdbcType="VARCHAR"/>
     </resultMap>
 
     <resultMap id="PositionVO" type="com.dgg.store.util.vo.manage.PositionVO">
@@ -31,7 +36,7 @@
         <collection property="positionList" ofType="com.dgg.store.util.vo.manage.PositionVO">
             <result column="position_id" property="positionId" jdbcType="VARCHAR"/>
             <result column="position_name" property="positionName" jdbcType="VARCHAR"/>
-            <collection property="perPosReList" ofType="com.dgg.store.util.vo.manage.PerPosRe">
+            <collection property="perPosReList" ofType="com.dgg.store.util.vo.manage.PerPosReVO">
                 <result column="position_id" property="positionId" jdbcType="VARCHAR"/>
                 <result column="qm_permission_id" property="permissionId" jdbcType="VARCHAR"/>
             </collection>
@@ -140,5 +145,40 @@
         SELECT dp.position_id,dp.position_name
         FROM department_position dp
         WHERE dp.team_department_id = #{departmentId}
+    </select>
+
+    <insert id="insertMember" parameterType="com.dgg.store.util.vo.manage.MemberVO">
+        INSERT INTO user
+        (user_id, my_team_id, team_department_id,
+         role_id, user_name, user_sex,
+         user_phone, user_status, user_identity,
+         position_id,user_card_front, user_card_back)
+        VALUES
+        (#{userId},#{myTeamId},#{departmentId},
+         #{roleId},#{userName},#{userSex},
+         #{userPhone},#{userStatus},#{userIdentity},
+         #{positionId},#{userCardFront},#{userCardBack})
+    </insert>
+
+    <insert id="insertPerUserRe" parameterType="java.util.List">
+        INSERT INTO user_qm_permission_re
+        (user_id,qm_permission_id)
+        VALUES
+        <foreach collection="list" index="i" item="item" open="" separator=")," close=")">
+            (#{item.userId},#{item.permissionId}
+        </foreach>
+    </insert>
+
+    <select id="findMemberList" resultMap="MemberVO" parameterType="com.dgg.store.util.vo.manage.MemberVO">
+        SELECT u.user_id,u.user_name,u.user_sex,
+            u.user_phone,
+            td.team_department_name,
+            dp.position_name
+        FROM user u
+        INNER JOIN team_department td
+        ON td.team_department_id = u.team_department_id
+        INNER JOIN department_position dp
+        ON dp.position_id = u.position_id
+        WHERE u.team_department_id = #{departmentId}
     </select>
 </mapper>

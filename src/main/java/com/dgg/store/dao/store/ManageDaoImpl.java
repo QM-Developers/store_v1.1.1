@@ -45,7 +45,7 @@ public class ManageDaoImpl implements ManageDao
     }
 
     @Override
-    public Integer insertPerPosRe(List<PerPosRe> perPosReList)
+    public Integer insertPerPosRe(List<PerPosReVO> perPosReList)
     {
         return mapper.insertPerPosRe(perPosReList);
     }
@@ -96,5 +96,23 @@ public class ManageDaoImpl implements ManageDao
     public List<MemberVO> findPositionList(String departmentId)
     {
         return mapper.findPositionList(departmentId);
+    }
+
+    @Override
+    public Integer insertMember(MemberVO member)
+    {
+        return mapper.insertMember(member);
+    }
+
+    @Override
+    public Integer insertPerUserRe(List<PerUserReVO> perUserReList)
+    {
+        return mapper.insertPerUserRe(perUserReList);
+    }
+
+    @Override
+    public List<MemberVO> findMemberList(MemberVO memberVO)
+    {
+        return mapper.findMemberList(memberVO);
     }
 }

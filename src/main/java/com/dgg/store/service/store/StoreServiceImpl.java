@@ -23,7 +23,7 @@ public class StoreServiceImpl implements StoreService
     public Integer insertStore(User store)
     {
         store.setUserId(IDGenerator.generator());
-        store.setRoleId(Integer.parseInt(Constant.ROLE_TEAM_PERSONAL));
+//        store.setRoleId(Integer.parseInt(Constant.ROLE_TEAM_PERSONAL));
         store.setUserPassword(CryptographyUtil.md5(store.getUserPassword(), Constant.SALT));
 
         return dao.insertStore(store);

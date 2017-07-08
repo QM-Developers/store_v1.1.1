@@ -115,4 +115,28 @@ public class ManageDaoImpl implements ManageDao
     {
         return mapper.findMemberList(memberVO);
     }
+
+    @Override
+    public Integer countPositionMember(String positionId)
+    {
+        return mapper.countPositionMember(positionId);
+    }
+
+    @Override
+    public MemberVO findMemberInfo(String memberId)
+    {
+        return mapper.findMemberInfo(memberId);
+    }
+
+    @Override
+    public Integer updateMember(MemberVO member)
+    {
+        return mapper.updateMember(member);
+    }
+
+    @Override
+    public Integer cleanPerUserRe(String memberId)
+    {
+        return mapper.cleanPerUserRe(memberId);
+    }
 }

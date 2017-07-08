@@ -1,6 +1,6 @@
 <component name="ArtifactManager">
   <artifact type="exploded-war" name="store:war exploded">
-    <output-path>$PROJECT_DIR$/target/tweb</output-path>
+    <output-path>$PROJECT_DIR$/target/store</output-path>
     <root id="root">
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">

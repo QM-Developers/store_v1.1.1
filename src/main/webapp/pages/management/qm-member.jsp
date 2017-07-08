@@ -35,14 +35,14 @@
     </div>
     <div class="member-title">
         <div class="member-title-left">基本信息</div>
-        <div class="member-title-right" onclick="dutyshow()">个人权限</div>
+        <div class="member-title-right" onclick="qm_member.permissionWindow(this)">个人权限</div>
     </div>
     <div class="am-g ">
         <div class="am-u-sm-10 ">
-            <div class=" qm-team-input">
+            <div class="qm-team-input">
                 <span>姓　　名 : </span><input id="user-name" class=" am-u-sm-4 am-u-end"/>
             </div>
-            <div class=" qm-team-input">
+            <div class="qm-team-input">
                 <span>性　　别 : </span>
                 <!--poptwo-c-lia1-->
                 <div class="pop-div2 sex" id="user-sex">
@@ -81,27 +81,30 @@
         <div class="newdata-picture">
             <div onmouseenter="Imgon(this)" style="display: none" onmouseleave="Imgout(this)" class="img-cont-box">
                 <span class="clickoff" onclick="qm_member.removeImage(this,'front');">X</span>
+                <img src="" id="img-card-front"/>
                 <div class="am-progress add-progress am-progress-striped">
                     <div class="am-progress-bar am-progress-bar-secondary"></div>
                 </div>
-                <img  src="" id="img-card-front"/>
             </div>
-            <i class="newdata-picture-i" id="btn-card-front">添加照片</i>
+
+            <i class="newdata-picture-i" id="btn-card-front"><i class="picture-i-bg"></i></i>
+            <div class="plan-bar"><span>上传图片-</span><span>90%</span></div>
         </div>
         <div class="newdata-picture">
             <div onmouseenter="Imgon(this)" style="display: none;" onmouseleave="Imgout(this)" class="img-cont-box">
                 <span class="clickoff" onclick="qm_member.removeImage(this,'back');">X</span>
+                <img src="" id="img-card-back"/>
                 <div class="am-progress add-progress am-progress-striped">
                     <div class="am-progress-bar am-progress-bar-secondary"></div>
                 </div>
-                <img  src="" id="img-card-back"/>
             </div>
-            <i class="newdata-picture-i" id="btn-card-back">添加照片</i>
+            <i class="newdata-picture-i" id="btn-card-back"><i class="picture-i-bg"></i></i>
+            <div class="plan-bar"><span>上传图片-</span><span>90%</span></div>
         </div>
     </div>
 </div>
 <div class="del-but-box">
-    <button class="del-but" onclick="qm_member.addMember();">提交</button>
+    <button class="del-but" onclick="qm_member.saveOrUpdateMember();">提交</button>
     <button class="del-but">取消</button>
 </div>
 <!--权限-->
@@ -156,17 +159,21 @@
     {
         $(".duty-Power").css("display", "none")
     }
-    Imgon =function(item){
-        $(item).find('.clickoff').css('display','block')
+    Imgon = function (item)
+    {
+        $(item).find('.clickoff').css('display', 'block')
     }
-    Imgout =function(item){
-        $(item).find('.clickoff').css('display','none')
+    Imgout = function (item)
+    {
+        $(item).find('.clickoff').css('display', 'none')
     }
-    clickoff=function(item){
-        $(item).parents('.img-cont-box').css('display','none');
+    clickoff = function (item)
+    {
+        $(item).parents('.img-cont-box').css('display', 'none');
     }
-    clickon=function(item){
-        $(item).parents('.img-cont-box').css('display','block');
+    clickon = function (item)
+    {
+        $(item).parents('.img-cont-box').css('display', 'block');
     }
 </script>
 

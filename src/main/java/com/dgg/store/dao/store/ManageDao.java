@@ -40,4 +40,12 @@ public interface ManageDao
     Integer insertPerUserRe(List<PerUserReVO> perUserReList);
 
     List<MemberVO> findMemberList(MemberVO memberVO);
+
+    Integer countPositionMember(String positionId);
+
+    MemberVO findMemberInfo(String memberId);
+
+    Integer updateMember(MemberVO member);
+
+    Integer cleanPerUserRe(String memberId);
 }

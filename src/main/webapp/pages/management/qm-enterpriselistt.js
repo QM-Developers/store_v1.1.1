@@ -22,7 +22,7 @@ var qm_memberList = {
                     '<td>' + data[i]["userPhone"] + '</td>' +
                     '<td>' + data[i]["departmentName"] + '</td>' +
                     '<td>' + data[i]["positionName"] + '</td>' +
-                    '<td><a class="personnel-details" href="' + path + '/pages/management/qm-member.jsp?"' + data[i]["userId"] + '>编辑</a></td>' +
+                    '<td><a class="personnel-details" href="' + path + '/pages/management/qm-member.jsp?' + data[i]["userId"] + '">编辑</a></td>' +
                     '</tr>';
             $("#member-list").append(item);
         });

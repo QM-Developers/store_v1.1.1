@@ -1,8 +1,8 @@
 var qm_department = {
 
-    optType : "",
-    optTypes:{
-        DELETE_DEPARTMENT:"delete"
+    optType: "",
+    optTypes: {
+        DELETE_DEPARTMENT: "delete"
     },
 
     init: function ()
@@ -60,7 +60,6 @@ var qm_department = {
         $("#position-name").text($(item).prev(".position-input:eq(0)").find("input").val());
         $("#position-id").val(pid);
         var ids = $("#" + pid).val().split(",");
-        console.log(ids);
         var checkbox = $("#worker-permission").find("input[type='checkbox']");
         for (var i = 0; i < checkbox.length; i++)
             $(checkbox[i])[0].checked = false;
@@ -121,7 +120,7 @@ var qm_department = {
                 for (var j = 0; j < perPosReList.length; j++)
                     if (!myjs.isNull(perPosReList[j]["permissionId"]))
                         permission += perPosReList[j]["permissionId"] + ",";
-                var id = Addduty(positionList[i]["positionName"],positionList[i]["positionId"]);
+                var id = Addduty(positionList[i]["positionName"], positionList[i]["positionId"]);
                 $("#" + id).val(permission);
             }
         });
@@ -133,20 +132,35 @@ var qm_department = {
         Delall("是否要删除 " + $("#department-name").val());
     },
 
-    deleteInfo:function (text)
+    deleteInfo: function (text)
     {
         $("#delete-info .prompt-frame1").html(text);
         $("#delete-info").css("display", "block");
     },
 
-    deletePosition:function (item)
+    deletePosition: function (item, pid)
     {
+        var url = path + "/s/countPositionMember.action";
+        var params = {};
 
+        if (myjs.isNull(pid))
+        {
+            Delduty(item);
+            return;
+        }
 
-        Delduty(item);
+        params["positionId"] = pid;
+        myjs.ajax_post(url, params, function (data)
+        {
+            data = parseInt(data.result);
+            if(data > 0)
+                qm_department.deleteInfo("该职位正在使用，不能删除");
+            else
+                Delduty(item);
+        });
     },
 
-    onPositiveClick:function ()
+    onPositiveClick: function ()
     {
         switch (qm_department.optType)
         {
@@ -156,19 +170,19 @@ var qm_department = {
         }
     },
 
-    deleteDepartment:function ()
+    deleteDepartment: function ()
     {
         var url = path + "/s/deleteDepartment.action";
         var params = {};
 
         params["departmentId"] = departmentId;
 
-        myjs.ajax_post(url,params,function (data)
+        myjs.ajax_post(url, params, function (data)
         {
             var state = parseInt(data.state);
-            if(state == 2)
+            if (state == 2)
                 qm_department.deleteInfo("该部门有成员存在，不能删除");
-            else if(state == 1)
+            else if (state == 1)
                 qm_department.deleteInfo("删除成功");
             PromptOff($("#Delall .prompt-frame-left")[0]);
             parent.qm_index.init();
@@ -176,7 +190,7 @@ var qm_department = {
         });
     },
 
-    goBack:function ()
+    goBack: function ()
     {
         history.go(-1);
     }

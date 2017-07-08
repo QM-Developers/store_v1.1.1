@@ -22,6 +22,9 @@
         <result column="position_name" property="positionName" jdbcType="VARCHAR"/>
         <result column="user_card_front" property="userCardFront" jdbcType="VARCHAR"/>
         <result column="user_card_back" property="userCardBack" jdbcType="VARCHAR"/>
+        <collection property="permissionList" ofType="com.dgg.store.util.vo.manage.PerUserReVO">
+            <result column="qm_permission_id" property="permissionId" jdbcType="VARCHAR"/>
+        </collection>
     </resultMap>
 
     <resultMap id="PositionVO" type="com.dgg.store.util.vo.manage.PositionVO">
@@ -181,4 +184,58 @@
         ON dp.position_id = u.position_id
         WHERE u.team_department_id = #{departmentId}
     </select>
+
+    <select id="countPositionMember" resultType="java.lang.Integer">
+        SELECT COUNT(1)
+        FROM user u
+        WHERE u.position_id = #{positionId}
+    </select>
+
+    <select id="findMemberInfo" resultMap="MemberVO">
+        SELECT u.user_name,u.user_sex,u.user_phone,
+            u.user_identity,u.team_department_id,u.position_id,
+            u.user_card_front,u.user_card_back,
+            uqpr.qm_permission_id
+        FROM user u
+        LEFT JOIN user_qm_permission_re uqpr
+        ON u.user_id = uqpr.user_id
+        WHERE u.user_id = #{userId}
+    </select>
+
+    <update id="updateMember" parameterType="com.dgg.store.util.vo.manage.MemberVO">
+        UPDATE user
+        <set>
+            <if test="userName != null and userName != ''">
+                user_name = #{userName},
+            </if>
+            <if test="userSex != null and userSex != ''">
+                user_sex = #{userSex},
+            </if>
+            <if test="userPhone != null and userPhone != ''">
+                user_phone = #{userPhone},
+            </if>
+            <if test="userIdentity != null and userIdentity != ''">
+                user_identity = #{userIdentity},
+            </if>
+            <if test="departmentId != null and departmentId != ''">
+                team_department_id = #{departmentId},
+            </if>
+            <if test="positionId != null and positionId != ''">
+                position_id = #{positionId},
+            </if>
+            <if test="userCardFront != null">
+                user_card_front = #{userCardFront},
+            </if>
+            <if test="userCardBack != null">
+                user_card_back = #{userCardBack},
+            </if>
+        </set>
+        WHERE user_id = #{memberId}
+    </update>
+
+    <delete id="cleanPerUserRe">
+        DELETE FROM user_qm_permission_re
+        WHERE user_id = #{userId}
+    </delete>
+
 </mapper>

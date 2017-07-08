@@ -6,6 +6,10 @@ public class PerUserReVO
 
     private String permissionId;
 
+    public PerUserReVO()
+    {
+    }
+
     public PerUserReVO(String userId, String permissionId)
     {
         this.userId = userId;

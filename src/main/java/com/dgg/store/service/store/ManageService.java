@@ -5,6 +5,7 @@ import com.dgg.store.util.vo.core.ResultVO;
 import com.dgg.store.util.vo.core.SessionVO;
 import com.dgg.store.util.vo.manage.DepartmentVO;
 import com.dgg.store.util.vo.manage.MemberVO;
+import com.dgg.store.util.vo.manage.PositionVO;
 import com.dgg.store.util.vo.permission.QMPermissionVO;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -33,4 +34,10 @@ public interface ManageService
     ResultVO insertCardBack(SessionVO sessionVO, MultipartFile file, String realPath);
 
     ResultVO insertMember(SessionVO sessionVO, MemberVO member);
+
+    ResultVO countPositionMember(SessionVO sessionVO, PositionVO position);
+
+    ResultVO findMemberInfo(SessionVO sessionVO, MemberVO member);
+
+    ResultVO updateMember(SessionVO sessionVO, MemberVO member);
 }

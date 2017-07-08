@@ -41,4 +41,12 @@ public interface ManageMapper
     Integer insertPerUserRe(@Param("list") List<PerUserReVO> perUserReList);
 
     List<MemberVO> findMemberList(MemberVO memberVO);
+
+    Integer countPositionMember(@Param("positionId") String positionId);
+
+    MemberVO findMemberInfo(@Param("userId") String memberId);
+
+    Integer updateMember(MemberVO member);
+
+    Integer cleanPerUserRe(@Param("userId") String memberId);
 }

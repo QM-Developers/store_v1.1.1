@@ -1,8 +1,12 @@
 package com.dgg.store.util.vo.manage;
 
+import java.util.List;
+
 public class MemberVO
 {
     private String userId;
+
+    private String memberId;
 
     private String userName;
 
@@ -31,6 +35,8 @@ public class MemberVO
     private String userCardBack;
 
     private String permission;
+
+    private List<PerUserReVO> permissionList;
 
     public String getUserId()
     {
@@ -180,5 +186,25 @@ public class MemberVO
     public void setPositionName(String positionName)
     {
         this.positionName = positionName;
+    }
+
+    public String getMemberId()
+    {
+        return memberId;
+    }
+
+    public void setMemberId(String memberId)
+    {
+        this.memberId = memberId;
+    }
+
+    public List getPermissionList()
+    {
+        return permissionList;
+    }
+
+    public void setPermissionList(List permissionList)
+    {
+        this.permissionList = permissionList;
     }
 }

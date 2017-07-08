@@ -51,7 +51,7 @@ public class ManageServiceImpl implements ManageService
     {
         List<MemberVO> result = dao.findMemberList(memberVO);
 
-        ResultVO resultVO = new ResultVO(1,sessionVO.getToken(),result);
+        ResultVO resultVO = new ResultVO(1, sessionVO.getToken(), result);
 
         return resultVO;
     }
@@ -293,6 +293,65 @@ public class ManageServiceImpl implements ManageService
             result = 1;
 
         ResultVO resultVO = new ResultVO(result, sessionVO.getToken());
+
+        return resultVO;
+    }
+
+    @Override
+    public ResultVO countPositionMember(SessionVO sessionVO, PositionVO position)
+    {
+        Integer result = dao.countPositionMember(position.getPositionId());
+
+        ResultVO resultVO = new ResultVO(1, sessionVO.getToken(), result);
+
+        return resultVO;
+    }
+
+    @Override
+    public ResultVO findMemberInfo(SessionVO sessionVO, MemberVO member)
+    {
+        MemberVO result = dao.findMemberInfo(member.getMemberId());
+
+        ResultVO resultVO = new ResultVO(result == null ? 0 : 1, sessionVO.getToken(), result);
+
+        return resultVO;
+    }
+
+    @Override
+    public ResultVO updateMember(SessionVO sessionVO, MemberVO member)
+    {
+        Integer result = 1;
+        int i = 0;
+        int count = 2;
+        List<PerUserReVO> perUserReList = new ArrayList<>();
+
+        while (result > 0)
+        {
+            switch (i)
+            {
+                case 0:
+                    result = dao.updateMember(member);
+                    break;
+                case 1:
+                    dao.cleanPerUserRe(member.getMemberId());
+                    String[] ps = member.getPermission().split(Constant.COMMA);
+                    for (String p : ps)
+                        perUserReList.add(new PerUserReVO(member.getMemberId(), p));
+                    result = dao.insertPerUserRe(perUserReList);
+                    break;
+                default:
+                    result = 0;
+                    break;
+            }
+            i++;
+        }
+
+        if (i - 1 < count)
+            throw new RuntimeException(Constant.STR_ADD_FAILED);
+        else
+            result = 1;
+
+        ResultVO resultVO = new ResultVO(result, sessionVO.getToken(),result);
 
         return resultVO;
     }

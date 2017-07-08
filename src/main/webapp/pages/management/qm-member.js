@@ -1,4 +1,6 @@
 var qm_member = {
+    memberInfo: {},
+    finished: false,
     cardFront: null,
     cardBack: null,
     cardFrontResult: "",
@@ -6,6 +8,9 @@ var qm_member = {
 
     init: function ()
     {
+        if (!myjs.isNull(userId))
+            qm_member.findMemberInfo();
+
         qm_member.findDepartmentList();
         qm_member.initPermission();
         qm_member.initWebUpload();
@@ -23,8 +28,74 @@ var qm_member = {
             for (var i = 0; i < data.length; i++)
                 item += '<option value="' + data[i]["departmentId"] + '">' + data[i]["departmentName"] + '</option>';
             $("#department-list").append(item);
-            qm_member.findPositionList(data[0]["departmentId"]);
+            if (!myjs.isNull(userId))
+            {
+                if (qm_member.finished)
+                    qm_member.findPositionList(qm_member.memberInfo["departmentId"]);
+                else
+                    qm_member.finished = true;
+            }
+            else
+                qm_member.findPositionList(data[0]["departmentId"]);
         });
+    },
+
+    findMemberInfo: function ()
+    {
+        var url = path + "/s/findMemberInfo.action";
+        var params = {};
+
+        params["memberId"] = userId;
+
+        myjs.ajax_post(url, params, function (data)
+        {
+            qm_member.memberInfo = data.result;
+            if (qm_member.finished)
+                qm_member.findPositionList(qm_member.memberInfo["departmentId"]);
+            else
+                qm_member.finished = true;
+        });
+    },
+
+    iniMemberInfo: function ()
+    {
+        var params = qm_member.memberInfo;
+        console.log(params);
+        $("#user-name").val(params["userName"]);
+        $("#user-phone").val(params["userPhone"]);
+        $("#user-identity").val(params["userIdentity"]);
+        $("#department-list").val(params["departmentId"]);
+        $("#position-list").val(params["positionId"]);
+
+        var sex = $("#user-sex>a");
+        for (var i = 0; i < sex.length; i++)
+            if ($(sex[i]).text() == params["userSex"])
+                $(sex[i]).addClass("poptwo-c-lia1");
+            else
+                $(sex[i]).removeClass("poptwo-c-lia1");
+
+        if (!myjs.isNull(params["userCardFront"]))
+        {
+            var imgFront = $("#img-card-front");
+            imgFront.attr("result", params["userCardFront"]);
+            imgFront.attr("src", path + "/s/getCardImage.action?path=" + params["userCardFront"]);
+            clickon(imgFront[0]);
+        }
+        if (!myjs.isNull(params["userCardBack"]))
+        {
+            var imgBack = $("#img-card-back");
+            imgBack.attr("result", params["userCardBack"]);
+            imgBack.attr("src", path + "/s/getCardImage.action?path=" + params["userCardBack"]);
+            clickon(imgBack[0]);
+        }
+
+        var permissionList = params["permissionList"];
+        var permission = "";
+        for (var i = 0; i < permissionList.length; i++)
+            permission += permissionList[i]["permissionId"] + ",";
+        $("#permission").val(permission);
+
+        console.log(permission);
     },
 
     findPositionList: function (did)
@@ -42,6 +113,11 @@ var qm_member = {
                 item += '<option value="' + data[i]["positionId"] + '">' + data[i]["positionName"] + '</option>';
             $("#position-list").empty();
             $("#position-list").append(item);
+            if (qm_member.finished)
+            {
+                qm_member.iniMemberInfo();
+                qm_member.finished = false;
+            }
         });
     },
 
@@ -74,11 +150,31 @@ var qm_member = {
                 return data[i]["children"];
     },
 
-    addMember: function ()
+    permissionWindow: function (item)
     {
-        var url = path + "/s/addMember.action";
+        var ids = $("#permission").val().split(",");
+        var checkbox = $("#personal-permission").find("input[type='checkbox']");
+        for (var i = 0; i < checkbox.length; i++)
+            $(checkbox[i])[0].checked = false;
+        for (var i = 0; i < ids.length - 1; i++)
+            for (var j = 0; j < checkbox.length; j++)
+                if ($(checkbox[j]).val() == ids[i])
+                    $(checkbox[j]).prop('checked', 'true');
+        dutyshow();
+    },
+
+
+    saveOrUpdateMember: function ()
+    {
+        var url = path;
+        if(myjs.isNull(userId))
+            url += "/s/addMember.action";
+        else
+            url += "/s/updateMember.action";
+
         var params = {};
 
+        params["memberId"] = userId;
         params["userName"] = $("#user-name").val();
         params["userSex"] = $("#user-sex>a.poptwo-c-lia1").text();
         params["userPhone"] = $("#user-phone").val();
@@ -89,7 +185,7 @@ var qm_member = {
         params["userCardBack"] = $("#img-card-back").attr("result");
         params["permission"] = $("#permission").val();
 
-        myjs.ajax_post(url,params,function (data)
+        myjs.ajax_post(url, params, function (data)
         {
             console.log(data);
         });
@@ -146,12 +242,12 @@ var qm_member = {
                         return;
                     }
                     imgItem.attr('src', src);
-                }, 304, 166);
+                }, 1, 1);
                 clickon(imgItem[0]);
             });
         }
 
-        function uploadProgress(uploadItem,imgItem)
+        function uploadProgress(uploadItem, imgItem)
         {
             var percent = imgItem.prev("div").children("div");
 
@@ -201,12 +297,15 @@ var qm_member = {
 
     removeImage: function (item, flag)
     {
-        console.log($(item).next("img").val());
-        if (flag == "front")
-            qm_member.cardFront.removeFile($(item).next("img").val(), true);
-        else
-            qm_member.cardBack.removeFile($(item).next("img").val(), true);
+        var id = $(item).next("img").val();
         clickoff(item);
+
+        if (myjs.isNull(id))
+            return;
+        if (flag == "front")
+            qm_member.cardFront.removeFile(id, true);
+        else
+            qm_member.cardBack.removeFile(id, true);
     },
 
     upload: function ()

@@ -445,6 +445,7 @@ create table user
    user_id              varchar(35) not null,
    my_team_id           varchar(35) not null default '',
    team_department_id	varchar(35) not null default '',
+   position_id          varchar(35) not null default '',
    role_id              int not null default 0,
    user_name            varchar(20) not null default '',
    user_identity 		varchar(18) not null default '',

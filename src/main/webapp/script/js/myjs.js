@@ -11,10 +11,7 @@ var myjs = {
      */
     isNull: function (data)
     {
-        if (data == "" || data == undefined || data == null)
-            return true;
-        else
-            return false;
+        return data == "" || data == undefined || data == null || data == "undefined";
     },
 
     objIsNull: function (obj)

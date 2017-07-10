@@ -53,12 +53,12 @@ public class Constant
     /**
      * 部门类型
      */
-    public static final String DEPARTMENT_NORMAL = "normal";    // 普通部门
-    public static final String DEPARTMENT_PRESIDENT = "president";  // 总裁办
+//    public static final String DEPARTMENT_NORMAL = "normal";    // 普通部门
+//    public static final String DEPARTMENT_PRESIDENT = "president";  // 总裁办
     public static final String DEPARTMENT_MANAGER = "manager";  // 总经办
-    public static final String DEPARTMENT_FINANCIAL = "financial";  // 财务部
-    public static final String DEPARTMENT_BUSINESS = "business";   // 业务部
-    public static final String DEPARTMENT_PERSONNEL = "personnel";   // 人事部
+//    public static final String DEPARTMENT_FINANCIAL = "financial";  // 财务部
+//    public static final String DEPARTMENT_BUSINESS = "business";   // 业务部
+//    public static final String DEPARTMENT_PERSONNEL = "personnel";   // 人事部
 
     /**
      * 用户状态码

@@ -90,19 +90,10 @@
                                 团队管理</a>
                             <div class='menu-div mygrouplist' style="display: none;">
                                 <div class='menu-lichild'>
-                                    <a target="iframepage" href="../customer/qm-mydepartment.html">总裁办</a>
+                                    <a target="iframepage" href="${path}/pages/group/qm-department.jsp?manager">总经办</a>
                                 </div>
                                 <div class='menu-lichild'>
-                                    <a target="iframepage" href="../customer/qm-mydepartment.html">总经办</a>
-                                </div>
-                                <div class='menu-lichild'>
-                                    <a target="iframepage" href="../customer/qm-corporationlist.html">分公司</a>
-                                </div>
-                                <div class='menu-lichild'>
-                                    <a target="iframepage" href="../customer/qm-departmentlist.html">下属部门</a>
-                                </div>
-                                <div class='menu-lichild'>
-                                    <a target="iframepage" href="../customer/qm-departmentlist.html">其他部门</a>
+                                    <a target="iframepage" href="${path}/pages/group/qm-department.jsp?${sessionScope.loginInfo.myTeamId}">下属部门</a>
                                 </div>
                             </div>
                         </li>
@@ -112,13 +103,13 @@
                                 我的客户</a>
                             <div class='menu-div myclientlist' style="display: none;">
                                 <div class='menu-lichild'>
-                                    <a target="iframepage" href="../group/qm-grouplistt.html">个体</a>
+                                    <a target="iframepage" href="${path}/pages/customer/qm-addcustomer.jsp">个体</a>
                                 </div>
                                 <div class='menu-lichild'>
-                                    <a target="iframepage" href="">经销商</a>
+                                    <a target="iframepage" href="${path}/pages/customer/qm-customerlistt.jsp">经销商</a>
                                 </div>
                                 <div class='menu-lichild'>
-                                    <a target="iframepage" href="">合作农户</a>
+                                    <a target="iframepage" href="${path}/pages/customer/qm-customersitedata.jsp">合作农户</a>
                                 </div>
                                 <div class='menu-lichild'>
                                     <a target="iframepage" href="">合作社</a>

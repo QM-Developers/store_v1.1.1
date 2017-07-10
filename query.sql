@@ -1,2 +1,2 @@
-select * from user
+select u.user_img from user u
 ;

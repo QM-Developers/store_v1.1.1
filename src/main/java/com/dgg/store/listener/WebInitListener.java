@@ -1,9 +1,5 @@
 package com.dgg.store.listener;
 
-import com.dgg.store.socket.NettyClient;
-import com.dgg.store.socket.NettyClientFactory;
-import com.dgg.store.util.core.constant.Constant;
-
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 

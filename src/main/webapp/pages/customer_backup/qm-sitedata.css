@@ -1,0 +1,273 @@
+.sitedata div {
+	padding: 0;
+}
+table tr td:first-child{
+	padding-left: 20px;
+}
+table tr th:first-child{
+	padding-left: 20px;
+}
+.sitedata {
+	display: block;
+
+	box-sizing: border-box;
+	margin: 10px auto;
+	border: 1px solid #fff;
+	border-radius: 5px;
+	background: #fff;
+}
+
+.sitedata-box {
+	margin: 0px 41px 16px 41px;
+}
+
+.sitedata-title {
+	border-bottom: 3px solid #03afef;
+	height: 60px;
+	line-height: 50px;
+}
+
+.qm-c-p {
+	padding: 0;
+	margin: 7px 0 0 0;
+	font-size: 18px;
+}
+
+.sitedata-cont {
+	color: #989898;
+	height: 220px;
+}
+
+.sitedata-cont ul {
+	padding: 0;
+}
+
+.sitedata-cont ul .sitedata-li {
+	width: 50%;
+	padding: 0 5px;
+	float: left;
+	height: 55px;
+}
+
+.sitedata-cont span {
+	display: inline-block;
+	margin-top: 10px;
+	float: left;
+	/*height: 35px;*/
+	line-height: 35px;
+	text-align: right;
+	padding: 0 5px 0 0;
+}
+
+.sitedata-cont input {
+	margin-top: 10px;
+	height: 35px;
+	padding: 0;
+	border: 1px solid #CCCCCC;
+	border-radius:5px ;
+	/*border: none;*/
+}
+
+.sitedata-checkbox {
+	display: inline-block;
+	margin-top: 3px;
+	padding-left: 20px;
+	height: 30px;
+	float: left;
+	margin-left: 10px;
+	color: #989898;
+}
+
+.sitedata-cont ul li:nth-child(6) div span {
+	display: inline-block;
+	float: left;
+	margin: 0;
+	height: auto;
+}
+
+.sitedata-credit {
+	padding: 0;
+	margin-top: 10px;
+}
+
+.sitedata-cont .pop-div2 {
+	height: 100%;
+	line-height: 55px;
+}
+
+.qm-site {
+	border: 0;
+	display: block;
+	width: 400px;
+	background: #dcd2d2;
+}
+
+.qm-site a {
+	padding: 4px;
+}
+
+.am-nav-tabs,
+.am-tabs-bd {
+	border: 0;
+	position: relative;
+}
+
+textarea {
+	resize: none;
+	border-radius:5px ;
+	border-color:#CCCCCC ;
+}
+
+
+/*产品列表*/
+
+.sitedata-box .product-list {
+	float: inherit;
+}
+
+.sitedata-box .product-list th {
+	background: #e6e6e6 !important;
+}
+
+.sitedata-box .product-list td {
+	width: 20%;
+}
+
+.product-list .product-icon {
+	margin-right: 60px;
+}
+
+
+.addproduct {
+	width: 100px;
+	height: 40px;
+	line-height: 40px;
+	border: 1px solid #CCCCCC;
+	border-radius: 5px;
+	margin: 12px 0 0 0;
+	background: #FFFFFF;
+	float: right;
+	text-align: center;
+}
+
+.paging {
+	padding: 0 41px;
+	width: 100%;
+	height: 30px;
+	margin-top: 10px;
+	box-sizing: border-box;
+	border-bottom: 1px solid #ccc;
+}
+
+.paging div {
+	width: 65px;
+	float: right;
+	text-align: center;
+	border:1px solid #ccc;
+}
+
+.paging .pagingmodle {
+	border: 0;
+}
+
+.data-del-off {
+	clear: both;
+	max-width: 1269px;
+	min-width: 1000px;
+	box-sizing: border-box;
+	height: 70px;
+}
+
+.del-but {
+	width: 100px;
+	height: 40px;
+	background: #FFFFFF;
+	margin: 10px 0px 0 40px;
+	float: right;
+	border: 1px solid #CCCCCC;
+	border-radius: 5px;
+}
+
+.am-popup {
+	height: auto;
+}
+
+.am-popup .popthree {
+	margin: auto;
+	width: 440px;
+	display: block;
+	background: #fff;
+	box-sizing: border-box;
+	letter-spacing: 2px
+}
+
+.poptwo-c-ul {
+	margin: 0;
+	padding: 0;
+}
+
+.poptwo-c-li {
+	box-sizing: border-box;
+	height: 55px;
+	padding-top: 10px;
+}
+
+.poptwo-c-li .pop-div1 {
+	height: 100%;
+	text-align: right;
+	padding: 3px 10px 0 0;
+}
+
+.poptwo-c-li .pop-div2 {
+	height: 100%;
+}
+
+.poptwo-c-li input {
+	height: 35px;
+	width: 100%;
+	border: 1px solid #CCCCCC;
+	border-radius: 5px;
+}
+
+.poptwo-c-li select {
+	border: 1px solid #CCCCCC;
+	border-radius: 5px;
+	width: 100%;
+	height: 35px;
+}
+
+.poptwo-li-but8 {
+	text-align: right;
+}
+
+.poptwo-li-but8 button {
+	width: 100px;
+	height: 40px;
+	border: none;
+	background: #FFFFFF;
+	border: 1px solid #CCCCCC;
+}
+.poptime {
+	width: 100%;
+	height: 37px;
+	border: 1px solid #CCCCCC;
+	border-radius: 5px;
+}
+
+.poptime input {
+	width: 83%;
+	border: 0;
+}
+.qm-time-but {
+
+	border: none;
+	float: right;
+	width: 15%;
+	height: 100%;
+	padding: 0;
+	background: #fff;
+}
+
+.qm-time-but:hover {
+	background: #fff;
+}

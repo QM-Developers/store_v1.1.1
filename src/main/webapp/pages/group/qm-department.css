@@ -1,0 +1,129 @@
+/*头部*/
+
+.qm-header {
+	height: 42px;
+	margin: 14px 0 11px 0;
+	background: #F2F2F2;
+}
+
+.qm-c-p {
+	padding-left: 20px;
+	font-size: 18px;
+}
+
+
+.Corporationlist {
+	margin-top: 10px;
+	border-radius: 5px;
+}
+
+.groupdata-title {
+	border-bottom: 3px solid #03afef;
+	height: 50px;
+	line-height: 50px;
+}
+.qm-team .qm-team-txt{
+	padding-left: 40px;
+}
+
+.qm-team-input {
+	height: 45px;
+	line-height: 45px;
+}
+
+.qm-team-input span {
+	display: inline-block;
+	padding: 3px 0 0 0;
+}
+.qm-team-input .span-cont{
+	padding-left: 10px;
+}
+.qm-team1-tab {
+	height: 43px;
+	border-bottom: 0;
+	border-radius: 5px;
+	/*	background: #f7f7f7;*/
+}
+
+.Corporationlist .qm-team1 th {
+	padding: 0;
+	border: 0;
+	border-bottom: 1px solid #CCCCCC;
+	background: #e6e6e6;
+	height: 40px;
+	line-height: 40px;
+	width: 15%;
+}
+
+.Corporationlist .qm-team1 tr td {
+	padding: 0;
+	border: 0;
+	border-bottom: 1px solid #CCCCCC;
+	height: 40px;
+	line-height: 40px;
+	width: 15%;
+}
+
+.Corporationlist .qm-team1 tr .list-th1 {
+	padding-left: 40px;
+}
+
+.am-table {
+	margin-bottom: 0;
+}
+
+
+.paging {
+	padding: 0 41px;
+	width: 100%;
+	height: 40px;
+	margin-top: 10px;
+}
+
+.paging div {
+	border: 1px solid #ccc;
+	width: 90px;
+	height: 34px;
+	line-height: 34px;
+	float: right;
+	text-align: center;
+}
+
+.paging .pagingmodle {
+	border: 0;
+}
+
+.paging .paging-num-box {
+	width: 230px;
+	border: 0;
+	line-height: 34px;
+	background: #FFFFFF;
+}
+
+.paging-num {
+	display: inline-block;
+	width: 31px;
+	margin-right: 8px;
+	border: 1px solid #CCCCCC;
+	float: right;
+	background: #f7f7f7;
+}
+.del-but-box {
+	clear: both;
+	max-width: 1269px;
+	min-width: 1000px;
+	margin: 10px auto;
+	padding: 0 41px;
+	box-sizing: border-box;
+	height: 60px;
+}
+
+.del-but {
+	width: 100px;
+	height: 40px;
+	background: #FFFFFF;
+	border: 1px solid #CCCCCC;
+	margin: 10px 40px 0 40px;
+	float: right;
+	border-radius: 5px;
+}

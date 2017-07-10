@@ -109,7 +109,7 @@ CREATE TABLE `chat_history` (
   `send_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `is_read` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`history_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -118,6 +118,7 @@ CREATE TABLE `chat_history` (
 
 LOCK TABLES `chat_history` WRITE;
 /*!40000 ALTER TABLE `chat_history` DISABLE KEYS */;
+INSERT INTO `chat_history` VALUES (1,'89d9317fb3834353bcf2a507bee2eb82','89d9317fb3834353bcf2a507bee2eb84',1,'666','2017-07-10 09:21:00',0);
 /*!40000 ALTER TABLE `chat_history` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -921,7 +922,7 @@ CREATE TABLE `team_department` (
 
 LOCK TABLES `team_department` WRITE;
 /*!40000 ALTER TABLE `team_department` DISABLE KEYS */;
-INSERT INTO `team_department` VALUES ('27a9c57b4c69441aa569ef4ae1a9ef7c','总经办','',NULL,'0','2017-06-06 00:00:00','10001'),('27a9c57b4c69441aa569ef4ae1a9ef7d','财务部','',NULL,'0','2017-06-06 10:20:45','10001'),('6256feb92d844cd5951d7cfe01d922ed','技术部','',NULL,'0','2017-06-26 00:00:00','10001');
+INSERT INTO `team_department` VALUES ('27a9c57b4c69441aa569ef4ae1a9ef7c','总经办','manager',NULL,'0','2017-06-06 00:00:00','10001'),('27a9c57b4c69441aa569ef4ae1a9ef7d','财务部','',NULL,'0','2017-06-06 10:20:45','10001'),('6256feb92d844cd5951d7cfe01d922ed','技术部','',NULL,'0','2017-06-26 00:00:00','10001');
 /*!40000 ALTER TABLE `team_department` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1010,7 +1011,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES ('1afd2aa301914b87a178987dfffefcc2','10001','27a9c57b4c69441aa569ef4ae1a9ef7d',1003,'赵66','','女','13657981326',NULL,'','','','2017-07-07 17:16:26','2017-07-07 17:16:26','u_st_1','','','','','',0,NULL,'135621567845465420','','2017-07-07 17:16:26','/WEB-INF/upload/img/id_card/4d69b8cb68c84988aa74e389287fe2a7.jpg','/WEB-INF/upload/img/id_card/11bcde7361d54d61b6f5d192e57f8645.jpg','6d163a17a8b842dd98de4b059b893666'),('41370f132bd44bca943e2fe5dd9862ab','10001','27a9c57b4c69441aa569ef4ae1a9ef7c',1003,'赵六','','女','13657981326',NULL,'','','','2017-07-07 17:16:19','2017-07-07 17:16:19','u_st_1','','','','','',0,NULL,'135621567845465420','','2017-07-07 17:16:19','/WEB-INF/upload/img/id_card/4d69b8cb68c84988aa74e389287fe2a7.jpg','/WEB-INF/upload/img/id_card/11bcde7361d54d61b6f5d192e57f8645.jpg','5f759af244784603bc4ffc6f7dab8508'),('89d9317fb3834353bcf2a507bee2eb82','10001','27a9c57b4c69441aa569ef4ae1a9ef7c',1002,'张三','825682eafec59c2e1632828195133a52','男','13688888888','2017-06-14','x胡同y巷z号','北京市 西城区','','2017-06-14 10:38:46','2017-06-14 10:38:46','','','','/upload/img/user/head_portrait/89d9317fb3834353bcf2a507bee2eb82/34ac4d747a35414dbf249b6add3e8348.jpg','','436bc8de5bbf442088c55e2dfb55f8381499506504181',0,NULL,'','','2017-07-01 11:56:19',NULL,NULL,'b63366bffb23473cbbd2b00225e05620'),('89d9317fb3834353bcf2a507bee2eb83','10001','27a9c57b4c69441aa569ef4ae1a9ef7d',1002,'李四','825682eafec59c2e1632828195133a52','女','13699999999','2017-06-14','z胡同y巷x号','北京市 西城区','','2017-06-14 10:38:46','2017-06-14 10:38:46','','','','','','',0,NULL,'','','2017-07-01 11:56:19',NULL,NULL,'6d163a17a8b842dd98de4b059b893666'),('89d9317fb3834353bcf2a507bee2eb84','10001','27a9c57b4c69441aa569ef4ae1a9ef7c',1002,'王五','825682eafec59c2e1632828195133a52','男','13677777777','2017-06-14','a胡同b巷c号','北京市 西城区','','2017-06-14 10:38:46','2017-06-14 10:38:46','','','','/upload/img/user/head_portrait/89d9317fb3834353bcf2a507bee2eb82/34ac4d747a35414dbf249b6add3e8348.jpg','','',0,NULL,'','','2017-07-01 11:56:19',NULL,NULL,'5f759af244784603bc4ffc6f7dab8508');
+INSERT INTO `user` VALUES ('1afd2aa301914b87a178987dfffefcc2','10001','27a9c57b4c69441aa569ef4ae1a9ef7d',1003,'赵66','','女','13657981326',NULL,'','','','2017-07-07 17:16:26','2017-07-07 17:16:26','u_st_1','','','','','',0,NULL,'135621567845465420','','2017-07-07 17:16:26','/WEB-INF/upload/img/id_card/4d69b8cb68c84988aa74e389287fe2a7.jpg','/WEB-INF/upload/img/id_card/11bcde7361d54d61b6f5d192e57f8645.jpg','6d163a17a8b842dd98de4b059b893666'),('41370f132bd44bca943e2fe5dd9862ab','10001','27a9c57b4c69441aa569ef4ae1a9ef7c',1003,'赵六','','女','13657981326',NULL,'','','','2017-07-07 17:16:19','2017-07-07 17:16:19','u_st_1','','','','','',0,NULL,'135621567845465420','','2017-07-07 17:16:19','/WEB-INF/upload/img/id_card/4d69b8cb68c84988aa74e389287fe2a7.jpg','/WEB-INF/upload/img/id_card/11bcde7361d54d61b6f5d192e57f8645.jpg','5f759af244784603bc4ffc6f7dab8508'),('89d9317fb3834353bcf2a507bee2eb82','10001','27a9c57b4c69441aa569ef4ae1a9ef7c',1002,'张三','825682eafec59c2e1632828195133a52','男','13688888888','2017-06-14','x胡同y巷z号','北京市 西城区','','2017-06-14 10:38:46','2017-06-14 10:38:46','','','','/upload/img/user/head_portrait/89d9317fb3834353bcf2a507bee2eb82/34ac4d747a35414dbf249b6add3e8348.jpg','','2613ec9188bd4db08959a7dad789461c1499667115968',0,NULL,'','','2017-07-01 11:56:19',NULL,NULL,'b63366bffb23473cbbd2b00225e05620'),('89d9317fb3834353bcf2a507bee2eb83','10001','27a9c57b4c69441aa569ef4ae1a9ef7d',1002,'李四','825682eafec59c2e1632828195133a52','女','13699999999','2017-06-14','z胡同y巷x号','北京市 西城区','','2017-06-14 10:38:46','2017-06-14 10:38:46','','','','','','',0,NULL,'','','2017-07-01 11:56:19',NULL,NULL,'6d163a17a8b842dd98de4b059b893666'),('89d9317fb3834353bcf2a507bee2eb84','10001','27a9c57b4c69441aa569ef4ae1a9ef7c',1002,'王五','825682eafec59c2e1632828195133a52','男','13677777777','2017-06-14','a胡同b巷c号','北京市 西城区','','2017-06-14 10:38:46','2017-06-14 10:38:46','','','','/upload/img/user/head_portrait/89d9317fb3834353bcf2a507bee2eb82/34ac4d747a35414dbf249b6add3e8348.jpg','','',0,NULL,'','','2017-07-01 11:56:19',NULL,NULL,'5f759af244784603bc4ffc6f7dab8508');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1439,4 +1440,4 @@ SET character_set_client = @saved_cs_client;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-07-08 18:07:36
+-- Dump completed on 2017-07-10 18:06:22

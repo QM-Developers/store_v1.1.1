@@ -1,42 +1,15 @@
 package com.dgg.store.service.store;
 
-import com.dgg.store.util.pojo.MyTeam;
-import com.dgg.store.util.pojo.TeamDepartment;
 import com.dgg.store.util.vo.core.ResultVO;
-import com.dgg.store.util.vo.core.SearchVO;
 import com.dgg.store.util.vo.core.SessionVO;
-import com.dgg.store.util.vo.team.DepartmentMemberVO;
-import com.dgg.store.util.vo.team.MyTeamVO;
+import com.dgg.store.util.vo.team.MemberVO;
+import com.dgg.store.util.vo.team.TeamDepartmentVO;
 
 public interface MyTeamService
 {
-    ResultVO insertMyTeam(SessionVO sessionVO, MyTeamVO teamVO);
+    ResultVO findDepartmentDetail(SessionVO sessionVO, TeamDepartmentVO department);
 
-    ResultVO insertDepartment(SessionVO sessionVO, TeamDepartment department);
+    ResultVO findDepartmentMember(SessionVO sessionVO, MemberVO member);
 
-    ResultVO findDepartmentList(SessionVO sessionVO, MyTeam team);
-
-    ResultVO findDepartmentInfo(SessionVO sessionVO, TeamDepartment department);
-
-    ResultVO insertDepartmentMember(SessionVO sessionVO, DepartmentMemberVO memberVO);
-
-    ResultVO findCompanyList(SessionVO sessionVO);
-
-    ResultVO findTeamsByKeyword(SessionVO sessionVO,SearchVO searchVO);
-
-    ResultVO findCompanyInfo(SessionVO sessionVO, MyTeamVO team);
-
-    ResultVO updatePrincipal(SessionVO sessionVO, DepartmentMemberVO memberVO);
-
-    ResultVO findCCDepartmentList(SessionVO sessionVO, MyTeam team);
-
-    ResultVO findDepartmentMember(SessionVO sessionVO, DepartmentMemberVO department);
-
-    ResultVO findDepartmentMemberInfo(SessionVO sessionVO, DepartmentMemberVO memberVO);
-
-    ResultVO findCDepartmentList(SessionVO sessionVO, MyTeamVO teamVO);
-
-    ResultVO updateDepartment(SessionVO sessionVO, DepartmentMemberVO memberVO);
-
-    ResultVO findCorporationTree(SessionVO sessionVO);
+    ResultVO findMemberByNameOrPhone(SessionVO sessionVO, MemberVO member);
 }

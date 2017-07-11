@@ -111,15 +111,15 @@ public class GoodsReleaseServiceImpl implements GoodsReleaseService
         String fileName = null;
         String imageId = IDGenerator.generator();
 
-//        try
-//        {
-//            path.append(Constant.USER_IMAGE_SPACE_PATH).append(sessionVO.getUserId()).append("/");
-//            fileName = UploadFileUtil.doUpload(file, path.toString(), basePath);
-//            dao.insertImgToSpace(imageId, fileName, sessionVO.getMyTeamId());
-//        } catch (IOException e)
-//        {
-//            e.printStackTrace();
-//        }
+        try
+        {
+            path.append(Constant.USER_IMAGE_SPACE_PATH).append(sessionVO.getUserId()).append("/");
+            fileName = UploadFileUtil.doUpload(file, path.toString(), basePath);
+            dao.insertImgToSpace(imageId, fileName, sessionVO.getMyTeamId());
+        } catch (IOException e)
+        {
+            e.printStackTrace();
+        }
 
         ResultVO resultVO = new ResultVO(result, sessionVO.getToken(), imageId);
 

@@ -430,14 +430,14 @@ var gdReleaseJS = {
         }
 
     },
+    //
+    // leftandrigthmove: function (item)
+    // {
+    //     var $DisThis = $(item).find(".mid-box");
+    //     $DisThis.css("display", "block");
+    // },
 
-    leftandrigthmove: function (item)
-    {
-        var $DisThis = $(item).find(".mid-box");
-        $DisThis.css("display", "block");
-    },
-
-    //----------------------瞎写
+    //----------------------
     pichandle: function ()
     {//初始化
         $(".add-picture li").each(function ()

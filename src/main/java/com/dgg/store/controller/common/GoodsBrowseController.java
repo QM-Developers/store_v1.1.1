@@ -7,7 +7,6 @@ import com.dgg.store.util.vo.goods.GoodsDetailVO;
 import com.dgg.store.util.vo.goods.GoodsTypeVO;
 import com.dgg.store.util.vo.core.ResultVO;
 import com.dgg.store.util.vo.core.SessionVO;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -54,7 +53,7 @@ public class GoodsBrowseController
     {
         request.setAttribute("images",service.findGoodsDescribe(goodsId));
 
-        return "pages/mall/goods/innerView";
+        return "pages/mall/goods/backup/innerView";
     }
 
     @RequestMapping(value = "user_findGoodsStandard",method = RequestMethod.POST)

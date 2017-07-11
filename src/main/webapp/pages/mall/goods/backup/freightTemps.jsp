@@ -111,7 +111,7 @@
 <script type="text/javascript" src="${path}/script/Amaze/assets/js/amazeui.min.js"></script>
 <script type="text/javascript" src="${path}/script/js/myjs.js"></script>
 
-<script type="text/javascript" src="${path}/pages/mall/goods/freightTemps.js"></script>
+<script type="text/javascript" src="${path}/pages/mall/goods/backup/freightTemps.js"></script>
 <script type="text/javascript">
     freightJS.init();
 </script>

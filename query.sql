@@ -1,2 +1,2 @@
-select u.user_img from user u
+select * from image_space
 ;

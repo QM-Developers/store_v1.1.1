@@ -1,0 +1,109 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%
+    String path = request.getContextPath();
+    String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path + "/";
+    request.setAttribute("path", path);
+    request.setAttribute("basePath", basePath);
+%>
+<html>
+<head>
+    <script type="text/javascript">
+        var path = "${path}";
+        var basePath = "${basePath}";
+    </script>
+    <link rel="stylesheet" type="text/css" href="${path}/script/Amaze/assets/css/amazeui.min.css"/>
+    <link rel="stylesheet" type="text/css" href="${path}/pages/common/reset.css"/>
+    <link rel="stylesheet" type="text/css" href="${path}/pages/mall/goods/qm-goodslist.css"/>
+</head>
+<body>
+
+<div class="goodslist bodybox">
+    <header class="goodslist-header">
+        <a class="goodslist-but" href="qm-typeSelect.jsp">添加商品</a>
+    </header>
+    <section class="goodslist-list">
+        <div class="goodslist-list-titlebox">
+            <div class="goodslist-list-title">
+                <div class="goodslist-title-text">商品列表</div>
+                <!--<div class="goodslist-title-text goodslist-title-text1">(江门销售点)</div>-->
+            </div>
+            <div class=" am-fr header-right">
+                <div class="am-fr put-box">
+                    <input class="header-put" placeholder="输入关键字符"/><span id="seobut" class="header-span"></span>
+                </div>
+            </div>
+        </div>
+        <div class="goodslist-list-table">
+            <ul>
+                <li class="goodslist-list-tr">
+                    <div class="item1">序号</div>
+                    <div class="item2">商品名称</div>
+                    <div class="item3">
+                        <div class="item3-box">
+                            <div class="item3-1">分类</div>
+                            <div class="item3-2">规格</div>
+                            <div class="item3-3">单价(元)</div>
+                            <div class="item3-4">库存</div>
+                            <div class="item3-5">发布时间</div>
+                            <div class="item3-6">操作区</div>
+                        </div>
+                    </div>
+                </li>
+                <li class="goodslist-list-tr">
+                    <div class="item1">1</div>
+                    <div class="item2">米4T型4%小米牧场猪饲料</div>
+                    <div class="item3">
+                        <div class="item3-box">
+                            <div class="item3-1">饲料原料</div>
+                            <div class="item3-2">10kg/包</div>
+                            <div class="item3-3">150</div>
+                            <div class="item3-4">1000</div>
+                            <div class="item3-5">2017/6/20</div>
+                            <div class="item3-6">
+                                <a href="qm-goodsRelease.jsp">详情/编辑</a>
+                            </div>
+                        </div>
+                        <div class="item3-box">
+                            <div class="item3-1">饲料原料</div>
+                            <div class="item3-2">10kg/包</div>
+                            <div class="item3-3">150</div>
+                            <div class="item3-4">1000</div>
+                            <div class="item3-5">2017/6/20</div>
+                            <div class="item3-6">
+                                <a href="qm-goodsRelease.jsp">详情/编辑</a>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="goodslist-list-tr">
+                    <div class="item1">1</div>
+                    <div class="item2">米4T型4%小米牧场猪饲料</div>
+                    <div class="item3">
+                        <div class="item3-box">
+                            <div class="item3-1">饲料原料</div>
+                            <div class="item3-2">10kg/包</div>
+                            <div class="item3-3">150</div>
+                            <div class="item3-4">1000</div>
+                            <div class="item3-5">2017/6/20</div>
+                            <div class="item3-6">
+                                <a href="">详情/编辑</a>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </section>
+</div>
+</body>
+<script type="text/javascript" src="${path}/script/jquery/jquery-3.0.0.min.js"></script>
+<script type="text/javascript" src="${path}/script/Amaze/assets/js/amazeui.min.js"></script>
+<script type="text/javascript" src="${path}/script/js/myjs.js"></script>
+<script type="text/javascript" src="${path}/pages/common/control.js"></script>
+<script type="text/javascript" src="${path}/pages/common/Constant.js"></script>
+
+<script type="text/javascript" src="${path}/pages/mall/goods/qm-goodslist.js"></script>
+<script type="text/javascript">
+    qm_goodslist.init();
+</script>
+</html>

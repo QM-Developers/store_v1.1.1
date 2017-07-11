@@ -1,0 +1,133 @@
+.goodslist-header{
+	width: 100%;
+	height: 42px;
+	background: #F2F2F2;
+	margin-top: 10px;
+}
+.goodslist-but{
+	display: inline-block;
+	width: 160px;
+	font-size: 18px;
+	color: #000000;
+	text-align: center;
+	line-height: 42px;
+	cursor: pointer;
+
+}
+
+.goodslist-list-titlebox {
+	width: 100%;
+	height: 42px;
+	background: #FFFFFF;
+}
+.goodslist-list-title {
+	width: 50%;
+	float: left;
+	height: 100%;
+}
+.goodslist-title-text {
+	display: inline-block;
+	width: 120px;
+	font-size: 18px;
+	    font-weight: 600;
+	color: #000000;
+	text-align: center;
+	line-height: 42px;
+}
+.goodslist-title-text1{
+	font-size: 14px;
+	
+}
+.header-right {
+	width: 50%;
+	height: 100%;
+
+}
+.put-box {
+	width: 302px;
+	height: 35px;
+	margin: 4px 18px 0 0 ;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.header-put {
+	display: inline-block;
+	float: left;
+	width: 259px;
+	height: 33px;
+	padding-left: 10px;
+	border: none;
+}
+
+.header-span {
+	display: inline-block;
+	width: 40px;
+	height: 32px;
+	cursor: pointer;
+	background: url(../../../images/seo.jpg) no-repeat;
+}
+
+.header-title {
+	width: 100px;
+	margin-left: 20px;
+	text-align: center;
+	line-height: 42px;
+	cursor: pointer;
+}
+
+
+/*列表*/
+
+.goodslist-list-tr {
+	overflow: hidden;
+	display: flex;
+	border-bottom: 1px solid #CCCCCC;
+}
+.item3-box div {
+	width: 16.6%;
+	height: 30px;
+	line-height: 30px;
+}
+.goodslist-list-tr:nth-child(1) {
+	height: 44px;
+	line-height: 44px;
+	text-align: center;
+	background: #e6e6e6;
+	border-bottom: 1px solid #CCCCCC;
+	border-top:1px solid #00abf0;
+}
+.goodslist-list-tr:nth-child(1) .item3-box div {
+	height: 44px;
+	line-height: 44px;
+	text-align: center;
+
+}
+.goodslist-list-tr div {
+	float: left;
+	text-align: center;
+}
+
+.goodslist-list-tr .item1 {
+	width: 5%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.goodslist-list-tr .item2 {
+	width: 25%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.goodslist-list-tr .item3 {
+	width: 70%;
+}
+
+.item3 .item3-box {
+	width: 100%;
+	height: 30px;
+}
+

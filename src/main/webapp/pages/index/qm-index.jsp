@@ -93,7 +93,7 @@
                                     <a target="iframepage" href="${path}/pages/group/qm-department.jsp?manager">总经办</a>
                                 </div>
                                 <div class='menu-lichild'>
-                                    <a target="iframepage" href="${path}/pages/group/qm-department.jsp?${sessionScope.loginInfo.myTeamId}">下属部门</a>
+                                    <a target="iframepage" href="${path}/pages/group/qm-seolist.jsp">下属部门</a>
                                 </div>
                             </div>
                         </li>
@@ -139,7 +139,7 @@
                                 我的商城</a>
                             <div class='menu-div myclientlist' style="display: none;">
                                 <div class='menu-lichild'>
-                                    <a target="iframepage" href="../mall/goods/qm-goodslist.html">我的商城</a>
+                                    <a target="iframepage" href="${path}/pages/mall/goods/qm-goodslist.jsp">我的商城</a>
                                 </div>
                                 <div class='menu-lichild'>
                                     <a target="iframepage" href="../mall/goods/qm-selllist.html">销售点</a>

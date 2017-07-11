@@ -21,17 +21,13 @@ var header = {
         });
     },
 
-    findMemberByNameOrPhone: function ()
+    toSearch: function ()
     {
-        var url = path + "/s/findMemberByNameOrPhone" + Constant.URL_SUFFIX;
-        var params = {};
+        var json = {};
+        json["keyword"] = $("#search-keyword").val();
+        json["department"] = $("#search-department").val();
+        document.cookie = JSON.stringify(json);
+        window.location.href = path + "/pages/group/qm-groupseeklistt.jsp";
+    },
 
-        params["userName"] = $("#search-keyword").val();
-        params["teamDepartmentId"] = $("#search-department").val();
-
-        myjs.ajax_post(url,params,function (data)
-        {
-            console.log(data);
-        });
-    }
 };

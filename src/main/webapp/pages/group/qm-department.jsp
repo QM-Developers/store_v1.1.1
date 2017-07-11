@@ -89,7 +89,7 @@
     <div class="am-g">
 
         <div class="del-but-box">
-            <button class="del-but">返回</button>
+            <button class="del-but" onclick="javascript :history.back(-1);">返回</button>
         </div>
 
     </div>

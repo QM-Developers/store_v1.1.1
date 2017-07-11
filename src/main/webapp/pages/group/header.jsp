@@ -46,7 +46,7 @@
 <body>
 <div class=" am-fr qm-header-right">
     <div class="am-fr qm-put-box">
-        <input class="qm-header-put" id="search-keyword" placeholder="输入关键字符"/><span onclick="header.findMemberByNameOrPhone()" id="seobut" class=" qm-header-span"></span>
+        <input class="qm-header-put" id="search-keyword" placeholder="输入关键字符"/><span onclick="header.toSearch();" id="seobut" class=" qm-header-span"></span>
     </div>
     <div class=" am-fr ">
         <select id="search-department">

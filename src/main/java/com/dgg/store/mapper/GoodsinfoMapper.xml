@@ -73,7 +73,7 @@
 
     <select id="findImages" resultMap="ImageSpaceMap">
         SELECT image_id, image_path
-        FROM dgg_store.image_space
+        FROM image_space
         WHERE my_team_id = #{myTeamId}
     </select>
 

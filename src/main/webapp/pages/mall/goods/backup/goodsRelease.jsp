@@ -17,7 +17,7 @@
 
     <link rel="stylesheet" href="${path}/script/Amaze/assets/css/amazeui.min.css"/>
     <link rel="stylesheet" href="${path}/script/webuploader-0.1.5/webuploader.css">
-    <link rel="stylesheet" href="${path}/pages/mall/goods/goodsRelease.css"/>
+    <link rel="stylesheet" href="${path}/pages/mall/goods/backup/goodsRelease.css"/>
 
 </head>
 <body>
@@ -256,9 +256,7 @@
                 <div class="am-tabs-bd am-tabs-bd-ofv">
                     <!--上传框-->
                     <div class="am-tab-panel am-active " id="tab-4-1" style="padding: 10px;">
-                        <div class="add-imgbox" id="upload-list"
-                             style="width: 100%;height:280px; overflow: auto;"></div>
-
+                        <div class="add-imgbox" id="upload-list" style="width: 100%;height:280px; overflow: auto;"></div>
                         <div style="width: 100%;float: left;">
                             <div style="width:100%;height: 45px;line-height: 20px;text-align: center;">
                                 <div style="margin-top: 35px;width: 100px;margin: auto;" id="filePicker">添加图片</div>
@@ -294,7 +292,7 @@
 <script type="text/javascript" src="${path}/script/js/myjs.js"></script>
 
 <script type="text/javascript" src="${path}/script/js/inputSel.js"></script>
-<script type="text/javascript" src="${path}/pages/mall/goods/goodsRelease.js"></script>
+<script type="text/javascript" src="${path}/pages/mall/goods/backup/goodsRelease.js"></script>
 
 <script type="text/javascript">
     gdReleaseJS.init();

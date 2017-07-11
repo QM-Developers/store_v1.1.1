@@ -47,7 +47,6 @@ public class MyTeamController
         return service.findMemberByNameOrPhone(sessionVO,member);
     }
 
-
 //    @RequestMapping(value = "/s/addMyTeam",method = RequestMethod.POST)
 //    @ResponseBody
 //    public ResultVO addMyTeam(HttpServletRequest request, MyTeamVO teamVO)

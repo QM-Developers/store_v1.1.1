@@ -20,11 +20,13 @@ public interface GoodsinfoMapper
 
     List<GoodsTypeAttr> findTypeAttr(@Param("typeId") String goodsTypeId);
 
-    int insertImgToSpace(@Param("imageId") String imgId,@Param("imagePath") String path, @Param("myTeamId") String teamId);
+    int insertImgToSpace(@Param("imageId") String imgId, @Param("imagePath") String path, @Param("myTeamId") String teamId);
 
     Integer insertImgToGoods(GoodsImgVO imgVO);
 
     List<ImageSpace> findImages(@Param("myTeamId") String myTeamId);
 
     Integer insertStandardToGoods(GoodsStandard standard);
+
+    List<GoodsInfoVO> findGoodsList(@Param("myTeamId") String myTeamId);
 }

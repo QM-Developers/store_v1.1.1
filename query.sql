@@ -1,2 +1,2 @@
-select * from image_space
+select * from goodsinfo
 ;

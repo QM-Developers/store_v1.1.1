@@ -2,7 +2,7 @@ package com.dgg.store.service.store;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
-import com.dgg.store.dao.store.GoodsReleaseDao;
+import com.dgg.store.dao.store.GoodsManageDao;
 import com.dgg.store.util.core.constant.Constant;
 import com.dgg.store.util.core.generator.IDGenerator;
 import com.dgg.store.util.core.upload.UploadFileUtil;
@@ -23,10 +23,10 @@ import java.io.IOException;
 import java.util.List;
 
 @Service
-public class GoodsReleaseServiceImpl implements GoodsReleaseService
+public class GoodsManageServiceImpl implements GoodsManageService
 {
     @Autowired
-    private GoodsReleaseDao dao;
+    private GoodsManageDao dao;
 
     @Override
     public ResultVO insertGoodsinfo(SessionVO sessionVO, GoodsInfoVO goodsinfo)
@@ -46,6 +46,7 @@ public class GoodsReleaseServiceImpl implements GoodsReleaseService
         {
             standard.setStandardId(IDGenerator.generator());
             standard.setStandardPrice(Float.parseFloat(jsonArray.getJSONObject(i).get("standardPrice").toString()));
+            standard.setStandardWeight(Float.parseFloat(jsonArray.getJSONObject(i).get("standardWeight").toString()));
             standard.setStandardCount(Integer.parseInt(jsonArray.getJSONObject(i).get("standardCount").toString()));
             standard.setStandardName(jsonArray.getJSONObject(i).get("standardName").toString());
             if(result > 0)
@@ -70,7 +71,7 @@ public class GoodsReleaseServiceImpl implements GoodsReleaseService
         return resultVO;
     }
 
-    public GoodsTypeVO findTypeParent(GoodsTypeVO typeVO)
+    private GoodsTypeVO findTypeParent(GoodsTypeVO typeVO)
     {
         if (!"0".equals(typeVO.getGoodsTypePid()))
         {
@@ -132,6 +133,16 @@ public class GoodsReleaseServiceImpl implements GoodsReleaseService
         List<ImageSpace> result = dao.findImages(sessionVO.getMyTeamId());
 
         ResultVO resultVO = new ResultVO(result.size() < 1 ? 0 : 1, sessionVO.getToken(), result);
+
+        return resultVO;
+    }
+
+    @Override
+    public ResultVO findGoodsList(SessionVO sessionVO)
+    {
+        List<GoodsInfoVO> result = dao.findGoodsList(sessionVO.getMyTeamId());
+
+        ResultVO resultVO = new ResultVO(1,sessionVO.getToken(),result);
 
         return resultVO;
     }

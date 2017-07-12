@@ -109,7 +109,7 @@ CREATE TABLE `chat_history` (
   `send_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `is_read` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`history_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -118,7 +118,7 @@ CREATE TABLE `chat_history` (
 
 LOCK TABLES `chat_history` WRITE;
 /*!40000 ALTER TABLE `chat_history` DISABLE KEYS */;
-INSERT INTO `chat_history` VALUES (1,'89d9317fb3834353bcf2a507bee2eb82','89d9317fb3834353bcf2a507bee2eb84',1,'666','2017-07-10 09:21:00',0);
+INSERT INTO `chat_history` VALUES (1,'89d9317fb3834353bcf2a507bee2eb82','89d9317fb3834353bcf2a507bee2eb84',1,'666','2017-07-10 09:21:00',1),(2,'89d9317fb3834353bcf2a507bee2eb82','89d9317fb3834353bcf2a507bee2eb84',1,'123','2017-07-12 11:35:49',1),(3,'89d9317fb3834353bcf2a507bee2eb82','89d9317fb3834353bcf2a507bee2eb84',1,'123','2017-07-12 11:37:54',1),(4,'89d9317fb3834353bcf2a507bee2eb82','89d9317fb3834353bcf2a507bee2eb84',1,'123123','2017-07-12 11:39:17',1),(5,'89d9317fb3834353bcf2a507bee2eb82','89d9317fb3834353bcf2a507bee2eb84',1,'asdf','2017-07-12 11:41:06',1),(6,'89d9317fb3834353bcf2a507bee2eb82','89d9317fb3834353bcf2a507bee2eb84',1,'1231','2017-07-12 11:44:04',1),(7,'89d9317fb3834353bcf2a507bee2eb82','89d9317fb3834353bcf2a507bee2eb84',1,'sdf','2017-07-12 11:45:00',1),(8,'89d9317fb3834353bcf2a507bee2eb82','89d9317fb3834353bcf2a507bee2eb84',1,'123','2017-07-12 11:48:08',1),(9,'89d9317fb3834353bcf2a507bee2eb82','89d9317fb3834353bcf2a507bee2eb84',1,'sadf','2017-07-12 11:49:02',1),(10,'89d9317fb3834353bcf2a507bee2eb84','89d9317fb3834353bcf2a507bee2eb82',1,'asdfsadfasdf','2017-07-12 12:00:34',1),(11,'89d9317fb3834353bcf2a507bee2eb84','89d9317fb3834353bcf2a507bee2eb82',1,'123123','2017-07-12 12:00:57',1),(12,'89d9317fb3834353bcf2a507bee2eb84','89d9317fb3834353bcf2a507bee2eb82',1,'sdcxvxczv','2017-07-12 12:01:16',1),(13,'89d9317fb3834353bcf2a507bee2eb84','89d9317fb3834353bcf2a507bee2eb82',1,'sdf','2017-07-12 14:07:55',1),(14,'89d9317fb3834353bcf2a507bee2eb82','89d9317fb3834353bcf2a507bee2eb84',1,'sdf','2017-07-12 14:08:34',1),(15,'89d9317fb3834353bcf2a507bee2eb84','89d9317fb3834353bcf2a507bee2eb82',1,'sdfsdf','2017-07-12 14:08:44',1),(16,'89d9317fb3834353bcf2a507bee2eb82','89d9317fb3834353bcf2a507bee2eb84',1,'阿什顿飞','2017-07-12 15:16:19',0),(17,'89d9317fb3834353bcf2a507bee2eb82','89d9317fb3834353bcf2a507bee2eb84',1,'sadfasdf','2017-07-12 15:17:22',0),(18,'89d9317fb3834353bcf2a507bee2eb82','89d9317fb3834353bcf2a507bee2eb84',1,'cxv','2017-07-12 15:17:50',0),(19,'89d9317fb3834353bcf2a507bee2eb82','89d9317fb3834353bcf2a507bee2eb84',1,'d','2017-07-12 15:18:49',0),(20,'89d9317fb3834353bcf2a507bee2eb82','89d9317fb3834353bcf2a507bee2eb84',1,'sadf','2017-07-12 15:24:24',0),(21,'89d9317fb3834353bcf2a507bee2eb82','89d9317fb3834353bcf2a507bee2eb84',1,'dfg','2017-07-12 15:25:36',0),(22,'89d9317fb3834353bcf2a507bee2eb82','89d9317fb3834353bcf2a507bee2eb84',1,'123','2017-07-12 15:30:24',0);
 /*!40000 ALTER TABLE `chat_history` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -367,6 +367,7 @@ CREATE TABLE `goods_image` (
 
 LOCK TABLES `goods_image` WRITE;
 /*!40000 ALTER TABLE `goods_image` DISABLE KEYS */;
+INSERT INTO `goods_image` VALUES ('04527dd3e6eb424eb9120ede0f3edeb2','7f919e4356a44fe8a199dde18d561cbc','0',1),('04527dd3e6eb424eb9120ede0f3edeb2','bc13439ff4384bcab77d93911ce783f6','1',2),('04527dd3e6eb424eb9120ede0f3edeb2','df85119137904e93895d8c76e06b1924','2',2);
 /*!40000 ALTER TABLE `goods_image` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -383,6 +384,7 @@ CREATE TABLE `goods_standard` (
   `standard_name` varchar(20) NOT NULL DEFAULT '',
   `standard_price` float NOT NULL DEFAULT '0',
   `standard_count` int(11) NOT NULL DEFAULT '0',
+  `standard_weight` float NOT NULL DEFAULT '0',
   PRIMARY KEY (`standard_id`),
   KEY `FK_goods_standard_re` (`goods_id`),
   CONSTRAINT `FK_goods_standard_re` FOREIGN KEY (`goods_id`) REFERENCES `goodsinfo` (`goods_id`)
@@ -395,6 +397,7 @@ CREATE TABLE `goods_standard` (
 
 LOCK TABLES `goods_standard` WRITE;
 /*!40000 ALTER TABLE `goods_standard` DISABLE KEYS */;
+INSERT INTO `goods_standard` VALUES ('4cfada79264944f886b0633fa3eb2610','04527dd3e6eb424eb9120ede0f3edeb2','1',3,4,2),('708b2aef04c0460793c0aecaeab713d5','04527dd3e6eb424eb9120ede0f3edeb2','9',11,12,0),('852d8517ca7f42449b21093130dca38c','04527dd3e6eb424eb9120ede0f3edeb2','5',7,8,6);
 /*!40000 ALTER TABLE `goods_standard` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -483,7 +486,6 @@ CREATE TABLE `goodsinfo` (
   KEY `FK_goods_freight_re` (`template_freight_id`),
   KEY `FK_goods_type_RE` (`goods_type_id`),
   KEY `FK_team_goods_re` (`my_team_id`),
-  CONSTRAINT `FK_goods_freight_re` FOREIGN KEY (`template_freight_id`) REFERENCES `template_of_freight` (`template_freight_id`),
   CONSTRAINT `FK_goods_type_RE` FOREIGN KEY (`goods_type_id`) REFERENCES `goods_typeinfo` (`goods_type_id`),
   CONSTRAINT `FK_team_goods_re` FOREIGN KEY (`my_team_id`) REFERENCES `my_team` (`my_team_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -495,6 +497,7 @@ CREATE TABLE `goodsinfo` (
 
 LOCK TABLES `goodsinfo` WRITE;
 /*!40000 ALTER TABLE `goodsinfo` DISABLE KEYS */;
+INSERT INTO `goodsinfo` VALUES ('04527dd3e6eb424eb9120ede0f3edeb2','0b49ef854bb74ff9b9317132dba053d7','10001','','玉米粉',0,0,'品牌?Microsoft','7f919e4356a44fe8a199dde18d561cbc|bc13439ff4384bcab77d93911ce783f6|df85119137904e93895d8c76e06b1924|',NULL,0,0,'2017-07-12 16:16:36',0,NULL);
 /*!40000 ALTER TABLE `goodsinfo` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -521,7 +524,7 @@ CREATE TABLE `image_space` (
 
 LOCK TABLES `image_space` WRITE;
 /*!40000 ALTER TABLE `image_space` DISABLE KEYS */;
-INSERT INTO `image_space` VALUES ('880594c347384bff8853c83fc2d6b22f','10001','/upload/img/user/space/89d9317fb3834353bcf2a507bee2eb82/efc3bd6178c04eecaf809f57028cf4ee.jpg'),('a9a47e6e37494a5dae8bacc735f66e8e','10001','/upload/img/user/space/89d9317fb3834353bcf2a507bee2eb82/8ea42d85cc4d48a8ab11f4d33d5c429c.jpg'),('cd6c8de7095a4007b87ced48e2fe2028','10001','/upload/img/user/space/89d9317fb3834353bcf2a507bee2eb82/b86eddbfe3c74879bbd3b1e92fc5dbf9.png');
+INSERT INTO `image_space` VALUES ('7f919e4356a44fe8a199dde18d561cbc','10001','/upload/img/user/space/89d9317fb3834353bcf2a507bee2eb82/a22f4e8ce09c43d58b1690058e439d80.jpg'),('bc13439ff4384bcab77d93911ce783f6','10001','/upload/img/user/space/89d9317fb3834353bcf2a507bee2eb82/c61467dcc89848c2aab2c13f1aa0fdce.jpg'),('df85119137904e93895d8c76e06b1924','10001','/upload/img/user/space/89d9317fb3834353bcf2a507bee2eb82/a174c63eb79e40dd9044e95f68283abe.png');
 /*!40000 ALTER TABLE `image_space` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1012,7 +1015,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES ('1afd2aa301914b87a178987dfffefcc2','10001','27a9c57b4c69441aa569ef4ae1a9ef7d',1003,'赵66','','女','13657981326',NULL,'','','','2017-07-07 17:16:26','2017-07-07 17:16:26','u_st_1','','','','','',0,NULL,'135621567845465420','','2017-07-07 17:16:26','/WEB-INF/upload/img/id_card/4d69b8cb68c84988aa74e389287fe2a7.jpg','/WEB-INF/upload/img/id_card/11bcde7361d54d61b6f5d192e57f8645.jpg','6d163a17a8b842dd98de4b059b893666'),('41370f132bd44bca943e2fe5dd9862ab','10001','27a9c57b4c69441aa569ef4ae1a9ef7c',1003,'赵六','','女','13657981326',NULL,'','','','2017-07-07 17:16:19','2017-07-07 17:16:19','u_st_1','','','','','',0,NULL,'135621567845465420','','2017-07-07 17:16:19','/WEB-INF/upload/img/id_card/4d69b8cb68c84988aa74e389287fe2a7.jpg','/WEB-INF/upload/img/id_card/11bcde7361d54d61b6f5d192e57f8645.jpg','5f759af244784603bc4ffc6f7dab8508'),('89d9317fb3834353bcf2a507bee2eb82','10001','27a9c57b4c69441aa569ef4ae1a9ef7c',1002,'张三','825682eafec59c2e1632828195133a52','男','13688888888','2017-06-14','x胡同y巷z号','北京市 西城区','','2017-06-14 10:38:46','2017-06-14 10:38:46','','','','/upload/img/user/head_portrait/89d9317fb3834353bcf2a507bee2eb82/34ac4d747a35414dbf249b6add3e8348.jpg','','3ae521dd945a4a5db040a3a3e9ece8d71499765961361',0,NULL,'','','2017-07-01 11:56:19',NULL,NULL,'b63366bffb23473cbbd2b00225e05620'),('89d9317fb3834353bcf2a507bee2eb83','10001','27a9c57b4c69441aa569ef4ae1a9ef7d',1002,'李四','825682eafec59c2e1632828195133a52','女','13699999999','2017-06-14','z胡同y巷x号','北京市 西城区','','2017-06-14 10:38:46','2017-06-14 10:38:46','','','','','','',0,NULL,'','','2017-07-01 11:56:19',NULL,NULL,'6d163a17a8b842dd98de4b059b893666'),('89d9317fb3834353bcf2a507bee2eb84','10001','27a9c57b4c69441aa569ef4ae1a9ef7c',1002,'王五','825682eafec59c2e1632828195133a52','男','13677777777','2017-06-14','a胡同b巷c号','北京市 西城区','','2017-06-14 10:38:46','2017-06-14 10:38:46','','','','/upload/img/user/head_portrait/89d9317fb3834353bcf2a507bee2eb82/34ac4d747a35414dbf249b6add3e8348.jpg','','',0,NULL,'','','2017-07-01 11:56:19',NULL,NULL,'5f759af244784603bc4ffc6f7dab8508');
+INSERT INTO `user` VALUES ('1afd2aa301914b87a178987dfffefcc2','10001','27a9c57b4c69441aa569ef4ae1a9ef7d',1003,'赵66','','女','13657981326',NULL,'','','','2017-07-07 17:16:26','2017-07-07 17:16:26','u_st_1','','','','','',0,NULL,'135621567845465420','','2017-07-07 17:16:26','/WEB-INF/upload/img/id_card/4d69b8cb68c84988aa74e389287fe2a7.jpg','/WEB-INF/upload/img/id_card/11bcde7361d54d61b6f5d192e57f8645.jpg','6d163a17a8b842dd98de4b059b893666'),('41370f132bd44bca943e2fe5dd9862ab','10001','27a9c57b4c69441aa569ef4ae1a9ef7c',1003,'赵六','','女','13657981326',NULL,'','','','2017-07-07 17:16:19','2017-07-07 17:16:19','u_st_1','','','','','',0,NULL,'135621567845465420','','2017-07-07 17:16:19','/WEB-INF/upload/img/id_card/4d69b8cb68c84988aa74e389287fe2a7.jpg','/WEB-INF/upload/img/id_card/11bcde7361d54d61b6f5d192e57f8645.jpg','5f759af244784603bc4ffc6f7dab8508'),('89d9317fb3834353bcf2a507bee2eb82','10001','27a9c57b4c69441aa569ef4ae1a9ef7c',1002,'张三','825682eafec59c2e1632828195133a52','男','13688888888','2017-06-14','x胡同y巷z号','北京市 西城区','','2017-06-14 10:38:46','2017-06-14 10:38:46','','','','/upload/img/user/head_portrait/89d9317fb3834353bcf2a507bee2eb82/34ac4d747a35414dbf249b6add3e8348.jpg','','405d13f411a14c4c949baca36b9c5b8c1499851283284',0,NULL,'','','2017-07-01 11:56:19',NULL,NULL,'b63366bffb23473cbbd2b00225e05620'),('89d9317fb3834353bcf2a507bee2eb83','10001','27a9c57b4c69441aa569ef4ae1a9ef7d',1002,'李四','825682eafec59c2e1632828195133a52','女','13699999999','2017-06-14','z胡同y巷x号','北京市 西城区','','2017-06-14 10:38:46','2017-06-14 10:38:46','','','','','','',0,NULL,'','','2017-07-01 11:56:19',NULL,NULL,'6d163a17a8b842dd98de4b059b893666'),('89d9317fb3834353bcf2a507bee2eb84','10001','27a9c57b4c69441aa569ef4ae1a9ef7c',1002,'王五','825682eafec59c2e1632828195133a52','男','13677777777','2017-06-14','a胡同b巷c号','北京市 西城区','','2017-06-14 10:38:46','2017-06-14 10:38:46','','','','/upload/img/user/head_portrait/89d9317fb3834353bcf2a507bee2eb82/34ac4d747a35414dbf249b6add3e8348.jpg','','',0,NULL,'','','2017-07-01 11:56:19',NULL,NULL,'5f759af244784603bc4ffc6f7dab8508');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1441,4 +1444,4 @@ SET character_set_client = @saved_cs_client;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-07-11 18:12:20
+-- Dump completed on 2017-07-12 18:04:53

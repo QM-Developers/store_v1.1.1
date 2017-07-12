@@ -7,38 +7,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="886cbd15-c3a0-40c9-bb8e-62f10811888a" name="Default" comment="框架搭建">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/webapp/pages/friend/friend.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/webapp/pages/friend/friend.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/webapp/pages/friend/friend.jsp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/webapp/pages/group/qm-departmentlist.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/webapp/pages/group/qm-departmentlist.jsp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/webapp/pages/group/qm-seolist.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/webapp/pages/group/qm-seolist.jsp" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DGG-Store-v1.1.1.cdb" afterPath="$PROJECT_DIR$/DGG-Store-v1.1.1.cdb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DGG-Store-v1.1.1.cdm" afterPath="$PROJECT_DIR$/DGG-Store-v1.1.1.cdm" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/query.sql" afterPath="$PROJECT_DIR$/query.sql" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/dgg/store/controller/common/GoodsBrowseController.java" afterPath="$PROJECT_DIR$/src/main/java/com/dgg/store/controller/common/GoodsBrowseController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/dgg/store/controller/store/MyTeamController.java" afterPath="$PROJECT_DIR$/src/main/java/com/dgg/store/controller/store/MyTeamController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/dgg/store/mapper/GoodsTypeinfoMapper.xml" afterPath="$PROJECT_DIR$/src/main/java/com/dgg/store/mapper/GoodsTypeinfoMapper.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/dgg/store/listener/WebInitListener.java" afterPath="$PROJECT_DIR$/src/main/java/com/dgg/store/listener/WebInitListener.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/dgg/store/mapper/GoodsinfoMapper.xml" afterPath="$PROJECT_DIR$/src/main/java/com/dgg/store/mapper/GoodsinfoMapper.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/dgg/store/service/store/GoodsReleaseServiceImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/dgg/store/service/store/GoodsReleaseServiceImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/pages/group/header.js" afterPath="$PROJECT_DIR$/src/main/webapp/pages/group/header.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/pages/group/header.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/pages/group/header.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/pages/group/qm-department.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/pages/group/qm-department.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/pages/index/qm-index.css" afterPath="$PROJECT_DIR$/src/main/webapp/pages/index/qm-index.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/pages/index/qm-index.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/pages/index/qm-index.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/pages/management/qm-index.css" afterPath="$PROJECT_DIR$/src/main/webapp/pages/management/qm-index.css" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/webapp/pages/mall/goods/freightTemps.js" afterPath="$PROJECT_DIR$/src/main/webapp/pages/mall/goods/backup/freightTemps.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/webapp/pages/mall/goods/freightTemps.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/pages/mall/goods/backup/freightTemps.jsp" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/webapp/pages/mall/goods/goodsManage.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/pages/mall/goods/backup/goodsManage.jsp" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/webapp/pages/mall/goods/goodsRelease.css" afterPath="$PROJECT_DIR$/src/main/webapp/pages/mall/goods/backup/goodsRelease.css" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/webapp/pages/mall/goods/goodsRelease.js" afterPath="$PROJECT_DIR$/src/main/webapp/pages/mall/goods/backup/goodsRelease.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/webapp/pages/mall/goods/goodsRelease.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/pages/mall/goods/backup/goodsRelease.jsp" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/webapp/pages/mall/goods/imgUpload.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/pages/mall/goods/backup/imgUpload.jsp" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/webapp/pages/mall/goods/innerView.js" afterPath="$PROJECT_DIR$/src/main/webapp/pages/mall/goods/backup/innerView.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/webapp/pages/mall/goods/innerView.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/pages/mall/goods/backup/innerView.jsp" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/webapp/pages/mall/goods/typeSelect.css" afterPath="$PROJECT_DIR$/src/main/webapp/pages/mall/goods/backup/typeSelect.css" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/webapp/pages/mall/goods/typeSelect.js" afterPath="$PROJECT_DIR$/src/main/webapp/pages/mall/goods/backup/typeSelect.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/webapp/pages/mall/goods/typeSelect.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/pages/mall/goods/backup/typeSelect.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/dgg/store/util/pojo/GoodsStandard.java" afterPath="$PROJECT_DIR$/src/main/java/com/dgg/store/util/pojo/GoodsStandard.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/pages/mall/goods/backup/goodsRelease.js" afterPath="$PROJECT_DIR$/src/main/webapp/pages/mall/goods/backup/goodsRelease.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/pages/mall/goods/qm-goodsRelease.js" afterPath="$PROJECT_DIR$/src/main/webapp/pages/mall/goods/qm-goodsRelease.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/pages/mall/goods/qm-goodsRelease.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/pages/mall/goods/qm-goodsRelease.jsp" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/com/dgg/store/controller/store/GoodsReleaseController.java" afterPath="$PROJECT_DIR$/src/main/java/com/dgg/store/controller/store/GoodsManageController.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/com/dgg/store/service/store/GoodsReleaseServiceImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/dgg/store/service/store/GoodsManageServiceImpl.java" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -88,7 +68,69 @@
     <favorites_list name="store_v1.1.0" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="qm-goodsRelease.jsp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/pages/mall/goods/qm-goodsRelease.jsp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-3629">
+              <caret line="38" column="55" lean-forward="false" selection-start-line="38" selection-start-column="55" selection-end-line="38" selection-end-column="55" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="qm-goodslist.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/pages/mall/goods/qm-goodslist.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="654">
+              <caret line="34" column="13" lean-forward="true" selection-start-line="34" selection-start-column="13" selection-end-line="34" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GoodsinfoMapper.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/dgg/store/mapper/GoodsinfoMapper.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-1553">
+              <caret line="9" column="83" lean-forward="false" selection-start-line="9" selection-start-column="70" selection-end-line="9" selection-end-column="83" />
+              <folding>
+                <marker date="1499850888157" expanded="true" signature="2659:2914" ph="INSERT INTO goodsinfo... " />
+                <marker date="1499850888157" expanded="true" signature="2996:3131" ph="SELECT gt.go... goods_typeinfo" />
+                <marker date="1499850888157" expanded="true" signature="3209:3343" ph="SELECT gt.go... goods_typeinfo" />
+                <marker date="1499850888157" expanded="true" signature="3418:3629" ph="SELECT gta.g... goods_type_attr" />
+                <marker date="1499850888157" expanded="true" signature="3688:3799" ph="INSERT INTO image_space... " />
+                <marker date="1499850888157" expanded="true" signature="3913:4049" ph="INSERT INTO goods_image... " />
+                <marker date="1499850888157" expanded="true" signature="4128:4219" ph="SELECT image... image_space" />
+                <marker date="1499850888157" expanded="true" signature="4337:4567" ph="INSERT INTO goods_standard... " />
+                <marker date="1499850888157" expanded="true" signature="4647:4982" ph="SELECT gi.go... goodsinfo" />
+                <marker date="1499850888157" expanded="true" signature="4647:5024" ph="SELECT gi.go... goodsinfo" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="qm-department.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/pages/group/qm-department.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="576">
+              <caret line="24" column="61" lean-forward="true" selection-start-line="24" selection-start-column="44" selection-end-line="24" selection-end-column="61" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="qm-goodslist.jsp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/pages/mall/goods/qm-goodslist.jsp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="669">
+              <caret line="50" column="21" lean-forward="false" selection-start-line="50" selection-start-column="21" selection-end-line="50" selection-end-column="21" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -104,19 +146,12 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>removeImage</find>
-      <find>addMem</find>
-      <find>&lt;/ul</find>
-      <find>findDepartmentInfo</find>
-      <find>.html</find>
-      <find>findDepartmentMember</find>
       <find>findMemberInfo</find>
       <find>findMemberDetail</find>
       <find>id</find>
       <find>CON</find>
       <find>findDepartmentList</find>
       <find>tpSelJS</find>
-      <find>insert</find>
       <find>dgg_store</find>
       <find>findTypeAttr</find>
       <find>gdReleaseJS.leftandrigthmove(this)</find>
@@ -134,6 +169,13 @@
       <find>image</find>
       <find>b-shade</find>
       <find>add-two</find>
+      <find>lileft</find>
+      <find>a-s</find>
+      <find>onSelectImg</find>
+      <find>Midboxremove</find>
+      <find>insert</find>
+      <find>insertStandardToGoods</find>
+      <find>Base</find>
     </findStrings>
     <replaceStrings>
       <replace>Team</replace>
@@ -179,16 +221,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/webapp/pages/gorup/qm-personage.jsp" />
-        <option value="$PROJECT_DIR$/src/main/webapp/pages/gorup/qm-seolist.jsp" />
-        <option value="$PROJECT_DIR$/src/main/java/com/dgg/store/util/core/constant/Constant.java" />
-        <option value="$PROJECT_DIR$/src/main/webapp/pages/gorup/group.js" />
-        <option value="$PROJECT_DIR$/src/main/webapp/pages/gorup/qm-department.js" />
-        <option value="$PROJECT_DIR$/src/main/java/com/dgg/store/util/vo/team/TeamDepartmentVO.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/dgg/store/controller/store/ManageController.java" />
-        <option value="$PROJECT_DIR$/src/main/webapp/pages/gorup/qm-department.jsp" />
-        <option value="$PROJECT_DIR$/src/main/webapp/pages/team/qm-department.js" />
-        <option value="$PROJECT_DIR$/src/main/webapp/pages/common/control.js" />
         <option value="$PROJECT_DIR$/src/main/webapp/pages/team/qm-department.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/pages/group/qm-corporationlist.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/pages/group/qm-department.js" />
@@ -215,21 +247,31 @@
         <option value="$PROJECT_DIR$/src/main/webapp/pages/group/qm-department.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/pages/group/qm-seolist.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/pages/mall/goods/ceshi.js" />
-        <option value="$PROJECT_DIR$/src/main/webapp/pages/mall/goods/qm-goodslist.js" />
-        <option value="$PROJECT_DIR$/src/main/webapp/pages/mall/goods/qm-goodslist.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/pages/index/qm-index.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/pages/mall/goods/qm-typeSelect.jsp" />
         <option value="$PROJECT_DIR$/src/main/java/com/dgg/store/mapper/GoodsTypeinfoMapper.xml" />
         <option value="$PROJECT_DIR$/src/main/webapp/pages/management/qm-index.css" />
         <option value="$PROJECT_DIR$/src/main/webapp/pages/index/qm-index.css" />
-        <option value="$PROJECT_DIR$/src/main/webapp/pages/mall/goods/backup/goodsRelease.js" />
         <option value="$PROJECT_DIR$/src/main/webapp/pages/mall/goods/qm-typeSelect.js" />
-        <option value="$PROJECT_DIR$/src/main/java/com/dgg/store/service/store/GoodsReleaseServiceImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/dgg/store/mapper/GoodsinfoMapper.xml" />
         <option value="$PROJECT_DIR$/src/main/webapp/pages/mall/goods/backup/goodsRelease.jsp" />
-        <option value="$PROJECT_DIR$/src/main/webapp/pages/mall/goods/qm-goodsRelease.js" />
         <option value="$PROJECT_DIR$/src/main/webapp/pages/mall/goods/qm-goodsRelease.css" />
+        <option value="$PROJECT_DIR$/src/main/webapp/pages/mall/goods/backup/goodsRelease.js" />
         <option value="$PROJECT_DIR$/src/main/webapp/pages/mall/goods/qm-goodsRelease.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/pages/mall/goods/qm-goodsRelease.js" />
+        <option value="$PROJECT_DIR$/src/main/java/com/dgg/store/util/pojo/GoodsStandard.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/dgg/store/service/store/GoodsReleaseServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/dgg/store/listener/WebInitListener.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/dgg/store/controller/store/GoodsManageController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/dgg/store/service/store/GoodsManageService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/dgg/store/service/store/GoodsManageServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/dgg/store/dao/store/GoodsManageDao.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/dgg/store/dao/store/GoodsManageDaoImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/dgg/store/mapper/GoodsinfoMapper.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/dgg/store/service/common/GoodsBrowseServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/dgg/store/util/vo/goods/GoodsInfoVO.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/dgg/store/mapper/GoodsinfoMapper.xml" />
+        <option value="$PROJECT_DIR$/src/main/webapp/pages/mall/goods/qm-goodslist.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/pages/mall/goods/qm-goodslist.js" />
       </list>
     </option>
   </component>
@@ -272,6 +314,7 @@
     <panes>
       <pane id="PackagesPane" />
       <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -337,160 +380,6 @@
               <option name="myItemId" value="main" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="webapp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="WEB-INF" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="store_v1.1.1" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="store_v1.1.1" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="webapp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pages" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="store_v1.1.1" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="store_v1.1.1" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="webapp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pages" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mall" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="store_v1.1.1" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="store_v1.1.1" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="webapp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pages" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mall" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="goods" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="store_v1.1.1" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="store_v1.1.1" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="webapp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pages" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mall" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="goods" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="backup" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="store_v1.1.1" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="store_v1.1.1" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -511,70 +400,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="store" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="store_v1.1.1" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="store_v1.1.1" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="store" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="controller" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="store_v1.1.1" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="store_v1.1.1" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="store" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="controller" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -584,13 +409,12 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../rename" />
+    <property name="last_opened_file_path" value="D:/zz-netty/netty_chat" />
     <property name="js.eslint.eslintPackage" value="" />
     <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.15" />
@@ -608,12 +432,12 @@
     <property name="settings.editor.splitter.proportion" value="0.25342464" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="D:\WorkSpace\store_v1.1.1\src\main\webapp\pages\mall\goods\backup" />
-      <recent name="D:\WorkSpace\store_v1.1.1\src\main\webapp\pages\mall\goods" />
-      <recent name="D:\WorkSpace\store_v1.1.1\src\main\webapp\pages\group" />
-      <recent name="D:\WorkSpace\store_v1.1.1\src\main\webapp" />
-      <recent name="D:\WorkSpace\store_v1.1.1\src\main\webapp\pages\customer" />
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="com.dgg.store.mapper" />
+      <recent name="com.dgg.store.dao.store" />
+      <recent name="com.dgg.store.service.store" />
+      <recent name="com.dgg.store.dao.common" />
+      <recent name="com.dgg.store.service.common" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="com.dgg.store.service" />
@@ -632,12 +456,12 @@
       <recent name="com.dgg.store.util.vo" />
       <recent name="com.dgg.store.util.pojo" />
     </key>
-    <key name="CreateClassDialog.RecentsKey">
-      <recent name="com.dgg.store.mapper" />
-      <recent name="com.dgg.store.dao.store" />
-      <recent name="com.dgg.store.service.store" />
-      <recent name="com.dgg.store.dao.common" />
-      <recent name="com.dgg.store.service.common" />
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\WorkSpace\store_v1.1.1\src\main\webapp\pages\mall\goods\backup" />
+      <recent name="D:\WorkSpace\store_v1.1.1\src\main\webapp\pages\mall\goods" />
+      <recent name="D:\WorkSpace\store_v1.1.1\src\main\webapp\pages\group" />
+      <recent name="D:\WorkSpace\store_v1.1.1\src\main\webapp" />
+      <recent name="D:\WorkSpace\store_v1.1.1\src\main\webapp\pages\customer" />
     </key>
   </component>
   <component name="RunManager" selected="Tomcat Server.Tomcat 8.5.11">
@@ -1317,6 +1141,8 @@
       <workItem from="1499496445555" duration="10385000" />
       <workItem from="1499646324825" duration="23101000" />
       <workItem from="1499732775172" duration="26759000" />
+      <workItem from="1499819114381" duration="545000" />
+      <workItem from="1499819974221" duration="19484000" />
     </task>
     <servers />
   </component>
@@ -1353,7 +1179,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2051844000" />
+    <option name="totallyTimeSpent" value="2071873000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1366,7 +1192,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -1380,20 +1206,19 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.14658849" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.6836403" sideWeight="0.48400852" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.74431205" sideWeight="0.48400852" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32936078" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.30552545" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32936078" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.63596964" sideWeight="0.4936034" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3277311" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.63596964" sideWeight="0.4936034" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32936078" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32936078" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18230277" sideWeight="0.47085202" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18070363" sideWeight="0.47085202" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.29609793" sideWeight="0.529148" order="6" side_tool="true" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3261105" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
@@ -1402,6 +1227,7 @@
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Database Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32502708" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3261105" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1473,7 +1299,7 @@
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="641" />
+      <option name="time" value="644" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1482,194 +1308,10 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/pages/group/header.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="48" column="55" lean-forward="false" selection-start-line="48" selection-start-column="41" selection-end-line="48" selection-end-column="55" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/dgg/store/controller/store/ManageController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="307">
-          <caret line="59" column="34" lean-forward="false" selection-start-line="59" selection-start-column="34" selection-end-line="59" selection-end-column="34" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/dgg/store/mapper/ManageMapper.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="67">
-          <caret line="130" column="31" lean-forward="true" selection-start-line="130" selection-start-column="31" selection-end-line="130" selection-end-column="31" />
-          <folding>
-            <marker date="1499504176452" expanded="true" signature="3268:3385" ph="SELECT COUNT... user" />
-            <marker date="1499504176452" expanded="true" signature="3469:3626" ph="SELECT mt.my... " />
-            <marker date="1499504176452" expanded="true" signature="3498:3556" ph="SELECT COUNT... user" />
-            <marker date="1499504176452" expanded="true" signature="3716:3933" ph="SELECT td.te... " />
-            <marker date="1499504176452" expanded="true" signature="3778:3852" ph="SELECT COUNT... user" />
-            <marker date="1499504176452" expanded="true" signature="4050:4242" ph="INSERT INTO team_department... " />
-            <marker date="1499504176452" expanded="true" signature="5047:5444" ph="SELECT td.te... team_department" />
-            <marker date="1499504176452" expanded="true" signature="5561:5916" ph="UPDATE team_... " />
-            <marker date="1499504176452" expanded="true" signature="5972:6054" ph="DELETE FROM " />
-            <marker date="1499504176452" expanded="true" signature="6110:6278" ph="DELETE FROM " />
-            <marker date="1499504176452" expanded="true" signature="6183:6277" ph="SELECT posit... department_position" />
-            <marker date="1499504176452" expanded="true" signature="6337:6415" ph="DELETE FROM " />
-            <marker date="1499504176452" expanded="true" signature="6514:6598" ph="SELECT COUNT... user" />
-            <marker date="1499504176452" expanded="true" signature="6684:6798" ph="SELECT team_... team_department" />
-            <marker date="1499504176452" expanded="true" signature="6880:7008" ph="SELECT dp.po... department_position" />
-            <marker date="1499504176452" expanded="true" signature="7117:7541" ph="INSERT INTO user... " />
-            <marker date="1499504176452" expanded="true" signature="8004:8387" ph="SELECT u.use... user" />
-            <marker date="1499504176452" expanded="true" signature="8480:8559" ph="SELECT COUNT... user" />
-            <marker date="1499504176452" expanded="true" signature="8637:8963" ph="SELECT u.use... user" />
-            <marker date="1499504176452" expanded="true" signature="9072:10136" ph="UPDATE user " />
-            <marker date="1499504176452" expanded="true" signature="10193:10260" ph="DELETE FROM " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/dgg/store/service/store/ManageService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="318">
-          <caret line="25" column="59" lean-forward="false" selection-start-line="25" selection-start-column="59" selection-end-line="25" selection-end-column="59" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/pages/group/qm-groupseeklistt.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="750">
-          <caret line="51" column="2" lean-forward="true" selection-start-line="51" selection-start-column="2" selection-end-line="51" selection-end-column="2" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/pages/team_backup/qm-customer.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="298">
-          <caret line="15" column="8" lean-forward="false" selection-start-line="15" selection-start-column="8" selection-end-line="15" selection-end-column="60" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/dgg/store/controller/store/MyTeamController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="47" column="5" lean-forward="false" selection-start-line="47" selection-start-column="5" selection-end-line="47" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/pages/group/qm-personage.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="288">
-          <caret line="12" column="13" lean-forward="true" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/pages/group/qm-seolist.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="288">
-          <caret line="37" column="16" lean-forward="false" selection-start-line="37" selection-start-column="16" selection-end-line="37" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/pages/group/qm-departmentlist.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="78" column="74" lean-forward="false" selection-start-line="78" selection-start-column="74" selection-end-line="78" selection-end-column="74" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/pages/group/qm-department.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="91" column="74" lean-forward="false" selection-start-line="91" selection-start-column="74" selection-end-line="91" selection-end-column="74" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/pages/group/qm-seolist.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="480">
-          <caret line="20" column="79" lean-forward="false" selection-start-line="20" selection-start-column="79" selection-end-line="20" selection-end-column="79" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/pages/group/qm-seolist.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="336">
-          <caret line="50" column="74" lean-forward="false" selection-start-line="50" selection-start-column="74" selection-end-line="50" selection-end-column="74" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/pages/group/qm-departmentlist.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="312">
-          <caret line="13" column="43" lean-forward="false" selection-start-line="13" selection-start-column="43" selection-end-line="13" selection-end-column="43" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/pages/mall/goods/ceshi.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1110">
-          <caret line="169" column="0" lean-forward="true" selection-start-line="169" selection-start-column="0" selection-end-line="169" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/pages/mall/goods/freightTemps.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1296">
-          <caret line="24" column="22" lean-forward="true" selection-start-line="24" selection-start-column="22" selection-end-line="24" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/pages/mall/goods/typeSelect.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-392">
-          <caret line="24" column="16" lean-forward="true" selection-start-line="24" selection-start-column="16" selection-end-line="24" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/pages/group/qm-groupseeklistt.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="453">
-          <caret line="52" column="0" lean-forward="false" selection-start-line="52" selection-start-column="0" selection-end-line="61" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/pages/mall/goods/backup/typeSelect.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="624">
-          <caret line="26" column="0" lean-forward="true" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/dgg/store/mapper/GoodsTypeAttrMapper.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-5523">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <marker date="1494462714495" expanded="true" signature="4030:4170" ph="select from goods_type_attr" />
-            <marker date="1494462714495" expanded="true" signature="4255:4349" ph="delete from " />
-            <marker date="1494462714495" expanded="true" signature="4459:4486" ph="delete from " />
-            <marker date="1494462714495" expanded="true" signature="4672:5203" ph="insert into goods_type_attr... " />
-            <marker date="1494462714495" expanded="true" signature="7048:7084" ph="select count... goods_type_attr" />
-            <marker date="1494462714495" expanded="true" signature="8533:9117" ph="update goods... " />
-            <marker date="1494462714495" expanded="true" signature="9334:10277" ph="update goods... " />
-            <marker date="1494462714495" expanded="true" signature="10383:10914" ph="update goods... " />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1693,7 +1335,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="192">
           <caret line="14" column="12" lean-forward="false" selection-start-line="14" selection-start-column="12" selection-end-line="14" selection-end-column="12" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1701,7 +1342,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="442">
           <caret line="45" column="24" lean-forward="false" selection-start-line="45" selection-start-column="24" selection-end-line="45" selection-end-column="24" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1709,7 +1349,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="216">
           <caret line="13" column="0" lean-forward="false" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1717,10 +1356,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="298">
           <caret line="24" column="34" lean-forward="false" selection-start-line="24" selection-start-column="19" selection-end-line="24" selection-end-column="34" />
-          <folding>
-            <element signature="e#660#661#0" expanded="false" />
-            <element signature="e#706#707#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1728,22 +1363,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="230">
           <caret line="101" column="19" lean-forward="false" selection-start-line="101" selection-start-column="19" selection-end-line="101" selection-end-column="19" />
-          <folding>
-            <marker date="1499741700416" expanded="true" signature="4647:4787" ph="select from goods_typeinfo" />
-            <marker date="1499741700416" expanded="true" signature="4876:4960" ph="delete from " />
-            <marker date="1499741700416" expanded="true" signature="5076:5102" ph="delete from " />
-            <marker date="1499741700416" expanded="true" signature="5305:5506" ph="insert into dgg_store.goods_typeinfo... " />
-            <marker date="1499741700416" expanded="true" signature="7182:7217" ph="select count... goods_typeinfo" />
-            <marker date="1499741700416" expanded="true" signature="8500:8909" ph="update goods... " />
-            <marker date="1499741700416" expanded="true" signature="9147:9898" ph="update goods... " />
-            <marker date="1499741700416" expanded="true" signature="10008:10364" ph="update goods... " />
-            <marker date="1499741700416" expanded="true" signature="10749:10826" ph="SELECT goods... goods_typeinfo" />
-            <marker date="1499741700416" expanded="true" signature="11598:11918" ph="SELECT gta.g... goods_type_attr" />
-            <marker date="1499741700416" expanded="true" signature="12027:12095" ph="DELETE FROM " />
-            <marker date="1499741700416" expanded="true" signature="12205:12625" ph="insert into goods_type_attr... " />
-            <marker date="1499741700416" expanded="true" signature="12706:12836" ph="SELECT gt.go... goods_typeinfo" />
-            <marker date="1499741700416" expanded="true" signature="12888:12950" ph="DELETE FROM " />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1751,7 +1370,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1771,19 +1389,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/pages/mall/goods/qm-goodslist.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="552">
-          <caret line="98" column="0" lean-forward="false" selection-start-line="98" selection-start-column="0" selection-end-line="107" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/pages/index/qm-index.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="408">
           <caret line="17" column="27" lean-forward="true" selection-start-line="17" selection-start-column="27" selection-end-line="17" selection-end-column="27" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1807,7 +1416,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="322">
           <caret line="57" column="16" lean-forward="false" selection-start-line="57" selection-start-column="16" selection-end-line="57" selection-end-column="16" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1815,15 +1423,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-3134">
           <caret line="53" column="22" lean-forward="true" selection-start-line="53" selection-start-column="22" selection-end-line="53" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/pages/mall/goods/qm-goodslist.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
-          <caret line="7" column="2" lean-forward="true" selection-start-line="7" selection-start-column="2" selection-end-line="7" selection-end-column="2" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1831,7 +1430,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="424">
           <caret line="342" column="0" lean-forward="false" selection-start-line="342" selection-start-column="0" selection-end-line="345" selection-end-column="72" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1839,7 +1437,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="750">
           <caret line="68" column="2" lean-forward="true" selection-start-line="68" selection-start-column="2" selection-end-line="68" selection-end-column="2" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1851,127 +1448,334 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/pages/mall/goods/backup/goodsRelease.js">
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/pages/mall/goods/qm-goodsRelease.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="634">
-          <caret line="565" column="6" lean-forward="true" selection-start-line="551" selection-start-column="4" selection-end-line="565" selection-end-column="6" />
-          <folding>
-            <element signature="n#!!block;n#findTypeAttr#0;n#findTypeAttr#0;n#!!block;n#gdReleaseJS#0;n#!!top" expanded="false" />
-            <element signature="n#!!block;n#items#0;n#!!block;n#gdReleaseJS#0;n#!!top" expanded="false" />
-            <element signature="n#!!block;n#initWebUpload#0;n#initWebUpload#0;n#!!block;n#gdReleaseJS#0;n#!!top" expanded="false" />
-            <marker date="1499755534743" expanded="true" signature="5185:5197" ph="..." />
-            <marker date="1499755534743" expanded="true" signature="5829:5859" ph="..." />
-            <marker date="1499755534743" expanded="true" signature="5896:5908" ph="..." />
-            <marker date="1499755534743" expanded="true" signature="7808:7832" ph="..." />
-            <marker date="1499755534743" expanded="true" signature="8787:8796" ph="..." />
-            <marker date="1499755534743" expanded="true" signature="9806:9828" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/dgg/store/controller/store/GoodsReleaseController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="631">
-          <caret line="76" column="30" lean-forward="true" selection-start-line="76" selection-start-column="30" selection-end-line="76" selection-end-column="30" />
+        <state relative-caret-position="569">
+          <caret line="461" column="24" lean-forward="true" selection-start-line="461" selection-start-column="24" selection-end-line="461" selection-end-column="24" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/dgg/store/service/store/GoodsReleaseService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="20" column="13" lean-forward="false" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/dgg/store/service/store/GoodsReleaseServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="582">
-          <caret line="131" column="47" lean-forward="false" selection-start-line="131" selection-start-column="47" selection-end-line="131" selection-end-column="47" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/dgg/store/dao/store/GoodsReleaseDao.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="432">
-          <caret line="25" column="21" lean-forward="false" selection-start-line="25" selection-start-column="21" selection-end-line="25" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/dgg/store/dao/store/GoodsReleaseDaoImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="768">
-          <caret line="57" column="28" lean-forward="false" selection-start-line="57" selection-start-column="28" selection-end-line="57" selection-end-column="28" />
-          <folding>
-            <element signature="e#1532#1533#0" expanded="true" />
-            <element signature="e#1582#1583#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/dgg/store/mapper/GoodsinfoMapper.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="487">
-          <caret line="75" column="13" lean-forward="false" selection-start-line="75" selection-start-column="13" selection-end-line="75" selection-end-column="13" />
-          <folding>
-            <marker date="1499765954545" expanded="true" signature="2285:2628" ph="INSERT INTO goodsinfo... " />
-            <marker date="1499765954545" expanded="true" signature="2710:2845" ph="SELECT gt.go... goods_typeinfo" />
-            <marker date="1499765954545" expanded="true" signature="2923:3057" ph="SELECT gt.go... goods_typeinfo" />
-            <marker date="1499765954545" expanded="true" signature="3132:3343" ph="SELECT gta.g... goods_type_attr" />
-            <marker date="1499765954545" expanded="true" signature="3402:3513" ph="INSERT INTO image_space... " />
-            <marker date="1499765954545" expanded="true" signature="3627:3763" ph="INSERT INTO goods_image... " />
-            <marker date="1499765954545" expanded="true" signature="3842:3933" ph="SELECT image... image_space" />
-            <marker date="1499765954545" expanded="true" signature="4051:4247" ph="INSERT INTO goods_standard... " />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/pages/mall/goods/backup/goodsRelease.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="571">
-          <caret line="274" column="38" lean-forward="false" selection-start-line="274" selection-start-column="38" selection-end-line="274" selection-end-column="38" />
+        <state relative-caret-position="355">
+          <caret line="157" column="64" lean-forward="false" selection-start-line="157" selection-start-column="49" selection-end-line="157" selection-end-column="64" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/pages/mall/goods/qm-goodsRelease.css">
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/pages/mall/goods/backup/goodsRelease.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="377">
-          <caret line="453" column="0" lean-forward="false" selection-start-line="453" selection-start-column="0" selection-end-line="453" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/pages/mall/goods/qm-goodsRelease.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="87" column="73" lean-forward="false" selection-start-line="87" selection-start-column="73" selection-end-line="87" selection-end-column="73" />
+        <state relative-caret-position="514">
+          <caret line="527" column="6" lean-forward="true" selection-start-line="518" selection-start-column="4" selection-end-line="527" selection-end-column="6" />
           <folding>
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#2;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#2;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#2;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#2;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#2;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#1;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#2;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <marker date="1499824699560" expanded="true" signature="5185:5197" ph="..." />
+            <marker date="1499824699560" expanded="true" signature="5829:5859" ph="..." />
+            <marker date="1499824699560" expanded="true" signature="5896:5908" ph="..." />
+            <marker date="1499824699560" expanded="true" signature="7808:7832" ph="..." />
+            <marker date="1499824699560" expanded="true" signature="8787:8796" ph="..." />
+            <marker date="1499824699560" expanded="true" signature="9806:9828" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/pages/mall/goods/qm-goodsRelease.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="432">
-          <caret line="328" column="32" lean-forward="false" selection-start-line="328" selection-start-column="32" selection-end-line="328" selection-end-column="32" />
+        <state relative-caret-position="610">
+          <caret line="461" column="36" lean-forward="false" selection-start-line="461" selection-start-column="22" selection-end-line="461" selection-end-column="36" />
           <folding>
             <element signature="n#!!block;n#findTypeAttr#0;n#findTypeAttr#0;n#!!block;n#gdReleaseJS#0;n#!!top" expanded="false" />
             <element signature="n#!!block;n#items#0;n#!!block;n#gdReleaseJS#0;n#!!top" expanded="false" />
-            <marker date="1499767315289" expanded="true" signature="4936:4966" ph="..." />
-            <marker date="1499767315289" expanded="true" signature="6387:6411" ph="..." />
-            <marker date="1499767315289" expanded="true" signature="7364:7373" ph="..." />
-            <marker date="1499767315289" expanded="true" signature="8348:8370" ph="..." />
+            <marker date="1499825367899" expanded="true" signature="5402:5432" ph="..." />
+            <marker date="1499825367899" expanded="true" signature="6853:6877" ph="..." />
+            <marker date="1499825367899" expanded="true" signature="7830:7839" ph="..." />
+            <marker date="1499825367899" expanded="true" signature="8778:8800" ph="..." />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/../crm_z/web/WEB-INF/lib/spring-aop-3.2.9.RELEASE-sources.jar!/org/springframework/aop/support/AopUtils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="307">
+          <caret line="333" column="0" lean-forward="false" selection-start-line="333" selection-start-column="0" selection-end-line="333" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/netty.ini">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="24">
+          <caret line="1" column="9" lean-forward="true" selection-start-line="1" selection-start-column="9" selection-end-line="1" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/dgg/store/socket/NettyClient.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="672">
+          <caret line="69" column="5" lean-forward="true" selection-start-line="54" selection-start-column="11" selection-end-line="69" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/dgg/store/socket/NettyClientHandle.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="11" column="38" lean-forward="true" selection-start-line="11" selection-start-column="38" selection-end-line="11" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/dgg/store/listener/WebInitListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="504">
+          <caret line="26" column="27" lean-forward="true" selection-start-line="26" selection-start-column="27" selection-end-line="26" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/dgg/store/util/core/constant/Constant.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="274">
+          <caret line="96" column="0" lean-forward="false" selection-start-line="96" selection-start-column="0" selection-end-line="97" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/dgg/store/controller/common/FriendsController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1395">
+          <caret line="42" column="38" lean-forward="false" selection-start-line="42" selection-start-column="38" selection-end-line="42" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/dgg/store/service/common/ChatService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="8" column="13" lean-forward="false" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/dgg/store/controller/common/ChatController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="384">
+          <caret line="27" column="30" lean-forward="true" selection-start-line="27" selection-start-column="30" selection-end-line="27" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/dgg/store/interceptor/TokenInterceptor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="58">
+          <caret line="33" column="0" lean-forward="false" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/dgg/store/service/common/ChatServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="36" column="50" lean-forward="true" selection-start-line="36" selection-start-column="50" selection-end-line="36" selection-end-column="50" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/pages/friend/qm-friend.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1320">
+          <caret line="55" column="54" lean-forward="true" selection-start-line="55" selection-start-column="54" selection-end-line="55" selection-end-column="54" />
+          <folding>
+            <marker date="1499075684711" expanded="true" signature="12863:12876" ph="..." />
+            <marker date="1499075684711" expanded="true" signature="13457:13470" ph="..." />
+            <marker date="1499075684711" expanded="true" signature="19432:19445" ph="..." />
+            <marker date="1499075684711" expanded="true" signature="25023:25037" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/pages/friend/qm-friend.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="720">
+          <caret line="57" column="56" lean-forward="true" selection-start-line="57" selection-start-column="56" selection-end-line="57" selection-end-column="56" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/dgg/store/dao/store/GoodsManageDao.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="528">
+          <caret line="29" column="52" lean-forward="true" selection-start-line="29" selection-start-column="52" selection-end-line="29" selection-end-column="52" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/dgg/store/dao/store/GoodsManageDaoImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="669">
+          <caret line="71" column="44" lean-forward="false" selection-start-line="71" selection-start-column="44" selection-end-line="71" selection-end-column="44" />
+          <folding>
+            <element signature="e#1808#1809#0" expanded="true" />
+            <element signature="e#1861#1862#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/dgg/store/mapper/GoodsinfoMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="312">
+          <caret line="21" column="0" lean-forward="true" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/dgg/store/service/common/GoodsBrowseServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="463">
+          <caret line="118" column="17" lean-forward="false" selection-start-line="118" selection-start-column="17" selection-end-line="118" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/dgg/store/service/store/GoodsManageServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="390">
+          <caret line="38" column="21" lean-forward="false" selection-start-line="38" selection-start-column="8" selection-end-line="38" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/dgg/store/service/store/GoodsManageService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="168">
+          <caret line="12" column="56" lean-forward="false" selection-start-line="12" selection-start-column="56" selection-end-line="12" selection-end-column="56" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/dgg/store/util/pojo/GoodsStandard.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="48">
+          <caret line="2" column="13" lean-forward="false" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/dgg/store/mapper/ChatMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="96">
+          <caret line="6" column="17" lean-forward="false" selection-start-line="6" selection-start-column="17" selection-end-line="6" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/dgg/store/controller/store/GoodsManageController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="520">
+          <caret line="79" column="45" lean-forward="false" selection-start-line="79" selection-start-column="32" selection-end-line="79" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/pages/group/qm-department.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="576">
+          <caret line="24" column="61" lean-forward="true" selection-start-line="24" selection-start-column="44" selection-end-line="24" selection-end-column="61" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/pages/mall/goods/qm-goodsRelease.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-3629">
+          <caret line="38" column="55" lean-forward="false" selection-start-line="38" selection-start-column="55" selection-end-line="38" selection-end-column="55" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/dgg/store/util/vo/goods/GoodsInfoVO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="9" column="26" lean-forward="false" selection-start-line="9" selection-start-column="19" selection-end-line="9" selection-end-column="26" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1002#1003#0" expanded="true" />
+            <element signature="e#1038#1039#0" expanded="true" />
+            <element signature="e#1100#1101#0" expanded="true" />
+            <element signature="e#1150#1151#0" expanded="true" />
+            <element signature="e#1190#1191#0" expanded="true" />
+            <element signature="e#1222#1223#0" expanded="true" />
+            <element signature="e#1276#1277#0" expanded="true" />
+            <element signature="e#1318#1319#0" expanded="true" />
+            <element signature="e#1357#1358#0" expanded="true" />
+            <element signature="e#1388#1389#0" expanded="true" />
+            <element signature="e#1440#1441#0" expanded="true" />
+            <element signature="e#1480#1481#0" expanded="true" />
+            <element signature="e#1522#1523#0" expanded="true" />
+            <element signature="e#1555#1556#0" expanded="true" />
+            <element signature="e#1612#1613#0" expanded="true" />
+            <element signature="e#1656#1657#0" expanded="true" />
+            <element signature="e#1700#1701#0" expanded="true" />
+            <element signature="e#1736#1737#0" expanded="true" />
+            <element signature="e#1798#1799#0" expanded="true" />
+            <element signature="e#1848#1849#0" expanded="true" />
+            <element signature="e#1888#1889#0" expanded="true" />
+            <element signature="e#1920#1921#0" expanded="true" />
+            <element signature="e#1974#1975#0" expanded="true" />
+            <element signature="e#2016#2017#0" expanded="true" />
+            <element signature="e#2058#2059#0" expanded="true" />
+            <element signature="e#2092#2093#0" expanded="true" />
+            <element signature="e#2150#2151#0" expanded="true" />
+            <element signature="e#2196#2197#0" expanded="true" />
+            <element signature="e#2236#2237#0" expanded="true" />
+            <element signature="e#2268#2269#0" expanded="true" />
+            <element signature="e#2322#2323#0" expanded="true" />
+            <element signature="e#2364#2365#0" expanded="true" />
+            <element signature="e#2403#2404#0" expanded="true" />
+            <element signature="e#2436#2437#0" expanded="true" />
+            <element signature="e#2490#2491#0" expanded="true" />
+            <element signature="e#2534#2535#0" expanded="true" />
+            <element signature="e#2590#2591#0" expanded="true" />
+            <element signature="e#2625#2626#0" expanded="true" />
+            <element signature="e#2698#2699#0" expanded="true" />
+            <element signature="e#2746#2747#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/dgg/store/mapper/GoodsinfoMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1553">
+          <caret line="9" column="83" lean-forward="false" selection-start-line="9" selection-start-column="70" selection-end-line="9" selection-end-column="83" />
+          <folding>
+            <marker date="1499850888157" expanded="true" signature="2659:2914" ph="INSERT INTO goodsinfo... " />
+            <marker date="1499850888157" expanded="true" signature="2996:3131" ph="SELECT gt.go... goods_typeinfo" />
+            <marker date="1499850888157" expanded="true" signature="3209:3343" ph="SELECT gt.go... goods_typeinfo" />
+            <marker date="1499850888157" expanded="true" signature="3418:3629" ph="SELECT gta.g... goods_type_attr" />
+            <marker date="1499850888157" expanded="true" signature="3688:3799" ph="INSERT INTO image_space... " />
+            <marker date="1499850888157" expanded="true" signature="3913:4049" ph="INSERT INTO goods_image... " />
+            <marker date="1499850888157" expanded="true" signature="4128:4219" ph="SELECT image... image_space" />
+            <marker date="1499850888157" expanded="true" signature="4337:4567" ph="INSERT INTO goods_standard... " />
+            <marker date="1499850888157" expanded="true" signature="4647:4982" ph="SELECT gi.go... goodsinfo" />
+            <marker date="1499850888157" expanded="true" signature="4647:5024" ph="SELECT gi.go... goodsinfo" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/pages/mall/goods/qm-goodslist.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="669">
+          <caret line="50" column="21" lean-forward="false" selection-start-line="50" selection-start-column="21" selection-end-line="50" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/pages/mall/goods/qm-goodslist.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="654">
+          <caret line="34" column="13" lean-forward="true" selection-start-line="34" selection-start-column="13" selection-end-line="34" selection-end-column="13" />
+          <folding />
         </state>
       </provider>
     </entry>

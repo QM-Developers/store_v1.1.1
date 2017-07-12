@@ -9,7 +9,7 @@ import com.dgg.store.util.vo.goods.GoodsTypeVO;
 
 import java.util.List;
 
-public interface GoodsReleaseDao
+public interface GoodsManageDao
 {
     int insertGoodsinfo(GoodsInfoVO goodsinfo);
 
@@ -26,4 +26,6 @@ public interface GoodsReleaseDao
     List<ImageSpace> findImages(String myTeamId);
 
     Integer insertStandardToGoods(GoodsStandard standard);
+
+    List<GoodsInfoVO> findGoodsList(String myTeamId);
 }

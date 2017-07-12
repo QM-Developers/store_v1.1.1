@@ -13,7 +13,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public class GoodsReleaseDaoImpl implements GoodsReleaseDao
+public class GoodsManageDaoImpl implements GoodsManageDao
 {
     @Autowired
     private GoodsinfoMapper mapper;
@@ -64,5 +64,11 @@ public class GoodsReleaseDaoImpl implements GoodsReleaseDao
     public Integer insertStandardToGoods(GoodsStandard standard)
     {
         return mapper.insertStandardToGoods(standard);
+    }
+
+    @Override
+    public List<GoodsInfoVO> findGoodsList(String myTeamId)
+    {
+        return mapper.findGoodsList(myTeamId);
     }
 }

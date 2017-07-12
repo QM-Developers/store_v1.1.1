@@ -10,6 +10,21 @@ var gdReleaseJS = {
         gdReleaseJS.onInitModel();
         gdReleaseJS.pichandle();
         gdReleaseJS.findImages();
+        gdReleaseJS.initBind();
+    },
+
+    initBind: function ()
+    {
+        $(".lileft").mouseenter(gdReleaseJS.showDeleteBtn);
+        $(".lileft").mouseleave(gdReleaseJS.hideDeleteBtn);
+        $(".add-off").click(gdReleaseJS.removeImage);
+    },
+
+    removeImage: function ()
+    {
+        $(this).next().removeAttr("real-path");
+        $(this).next().removeAttr("src");
+        $(this).parents('.add-two').css('display', 'none').removeClass("imgbox-sign");
     },
 
     findTypeAndParents: function ()
@@ -217,18 +232,17 @@ var gdReleaseJS = {
         });
 
         // 文件上传成功，给item添加成功class, 用样式标记上传成功。
-        gdReleaseJS.uploader.on('uploadSuccess', function (file)
+        gdReleaseJS.uploader.on('uploadSuccess', function (file, data)
         {
             var $li = $('#' + file.id),
                 $percent = $li.find('.upload-progress');
+
+            $li.find("img").attr("real-path", data.result);
 
             if ($percent.length)
                 $percent.remove();
 
             $li.append('<div class="b-shade"><span>700x700</span></div>');
-            //     <div class="b-shade">
-            //     <span>700x700</span>
-            // </div>
         });
 
         // 文件上传失败，显示上传出错。
@@ -250,6 +264,16 @@ var gdReleaseJS = {
         });
     },
 
+    showDeleteBtn: function ()
+    {
+        $(this).find("span:eq(0)").show();
+    },
+
+    hideDeleteBtn: function ()
+    {
+        $(this).find("span:eq(0)").hide();
+    },
+
     test: function ()
     {
 //		$('#my-popup').modal({open,"dimmer":false});
@@ -269,11 +293,15 @@ var gdReleaseJS = {
     {
         var items = $(".imgbox-sign");
         var attrs = [];
+        var path = [];
         var imgBox = $(".add-two");
         var $middleimg = $("#middleimg");
 
         for (var i = 0; i < items.length; i++)
+        {
             attrs.push($(items[i]).find("img").attr("src")); //获取元素src
+            path.push($(items[i]).find("img").attr("real-path"));
+        }
 
         $(".imgbox").each(function ()
         {
@@ -286,7 +314,7 @@ var gdReleaseJS = {
             {
                 if (!myjs.isNull(attrs[j]) && myjs.isNull($(imgBox[i]).find("img").attr("src")))
                 {
-                    $(imgBox[i]).find("img").attr("src", attrs[j]);
+                    $(imgBox[i]).find("img").attr({"src": attrs[j], "real-path": path[j]});
                     $(imgBox[i]).css("display", "block");
                     j++;
                 }
@@ -296,13 +324,14 @@ var gdReleaseJS = {
             for (var j = 0; j < attrs.length; j++)
             {
                 var $Addli = '' +
-                    '<li class="li-mid lileft" onmouseenter="gdReleaseJS.leftandrigthmove(this)" onmouseleave="gdReleaseJS.Moveout(this)">' +
+                    '<li class="li-mid lileft" onmouseenter="gdReleaseJS.leftandrigthmove(this)">' +
                     '<div class="mid-box">' +
                     '<i class="mid-li" onclick="gdReleaseJS.moveToLeft(this);" class="top">上移</i>' +
                     '<i class="mid-li" onclick="gdReleaseJS.moveToRight(this);" class="down">下移</i>' +
-                    '<i class="mid-li" onclick="gdReleaseJS.Midboxremove(this);">删除</i></div>' +
+                    '<i class="mid-li">删除</i></div>' +
                     ' <a href="###"><img src="' + attrs[j] + '" real-path="' + path[j] + '"/></a>' +
                     '</li>';
+
                 $middleimg.append($Addli);
             }
         }
@@ -320,17 +349,12 @@ var gdReleaseJS = {
         $Disout.css("display", "none");
 
     },
+
     Midboxremove: function (item)
     {
         $(item).parents('li').remove();
     },
-    Addtworemove: function (item)
-    {
-       var $Addtwo= $(item).find('img').attr(src);
-       if(myjs.isNull($Addtwo)){
-           $(item).find('.add-off').css('display','block')
-       }
-    },
+
     onSelectImg: function (item)
     {
         var $count = $(".imgbox-sign").length;
@@ -441,29 +465,56 @@ var gdReleaseJS = {
             return standard;
         }
 
-        console.log(standards);
         return standards;
     },
 
     releaseGoods: function ()
     {
-        // var url = path + "/s/goodsRelease.action";
+        var url = path + "/s/goodsRelease.action";
         var params = {};
 
         params["goodsTypeId"] = typeId;
-        params["templateFreightId"] = $("#freight-temps").val();
-        params["goodsName"] = $("#goodsName").val();
-        params["goodsPrice"] = $("#goodsPrice").val();
-        params["goodsCount"] = $("#goodsCount").val();
-        // params["goodsAttr"] = gdReleaseJS.getGoodsAttr();
+        params["goodsName"] = $("#goods-name").val();
+        params["goodsAttr"] = gdReleaseJS.getGoodsAttr();
         params["standards"] = JSON.stringify(gdReleaseJS.getStandard());
-        // params["goodsImages"] = gdReleaseJS.getImages();
-        // params["goodsDescribe"] = gdReleaseJS.getDescribe();
+        params["goodsImages"] = gdReleaseJS.getImages();
+        params["goodsDescribe"] = gdReleaseJS.getDescribe();
 
-        // myjs.ajax_post(url, params, function (data)
-        // {
-        //     console.log(data);
-        // });
+        myjs.ajax_post(url, params, function (data)
+        {
+            console.log(data);
+        });
+    },
+
+    getGoodsAttr: function ()
+    {
+        var attr = "品牌" + "?" + $("#goods-attr").val() + "|";
+
+        return attr.substring(0, attr.length - 1);
+    },
+
+    getImages: function ()
+    {
+        var items = $("#img-list").find("img");
+        var images = "";
+
+        for (var i = 0; i < items.length; i++)
+            if (!myjs.isNull($(items[i]).attr("real-path")))
+                images += $(items[i]).attr("real-path") + "|";
+
+        return images;
+    },
+
+    getDescribe: function ()
+    {
+        var items = $("#middleimg").find("img");
+        var images = "";
+
+        for (var i = 0; i < items.length; i++)
+            images += $(items[i]).attr("real-path") + "|";
+
+        console.log(images);
+        return images;
     },
 
     findImages: function ()
@@ -474,10 +525,8 @@ var gdReleaseJS = {
         {
             var item = "";
             data = data.result;
-
             for (var i = 0; i < data.length; i++)
                 item += '<div onclick="gdReleaseJS.onSelectImg(this);" class="imgbox"><a href="javascript:;"><img real-path="' + data[i]["imageId"] + '" src="' + path + data[i]["imagePath"] + '"/></a></div>';
-
             $("#images-space").append(item);
         });
     },

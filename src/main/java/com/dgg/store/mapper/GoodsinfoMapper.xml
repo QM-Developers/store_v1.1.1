@@ -1,15 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dgg.store.mapper.GoodsinfoMapper">
-    <resultMap id="BaseResultMap" type="com.dgg.store.util.vo.goods.GoodsInfoVO">
+    <resultMap id="GoodsInfoVO" type="com.dgg.store.util.vo.goods.GoodsInfoVO">
         <id column="goods_id" jdbcType="VARCHAR" property="goodsId"/>
         <result column="goods_type_id" jdbcType="VARCHAR" property="goodsTypeId"/>
-        <result column="template_freight_id" jdbcType="VARCHAR" property="templateFreightId"/>
         <result column="goods_name" jdbcType="VARCHAR" property="goodsName"/>
-        <result column="goods_price" jdbcType="REAL" property="goodsPrice"/>
-        <result column="goods_count" jdbcType="INTEGER" property="goodsCount"/>
-        <result column="goods_freight" jdbcType="INTEGER" property="goodsFreight"/>
+        <result column="goods_create_date" property="createDate" jdbcType="DATE"/>
         <result column="my_team_id" jdbcType="INTEGER" property="myTeamId"/>
+        <result column="goods_type_name" jdbcType="VARCHAR" property="goodsTypeName"/>
+        <collection property="standardList" ofType="com.dgg.store.util.pojo.GoodsStandard">
+            <result column="standard_id" property="standardId" jdbcType="VARCHAR"/>
+            <result column="standard_name" property="standardName" jdbcType="VARCHAR"/>
+            <result column="standard_weight" property="standardWeight" jdbcType="FLOAT"/>
+            <result column="standard_price" property="standardPrice" jdbcType="FLOAT"/>
+            <result column="standard_count" property="standardCount" jdbcType="VARCHAR"/>
+        </collection>
     </resultMap>
 
     <resultMap id="TypeVOMap" type="com.dgg.store.util.vo.goods.GoodsTypeVO">
@@ -28,17 +33,18 @@
     </resultMap>
 
     <resultMap id="ImageSpaceMap" type="com.dgg.store.util.pojo.ImageSpace">
-        <id column="image_id" property="imageId" jdbcType="VARCHAR"></id>
-        <result column="image_path" property="imagePath" jdbcType="VARCHAR"></result>
+        <id column="image_id" property="imageId" jdbcType="VARCHAR"/>
+        <result column="image_path" property="imagePath" jdbcType="VARCHAR"/>
     </resultMap>
 
     <insert id="insertGoodsinfo" parameterType="com.dgg.store.util.vo.goods.GoodsInfoVO">
-        INSERT INTO goodsinfo (goods_id, goods_type_id, goods_name, goods_price, goods_count,
-          goods_describe, template_freight_id,
+        INSERT INTO goodsinfo
+        (goods_id, goods_type_id, goods_name,
+          goods_describe,
           my_team_id, goods_attr)
         VALUES
-        (#{goodsId},#{goodsTypeId},#{goodsName},#{goodsPrice},#{goodsCount},
-          #{goodsDescribe},#{templateFreightId},
+        (#{goodsId},#{goodsTypeId},#{goodsName},
+          #{goodsDescribe},
           #{myTeamId},#{goodsAttr})
     </insert>
 
@@ -78,8 +84,21 @@
     </select>
 
     <insert id="insertStandardToGoods" parameterType="com.dgg.store.util.pojo.GoodsStandard">
-        INSERT INTO goods_standard(standard_id, goods_id, standard_name, standard_price, standard_count)
+        INSERT INTO goods_standard(standard_id, goods_id, standard_name, standard_price,standard_weight, standard_count)
         VALUES
-        (#{standardId},#{goodsId},#{standardName},#{standardPrice},#{standardCount})
+        (#{standardId},#{goodsId},#{standardName},#{standardPrice},#{standardWeight},#{standardCount})
     </insert>
+
+    <select id="findGoodsList" resultMap="GoodsInfoVO">
+        SELECT gi.goods_id,gi.goods_name,gi.goods_create_date,
+            gt.goods_type_name,
+            gs.standard_name,gs.standard_price,gs.standard_count
+        FROM goodsinfo gi
+        INNER JOIN goods_typeinfo gt
+        ON gt.goods_type_id = gi.goods_type_id
+        INNER JOIN goods_standard gs
+        ON gs.goods_id = gi.goods_id
+        WHERE gi.my_team_id = #{myTeamId}
+    </select>
+
 </mapper>

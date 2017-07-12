@@ -1,20 +1,19 @@
 package com.dgg.store.util.vo.goods;
 
+import com.dgg.store.util.pojo.GoodsStandard;
+
+import java.util.Date;
+import java.util.List;
+
 public class GoodsInfoVO
 {
     private String goodsId;
 
     private String goodsTypeId;
 
-    private String templateFreightId;
+    private String goodsTypeName;
 
     private String goodsName;
-
-    private Float goodsPrice;
-
-    private Integer goodsCount;
-
-    private Integer goodsFreight;
 
     private String myTeamId;
 
@@ -28,11 +27,9 @@ public class GoodsInfoVO
 
     private String standards;
 
-    private int pageNum;
+    private Date createDate;
 
-    private int pageSize;
-
-    private int pageCount;
+    private List<GoodsStandard> standardList;
 
     public String getGoodsId()
     {
@@ -54,14 +51,14 @@ public class GoodsInfoVO
         this.goodsTypeId = goodsTypeId == null ? null : goodsTypeId.trim();
     }
 
-    public String getTemplateFreightId()
+    public String getGoodsTypeName()
     {
-        return templateFreightId;
+        return goodsTypeName;
     }
 
-    public void setTemplateFreightId(String templateFreightId)
+    public void setGoodsTypeName(String goodsTypeName)
     {
-        this.templateFreightId = templateFreightId == null ? null : templateFreightId.trim();
+        this.goodsTypeName = goodsTypeName;
     }
 
     public String getGoodsName()
@@ -71,37 +68,27 @@ public class GoodsInfoVO
 
     public void setGoodsName(String goodsName)
     {
-        this.goodsName = goodsName == null ? null : goodsName.trim();
+        this.goodsName = goodsName;
     }
 
-    public Float getGoodsPrice()
+    public String getMyTeamId()
     {
-        return goodsPrice;
+        return myTeamId;
     }
 
-    public void setGoodsPrice(Float goodsPrice)
+    public void setMyTeamId(String myTeamId)
     {
-        this.goodsPrice = goodsPrice;
+        this.myTeamId = myTeamId;
     }
 
-    public Integer getGoodsCount()
+    public Integer getGoodsSales()
     {
-        return goodsCount;
+        return goodsSales;
     }
 
-    public void setGoodsCount(Integer goodsCount)
+    public void setGoodsSales(Integer goodsSales)
     {
-        this.goodsCount = goodsCount;
-    }
-
-    public Integer getGoodsFreight()
-    {
-        return goodsFreight;
-    }
-
-    public void setGoodsFreight(Integer goodsFreight)
-    {
-        this.goodsFreight = goodsFreight;
+        this.goodsSales = goodsSales;
     }
 
     public String getGoodsDescribe()
@@ -111,7 +98,7 @@ public class GoodsInfoVO
 
     public void setGoodsDescribe(String goodsDescribe)
     {
-        this.goodsDescribe = goodsDescribe == null ? null : goodsDescribe.trim();
+        this.goodsDescribe = goodsDescribe;
     }
 
     public String getGoodsAttr()
@@ -144,53 +131,23 @@ public class GoodsInfoVO
         this.standards = standards;
     }
 
-    public int getPageNum()
+    public Date getCreateDate()
     {
-        return pageNum;
+        return createDate;
     }
 
-    public void setPageNum(int pageNum)
+    public void setCreateDate(Date createDate)
     {
-        this.pageNum = pageNum;
+        this.createDate = createDate;
     }
 
-    public int getPageSize()
+    public List<GoodsStandard> getStandardList()
     {
-        return pageSize;
+        return standardList;
     }
 
-    public void setPageSize(int pageSize)
+    public void setStandardList(List<GoodsStandard> standardList)
     {
-        this.pageSize = pageSize;
-    }
-
-    public Integer getGoodsSales()
-    {
-        return goodsSales;
-    }
-
-    public void setGoodsSales(Integer goodsSales)
-    {
-        this.goodsSales = goodsSales;
-    }
-
-    public String getMyTeamId()
-    {
-        return myTeamId;
-    }
-
-    public void setMyTeamId(String myTeamId)
-    {
-        this.myTeamId = myTeamId;
-    }
-
-    public int getPageCount()
-    {
-        return pageCount;
-    }
-
-    public void setPageCount(int pageCount)
-    {
-        this.pageCount = pageCount;
+        this.standardList = standardList;
     }
 }

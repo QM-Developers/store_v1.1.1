@@ -1,6 +1,6 @@
 package com.dgg.store.controller.store;
 
-import com.dgg.store.service.store.GoodsReleaseService;
+import com.dgg.store.service.store.GoodsManageService;
 import com.dgg.store.util.core.constant.Constant;
 import com.dgg.store.util.pojo.GoodsTypeAttr;
 import com.dgg.store.util.pojo.GoodsTypeinfo;
@@ -18,10 +18,10 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.http.HttpServletRequest;
 
 @Controller
-public class GoodsReleaseController
+public class GoodsManageController
 {
     @Autowired
-    private GoodsReleaseService service;
+    private GoodsManageService service;
 
     @RequestMapping(value = "/s/findTypeAndParents",method = RequestMethod.POST)
     @ResponseBody
@@ -75,5 +75,14 @@ public class GoodsReleaseController
         SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
 
         return service.findImages(sessionVO);
+    }
+
+    @RequestMapping(value = "/s/findGoodsList",method = RequestMethod.POST)
+    @ResponseBody
+    public ResultVO findGoodsList(HttpServletRequest request)
+    {
+        SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
+
+        return service.findGoodsList(sessionVO);
     }
 }

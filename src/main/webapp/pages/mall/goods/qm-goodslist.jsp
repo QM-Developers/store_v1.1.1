@@ -34,7 +34,7 @@
             </div>
         </div>
         <div class="goodslist-list-table">
-            <ul>
+            <ul id="goods-list">
                 <li class="goodslist-list-tr">
                     <div class="item1">序号</div>
                     <div class="item2">商品名称</div>
@@ -49,48 +49,6 @@
                         </div>
                     </div>
                 </li>
-                <li class="goodslist-list-tr">
-                    <div class="item1">1</div>
-                    <div class="item2">米4T型4%小米牧场猪饲料</div>
-                    <div class="item3">
-                        <div class="item3-box">
-                            <div class="item3-1">饲料原料</div>
-                            <div class="item3-2">10kg/包</div>
-                            <div class="item3-3">150</div>
-                            <div class="item3-4">1000</div>
-                            <div class="item3-5">2017/6/20</div>
-                            <div class="item3-6">
-                                <a href="qm-goodsRelease.jsp">详情/编辑</a>
-                            </div>
-                        </div>
-                        <div class="item3-box">
-                            <div class="item3-1">饲料原料</div>
-                            <div class="item3-2">10kg/包</div>
-                            <div class="item3-3">150</div>
-                            <div class="item3-4">1000</div>
-                            <div class="item3-5">2017/6/20</div>
-                            <div class="item3-6">
-                                <a href="qm-goodsRelease.jsp">详情/编辑</a>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-                <li class="goodslist-list-tr">
-                    <div class="item1">1</div>
-                    <div class="item2">米4T型4%小米牧场猪饲料</div>
-                    <div class="item3">
-                        <div class="item3-box">
-                            <div class="item3-1">饲料原料</div>
-                            <div class="item3-2">10kg/包</div>
-                            <div class="item3-3">150</div>
-                            <div class="item3-4">1000</div>
-                            <div class="item3-5">2017/6/20</div>
-                            <div class="item3-6">
-                                <a href="">详情/编辑</a>
-                            </div>
-                        </div>
-                    </div>
-                </li>
             </ul>
         </div>
     </section>
@@ -99,6 +57,7 @@
 <script type="text/javascript" src="${path}/script/jquery/jquery-3.0.0.min.js"></script>
 <script type="text/javascript" src="${path}/script/Amaze/assets/js/amazeui.min.js"></script>
 <script type="text/javascript" src="${path}/script/js/myjs.js"></script>
+<script type="text/javascript" src="${path}/script/js/date.js"></script>
 <script type="text/javascript" src="${path}/pages/common/control.js"></script>
 <script type="text/javascript" src="${path}/pages/common/Constant.js"></script>
 

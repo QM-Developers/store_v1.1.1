@@ -76,8 +76,8 @@ public class GoodsBrowseServiceImpl implements GoodsBrowseService
                 result.addAll(dao.findGoodsList(s, goodsTypeVO.getPageNum(), goodsTypeVO.getPageSize()));
 
         ResultVO resultVO = new ResultVO(result.size() < 1 ? 0 : 1, sessionVO.getToken(), result);
-        if (result.size() > 0)
-            resultVO.setPageCount(result.get(0).getPageCount() % goodsTypeVO.getPageSize() == 0 ? result.get(0).getPageCount() / goodsTypeVO.getPageSize() : result.get(0).getPageCount() / goodsTypeVO.getPageSize() + 1);
+//        if (result.size() > 0)
+//            resultVO.setPageCount(result.get(0).getPageCount() % goodsTypeVO.getPageSize() == 0 ? result.get(0).getPageCount() / goodsTypeVO.getPageSize() : result.get(0).getPageCount() / goodsTypeVO.getPageSize() + 1);
 
         return resultVO;
     }

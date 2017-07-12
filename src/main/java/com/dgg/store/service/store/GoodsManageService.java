@@ -8,7 +8,7 @@ import com.dgg.store.util.vo.core.ResultVO;
 import com.dgg.store.util.vo.core.SessionVO;
 import org.springframework.web.multipart.MultipartFile;
 
-public interface GoodsReleaseService
+public interface GoodsManageService
 {
     ResultVO insertGoodsinfo(SessionVO sessionVO, GoodsInfoVO goodsinfo);
 
@@ -19,4 +19,6 @@ public interface GoodsReleaseService
     ResultVO insertImgToSpace(SessionVO sessionVO, MultipartFile file, String realPath);
 
     ResultVO findImages(SessionVO sessionVO);
+
+    ResultVO findGoodsList(SessionVO sessionVO);
 }

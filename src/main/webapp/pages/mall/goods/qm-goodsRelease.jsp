@@ -38,14 +38,14 @@
             <div class="goods-box1">
                 <div class=" goods-box1-1">商品名称 :</div>
                 <div class="goods-box1-2">
-                    <input type="text" class="am-form-field am-input-sm">
+                    <input type="text" id="goods-name" class="am-form-field am-input-sm">
                 </div>
                 <div class=""></div>
             </div>
             <div class="goods-box1">
                 <div class="goods-box1-1">商品品牌 :</div>
                 <div class="goods-box1-2">
-                    <input type="text" class="am-form-field am-input-sm">
+                    <input type="text" id="goods-attr" class="am-form-field am-input-sm">
                 </div>
                 <div class=""></div>
             </div>
@@ -83,9 +83,8 @@
                 <div class="goods-box1-1">商品图片 :</div>
                 <div class="add-picul">
                     <div class="add-picul-text">图片尺寸为800*800,JPG格式,小于300K,大于38K,不多于5张</div>
-                    <ul class="add-picture" style=" zoom:1;">
-                        <li class="lileft"  onmouseenter='gdReleaseJS.Addtworemove(item)'>
-                            <span class="add-off am-icon-remove"></span>s
+                    <ul id="img-list" class="add-picture" style=" zoom:1;">
+                        <li class="lileft">
                             <div class="add-one">
                                 <div class="a-shade">
                                     商品主图
@@ -95,83 +94,77 @@
                                 </a>
                             </div>
                             <div class="add-two">
+                                <span class="add-off am-icon-remove"></span>
                                 <img/>
-
                                 <div class="b-shade">
                                     <i class="left" onclick="gdReleaseJS.moveToLeft(this);">左</i>
                                     <span>700x700</span>
                                     <i class="right" onclick="gdReleaseJS.moveToRight(this);">右</i>
                                 </div>
-                            </div>
-                        </li>
-                        <li class="lileft" >
-                            <span class="add-off am-icon-remove"></span>
-                            <div class="add-one">
-                                <a href="###" onclick="gdReleaseJS.test();">
-                                    <i class="am-icon-plus am-icon-fw add-i"></i>
-                                </a>
-                            </div>
-                            <div class="add-two">
-                                <img src=""/>
-                                <!--../../../img/ceshi2.jpg-->
-                                <div class="b-shade">
-                                    <i class="left" onclick="gdReleaseJS.moveToLeft(this);">左</i>
-                                    <span>700x700</span>
-                                    <i class="right" onclick="gdReleaseJS.moveToRight(this);">右</i>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="lileft" >
-                            <span class="add-off am-icon-remove"></span>
-                            <div class="add-one">
-                                <a href="###" onclick="gdReleaseJS.test();">
-                                    <i class="am-icon-plus am-icon-fw add-i"></i>
-                                </a>
-                            </div>
-                            <div class="add-two">
-                                <img src=""/>
-                                <!--../../../img/ceshi3.jpg-->
-                                <div class="b-shade">
-                                    <i class="left" onclick="gdReleaseJS.moveToLeft(this);">左</i>
-                                    <span>700x700</span>
-                                    <i class="right" onclick="gdReleaseJS.moveToRight(this);">右</i>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="lileft" >
-                            <span class="add-off am-icon-remove"></span>
-                            <div class="add-one">
-                                <a href="###" onclick="gdReleaseJS.test();">
-                                    <i class="am-icon-plus am-icon-fw add-i"></i>
-                                </a>
-                            </div>
-                            <div class="add-two">
-                                <img src=""/>
-                                <!--../../../img/ceshi4.jpg-->
-                                <div class="b-shade">
-                                    <i class="left" onclick="gdReleaseJS.moveToLeft(this);">左</i>
-                                    <span>700x700</span>
-                                    <i class="right" onclick="gdReleaseJS.moveToRight(this);">右</i>
-                                </div>
-
                             </div>
                         </li>
                         <li class="lileft">
-                            <span class="add-off am-icon-remove"></span>
                             <div class="add-one">
                                 <a href="###" onclick="gdReleaseJS.test();">
                                     <i class="am-icon-plus am-icon-fw add-i"></i>
                                 </a>
                             </div>
                             <div class="add-two">
+                                <span class="add-off am-icon-remove"></span>
                                 <img src=""/>
-                                <!--../../../img/ceshi5.jpg-->
                                 <div class="b-shade">
                                     <i class="left" onclick="gdReleaseJS.moveToLeft(this);">左</i>
                                     <span>700x700</span>
                                     <i class="right" onclick="gdReleaseJS.moveToRight(this);">右</i>
                                 </div>
-                                <!---->
+                            </div>
+                        </li>
+                        <li class="lileft">
+                            <div class="add-one">
+                                <a href="###" onclick="gdReleaseJS.test();">
+                                    <i class="am-icon-plus am-icon-fw add-i"></i>
+                                </a>
+                            </div>
+                            <div class="add-two">
+                                <span class="add-off am-icon-remove"></span>
+                                <img src=""/>
+                                <div class="b-shade">
+                                    <i class="left" onclick="gdReleaseJS.moveToLeft(this);">左</i>
+                                    <span>700x700</span>
+                                    <i class="right" onclick="gdReleaseJS.moveToRight(this);">右</i>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="lileft">
+                            <div class="add-one">
+                                <a href="###" onclick="gdReleaseJS.test();">
+                                    <i class="am-icon-plus am-icon-fw add-i"></i>
+                                </a>
+                            </div>
+                            <div class="add-two">
+                                <span class="add-off am-icon-remove"></span>
+                                <img src=""/>
+                                <div class="b-shade">
+                                    <i class="left" onclick="gdReleaseJS.moveToLeft(this);">左</i>
+                                    <span>700x700</span>
+                                    <i class="right" onclick="gdReleaseJS.moveToRight(this);">右</i>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="lileft">
+                            <div class="add-one">
+                                <a href="###" onclick="gdReleaseJS.test();">
+                                    <i class="am-icon-plus am-icon-fw add-i"></i>
+                                </a>
+                            </div>
+                            <div class="add-two">
+                                <span class="add-off am-icon-remove"></span>
+                                <img src=""/>
+                                <div class="b-shade">
+                                    <i class="left" onclick="gdReleaseJS.moveToLeft(this);">左</i>
+                                    <span>700x700</span>
+                                    <i class="right" onclick="gdReleaseJS.moveToRight(this);">右</i>
+                                </div>
                             </div>
                         </li>
                     </ul>
@@ -184,40 +177,7 @@
                     <div class="img-box">
                         <div class="imgmiddle">
                             <div class="imgmiddletop">
-                                <ul id="middleimg" class="middleimg">
-                                    <!--<li class="li-mid" onmouseenter="gdReleaseJS.offleft(this)">
-                                    <ul class="mid-box">
-                                        <li class="mid-li" >上移</li>
-                                        <li class="mid-li">下移</li>
-                                        <li class="mid-li">删除</li>
-                                    </ul>
-                                    <a ><img src="../../../img/ceshi3.jpg" alt="" title="" /></a>
-                                </li>
-                                <li class="li-mid" onmouseenter="gdReleaseJS.offleft(this)">
-                                    <ul class="mid-box">
-                                        <li class="mid-li" >上移</li>
-                                        <li class="mid-li">下移</li>
-                                        <li class="mid-li">删除</li>
-                                    </ul>
-                                    <a href="###"><img src="../../../img/ceshi4.jpg" alt="" title="" /></a>
-                                </li>
-                                <li class="li-mid" >
-                                    <ul class="mid-box">
-                                        <li class="mid-li">上移</li>
-                                        <li class="mid-li">下移</li>
-                                        <li class="mid-li">删除</li>
-                                    </ul>
-                                    <a href="###"><img src="../../../img/ceshi5.jpg" alt="" title="" /></a>
-                                </li>
-                                <li class="li-mid" >
-                                    <ul class="mid-box">
-                                        <li class="mid-li">上移</li>
-                                        <li class="mid-li">下移</li>
-                                        <li class="mid-li">删除</li>
-                                    </ul>
-                                    <a href="javascript:;"><img src="../../../img/ceshi2.jpg" alt="" title="" /></a>
-                                </li>-->
-                                </ul>
+                                <ul id="middleimg" class="middleimg"></ul>
                             </div>
                             <div id="imgmiddlebotton" class="imgmiddlebotton">
                                 <div class="clear">
@@ -246,7 +206,7 @@
                     <button class="del-but">取消</button>
                 </div>
                 <div>
-                    <button class="del-but" onclick="gdReleaseJS">提交</button>
+                    <button class="del-but" onclick="gdReleaseJS.releaseGoods();">提交</button>
                 </div>
             </div>
         </div>
@@ -276,7 +236,8 @@
                                 <div class="add-imgbox" id="upload-list" style="width: 100%;height:280px; overflow: auto;"></div>
                                 <div style="width: 100%;float: left;">
                                     <div style="width:100%;height: 45px;line-height: 20px;text-align: center;">
-                                        <div style="margin-top: 35px;width: 100px;margin: auto;" id="filePicker">添加图片</div>
+                                        <div style="margin-top: 35px;width: 100px;margin: auto;" id="filePicker">添加图片
+                                        </div>
                                         <div onclick="gdReleaseJS.insertImg()" style="float: right;width: 100px; height: 45px;margin-top: -42px;line-height: 45px;" id="insert-img">
                                             确认插入
                                         </div>
@@ -288,8 +249,9 @@
                                 <div id="images-space" class="add-imgbox" style="width: 100%;height:280px; overflow: auto;"></div>
                                 <div style="width: 100%;float: left;">
                                     <div style="width:100%;height: 45px;line-height: 20px;text-align: center;">
-                                        <div style="margin-top: 35px;width: 100px;margin: auto;" ></div>
-                                        <div onclick="gdReleaseJS.insertImg();" style="float: right;width: 100px; height: 45px;margin-top: -2px;line-height: 45px;">确认插入
+                                        <div style="margin-top: 35px;width: 100px;margin: auto;"></div>
+                                        <div onclick="gdReleaseJS.insertImg();" style="float: right;width: 100px; height: 45px;margin-top: -2px;line-height: 45px;">
+                                            确认插入
                                         </div>
                                     </div>
                                 </div>
@@ -360,7 +322,7 @@
     //删除规格
     Delall = function (item)
     {
-        if($("#standard-list tr").length == 1)
+        if ($("#standard-list tr").length == 1)
             return;
         $(".Del-all").css("display", "block")
         optType = optTypes.DELETE;

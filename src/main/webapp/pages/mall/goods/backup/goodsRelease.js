@@ -298,7 +298,6 @@ var gdReleaseJS = {
 
     insertImg: function ()
     {
-
         var items = $(".imgbox-sign");
         var attrs = [];
         var path = [];

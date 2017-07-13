@@ -2,7 +2,7 @@ package com.dgg.store.controller.store;
 
 import com.dgg.store.service.store.ManageService;
 import com.dgg.store.util.core.constant.Constant;
-import com.dgg.store.util.vo.LoginVO;
+import com.dgg.store.util.vo.core.LoginVO;
 import com.dgg.store.util.vo.core.ResultVO;
 import com.dgg.store.util.vo.core.SessionVO;
 import com.dgg.store.util.vo.manage.DepartmentVO;

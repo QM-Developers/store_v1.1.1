@@ -466,6 +466,7 @@ create table user
    user_nickname        varchar(30) not null default '',
    user_card_front      text,
    user_card_back       text,
+   user_card_hand       text,
    token                varchar(50) not null default '',
    is_deleted           tinyint not null default 0,
    delete_date          datetime,

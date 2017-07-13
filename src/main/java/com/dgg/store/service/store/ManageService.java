@@ -1,12 +1,11 @@
 package com.dgg.store.service.store;
 
-import com.dgg.store.util.vo.LoginVO;
+import com.dgg.store.util.vo.core.LoginVO;
 import com.dgg.store.util.vo.core.ResultVO;
 import com.dgg.store.util.vo.core.SessionVO;
 import com.dgg.store.util.vo.manage.DepartmentVO;
 import com.dgg.store.util.vo.manage.MemberVO;
 import com.dgg.store.util.vo.manage.PositionVO;
-import com.dgg.store.util.vo.permission.QMPermissionVO;
 import org.springframework.web.multipart.MultipartFile;
 
 public interface ManageService

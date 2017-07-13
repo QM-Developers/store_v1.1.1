@@ -24,7 +24,7 @@
       )
   </insert>
 
-  <resultMap id="MenuVOMap" type="com.dgg.store.util.vo.MenuVO">
+  <resultMap id="MenuVOMap" type="com.dgg.store.util.vo.core.MenuVO">
     <id column="menu_id" property="id" jdbcType="VARCHAR"/>
     <result column="menu_pid" property="parentId" jdbcType="VARCHAR"/>
     <result column="sort" property="order" jdbcType="VARCHAR"/>

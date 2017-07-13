@@ -1,9 +1,8 @@
 package com.dgg.store.service.common;
 
 import com.dgg.store.dao.common.MenuDao;
-import com.dgg.store.util.core.menu.MenuUtil;
 import com.dgg.store.util.core.zTree.TreeUtil;
-import com.dgg.store.util.vo.MenuVO;
+import com.dgg.store.util.vo.core.MenuVO;
 import com.dgg.store.util.vo.core.ResultVO;
 import com.dgg.store.util.vo.core.SessionVO;
 import org.springframework.beans.factory.annotation.Autowired;

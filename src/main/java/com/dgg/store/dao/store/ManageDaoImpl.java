@@ -1,7 +1,7 @@
 package com.dgg.store.dao.store;
 
 import com.dgg.store.mapper.ManageMapper;
-import com.dgg.store.util.vo.LoginVO;
+import com.dgg.store.util.vo.core.LoginVO;
 import com.dgg.store.util.vo.manage.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;

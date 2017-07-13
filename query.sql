@@ -1,2 +1,2 @@
-select * from goodsinfo
+select * from friend_request
 ;

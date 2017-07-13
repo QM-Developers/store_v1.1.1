@@ -1,6 +1,6 @@
 package com.dgg.store.mapper;
 
-import com.dgg.store.util.vo.LoginVO;
+import com.dgg.store.util.vo.core.LoginVO;
 import org.apache.ibatis.annotations.Param;
 
 public interface LoginMapper

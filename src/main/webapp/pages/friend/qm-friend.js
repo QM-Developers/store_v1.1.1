@@ -46,6 +46,8 @@ var friendJS = {
             friendJS.socket = new WebSocket("ws://192.168.1.13:8099/websocket");
             friendJS.socket.onmessage = function (event)
             {
+                console.log(event);
+                console.log(event.data);
                 friendJS.receiveData(event.data);
             };
             friendJS.socket.onopen = function (event)
@@ -74,11 +76,11 @@ var friendJS = {
             data = data.result;
             for (var i = 0; i < data.length; i++)
             {
-                var icon = data[i]["userSex"] == "sex_0" ? "am-icon-female" : "am-icon-male";
+                var icon = data[i]["friendSex"] == "sex_0" ? "am-icon-female" : "am-icon-male";
                 item += '<div class="sort-list" onclick="friendJS.findFriendData(\'' + data[i]["friendId"] + '\')">';
-                item += '<div class="num-logo"><img src="' + path + data[i]["userImg"] + '"/></div>';
+                item += '<div class="num-logo"><img src="' + path + data[i]["friendImg"] + '"/></div>';
                 item += '<div class="num-name">';
-                item += '<span class="num-span friend-span">' + data[i]["userName"] + '<i class="' + icon + '"></i></span>';
+                item += '<span class="num-span friend-span">' + data[i]["friendName"] + '<i class="' + icon + '"></i></span>';
                 item += '<span class="friend-span">' + data[i]["friendRemarkName"] + '</span>';
                 item += '</div></div>';
             }
@@ -100,12 +102,11 @@ var friendJS = {
         myjs.ajax_post(url, params, function (data)
         {
             data = data.result;
-            $("#friend-name-text").text(data["userName"]);
-            $("#friend-phone-text").text(data["userPhone"]);
-            $("#friend-address-text").text(data["userArea"] + " " + data["userAddress"]);
-            $("#friend-origin-text").text(data["friendOrigin"]);
-            $("#friend-img").attr("src", path + data["userImg"]);
-            $("#friend-sex").val(data["userSex"]);
+            $("#friend-name-text").text(data["friendName"]);
+            $("#friend-phone-text").text(data["friendPhone"]);
+            $("#friend-address-text").text(data["friendArea"] + " " + data["friendAddress"]);
+            $("#friend-img").attr("src", path + data["friendImg"]);
+            $("#friend-sex").val(data["friendSex"]);
             $("#friend-id").val(data["friendId"]);
             $("#friend-user-id").val(data["userId"]);
             $("#friend-remark-name").val(data["friendRemarkName"]);
@@ -143,6 +144,7 @@ var friendJS = {
 
         myjs.ajax_post(url, params, function (data)
         {
+            console.log(data);
             data = data.result;
             var today = new Date(Date.parse(new Date())).format("yyyy-MM-dd");
             var lastTime = "";
@@ -156,7 +158,7 @@ var friendJS = {
     {
         var item = "";
         var time = new Date(data["createDate"]).format("yyyy-MM-dd");
-        var icon = data["userSex"] == "sex_0" ? "am-icon-female" : "am-icon-male";
+        var icon = data["friendSex"] == "sex_0" ? "am-icon-female" : "am-icon-male";
         var state = "";
         var stateText = "";
         var timeText = "";
@@ -167,9 +169,9 @@ var friendJS = {
         switch (data["requestState"])
         {
             case friendJS.requestState.FRIEND_REQUEST:
-                var args = data["requestId"] + "=" + data["userId"] + "=" + data["friendOrigin"];
-                state = '<span onclick="PromptSel(friendJS.optTypes.agree,\'是否同意添加 ' + data["userName"] + ' 为好友\',\'' + args + '\')">同意</span>' +
-                    '<span onclick="PromptSel(friendJS.optTypes.negative,\'是否拒绝添加 ' + data["userName"] + '\',\'' + args + '\')">拒绝</span>';
+                var args = data["requestId"] + "=" + data["friendId"] + "=" + data["friendOrigin"];
+                state = '<span onclick="PromptSel(friendJS.optTypes.agree,\'是否同意添加 ' + data["friendName"] + ' 为好友\',\'' + args + '\')">同意</span>' +
+                    '<span onclick="PromptSel(friendJS.optTypes.negative,\'是否拒绝添加 ' + data["friendName"] + '\',\'' + args + '\')">拒绝</span>';
                 stateText = "申请加为好友";
                 break;
             case friendJS.requestState.FRIEND_AGREE:
@@ -182,9 +184,9 @@ var friendJS = {
                 break;
         }
         item += '<div class="newfriend-now-cont">';
-        item += '<div class="newfriend-now-img"><img src="' + path + data["userImg"] + '"/></div>';
+        item += '<div class="newfriend-now-img"><img src="' + path + data["friendImg"] + '"/></div>';
         item += '<div class="newfriend-now-span">';
-        item += '<span class="newfriend-now-name">' + data["userName"] + '<i class="' + icon + '"></i></span>';
+        item += '<span class="newfriend-now-name">' + data["friendName"] + '<i class="' + icon + '"></i></span>';
         item += '<span class="newfriend-now-state">' + stateText + '</span>';
         item += '<span class="newfriend-now-describe">' + data["requestInfo"] + '</span>';
         item += '<div class="newfriend-now-sel">' + state + '</div>';
@@ -206,7 +208,6 @@ var friendJS = {
         var args = friendJS.optData.split("=");
         params["requestId"] = args[0];
         params["friendId"] = args[1];
-        params["friendOrigin"] = args[2];
 
         myjs.ajax_post(url, params, function (data)
         {
@@ -224,7 +225,6 @@ var friendJS = {
         var args = friendJS.optData.split("=");
         params["requestId"] = args[0];
         params["friendId"] = args[1];
-        params["friendOrigin"] = args[2];
 
         console.log(params);
 
@@ -256,7 +256,6 @@ var friendJS = {
     {
         var url = path + "/user_addFriendRequest.action";
         var params = {};
-        params["friendOrigin"] = "手机号/名字查找";
         params["friendId"] = $("#add-user-info").find("[data-type='userId']").attr("value");
         params["requestInfo"] = $("#add-request-info").val();
 
@@ -286,12 +285,12 @@ var friendJS = {
                 {
                     item += '<div class="add-box">';
                     item += '<div class="am-fl add-i">';
-                    item += '<img data-type="userImg" value="' + data[i]["userImg"] + '" src="' + path + data[i]["userImg"] + '"/>';
+                    item += '<img data-type="userImg" value="' + data[i]["friendImg"] + '" src="' + path + data[i]["userImg"] + '"/>';
                     item += '</div>';
-                    item += '<hidden data-type="userId" value="' + data[i]["userId"] + '"/>';
-                    item += '<hidden data-type="userArea" value="' + data[i]["userArea"] + '"/>';
-                    item += '<span data-type="userName" value="' + data[i]["userName"] + '" class="friend-name">' + data[i]["userName"] + '</span>';
-                    item += '<span data-type="userPhone" value="' + data[i]["userPhone"] + '" class="friend-phone color-ccc">' + data[i]["userPhone"] + '</span>';
+                    item += '<hidden data-type="userId" value="' + data[i]["friendId"] + '"/>';
+                    item += '<hidden data-type="userArea" value="' + data[i]["friendArea"] + '"/>';
+                    item += '<span data-type="userName" value="' + data[i]["friendName"] + '" class="friend-name">' + data[i]["friendName"] + '</span>';
+                    item += '<span data-type="userPhone" value="' + data[i]["friendPhone"] + '" class="friend-phone color-ccc">' + data[i]["friendPhone"] + '</span>';
                     item += '<button type="button" class="am-btn friend-add" onclick="friendJS.fillUserToWindow(this)">添加好友</button>';
                     item += '</div>';
                 }

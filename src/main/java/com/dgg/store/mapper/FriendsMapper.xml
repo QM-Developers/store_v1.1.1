@@ -3,15 +3,14 @@
 <mapper namespace="com.dgg.store.mapper.FriendsMapper">
     <resultMap id="BaseResultMap" type="com.dgg.store.util.vo.friend.FriendVO">
         <id column="user_id" property="userId" jdbcType="VARCHAR"/>
-        <result column="user_name" property="userName" jdbcType="VARCHAR"/>
-        <result column="user_phone" property="userPhone" jdbcType="VARCHAR"/>
-        <result column="user_img" property="userImg" jdbcType="VARCHAR"/>
-        <result column="user_area" property="userArea" jdbcType="VARCHAR"/>
-        <result column="user_address" property="userAddress" jdbcType="VARCHAR"/>
-        <result column="user_sex" property="userSex" jdbcType="VARCHAR"/>
+        <result column="user_name" property="friendName" jdbcType="VARCHAR"/>
+        <result column="user_phone" property="friendPhone" jdbcType="VARCHAR"/>
+        <result column="user_img" property="friendImg" jdbcType="VARCHAR"/>
+        <result column="user_area" property="friendArea" jdbcType="VARCHAR"/>
+        <result column="user_address" property="friendAddress" jdbcType="VARCHAR"/>
+        <result column="user_sex" property="friendSex" jdbcType="VARCHAR"/>
         <result column="friend_id" property="friendId" jdbcType="VARCHAR"/>
         <result column="friend_user_id" property="friendUserId" jdbcType="VARCHAR"/>
-        <result column="friend_origin" property="friendOrigin" jdbcType="VARCHAR"/>
         <result column="friend_remark_name" property="friendRemarkName" jdbcType="VARCHAR"/>
         <result column="friend_remark_text" property="friendRemarkText" jdbcType="VARCHAR"/>
     </resultMap>
@@ -19,19 +18,18 @@
     <resultMap id="FriendRequestMap" type="com.dgg.store.util.pojo.FriendRequest">
         <id column="request_id" property="requestId" jdbcType="VARCHAR"/>
         <result column="user_id" property="userId" jdbcType="VARCHAR"/>
-        <result column="user_name" property="userName" jdbcType="VARCHAR"/>
-        <result column="user_img" property="userImg" jdbcType="VARCHAR"/>
-        <result column="user_sex" property="userSex" jdbcType="VARCHAR"/>
+        <result column="user_name" property="friendName" jdbcType="VARCHAR"/>
+        <result column="user_img" property="friendImg" jdbcType="VARCHAR"/>
+        <result column="user_sex" property="friendSex" jdbcType="VARCHAR"/>
         <result column="friend_id" property="friendId" jdbcType="VARCHAR"/>
         <result column="request_info" property="requestInfo" jdbcType="VARCHAR"/>
-        <result column="friend_origin" property="friendOrigin" jdbcType="VARCHAR"/>
         <result column="response_info" property="responseInfo" jdbcType="VARCHAR"/>
         <result column="create_date" property="createDate" jdbcType="DATE"/>
         <result column="request_state" property="requestState" jdbcType="VARCHAR"/>
     </resultMap>
 
     <select id="findUserByPhoneOrName" resultMap="BaseResultMap">
-        SELECT user_id,user_name, user_phone, user_img,user_area
+        SELECT user_id friend_id,user_name, user_phone, user_img,user_area
         FROM user
         WHERE user_phone = #{userId}
         OR user_name LIKE CONCAT(#{userId},'%')
@@ -57,13 +55,13 @@
 
     <insert id="insertFriendRequest" parameterType="com.dgg.store.util.pojo.FriendRequest">
         INSERT INTO friend_request
-        (request_id,user_id, friend_id, request_info,request_state,friend_origin)
-        VALUES (#{requestId},#{userId},#{friendId},#{requestInfo},#{requestState},#{friendOrigin})
+        (request_id,user_id, friend_id, request_info,request_state)
+        VALUES (#{requestId},#{userId},#{friendId},#{requestInfo},#{requestState})
     </insert>
 
     <select id="findFriendRequest" parameterType="com.dgg.store.util.pojo.FriendRequest" resultMap="FriendRequestMap">
-        SELECT fq.request_id,fq.request_info,fq.create_date,fq.request_state,fq.friend_origin,
-            u.user_id,u.user_name,u.user_img,u.user_sex
+        SELECT fq.request_id,fq.request_info,fq.create_date,fq.request_state,
+            u.user_id friend_id,u.user_name,u.user_img,u.user_sex
         FROM friend_request fq
         INNER JOIN user u
         ON u.user_id = fq.user_id
@@ -106,9 +104,9 @@
 
     <insert id="insertFriend" parameterType="com.dgg.store.util.vo.friend.FriendVO">
         INSERT INTO friend
-        (friend_id,user_id,friend_user_id , friend_origin)
+        (friend_id,user_id,friend_user_id )
         VALUES
-        (#{friendId},#{userId},#{friendUserId},#{friendOrigin})
+        (#{friendId},#{userId},#{friendUserId})
     </insert>
 
     <select id="findFriendList" resultMap="BaseResultMap">
@@ -123,7 +121,7 @@
     </select>
 
     <select id="findFriendData" resultMap="BaseResultMap">
-        SELECT f.friend_id,f.user_id,f.friend_remark_name,f.friend_origin,f.friend_remark_text,
+        SELECT f.friend_id,f.user_id,f.friend_remark_name,f.friend_remark_text,
             u.user_name,u.user_phone,u.user_area,u.user_address,u.user_img
         FROM friend f
         INNER JOIN user u

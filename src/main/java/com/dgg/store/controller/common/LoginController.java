@@ -3,14 +3,13 @@ package com.dgg.store.controller.common;
 import com.alibaba.fastjson.JSONObject;
 import com.dgg.store.service.common.LoginService;
 import com.dgg.store.util.core.constant.Constant;
-import com.dgg.store.util.vo.LoginVO;
+import com.dgg.store.util.vo.core.LoginVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 @Controller
@@ -45,22 +44,6 @@ public class LoginController
         }
 
         return status;
-    }
-
-    @RequestMapping(value = "/login_verify",method = RequestMethod.POST)
-    @ResponseBody
-    public Object LoginByVerify(LoginVO loginVO)
-    {
-        return service.LoginByVerify(loginVO);
-    }
-
-    @RequestMapping(value = "/login_logout")
-    public Object Logout(HttpServletRequest request)
-    {
-        HttpSession session = request.getSession();
-        session.invalidate();
-
-        return "redirect:login.jsp";
     }
 
 }

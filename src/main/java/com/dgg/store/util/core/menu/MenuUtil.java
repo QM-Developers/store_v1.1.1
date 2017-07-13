@@ -1,6 +1,6 @@
 package com.dgg.store.util.core.menu;
 
-import com.dgg.store.util.vo.MenuVO;
+import com.dgg.store.util.vo.core.MenuVO;
 
 import java.util.ArrayList;
 import java.util.List;

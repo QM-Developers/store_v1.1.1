@@ -6,7 +6,7 @@ import com.dgg.store.util.core.constant.Constant;
 import com.dgg.store.util.core.shiro.CryptographyUtil;
 import com.dgg.store.util.core.token.TokenUtil;
 import com.dgg.store.util.pojo.User;
-import com.dgg.store.util.vo.LoginRepVO;
+import com.dgg.store.util.vo.core.LoginRepVO;
 import com.dgg.store.util.vo.core.SessionVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

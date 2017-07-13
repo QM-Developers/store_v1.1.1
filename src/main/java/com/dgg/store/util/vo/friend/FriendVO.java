@@ -2,25 +2,94 @@ package com.dgg.store.util.vo.friend;
 
 public class FriendVO
 {
-    private String userName = "";
-    private String userPhone = "";
-    private String userImg = "";
-    private String userArea = "";
-    private String userAddress = "";
-    private String userSex = "";
+    private String friendName;
+    private String friendPhone;
+    private String friendImg;
+    private String friendArea;
+    private String friendAddress;
+    private String friendSex;
 
+    private String friendUserId;
 
-    private String friendUserId = "";
+    private String userId;
 
-    private String userId = "";
+    private String friendId;
 
-    private String friendId = "";
+    private String friendOrigin;
 
-    private String friendOrigin = "";
+    private String friendRemarkText;
 
-    private String friendRemarkText = "";
+    private String friendRemarkName;
 
-    private String friendRemarkName = "";
+    public String getFriendName()
+    {
+        return friendName;
+    }
+
+    public void setFriendName(String friendName)
+    {
+        this.friendName = friendName;
+    }
+
+    public String getFriendPhone()
+    {
+        return friendPhone;
+    }
+
+    public void setFriendPhone(String friendPhone)
+    {
+        this.friendPhone = friendPhone;
+    }
+
+    public String getFriendImg()
+    {
+        return friendImg;
+    }
+
+    public void setFriendImg(String friendImg)
+    {
+        this.friendImg = friendImg;
+    }
+
+    public String getFriendArea()
+    {
+        return friendArea;
+    }
+
+    public void setFriendArea(String friendArea)
+    {
+        this.friendArea = friendArea;
+    }
+
+    public String getFriendAddress()
+    {
+        return friendAddress;
+    }
+
+    public void setFriendAddress(String friendAddress)
+    {
+        this.friendAddress = friendAddress;
+    }
+
+    public String getFriendSex()
+    {
+        return friendSex;
+    }
+
+    public void setFriendSex(String friendSex)
+    {
+        this.friendSex = friendSex;
+    }
+
+    public String getFriendUserId()
+    {
+        return friendUserId;
+    }
+
+    public void setFriendUserId(String friendUserId)
+    {
+        this.friendUserId = friendUserId;
+    }
 
     public String getUserId()
     {
@@ -62,46 +131,6 @@ public class FriendVO
         this.friendRemarkText = friendRemarkText;
     }
 
-    public String getUserName()
-    {
-        return userName;
-    }
-
-    public void setUserName(String userName)
-    {
-        this.userName = userName;
-    }
-
-    public String getUserPhone()
-    {
-        return userPhone;
-    }
-
-    public void setUserPhone(String userPhone)
-    {
-        this.userPhone = userPhone;
-    }
-
-    public String getUserImg()
-    {
-        return userImg;
-    }
-
-    public void setUserImg(String userImg)
-    {
-        this.userImg = userImg;
-    }
-
-    public String getUserArea()
-    {
-        return userArea;
-    }
-
-    public void setUserArea(String userArea)
-    {
-        this.userArea = userArea;
-    }
-
     public String getFriendRemarkName()
     {
         return friendRemarkName;
@@ -110,35 +139,5 @@ public class FriendVO
     public void setFriendRemarkName(String friendRemarkName)
     {
         this.friendRemarkName = friendRemarkName;
-    }
-
-    public String getUserSex()
-    {
-        return userSex;
-    }
-
-    public void setUserSex(String userSex)
-    {
-        this.userSex = userSex;
-    }
-
-    public String getUserAddress()
-    {
-        return userAddress;
-    }
-
-    public void setUserAddress(String userAddress)
-    {
-        this.userAddress = userAddress;
-    }
-
-    public String getFriendUserId()
-    {
-        return friendUserId;
-    }
-
-    public void setFriendUserId(String friendUserId)
-    {
-        this.friendUserId = friendUserId;
     }
 }

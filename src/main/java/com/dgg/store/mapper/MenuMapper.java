@@ -1,8 +1,7 @@
 package com.dgg.store.mapper;
 
 import com.dgg.store.util.pojo.Menu;
-import com.dgg.store.util.pojo.MenuExample;
-import com.dgg.store.util.vo.MenuVO;
+import com.dgg.store.util.vo.core.MenuVO;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;

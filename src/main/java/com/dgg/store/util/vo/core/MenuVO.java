@@ -1,4 +1,4 @@
-package com.dgg.store.util.vo;
+package com.dgg.store.util.vo.core;
 
 import java.util.List;
 

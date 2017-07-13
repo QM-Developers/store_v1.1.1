@@ -88,9 +88,9 @@
                             <div class="cont-data">
                                 <span class="cont-spanleft">所在地址：</span><span class="cont-spanright" id="friend-address-text"></span>
                             </div>
-                            <div class="cont-data">
-                                <span class="cont-spanleft">好友来源：</span><span class="cont-spanright" id="friend-origin-text"></span>
-                            </div>
+                            <%--<div class="cont-data">--%>
+                                <%--<span class="cont-spanleft">好友来源：</span><span class="cont-spanright" id="friend-origin-text"></span>--%>
+                            <%--</div>--%>
                         </div>
                         <div class="cont-b">
                             <img id="friend-img" alt="头像"/>

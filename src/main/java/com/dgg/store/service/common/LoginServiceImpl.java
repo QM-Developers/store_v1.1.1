@@ -4,8 +4,8 @@ import com.dgg.store.dao.common.LoginDao;
 import com.dgg.store.util.core.constant.Constant;
 import com.dgg.store.util.core.shiro.CryptographyUtil;
 import com.dgg.store.util.core.token.TokenUtil;
-import com.dgg.store.util.vo.LoginRepVO;
-import com.dgg.store.util.vo.LoginVO;
+import com.dgg.store.util.vo.core.LoginRepVO;
+import com.dgg.store.util.vo.core.LoginVO;
 import com.dgg.store.util.vo.core.SessionVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -61,25 +61,4 @@ public class LoginServiceImpl implements LoginService
         return sessionVO;
     }
 
-    @Override
-    public Object LoginByVerify(LoginVO loginVO)
-    {
-        LoginRepVO vo = (LoginRepVO) dao.findLoginUserByPhone(loginVO);
-        boolean tokenFlag = loginVO.getToken() == null || "".equals(loginVO.getToken());
-
-        String token = TokenUtil.getToken();
-        token += System.currentTimeMillis();
-
-        if (vo != null && tokenFlag)
-        {
-            vo.setMyTeamId(vo.getMyTeamId());
-
-            if (dao.updateToken(loginVO.getUserPhone(),token) == 0)
-                throw new RuntimeException("更新 token 出错");
-
-            vo.setToken(token);
-        }
-
-        return vo == null ? 0 : vo;
-    }
 }

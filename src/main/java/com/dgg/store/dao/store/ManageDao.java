@@ -1,6 +1,6 @@
 package com.dgg.store.dao.store;
 
-import com.dgg.store.util.vo.LoginVO;
+import com.dgg.store.util.vo.core.LoginVO;
 import com.dgg.store.util.vo.manage.*;
 
 import java.util.List;

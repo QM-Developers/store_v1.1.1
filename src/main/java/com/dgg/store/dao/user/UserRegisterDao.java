@@ -1,8 +1,6 @@
 package com.dgg.store.dao.user;
 
 import com.dgg.store.util.pojo.User;
-import com.dgg.store.util.pojo.UserExample;
-import com.dgg.store.util.vo.LoginRepVO;
 
 import java.util.List;
 

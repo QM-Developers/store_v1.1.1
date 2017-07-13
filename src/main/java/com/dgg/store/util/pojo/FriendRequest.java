@@ -14,28 +14,58 @@ public class FriendRequest
 
     public static final Integer isNotReadState = 0;
 
-    private String userName = "";
+    private String friendName;
 
-    private String userImg = "";
+    private String friendImg;
 
-    private String userSex = "";
+    private String friendSex;
 
 
-    private String requestId = "";
+    private String requestId;
 
-    private String userId = "";
+    private String userId;
 
-    private String friendId = "";
+    private String friendId;
 
-    private String requestInfo = "";
+    private String requestInfo;
 
-    private String requestState = "";
+    private String requestState;
 
-    private String friendOrigin = "";
+    private String friendOrigin;
 
     private Date createDate;
 
     private Integer isRead;
+
+    public String getFriendName()
+    {
+        return friendName;
+    }
+
+    public void setFriendName(String friendName)
+    {
+        this.friendName = friendName;
+    }
+
+    public String getFriendImg()
+    {
+        return friendImg;
+    }
+
+    public void setFriendImg(String friendImg)
+    {
+        this.friendImg = friendImg;
+    }
+
+    public String getFriendSex()
+    {
+        return friendSex;
+    }
+
+    public void setFriendSex(String friendSex)
+    {
+        this.friendSex = friendSex;
+    }
 
     public String getRequestId()
     {
@@ -77,56 +107,6 @@ public class FriendRequest
         this.requestInfo = requestInfo;
     }
 
-    public Date getCreateDate()
-    {
-        return createDate;
-    }
-
-    public void setCreateDate(Date createDate)
-    {
-        this.createDate = createDate;
-    }
-
-    public Integer getIsRead()
-    {
-        return isRead;
-    }
-
-    public void setIsRead(Integer isRead)
-    {
-        this.isRead = isRead;
-    }
-
-    public String getUserName()
-    {
-        return userName;
-    }
-
-    public void setUserName(String userName)
-    {
-        this.userName = userName;
-    }
-
-    public String getUserImg()
-    {
-        return userImg;
-    }
-
-    public void setUserImg(String userImg)
-    {
-        this.userImg = userImg;
-    }
-
-    public String getUserSex()
-    {
-        return userSex;
-    }
-
-    public void setUserSex(String userSex)
-    {
-        this.userSex = userSex;
-    }
-
     public String getRequestState()
     {
         return requestState;
@@ -145,5 +125,25 @@ public class FriendRequest
     public void setFriendOrigin(String friendOrigin)
     {
         this.friendOrigin = friendOrigin;
+    }
+
+    public Date getCreateDate()
+    {
+        return createDate;
+    }
+
+    public void setCreateDate(Date createDate)
+    {
+        this.createDate = createDate;
+    }
+
+    public Integer getIsRead()
+    {
+        return isRead;
+    }
+
+    public void setIsRead(Integer isRead)
+    {
+        this.isRead = isRead;
     }
 }

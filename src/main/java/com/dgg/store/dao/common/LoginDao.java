@@ -1,6 +1,6 @@
 package com.dgg.store.dao.common;
 
-import com.dgg.store.util.vo.LoginVO;
+import com.dgg.store.util.vo.core.LoginVO;
 
 public interface LoginDao
 {

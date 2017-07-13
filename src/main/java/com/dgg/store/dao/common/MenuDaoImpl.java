@@ -1,7 +1,7 @@
 package com.dgg.store.dao.common;
 
 import com.dgg.store.mapper.MenuMapper;
-import com.dgg.store.util.vo.MenuVO;
+import com.dgg.store.util.vo.core.MenuVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 

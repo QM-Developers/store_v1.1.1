@@ -46,7 +46,7 @@
         </collection>
     </resultMap>
 
-    <select id="findLoginUser" parameterType="com.dgg.store.util.vo.LoginVO" resultType="java.lang.Integer">
+    <select id="findLoginUser" parameterType="com.dgg.store.util.vo.core.LoginVO" resultType="java.lang.Integer">
         SELECT COUNT(1)
         FROM user u
         WHERE u.user_id = #{userId}

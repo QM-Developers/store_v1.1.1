@@ -19,7 +19,7 @@ public class UploadFileUtil
 {
 
 //    public static final String doUpload(MultipartFile file, String path,String appName) throws IOException
-    public static final String doUpload(MultipartFile file, String path,String basePath) throws IOException
+    public static final String doUpload(MultipartFile file, String path,String basePath,String uuid) throws IOException
     {
         //文件名
         String fileName = file.getOriginalFilename();
@@ -27,7 +27,7 @@ public class UploadFileUtil
         String fileEnd = fileName.substring(fileName.lastIndexOf(".") + 1).toLowerCase();
 
         //创建文件唯一名称
-        String uuid = IDGenerator.generator();
+//        String uuid = IDGenerator.generator();
         //真实上传路径
         StringBuffer sbRealPath = new StringBuffer();
         sbRealPath.append(path);

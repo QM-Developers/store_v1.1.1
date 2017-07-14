@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.dgg.store.mapper.LoginMapper">
+<mapper namespace="com.dgg.store.mapper.RegisterMapper">
     <resultMap id="LoginRepVO" type="com.dgg.store.util.vo.core.LoginRepVO">
         <result column="user_id" property="userId" jdbcType="VARCHAR"/>
         <result column="role_id" property="roleId" jdbcType="VARCHAR"/>
@@ -14,8 +14,27 @@
         <result column="token" property="token" jdbcType="VARCHAR"/>
         <result column="team_department_id" property="departmentId" jdbcType="VARCHAR"/>
     </resultMap>
-
-    <select id="findLoginUser" parameterType="com.dgg.store.util.vo.core.LoginVO" resultMap="LoginRepVO">
+    
+    <update id="updateUserData" parameterType="com.dgg.store.util.vo.register.RegisterVO">
+        UPDATE user
+        <set>
+            <if test="cardFront != null and cardFront != ''">
+                user_card_front = #{cardFront},
+            </if>
+            <if test="cardBack != null and cardBack != ''">
+                user_card_back = #{cardBack},
+            </if>
+            <if test="cardHand != null and cardHand != ''">
+                user_card_hand = #{cardHand},
+            </if>
+            <if test="userPassword != null and userPassword != ''">
+                user_password = #{userPassword},
+            </if>
+        </set>
+        WHERE user_id = #{userId}
+    </update>
+    
+    <select id="findLoginRepVO" resultMap="LoginRepVO">
         SELECT u.user_id, u.user_name, u.user_phone,
         u.user_img,u.user_area, u.token,
         u.user_status,u.user_password,u.role_id,
@@ -23,28 +42,6 @@
         FROM user u
         LEFT JOIN customer c
         ON c.my_team_id = u.my_team_id
-        WHERE 1 = 1
-        <if test="userPhone != null and userPhone != ''">
-            AND u.user_phone = #{userPhone}
-        </if>
-        <if test="userPassword != null and userPassword != ''">
-            AND u.user_password = #{userPassword}
-        </if>
-        <if test="myTeamId != null and myTeamId != ''">
-            AND (u.my_team_id = #{myTeamId} OR c.my_team_id = #{myTeamId})
-        </if>
-    </select>
-
-    <update id="updateToken">
-        UPDATE user
-        SET token = #{token}
-        WHERE user_phone = #{loginName}
-    </update>
-
-    <select id="findLoginUserByPhone" parameterType="com.dgg.store.util.vo.core.LoginVO" resultMap="LoginRepVO">
-        SELECT u.user_id, u.user_name, u.user_phone, u.user_img, u.user_area, u.token, u.role_id,u.my_team_id
-        FROM user u
-        WHERE u.user_phone = #{userPhone}
-        AND u.my_team_id = #{myTeamId}
+        WHERE u.user_id = #{userId}
     </select>
 </mapper>

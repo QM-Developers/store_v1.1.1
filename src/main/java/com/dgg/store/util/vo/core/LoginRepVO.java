@@ -9,11 +9,12 @@ public class LoginRepVO
     private String userName;
     private String userImg;
     private String userPhone;
-    private String myTeamId;
     private String userArea;
+    private String userStatus;
+    private String userPassword;
+    private String myTeamId;
     private String token;
     private String departmentId;
-    private String departmentType;
 
     public LoginRepVO()
     {
@@ -120,13 +121,23 @@ public class LoginRepVO
         this.departmentId = departmentId;
     }
 
-    public String getDepartmentType()
+    public String getUserStatus()
     {
-        return departmentType;
+        return userStatus;
     }
 
-    public void setDepartmentType(String departmentType)
+    public void setUserStatus(String userStatus)
     {
-        this.departmentType = departmentType;
+        this.userStatus = userStatus;
+    }
+
+    public String getUserPassword()
+    {
+        return userPassword;
+    }
+
+    public void setUserPassword(String userPassword)
+    {
+        this.userPassword = userPassword;
     }
 }

@@ -2,10 +2,12 @@ package com.dgg.store.service.common;
 
 import com.dgg.store.dao.common.LoginDao;
 import com.dgg.store.util.core.constant.Constant;
+import com.dgg.store.util.core.constant.LoginConstant;
 import com.dgg.store.util.core.shiro.CryptographyUtil;
 import com.dgg.store.util.core.token.TokenUtil;
 import com.dgg.store.util.vo.core.LoginRepVO;
 import com.dgg.store.util.vo.core.LoginVO;
+import com.dgg.store.util.vo.core.ResultVO;
 import com.dgg.store.util.vo.core.SessionVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,27 +17,6 @@ public class LoginServiceImpl implements LoginService
 {
     @Autowired
     private LoginDao dao;
-
-    @Override
-    public Object updateAndFindLoginUser(LoginVO loginVO)
-    {
-        loginVO.setUserPassword(CryptographyUtil.md5(loginVO.getUserPassword(), Constant.SALT));
-        loginVO.setMyTeamId(loginVO.getMyTeamId());
-        LoginRepVO vo = (LoginRepVO) dao.findLoginUser(loginVO);
-        boolean tokenFlag = loginVO.getToken() == null || "".equals(loginVO.getToken());
-
-        String token = TokenUtil.getToken();
-
-        if (vo != null && tokenFlag)
-        {
-            vo.setMyTeamId(vo.getMyTeamId());
-            if (dao.updateToken(loginVO.getUserPhone(),token) == 0)
-                throw new RuntimeException("更新 token 出错");
-            vo.setToken(token);
-        }
-
-        return vo == null ? 0 : vo;
-    }
 
     @Override
     public Object findUserByLogin(LoginVO loginVO)
@@ -56,9 +37,26 @@ public class LoginServiceImpl implements LoginService
         sessionVO.setUserImg(vo.getUserImg());
         sessionVO.setMyTeamId(vo.getMyTeamId());
         sessionVO.setDepartmentId(vo.getDepartmentId());
-        sessionVO.setDepartmentType(vo.getDepartmentType());
 
         return sessionVO;
+    }
+
+    @Override
+    public ResultVO login(LoginVO loginVO)
+    {
+        LoginVO condition = new LoginVO();
+        condition.setUserPhone(loginVO.getUserPhone());
+        condition.setMyTeamId(loginVO.getMyTeamId());
+        LoginRepVO result = dao.findLoginUser(condition);
+
+        if (result == null)
+            return new ResultVO(LoginConstant.ACCOUNT_NOT_FOUND);
+        if (!Constant.USER_STATE_2.equals(result.getUserStatus()))
+            return new ResultVO(LoginConstant.NOT_REGISTER);
+        if (!CryptographyUtil.md5(loginVO.getUserPassword(),Constant.SALT).equals(result.getUserPassword()))
+            return new ResultVO(LoginConstant.NO_ACCESS);
+
+        return new ResultVO(Constant.REQUEST_SUCCESS, TokenUtil.getToken(), result);
     }
 
 }

@@ -4,6 +4,7 @@ import com.dgg.store.service.common.RegisterService;
 import com.dgg.store.util.core.constant.Constant;
 import com.dgg.store.util.vo.core.ResultVO;
 import com.dgg.store.util.vo.core.SessionVO;
+import com.dgg.store.util.vo.register.RegisterVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -49,9 +50,11 @@ public class RegisterController
 
     @RequestMapping(value = "register",method = RequestMethod.POST)
     @ResponseBody
-    public ResultVO register(HttpServletRequest request)
+    public ResultVO register(HttpServletRequest request, RegisterVO registerVO)
     {
-        return null;
+        SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
+
+        return service.updateRegisterUser(sessionVO,registerVO);
     }
 
 }

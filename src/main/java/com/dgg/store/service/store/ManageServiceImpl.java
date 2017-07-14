@@ -268,7 +268,7 @@ public class ManageServiceImpl implements ManageService
                 case 0:
                     member.setUserId(IDGenerator.generator());
                     member.setRoleId(Constant.ROLE_BUSINESS);
-                    member.setUserStatus(Constant.USERST_1);
+                    member.setUserStatus(Constant.USER_STATE_1);
                     member.setMyTeamId(sessionVO.getMyTeamId());
                     member.setUserCardFront(member.getUserCardFront() == null ? Constant.EMPTY : member.getUserCardFront());
                     member.setUserCardBack(member.getUserCardBack() == null ? Constant.EMPTY : member.getUserCardBack());
@@ -351,7 +351,7 @@ public class ManageServiceImpl implements ManageService
         else
             result = 1;
 
-        ResultVO resultVO = new ResultVO(result, sessionVO.getToken(),result);
+        ResultVO resultVO = new ResultVO(result, sessionVO.getToken(), result);
 
         return resultVO;
     }
@@ -364,7 +364,7 @@ public class ManageServiceImpl implements ManageService
         try
         {
             path.append(Constant.USER_ID_CARD_PATH);
-            fileName = UploadFileUtil.doUpload(file, path.toString(), realPath);
+            fileName = UploadFileUtil.doUpload(file, path.toString(), realPath, IDGenerator.generator());
         } catch (IOException e)
         {
             e.printStackTrace();

@@ -19,6 +19,11 @@ public class ResultVO
     {
     }
 
+    public ResultVO(Integer state)
+    {
+        this.state = state;
+    }
+
     public ResultVO(Integer state, String token, Object result)
     {
         this.state = state;

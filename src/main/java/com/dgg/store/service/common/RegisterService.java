@@ -2,6 +2,7 @@ package com.dgg.store.service.common;
 
 import com.dgg.store.util.vo.core.ResultVO;
 import com.dgg.store.util.vo.core.SessionVO;
+import com.dgg.store.util.vo.register.RegisterVO;
 import org.springframework.web.multipart.MultipartFile;
 
 public interface RegisterService
@@ -11,4 +12,6 @@ public interface RegisterService
     ResultVO insertCardBack(SessionVO sessionVO, MultipartFile file, String realPath);
 
     ResultVO insertCardFront(SessionVO sessionVO, MultipartFile file, String realPath);
+
+    ResultVO updateRegisterUser(SessionVO sessionVO, RegisterVO registerVO);
 }

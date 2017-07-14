@@ -5,6 +5,8 @@ import java.util.Properties;
 
 public class Constant
 {
+    public static final int REQUEST_SUCCESS = 1;
+
     public static final String EMPTY = "";
     public static final String COMMA = ",";
     public static final String STRING_45 = "-";
@@ -63,9 +65,9 @@ public class Constant
     /**
      * 用户状态码
      */
-    public static final String USERST_0 = "u_st_0"; // 用户刚建档状态
-    public static final String USERST_1 = "u_st_1"; // 用户刚建账状态
-    public static final String USERST_2 = "u_st_2"; // 用户已注册状态
+    public static final String USER_STATE_0 = "u_st_0"; // 用户刚建档状态
+    public static final String USER_STATE_1 = "u_st_1"; // 用户刚建账状态
+    public static final String USER_STATE_2 = "u_st_2"; // 用户已注册状态
 
     /**
      * 好友申请状态

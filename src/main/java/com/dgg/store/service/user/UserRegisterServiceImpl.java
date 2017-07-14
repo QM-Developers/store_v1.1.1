@@ -30,11 +30,11 @@ public class UserRegisterServiceImpl implements UserRegisterService
         if (user == null)
             return 0;
 
-        if (Constant.USERST_1.equals(user.getUserStatus()))
+        if (Constant.USER_STATE_1.equals(user.getUserStatus()))
         {
             String token = TokenUtil.getToken();
 
-            user.setUserStatus(Constant.USERST_2);
+            user.setUserStatus(Constant.USER_STATE_2);
             user.setUserArea(userArea);
             user.setUserPassword(CryptographyUtil.md5(userPassword, Constant.SALT));
             user.setHxName(HXName);

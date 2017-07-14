@@ -1,36 +1,122 @@
 package com.dgg.store.service.common;
 
+import com.dgg.store.dao.common.RegisterDao;
 import com.dgg.store.util.core.constant.Constant;
+import com.dgg.store.util.core.generator.IDGenerator;
 import com.dgg.store.util.core.upload.UploadFileUtil;
+import com.dgg.store.util.vo.core.LoginRepVO;
 import com.dgg.store.util.vo.core.ResultVO;
 import com.dgg.store.util.vo.core.SessionVO;
+import com.dgg.store.util.vo.manage.PerUserReVO;
+import com.dgg.store.util.vo.register.RegisterVO;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class RegisterServiceImpl implements RegisterService
 {
+    @Autowired
+    private RegisterDao dao;
+
     @Override
     public ResultVO insertCardHand(SessionVO sessionVO, MultipartFile file, String realPath)
     {
-        return null;
+        String uuid = IDGenerator.generator();
+        String fileName = saveImage(file, realPath, uuid);
+        int result = Constant.STR_ADD_FAILED.equals(fileName) ? 2 : 1;
+        if (result == 1)
+        {
+            RegisterVO condition = new RegisterVO();
+            condition.setUserId(sessionVO.getUserId());
+            condition.setCardHand(fileName);
+            result = dao.updateUserData(condition) == 1 ? 1 : 2;
+        }
+
+        ResultVO resultVO = new ResultVO(result, sessionVO.getToken(), fileName);
+
+        return resultVO;
     }
 
     @Override
     public ResultVO insertCardBack(SessionVO sessionVO, MultipartFile file, String realPath)
     {
-        return null;
+        String uuid = IDGenerator.generator();
+        String fileName = saveImage(file, realPath, uuid);
+        int result = Constant.STR_ADD_FAILED.equals(fileName) ? 2 : 1;
+        if (result == 1)
+        {
+            RegisterVO condition = new RegisterVO();
+            condition.setUserId(sessionVO.getUserId());
+            condition.setCardBack(fileName);
+            result = dao.updateUserData(condition) == 1 ? 1 : 2;
+        }
+
+        ResultVO resultVO = new ResultVO(result, sessionVO.getToken(), fileName);
+
+        return resultVO;
     }
 
     @Override
     public ResultVO insertCardFront(SessionVO sessionVO, MultipartFile file, String realPath)
     {
-        return null;
+        String uuid = IDGenerator.generator();
+        String fileName = saveImage(file, realPath, uuid);
+        int result = Constant.STR_ADD_FAILED.equals(fileName) ? 2 : 1;
+        if (result == 1)
+        {
+            RegisterVO condition = new RegisterVO();
+            condition.setUserId(sessionVO.getUserId());
+            condition.setCardFront(fileName);
+            result = dao.updateUserData(condition) == 1 ? 1 : 2;
+        }
+
+        ResultVO resultVO = new ResultVO(result, sessionVO.getToken(), fileName);
+
+        return resultVO;
     }
 
-    private String saveImage(MultipartFile file, String realPath)
+    @Override
+    public ResultVO updateRegisterUser(SessionVO sessionVO, RegisterVO registerVO)
+    {
+        int result = 1;
+        int i = 0;
+        int count = 2;
+        LoginRepVO loginRepVO = null;
+
+        while (result > 0)
+        {
+            switch (i)
+            {
+                case 0:
+                    result = dao.updateUserData(registerVO);
+                    break;
+                case 1:
+                    loginRepVO = dao.findLoginRepVO(registerVO.getUserId());
+                    result = loginRepVO == null ? 0 : 1;
+                    break;
+                default:
+                    result = 0;
+                    break;
+            }
+            i++;
+        }
+
+        if (i - 1 < count)
+            throw new RuntimeException(Constant.STR_ADD_FAILED);
+        else
+            result = 1;
+
+        ResultVO resultVO = new ResultVO(result, sessionVO.getToken(), loginRepVO);
+
+        return resultVO;
+    }
+
+    private String saveImage(MultipartFile file, String realPath, String uuid)
     {
         StringBuffer path = new StringBuffer();
         String fileName = null;
@@ -38,7 +124,7 @@ public class RegisterServiceImpl implements RegisterService
         try
         {
             path.append(Constant.USER_ID_CARD_PATH);
-            fileName = UploadFileUtil.doUpload(file, path.toString(), realPath);
+            fileName = UploadFileUtil.doUpload(file, path.toString(), realPath, uuid);
         } catch (IOException e)
         {
             e.printStackTrace();

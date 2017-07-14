@@ -467,6 +467,7 @@ create table user
    user_card_front      text,
    user_card_back       text,
    user_card_hand       text,
+   real_name            tinyint not null default 2,
    token                varchar(50) not null default '',
    is_deleted           tinyint not null default 0,
    delete_date          datetime,
@@ -587,6 +588,18 @@ create table app_update
    app_version        varchar(25) not null default '',
    app_update_url   text,
    app_update_content    text
+);
+
+/*==============================================================*/
+/* 体验申请表
+/*==============================================================*/
+drop table if exists qm_experience;
+create table qm_experience
+(
+   experience_id varchar(35) not null primary key,   
+   contacts varchar(20) not null default '',
+   phone varchar(12) not null default '',
+   position varchar(30) not null default ''
 );
 
 /*客户分组关联*/

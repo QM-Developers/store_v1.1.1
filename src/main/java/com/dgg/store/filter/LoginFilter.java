@@ -2,13 +2,11 @@ package com.dgg.store.filter;
 
 import com.dgg.store.util.core.constant.Constant;
 import com.dgg.store.util.core.regex.RegExUtil;
-import org.apache.commons.lang.StringUtils;
 
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
 

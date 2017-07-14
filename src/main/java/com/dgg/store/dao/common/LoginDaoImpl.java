@@ -1,6 +1,7 @@
 package com.dgg.store.dao.common;
 
 import com.dgg.store.mapper.LoginMapper;
+import com.dgg.store.util.vo.core.LoginRepVO;
 import com.dgg.store.util.vo.core.LoginVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -13,7 +14,7 @@ public class LoginDaoImpl implements LoginDao
 
 
     @Override
-    public Object findLoginUser(LoginVO loginVO)
+    public LoginRepVO findLoginUser(LoginVO loginVO)
     {
         return mapper.findLoginUser(loginVO);
     }

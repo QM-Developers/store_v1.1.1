@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.dgg.store.service.common.LoginService;
 import com.dgg.store.util.core.constant.Constant;
 import com.dgg.store.util.vo.core.LoginVO;
+import com.dgg.store.util.vo.core.ResultVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,9 +21,9 @@ public class LoginController
 
     @RequestMapping(value = "/login",method = RequestMethod.POST)
     @ResponseBody
-    public Object Login(LoginVO loginVO)
+    public ResultVO Login(LoginVO loginVO)
     {
-        return service.updateAndFindLoginUser(loginVO);
+        return service.login(loginVO);
     }
 
     @RequestMapping(value = "/login_on_browser",method = RequestMethod.POST)

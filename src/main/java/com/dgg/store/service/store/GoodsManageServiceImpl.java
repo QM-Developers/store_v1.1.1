@@ -49,7 +49,7 @@ public class GoodsManageServiceImpl implements GoodsManageService
             standard.setStandardWeight(Float.parseFloat(jsonArray.getJSONObject(i).get("standardWeight").toString()));
             standard.setStandardCount(Integer.parseInt(jsonArray.getJSONObject(i).get("standardCount").toString()));
             standard.setStandardName(jsonArray.getJSONObject(i).get("standardName").toString());
-            if(result > 0)
+            if (result > 0)
                 result = dao.insertStandardToGoods(standard);
             else
                 throw new RuntimeException("添加失败");
@@ -115,7 +115,7 @@ public class GoodsManageServiceImpl implements GoodsManageService
         try
         {
             path.append(Constant.USER_IMAGE_SPACE_PATH).append(sessionVO.getUserId()).append("/");
-            fileName = UploadFileUtil.doUpload(file, path.toString(), basePath);
+            fileName = UploadFileUtil.doUpload(file, path.toString(), basePath, IDGenerator.generator());
             dao.insertImgToSpace(imageId, fileName, sessionVO.getMyTeamId());
         } catch (IOException e)
         {
@@ -142,7 +142,7 @@ public class GoodsManageServiceImpl implements GoodsManageService
     {
         List<GoodsInfoVO> result = dao.findGoodsList(sessionVO.getMyTeamId());
 
-        ResultVO resultVO = new ResultVO(1,sessionVO.getToken(),result);
+        ResultVO resultVO = new ResultVO(1, sessionVO.getToken(), result);
 
         return resultVO;
     }

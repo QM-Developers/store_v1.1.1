@@ -144,7 +144,7 @@ public class CustomerServiceImpl implements CustomerService
             {
                 case 0:
                     customerVO.setUserId(IDGenerator.generator());
-                    customerVO.setUserStatus(Constant.USERST_0);
+                    customerVO.setUserStatus(Constant.USER_STATE_0);
                     customerVO.setRoleId(Integer.parseInt(Constant.ROLE_DEFAULT_USER));
                     customerVO.setMyTeamId(Constant.EMPTY);
                     result = dao.insertCustomerRecord(customerVO);

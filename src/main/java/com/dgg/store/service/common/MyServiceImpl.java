@@ -98,7 +98,7 @@ public class MyServiceImpl implements MyService
             if (oldImg.exists())
                 oldImg.delete();
             path.append(Constant.USER_HEAD_PORTRAIT_IMG_PATH).append(sessionVO.getUserId()).append("/");
-            fileName = UploadFileUtil.doUpload(file, path.toString(), basePath);
+            fileName = UploadFileUtil.doUpload(file, path.toString(), basePath,IDGenerator.generator());
             result = dao.updateUserImg(sessionVO.getUserId(), fileName);
         } catch (IOException e)
         {

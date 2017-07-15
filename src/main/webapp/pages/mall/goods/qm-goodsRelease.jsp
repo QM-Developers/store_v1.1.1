@@ -17,7 +17,7 @@
     <link rel="stylesheet" type="text/css" href="${path}/pages/mall/goods/qm-goodsRelease.css"/>
 
     <script type="text/javascript">
-        var typeId = document.URL.split("?")[1];
+        var cookie = JSON.parse(document.cookie);
     </script>
 </head>
 
@@ -61,7 +61,9 @@
                                 <th>商品重量</th>
                                 <th>单价(元)</th>
                                 <th>库存</th>
-                                <th class="tab4"><span class="tab4-span" onclick="AddTr(this)">增加规格</span></th>
+                                <th class="tab4">
+                                    <span class="tab4-span" onclick="gdReleaseJS.addStandard()">增加规格</span>
+                                </th>
                             </tr>
                             </thead>
                             <tbody id="standard-list">
@@ -270,9 +272,7 @@
 <div class="prompt-box Del-all">
     <div class="pop-one pop-one1">
         <div class="prompt-title">提示</div>
-        <div class="prompt-frame1">
-            该部门有成员存在，不能删除
-        </div>
+        <div class="prompt-frame1">是否删除</div>
         <div class="prompt-frame2">
             <div class="prompt-frame-box">
                 <div class="prompt-frame-right" onclick="_deleteoff()">
@@ -302,19 +302,7 @@
     var optType = "";
     var temp;
     var optTypes = {DELETE: "delete"};
-    AddTr = function (item)
-    {
-        //添加规格
-        var $tr = '<tr>' +
-            '<td><input  /></td>' +
-            '<td><input  /></td>' +
-            '<td><input  /></td>' +
-            '<td><input  /></td>' +
-            '<td class="tab4"><a href="javascript:void(0);" class="tab4-a " onclick="Delall(this)">删除</a></td>' +
-            '</tr>';
-        var $Tbody = $(item).parents("table").find("tr:last")
-        $Tbody.after($tr)
-    };
+
     Deltr = function (item)
     {
         $(item).parents("tr").remove()

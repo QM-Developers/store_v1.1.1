@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dgg.store.mapper.ExperienceMapper">
+    <insert id="insertExperience" parameterType="com.dgg.store.util.vo.experience.ExperienceVO">
+        INSERT INTO qm_experience
+        (experience_id, company, contacts, phone, position)
+        VALUES
+        (#{experienceId},#{company},#{contacts},#{phone},#{position})
+    </insert>
+</mapper>

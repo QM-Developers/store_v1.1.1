@@ -63,7 +63,11 @@ var qm_type = {
 
     toReleaseGoods:function ()
     {
-        self.location.href = path + "/pages/mall/goods/qm-goodsRelease.jsp?"+qm_type.typeId;
+        var params = {};
+        params["type"] = "type";
+        params["id"] = qm_type.typeId;
+        document.cookie = JSON.stringify(params);
+        self.location.href = path + "/pages/mall/goods/qm-goodsRelease.jsp";
     },
 
 };

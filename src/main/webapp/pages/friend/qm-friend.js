@@ -43,7 +43,7 @@ var friendJS = {
             window.WebSocket = window.MozWebSocket;
         if (window.WebSocket)
         {
-            friendJS.socket = new WebSocket("ws://192.168.1.13:8099/websocket");
+            friendJS.socket = new WebSocket("ws://112.74.32.113:8099/websocket");
             friendJS.socket.onmessage = function (event)
             {
                 console.log(event);
@@ -270,22 +270,22 @@ var friendJS = {
      */
     findUserByPhoneOrName: function ()
     {
-        var url = path + "/user_findUserByPhoneOrName.action";
+        var url = path + "/user_findUserByPhone.action";
         var params = {};
-        params["userId"] = $("#input-search-friend").val();
+        params["friendPhone"] = $("#input-search-friend").val();
 
         if (!myjs.objIsNull(params))
         {
             myjs.ajax_post(url, params, function (data)
             {
                 data = data.result;
-                $("#search-result-name").text(params["userId"]);
+                $("#search-result-name").text(params["friendPhone"]);
                 var item = "";
                 for (var i = 0; i < data.length; i++)
                 {
                     item += '<div class="add-box">';
                     item += '<div class="am-fl add-i">';
-                    item += '<img data-type="userImg" value="' + data[i]["friendImg"] + '" src="' + path + data[i]["userImg"] + '"/>';
+                    item += '<img data-type="userImg" value="' + data[i]["friendImg"] + '" src="' + path + data[i]["friendImg"] + '"/>';
                     item += '</div>';
                     item += '<hidden data-type="userId" value="' + data[i]["friendId"] + '"/>';
                     item += '<hidden data-type="userArea" value="' + data[i]["friendArea"] + '"/>';

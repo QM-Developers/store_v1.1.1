@@ -85,4 +85,13 @@ public class GoodsManageController
 
         return service.findGoodsList(sessionVO);
     }
+
+    @RequestMapping(value = "/s/findGoodsInfo",method = RequestMethod.POST)
+    @ResponseBody
+    public ResultVO findGoodsInfo(HttpServletRequest request,GoodsInfoVO infoVO)
+    {
+        SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
+
+        return service.findGoodsInfo(sessionVO,infoVO);
+    }
 }

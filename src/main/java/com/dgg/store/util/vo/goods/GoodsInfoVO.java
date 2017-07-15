@@ -29,6 +29,8 @@ public class GoodsInfoVO
 
     private Date createDate;
 
+    private List<GoodsImgVO> imgList;
+
     private List<GoodsStandard> standardList;
 
     public String getGoodsId()
@@ -149,5 +151,15 @@ public class GoodsInfoVO
     public void setStandardList(List<GoodsStandard> standardList)
     {
         this.standardList = standardList;
+    }
+
+    public List<GoodsImgVO> getImgList()
+    {
+        return imgList;
+    }
+
+    public void setImgList(List<GoodsImgVO> imgList)
+    {
+        this.imgList = imgList;
     }
 }

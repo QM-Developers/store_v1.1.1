@@ -29,4 +29,6 @@ public interface GoodsinfoMapper
     Integer insertStandardToGoods(GoodsStandard standard);
 
     List<GoodsInfoVO> findGoodsList(@Param("myTeamId") String myTeamId);
+
+    GoodsInfoVO findGoodsInfo(GoodsInfoVO infoVO);
 }

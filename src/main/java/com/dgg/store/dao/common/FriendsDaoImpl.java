@@ -79,4 +79,10 @@ public class FriendsDaoImpl implements FriendsDao
     {
         return mapper.findFriendExists(request);
     }
+
+    @Override
+    public List<FriendVO> findUserByPhone(String friendPhone)
+    {
+        return mapper.findUserByPhone(friendPhone);
+    }
 }

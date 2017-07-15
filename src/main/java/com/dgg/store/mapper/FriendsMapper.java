@@ -29,4 +29,6 @@ public interface FriendsMapper
     int updateFriendRemark(FriendVO friendVO);
 
     Integer findFriendExists(FriendRequest request);
+
+    List<FriendVO> findUserByPhone(@Param("userPhone") String friendPhone);
 }

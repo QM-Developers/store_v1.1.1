@@ -35,6 +35,12 @@
         OR user_name LIKE CONCAT(#{userId},'%')
     </select>
 
+    <select id="findUserByPhone" resultMap="BaseResultMap">
+        SELECT user_id friend_id,user_name, user_phone, user_img,user_area
+        FROM user
+        WHERE user_phone = #{userPhone}
+    </select>
+
     <select id="findCountBy" resultType="java.lang.Integer" parameterType="com.dgg.store.util.pojo.FriendRequest">
         SELECT COUNT(1)
         FROM friend_request

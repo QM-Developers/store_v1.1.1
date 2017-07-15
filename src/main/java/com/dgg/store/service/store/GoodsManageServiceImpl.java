@@ -146,4 +146,14 @@ public class GoodsManageServiceImpl implements GoodsManageService
 
         return resultVO;
     }
+
+    @Override
+    public ResultVO findGoodsInfo(SessionVO sessionVO, GoodsInfoVO infoVO)
+    {
+        GoodsInfoVO result = dao.findGoodsInfo(infoVO);
+
+        ResultVO resultVO = new ResultVO(result == null?2:1,sessionVO.getToken(),result);
+
+        return resultVO;
+    }
 }

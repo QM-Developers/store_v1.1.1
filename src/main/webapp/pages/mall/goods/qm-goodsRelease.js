@@ -6,7 +6,10 @@ var gdReleaseJS = {
     {
         //      gdReleaseJS.findFreightTemps();
         // gdReleaseJS.findTypeAttr();
-        gdReleaseJS.findTypeAndParents();
+        if (cookie["type"] == "type")
+            gdReleaseJS.findTypeAndParents();
+        else
+            gdReleaseJS.findGoodsInfo();
         gdReleaseJS.onInitModel();
         gdReleaseJS.pichandle();
         gdReleaseJS.findImages();
@@ -32,7 +35,7 @@ var gdReleaseJS = {
         var url = path + "/s/findTypeAndParents.action";
         var params = {};
 
-        params["goodsTypeId"] = typeId;
+        params["goodsTypeId"] = cookie["id"];
 
         myjs.ajax_post(url, params, function (data)
         {
@@ -50,6 +53,49 @@ var gdReleaseJS = {
             text = text.substring(0, text.length - 3);
             $("#type-text").text(text);
         });
+    },
+
+    findGoodsInfo: function ()
+    {
+        var url = path + "/s/findGoodsInfo.action";
+        var params = {};
+
+        params["goodsId"] = cookie["id"];
+
+        myjs.ajax_post(url, params, function (data)
+        {
+            data = data.result;
+            cookie["id"] = data["goodsTypeId"];
+            gdReleaseJS.findTypeAndParents();
+            $("#goods-name").val(data["goodsName"]);
+            $("#goods-attr").val(data["goodsAttr"].split("?")[1]);
+            var standards = data["standardList"];
+            $("#standard-list").empty();
+            for (var i = 0; i < standards.length; i++)
+                gdReleaseJS.addStandard(standards[i]);
+            var imgList = data["imgList"];
+            for (var i = 0; i < imgList.length; i++)
+                gdReleaseJS.AppendImg();
+            // params["standards"] = JSON.stringify(gdReleaseJS.getStandard());
+            // params["goodsImages"] = gdReleaseJS.getImages();
+            // params["goodsDescribe"] = gdReleaseJS.getDescribe();
+        });
+    },
+
+    addStandard: function (data)
+    {
+        if (myjs.isNull(data))
+            data = {standardId: "", standardName: "", standardWeight: "", standardPrice: "", standardCount: ""};
+        var tr = '<tr>' +
+            '<hidden value="' + data["standardId"] + '"/>' +
+            '<td><input value="' + data["standardName"] + '"/></td>' +
+            '<td><input value="' + data["standardWeight"] + '"/></td>' +
+            '<td><input value="' + data["standardPrice"] + '"/></td>' +
+            '<td><input value="' + data["standardCount"] + '"/></td>' +
+            '<td class="tab4"><a href="javascript:void(0);" class="tab4-a " onclick="Delall(this)">删除</a></td>' +
+            '</tr>';
+        var body = $("#standard-list");
+        body.append(tr);
     },
 
     findFreightTemps: function ()
@@ -71,7 +117,7 @@ var gdReleaseJS = {
         var url = path + "/s/findTypeAttr.action";
         var params = {};
 
-        params["goodsTypeId"] = typeId;
+        params["goodsTypeId"] = cookie["id"];
 
         myjs.ajax_post(url, params, function (data)
         {
@@ -331,7 +377,6 @@ var gdReleaseJS = {
                     '<i class="mid-li">删除</i></div>' +
                     ' <a href="###"><img src="' + attrs[j] + '" real-path="' + path[j] + '"/></a>' +
                     '</li>';
-
                 $middleimg.append($Addli);
             }
         }
@@ -347,7 +392,6 @@ var gdReleaseJS = {
     {
         var $Disout = $(item).find(".mid-box");
         $Disout.css("display", "none");
-
     },
 
     Midboxremove: function (item)
@@ -473,7 +517,7 @@ var gdReleaseJS = {
         var url = path + "/s/goodsRelease.action";
         var params = {};
 
-        params["goodsTypeId"] = typeId;
+        params["goodsTypeId"] = cookie["id"];
         params["goodsName"] = $("#goods-name").val();
         params["goodsAttr"] = gdReleaseJS.getGoodsAttr();
         params["standards"] = JSON.stringify(gdReleaseJS.getStandard());

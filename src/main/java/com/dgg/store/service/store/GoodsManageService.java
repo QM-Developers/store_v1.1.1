@@ -21,4 +21,6 @@ public interface GoodsManageService
     ResultVO findImages(SessionVO sessionVO);
 
     ResultVO findGoodsList(SessionVO sessionVO);
+
+    ResultVO findGoodsInfo(SessionVO sessionVO, GoodsInfoVO infoVO);
 }

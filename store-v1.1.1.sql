@@ -597,9 +597,10 @@ drop table if exists qm_experience;
 create table qm_experience
 (
    experience_id varchar(35) not null primary key,   
+   company varchar(20) not null default '',
    contacts varchar(20) not null default '',
    phone varchar(12) not null default '',
-   position varchar(30) not null default ''
+   position varchar(20) not null default ''
 );
 
 /*客户分组关联*/

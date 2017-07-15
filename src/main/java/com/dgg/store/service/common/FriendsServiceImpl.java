@@ -80,6 +80,16 @@ public class FriendsServiceImpl implements FriendsService
     }
 
     @Override
+    public ResultVO findUserByPhone(SessionVO sessionVO, FriendVO friendsVO)
+    {
+        List<FriendVO> result = dao.findUserByPhone(friendsVO.getFriendPhone());
+
+        ResultVO resultVO = new ResultVO(result.size() < 1 ? 2 : 1, sessionVO.getToken(), result);
+
+        return resultVO;
+    }
+
+    @Override
     public ResultVO findFriendRequestCount(SessionVO sessionVO)
     {
         FriendRequest request = new FriendRequest();

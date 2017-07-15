@@ -38,16 +38,16 @@
                 <li class="goodslist-list-tr">
                     <div class="item1">序号</div>
                     <div class="item2">商品名称</div>
+                    <div class="item4">分类</div>
                     <div class="item3">
                         <div class="item3-box">
-                            <div class="item3-1">分类</div>
                             <div class="item3-2">规格</div>
                             <div class="item3-3">单价(元)</div>
                             <div class="item3-4">库存</div>
-                            <div class="item3-5">发布时间</div>
-                            <div class="item3-6">操作区</div>
                         </div>
                     </div>
+                    <div class="item4">发布时间</div>
+                    <div class="item4">操作区</div>
                 </li>
             </ul>
         </div>

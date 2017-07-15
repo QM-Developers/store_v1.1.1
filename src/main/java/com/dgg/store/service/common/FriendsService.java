@@ -31,4 +31,6 @@ public interface FriendsService
     ResultVO updateFriendRemark(SessionVO sessionVO,FriendVO friendVO);
 
     ResultVO findFriendRequestById(SessionVO sessionVO, FriendRequest friendRequest);
+
+    ResultVO findUserByPhone(SessionVO sessionVO, FriendVO friendsVO);
 }

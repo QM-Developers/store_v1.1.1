@@ -6,6 +6,8 @@
         <result column="goods_type_id" jdbcType="VARCHAR" property="goodsTypeId"/>
         <result column="goods_name" jdbcType="VARCHAR" property="goodsName"/>
         <result column="goods_create_date" property="createDate" jdbcType="DATE"/>
+        <result column="goods_attr" property="goodsAttr" jdbcType="VARCHAR"/>
+        <result column="goods_describe" property="goodsDescribe" jdbcType="VARCHAR"/>
         <result column="my_team_id" jdbcType="INTEGER" property="myTeamId"/>
         <result column="goods_type_name" jdbcType="VARCHAR" property="goodsTypeName"/>
         <collection property="standardList" ofType="com.dgg.store.util.pojo.GoodsStandard">
@@ -14,6 +16,9 @@
             <result column="standard_weight" property="standardWeight" jdbcType="FLOAT"/>
             <result column="standard_price" property="standardPrice" jdbcType="FLOAT"/>
             <result column="standard_count" property="standardCount" jdbcType="VARCHAR"/>
+        </collection>
+        <collection property="imgList" ofType="com.dgg.store.util.vo.goods.GoodsImgVO">
+            <result column="image_path" property="imagePath" jdbcType="VARCHAR"/>
         </collection>
     </resultMap>
 
@@ -24,12 +29,12 @@
     </resultMap>
 
     <resultMap id="AttrMap" type="com.dgg.store.util.pojo.GoodsTypeAttr">
-        <id column="goods_type_attr_id" jdbcType="VARCHAR" property="goodsTypeAttrId" />
-        <result column="goods_type_id" jdbcType="VARCHAR" property="goodsTypeId" />
-        <result column="goods_type_attr_name" jdbcType="VARCHAR" property="goodsTypeAttrName" />
-        <result column="goods_type_attr_value" jdbcType="VARCHAR" property="goodsTypeAttrValue" />
-        <result column="const" jdbcType="VARCHAR" property="goodsTypeAttrConst" />
-        <result column="input_type" jdbcType="VARCHAR" property="goodsTypeAttrInputType" />
+        <id column="goods_type_attr_id" jdbcType="VARCHAR" property="goodsTypeAttrId"/>
+        <result column="goods_type_id" jdbcType="VARCHAR" property="goodsTypeId"/>
+        <result column="goods_type_attr_name" jdbcType="VARCHAR" property="goodsTypeAttrName"/>
+        <result column="goods_type_attr_value" jdbcType="VARCHAR" property="goodsTypeAttrValue"/>
+        <result column="const" jdbcType="VARCHAR" property="goodsTypeAttrConst"/>
+        <result column="input_type" jdbcType="VARCHAR" property="goodsTypeAttrInputType"/>
     </resultMap>
 
     <resultMap id="ImageSpaceMap" type="com.dgg.store.util.pojo.ImageSpace">
@@ -101,4 +106,20 @@
         WHERE gi.my_team_id = #{myTeamId}
     </select>
 
+    <select id="findGoodsInfo" resultMap="GoodsInfoVO" parameterType="com.dgg.store.util.vo.goods.GoodsInfoVO">
+        SELECT gi.goods_id, gi.goods_type_id, gi.goods_name,
+            gi.goods_attr, gi.goods_describe, gi.goods_standard,
+            gs.standard_id,gs.standard_name,gs.standard_price,
+            gs.standard_count,gs.standard_weight,
+            img.image_path
+        FROM goodsinfo gi
+        LEFT JOIN goods_standard gs
+        ON gs.goods_id = gi.goods_id
+        LEFT JOIN goods_image gimg
+        ON gimg.goods_id = gi.goods_id
+        LEFT JOIN image_space img
+        ON img.image_id = gimg.image_id
+        WHERE gi.goods_id = #{goodsId}
+        ORDER BY gimg.sort
+    </select>
 </mapper>

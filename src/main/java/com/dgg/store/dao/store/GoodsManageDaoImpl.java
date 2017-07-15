@@ -71,4 +71,10 @@ public class GoodsManageDaoImpl implements GoodsManageDao
     {
         return mapper.findGoodsList(myTeamId);
     }
+
+    @Override
+    public GoodsInfoVO findGoodsInfo(GoodsInfoVO infoVO)
+    {
+        return mapper.findGoodsInfo(infoVO);
+    }
 }

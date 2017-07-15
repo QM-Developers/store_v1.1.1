@@ -28,4 +28,6 @@ public interface FriendsDao
     int updateFriendRemark(FriendVO friendVO);
 
     Integer findFriendExists(FriendRequest request);
+
+    List<FriendVO> findUserByPhone(String friendPhone);
 }

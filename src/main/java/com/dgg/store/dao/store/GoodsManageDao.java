@@ -28,4 +28,6 @@ public interface GoodsManageDao
     Integer insertStandardToGoods(GoodsStandard standard);
 
     List<GoodsInfoVO> findGoodsList(String myTeamId);
+
+    GoodsInfoVO findGoodsInfo(GoodsInfoVO infoVO);
 }

@@ -6,6 +6,8 @@ public class GoodsImgVO
 
     private String imageId;
 
+    private String imagePath;
+
     private byte goodsImgType;
 
     private Integer sort;
@@ -57,5 +59,15 @@ public class GoodsImgVO
     public void setGoodsId(String goodsId)
     {
         this.goodsId = goodsId;
+    }
+
+    public String getImagePath()
+    {
+        return imagePath;
+    }
+
+    public void setImagePath(String imagePath)
+    {
+        this.imagePath = imagePath;
     }
 }

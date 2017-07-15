@@ -742,9 +742,10 @@ DROP TABLE IF EXISTS `qm_experience`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `qm_experience` (
   `experience_id` varchar(35) NOT NULL,
+  `company` varchar(20) NOT NULL DEFAULT '',
   `contacts` varchar(20) NOT NULL DEFAULT '',
   `phone` varchar(12) NOT NULL DEFAULT '',
-  `position` varchar(30) NOT NULL DEFAULT '',
+  `position` varchar(20) NOT NULL DEFAULT '',
   PRIMARY KEY (`experience_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -1477,4 +1478,4 @@ SET character_set_client = @saved_cs_client;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-07-14 18:09:27
+-- Dump completed on 2017-07-15 18:06:01

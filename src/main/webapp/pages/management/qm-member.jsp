@@ -104,8 +104,9 @@
     </div>
 </div>
 <div class="del-but-box">
+    <button class="del-but" style="color: red" onclick="qm_member.deleteMember();">删除</button>
+    <button class="del-but">返回</button>
     <button class="del-but" onclick="qm_member.saveOrUpdateMember();">提交</button>
-    <button class="del-but">取消</button>
 </div>
 <!--权限-->
 <div class="duty-box duty-Power">

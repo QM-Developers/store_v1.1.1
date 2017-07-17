@@ -23,4 +23,8 @@ public interface GoodsManageService
     ResultVO findGoodsList(SessionVO sessionVO);
 
     ResultVO findGoodsInfo(SessionVO sessionVO, GoodsInfoVO infoVO);
+
+    ResultVO findGoodsDescribe(SessionVO sessionVO, GoodsInfoVO infoVO);
+
+    ResultVO updateGoods(SessionVO sessionVO, GoodsInfoVO goodsInfo);
 }

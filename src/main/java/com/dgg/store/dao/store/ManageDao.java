@@ -48,4 +48,6 @@ public interface ManageDao
     Integer updateMember(MemberVO member);
 
     Integer cleanPerUserRe(String memberId);
+
+    Integer deleteMember(MemberVO condition);
 }

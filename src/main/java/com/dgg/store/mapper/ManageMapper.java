@@ -49,4 +49,6 @@ public interface ManageMapper
     Integer updateMember(MemberVO member);
 
     Integer cleanPerUserRe(@Param("userId") String memberId);
+
+    Integer deleteMember(MemberVO condition);
 }

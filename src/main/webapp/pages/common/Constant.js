@@ -1,5 +1,5 @@
 var Constant = {
-    URL_SUFFIX:".action",
+    URL_SUFFIX: ".action",
 
     COMMA: ",",
     STRING_45: "-",
@@ -8,4 +8,7 @@ var Constant = {
     PERSONAL_PERMISSION: "personal_permission",   // 人事权
 
     DEPARTMENT_MANAGER: "manager",  // 总经办
+
+    urlOptAdd: "add",
+    urlOptUpdate: "update",
 };

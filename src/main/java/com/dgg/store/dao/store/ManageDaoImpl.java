@@ -139,4 +139,11 @@ public class ManageDaoImpl implements ManageDao
     {
         return mapper.cleanPerUserRe(memberId);
     }
+
+    @Override
+    public Integer deleteMember(MemberVO condition)
+    {
+        return mapper.deleteMember(condition);
+    }
+
 }

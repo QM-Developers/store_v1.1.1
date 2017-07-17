@@ -2,6 +2,7 @@ package com.dgg.store.service.store;
 
 import com.dgg.store.dao.store.ManageDao;
 import com.dgg.store.util.core.constant.Constant;
+import com.dgg.store.util.core.constant.SymbolConstant;
 import com.dgg.store.util.core.generator.IDGenerator;
 import com.dgg.store.util.core.shiro.CryptographyUtil;
 import com.dgg.store.util.core.upload.UploadFileUtil;
@@ -76,16 +77,16 @@ public class ManageServiceImpl implements ManageService
                     result = dao.insertDepartment(department);
                     break;
                 case 1:
-                    String[] positionNames = department.getPosition().split(Constant.COMMA);
+                    String[] positionNames = department.getPosition().split(SymbolConstant.COMMA);
                     for (String name : positionNames)
                         positionList.add(new PositionVO(IDGenerator.generator(), name, department.getDepartmentId()));
                     result = dao.insertPosition(positionList);
                     break;
                 case 2:
-                    String[] permission = department.getPermission().split(Constant.STRING_45);
+                    String[] permission = department.getPermission().split(SymbolConstant.SUBTRACT);
                     for (int j = 0; j < positionList.size() && j < permission.length; j++)
                     {
-                        String[] ps = permission[j].split(Constant.COMMA);
+                        String[] ps = permission[j].split(SymbolConstant.COMMA);
                         for (String per : ps)
                             perPosReList.add(new PerPosReVO(per, positionList.get(j).getPositionId()));
                     }
@@ -140,16 +141,16 @@ public class ManageServiceImpl implements ManageService
                     result = dao.cleanPosition(department.getDepartmentId());
                     break;
                 case 2:
-                    String[] positionNames = department.getPosition().split(Constant.COMMA);
+                    String[] positionNames = department.getPosition().split(SymbolConstant.COMMA);
                     for (String name : positionNames)
                         positionList.add(new PositionVO(IDGenerator.generator(), name, department.getDepartmentId()));
                     result = dao.insertPosition(positionList);
                     break;
                 case 3:
-                    String[] permission = department.getPermission().split(Constant.STRING_45);
+                    String[] permission = department.getPermission().split(SymbolConstant.SUBTRACT);
                     for (int j = 0; j < positionList.size() && j < permission.length; j++)
                     {
-                        String[] ps = permission[j].split(Constant.COMMA);
+                        String[] ps = permission[j].split(SymbolConstant.COMMA);
                         for (String per : ps)
                             perPosReList.add(new PerPosReVO(per, positionList.get(j).getPositionId()));
                     }
@@ -275,7 +276,7 @@ public class ManageServiceImpl implements ManageService
                     result = dao.insertMember(member);
                     break;
                 case 1:
-                    String[] ps = member.getPermission().split(Constant.COMMA);
+                    String[] ps = member.getPermission().split(SymbolConstant.COMMA);
                     for (String p : ps)
                         perUserReList.add(new PerUserReVO(member.getUserId(), p));
                     result = dao.insertPerUserRe(perUserReList);
@@ -334,10 +335,44 @@ public class ManageServiceImpl implements ManageService
                     break;
                 case 1:
                     dao.cleanPerUserRe(member.getMemberId());
-                    String[] ps = member.getPermission().split(Constant.COMMA);
+                    String[] ps = member.getPermission().split(SymbolConstant.COMMA);
                     for (String p : ps)
                         perUserReList.add(new PerUserReVO(member.getMemberId(), p));
                     result = dao.insertPerUserRe(perUserReList);
+                    break;
+                default:
+                    result = 0;
+                    break;
+            }
+            i++;
+        }
+
+        if (i - 1 < count)
+            throw new RuntimeException(Constant.STR_ADD_FAILED);
+        else
+            result = 1;
+
+        ResultVO resultVO = new ResultVO(result, sessionVO.getToken(), result);
+
+        return resultVO;
+    }
+
+    @Override
+    public ResultVO deleteMember(SessionVO sessionVO, MemberVO member)
+    {
+        Integer result = 1;
+        int i = 0;
+        int count = 1;
+
+        while (result > 0)
+        {
+            switch (i)
+            {
+                case 0:
+                    MemberVO condition = new MemberVO();
+                    condition.setUserId(member.getMemberId());
+                    dao.cleanPerUserRe(member.getMemberId());
+                    result = dao.deleteMember(condition);
                     break;
                 default:
                     result = 0;

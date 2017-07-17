@@ -14,6 +14,10 @@
     <link rel="stylesheet" type="text/css" href="${path}/script/Amaze/assets/css/amazeui.min.css"/>
     <link rel="stylesheet" type="text/css" href="${path}/pages/common/reset.css"/>
     <link rel="stylesheet" type="text/css" href="${path}/pages/mall/goods/qm-typeSelect.css"/>
+
+    <script type="text/javascript">
+        var urlParams = document.URL.split("?")[1];
+    </script>
 </head>
 <body>
 <div class="admin-content">
@@ -38,6 +42,7 @@
 <script type="text/javascript" src="${path}/script/jquery/jquery-3.0.0.min.js"></script>
 <script type="text/javascript" src="${path}/script/Amaze/assets/js/amazeui.min.js"></script>
 <script type="text/javascript" src="${path}/script/js/myjs.js"></script>
+<script type="text/javascript" src="${path}/script/js/UrlUtil.js"></script>
 <script type="text/javascript" src="${path}/pages/common/control.js"></script>
 <script type="text/javascript" src="${path}/pages/common/Constant.js"></script>
 

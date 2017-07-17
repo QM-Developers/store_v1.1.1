@@ -142,10 +142,10 @@
                                     <a target="iframepage" href="${path}/pages/mall/goods/qm-goodslist.jsp">我的商城</a>
                                 </div>
                                 <div class='menu-lichild'>
-                                    <a target="iframepage" href="../mall/goods/qm-selllist.html">销售点</a>
+                                    <a target="iframepage" href="${path}/pages/mall/goods/qm-selllist.jsp">销售点</a>
                                 </div>
                                 <div class='menu-lichild'>
-                                    <a target="iframepage" href="">运费模板</a>
+                                    <a target="iframepage" href="${path}/pages/mall/goods/qm-template.jsp">运费模板</a>
                                 </div>
 
                             </div>

@@ -12,7 +12,6 @@ var qm_goodslist = {
         myjs.ajax_post(url, params, function (data)
         {
             data = data.result;
-            console.log(data);
             var item = "";
             for (var i = 0; i < data.length; i++)
             {
@@ -30,7 +29,7 @@ var qm_goodslist = {
                         '</div>';
                 item += '</div><div class="item4">' + new Date(data[i]["createDate"]).format("yyyy/MM/dd") + '</div>' +
                     '<div class="item4">' +
-                    '<a href="javascript:(0)" onclick="qm_goodslist.toReleaseGoods(\''+data[i]["goodsId"]+'\')">详情/编辑</a>' +
+                    '<a href="javascript:(0)" onclick="qm_goodslist.toReleaseGoods(\'' + data[i]["goodsId"] + '\')">详情/编辑</a>' +
                     '</div></li>';
             }
             $("#goods-list").append(item);
@@ -39,10 +38,10 @@ var qm_goodslist = {
 
     toReleaseGoods: function (gid)
     {
-        var params = {};
-        params["type"] = "info";
-        params["id"] = gid;
-        document.cookie = JSON.stringify(params);
-        location.href = path + "/pages/mall/goods/qm-goodsRelease.jsp";
+        var params = new qm_urlParams();
+        params.option = Constant.urlOptUpdate;
+        params.goodsId = gid;
+
+        location.href = path + "/pages/mall/goods/qm-goodsRelease.jsp?"+urlUtil.objToParams(params);
     }
 };

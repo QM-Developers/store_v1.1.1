@@ -77,4 +77,28 @@ public class GoodsManageDaoImpl implements GoodsManageDao
     {
         return mapper.findGoodsInfo(infoVO);
     }
+
+    @Override
+    public List<GoodsImgVO> findGoodsDescribe(String[] ids)
+    {
+        return mapper.findGoodsDescribe(ids);
+    }
+
+    @Override
+    public Integer deleteAllStandard(String goodsId)
+    {
+        return mapper.deleteAllStandard(goodsId);
+    }
+
+    @Override
+    public Integer deleteAllImg(String goodsId)
+    {
+        return mapper.deleteAllImg(goodsId);
+    }
+
+    @Override
+    public Integer updateGoods(GoodsInfoVO goodsInfo)
+    {
+        return mapper.updateGoods(goodsInfo);
+    }
 }

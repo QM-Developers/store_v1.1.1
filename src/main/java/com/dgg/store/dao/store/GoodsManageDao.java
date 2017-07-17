@@ -30,4 +30,12 @@ public interface GoodsManageDao
     List<GoodsInfoVO> findGoodsList(String myTeamId);
 
     GoodsInfoVO findGoodsInfo(GoodsInfoVO infoVO);
+
+    List<GoodsImgVO> findGoodsDescribe(String[] ids);
+
+    Integer deleteAllStandard(String goodsId);
+
+    Integer deleteAllImg(String goodsId);
+
+    Integer updateGoods(GoodsInfoVO goodsInfo);
 }

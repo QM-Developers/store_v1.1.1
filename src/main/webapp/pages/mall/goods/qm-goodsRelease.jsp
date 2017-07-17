@@ -17,7 +17,7 @@
     <link rel="stylesheet" type="text/css" href="${path}/pages/mall/goods/qm-goodsRelease.css"/>
 
     <script type="text/javascript">
-        var cookie = JSON.parse(document.cookie);
+        var urlParams = document.URL.split("?")[1];
     </script>
 </head>
 
@@ -32,7 +32,7 @@
                 <div class="goods-box1-1">类　　目 :</div>
                 <div class="goods-box1-2">
                     <span id="type-text">闪闪闪 ></span>
-                    <a href="" class="goods-box1-a">切换类目</a>
+                    <a href="javascript:(0)" onclick="gdReleaseJS.toTypeSelect();" class="goods-box1-a">切换类目</a>
                 </div>
             </div>
             <div class="goods-box1">
@@ -208,7 +208,7 @@
                     <button class="del-but">取消</button>
                 </div>
                 <div>
-                    <button class="del-but" onclick="gdReleaseJS.releaseGoods();">提交</button>
+                    <button class="del-but" onclick="gdReleaseJS.saveOrUpdateGoods();">提交</button>
                 </div>
             </div>
         </div>
@@ -291,8 +291,11 @@
 <script type="text/javascript" src="${path}/script/webuploader-0.1.5/webuploader.min.js"></script>
 <script type="text/javascript" src="${path}/script/Amaze/assets/js/amazeui.min.js"></script>
 <script type="text/javascript" src="${path}/script/js/myjs.js"></script>
-
+<script type="text/javascript" src="${path}/script/js/UrlUtil.js"></script>
 <script type="text/javascript" src="${path}/script/js/inputSel.js"></script>
+
+<script type="text/javascript" src="${path}/pages/common/Constant.js"></script>
+<script type="text/javascript" src="${path}/pages/mall/goods/qm-url-params.js"></script>
 <script type="text/javascript" src="${path}/pages/mall/goods/qm-goodsRelease.js"></script>
 <script type="text/javascript">
     gdReleaseJS.init();

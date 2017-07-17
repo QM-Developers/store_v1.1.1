@@ -59,6 +59,15 @@ public class GoodsManageController
         return service.insertGoodsinfo(sessionVO,goodsinfo);
     }
 
+    @RequestMapping(value = "/s/updateGoods",method = RequestMethod.POST)
+    @ResponseBody
+    public ResultVO updateGoods(HttpServletRequest request,GoodsInfoVO goodsInfo)
+    {
+        SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
+
+        return service.updateGoods(sessionVO,goodsInfo);
+    }
+
     @RequestMapping(value = "/s/saveGoodsDraft",method = RequestMethod.POST)
     @ResponseBody
     public ResultVO saveGoodsDraft(HttpServletRequest request,GoodsInfoVO goodsinfo)
@@ -93,5 +102,14 @@ public class GoodsManageController
         SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
 
         return service.findGoodsInfo(sessionVO,infoVO);
+    }
+
+    @RequestMapping(value = "/s/findGoodsDescribe",method = RequestMethod.POST)
+    @ResponseBody
+    public ResultVO findGoodsDescribe(HttpServletRequest request,GoodsInfoVO infoVO)
+    {
+        SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
+
+        return service.findGoodsDescribe(sessionVO,infoVO);
     }
 }

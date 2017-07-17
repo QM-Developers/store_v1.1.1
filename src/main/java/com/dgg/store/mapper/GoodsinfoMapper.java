@@ -31,4 +31,12 @@ public interface GoodsinfoMapper
     List<GoodsInfoVO> findGoodsList(@Param("myTeamId") String myTeamId);
 
     GoodsInfoVO findGoodsInfo(GoodsInfoVO infoVO);
+
+    List<GoodsImgVO> findGoodsDescribe(@Param("ids") String[] ids);
+
+    Integer deleteAllStandard(@Param("goodsId") String goodsId);
+
+    Integer deleteAllImg(@Param("goodsId") String goodsId);
+
+    Integer updateGoods(GoodsInfoVO goodsInfo);
 }

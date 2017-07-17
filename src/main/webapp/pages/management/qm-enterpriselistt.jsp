@@ -33,11 +33,11 @@
     <div class="Corporationlist">
         <div class="am-g qm-team1">
             <div class="groupdata-title">
-                <div class="qm-list">公司列表</div>
-                <div class="qm-compile">
+                <div class="qm-list">成员列表</div>
+                <div class="qm-compile" id="btn-update-department">
                     <span onclick="qm_memberList.toDepartmentInfo();" class="qm-compile-but">编辑部门</span><i class="compile-icon"></i>
                 </div>
-                <div class="qm-compile-seek"><input/><span></span></div>
+                <div class="qm-compile-seek"><input id="search-keyword"/><span onclick="qm_memberList.searchMember();"></span></div>
             </div>
 
             <div class="am-u-sm-12 qm-team1-box">
@@ -91,6 +91,7 @@
 <script type="text/javascript" src="${path}/script/Amaze/assets/js/amazeui.min.js"></script>
 <script type="text/javascript" src="${path}/script/js/myjs.js"></script>
 <script type="text/javascript" src="${path}/pages/common/control.js"></script>
+<script type="text/javascript" src="${path}/pages/common/Constant.js"></script>
 <script type="text/javascript" src="${path}/pages/management/qm-enterpriselistt.js"></script>
 
 <script type="text/javascript">

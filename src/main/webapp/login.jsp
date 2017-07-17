@@ -28,6 +28,9 @@
     <script type="text/javascript" src="${path}/script/js/myjs.js"></script>
     <script type="text/javascript" src="${path}/pages/login/login.js"></script>
 
+    <script type="text/javascript" src="${path}/pages/mall/goods/qm-url-params.js"></script>
+    <script type="text/javascript" src="${path}/script/js/UrlUtil.js"></script>
+
     <style>
         .header {
             text-align: center;

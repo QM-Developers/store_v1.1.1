@@ -116,6 +116,15 @@ public class ManageController
         return service.deleteDepartment(sessionVO, department);
     }
 
+    @RequestMapping(value = "/s/deleteMember",method = RequestMethod.POST)
+    @ResponseBody
+    public ResultVO deleteMember(HttpServletRequest request,MemberVO member)
+    {
+        SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
+
+        return service.deleteMember(sessionVO,member);
+    }
+
     @RequestMapping(value = "/s/findPositionList", method = RequestMethod.POST)
     @ResponseBody
     public ResultVO findPositionList(HttpServletRequest request, DepartmentVO department)

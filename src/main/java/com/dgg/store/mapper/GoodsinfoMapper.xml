@@ -18,6 +18,7 @@
             <result column="standard_count" property="standardCount" jdbcType="VARCHAR"/>
         </collection>
         <collection property="imgList" ofType="com.dgg.store.util.vo.goods.GoodsImgVO">
+            <result column="image_id" property="imageId" jdbcType="VARCHAR"/>
             <result column="image_path" property="imagePath" jdbcType="VARCHAR"/>
         </collection>
     </resultMap>
@@ -39,6 +40,11 @@
 
     <resultMap id="ImageSpaceMap" type="com.dgg.store.util.pojo.ImageSpace">
         <id column="image_id" property="imageId" jdbcType="VARCHAR"/>
+        <result column="image_path" property="imagePath" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <resultMap id="GoodsImgVO" type="com.dgg.store.util.vo.goods.GoodsImgVO">
+        <result column="image_id" property="imageId" jdbcType="VARCHAR"/>
         <result column="image_path" property="imagePath" jdbcType="VARCHAR"/>
     </resultMap>
 
@@ -111,7 +117,7 @@
             gi.goods_attr, gi.goods_describe, gi.goods_standard,
             gs.standard_id,gs.standard_name,gs.standard_price,
             gs.standard_count,gs.standard_weight,
-            img.image_path
+            img.image_path,img.image_id
         FROM goodsinfo gi
         LEFT JOIN goods_standard gs
         ON gs.goods_id = gi.goods_id
@@ -122,4 +128,32 @@
         WHERE gi.goods_id = #{goodsId}
         ORDER BY gimg.sort
     </select>
+
+    <select id="findGoodsDescribe" resultMap="GoodsImgVO">
+        SELECT image_id,image_path FROM image_space
+        WHERE image_id IN
+        <foreach collection="ids" index="i" item="id" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </select>
+
+    <delete id="deleteAllStandard">
+        DELETE FROM goods_standard
+        WHERE goods_id = #{goodsId}
+    </delete>
+
+    <delete id="deleteAllImg">
+        DELETE FROM goods_image
+        WHERE goods_id = #{goodsId}
+    </delete>
+
+    <update id="updateGoods" parameterType="com.dgg.store.util.vo.goods.GoodsInfoVO">
+        UPDATE goodsinfo
+        <set>
+            <if test="">
+
+            </if>
+        </set>
+        WHERE goods_id = #{goodsId}
+    </update>
 </mapper>

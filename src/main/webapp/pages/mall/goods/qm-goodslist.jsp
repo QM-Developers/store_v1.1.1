@@ -19,7 +19,7 @@
 
 <div class="goodslist bodybox">
     <header class="goodslist-header">
-        <a class="goodslist-but" href="qm-typeSelect.jsp">添加商品</a>
+        <a class="goodslist-but" href="qm-typeSelect.jsp?add">添加商品</a>
     </header>
     <section class="goodslist-list">
         <div class="goodslist-list-titlebox">
@@ -58,8 +58,10 @@
 <script type="text/javascript" src="${path}/script/Amaze/assets/js/amazeui.min.js"></script>
 <script type="text/javascript" src="${path}/script/js/myjs.js"></script>
 <script type="text/javascript" src="${path}/script/js/date.js"></script>
+<script type="text/javascript" src="${path}/script/js/UrlUtil.js"></script>
 <script type="text/javascript" src="${path}/pages/common/control.js"></script>
 <script type="text/javascript" src="${path}/pages/common/Constant.js"></script>
+<script type="text/javascript" src="${path}/pages/mall/goods/qm-url-params.js"></script>
 
 <script type="text/javascript" src="${path}/pages/mall/goods/qm-goodslist.js"></script>
 <script type="text/javascript">

@@ -2,6 +2,8 @@ package com.dgg.store.util.vo.core;
 
 public class LoginVO
 {
+    private String userId;
+
     private String userPhone;
 
     private String userPassword;
@@ -36,5 +38,15 @@ public class LoginVO
     public void setMyTeamId(String myTeamId)
     {
         this.myTeamId = myTeamId;
+    }
+
+    public String getUserId()
+    {
+        return userId;
+    }
+
+    public void setUserId(String userId)
+    {
+        this.userId = userId;
     }
 }

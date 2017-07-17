@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.dgg.store.dao.store.GoodsManageDao;
 import com.dgg.store.util.core.constant.Constant;
+import com.dgg.store.util.core.constant.SymbolConstant;
 import com.dgg.store.util.core.generator.IDGenerator;
 import com.dgg.store.util.core.upload.UploadFileUtil;
 import com.dgg.store.util.pojo.GoodsStandard;
@@ -152,7 +153,80 @@ public class GoodsManageServiceImpl implements GoodsManageService
     {
         GoodsInfoVO result = dao.findGoodsInfo(infoVO);
 
-        ResultVO resultVO = new ResultVO(result == null?2:1,sessionVO.getToken(),result);
+        ResultVO resultVO = new ResultVO(result == null ? 2 : 1, sessionVO.getToken(), result);
+
+        return resultVO;
+    }
+
+    @Override
+    public ResultVO findGoodsDescribe(SessionVO sessionVO, GoodsInfoVO infoVO)
+    {
+        String[] ids = infoVO.getGoodsDescribe().split(SymbolConstant.VERTICAL);
+        List<GoodsImgVO> result = dao.findGoodsDescribe(ids);
+
+        ResultVO resultVO = new ResultVO(1, sessionVO.getToken(), result);
+
+        return resultVO;
+    }
+
+    @Override
+    public ResultVO updateGoods(SessionVO sessionVO, GoodsInfoVO goodsInfo)
+    {
+        Integer result = 1;
+        int i = 0;
+        int count = 2;
+
+        String[] images = goodsInfo.getGoodsImages().split(SymbolConstant.VERTICAL);
+        GoodsImgVO imgVO = new GoodsImgVO(sessionVO.getUserId(), goodsInfo.getGoodsId());
+
+        while (result > 0)
+        {
+            switch (i)
+            {
+                case 0:
+                    dao.deleteAllStandard(goodsInfo.getGoodsId());
+                    GoodsStandard standard = new GoodsStandard(goodsInfo.getGoodsId());
+                    JSONArray jsonArray = JSON.parseArray(goodsInfo.getStandards());
+                    for (int j = 0; j < jsonArray.size(); j++)
+                    {
+                        standard.setStandardId(jsonArray.getJSONObject(j).get("standardId").toString());
+                        standard.setStandardPrice(Float.parseFloat(jsonArray.getJSONObject(j).get("standardPrice").toString()));
+                        standard.setStandardWeight(Float.parseFloat(jsonArray.getJSONObject(j).get("standardWeight").toString()));
+                        standard.setStandardCount(Integer.parseInt(jsonArray.getJSONObject(j).get("standardCount").toString()));
+                        standard.setStandardName(jsonArray.getJSONObject(j).get("standardName").toString());
+                        result = dao.insertStandardToGoods(standard);
+                        if (result < 1)
+                            break;
+                    }
+                    break;
+                case 1:
+                    dao.deleteAllImg(goodsInfo.getGoodsId());
+                    for (int j = 0; j < images.length; j++)
+                    {
+                        imgVO.setImageId(images[j]);
+                        imgVO.setGoodsImgType((byte) (j == 0 ? 1 : 2));
+                        imgVO.setSort(j);
+                        result = dao.insertImgToGoods(imgVO);
+                        if (result < 1)
+                            break;
+                    }
+                    break;
+                case 2:
+                    result = dao.updateGoods(goodsInfo);
+                    break;
+                default:
+                    result = 0;
+                    break;
+            }
+            i++;
+        }
+
+        if (i - 1 < count)
+            throw new RuntimeException(Constant.STR_ADD_FAILED);
+        else
+            result = 1;
+
+        ResultVO resultVO = new ResultVO(result, sessionVO.getToken());
 
         return resultVO;
     }

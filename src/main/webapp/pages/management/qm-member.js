@@ -312,5 +312,21 @@ var qm_member = {
     {
         qm_member.cardFront.upload();
         qm_member.cardBack.upload();
-    }
+    },
+
+    deleteMember:function ()
+    {
+        if (myjs.isNull(userId))
+            return;
+
+        var url = path + "/s/deleteMember"+Constant.URL_SUFFIX;
+        var params = {};
+
+        params["memberId"] = userId;
+
+        myjs.ajax_post(url,params,function (data)
+        {
+            console.log(data);
+        });
+    },
 };

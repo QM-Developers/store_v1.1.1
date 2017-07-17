@@ -16,6 +16,11 @@ var qm_department = {
 
     addOrUpdateDepartment: function ()
     {
+        if ($("#Contbox .position-cont").length < 1)
+            return;
+
+        console.log($("#Contbox .position-cont").length);
+
         var url = path;
         if (myjs.isNull(departmentId))
             url += "/s/addDepartment.action";
@@ -153,7 +158,7 @@ var qm_department = {
         myjs.ajax_post(url, params, function (data)
         {
             data = parseInt(data.result);
-            if(data > 0)
+            if (data > 0)
                 qm_department.deleteInfo("该职位正在使用，不能删除");
             else
                 Delduty(item);

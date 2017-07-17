@@ -4,9 +4,10 @@ var gdReleaseJS = {
 
     init: function ()
     {
+        urlParams = urlUtil.paramsToObj(urlParams);
         //      gdReleaseJS.findFreightTemps();
         // gdReleaseJS.findTypeAttr();
-        if (cookie["type"] == "type")
+        if (urlParams.option == Constant.urlOptAdd)
             gdReleaseJS.findTypeAndParents();
         else
             gdReleaseJS.findGoodsInfo();
@@ -35,7 +36,7 @@ var gdReleaseJS = {
         var url = path + "/s/findTypeAndParents.action";
         var params = {};
 
-        params["goodsTypeId"] = cookie["id"];
+        params["goodsTypeId"] = urlParams.typeId;
 
         myjs.ajax_post(url, params, function (data)
         {
@@ -60,25 +61,33 @@ var gdReleaseJS = {
         var url = path + "/s/findGoodsInfo.action";
         var params = {};
 
-        params["goodsId"] = cookie["id"];
+        params["goodsId"] = urlParams.goodsId;
 
         myjs.ajax_post(url, params, function (data)
         {
             data = data.result;
-            cookie["id"] = data["goodsTypeId"];
+
+            if (myjs.isNull(urlParams.typeId))
+                urlParams.typeId = data["goodsTypeId"];
             gdReleaseJS.findTypeAndParents();
             $("#goods-name").val(data["goodsName"]);
             $("#goods-attr").val(data["goodsAttr"].split("?")[1]);
+
             var standards = data["standardList"];
             $("#standard-list").empty();
             for (var i = 0; i < standards.length; i++)
                 gdReleaseJS.addStandard(standards[i]);
             var imgList = data["imgList"];
+
             for (var i = 0; i < imgList.length; i++)
-                gdReleaseJS.AppendImg();
-            // params["standards"] = JSON.stringify(gdReleaseJS.getStandard());
-            // params["goodsImages"] = gdReleaseJS.getImages();
-            // params["goodsDescribe"] = gdReleaseJS.getDescribe();
+                gdReleaseJS.insertBannerImage(imgList[i]["imagePath"], imgList[i]["imageId"]);
+
+            myjs.ajax_post(path + "/s/findGoodsDescribe.action", {goodsDescribe: data["goodsDescribe"]}, function (data)
+            {
+                var describeList = data.result;
+                for (var i = 0; i < describeList.length; i++)
+                    gdReleaseJS.insertDescribeImage(describeList[i]["imagePath"], describeList[i]["imageId"]);
+            });
         });
     },
 
@@ -87,8 +96,7 @@ var gdReleaseJS = {
         if (myjs.isNull(data))
             data = {standardId: "", standardName: "", standardWeight: "", standardPrice: "", standardCount: ""};
         var tr = '<tr>' +
-            '<hidden value="' + data["standardId"] + '"/>' +
-            '<td><input value="' + data["standardName"] + '"/></td>' +
+            '<td><hidden value="' + data["standardId"] + '"/><input value="' + data["standardName"] + '"/></td>' +
             '<td><input value="' + data["standardWeight"] + '"/></td>' +
             '<td><input value="' + data["standardPrice"] + '"/></td>' +
             '<td><input value="' + data["standardCount"] + '"/></td>' +
@@ -117,7 +125,7 @@ var gdReleaseJS = {
         var url = path + "/s/findTypeAttr.action";
         var params = {};
 
-        params["goodsTypeId"] = cookie["id"];
+        params["goodsTypeId"] = urlParams.typeId;
 
         myjs.ajax_post(url, params, function (data)
         {
@@ -340,8 +348,6 @@ var gdReleaseJS = {
         var items = $(".imgbox-sign");
         var attrs = [];
         var path = [];
-        var imgBox = $(".add-two");
-        var $middleimg = $("#middleimg");
 
         for (var i = 0; i < items.length; i++)
         {
@@ -349,37 +355,45 @@ var gdReleaseJS = {
             path.push($(items[i]).find("img").attr("real-path"));
         }
 
-        $(".imgbox").each(function ()
+        $(".imgbox").removeClass("imgbox-sign");
+
+        switch (gdReleaseJS.flag)
         {
-            $(this).removeClass("imgbox-sign");
-        });
-        if (gdReleaseJS.flag == true)
-        {
-            var j = 0;
-            for (var i = 0; i <= imgBox.length; i++)
-            {
-                if (!myjs.isNull(attrs[j]) && myjs.isNull($(imgBox[i]).find("img").attr("src")))
-                {
-                    $(imgBox[i]).find("img").attr({"src": attrs[j], "real-path": path[j]});
-                    $(imgBox[i]).css("display", "block");
-                    j++;
-                }
-            }
-        } else if (gdReleaseJS.flag == false)
-        {
-            for (var j = 0; j < attrs.length; j++)
-            {
-                var $Addli = '' +
-                    '<li class="li-mid lileft" onmouseenter="gdReleaseJS.leftandrigthmove(this)">' +
-                    '<div class="mid-box">' +
-                    '<i class="mid-li" onclick="gdReleaseJS.moveToLeft(this);" class="top">上移</i>' +
-                    '<i class="mid-li" onclick="gdReleaseJS.moveToRight(this);" class="down">下移</i>' +
-                    '<i class="mid-li">删除</i></div>' +
-                    ' <a href="###"><img src="' + attrs[j] + '" real-path="' + path[j] + '"/></a>' +
-                    '</li>';
-                $middleimg.append($Addli);
-            }
+            case true:
+                for (var i = 0; i <= attrs.length; i++)
+                    if (!myjs.isNull(attrs[i]))
+                        gdReleaseJS.insertBannerImage(attrs[i], path[i]);
+                break;
+            case false:
+                for (var i = 0; i < attrs.length; i++)
+                    gdReleaseJS.insertDescribeImage(attrs[i], path[i]);
+                break;
         }
+    },
+
+    insertDescribeImage: function (src, path)
+    {
+        var li = '' +
+            '<li class="li-mid lileft" onmouseenter="gdReleaseJS.leftandrigthmove(this)">' +
+            '<div class="mid-box">' +
+            '<i class="mid-li" onclick="gdReleaseJS.moveToLeft(this);" class="top">上移</i>' +
+            '<i class="mid-li" onclick="gdReleaseJS.moveToRight(this);" class="down">下移</i>' +
+            '<i class="mid-li">删除</i></div>' +
+            ' <a href="###"><img src="' + src + '" real-path="' + path + '"/></a>' +
+            '</li>';
+        $("#middleimg").append(li);
+    },
+
+    insertBannerImage: function (src, path)
+    {
+        var imgBox = $(".add-two");
+        for (var i = 0; i < imgBox.length; i++)
+            if (myjs.isNull($(imgBox[i]).find("img").attr("src")))
+            {
+                $(imgBox[i]).find("img").attr({"src": src, "real-path": path});
+                $(imgBox[i]).css("display", "block");
+                break;
+            }
     },
 
     leftandrigthmove: function (item)
@@ -502,6 +516,7 @@ var gdReleaseJS = {
         {
             var tds = $(item).find("td");
             var standard = {};
+            standard["standardId"] = $(item).find("hidden").attr("value");
             standard["standardName"] = $(tds[0]).find("input").val();
             standard["standardWeight"] = $(tds[1]).find("input").val();
             standard["standardPrice"] = $(tds[2]).find("input").val();
@@ -512,17 +527,24 @@ var gdReleaseJS = {
         return standards;
     },
 
-    releaseGoods: function ()
+    saveOrUpdateGoods: function ()
     {
-        var url = path + "/s/goodsRelease.action";
+        var url = path;
         var params = {};
 
-        params["goodsTypeId"] = cookie["id"];
+        params["goodsId"] = urlParams.goodsId;
+        params["goodsTypeId"] = urlParams.typeId;
         params["goodsName"] = $("#goods-name").val();
         params["goodsAttr"] = gdReleaseJS.getGoodsAttr();
         params["standards"] = JSON.stringify(gdReleaseJS.getStandard());
         params["goodsImages"] = gdReleaseJS.getImages();
         params["goodsDescribe"] = gdReleaseJS.getDescribe();
+
+        if(myjs.isNull(urlParams.goodsId))
+            url += "/s/goodsRelease";
+        else
+            url += "/s/updateGoods";
+        url += Constant.URL_SUFFIX;
 
         myjs.ajax_post(url, params, function (data)
         {
@@ -557,7 +579,6 @@ var gdReleaseJS = {
         for (var i = 0; i < items.length; i++)
             images += $(items[i]).attr("real-path") + "|";
 
-        console.log(images);
         return images;
     },
 
@@ -573,6 +594,11 @@ var gdReleaseJS = {
                 item += '<div onclick="gdReleaseJS.onSelectImg(this);" class="imgbox"><a href="javascript:;"><img real-path="' + data[i]["imageId"] + '" src="' + path + data[i]["imagePath"] + '"/></a></div>';
             $("#images-space").append(item);
         });
+    },
+
+    toTypeSelect: function ()
+    {
+        self.location.href = path + "/pages/mall/goods/qm-typeSelect.jsp?" + urlUtil.objToParams(urlParams);
     },
 };
 

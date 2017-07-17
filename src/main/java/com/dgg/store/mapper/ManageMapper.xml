@@ -174,15 +174,18 @@
 
     <select id="findMemberList" resultMap="MemberVO" parameterType="com.dgg.store.util.vo.manage.MemberVO">
         SELECT u.user_id,u.user_name,u.user_sex,
-            u.user_phone,
-            td.team_department_name,
-            dp.position_name
+        u.user_phone,
+        td.team_department_name,
+        dp.position_name
         FROM user u
         INNER JOIN team_department td
         ON td.team_department_id = u.team_department_id
         INNER JOIN department_position dp
         ON dp.position_id = u.position_id
-        WHERE u.team_department_id = #{departmentId}
+        WHERE 1 = 1
+        <if test="departmentId != null and departmentId != ''">
+            AND u.team_department_id = #{departmentId}
+        </if>
     </select>
 
     <select id="countPositionMember" resultType="java.lang.Integer">
@@ -238,4 +241,8 @@
         WHERE user_id = #{userId}
     </delete>
 
+    <delete id="deleteMember" parameterType="com.dgg.store.util.vo.manage.MemberVO">
+        DELETE FROM user
+        WHERE user_id = #{userId}
+    </delete>
 </mapper>

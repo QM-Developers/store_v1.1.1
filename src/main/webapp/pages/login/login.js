@@ -1,29 +1,29 @@
 /**
  * 登录操作集合
  */
-var login ={
+var login = {
     /**
      * 执行登录
      */
-    login:function ()
+    login: function ()
     {
-        if(!login.checkInput())
+        if (!login.checkInput())
             return;
         var url = path + "/login_on_browser.action";
         var params = {
-            "userPhone" : $("#userPhone").val(),
-            "userPassword" : md5($("#userPassword").val()),
-            "myTeamId":$("#myTeamId").val()
+            "userPhone": $("#userPhone").val(),
+            "userPassword": md5($("#userPassword").val()),
+            "myTeamId": $("#myTeamId").val()
         };
 
-        myjs.ajax_post(url,params,function (data)
+        myjs.ajax_post(url, params, function (data)
         {
-            if(parseInt(data) != 1)
+            if (parseInt(data) != 1)
             {
                 alert(data);
                 return;
-            }else
-                window.location.href = path+"/pages/index/qm-index.jsp";
+            } else
+                window.location.href = path + "/pages/index/qm-index.jsp";
         });
     },
 
@@ -31,30 +31,21 @@ var login ={
      * 检查用户名和密码
      * @returns {boolean}
      */
-    checkInput:function ()
+    checkInput: function ()
     {
         var userName = $("#userPhone").val().trim();
         var password = $("#userPassword").val().trim();
         var myTeamId = $("#myTeamId").val().trim();
-        if(myjs.isNull(userName) || myjs.isNull(password) || myjs.isNull(myTeamId))
+        if (myjs.isNull(userName) || myjs.isNull(password) || myjs.isNull(myTeamId))
         {
             alert("请将信息填写完整");
             return false;
-        }else
+        } else
             return true;
     },
 
-    test:function ()
+    test: function ()
     {
-        var url = path + "/user_findGoodsType.action";
-        var params = {};
-
-        params["myTeamId"] = "10001";
-
-        myjs.ajax_post(url, params, function (data)
-        {
-            console.log(data);
-        });
     }
 
 };

@@ -67,9 +67,9 @@ public class GoodsManageDaoImpl implements GoodsManageDao
     }
 
     @Override
-    public List<GoodsInfoVO> findGoodsList(String myTeamId)
+    public List<GoodsInfoVO> findGoodsList(GoodsInfoVO condition)
     {
-        return mapper.findGoodsList(myTeamId);
+        return mapper.findGoodsList(condition);
     }
 
     @Override
@@ -100,5 +100,11 @@ public class GoodsManageDaoImpl implements GoodsManageDao
     public Integer updateGoods(GoodsInfoVO goodsInfo)
     {
         return mapper.updateGoods(goodsInfo);
+    }
+
+    @Override
+    public Integer deleteGoodsInfo(GoodsInfoVO condition)
+    {
+        return mapper.deleteGoodsInfo(condition);
     }
 }

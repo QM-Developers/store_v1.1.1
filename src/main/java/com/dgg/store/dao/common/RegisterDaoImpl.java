@@ -19,8 +19,8 @@ public class RegisterDaoImpl implements RegisterDao
     }
 
     @Override
-    public LoginRepVO findLoginRepVO(String userId)
+    public LoginRepVO findLoginRepVO(RegisterVO condition)
     {
-        return mapper.findLoginRepVO(userId);
+        return mapper.findLoginRepVO(condition);
     }
 }

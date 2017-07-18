@@ -28,7 +28,7 @@ public interface GoodsinfoMapper
 
     Integer insertStandardToGoods(GoodsStandard standard);
 
-    List<GoodsInfoVO> findGoodsList(@Param("myTeamId") String myTeamId);
+    List<GoodsInfoVO> findGoodsList(GoodsInfoVO condition);
 
     GoodsInfoVO findGoodsInfo(GoodsInfoVO infoVO);
 
@@ -39,4 +39,6 @@ public interface GoodsinfoMapper
     Integer deleteAllImg(@Param("goodsId") String goodsId);
 
     Integer updateGoods(GoodsInfoVO goodsInfo);
+
+    Integer deleteGoodsInfo(GoodsInfoVO condition);
 }

@@ -600,5 +600,18 @@ var gdReleaseJS = {
     {
         self.location.href = path + "/pages/mall/goods/qm-typeSelect.jsp?" + urlUtil.objToParams(urlParams);
     },
+
+    deleteGoods:function ()
+    {
+        var url = path + "/s/deleteGoods"+Constant.URL_SUFFIX;
+        var params = {};
+
+        params["goodsId"] = urlParams.goodsId;
+
+        myjs.ajax_post(url,params,function (data)
+        {
+            console.log(data);
+        });
+    },
 };
 

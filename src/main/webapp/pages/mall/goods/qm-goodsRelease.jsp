@@ -202,7 +202,7 @@
             </div>
             <div class="am-g  data-del-off ">
                 <div>
-                    <button class="del-but">删除</button>
+                    <button class="del-but" onclick="gdReleaseJS.deleteGoods();">删除</button>
                 </div>
                 <div>
                     <button class="del-but">取消</button>

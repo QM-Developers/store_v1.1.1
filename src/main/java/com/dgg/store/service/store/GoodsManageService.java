@@ -27,4 +27,8 @@ public interface GoodsManageService
     ResultVO findGoodsDescribe(SessionVO sessionVO, GoodsInfoVO infoVO);
 
     ResultVO updateGoods(SessionVO sessionVO, GoodsInfoVO goodsInfo);
+
+    ResultVO deleteGoods(SessionVO sessionVO, GoodsInfoVO goodsInfo);
+
+    ResultVO findGoodsListByKeyword(SessionVO sessionVO, GoodsInfoVO goodsInfo);
 }

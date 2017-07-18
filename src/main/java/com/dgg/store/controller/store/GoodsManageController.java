@@ -23,13 +23,13 @@ public class GoodsManageController
     @Autowired
     private GoodsManageService service;
 
-    @RequestMapping(value = "/s/findTypeAndParents",method = RequestMethod.POST)
+    @RequestMapping(value = "/s/findTypeAndParents", method = RequestMethod.POST)
     @ResponseBody
-    public ResultVO findTypeAndParents(HttpServletRequest request,GoodsTypeinfo typeinfo)
+    public ResultVO findTypeAndParents(HttpServletRequest request, GoodsTypeinfo typeinfo)
     {
         SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
 
-        return service.findTypeAndParents(sessionVO,typeinfo);
+        return service.findTypeAndParents(sessionVO, typeinfo);
     }
 
     @RequestMapping(value = "/s/findTypeAttr")
@@ -38,46 +38,55 @@ public class GoodsManageController
     {
         SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
 
-        return service.findTypeAttr(sessionVO,typeAttr);
+        return service.findTypeAttr(sessionVO, typeAttr);
     }
 
-    @RequestMapping(value = "/s/uploadToImgSpace",method = RequestMethod.POST)
+    @RequestMapping(value = "/s/uploadToImgSpace", method = RequestMethod.POST)
     @ResponseBody
     public ResultVO uploadToImgSpace(@RequestParam(value = "img", required = false) MultipartFile file, HttpServletRequest request)
     {
         SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
 
-        return service.insertImgToSpace(sessionVO,file,request.getSession().getServletContext().getRealPath("/"));
+        return service.insertImgToSpace(sessionVO, file, request.getSession().getServletContext().getRealPath("/"));
     }
 
-    @RequestMapping(value = "/s/goodsRelease",method = RequestMethod.POST)
+    @RequestMapping(value = "/s/goodsRelease", method = RequestMethod.POST)
     @ResponseBody
-    public ResultVO goodsRelease(HttpServletRequest request,GoodsInfoVO goodsinfo)
+    public ResultVO goodsRelease(HttpServletRequest request, GoodsInfoVO goodsinfo)
     {
         SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
 
-        return service.insertGoodsinfo(sessionVO,goodsinfo);
+        return service.insertGoodsinfo(sessionVO, goodsinfo);
     }
 
-    @RequestMapping(value = "/s/updateGoods",method = RequestMethod.POST)
+    @RequestMapping(value = "/s/updateGoods", method = RequestMethod.POST)
     @ResponseBody
-    public ResultVO updateGoods(HttpServletRequest request,GoodsInfoVO goodsInfo)
+    public ResultVO updateGoods(HttpServletRequest request, GoodsInfoVO goodsInfo)
     {
         SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
 
-        return service.updateGoods(sessionVO,goodsInfo);
+        return service.updateGoods(sessionVO, goodsInfo);
     }
 
-    @RequestMapping(value = "/s/saveGoodsDraft",method = RequestMethod.POST)
+    @RequestMapping(value = "/s/deleteGoods", method = RequestMethod.POST)
     @ResponseBody
-    public ResultVO saveGoodsDraft(HttpServletRequest request,GoodsInfoVO goodsinfo)
+    public ResultVO deleteGoods(HttpServletRequest request,GoodsInfoVO goodsInfo)
     {
         SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
 
-        return service.insertGoodsinfo(sessionVO,goodsinfo);
+        return service.deleteGoods(sessionVO,goodsInfo);
     }
 
-    @RequestMapping(value = "/s/findImages",method = RequestMethod.POST)
+    @RequestMapping(value = "/s/saveGoodsDraft", method = RequestMethod.POST)
+    @ResponseBody
+    public ResultVO saveGoodsDraft(HttpServletRequest request, GoodsInfoVO goodsinfo)
+    {
+        SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
+
+        return service.insertGoodsinfo(sessionVO, goodsinfo);
+    }
+
+    @RequestMapping(value = "/s/findImages", method = RequestMethod.POST)
     @ResponseBody
     public ResultVO findImages(HttpServletRequest request)
     {
@@ -86,7 +95,7 @@ public class GoodsManageController
         return service.findImages(sessionVO);
     }
 
-    @RequestMapping(value = "/s/findGoodsList",method = RequestMethod.POST)
+    @RequestMapping(value = "/s/findGoodsList", method = RequestMethod.POST)
     @ResponseBody
     public ResultVO findGoodsList(HttpServletRequest request)
     {
@@ -95,21 +104,30 @@ public class GoodsManageController
         return service.findGoodsList(sessionVO);
     }
 
-    @RequestMapping(value = "/s/findGoodsInfo",method = RequestMethod.POST)
+    @RequestMapping(value = "/s/findGoodsListByKeyword", method = RequestMethod.POST)
     @ResponseBody
-    public ResultVO findGoodsInfo(HttpServletRequest request,GoodsInfoVO infoVO)
+    public ResultVO findGoodsListByKeyword(HttpServletRequest request,GoodsInfoVO goodsInfo)
     {
         SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
 
-        return service.findGoodsInfo(sessionVO,infoVO);
+        return service.findGoodsListByKeyword(sessionVO,goodsInfo);
     }
 
-    @RequestMapping(value = "/s/findGoodsDescribe",method = RequestMethod.POST)
+    @RequestMapping(value = "/s/findGoodsInfo", method = RequestMethod.POST)
     @ResponseBody
-    public ResultVO findGoodsDescribe(HttpServletRequest request,GoodsInfoVO infoVO)
+    public ResultVO findGoodsInfo(HttpServletRequest request, GoodsInfoVO infoVO)
     {
         SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
 
-        return service.findGoodsDescribe(sessionVO,infoVO);
+        return service.findGoodsInfo(sessionVO, infoVO);
+    }
+
+    @RequestMapping(value = "/s/findGoodsDescribe", method = RequestMethod.POST)
+    @ResponseBody
+    public ResultVO findGoodsDescribe(HttpServletRequest request, GoodsInfoVO infoVO)
+    {
+        SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
+
+        return service.findGoodsDescribe(sessionVO, infoVO);
     }
 }

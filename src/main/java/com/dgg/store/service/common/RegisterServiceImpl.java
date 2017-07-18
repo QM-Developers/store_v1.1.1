@@ -1,7 +1,10 @@
 package com.dgg.store.service.common;
 
 import com.dgg.store.dao.common.RegisterDao;
+import com.dgg.store.netease.CloudMessageUtil;
 import com.dgg.store.util.core.constant.Constant;
+import com.dgg.store.util.core.constant.LoginConstant;
+import com.dgg.store.util.core.constant.RegisterConstant;
 import com.dgg.store.util.core.generator.IDGenerator;
 import com.dgg.store.util.core.upload.UploadFileUtil;
 import com.dgg.store.util.vo.core.LoginRepVO;
@@ -96,7 +99,9 @@ public class RegisterServiceImpl implements RegisterService
                     result = dao.updateUserData(registerVO);
                     break;
                 case 1:
-                    loginRepVO = dao.findLoginRepVO(registerVO.getUserId());
+                    RegisterVO condition = new RegisterVO();
+                    condition.setUserId(registerVO.getUserId());
+                    loginRepVO = dao.findLoginRepVO(condition);
                     result = loginRepVO == null ? 0 : 1;
                     break;
                 default:
@@ -114,6 +119,53 @@ public class RegisterServiceImpl implements RegisterService
         ResultVO resultVO = new ResultVO(result, sessionVO.getToken(), loginRepVO);
 
         return resultVO;
+    }
+
+    @Override
+    public ResultVO getRegisterVerify(RegisterVO registerVO)
+    {
+        LoginRepVO result = dao.findLoginRepVO(registerVO);
+        if (result == null)
+            return new ResultVO(RegisterConstant.NOT_RECORD);
+        if (Constant.USER_STATE_2.equals(result.getUserStatus()))
+            return new ResultVO(RegisterConstant.REGISTERED);
+
+        boolean flag = false;
+
+        try
+        {
+            flag = CloudMessageUtil.sendCode(registerVO.getUserPhone());
+        } catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+
+        return new ResultVO(flag == false ? Constant.REQUEST_FAILED : Constant.REQUEST_SUCCESS);
+    }
+
+    @Override
+    public ResultVO registerVerify(RegisterVO registerVO)
+    {
+        boolean flag = false;
+        LoginRepVO result = null;
+
+        try
+        {
+            flag = CloudMessageUtil.verifyCode(registerVO.getUserPhone(), registerVO.getVerify());
+        } catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+
+        if (flag)
+        {
+            RegisterVO condition = new RegisterVO();
+            condition.setMyTeamId(registerVO.getMyTeamId());
+            condition.setUserPhone(registerVO.getUserPhone());
+            result = dao.findLoginRepVO(condition);
+        }
+
+        return new ResultVO(result == null ? Constant.REQUEST_FAILED : Constant.REQUEST_SUCCESS, null, result);
     }
 
     private String saveImage(MultipartFile file, String realPath, String uuid)

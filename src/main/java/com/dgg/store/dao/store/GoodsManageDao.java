@@ -27,7 +27,7 @@ public interface GoodsManageDao
 
     Integer insertStandardToGoods(GoodsStandard standard);
 
-    List<GoodsInfoVO> findGoodsList(String myTeamId);
+    List<GoodsInfoVO> findGoodsList(GoodsInfoVO condition);
 
     GoodsInfoVO findGoodsInfo(GoodsInfoVO infoVO);
 
@@ -38,4 +38,6 @@ public interface GoodsManageDao
     Integer deleteAllImg(String goodsId);
 
     Integer updateGoods(GoodsInfoVO goodsInfo);
+
+    Integer deleteGoodsInfo(GoodsInfoVO condition);
 }

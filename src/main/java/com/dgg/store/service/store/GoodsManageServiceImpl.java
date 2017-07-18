@@ -6,6 +6,7 @@ import com.dgg.store.dao.store.GoodsManageDao;
 import com.dgg.store.util.core.constant.Constant;
 import com.dgg.store.util.core.constant.SymbolConstant;
 import com.dgg.store.util.core.generator.IDGenerator;
+import com.dgg.store.util.core.string.StringUtil;
 import com.dgg.store.util.core.upload.UploadFileUtil;
 import com.dgg.store.util.pojo.GoodsStandard;
 import com.dgg.store.util.pojo.GoodsTypeAttr;
@@ -141,7 +142,9 @@ public class GoodsManageServiceImpl implements GoodsManageService
     @Override
     public ResultVO findGoodsList(SessionVO sessionVO)
     {
-        List<GoodsInfoVO> result = dao.findGoodsList(sessionVO.getMyTeamId());
+        GoodsInfoVO condition = new GoodsInfoVO();
+        condition.setMyTeamId(sessionVO.getMyTeamId());
+        List<GoodsInfoVO> result = dao.findGoodsList(condition);
 
         ResultVO resultVO = new ResultVO(1, sessionVO.getToken(), result);
 
@@ -174,7 +177,7 @@ public class GoodsManageServiceImpl implements GoodsManageService
     {
         Integer result = 1;
         int i = 0;
-        int count = 2;
+        int count = 3;
 
         String[] images = goodsInfo.getGoodsImages().split(SymbolConstant.VERTICAL);
         GoodsImgVO imgVO = new GoodsImgVO(sessionVO.getUserId(), goodsInfo.getGoodsId());
@@ -189,7 +192,8 @@ public class GoodsManageServiceImpl implements GoodsManageService
                     JSONArray jsonArray = JSON.parseArray(goodsInfo.getStandards());
                     for (int j = 0; j < jsonArray.size(); j++)
                     {
-                        standard.setStandardId(jsonArray.getJSONObject(j).get("standardId").toString());
+                        String standardId = jsonArray.getJSONObject(j).get("standardId").toString();
+                        standard.setStandardId(StringUtil.isEmpty(standardId) ? IDGenerator.generator() : standardId);
                         standard.setStandardPrice(Float.parseFloat(jsonArray.getJSONObject(j).get("standardPrice").toString()));
                         standard.setStandardWeight(Float.parseFloat(jsonArray.getJSONObject(j).get("standardWeight").toString()));
                         standard.setStandardCount(Integer.parseInt(jsonArray.getJSONObject(j).get("standardCount").toString()));
@@ -227,6 +231,58 @@ public class GoodsManageServiceImpl implements GoodsManageService
             result = 1;
 
         ResultVO resultVO = new ResultVO(result, sessionVO.getToken());
+
+        return resultVO;
+    }
+
+    @Override
+    public ResultVO deleteGoods(SessionVO sessionVO, GoodsInfoVO goodsInfo)
+    {
+        Integer result = 1;
+        int i = 0;
+        int count = 3;
+
+        while (result > 0)
+        {
+            switch (i)
+            {
+                case 0:
+                    result = dao.deleteAllStandard(goodsInfo.getGoodsId());
+                    break;
+                case 1:
+                    result = dao.deleteAllImg(goodsInfo.getGoodsId());
+                    break;
+                case 2:
+                    GoodsInfoVO condition = new GoodsInfoVO();
+                    condition.setGoodsId(goodsInfo.getGoodsId());
+                    result = dao.deleteGoodsInfo(condition);
+                    break;
+                default:
+                    result = 0;
+                    break;
+            }
+            i++;
+        }
+
+        if (i - 1 < count)
+            throw new RuntimeException(Constant.STR_ADD_FAILED);
+        else
+            result = 1;
+
+        ResultVO resultVO = new ResultVO(result, sessionVO.getToken());
+
+        return resultVO;
+    }
+
+    @Override
+    public ResultVO findGoodsListByKeyword(SessionVO sessionVO, GoodsInfoVO goodsInfo)
+    {
+        GoodsInfoVO condition = new GoodsInfoVO();
+        condition.setMyTeamId(sessionVO.getMyTeamId());
+        condition.setGoodsName(goodsInfo.getGoodsName());
+        List<GoodsInfoVO> result = dao.findGoodsList(condition);
+
+        ResultVO resultVO = new ResultVO(1,sessionVO.getToken(),result);
 
         return resultVO;
     }

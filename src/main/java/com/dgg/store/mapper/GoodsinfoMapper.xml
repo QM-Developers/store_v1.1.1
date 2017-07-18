@@ -100,16 +100,25 @@
         (#{standardId},#{goodsId},#{standardName},#{standardPrice},#{standardWeight},#{standardCount})
     </insert>
 
-    <select id="findGoodsList" resultMap="GoodsInfoVO">
+    <select id="findGoodsList" resultMap="GoodsInfoVO" parameterType="com.dgg.store.util.vo.goods.GoodsInfoVO">
         SELECT gi.goods_id,gi.goods_name,gi.goods_create_date,
-            gt.goods_type_name,
-            gs.standard_name,gs.standard_price,gs.standard_count
+        gt.goods_type_name,
+        gs.standard_name,gs.standard_price,gs.standard_count
         FROM goodsinfo gi
         INNER JOIN goods_typeinfo gt
         ON gt.goods_type_id = gi.goods_type_id
         INNER JOIN goods_standard gs
         ON gs.goods_id = gi.goods_id
-        WHERE gi.my_team_id = #{myTeamId}
+        WHERE 1 = 1
+        <if test="myTeamId != null and myTeamId != ''">
+            AND gi.my_team_id = #{myTeamId}
+        </if>
+        <if test="goodsId != null and goodsId != ''">
+            AND gi.goods_id = #{goodsId}
+        </if>
+        <if test="goodsName != null and goodsName != ''">
+            AND gi.goods_name LIKE CONCAT('%',#{goodsName},'%')
+        </if>
     </select>
 
     <select id="findGoodsInfo" resultMap="GoodsInfoVO" parameterType="com.dgg.store.util.vo.goods.GoodsInfoVO">
@@ -150,10 +159,24 @@
     <update id="updateGoods" parameterType="com.dgg.store.util.vo.goods.GoodsInfoVO">
         UPDATE goodsinfo
         <set>
-            <if test="">
-
+            <if test="goodsName != null and goodsName != ''">
+                goods_name = #{goodsName},
+            </if>
+            <if test="goodsAttr != null and goodsAttr != ''">
+                goods_attr = #{goodsAttr},
+            </if>
+            <if test="goodsDescribe != null and goodsDescribe != ''">
+                goods_describe = #{goodsDescribe},
+            </if>
+            <if test="goodsTypeId != null and goodsTypeId != ''">
+                goods_type_id = #{goodsTypeId},
             </if>
         </set>
         WHERE goods_id = #{goodsId}
     </update>
+
+    <delete id="deleteGoodsInfo" parameterType="com.dgg.store.util.vo.goods.GoodsInfoVO">
+        DELETE FROM goodsinfo
+        WHERE goods_id = #{goodsId}
+    </delete>
 </mapper>

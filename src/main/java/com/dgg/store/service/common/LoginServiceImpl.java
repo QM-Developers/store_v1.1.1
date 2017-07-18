@@ -56,6 +56,7 @@ public class LoginServiceImpl implements LoginService
         if (!CryptographyUtil.md5(loginVO.getUserPassword(),Constant.SALT).equals(result.getUserPassword()))
             return new ResultVO(LoginConstant.NO_ACCESS);
 
+        result.setUserPhone(Constant.EMPTY);
         return new ResultVO(Constant.REQUEST_SUCCESS, TokenUtil.getToken(), result);
     }
 

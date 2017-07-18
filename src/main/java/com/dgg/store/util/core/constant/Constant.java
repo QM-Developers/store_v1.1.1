@@ -7,6 +7,8 @@ public class Constant
 {
     public static final int REQUEST_SUCCESS = 1;
 
+    public static final int REQUEST_FAILED = 2;
+
     public static final String EMPTY = "";
 
     public static final String delimiterStr = "_#_";

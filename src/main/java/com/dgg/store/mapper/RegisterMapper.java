@@ -7,5 +7,5 @@ public interface RegisterMapper
 {
     int updateUserData(RegisterVO condition);
 
-    LoginRepVO findLoginRepVO(String userId);
+    LoginRepVO findLoginRepVO(RegisterVO condition);
 }

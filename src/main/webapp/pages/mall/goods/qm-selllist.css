@@ -117,13 +117,10 @@
 	float: right;
 	background: #f7f7f7;
 }
-
-
 /*添加客户*/
-
 .change-popup {
-	width: 550px;
-	height: auto;
+	width: 440px;
+	
 }
 
 .change-bd {
@@ -150,6 +147,7 @@
 }
 
 .poptwo-c-li .pop-div1 {
+	width: 30%;
 	height: 100%;
 	text-align: right;
 	padding: 3px 10px 0 0;
@@ -157,6 +155,7 @@
 
 .poptwo-c-li .pop-div2 {
 	height: 100%;
+	width: 70%;
 	padding: 0;
 }
 
@@ -173,10 +172,50 @@
 	width: 100%;
 	height: 35px;
 }
+.site-map-li{
+		position: relative;
+}
  .site-map{
-	width: 100%;
+	width: 400px;
 	height: 200px;
-	position: relative;
+
+}
+.sitemapseo{
+	z-index: 200;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 400px;
+	height: 32px;
+}
+.sitemapseo span{
+ 	display: inline-block;
+	width: 100%;
+	height: 32px;
+	color: #fff;
+	line-height: 32px;
+	padding-left: 20px;
+	background: #000000;
+	filter:alpha(opacity=50); /*IE滤镜，透明度50%*/
+  -moz-opacity:0.5; /*Firefox私有，透明度50%*/
+   opacity:0.5;/*其他，透明度50%*/
+	
+}
+.sitemapseo input{
+	width: 250px;
+	height: 32px;
+	position: absolute;
+	top: 0;
+	right: 0;
+}
+.sitemapseo i{
+	display: block;
+	width: 30px;
+	height: 30px;
+    position: absolute;
+    top: 1px;
+    right: 1px;
+    background: url(../../../images/css.png) #efefef -176px -16px 
 }
 .poptwo-but {
 	width: 100px;
@@ -184,9 +223,8 @@
 	border: 1px solid #CCCCCC;
 	background: #FFFFFF;
     float: right;
-	margin-left: 30px;
+	    margin-right: 60px;
 }
-
 .am-popup{
 	position: fixed;
 	left: 50%;

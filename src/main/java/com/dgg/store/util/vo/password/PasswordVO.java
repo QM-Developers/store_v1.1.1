@@ -1,6 +1,6 @@
-package com.dgg.store.util.vo.register;
+package com.dgg.store.util.vo.password;
 
-public class RegisterVO
+public class PasswordVO
 {
     private String userId;
 
@@ -11,14 +11,6 @@ public class RegisterVO
     private String myTeamId;
 
     private String verify;
-
-    private String cardFront;
-
-    private String cardBack;
-
-    private String cardHand;
-
-    private String cardId;
 
     public String getUserId()
     {
@@ -68,45 +60,5 @@ public class RegisterVO
     public void setVerify(String verify)
     {
         this.verify = verify;
-    }
-
-    public String getCardFront()
-    {
-        return cardFront;
-    }
-
-    public void setCardFront(String cardFront)
-    {
-        this.cardFront = cardFront;
-    }
-
-    public String getCardBack()
-    {
-        return cardBack;
-    }
-
-    public void setCardBack(String cardBack)
-    {
-        this.cardBack = cardBack;
-    }
-
-    public String getCardHand()
-    {
-        return cardHand;
-    }
-
-    public void setCardHand(String cardHand)
-    {
-        this.cardHand = cardHand;
-    }
-
-    public String getCardId()
-    {
-        return cardId;
-    }
-
-    public void setCardId(String cardId)
-    {
-        this.cardId = cardId;
     }
 }

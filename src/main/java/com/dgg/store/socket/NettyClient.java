@@ -43,8 +43,6 @@ public class NettyClient
                             ch.pipeline().addLast(new StringDecoder(CharsetUtil.UTF_8));
                             ch.pipeline().addLast(new StringEncoder(CharsetUtil.UTF_8));
                             ch.pipeline().addLast(new NettyClientHandle());
-                            ch.pipeline().addLast(MarshallingCodeCFactory.buildMarshallingDecoder());
-                            ch.pipeline().addLast(MarshallingCodeCFactory.buildMarshallingEncoder());
                         }
                     });
             ChannelFuture f = b.connect(host, port).sync();

@@ -14,4 +14,8 @@ public interface RegisterService
     ResultVO insertCardFront(SessionVO sessionVO, MultipartFile file, String realPath);
 
     ResultVO updateRegisterUser(SessionVO sessionVO, RegisterVO registerVO);
+
+    ResultVO getRegisterVerify(RegisterVO registerVO);
+
+    ResultVO registerVerify(RegisterVO registerVO);
 }

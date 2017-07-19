@@ -3,9 +3,11 @@ package com.dgg.store.service.common;
 import com.dgg.store.dao.common.PasswordDao;
 import com.dgg.store.netease.CloudMessageUtil;
 import com.dgg.store.util.core.constant.Constant;
+import com.dgg.store.util.core.shiro.CryptographyUtil;
 import com.dgg.store.util.vo.core.LoginRepVO;
 import com.dgg.store.util.vo.core.PasswordConstant;
 import com.dgg.store.util.vo.core.ResultVO;
+import com.dgg.store.util.vo.core.SessionVO;
 import com.dgg.store.util.vo.password.PasswordVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -67,11 +69,12 @@ public class PasswordServiceImpl implements PasswordService
     }
 
     @Override
-    public ResultVO updatePassword(PasswordVO passwordVO)
+    public ResultVO updatePassword(SessionVO sessionVO, PasswordVO passwordVO)
     {
         PasswordVO condition = new PasswordVO();
+        condition.setMyTeamId(sessionVO.getMyTeamId());
         condition.setUserId(passwordVO.getUserId());
-        condition.setUserPassword(passwordVO.getUserPassword());
+        condition.setUserPassword(CryptographyUtil.md5(passwordVO.getUserPassword(),Constant.SALT));
 
         int result = dao.updatePassword(condition);
 

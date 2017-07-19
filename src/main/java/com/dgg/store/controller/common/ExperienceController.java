@@ -17,9 +17,9 @@ public class ExperienceController
     @Autowired
     private ExperienceService service;
 
-    @RequestMapping(value = "experienceRequest",method = RequestMethod.POST)
+    @RequestMapping(value = "registerExperience", method = RequestMethod.POST)
     @ResponseBody
-    public ResultVO experienceRequest(HttpServletRequest request, ExperienceVO experienceVO)
+    public ResultVO experienceRequest(ExperienceVO experienceVO)
     {
         return service.insertExperience(experienceVO);
     }

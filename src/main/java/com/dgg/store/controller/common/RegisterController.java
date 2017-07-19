@@ -48,7 +48,7 @@ public class RegisterController
         return service.insertCardHand(sessionVO, file, request.getSession().getServletContext().getRealPath("/"));
     }
 
-    @RequestMapping(value = "getRegisterVerify",method = RequestMethod.POST)
+    @RequestMapping(value = "registerGetVerify",method = RequestMethod.POST)
     @ResponseBody
     public ResultVO getRegisterVerify(RegisterVO registerVO)
     {

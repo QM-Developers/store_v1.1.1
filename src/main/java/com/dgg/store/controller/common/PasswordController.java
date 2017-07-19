@@ -1,7 +1,9 @@
 package com.dgg.store.controller.common;
 
 import com.dgg.store.service.common.PasswordService;
+import com.dgg.store.util.core.constant.Constant;
 import com.dgg.store.util.vo.core.ResultVO;
+import com.dgg.store.util.vo.core.SessionVO;
 import com.dgg.store.util.vo.password.PasswordVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,14 +19,14 @@ public class PasswordController
     @Autowired
     private PasswordService service;
 
-    @RequestMapping(value = "getPasswordVerify",method = RequestMethod.POST)
+    @RequestMapping(value = "retrieveGetPasswordVerify",method = RequestMethod.POST)
     @ResponseBody
     public ResultVO getPasswordVerify(PasswordVO passwordVO)
     {
         return service.getPasswordVerify(passwordVO);
     }
 
-    @RequestMapping(value = "passwordVerify",method = RequestMethod.POST)
+    @RequestMapping(value = "retrievePasswordVerify",method = RequestMethod.POST)
     @ResponseBody
     public ResultVO passwordVerify(PasswordVO passwordVO)
     {
@@ -33,8 +35,10 @@ public class PasswordController
 
     @RequestMapping(value = "updatePassword",method = RequestMethod.POST)
     @ResponseBody
-    public ResultVO updatePassword(PasswordVO passwordVO)
+    public ResultVO updatePassword(HttpServletRequest request,PasswordVO passwordVO)
     {
-        return service.updatePassword(passwordVO);
+        SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
+
+        return service.updatePassword(sessionVO,passwordVO);
     }
 }

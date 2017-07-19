@@ -603,157 +603,21 @@ create table qm_experience
    position varchar(20) not null default ''
 );
 
-/*客户分组关联*/
-alter table customer add constraint FK_customer_group_re foreign key (customer_group_id)
-      references customer_group (customer_group_id) on delete restrict on update restrict;
-      
-/*客户用户关联*/
-alter table customer add constraint FK_customers_re foreign key (user_id)
-      references user (user_id) on delete restrict on update restrict;
+drop table if exists qm_branch;
+create table qm_branch
+(
+	branch_id varchar(35) not null primary key,
+    branch_name varchar(20) not null default '',
+    department_id varchar(35) not null default '',
+    department_name varchar(20) not null default '',
+    user_id varchar(35) not null default '',
+    user_name varchar(20) not null default '',
+    user_phone varchar(20) not null default '',
+    branch_area varchar(50) not null default '',
+    lat_lng varchar(30) not null default ''
+);
 
-/*父类字典关联*/
-alter table dictionary add constraint FK_par_dic_child_dic_RE foreign key (par_dict_id)
-      references parent_dictionary (par_dict_id) on delete restrict on update restrict;
 
-/*用户好友关联*/
-alter table friend add constraint FK_friend_re1 foreign key (user_id)
-      references user (user_id) on delete restrict on update restrict;
-
-/*好友用户关联*/
-alter table friend add constraint FK_friend_re2 foreign key (friend_id)
-      references user (user_id) on delete restrict on update restrict;
-	  
-/*好友申请关联*/
-alter table friend_request add constraint FK_friend_req1 foreign key (user_id)
-      references user (user_id) on delete restrict on update restrict;
-	  
-/*申请好友关联*/
-alter table friend_request add constraint FK_friend_req2 foreign key (friend_id)
-      references user (user_id) on delete restrict on update restrict;
-
-/*商品图片关联*/
-alter table goods_image add constraint FK_goods_img_RE foreign key (goods_id)
-      references goodsinfo (goods_id) on delete restrict on update restrict;
-
-/*商品图片与图片空间关联*/
-alter table goods_image add constraint FK_goods_img_space_re foreign key (image_id)
-      references image_space (image_id) on delete restrict on update restrict;
-
-/*商品规格关联*/
-alter table goods_standard add constraint FK_goods_standard_re foreign key (goods_id)
-      references goodsinfo (goods_id) on delete restrict on update restrict;
-
-/*商品类目属性关联*/
-alter table goods_type_attr add constraint FK_type_detail_re foreign key (goods_type_id)
-      references goods_typeinfo (goods_type_id) on delete restrict on update restrict;
-
-/*商品运费模板关联*/
-alter table goodsinfo add constraint FK_goods_freight_re foreign key (template_freight_id)
-      references template_of_freight (template_freight_id) on delete restrict on update restrict;
-
-/*商品类目关联*/
-alter table goodsinfo add constraint FK_goods_type_RE foreign key (goods_type_id)
-      references goods_typeinfo (goods_type_id) on delete restrict on update restrict;
-
-/*商品团队关联*/
-alter table goodsinfo add constraint FK_team_goods_re foreign key (my_team_id)
-      references my_team (my_team_id) on delete restrict on update restrict;
-
-/*团队与图片空间关联*/
-alter table image_space add constraint FK_team_img_space foreign key (my_team_id)
-      references my_team (my_team_id) on delete restrict on update restrict;
-
-/*部门与团队关联*/
-alter table team_department add constraint FK_team_department_re foreign key (my_team_id)
-      references my_team (my_team_id) on delete restrict on update restrict;
-
-/*订单用户关联*/
-alter table my_order add constraint FK_user_order_RE foreign key (customer_id)
-      references customer (customer_id) on delete restrict on update restrict;
-
-/*订单列表关联*/
-alter table my_order_list add constraint FK_order_info_RE foreign key (order_id)
-      references my_order (order_id) on delete restrict on update restrict;
-
-/*用户与收货地址关联*/
-alter table shopping_address add constraint FK_address_user_RE foreign key (user_id)
-      references user (user_id) on delete restrict on update restrict;
-
-/*购物车与已选择的商品规格关联*/
-alter table shopping_cart add constraint FK_card_standard_re foreign key (standard_id)
-      references goods_standard (standard_id) on delete restrict on update restrict;
-
-/*购物车商品关联*/
-alter table shopping_cart add constraint FK_goods_card_re foreign key (goods_id)
-      references goodsinfo (goods_id) on delete restrict on update restrict;
-
-/*购物车用户关联*/
-alter table shopping_cart add constraint FK_customer_card_re2 foreign key (customer_id)
-      references customer (customer_id) on delete restrict on update restrict;
-
-/*运费模板与用户关联*/
-alter table template_of_freight add constraint FK_user_freight_re foreign key (user_id)
-      references user (user_id) on delete restrict on update restrict;
-
-/*用户角色关联*/
-alter table user add constraint FK_user_role_re foreign key (role_id)
-      references role (role_id) on delete restrict on update restrict;
-
-/*用户团队关联*/
-alter table user add constraint FK_user_team_re foreign key (my_team_id)
-      references my_team (my_team_id) on delete restrict on update restrict;
-
-/*用户团队关联*/
-alter table user add constraint FK_user_department_re foreign key (team_department_id)
-      references team_department (team_department_id) on delete restrict on update restrict;
-
-/*场地与养殖类型关联*/
-alter table user_breed_type add constraint FK_place_breed_RE foreign key (user_place_id)
-      references user_place (user_place_id) on delete restrict on update restrict;
-
-/*用户设备关联*/
-alter table user_devices add constraint FK_user_device_re foreign key (user_id)
-      references user (user_id) on delete restrict on update restrict;
-
-/*用户商品收藏关联*/
-alter table goods_enshrine add constraint FK_user_goods_RE foreign key (goods_id)
-      references goodsinfo (goods_id) on delete restrict on update restrict;
-
-/*用户商品收藏关联*/
-alter table goods_enshrine add constraint FK_user_goods_RE2 foreign key (user_id)
-      references user (user_id) on delete restrict on update restrict;
-
-/*角色菜单关联*/
-alter table user_menu_re add constraint FK_user_menu_re foreign key (role_id)
-      references role (role_id) on delete restrict on update restrict;
-
-/*用户菜单关联*/
-alter table user_menu_re add constraint FK_user_menu_re2 foreign key (menu_id)
-      references menu (menu_id) on delete restrict on update restrict;
-
-/*用户权限关联*/
-alter table role_permission_RE add constraint FK_role_permission_RE foreign key (permission_id)
-      references permission (permission_id) on delete restrict on update restrict;
-
-/*角色权限关联*/
-alter table role_permission_RE add constraint FK_role_permission_RE2 foreign key (role_id)
-      references role (role_id) on delete restrict on update restrict;
-
-/*用户场地关联*/
-alter table user_place add constraint FK_user_place_re foreign key (customer_id)
-      references customer (customer_id) on delete restrict on update restrict;
-
-/*场地硬件关联*/
-alter table user_place_hardware add constraint FK_place_hardware_RE foreign key (user_place_id)
-      references user_place (user_place_id) on delete restrict on update restrict;
-      
-/*模板与地区运费关联*/
-alter table area_freight add constraint FK_area_price_RE foreign key (template_freight_id)
-      references template_of_freight (template_freight_id) on delete restrict on update restrict;
-      
-/*地区运费与地区关联*/
-alter table area_id add constraint FK_price_area_RE foreign key (area_freight_id)
-      references area_freight (area_freight_id) on delete restrict on update restrict;
       
 /*修改团队自增Id初值*/
 /*alter table my_team AUTO_INCREMENT=1679617;*/

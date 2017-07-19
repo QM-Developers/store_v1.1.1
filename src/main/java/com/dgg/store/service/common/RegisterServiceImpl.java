@@ -6,6 +6,7 @@ import com.dgg.store.util.core.constant.Constant;
 import com.dgg.store.util.core.constant.LoginConstant;
 import com.dgg.store.util.core.constant.RegisterConstant;
 import com.dgg.store.util.core.generator.IDGenerator;
+import com.dgg.store.util.core.shiro.CryptographyUtil;
 import com.dgg.store.util.core.upload.UploadFileUtil;
 import com.dgg.store.util.vo.core.LoginRepVO;
 import com.dgg.store.util.vo.core.ResultVO;
@@ -96,6 +97,7 @@ public class RegisterServiceImpl implements RegisterService
             switch (i)
             {
                 case 0:
+                    registerVO.setUserPassword(CryptographyUtil.md5(registerVO.getUserPassword(), Constant.SALT));
                     result = dao.updateUserData(registerVO);
                     break;
                 case 1:
@@ -116,7 +118,7 @@ public class RegisterServiceImpl implements RegisterService
         else
             result = 1;
 
-        ResultVO resultVO = new ResultVO(result, sessionVO.getToken(), loginRepVO);
+        ResultVO resultVO = new ResultVO(result, Constant.EMPTY, loginRepVO);
 
         return resultVO;
     }

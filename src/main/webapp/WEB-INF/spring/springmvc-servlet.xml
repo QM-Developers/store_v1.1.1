@@ -6,7 +6,7 @@
 
 
     <!-- 使用<mvc:annotation-driven />替换上边定义的处理器映射器和适配器 -->
-    <mvc:annotation-driven />
+    <mvc:annotation-driven/>
 
     <!-- 视图解析器 -->
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -18,6 +18,8 @@
     <mvc:interceptors>
         <mvc:interceptor>
             <mvc:mapping path="/**"/>
+            <mvc:exclude-mapping path="/register*"/>
+            <mvc:exclude-mapping path="/retrieve*"/>
             <mvc:exclude-mapping path="/login*"/>
             <mvc:exclude-mapping path="/user_register.action"/>
             <mvc:exclude-mapping path="/user_findGoodsDescribe.action"/>
@@ -48,7 +50,8 @@
     <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"/>
 
 
-    <bean id="jsonHttpMessageConverter" class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+    <bean id="jsonHttpMessageConverter"
+          class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
         <property name="supportedMediaTypes">
             <list>
                 <value>application/json;charset=UTF-8</value>

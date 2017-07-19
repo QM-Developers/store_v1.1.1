@@ -1,233 +1,242 @@
 .goodslist-header {
-	width: 100%;
-	height: 42px;
-	background: #F2F2F2;
-	margin-top: 10px;
+    width: 100%;
+    height: 42px;
+    background: #F2F2F2;
+    margin-top: 10px;
 }
 
 .goodslist-but {
-	display: inline-block;
-	width: 160px;
-	font-size: 18px;
-	color: #000000;
-	border: none;
-	outline: 0;
+    display: inline-block;
+    width: 160px;
+    font-size: 18px;
+    color: #000000;
+    border: none;
+    outline: 0;
     background: #f2f2f2;
-	text-align: center;
-	line-height: 42px;
-	cursor: pointer;
+    text-align: center;
+    line-height: 42px;
+    cursor: pointer;
 }
 
 .goodslist-list-titlebox {
-	width: 100%;
-	height: 42px;
-	background: #FFFFFF;
+    width: 100%;
+    height: 42px;
+    background: #FFFFFF;
 }
 
 .goodslist-list-title {
-	width: 50%;
-	float: left;
-	height: 100%;
+    width: 50%;
+    float: left;
+    height: 100%;
 }
 
 .goodslist-title-text {
-	display: inline-block;
-	width: 120px;
-	font-size: 18px;
-	font-weight: 600;
-	color: #000000;
-	margin-left: 25px;
-	line-height: 42px;
+    display: inline-block;
+    width: 120px;
+    font-size: 18px;
+    font-weight: 600;
+    color: #000000;
+    margin-left: 25px;
+    line-height: 42px;
 }
 
 .header-title {
-	width: 100px;
-	margin-left: 20px;
-	text-align: center;
-	line-height: 42px;
-	cursor: pointer;
+    width: 100px;
+    margin-left: 20px;
+    text-align: center;
+    line-height: 42px;
+    cursor: pointer;
 }
-
 
 /*列表*/
 
 .goodslist-list-tr {
-	overflow: hidden;
-	height: 40px;
-	line-height: 40px;
-	display: flex;
-	border-bottom: 1px solid #CCCCCC;
-	padding: 0 25px;
+    overflow: hidden;
+    height: 40px;
+    line-height: 40px;
+    display: flex;
+    border-bottom: 1px solid #CCCCCC;
+    padding: 0 25px;
 }
 
 .goodslist-list-tr:nth-child(1) {
-	height: 40px;
-	line-height: 40px;
-	background: #e6e6e6;
-	border-bottom: 1px solid #CCCCCC;
+    height: 40px;
+    line-height: 40px;
+    background: #e6e6e6;
+    border-bottom: 1px solid #CCCCCC;
 }
 
 .goodslist-list-tr div {
-	width: 25%;
-	float: left;
+    width: 25%;
+    float: left;
 }
 
 .item4 a {
-	margin-right: 15px;
+    margin-right: 15px;
 }
 
 .item4 a:last-child {
-	color: red;
+    color: red;
 }
 
 .paging {
-	padding: 0 41px;
-	width: 100%;
-	height: 35px;
-	margin-top: 10px;
+    padding: 0 41px;
+    width: 100%;
+    height: 35px;
+    margin-top: 10px;
 }
 
 .paging div {
-	border: 1px solid #ccc;
-	width: 90px;
-	height: 100%;
-	line-height: 33px;
-	float: right;
-	text-align: center;
-	background: #f7f7f7;
+    border: 1px solid #ccc;
+    width: 90px;
+    height: 100%;
+    line-height: 33px;
+    float: right;
+    text-align: center;
+    background: #f7f7f7;
 }
 
 .paging .pagingmodle {
-	border: 0;
-	background: #FFFFFF;
+    border: 0;
+    background: #FFFFFF;
 }
 
 .paging .paging-num-box {
-	width: 230px;
-	border: 0;
-	line-height: 32px;
-	background: #FFFFFF;
+    width: 230px;
+    border: 0;
+    line-height: 32px;
+    background: #FFFFFF;
 }
 
 .paging-num {
-	display: inline-block;
-	width: 31px;
-	margin-right: 8px;
-	border: 1px solid #CCCCCC;
-	float: right;
-	background: #f7f7f7;
+    display: inline-block;
+    width: 31px;
+    margin-right: 8px;
+    border: 1px solid #CCCCCC;
+    float: right;
+    background: #f7f7f7;
 }
+
 /*添加客户*/
 .change-popup {
-	width: 440px;
-	
+    width: 440px;
+
 }
 
 .change-bd {
-	padding: 0 25px;
-	background: #FFFFFF;
+    padding: 0 25px;
+    background: #FFFFFF;
 }
 
 .am-popup .popthree {
-	display: block;
-	background: #fff;
-	box-sizing: border-box;
-	letter-spacing: 2px
+    display: block;
+    background: #fff;
+    box-sizing: border-box;
+    letter-spacing: 2px
 }
 
 .poptwo-c-ul {
-	margin: 0;
-	padding: 0;
+    margin: 0;
+    padding: 0;
 }
 
 .poptwo-c-li {
-	box-sizing: border-box;
-	height: 55px;
-	padding-top: 10px;
+    box-sizing: border-box;
+    height: 55px;
+    padding-top: 10px;
 }
 
 .poptwo-c-li .pop-div1 {
-	width: 30%;
-	height: 100%;
-	text-align: right;
-	padding: 3px 10px 0 0;
+    width: 30%;
+    height: 100%;
+    text-align: right;
+    padding: 3px 10px 0 0;
 }
 
 .poptwo-c-li .pop-div2 {
-	height: 100%;
-	width: 70%;
-	padding: 0;
+    height: 100%;
+    width: 70%;
+    padding: 0;
 }
 
 .poptwo-c-li input {
-	height: 35px;
-	width: 100%;
-	border: 1px solid #CCCCCC;
-	border-radius: 5px;
+    height: 35px;
+    width: 100%;
+    border: 1px solid #CCCCCC;
+    border-radius: 5px;
+    background: #FFFFFF;
 }
 
 .poptwo-c-li select {
-	border: 1px solid #CCCCCC;
-	border-radius: 5px;
-	width: 100%;
-	height: 35px;
+    border: 1px solid #CCCCCC;
+    border-radius: 5px;
+    width: 100%;
+    height: 35px;
 }
-.site-map-li{
-		position: relative;
+
+.site-map-li {
+    position: relative;
 }
- .site-map{
-	width: 400px;
-	height: 200px;
+
+.site-map {
+    width: 400px;
+    height: 200px;
 
 }
-.sitemapseo{
-	z-index: 200;
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 400px;
-	height: 32px;
+
+.sitemapseo {
+    z-index: 200;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 400px;
+    height: 32px;
 }
-.sitemapseo span{
- 	display: inline-block;
-	width: 100%;
-	height: 32px;
-	color: #fff;
-	line-height: 32px;
-	padding-left: 20px;
-	background: #000000;
-	filter:alpha(opacity=50); /*IE滤镜，透明度50%*/
-  -moz-opacity:0.5; /*Firefox私有，透明度50%*/
-   opacity:0.5;/*其他，透明度50%*/
-	
+
+.sitemapseo span {
+    display: inline-block;
+    width: 100%;
+    height: 32px;
+    color: #fff;
+    line-height: 32px;
+    padding-left: 20px;
+    background: #000000;
+    filter: alpha(opacity=50); /*IE滤镜，透明度50%*/
+    -moz-opacity: 0.5; /*Firefox私有，透明度50%*/
+    opacity: 0.5; /*其他，透明度50%*/
+
 }
-.sitemapseo input{
-	width: 250px;
-	height: 32px;
-	position: absolute;
-	top: 0;
-	right: 0;
+
+.sitemapseo input {
+    width: 250px;
+    height: 32px;
+    position: absolute;
+    top: 0;
+    right: 0;
 }
-.sitemapseo i{
-	display: block;
-	width: 30px;
-	height: 30px;
+
+.sitemapseo i {
+    display: block;
+    width: 30px;
+    height: 30px;
     position: absolute;
     top: 1px;
     right: 1px;
-    background: url(../../../images/css.png) #efefef -176px -16px 
+    background: url(../../images/css.png) #efefef -176px -16px
 }
+
 .poptwo-but {
-	width: 100px;
-	height: 40px;
-	border: 1px solid #CCCCCC;
-	background: #FFFFFF;
+    width: 100px;
+    height: 40px;
+    border: 1px solid #CCCCCC;
+    background: #FFFFFF;
     float: right;
-	    margin-right: 60px;
+    margin-right: 60px;
 }
-.am-popup{
-	position: fixed;
-	left: 50%;
-	top: 50%;
-	margin: -230px 0 0 -225px;
+
+.am-popup {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    margin: -230px 0 0 -225px;
 }

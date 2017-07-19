@@ -172,7 +172,7 @@
         <div id="picclik" class="picclik-box">点击可收缩</div>
     </div>
     <div class="main_right" id="mainright">
-        <iframe src="" id="iframepage" name="iframepage" frameBorder=0 scrolling="0" width="100%" height="99.99%"></iframe>
+        <iframe src="${path}/pages/map.jsp" id="iframepage" name="iframepage" frameBorder=0 scrolling="0" width="100%" height="99.99%"></iframe>
     </div>
 
 </div>

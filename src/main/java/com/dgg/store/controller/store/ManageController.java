@@ -69,8 +69,6 @@ public class ManageController
         return service.insertDepartment(sessionVO, department);
     }
 
-
-
     @RequestMapping(value = "/s/addMember", method = RequestMethod.POST)
     @ResponseBody
     public ResultVO addMember(HttpServletRequest request, MemberVO member)

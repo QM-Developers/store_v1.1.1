@@ -8,73 +8,15 @@
 
 <html>
 <head>
+    <link rel="stylesheet" href="${path}/pages/common/drag-map.css"/>
+
     <script type="text/javascript">
         var path = "${path}";
         var basePath = "${basePath}";
     </script>
-    <!-- 原始地址：//webapi.amap.com/ui/1.0/ui/misc/PositionPicker/examples/positionPicker.html -->
-    <base href="//webapi.amap.com/ui/1.0/ui/misc/PositionPicker/examples/"/>
     <meta charset="utf-8">
-    <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
+    <%--<meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">--%>
     <title>拖拽选址</title>
-    <style>
-        html,
-        body {
-            height: 100%;
-            margin: 0;
-            width: 100%;
-            padding: 0;
-            overflow: hidden;
-            font-size: 13px;
-        }
-
-        .map {
-            height: 100%;
-            width: 60%;
-            float: left;
-        }
-
-        #right {
-            color: #444;
-            background-color: #f8f8f8;
-            width: 40%;
-            float: left;
-            height: 100%;
-        }
-
-        #start,
-        #stop,
-        #right input {
-            margin: 4px;
-            margin-left: 15px;
-        }
-
-        .title {
-            width: 100%;
-            background-color: #dadada
-        }
-
-        button {
-            border: solid 1px;
-            margin-left: 15px;
-            background-color: #dadafa;
-        }
-
-        .c {
-            font-weight: 600;
-            padding-left: 15px;
-            padding-top: 4px;
-        }
-
-        #lnglat,
-        #address,
-        #nearestJunction,
-        #nearestRoad,
-        #nearestPOI,
-        .title {
-            padding-left: 15px;
-        }
-    </style>
 </head>
 
 <body>
@@ -115,6 +57,7 @@
     var success = function (rep)
     {
         console.log(rep);
+//        console.log(rep.regeocode.formattedAddress);
     };
     var fail = function (rep)
     {

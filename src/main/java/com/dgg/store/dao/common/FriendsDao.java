@@ -30,4 +30,8 @@ public interface FriendsDao
     Integer findFriendExists(FriendRequest request);
 
     List<FriendVO> findUserByPhone(String friendPhone);
+
+    int countNoReceivedRequest(FriendRequest condition);
+
+    Integer deleteFriend(FriendVO condition);
 }

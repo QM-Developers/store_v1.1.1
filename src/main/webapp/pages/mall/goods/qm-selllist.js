@@ -49,7 +49,9 @@ var qm_selllist = {
     {
         var success = function (rep)
         {
-            console.log(rep.regeocode.formattedAddress);
+            var location = rep.regeocode.pois[0].location;
+            $("#branch-lat-lng").val(location.lat + "," + location.lng);
+            $("#branch-area").val(rep.regeocode.pois[0].name);
         };
 
         var fail = function (rep)
@@ -57,5 +59,25 @@ var qm_selllist = {
             console.log(rep);
         };
         dragMap.init("map", "tip", success, fail);
+    },
+
+    addBranch: function ()
+    {
+        var url = path + "/s/addBranch" + Constant.URL_SUFFIX;
+        var params = {};
+
+        params["branchName"] = $("#branch-name").val();
+        params["branchArea"] = $("#branch-area").val();
+        params["departmentId"] = $("#department-list").val();
+        params["departmentName"] = $("#department-list option:selected").text();
+        params["managerId"] = $("#member-list option:selected").attr("id");
+        params["managerName"] = $("#member-list option:selected").text();
+        params["managerPhone"] = $("#member-phone").val();
+        params["latLng"] = $("#branch-lat-lng").val();
+
+        myjs.ajax_post(url,params,function (data)
+        {
+            console.log(data);
+        });
     },
 };

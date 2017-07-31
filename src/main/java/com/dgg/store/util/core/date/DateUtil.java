@@ -1,7 +1,5 @@
 package com.dgg.store.util.core.date;
 
-import org.junit.Test;
-
 public class DateUtil
 {
     private static final int hour = 24;

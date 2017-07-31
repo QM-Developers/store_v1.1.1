@@ -1,17 +1,12 @@
 package com.dgg.store.service.common;
 
-import com.alibaba.fastjson.JSONObject;
 import com.dgg.store.dao.common.FriendsDao;
-import com.dgg.store.socket.NettyClient;
-import com.dgg.store.socket.NettyClientFactory;
 import com.dgg.store.util.core.constant.Constant;
 import com.dgg.store.util.core.generator.IDGenerator;
-import com.dgg.store.util.core.netty.NettyUtil;
-import com.dgg.store.util.pojo.ChatHistory;
 import com.dgg.store.util.pojo.FriendRequest;
-import com.dgg.store.util.vo.friend.FriendVO;
 import com.dgg.store.util.vo.core.ResultVO;
 import com.dgg.store.util.vo.core.SessionVO;
+import com.dgg.store.util.vo.friend.FriendVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -36,12 +31,11 @@ public class FriendsServiceImpl implements FriendsService
     @Override
     public ResultVO insertFriendRequest(SessionVO sessionVO, FriendRequest request)
     {
-        request.setRequestId(IDGenerator.generator());
         request.setUserId(sessionVO.getUserId());
         request.setRequestState(FriendRequest.REQUEST);
         Integer result = dao.findFriendExists(request);
         ResultVO resultVO = new ResultVO(result, sessionVO.getToken(), result);
-        if(result > 0)
+        if (result > 0)
         {
             resultVO.setState(2);
             return resultVO;
@@ -50,17 +44,18 @@ public class FriendsServiceImpl implements FriendsService
         result = dao.insertFriendRequest(request);
         resultVO.setState(result);
 
-        sendRequest(sessionVO,request);
-
         return resultVO;
     }
 
     @Override
-    public ResultVO findFriendRequest(SessionVO sessionVO)
+    public ResultVO updateFriendRequest(SessionVO sessionVO)
     {
         FriendRequest condition = new FriendRequest();
         condition.setUserId(sessionVO.getUserId());
         List<FriendRequest> result = dao.findFriendRequest(condition);
+
+        condition.setIsReceived(FriendRequest.isReadState);
+        dao.updateFriendRequest(condition);
 
         ResultVO resultVO = new ResultVO(1, sessionVO.getToken(), result);
 
@@ -68,11 +63,14 @@ public class FriendsServiceImpl implements FriendsService
     }
 
     @Override
-    public ResultVO findFriendRequestById(SessionVO sessionVO, FriendRequest request)
+    public ResultVO updateFriendRequestById(SessionVO sessionVO, FriendRequest request)
     {
         FriendRequest condition = new FriendRequest();
-        condition.setFriendId(request.getFriendId());
+        condition.setRequestId(request.getRequestId());
         List<FriendRequest> result = dao.findFriendRequest(condition);
+
+        condition.setIsReceived(FriendRequest.isReadState);
+        dao.updateFriendRequest(condition);
 
         ResultVO resultVO = new ResultVO(1, sessionVO.getToken(), result.size() > 0 ? result.get(0) : result);
 
@@ -85,6 +83,88 @@ public class FriendsServiceImpl implements FriendsService
         List<FriendVO> result = dao.findUserByPhone(friendsVO.getFriendPhone());
 
         ResultVO resultVO = new ResultVO(result.size() < 1 ? 2 : 1, sessionVO.getToken(), result);
+
+        return resultVO;
+    }
+
+    @Override
+    public ResultVO updateNotReceivedRequest(SessionVO sessionVO)
+    {
+        FriendRequest condition = new FriendRequest();
+        condition.setUserId(sessionVO.getUserId());
+        condition.setIsReceived(FriendRequest.isNotReadState);
+        List<FriendRequest> result = dao.findFriendRequest(condition);
+
+        condition.setIsReceived(FriendRequest.isReadState);
+        dao.updateFriendRequest(condition);
+
+        ResultVO resultVO = new ResultVO(1, sessionVO.getToken(), result);
+
+        return resultVO;
+    }
+
+    @Override
+    public ResultVO updateReceivedRequest(SessionVO sessionVO, FriendRequest request)
+    {
+        FriendRequest condition = new FriendRequest();
+        condition.setRequestId(request.getRequestId());
+        condition.setIsReceived(FriendRequest.isReadState);
+
+        int result = dao.updateFriendRequest(condition);
+
+        ResultVO resultVO = new ResultVO(1,sessionVO.getToken(),result);
+
+        return resultVO;
+    }
+
+    @Override
+    public ResultVO countNoReceivedRequest(SessionVO sessionVO, FriendRequest friendRequest)
+    {
+        FriendRequest condition = new FriendRequest();
+        condition.setIsReceived(FriendRequest.isNotReadState);
+        condition.setFriendId(sessionVO.getUserId());
+        int result = dao.countNoReceivedRequest(condition);
+
+        ResultVO resultVO = new ResultVO(1,sessionVO.getToken(),result);
+
+        return resultVO;
+    }
+
+    @Override
+    public ResultVO deleteFriend(SessionVO sessionVO, FriendVO friendVO)
+    {
+        FriendVO condition = new FriendVO();
+        Integer result = 1;
+        int i = 0;
+        int count = 2;
+
+        while (result > 0)
+        {
+            switch (i)
+            {
+                case 0:
+                    condition.setUserId(sessionVO.getUserId());
+                    condition.setFriendId(friendVO.getFriendId());
+                    result = dao.deleteFriend(condition);
+                    break;
+                case 1:
+                    condition.setUserId(friendVO.getFriendId());
+                    condition.setFriendId(sessionVO.getUserId());
+                    result = dao.deleteFriend(condition);
+                    break;
+                default:
+                    result = 0;
+                    break;
+            }
+            i++;
+        }
+
+        if (i - 1 < count)
+            throw new RuntimeException(Constant.STR_ADD_FAILED);
+        else
+            result = 1;
+
+        ResultVO resultVO = new ResultVO(result, sessionVO.getToken(),result);
 
         return resultVO;
     }
@@ -118,7 +198,6 @@ public class FriendsServiceImpl implements FriendsService
     public ResultVO insertAgreeRequest(SessionVO sessionVO, FriendRequest request)
     {
         FriendVO friendVO = new FriendVO();
-        friendVO.setFriendOrigin(request.getFriendOrigin());
         Integer result = 1;
         int i = 0;
         int count = 4;
@@ -164,25 +243,27 @@ public class FriendsServiceImpl implements FriendsService
         else
             result = 1;
 
-        sendRequest(sessionVO,request);
+//        sendRequest(sessionVO, request);
 
-        ResultVO resultVO = new ResultVO(result, sessionVO.getToken());
+        ResultVO resultVO = new ResultVO(result, sessionVO.getToken(),request.getRequestId());
 
         return resultVO;
     }
 
-    private void sendRequest(SessionVO sessionVO, FriendRequest request)
-    {
-        ChatHistory history = new ChatHistory();
-        history.setMyTeamId(sessionVO.getMyTeamId());
-        history.setUserId(sessionVO.getUserId());
-        history.setSendUserId(sessionVO.getUserId());
-        history.setReceiveUserId(request.getFriendId());
-        history.setSendData(request.getRequestId());
-        history.setDataType(ChatHistory.REQUEST);
-
-        NettyUtil.writeAndFlushString(NettyClient.context, JSONObject.toJSONString(history) + Constant.delimiterStr);
-    }
+//    private void sendRequest(SessionVO sessionVO, FriendRequest request)
+//    {
+//        ChatHistory history = new ChatHistory();
+//        history.setMyTeamId(sessionVO.getMyTeamId());
+//        history.setUserId(sessionVO.getUserId());
+//        history.setSendUserId(sessionVO.getUserId());
+//        history.setReceiveUserId(request.getFriendId());
+//        history.setSendData(request.getRequestId());
+//        history.setDataType(ChatHistory.REQUEST);
+//        MainMessageProto.ProtoMessage.Builder message = MainMessageProto.ProtoMessage.newBuilder();
+//        message.setDataType(0);
+//
+//        NettyUtil.writeAndFlushString(NettyClient.context, JSONObject.toJSONString(history) + Constant.delimiterStr);
+//    }
 
     @Override
     public ResultVO insertNegativeRequest(SessionVO sessionVO, FriendRequest request)
@@ -220,7 +301,7 @@ public class FriendsServiceImpl implements FriendsService
         else
             result = 1;
 
-        sendRequest(sessionVO,request);
+//        sendRequest(sessionVO, request);
 
         ResultVO resultVO = new ResultVO(result, sessionVO.getToken());
 

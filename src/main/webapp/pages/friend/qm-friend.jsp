@@ -249,6 +249,7 @@
 <script type="text/javascript" src="${path}/script/js/date.js"></script>
 <script type="text/javascript" src="${path}/script/js/jquery.charfirst.pinyin.js"></script>
 <script type="text/javascript" src="${path}/script/js/ulmover.js"></script>
+<script type="text/javascript" src="${path}/pages/common/Constant.js"></script>
 <script type="text/javascript" src="${path}/pages/friend/qm-friend.js"></script>
 
 <script type="text/javascript">

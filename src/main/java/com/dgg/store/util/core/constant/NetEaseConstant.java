@@ -6,7 +6,7 @@ public class NetEaseConstant
 
     public static final String URL_VERIFY = "https://api.netease.im/sms/verifycode.action"; // 校验验证码的URL
 
-    public static final String APP_KEY = "a635161fbd593a4223971bb625b3f2aa";    // 账号
+    public static final String APP_KEY = "e54ba1d19fb4db046466dd4dfb2e8053";    // 账号
 
-    public static final String APP_SECRET = "19681033eb3a"; // 密钥
+    public static final String APP_SECRET = "673628624e3d"; // 密钥
 }

@@ -1,6 +1,7 @@
 package com.dgg.store.dao.common;
 
 import com.dgg.store.util.pojo.ChatHistory;
+import com.dgg.store.util.vo.friend.FriendVO;
 
 import java.util.List;
 
@@ -13,4 +14,8 @@ public interface ChatDao
     List<ChatHistory> findChatHistory(ChatHistory condition);
 
     int updateChatHistory(ChatHistory condition);
+
+    FriendVO findUserChatInfoById(String friendUserId);
+
+    int countNoReceivedMessage(ChatHistory condition);
 }

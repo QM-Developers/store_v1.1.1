@@ -26,16 +26,25 @@ public class FriendsController
     {
         SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
 
-        return service.findFriendRequest(sessionVO);
+        return service.updateFriendRequest(sessionVO);
     }
 
-    @RequestMapping(value = "user_findFriendRequestById",method = RequestMethod.POST)
+    @RequestMapping(value = "user_findNotReceivedRequest", method = RequestMethod.POST)
     @ResponseBody
-    public ResultVO findFriendRequestById(HttpServletRequest request,FriendRequest friendRequest)
+    public ResultVO findNotReceivedRequest(HttpServletRequest request)
     {
         SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
 
-        return service.findFriendRequestById(sessionVO,friendRequest);
+        return service.updateNotReceivedRequest(sessionVO);
+    }
+
+    @RequestMapping(value = "user_findFriendRequestById", method = RequestMethod.POST)
+    @ResponseBody
+    public ResultVO findFriendRequestById(HttpServletRequest request, FriendRequest friendRequest)
+    {
+        SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
+
+        return service.updateFriendRequestById(sessionVO, friendRequest);
     }
 
     @RequestMapping(value = "user_addFriendRequest", method = RequestMethod.POST)
@@ -65,7 +74,7 @@ public class FriendsController
         return service.findUserByPhoneOrName(sessionVO, friendsVO);
     }
 
-    @RequestMapping(value = "user_findFriendRequestCount",method = RequestMethod.POST)
+    @RequestMapping(value = "user_findFriendRequestCount", method = RequestMethod.POST)
     @ResponseBody
     public ResultVO findFriendRequestCount(HttpServletRequest request)
     {
@@ -74,7 +83,7 @@ public class FriendsController
         return service.findFriendRequestCount(sessionVO);
     }
 
-    @RequestMapping(value = "user_updateRequestIsRead",method = RequestMethod.POST)
+    @RequestMapping(value = "user_updateRequestIsRead", method = RequestMethod.POST)
     @ResponseBody
     public ResultVO updateRequestIsRead(HttpServletRequest request)
     {
@@ -83,25 +92,34 @@ public class FriendsController
         return service.updateRequestIsRead(sessionVO);
     }
 
-    @RequestMapping(value = "user_agreeFriendRequest",method = RequestMethod.POST)
+    @RequestMapping(value = "user_updateReceivedRequest", method = RequestMethod.POST)
     @ResponseBody
-    public ResultVO agreeFriendRequest(HttpServletRequest request,FriendRequest friendRequest)
+    public ResultVO updateReceivedRequest(HttpServletRequest request, FriendRequest friendRequest)
     {
         SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
 
-        return service.insertAgreeRequest(sessionVO,friendRequest);
+        return service.updateReceivedRequest(sessionVO, friendRequest);
     }
 
-    @RequestMapping(value = "user_negativeFriendRequest",method = RequestMethod.POST)
+    @RequestMapping(value = "user_agreeFriendRequest", method = RequestMethod.POST)
     @ResponseBody
-    public ResultVO negativeFriendRequest(HttpServletRequest request,FriendRequest friendRequest)
+    public ResultVO agreeFriendRequest(HttpServletRequest request, FriendRequest friendRequest)
     {
         SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
 
-        return service.insertNegativeRequest(sessionVO,friendRequest);
+        return service.insertAgreeRequest(sessionVO, friendRequest);
     }
 
-    @RequestMapping(value = "user_findFriendList",method = RequestMethod.POST)
+    @RequestMapping(value = "user_negativeFriendRequest", method = RequestMethod.POST)
+    @ResponseBody
+    public ResultVO negativeFriendRequest(HttpServletRequest request, FriendRequest friendRequest)
+    {
+        SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
+
+        return service.insertNegativeRequest(sessionVO, friendRequest);
+    }
+
+    @RequestMapping(value = "user_findFriendList", method = RequestMethod.POST)
     @ResponseBody
     public ResultVO findFriendList(HttpServletRequest request)
     {
@@ -110,30 +128,48 @@ public class FriendsController
         return service.findFriendList(sessionVO);
     }
 
-    @RequestMapping(value = "user_findFriendData",method = RequestMethod.POST)
+    @RequestMapping(value = "user_findFriendData", method = RequestMethod.POST)
     @ResponseBody
-    public ResultVO findFriendData(HttpServletRequest request,FriendVO friendVO)
+    public ResultVO findFriendData(HttpServletRequest request, FriendVO friendVO)
     {
         SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
 
-        return service.findFriendData(sessionVO,friendVO);
+        return service.findFriendData(sessionVO, friendVO);
     }
 
-    @RequestMapping(value = "user_findFriendDataById",method = RequestMethod.POST)
+    @RequestMapping(value = "user_findFriendDataById", method = RequestMethod.POST)
     @ResponseBody
-    public ResultVO findFriendDataById(HttpServletRequest request,FriendVO friendVO)
+    public ResultVO findFriendDataById(HttpServletRequest request, FriendVO friendVO)
     {
         SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
 
-        return service.findFriendDataById(sessionVO,friendVO);
+        return service.findFriendDataById(sessionVO, friendVO);
     }
 
-    @RequestMapping(value = "user_updateFriendRemark",method = RequestMethod.POST)
+    @RequestMapping(value = "user_updateFriendRemark", method = RequestMethod.POST)
     @ResponseBody
-    public ResultVO updateFriendRemark(HttpServletRequest request,FriendVO friendVO)
+    public ResultVO updateFriendRemark(HttpServletRequest request, FriendVO friendVO)
     {
         SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
 
-        return service.updateFriendRemark(sessionVO,friendVO);
+        return service.updateFriendRemark(sessionVO, friendVO);
+    }
+
+    @RequestMapping(value = "user_countNoReceivedRequest", method = RequestMethod.POST)
+    @ResponseBody
+    public ResultVO countNoReceivedRequest(HttpServletRequest request, FriendRequest friendRequest)
+    {
+        SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
+
+        return service.countNoReceivedRequest(sessionVO, friendRequest);
+    }
+
+    @RequestMapping(value = "user_deleteFriend", method = RequestMethod.POST)
+    @ResponseBody
+    public ResultVO deleteFriend(HttpServletRequest request, FriendVO friendVO)
+    {
+        SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
+
+        return service.deleteFriend(sessionVO,friendVO);
     }
 }

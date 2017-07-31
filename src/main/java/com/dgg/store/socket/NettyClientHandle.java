@@ -5,13 +5,21 @@ import io.netty.channel.ChannelInboundHandlerAdapter;
 
 public class NettyClientHandle extends ChannelInboundHandlerAdapter
 {
+    private NettyClient client;
+
+    public NettyClientHandle(NettyClient client)
+    {
+        this.client = client;
+    }
 
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception
     {
         System.out.println("连接服务器成功");
-        NettyClient.context = ctx;
+        client.setContext(ctx);
     }
+
+
 
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception

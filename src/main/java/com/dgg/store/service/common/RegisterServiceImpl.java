@@ -98,6 +98,7 @@ public class RegisterServiceImpl implements RegisterService
             {
                 case 0:
                     registerVO.setUserPassword(CryptographyUtil.md5(registerVO.getUserPassword(), Constant.SALT));
+                    registerVO.setUserStatus(Constant.USER_STATE_2);
                     result = dao.updateUserData(registerVO);
                     break;
                 case 1:

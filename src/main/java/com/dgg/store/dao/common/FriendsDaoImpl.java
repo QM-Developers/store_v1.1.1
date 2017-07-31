@@ -85,4 +85,16 @@ public class FriendsDaoImpl implements FriendsDao
     {
         return mapper.findUserByPhone(friendPhone);
     }
+
+    @Override
+    public int countNoReceivedRequest(FriendRequest condition)
+    {
+        return mapper.countNoReceivedRequest(condition);
+    }
+
+    @Override
+    public Integer deleteFriend(FriendVO condition)
+    {
+        return mapper.deleteFriend(condition);
+    }
 }

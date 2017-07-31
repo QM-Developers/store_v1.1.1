@@ -240,3 +240,6 @@
     top: 50%;
     margin: -230px 0 0 -225px;
 }
+.amap-sug-result{
+    z-index: 1234 !important;
+}

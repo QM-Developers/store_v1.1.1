@@ -1,10 +1,11 @@
 package com.dgg.store.util.vo.core;
 
-import com.dgg.store.util.vo.goods.GoodsDetailVO;
-
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class ResultVO
 {

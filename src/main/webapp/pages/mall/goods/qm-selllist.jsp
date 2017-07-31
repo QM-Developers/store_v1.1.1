@@ -85,7 +85,7 @@
                     <ul class="poptwo-c-ul">
                         <li class="poptwo-c-li">
                             <div class="am-u-sm-3 pop-div1">销售点名称 :</div>
-                            <div class="am-u-sm-9 pop-div2"><input/></div>
+                            <div class="am-u-sm-9 pop-div2"><input id="branch-name"/></div>
                         </li>
                         <li class="poptwo-c-li">
                             <div class="am-u-sm-3 pop-div1">所属部门 :</div>
@@ -105,7 +105,8 @@
                         </li>
                         <li class="poptwo-c-li">
                             <div class="am-u-sm-3 pop-div1">区域地址 :</div>
-                            <div class="am-u-sm-9 pop-div2"><input/></div>
+                            <hidden id="branch-lat-lng"/>
+                            <div class="am-u-sm-9 pop-div2"><input disabled="disabled" id="branch-area"/></div>
                         </li>
 
                         <li class="site-map-li">
@@ -114,11 +115,11 @@
                             <div class="sitemapseo">
                                 <span>所在区域定位</span>
                                 <input id="tip" type="text"/>
-                                <i class="sitemapseo-i"></i>
+                                <%--<i class="sitemapseo-i"></i>--%>
                             </div>
                         </li>
                         <li class="poptwo-c-li">
-                            <button class="poptwo-but">提交</button>
+                            <button class="poptwo-but" onclick="qm_selllist.addBranch();">提交</button>
                             <button data-am-modal-close class="poptwo-but">取消</button>
                         </li>
                     </ul>

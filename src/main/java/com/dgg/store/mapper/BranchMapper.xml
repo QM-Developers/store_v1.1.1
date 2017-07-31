@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dgg.store.mapper.BranchMapper">
+
+    <insert id="insertBranch" parameterType="com.dgg.store.util.vo.branch.BranchVO">
+        INSERT INTO qm_branch
+        (branch_id, branch_name, department_id,
+        department_name, user_id, user_name,
+        user_phone, branch_area, lat_lng)
+        VALUES
+        (#{branchId},#{branchName},#{departmentId},
+        #{departmentName},#{managerId},#{managerName},
+        #{managerPhone},#{branchArea},#{latLng})
+    </insert>
+</mapper>

@@ -31,6 +31,8 @@ public class PasswordServiceImpl implements PasswordService
 
         if (result == null)
             return new ResultVO(PasswordConstant.USER_NOT_FIND);
+        if (!Constant.USER_STATE_2.equals(result.getUserStatus()))
+            return new ResultVO(PasswordConstant.REGISTERED);
 
         try
         {
@@ -49,13 +51,13 @@ public class PasswordServiceImpl implements PasswordService
         boolean flag = false;
         try
         {
-            flag = CloudMessageUtil.verifyCode(passwordVO.getUserPhone(),passwordVO.getVerify());
+            flag = CloudMessageUtil.verifyCode(passwordVO.getUserPhone(), passwordVO.getVerify());
         } catch (IOException e)
         {
             e.printStackTrace();
         }
 
-        if(!flag)
+        if (!flag)
             return new ResultVO(Constant.REQUEST_FAILED);
 
         PasswordVO condition = new PasswordVO();
@@ -74,11 +76,11 @@ public class PasswordServiceImpl implements PasswordService
         PasswordVO condition = new PasswordVO();
         condition.setMyTeamId(sessionVO.getMyTeamId());
         condition.setUserId(passwordVO.getUserId());
-        condition.setUserPassword(CryptographyUtil.md5(passwordVO.getUserPassword(),Constant.SALT));
+        condition.setUserPassword(CryptographyUtil.md5(passwordVO.getUserPassword(), Constant.SALT));
 
         int result = dao.updatePassword(condition);
 
-        ResultVO resultVO = new ResultVO(result != 1?Constant.REQUEST_FAILED:Constant.REQUEST_SUCCESS);
+        ResultVO resultVO = new ResultVO(result != 1 ? Constant.REQUEST_FAILED : Constant.REQUEST_SUCCESS);
 
         return resultVO;
     }

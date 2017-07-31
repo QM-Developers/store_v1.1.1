@@ -37,6 +37,8 @@ public class FriendRequest
 
     private Integer isRead;
 
+    private Integer isReceived;
+
     public String getFriendName()
     {
         return friendName;
@@ -145,5 +147,15 @@ public class FriendRequest
     public void setIsRead(Integer isRead)
     {
         this.isRead = isRead;
+    }
+
+    public Integer getIsReceived()
+    {
+        return isReceived;
+    }
+
+    public void setIsReceived(Integer isReceived)
+    {
+        this.isReceived = isReceived;
     }
 }

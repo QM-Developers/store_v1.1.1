@@ -30,6 +30,9 @@
             <if test="userPassword != null and userPassword != ''">
                 user_password = #{userPassword},
             </if>
+            <if test="userStatus != null and userStatus != ''">
+                user_status = #{userStatus},
+            </if>
         </set>
         WHERE user_id = #{userId}
     </update>

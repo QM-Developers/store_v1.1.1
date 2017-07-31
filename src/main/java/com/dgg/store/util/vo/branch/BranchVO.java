@@ -6,6 +6,8 @@ public class BranchVO
 
     private String branchName;
 
+    private String branchArea;
+
     private String departmentId;
 
     private String departmentName;
@@ -36,6 +38,16 @@ public class BranchVO
     public void setBranchName(String branchName)
     {
         this.branchName = branchName;
+    }
+
+    public String getBranchArea()
+    {
+        return branchArea;
+    }
+
+    public void setBranchArea(String branchArea)
+    {
+        this.branchArea = branchArea;
     }
 
     public String getDepartmentId()

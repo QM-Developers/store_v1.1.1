@@ -2,6 +2,7 @@ package com.dgg.store.dao.common;
 
 import com.dgg.store.mapper.ChatMapper;
 import com.dgg.store.util.pojo.ChatHistory;
+import com.dgg.store.util.vo.friend.FriendVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -35,5 +36,17 @@ public class ChatDaoImpl implements ChatDao
     public int updateChatHistory(ChatHistory condition)
     {
         return mapper.updateChatHistory(condition);
+    }
+
+    @Override
+    public FriendVO findUserChatInfoById(String friendUserId)
+    {
+        return mapper.findUserChatInfoById(friendUserId);
+    }
+
+    @Override
+    public int countNoReceivedMessage(ChatHistory condition)
+    {
+        return mapper.countNoReceivedMessage(condition);
     }
 }

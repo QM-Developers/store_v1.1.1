@@ -82,6 +82,7 @@ create table friend_request
 	request_info varchar(20) not null default '',
 	request_state varchar(10) not null default '',
 	is_read tinyint not null default 0,
+	is_received tinyint not null default 0,
     create_date datetime not null default now()
 );
 
@@ -91,13 +92,14 @@ create table friend_request
 drop table if exists chat_history;
 create table chat_history
 (
-	history_id int not null primary key auto_increment,
+	history_id varchar(35) not null primary key,
     send_user_id varchar(35) not null default '',
     receive_user_id varchar(35) not null default '',
     data_type int not null default 0,
     send_data text,
-    send_time datetime not null default now(),
-    is_read int not null default 0
+    send_time varchar(15) not null default '',
+    is_read tinyint not null default 0,
+    is_received tinyint not null default 0
 );
 
 /*==============================================================*/

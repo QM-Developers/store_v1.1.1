@@ -43,7 +43,7 @@ var friendJS = {
             window.WebSocket = window.MozWebSocket;
         if (window.WebSocket)
         {
-            friendJS.socket = new WebSocket("ws://112.74.32.113:8099/websocket");
+            friendJS.socket = new WebSocket(Constant.SOCKET_LOCAL);
             friendJS.socket.onmessage = function (event)
             {
                 console.log(event);

@@ -31,4 +31,8 @@ public interface FriendsMapper
     Integer findFriendExists(FriendRequest request);
 
     List<FriendVO> findUserByPhone(@Param("userPhone") String friendPhone);
+
+    int countNoReceivedRequest(FriendRequest condition);
+
+    Integer deleteFriend(FriendVO condition);
 }

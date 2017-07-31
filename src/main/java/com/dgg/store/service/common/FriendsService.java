@@ -2,9 +2,9 @@ package com.dgg.store.service.common;
 
 
 import com.dgg.store.util.pojo.FriendRequest;
-import com.dgg.store.util.vo.friend.FriendVO;
 import com.dgg.store.util.vo.core.ResultVO;
 import com.dgg.store.util.vo.core.SessionVO;
+import com.dgg.store.util.vo.friend.FriendVO;
 
 public interface FriendsService
 {
@@ -12,7 +12,7 @@ public interface FriendsService
 
     ResultVO insertFriendRequest(SessionVO sessionVO, FriendRequest friendRequest);
 
-    ResultVO findFriendRequest(SessionVO sessionVO);
+    ResultVO updateFriendRequest(SessionVO sessionVO);
 
     ResultVO findFriendRequestCount(SessionVO sessionVO);
 
@@ -30,7 +30,15 @@ public interface FriendsService
 
     ResultVO updateFriendRemark(SessionVO sessionVO,FriendVO friendVO);
 
-    ResultVO findFriendRequestById(SessionVO sessionVO, FriendRequest friendRequest);
+    ResultVO updateFriendRequestById(SessionVO sessionVO, FriendRequest friendRequest);
 
     ResultVO findUserByPhone(SessionVO sessionVO, FriendVO friendsVO);
+
+    ResultVO updateNotReceivedRequest(SessionVO sessionVO);
+
+    ResultVO updateReceivedRequest(SessionVO sessionVO, FriendRequest friendRequest);
+
+    ResultVO countNoReceivedRequest(SessionVO sessionVO, FriendRequest friendRequest);
+
+    ResultVO deleteFriend(SessionVO sessionVO, FriendVO friendVO);
 }

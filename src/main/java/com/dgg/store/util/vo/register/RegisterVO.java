@@ -20,6 +20,18 @@ public class RegisterVO
 
     private String cardId;
 
+    private String userStatus;
+
+    public String getUserStatus()
+    {
+        return userStatus;
+    }
+
+    public void setUserStatus(String userStatus)
+    {
+        this.userStatus = userStatus;
+    }
+
     public String getUserId()
     {
         return userId;

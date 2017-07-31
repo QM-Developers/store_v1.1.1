@@ -1,26 +1,11 @@
 package com.dgg.store.util.pojo;
 
-import java.util.Date;
-
 public class ChatHistory
 {
-    public static final int TEXT = 0x00000001;
-    public static final int REQUEST = 0x00000002;
     public static final int NOT_READ = 0;
     public static final int IS_READ = 1;
 
-    private int pageSize = 20;
-    private int pageNum = 0;
-    private int count;
-
-    private String userId;
-    private String token;
-    private String myTeamId;
-    private String userImg;
-    private String userName;
-    private String userSex;
-    private String friendRemarkName;
-
+    private String historyId;
 
     private String sendUserId;
 
@@ -30,79 +15,20 @@ public class ChatHistory
 
     private String sendData;
 
-    private Date sendTime;
+    private String sendTime;
 
-    private int isRead;
+    private Integer isRead;
 
+    private Integer isReceived;
 
-    public String getUserId()
+    public String getHistoryId()
     {
-        return userId;
+        return historyId;
     }
 
-    public void setUserId(String userId)
+    public void setHistoryId(String historyId)
     {
-        this.userId = userId;
-    }
-
-    public String getToken()
-    {
-        return token;
-    }
-
-    public void setToken(String token)
-    {
-        this.token = token;
-    }
-
-    public String getMyTeamId()
-    {
-        return myTeamId;
-    }
-
-    public void setMyTeamId(String myTeamId)
-    {
-        this.myTeamId = myTeamId;
-    }
-
-    public String getUserImg()
-    {
-        return userImg;
-    }
-
-    public void setUserImg(String userImg)
-    {
-        this.userImg = userImg;
-    }
-
-    public String getUserName()
-    {
-        return userName;
-    }
-
-    public void setUserName(String userName)
-    {
-        this.userName = userName;
-    }
-
-    public String getUserSex()
-    {
-        return userSex;
-    }
-
-    public void setUserSex(String userSex)
-    {
-        this.userSex = userSex;
-    }
-
-    public String getFriendRemarkName()
-    {
-        return friendRemarkName;
-    }
-
-    public void setFriendRemarkName(String friendRemarkName)
-    {
-        this.friendRemarkName = friendRemarkName;
+        this.historyId = historyId;
     }
 
     public String getSendUserId()
@@ -145,53 +71,33 @@ public class ChatHistory
         this.sendData = sendData;
     }
 
-    public Date getSendTime()
+    public String getSendTime()
     {
         return sendTime;
     }
 
-    public void setSendTime(Date sendTime)
+    public void setSendTime(String sendTime)
     {
         this.sendTime = sendTime;
     }
 
-    public int getIsRead()
+    public Integer getIsRead()
     {
         return isRead;
     }
 
-    public void setIsRead(int isRead)
+    public void setIsRead(Integer isRead)
     {
         this.isRead = isRead;
     }
 
-    public int getPageSize()
+    public Integer getIsReceived()
     {
-        return pageSize;
+        return isReceived;
     }
 
-    public void setPageSize(int pageSize)
+    public void setIsReceived(Integer isReceived)
     {
-        this.pageSize = pageSize;
-    }
-
-    public int getPageNum()
-    {
-        return pageNum;
-    }
-
-    public void setPageNum(int pageNum)
-    {
-        this.pageNum = pageNum;
-    }
-
-    public int getCount()
-    {
-        return count;
-    }
-
-    public void setCount(int count)
-    {
-        this.count = count;
+        this.isReceived = isReceived;
     }
 }

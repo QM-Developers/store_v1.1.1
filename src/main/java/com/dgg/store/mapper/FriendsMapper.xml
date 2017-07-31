@@ -67,7 +67,7 @@
 
     <select id="findFriendRequest" parameterType="com.dgg.store.util.pojo.FriendRequest" resultMap="FriendRequestMap">
         SELECT fq.request_id,fq.request_info,fq.create_date,fq.request_state,
-            u.user_id friend_id,u.user_name,u.user_img,u.user_sex
+        u.user_id friend_id,u.user_name,u.user_img,u.user_sex
         FROM friend_request fq
         INNER JOIN user u
         ON u.user_id = fq.user_id
@@ -78,6 +78,9 @@
         <if test="requestId != null and requestId != ''">
             AND request_id = #{requestId}
         </if>
+        <if test="isReceived != null">
+            AND is_received = #{isReceived}
+        </if>
         ORDER BY fq.create_date DESC
     </select>
 
@@ -86,6 +89,9 @@
         <set>
             <if test="isRead != null">
                 is_read = #{isRead},
+            </if>
+            <if test="isReceived != null">
+                is_received = #{isReceived},
             </if>
             <if test="requestInfo != null and requestInfo != ''">
                 request_info = #{requestInfo},
@@ -164,4 +170,27 @@
         WHERE user_id = #{userId}
         AND friend_user_id = #{friendId}
     </select>
+
+    <select id="countNoReceivedRequest" parameterType="com.dgg.store.util.pojo.FriendRequest" resultType="java.lang.Integer">
+        SELECT COUNT(1)
+        FROM friend_request fr
+        WHERE 1 = 1
+        <if test="isReceived != null">
+            AND fr.is_received = #{isReceived}
+        </if>
+        <if test="friendId != null and friendId != ''">
+            AND fr.friend_id = #{friendId}
+        </if>
+    </select>
+
+    <delete id="deleteFriend" parameterType="com.dgg.store.util.pojo.FriendRequest">
+        DELETE FROM friend
+        WHERE 1 = 1
+        <if test="userId != null and userId != ''">
+            user_id = #{userId}
+        </if>
+        <if test="friendId != null and friendId != ''">
+            friend_id = #{friendId}
+        </if>
+    </delete>
 </mapper>

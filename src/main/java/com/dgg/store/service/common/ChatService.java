@@ -22,4 +22,6 @@ public interface ChatService
     ResultVO countNoReceivedMessage(SessionVO sessionVO, ChatHistory chatHistory);
 
     ResultVO updateAllReceivedMessage(SessionVO sessionVO, ChatHistory chatHistory);
+
+    ResultVO listNoReceivedMessage(SessionVO sessionVO, ChatHistory chatHistory);
 }

@@ -18,4 +18,6 @@ public interface ChatDao
     FriendVO findUserChatInfoById(String friendUserId);
 
     int countNoReceivedMessage(ChatHistory condition);
+
+    List<ChatHistory> listNoReceivedMessage(ChatHistory condition);
 }

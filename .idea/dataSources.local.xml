@@ -9,7 +9,9 @@
       <case-sensitivity plain-identifiers="lower" quoted-identifiers="lower" />
       <secret-storage>master_key</secret-storage>
       <user-name>yf</user-name>
+      <introspection-schemas>*:store_v1_1_1</introspection-schemas>
       <resolve-scope>dgg_store:</resolve-scope>
+      <unqualified-resolve-schemas>dgg_store:</unqualified-resolve-schemas>
     </data-source>
   </component>
 </project>

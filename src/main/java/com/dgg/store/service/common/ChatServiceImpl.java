@@ -121,5 +121,18 @@ public class ChatServiceImpl implements ChatService
         return resultVO;
     }
 
+    @Override
+    public ResultVO listNoReceivedMessage(SessionVO sessionVO, ChatHistory chatHistory)
+    {
+        ChatHistory condition = new ChatHistory();
+        condition.setReceiveUserId(sessionVO.getUserId());
+
+        List<ChatHistory> result = dao.listNoReceivedMessage(condition);
+
+        ResultVO resultVO = new ResultVO(1,sessionVO.getToken(),result);
+
+        return resultVO;
+    }
+
 
 }

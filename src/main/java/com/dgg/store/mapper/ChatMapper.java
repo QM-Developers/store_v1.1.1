@@ -19,4 +19,6 @@ public interface ChatMapper
     FriendVO findUserChatInfoById(@Param("userId") String friendUserId);
 
     int countNoReceivedMessage(ChatHistory condition);
+
+    List<ChatHistory> listNoReceivedMessage(ChatHistory condition);
 }

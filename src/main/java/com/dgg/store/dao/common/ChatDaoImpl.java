@@ -49,4 +49,10 @@ public class ChatDaoImpl implements ChatDao
     {
         return mapper.countNoReceivedMessage(condition);
     }
+
+    @Override
+    public List<ChatHistory> listNoReceivedMessage(ChatHistory condition)
+    {
+        return mapper.listNoReceivedMessage(condition);
+    }
 }

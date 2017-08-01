@@ -187,10 +187,10 @@
         DELETE FROM friend
         WHERE 1 = 1
         <if test="userId != null and userId != ''">
-            user_id = #{userId}
+            AND user_id = #{userId}
         </if>
         <if test="friendId != null and friendId != ''">
-            friend_id = #{friendId}
+            AND friend_user_id = #{friendId}
         </if>
     </delete>
 </mapper>

@@ -38,6 +38,15 @@ public class ChatController
         return service.countNoReceivedMessage(sessionVO, chatHistory);
     }
 
+    @RequestMapping(value = "user_listNoReceivedMessage", method = RequestMethod.POST)
+    @ResponseBody
+    public ResultVO listNoReceivedMessage(HttpServletRequest request, ChatHistory chatHistory)
+    {
+        SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
+
+        return service.listNoReceivedMessage(sessionVO, chatHistory);
+    }
+
     @RequestMapping(value = "user_updateReceivedMessage", method = RequestMethod.POST)
     @ResponseBody
     public ResultVO updateReceivedMessage(HttpServletRequest request, ChatHistory chatHistory)

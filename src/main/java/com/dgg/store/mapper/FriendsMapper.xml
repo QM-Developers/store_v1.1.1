@@ -122,8 +122,8 @@
     </insert>
 
     <select id="findFriendList" resultMap="BaseResultMap">
-        SELECT f.friend_id,f.friend_user_id,f.friend_remark_name,
-            u.user_name,u.user_sex,u.user_img
+        SELECT f.friend_id,f.user_id,f.friend_remark_name,f.friend_remark_text,
+            u.user_name,u.user_phone,u.user_area,u.user_address,u.user_img,u.user_sex
         FROM friend f
         INNER JOIN user u
         ON u.user_id = f.user_id
@@ -134,7 +134,7 @@
 
     <select id="findFriendData" resultMap="BaseResultMap">
         SELECT f.friend_id,f.user_id,f.friend_remark_name,f.friend_remark_text,
-            u.user_name,u.user_phone,u.user_area,u.user_address,u.user_img
+            u.user_name,u.user_phone,u.user_area,u.user_address,u.user_img,u.user_sex
         FROM friend f
         INNER JOIN user u
         ON u.user_id = f.user_id

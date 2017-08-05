@@ -75,9 +75,10 @@ var qm_selllist = {
         params["managerPhone"] = $("#member-phone").val();
         params["latLng"] = $("#branch-lat-lng").val();
 
-        myjs.ajax_post(url,params,function (data)
-        {
-            console.log(data);
-        });
+        console.log(params);
+        // myjs.ajax_post(url,params,function (data)
+        // {
+        //     console.log(data);
+        // });
     },
 };

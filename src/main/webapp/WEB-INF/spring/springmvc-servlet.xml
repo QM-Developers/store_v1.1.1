@@ -6,7 +6,8 @@
 
 
     <!-- 使用<mvc:annotation-driven />替换上边定义的处理器映射器和适配器 -->
-    <mvc:annotation-driven/>
+    <mvc:annotation-driven>
+    </mvc:annotation-driven>
 
     <!-- 视图解析器 -->
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">

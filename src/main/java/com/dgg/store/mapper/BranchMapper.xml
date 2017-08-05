@@ -1,15 +1,189 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dgg.store.mapper.BranchMapper">
+    <resultMap id="BranchVO" type="com.dgg.store.util.vo.branch.BranchVO">
+        <result column="branch_id" property="branchId" jdbcType="VARCHAR"/>
+        <result column="branch_name" property="branchName" jdbcType="VARCHAR"/>
+        <result column="department_id" property="departmentId" jdbcType="VARCHAR"/>
+        <result column="department_name" property="departmentName" jdbcType="VARCHAR"/>
+        <result column="my_team_id" property="myTeamId" jdbcType="VARCHAR"/>
+        <result column="user_id" property="managerId" jdbcType="VARCHAR"/>
+        <result column="user_name" property="managerName" jdbcType="VARCHAR"/>
+        <result column="user_phone" property="managerPhone" jdbcType="VARCHAR"/>
+        <result column="branch_area" property="branchArea" jdbcType="VARCHAR"/>
+        <result column="lat_lng" property="latLng" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <resultMap id="GoodsDetailVO" type="com.dgg.store.util.vo.goods.GoodsDetailVO">
+        <id column="goods_id" property="goodsId" jdbcType="VARCHAR"/>
+        <result column="goods_name" property="goodsName" jdbcType="VARCHAR"/>
+        <result column="goods_attr" property="goodsAttr" jdbcType="VARCHAR"/>
+        <result column="goods_price" property="goodsPrice" jdbcType="FLOAT"/>
+        <result column="goods_count" property="goodsCount" jdbcType="INTEGER"/>
+        <result column="goods_freight" property="goodsFreight" jdbcType="INTEGER"/>
+        <result column="goods_sales" property="goodsSales" jdbcType="INTEGER"/>
+        <collection property="standards" ofType="com.dgg.store.util.pojo.GoodsStandard">
+            <result column="standard_name" property="standardName" jdbcType="VARCHAR"/>
+            <result column="standard_id" property="standardId" jdbcType="VARCHAR"/>
+            <result column="standard_price" property="standardPrice" jdbcType="VARCHAR"/>
+            <result column="standard_count" property="standardCount" jdbcType="VARCHAR"/>
+        </collection>
+    </resultMap>
 
     <insert id="insertBranch" parameterType="com.dgg.store.util.vo.branch.BranchVO">
         INSERT INTO qm_branch
         (branch_id, branch_name, department_id,
-        department_name, user_id, user_name,
-        user_phone, branch_area, lat_lng)
+        my_team_id,department_name, user_id,
+        user_name, user_phone, branch_area,
+        lat_lng)
         VALUES
         (#{branchId},#{branchName},#{departmentId},
-        #{departmentName},#{managerId},#{managerName},
-        #{managerPhone},#{branchArea},#{latLng})
+        #{myTeamId},#{departmentName},#{managerId},
+        #{managerName},#{managerPhone},#{branchArea},
+        #{latLng})
     </insert>
+
+    <select id="listBranch" parameterType="com.dgg.store.util.vo.branch.BranchVO" resultMap="BranchVO">
+        SELECT branch_id, branch_name,
+            user_name, user_phone
+        FROM qm_branch qb
+        WHERE 1 = 1
+        <if test="condition.myTeamId != null and condition.myTeamId != ''">
+            AND my_team_id = #{condition.myTeamId}
+        </if>
+        <if test="condition.departmentId != null and condition.departmentId != ''">
+            AND department_id = #{condition.departmentId}
+        </if>
+        LIMIT #{start},#{end}
+    </select>
+
+    <select id="countBranch" resultType="java.lang.Integer">
+        SELECT COUNT(1)
+        FROM qm_branch qb
+        WHERE 1 = 1
+        <if test="myTeamId != null and myTeamId != ''">
+            AND my_team_id = #{myTeamId}
+        </if>
+        <if test="departmentId != null and departmentId != ''">
+            AND department_id = #{departmentId}
+        </if>
+    </select>
+
+    <delete id="deleteBranch" parameterType="com.dgg.store.util.vo.branch.BranchVO">
+        DELETE FROM qm_branch
+        WHERE branch_id = #{branchId}
+    </delete>
+
+    <select id="getBranch" resultMap="BranchVO">
+        SELECT branch_id, branch_name, department_id,
+            my_team_id,department_name, user_id,
+            user_name, user_phone, branch_area,
+            lat_lng
+        FROM qm_branch
+        WHERE branch_id = #{branchId}
+    </select>
+
+    <update id="updateBranch" parameterType="com.dgg.store.util.vo.branch.BranchVO">
+        UPDATE qm_branch
+        <set>
+            <if test="branchName != null and branchName != ''">
+                branch_name = #{branchName},
+            </if>
+            <if test="branchArea != null and branchArea != ''">
+                branch_area = #{branchArea},
+            </if>
+            <if test="departmentId != null and departmentId != ''">
+                department_id = #{departmentId},
+            </if>
+            <if test="departmentName != null and departmentName != ''">
+                department_name = #{departmentName},
+            </if>
+            <if test="managerId != null and managerId != ''">
+                user_id = #{managerId},
+            </if>
+            <if test="managerName != null and managerName != ''">
+                user_name = #{managerName},
+            </if>
+            <if test="managerPhone != null and managerPhone != ''">
+                user_phone = #{managerPhone},
+            </if>
+            <if test="latLng != null and latLng != ''">
+                lat_lng = #{latLng},
+            </if>
+        </set>
+        WHERE branch_id = #{branchId}
+    </update>
+
+    <select id="listGoods" resultMap="GoodsDetailVO" parameterType="com.dgg.store.util.vo.branch.BranchVO">
+        SELECT gi.goods_id,gi.goods_name,
+            gs.standard_id,gs.standard_name,gs.standard_price,gs.standard_count
+        FROM goodsinfo gi
+        INNER JOIN goods_standard gs
+        ON gs.goods_id = gi.goods_id
+        WHERE gi.my_team_id = #{condition.myTeamId}
+        LIMIT #{start},#{end}
+    </select>
+
+    <select id="countGoods" resultType="java.lang.Integer">
+        SELECT COUNT(1)
+        FROM goodsinfo gi
+        INNER JOIN goods_standard gs
+        ON gs.goods_id = gi.goods_id
+        WHERE gi.my_team_id = #{myTeamId}
+    </select>
+
+    <select id="getGoodsInventory" resultType="java.lang.Integer">
+        SELECT standard_count
+        FROM goods_standard
+        WHERE standard_id = #{standardId}
+    </select>
+
+    <update id="updateGoodsInventory">
+        UPDATE goods_standard
+        SET standard_count = #{inventory}
+        WHERE standard_id = #{standardId}
+    </update>
+
+    <delete id="deleteBranchGoods" parameterType="com.dgg.store.util.vo.branch.BranchGoodsVO">
+        DELETE FROM qm_branch_goods
+        WHERE branch_id = #{branchId}
+        AND standard_id = #{standardId}
+    </delete>
+
+    <insert id="insertBranchGoods" parameterType="com.dgg.store.util.vo.branch.BranchGoodsVO">
+        INSERT INTO qm_branch_goods
+        (branch_id, goods_id, standard_id, standard_count)
+        VALUES
+        (#{branchId},#{goodsId},#{standardId},#{standardCount})
+    </insert>
+
+    <select id="getBranchInventory" resultType="java.lang.Integer" parameterType="com.dgg.store.util.vo.branch.BranchGoodsVO">
+        SELECT standard_count
+        FROM qm_branch_goods
+        WHERE branch_id = #{branchId}
+        AND standard_id = #{standardId}
+    </select>
+
+    <select id="listBranchGoods" resultMap="GoodsDetailVO" parameterType="com.dgg.store.util.vo.branch.BranchVO">
+        SELECT gi.goods_id,gi.goods_name,
+            gs.standard_id,gs.standard_name,gs.standard_price,
+            bg.standard_count
+        FROM goodsinfo gi
+        INNER JOIN goods_standard gs
+        ON gs.goods_id = gi.goods_id
+        INNER JOIN qm_branch_goods bg
+        ON bg.standard_id = gs.standard_id
+        WHERE bg.branch_id = #{condition.branchId}
+        LIMIT #{start},#{end}
+    </select>
+
+    <select id="countBranchGoods" resultType="java.lang.Integer">
+        SELECT COUNT(1)
+        FROM goodsinfo gi
+        INNER JOIN goods_standard gs
+        ON gs.goods_id = gi.goods_id
+        INNER JOIN qm_branch_goods bg
+        ON bg.standard_id = gs.standard_id
+        WHERE bg.branch_id = #{branchId}
+    </select>
 </mapper>

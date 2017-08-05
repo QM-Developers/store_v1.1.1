@@ -1,5 +1,7 @@
 package com.dgg.store.util.pojo;
 
+import java.util.Date;
+
 public class UserPlaceHardware {
     private String userHardwareId;
 
@@ -8,6 +10,12 @@ public class UserPlaceHardware {
     private String userHardwareName;
 
     private Integer userHardwareNum;
+
+    private Date createDate;
+
+    private Byte isDeleted;
+
+    private Date deleteDate;
 
     public String getUserHardwareId() {
         return userHardwareId;
@@ -39,5 +47,29 @@ public class UserPlaceHardware {
 
     public void setUserHardwareNum(Integer userHardwareNum) {
         this.userHardwareNum = userHardwareNum;
+    }
+
+    public Date getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(Date createDate) {
+        this.createDate = createDate;
+    }
+
+    public Byte getIsDeleted() {
+        return isDeleted;
+    }
+
+    public void setIsDeleted(Byte isDeleted) {
+        this.isDeleted = isDeleted;
+    }
+
+    public Date getDeleteDate() {
+        return deleteDate;
+    }
+
+    public void setDeleteDate(Date deleteDate) {
+        this.deleteDate = deleteDate;
     }
 }

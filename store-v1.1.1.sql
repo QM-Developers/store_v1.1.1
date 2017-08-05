@@ -401,42 +401,18 @@ create table shopping_cart
 /*==============================================================*/
 /* 运费模板
 /*==============================================================*/
-create table template_of_freight
+drop table if exists freight_temp;
+create table freight_temp
 (
-   template_freight_id  varchar(35) not null,
-   user_id              varchar(35) not null default '',
-   template_freight_name varchar(25) not null default '',
-   template_delivery_time int not null default 0,
-   template_freight_isfree tinyint not null default 0,
-   template_charge_model tinyint not null default 0,
-   template_default_num float not null default 0,
-   template_default_price float not null default 0,
-   template_add_num     float not null default 0,
-   template_add_price   float not null default 0,
-   primary key (template_freight_id)
-);
-
-/*==============================================================*/
-/* 地区运费
-/*==============================================================*/
-create table area_freight
-(
-   area_freight_id  varchar(35) not null,
-   template_freight_id varchar(35) not null,
-   area_first_num int not null default 0,
-   area_first_price float not null default 0,
-   area_continue_num     int not null default 0,
-   area_continue_price   float not null default 0,
-   primary key (area_freight_id)
-);
-
-/*==============================================================*/
-/* 地区Id关联
-/*==============================================================*/
-create table area_id
-(
-   area_freight_id  varchar(35) not null,
-   area_id varchar(20) not null default ''
+   freight_id varchar(35) not null primary key,
+   freight_name varchar(20) not null default '',
+   weight_allowance float not null default 0,
+   start_range float not null default 0,
+   start_price float not null default 0,
+   increase_range float not null default 0,
+   increase_price float not null default 0,
+   my_team_id varchar(35) not null default '',
+   user_id varchar(35) not null default ''
 );
 
 /*==============================================================*/
@@ -527,18 +503,33 @@ create table role_permission_RE
 drop table if exists user_place;
 create table user_place
 (
-   user_place_id        varchar(35) not null,
-   customer_id              varchar(35) not null default '',
-   user_place_name      varchar(20) not null default '',
-   user_place_acreage   int not null default 0,
-   user_employee_num    int not null default 0,
-   user_place_address   varchar(50) not null default '',
-   user_place_area      varchar(50) not null default '',
-   user_place_type      varchar(15) not null default '',
-   create_date			datetime not null default now(),
+   user_place_id        varchar(35) not null,	-- id
+   customer_id              varchar(35) not null default '',	-- 客户 id
+   user_place_name      varchar(20) not null default '',	-- 名称
+   user_place_acreage   int not null default 0,	-- 面积
+   user_employee_num    int not null default 0,	-- 工人数量
+   user_owner_num    int not null default 0,	-- 权属人数
+   user_already_use int not null default 0,	-- 使用情况
+   user_place_address   varchar(50) not null default '',	-- 地址
+   user_place_area      varchar(50) not null default '',	-- 区域
+   user_place_type      varchar(15) not null default '',	-- 区域性质
+   create_date			datetime not null default now(),	-- 创建时间
    is_deleted           tinyint not null default 0,
    delete_date          date,
    primary key (user_place_id)
+);
+
+
+/*==============================================================*/
+/* 场地图片
+/*==============================================================*/
+drop table if exists place_image;
+create table place_image
+(
+	img_id varchar(35) not null primary key,
+    img_type tinyint not null default 0,
+    img_url text,
+    user_place_id varchar(35) not null default ''
 );
 
 
@@ -548,20 +539,21 @@ create table user_place
 drop table if exists user_breed_type;
 create table user_breed_type
 (
-   user_breed_type_id   varchar(35) not null,
-   user_place_id        varchar(35) not null default '',
-   user_breed_type      varchar(20) not null default '',
-   user_breed_variety   varchar(20) not null default '',
-   user_breed_num       varchar(20) not null default '',
-   user_sell_num        varchar(20) not null default '',
-   user_breed_style     varchar(20) not null default '',
-   user_fodder_type     varchar(20) not null default '',
-   user_fodder_style    varchar(20) not null default '',
-   user_fodder_num      int not null default 0,
+   breed_id varchar(35) not null primary key,	-- 养殖 id
+   breed_category varchar(30) not null default '', -- 养殖类目
+   breed_variety varchar(30) not null default '', -- 品种
+   breed_type varchar(30) not null default '', -- 类型
+   male_num int not null default 0,	-- 公体数量
+   female_num int not null default 0,	-- 母体数量
+   obstetric_table_num int not null default 0,	-- 产床数量
+   shed_num int not null default 0,	-- 栏舍数量
+   empty_shed_num int not null default 0,	-- 空栏数量
+   competitive_brand varchar(50) not null default '',	-- 竞争品牌
+   livestock_num int not null default 0,	-- 存栏数量
+   user_place_id        varchar(35) not null,	-- 场地 id
    create_date			datetime not null default now(),
    is_deleted           tinyint not null default 0,
-   delete_date          datetime,
-   primary key (user_breed_type_id)
+   delete_date          datetime
 );
 
 /*==============================================================*/
@@ -605,12 +597,16 @@ create table qm_experience
    position varchar(20) not null default ''
 );
 
+/*==============================================================*/
+/* 销售点信息
+/*==============================================================*/
 drop table if exists qm_branch;
 create table qm_branch
 (
 	branch_id varchar(35) not null primary key,
     branch_name varchar(20) not null default '',
     department_id varchar(35) not null default '',
+    my_team_id varchar(35) not null default '',
     department_name varchar(20) not null default '',
     user_id varchar(35) not null default '',
     user_name varchar(20) not null default '',
@@ -619,7 +615,17 @@ create table qm_branch
     lat_lng varchar(30) not null default ''
 );
 
-
+/*==============================================================*/
+/* 销售点商品
+/*==============================================================*/
+drop table if exists qm_branch_goods;
+create table qm_branch_goods
+(
+	branch_id varchar(35) not null default '',
+    goods_id varchar(35) not null default '',
+    standard_id          varchar(35) not null,
+	standard_count       int not null default 0
+);
       
 /*修改团队自增Id初值*/
 /*alter table my_team AUTO_INCREMENT=1679617;*/

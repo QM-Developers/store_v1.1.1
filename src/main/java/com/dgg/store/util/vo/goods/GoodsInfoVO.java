@@ -27,6 +27,8 @@ public class GoodsInfoVO
 
     private String standards;
 
+    private Float goodsPrice;
+
     private Date createDate;
 
     private List<GoodsImgVO> imgList;
@@ -161,5 +163,15 @@ public class GoodsInfoVO
     public void setImgList(List<GoodsImgVO> imgList)
     {
         this.imgList = imgList;
+    }
+
+    public Float getGoodsPrice()
+    {
+        return goodsPrice;
+    }
+
+    public void setGoodsPrice(Float goodsPrice)
+    {
+        this.goodsPrice = goodsPrice;
     }
 }

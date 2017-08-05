@@ -33,6 +33,9 @@
             <if test="userStatus != null and userStatus != ''">
                 user_status = #{userStatus},
             </if>
+            <if test="token != null and token != ''">
+                token = #{token},
+            </if>
         </set>
         WHERE user_id = #{userId}
     </update>

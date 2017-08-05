@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dgg.store.mapper.FreightTempMapper">
+  <resultMap id="BaseResultMap" type="com.dgg.store.util.pojo.FreightTemp">
+    <id column="freight_id" jdbcType="VARCHAR" property="freightId" />
+    <result column="freight_name" jdbcType="VARCHAR" property="freightName" />
+    <result column="weight_allowance" jdbcType="REAL" property="weightAllowance" />
+    <result column="start_range" jdbcType="REAL" property="startRange" />
+    <result column="start_price" jdbcType="REAL" property="startPrice" />
+    <result column="increase_range" jdbcType="REAL" property="increaseRange" />
+    <result column="increase_price" jdbcType="REAL" property="increasePrice" />
+    <result column="my_team_id" jdbcType="VARCHAR" property="myTeamId" />
+    <result column="user_id" jdbcType="VARCHAR" property="userId" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    freight_id, freight_name, weight_allowance, start_range, start_price, increase_range, 
+    increase_price, my_team_id, user_id
+  </sql>
+  <select id="selectByExample" parameterType="com.dgg.store.util.pojo.FreightTempExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from freight_temp
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from freight_temp
+    where freight_id = #{freightId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from freight_temp
+    where freight_id = #{freightId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.dgg.store.util.pojo.FreightTempExample">
+    delete from freight_temp
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.dgg.store.util.pojo.FreightTemp">
+    insert into freight_temp (freight_id, freight_name, weight_allowance, 
+      start_range, start_price, increase_range, 
+      increase_price, my_team_id, user_id
+      )
+    values (#{freightId,jdbcType=VARCHAR}, #{freightName,jdbcType=VARCHAR}, #{weightAllowance,jdbcType=REAL}, 
+      #{startRange,jdbcType=REAL}, #{startPrice,jdbcType=REAL}, #{increaseRange,jdbcType=REAL}, 
+      #{increasePrice,jdbcType=REAL}, #{myTeamId,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.dgg.store.util.pojo.FreightTemp">
+    insert into freight_temp
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="freightId != null">
+        freight_id,
+      </if>
+      <if test="freightName != null">
+        freight_name,
+      </if>
+      <if test="weightAllowance != null">
+        weight_allowance,
+      </if>
+      <if test="startRange != null">
+        start_range,
+      </if>
+      <if test="startPrice != null">
+        start_price,
+      </if>
+      <if test="increaseRange != null">
+        increase_range,
+      </if>
+      <if test="increasePrice != null">
+        increase_price,
+      </if>
+      <if test="myTeamId != null">
+        my_team_id,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="freightId != null">
+        #{freightId,jdbcType=VARCHAR},
+      </if>
+      <if test="freightName != null">
+        #{freightName,jdbcType=VARCHAR},
+      </if>
+      <if test="weightAllowance != null">
+        #{weightAllowance,jdbcType=REAL},
+      </if>
+      <if test="startRange != null">
+        #{startRange,jdbcType=REAL},
+      </if>
+      <if test="startPrice != null">
+        #{startPrice,jdbcType=REAL},
+      </if>
+      <if test="increaseRange != null">
+        #{increaseRange,jdbcType=REAL},
+      </if>
+      <if test="increasePrice != null">
+        #{increasePrice,jdbcType=REAL},
+      </if>
+      <if test="myTeamId != null">
+        #{myTeamId,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.dgg.store.util.pojo.FreightTempExample" resultType="java.lang.Long">
+    select count(*) from freight_temp
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update freight_temp
+    <set>
+      <if test="record.freightId != null">
+        freight_id = #{record.freightId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.freightName != null">
+        freight_name = #{record.freightName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.weightAllowance != null">
+        weight_allowance = #{record.weightAllowance,jdbcType=REAL},
+      </if>
+      <if test="record.startRange != null">
+        start_range = #{record.startRange,jdbcType=REAL},
+      </if>
+      <if test="record.startPrice != null">
+        start_price = #{record.startPrice,jdbcType=REAL},
+      </if>
+      <if test="record.increaseRange != null">
+        increase_range = #{record.increaseRange,jdbcType=REAL},
+      </if>
+      <if test="record.increasePrice != null">
+        increase_price = #{record.increasePrice,jdbcType=REAL},
+      </if>
+      <if test="record.myTeamId != null">
+        my_team_id = #{record.myTeamId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userId != null">
+        user_id = #{record.userId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update freight_temp
+    set freight_id = #{record.freightId,jdbcType=VARCHAR},
+      freight_name = #{record.freightName,jdbcType=VARCHAR},
+      weight_allowance = #{record.weightAllowance,jdbcType=REAL},
+      start_range = #{record.startRange,jdbcType=REAL},
+      start_price = #{record.startPrice,jdbcType=REAL},
+      increase_range = #{record.increaseRange,jdbcType=REAL},
+      increase_price = #{record.increasePrice,jdbcType=REAL},
+      my_team_id = #{record.myTeamId,jdbcType=VARCHAR},
+      user_id = #{record.userId,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dgg.store.util.pojo.FreightTemp">
+    update freight_temp
+    <set>
+      <if test="freightName != null">
+        freight_name = #{freightName,jdbcType=VARCHAR},
+      </if>
+      <if test="weightAllowance != null">
+        weight_allowance = #{weightAllowance,jdbcType=REAL},
+      </if>
+      <if test="startRange != null">
+        start_range = #{startRange,jdbcType=REAL},
+      </if>
+      <if test="startPrice != null">
+        start_price = #{startPrice,jdbcType=REAL},
+      </if>
+      <if test="increaseRange != null">
+        increase_range = #{increaseRange,jdbcType=REAL},
+      </if>
+      <if test="increasePrice != null">
+        increase_price = #{increasePrice,jdbcType=REAL},
+      </if>
+      <if test="myTeamId != null">
+        my_team_id = #{myTeamId,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where freight_id = #{freightId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dgg.store.util.pojo.FreightTemp">
+    update freight_temp
+    set freight_name = #{freightName,jdbcType=VARCHAR},
+      weight_allowance = #{weightAllowance,jdbcType=REAL},
+      start_range = #{startRange,jdbcType=REAL},
+      start_price = #{startPrice,jdbcType=REAL},
+      increase_range = #{increaseRange,jdbcType=REAL},
+      increase_price = #{increasePrice,jdbcType=REAL},
+      my_team_id = #{myTeamId,jdbcType=VARCHAR},
+      user_id = #{userId,jdbcType=VARCHAR}
+    where freight_id = #{freightId,jdbcType=VARCHAR}
+  </update>
+</mapper>

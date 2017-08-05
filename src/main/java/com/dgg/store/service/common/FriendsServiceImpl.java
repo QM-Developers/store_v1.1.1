@@ -82,7 +82,7 @@ public class FriendsServiceImpl implements FriendsService
     {
         List<FriendVO> result = dao.findUserByPhone(friendsVO.getFriendPhone());
 
-        ResultVO resultVO = new ResultVO(result.size() < 1 ? 2 : 1, sessionVO.getToken(), result);
+        ResultVO resultVO = new ResultVO(result.size() < 1 ? 2 : 1, sessionVO.getToken(), result.size() > 0 ? result.get(0) : "");
 
         return resultVO;
     }
@@ -112,7 +112,7 @@ public class FriendsServiceImpl implements FriendsService
 
         int result = dao.updateFriendRequest(condition);
 
-        ResultVO resultVO = new ResultVO(1,sessionVO.getToken(),result);
+        ResultVO resultVO = new ResultVO(1, sessionVO.getToken(), result);
 
         return resultVO;
     }
@@ -125,7 +125,7 @@ public class FriendsServiceImpl implements FriendsService
         condition.setFriendId(sessionVO.getUserId());
         int result = dao.countNoReceivedRequest(condition);
 
-        ResultVO resultVO = new ResultVO(1,sessionVO.getToken(),result);
+        ResultVO resultVO = new ResultVO(1, sessionVO.getToken(), result);
 
         return resultVO;
     }
@@ -164,7 +164,7 @@ public class FriendsServiceImpl implements FriendsService
         else
             result = 1;
 
-        ResultVO resultVO = new ResultVO(result, sessionVO.getToken(),result);
+        ResultVO resultVO = new ResultVO(result, sessionVO.getToken(), result);
 
         return resultVO;
     }
@@ -245,7 +245,7 @@ public class FriendsServiceImpl implements FriendsService
 
 //        sendRequest(sessionVO, request);
 
-        ResultVO resultVO = new ResultVO(result, sessionVO.getToken(),request.getRequestId());
+        ResultVO resultVO = new ResultVO(result, sessionVO.getToken(), request.getRequestId());
 
         return resultVO;
     }

@@ -13,11 +13,21 @@ public class UserPlace {
 
     private Integer userEmployeeNum;
 
+    private Integer userOwnerNum;
+
+    private Integer userAlreadyUse;
+
     private String userPlaceAddress;
 
     private String userPlaceArea;
 
     private String userPlaceType;
+
+    private Date createDate;
+
+    private Byte isDeleted;
+
+    private Date deleteDate;
 
     public String getUserPlaceId() {
         return userPlaceId;
@@ -25,6 +35,14 @@ public class UserPlace {
 
     public void setUserPlaceId(String userPlaceId) {
         this.userPlaceId = userPlaceId == null ? null : userPlaceId.trim();
+    }
+
+    public String getCustomerId() {
+        return customerId;
+    }
+
+    public void setCustomerId(String customerId) {
+        this.customerId = customerId == null ? null : customerId.trim();
     }
 
     public String getUserPlaceName() {
@@ -51,6 +69,22 @@ public class UserPlace {
         this.userEmployeeNum = userEmployeeNum;
     }
 
+    public Integer getUserOwnerNum() {
+        return userOwnerNum;
+    }
+
+    public void setUserOwnerNum(Integer userOwnerNum) {
+        this.userOwnerNum = userOwnerNum;
+    }
+
+    public Integer getUserAlreadyUse() {
+        return userAlreadyUse;
+    }
+
+    public void setUserAlreadyUse(Integer userAlreadyUse) {
+        this.userAlreadyUse = userAlreadyUse;
+    }
+
     public String getUserPlaceAddress() {
         return userPlaceAddress;
     }
@@ -75,13 +109,27 @@ public class UserPlace {
         this.userPlaceType = userPlaceType == null ? null : userPlaceType.trim();
     }
 
-    public String getCustomerId()
-    {
-        return customerId;
+    public Date getCreateDate() {
+        return createDate;
     }
 
-    public void setCustomerId(String customerId)
-    {
-        this.customerId = customerId;
+    public void setCreateDate(Date createDate) {
+        this.createDate = createDate;
+    }
+
+    public Byte getIsDeleted() {
+        return isDeleted;
+    }
+
+    public void setIsDeleted(Byte isDeleted) {
+        this.isDeleted = isDeleted;
+    }
+
+    public Date getDeleteDate() {
+        return deleteDate;
+    }
+
+    public void setDeleteDate(Date deleteDate) {
+        this.deleteDate = deleteDate;
     }
 }

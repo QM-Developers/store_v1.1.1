@@ -41,59 +41,6 @@ LOCK TABLES `app_update` WRITE;
 UNLOCK TABLES;
 
 --
--- Table structure for table `area_freight`
---
-
-DROP TABLE IF EXISTS `area_freight`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `area_freight` (
-  `area_freight_id` varchar(35) NOT NULL,
-  `template_freight_id` varchar(35) NOT NULL,
-  `area_first_num` int(11) NOT NULL DEFAULT '0',
-  `area_first_price` float NOT NULL DEFAULT '0',
-  `area_continue_num` int(11) NOT NULL DEFAULT '0',
-  `area_continue_price` float NOT NULL DEFAULT '0',
-  PRIMARY KEY (`area_freight_id`),
-  KEY `FK_area_price_RE` (`template_freight_id`),
-  CONSTRAINT `FK_area_price_RE` FOREIGN KEY (`template_freight_id`) REFERENCES `template_of_freight` (`template_freight_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `area_freight`
---
-
-LOCK TABLES `area_freight` WRITE;
-/*!40000 ALTER TABLE `area_freight` DISABLE KEYS */;
-/*!40000 ALTER TABLE `area_freight` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `area_id`
---
-
-DROP TABLE IF EXISTS `area_id`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `area_id` (
-  `area_freight_id` varchar(35) NOT NULL,
-  `area_id` varchar(20) NOT NULL DEFAULT '',
-  KEY `FK_price_area_RE` (`area_freight_id`),
-  CONSTRAINT `FK_price_area_RE` FOREIGN KEY (`area_freight_id`) REFERENCES `area_freight` (`area_freight_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `area_id`
---
-
-LOCK TABLES `area_id` WRITE;
-/*!40000 ALTER TABLE `area_id` DISABLE KEYS */;
-/*!40000 ALTER TABLE `area_id` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `chat_history`
 --
 
@@ -119,7 +66,6 @@ CREATE TABLE `chat_history` (
 
 LOCK TABLES `chat_history` WRITE;
 /*!40000 ALTER TABLE `chat_history` DISABLE KEYS */;
-INSERT INTO `chat_history` VALUES ('06c74fc198056f70','89d9317fb3834353bcf2a507bee2eb82','89d9317fb3834353bcf2a507bee2eb83',256,'等等','1501573401006',0,0),('27a74873b8181c2d','89d9317fb3834353bcf2a507bee2eb82','89d9317fb3834353bcf2a507bee2eb83',256,'等等','1501573332101',0,0),('2f934f55813b1577','89d9317fb3834353bcf2a507bee2eb82','89d9317fb3834353bcf2a507bee2eb83',256,'等等','1501573245574',0,0),('34164dfbbb277efa','89d9317fb3834353bcf2a507bee2eb82','89d9317fb3834353bcf2a507bee2eb83',256,'等等','1501573251721',0,0),('341d409ba3568d8f','89d9317fb3834353bcf2a507bee2eb82','89d9317fb3834353bcf2a507bee2eb83',256,'等等','1501573415280',0,0),('66a34b0c83b2f4a5','89d9317fb3834353bcf2a507bee2eb82','89d9317fb3834353bcf2a507bee2eb83',256,'等等','1501573405624',0,0),('70a74ca1bf13370a','89d9317fb3834353bcf2a507bee2eb82','89d9317fb3834353bcf2a507bee2eb83',256,'等等','1501573304957',0,0),('758713076cafdd39','89d9317fb3834353bcf2a507bee2eb82','89d9317fb3834353bcf2a507bee2eb83',256,'等等','1501573128593',0,0),('9db4416285d7972f','89d9317fb3834353bcf2a507bee2eb83','89d9317fb3834353bcf2a507bee2eb82',1538,'','1501572709329',0,1),('b60c488daf982c8c','89d9317fb3834353bcf2a507bee2eb82','89d9317fb3834353bcf2a507bee2eb83',256,'等等','1501573234076',0,0),('c08534bd49e6d845','89d9317fb3834353bcf2a507bee2eb82','89d9317fb3834353bcf2a507bee2eb83',256,'等等','1501573057407',0,0),('c55147b1be901182','89d9317fb3834353bcf2a507bee2eb82','89d9317fb3834353bcf2a507bee2eb83',256,'等等','1501573396358',0,0),('dbda44d9b198bc14','89d9317fb3834353bcf2a507bee2eb82','89d9317fb3834353bcf2a507bee2eb83',256,'等等','1501576460878',0,1),('f55442958b53308c','89d9317fb3834353bcf2a507bee2eb82','89d9317fb3834353bcf2a507bee2eb83',256,'等等','1501573314738',0,0),('fb0348419abdda8c','89d9317fb3834353bcf2a507bee2eb83','89d9317fb3834353bcf2a507bee2eb82',1538,'','1501576773313',0,1),('ffd044e89edc7eda','89d9317fb3834353bcf2a507bee2eb82','89d9317fb3834353bcf2a507bee2eb83',256,'等等','1501573311072',0,0);
 /*!40000 ALTER TABLE `chat_history` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -260,6 +206,36 @@ INSERT INTO `dictionary` VALUES ('11ab454a1bfa45e7b8f93871c617d037','60da30408fe
 UNLOCK TABLES;
 
 --
+-- Table structure for table `freight_temp`
+--
+
+DROP TABLE IF EXISTS `freight_temp`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `freight_temp` (
+  `freight_id` varchar(35) NOT NULL,
+  `freight_name` varchar(20) NOT NULL DEFAULT '',
+  `weight_allowance` float NOT NULL DEFAULT '0',
+  `start_range` float NOT NULL DEFAULT '0',
+  `start_price` float NOT NULL DEFAULT '0',
+  `increase_range` float NOT NULL DEFAULT '0',
+  `increase_price` float NOT NULL DEFAULT '0',
+  `my_team_id` varchar(35) NOT NULL DEFAULT '',
+  `user_id` varchar(35) NOT NULL DEFAULT '',
+  PRIMARY KEY (`freight_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `freight_temp`
+--
+
+LOCK TABLES `freight_temp` WRITE;
+/*!40000 ALTER TABLE `freight_temp` DISABLE KEYS */;
+/*!40000 ALTER TABLE `freight_temp` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `friend`
 --
 
@@ -283,6 +259,7 @@ CREATE TABLE `friend` (
 
 LOCK TABLES `friend` WRITE;
 /*!40000 ALTER TABLE `friend` DISABLE KEYS */;
+INSERT INTO `friend` VALUES ('5405deb2a74e44dbb75610ea7a149aba','89d9317fb3834353bcf2a507bee2eb83','89d9317fb3834353bcf2a507bee2eb82','','',''),('bf5f51127d984eb987540bfc2429c315','89d9317fb3834353bcf2a507bee2eb82','89d9317fb3834353bcf2a507bee2eb83','','','');
 /*!40000 ALTER TABLE `friend` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -313,7 +290,7 @@ CREATE TABLE `friend_request` (
 
 LOCK TABLES `friend_request` WRITE;
 /*!40000 ALTER TABLE `friend_request` DISABLE KEYS */;
-INSERT INTO `friend_request` VALUES ('059812b5a8ef17b5','89d9317fb3834353bcf2a507bee2eb82','89d9317fb3834353bcf2a507bee2eb83','','加加加','request',0,0,'2017-08-01 15:37:27'),('2ee04195a7221ccb','89d9317fb3834353bcf2a507bee2eb82','89d9317fb3834353bcf2a507bee2eb83','','加加加','agree',0,1,'2017-08-01 16:35:56'),('46beec9bab0e4fc8b7aa36c05e303a6d','89d9317fb3834353bcf2a507bee2eb83','89d9317fb3834353bcf2a507bee2eb82','','','agree',0,1,'2017-08-01 16:37:57'),('902a6461c180468998316fa5509d91a4','89d9317fb3834353bcf2a507bee2eb83','89d9317fb3834353bcf2a507bee2eb82','','','agree',0,1,'2017-08-01 15:24:01'),('b1dba5f7f36ad80b','89d9317fb3834353bcf2a507bee2eb82','89d9317fb3834353bcf2a507bee2eb83','','加加加','agree',0,1,'2017-08-01 15:23:28');
+INSERT INTO `friend_request` VALUES ('ca5edb2a0d824bfeb9bfe60ac46845cd','89d9317fb3834353bcf2a507bee2eb83','89d9317fb3834353bcf2a507bee2eb82','','','agree',0,1,'2017-08-05 09:36:24'),('e8244dc1a95d347e','89d9317fb3834353bcf2a507bee2eb82','89d9317fb3834353bcf2a507bee2eb83','','加加加','agree',0,1,'2017-08-05 09:33:46');
 /*!40000 ALTER TABLE `friend_request` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -398,7 +375,7 @@ CREATE TABLE `goods_standard` (
 
 LOCK TABLES `goods_standard` WRITE;
 /*!40000 ALTER TABLE `goods_standard` DISABLE KEYS */;
-INSERT INTO `goods_standard` VALUES ('1f9b286b836c4175ab09a9b02cacbb7d','22a91981f71a43e7a8c34472bc7cc1c6','小包',5,200,30),('44a91ec5692442d28ac752b066cafa03','22a91981f71a43e7a8c34472bc7cc1c6','大包',10,100,60),('9190f4574805419187a8029042803617','9c3ed28bb39e4b079f548e69a3681cba','大包',10,100,60),('97be34802bda49f6b4ee2c200ee3a16a','9c3ed28bb39e4b079f548e69a3681cba','小包',5,200,30);
+INSERT INTO `goods_standard` VALUES ('1f9b286b836c4175ab09a9b02cacbb7d','22a91981f71a43e7a8c34472bc7cc1c6','小包',5,110,30),('44a91ec5692442d28ac752b066cafa03','22a91981f71a43e7a8c34472bc7cc1c6','大包',10,100,60),('9190f4574805419187a8029042803617','9c3ed28bb39e4b079f548e69a3681cba','大包',10,100,60),('97be34802bda49f6b4ee2c200ee3a16a','9c3ed28bb39e4b079f548e69a3681cba','小包',5,200,30);
 /*!40000 ALTER TABLE `goods_standard` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -712,6 +689,31 @@ INSERT INTO `permission` VALUES ('42b95b8f711447c49038e922c6f6167d','根据手�
 UNLOCK TABLES;
 
 --
+-- Table structure for table `place_image`
+--
+
+DROP TABLE IF EXISTS `place_image`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `place_image` (
+  `img_id` varchar(35) NOT NULL,
+  `img_type` tinyint(4) NOT NULL DEFAULT '0',
+  `img_url` text,
+  `user_place_id` varchar(35) NOT NULL DEFAULT '',
+  PRIMARY KEY (`img_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `place_image`
+--
+
+LOCK TABLES `place_image` WRITE;
+/*!40000 ALTER TABLE `place_image` DISABLE KEYS */;
+/*!40000 ALTER TABLE `place_image` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `position_permission_re`
 --
 
@@ -745,6 +747,7 @@ CREATE TABLE `qm_branch` (
   `branch_id` varchar(35) NOT NULL,
   `branch_name` varchar(20) NOT NULL DEFAULT '',
   `department_id` varchar(35) NOT NULL DEFAULT '',
+  `my_team_id` varchar(35) NOT NULL DEFAULT '',
   `department_name` varchar(20) NOT NULL DEFAULT '',
   `user_id` varchar(35) NOT NULL DEFAULT '',
   `user_name` varchar(20) NOT NULL DEFAULT '',
@@ -761,8 +764,33 @@ CREATE TABLE `qm_branch` (
 
 LOCK TABLES `qm_branch` WRITE;
 /*!40000 ALTER TABLE `qm_branch` DISABLE KEYS */;
-INSERT INTO `qm_branch` VALUES ('6eeebe6585c241b28bcfba41acad8122','江门销售点','27a9c57b4c69441aa569ef4ae1a9ef7c','总经办','41370f132bd44bca943e2fe5dd9862ab','赵六','13657981326','江门市科学馆','22.58945,113.094063');
+INSERT INTO `qm_branch` VALUES ('c1ac8fadcd8d4806a35518be39703393','广州销售点','27a9c57b4c69441aa569ef4ae1a9ef7d','10001','财务部','89d9317fb3834353bcf2a507bee2eb83','李四','13699999999','广州市交通技师学院','23.236034,113.351232');
 /*!40000 ALTER TABLE `qm_branch` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `qm_branch_goods`
+--
+
+DROP TABLE IF EXISTS `qm_branch_goods`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `qm_branch_goods` (
+  `branch_id` varchar(35) NOT NULL DEFAULT '',
+  `goods_id` varchar(35) NOT NULL DEFAULT '',
+  `standard_id` varchar(35) NOT NULL,
+  `standard_count` int(11) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `qm_branch_goods`
+--
+
+LOCK TABLES `qm_branch_goods` WRITE;
+/*!40000 ALTER TABLE `qm_branch_goods` DISABLE KEYS */;
+INSERT INTO `qm_branch_goods` VALUES ('c1ac8fadcd8d4806a35518be39703393','22a91981f71a43e7a8c34472bc7cc1c6','1f9b286b836c4175ab09a9b02cacbb7d',90);
+/*!40000 ALTER TABLE `qm_branch_goods` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -990,39 +1018,6 @@ INSERT INTO `team_department` VALUES ('27a9c57b4c69441aa569ef4ae1a9ef7c','总经
 UNLOCK TABLES;
 
 --
--- Table structure for table `template_of_freight`
---
-
-DROP TABLE IF EXISTS `template_of_freight`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `template_of_freight` (
-  `template_freight_id` varchar(35) NOT NULL,
-  `user_id` varchar(35) NOT NULL DEFAULT '',
-  `template_freight_name` varchar(25) NOT NULL DEFAULT '',
-  `template_delivery_time` int(11) NOT NULL DEFAULT '0',
-  `template_freight_isfree` tinyint(4) NOT NULL DEFAULT '0',
-  `template_charge_model` tinyint(4) NOT NULL DEFAULT '0',
-  `template_default_num` float NOT NULL DEFAULT '0',
-  `template_default_price` float NOT NULL DEFAULT '0',
-  `template_add_num` float NOT NULL DEFAULT '0',
-  `template_add_price` float NOT NULL DEFAULT '0',
-  PRIMARY KEY (`template_freight_id`),
-  KEY `FK_user_freight_re` (`user_id`),
-  CONSTRAINT `FK_user_freight_re` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `template_of_freight`
---
-
-LOCK TABLES `template_of_freight` WRITE;
-/*!40000 ALTER TABLE `template_of_freight` DISABLE KEYS */;
-/*!40000 ALTER TABLE `template_of_freight` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `user`
 --
 
@@ -1088,22 +1083,22 @@ DROP TABLE IF EXISTS `user_breed_type`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `user_breed_type` (
-  `user_breed_type_id` varchar(35) NOT NULL,
-  `user_place_id` varchar(35) NOT NULL DEFAULT '',
-  `user_breed_type` varchar(20) NOT NULL DEFAULT '',
-  `user_breed_variety` varchar(20) NOT NULL DEFAULT '',
-  `user_breed_num` varchar(20) NOT NULL DEFAULT '',
-  `user_sell_num` varchar(20) NOT NULL DEFAULT '',
-  `user_breed_style` varchar(20) NOT NULL DEFAULT '',
-  `user_fodder_type` varchar(20) NOT NULL DEFAULT '',
-  `user_fodder_style` varchar(20) NOT NULL DEFAULT '',
-  `user_fodder_num` int(11) NOT NULL DEFAULT '0',
+  `breed_id` varchar(35) NOT NULL,
+  `breed_category` varchar(30) NOT NULL DEFAULT '',
+  `breed_variety` varchar(30) NOT NULL DEFAULT '',
+  `breed_type` varchar(30) NOT NULL DEFAULT '',
+  `male_num` int(11) NOT NULL DEFAULT '0',
+  `female_num` int(11) NOT NULL DEFAULT '0',
+  `obstetric_table_num` int(11) NOT NULL DEFAULT '0',
+  `shed_num` int(11) NOT NULL DEFAULT '0',
+  `empty_shed_num` int(11) NOT NULL DEFAULT '0',
+  `competitive_brand` varchar(50) NOT NULL DEFAULT '',
+  `livestock_num` int(11) NOT NULL DEFAULT '0',
+  `user_place_id` varchar(35) NOT NULL,
   `create_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `is_deleted` tinyint(4) NOT NULL DEFAULT '0',
   `delete_date` datetime DEFAULT NULL,
-  PRIMARY KEY (`user_breed_type_id`),
-  KEY `FK_place_breed_RE` (`user_place_id`),
-  CONSTRAINT `FK_place_breed_RE` FOREIGN KEY (`user_place_id`) REFERENCES `user_place` (`user_place_id`)
+  PRIMARY KEY (`breed_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -1266,15 +1261,15 @@ CREATE TABLE `user_place` (
   `user_place_name` varchar(20) NOT NULL DEFAULT '',
   `user_place_acreage` int(11) NOT NULL DEFAULT '0',
   `user_employee_num` int(11) NOT NULL DEFAULT '0',
+  `user_owner_num` int(11) NOT NULL DEFAULT '0',
+  `user_already_use` int(11) NOT NULL DEFAULT '0',
   `user_place_address` varchar(50) NOT NULL DEFAULT '',
   `user_place_area` varchar(50) NOT NULL DEFAULT '',
   `user_place_type` varchar(15) NOT NULL DEFAULT '',
   `create_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `is_deleted` tinyint(4) NOT NULL DEFAULT '0',
   `delete_date` date DEFAULT NULL,
-  PRIMARY KEY (`user_place_id`),
-  KEY `FK_user_place_re` (`customer_id`),
-  CONSTRAINT `FK_user_place_re` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`customer_id`)
+  PRIMARY KEY (`user_place_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -1302,9 +1297,7 @@ CREATE TABLE `user_place_hardware` (
   `create_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `is_deleted` tinyint(4) NOT NULL DEFAULT '0',
   `delete_date` date DEFAULT NULL,
-  PRIMARY KEY (`user_hardware_id`),
-  KEY `FK_place_hardware_RE` (`user_place_id`),
-  CONSTRAINT `FK_place_hardware_RE` FOREIGN KEY (`user_place_id`) REFERENCES `user_place` (`user_place_id`)
+  PRIMARY KEY (`user_hardware_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -1511,4 +1504,4 @@ SET character_set_client = @saved_cs_client;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-08-01 17:10:43
+-- Dump completed on 2017-08-05 17:58:42

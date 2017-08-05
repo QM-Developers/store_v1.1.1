@@ -19,7 +19,7 @@
 
 <div class="goodslist bodybox">
     <header class="goodslist-header">
-        <a class="goodslist-but" href="qm-typeSelect.jsp?add">添加商品</a>
+        <a class="goodslist-but" href="qm-typeSelect.jsp?option=add">添加商品</a>
     </header>
     <section class="goodslist-list">
         <div class="goodslist-list-titlebox">

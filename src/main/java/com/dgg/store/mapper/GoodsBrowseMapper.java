@@ -26,4 +26,6 @@ public interface GoodsBrowseMapper
     List<GoodsTypeVO> findAllGoodsType();
 
     Set<String> findChildTypeId(@Param("typeId") String typeId);
+
+    int countGoodsByType(@Param("typeId") String goodsTypeId);
 }

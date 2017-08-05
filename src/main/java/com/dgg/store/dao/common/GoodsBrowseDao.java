@@ -25,4 +25,6 @@ public interface GoodsBrowseDao
     List<GoodsTypeVO> findAllGoodsType();
 
     Set<String> findChildTypeId(String typeId);
+
+    int countGoodsByType(String goodsTypeId);
 }

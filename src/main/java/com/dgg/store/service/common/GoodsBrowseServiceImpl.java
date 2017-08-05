@@ -1,7 +1,11 @@
 package com.dgg.store.service.common;
 
+import com.alibaba.fastjson.JSONObject;
 import com.dgg.store.dao.common.GoodsBrowseDao;
+import com.dgg.store.util.core.constant.KeyConstant;
+import com.dgg.store.util.core.page.PagingUtil;
 import com.dgg.store.util.pojo.GoodsStandard;
+import com.dgg.store.util.vo.core.PageVO;
 import com.dgg.store.util.vo.core.ResultVO;
 import com.dgg.store.util.vo.core.SessionVO;
 import com.dgg.store.util.vo.goods.GoodsDetailVO;
@@ -21,7 +25,7 @@ public class GoodsBrowseServiceImpl implements GoodsBrowseService
     private GoodsBrowseDao dao;
 
     @Override
-    public ResultVO findGoodsType(SessionVO sessionVO, GoodsTypeVO goodsTypeVO)
+    public String findGoodsType(SessionVO sessionVO, GoodsTypeVO goodsTypeVO)
     {
         List<GoodsTypeVO> result = dao.findAllGoodsType();  //dao.findGoodsType(goodsTypeVO.getGoodsTypePid());
 
@@ -29,7 +33,7 @@ public class GoodsBrowseServiceImpl implements GoodsBrowseService
 
         ResultVO resultVO = new ResultVO(result.size() < 1 ? 0 : 1, sessionVO.getToken(), result);
 
-        return resultVO;
+        return JSONObject.toJSONString(resultVO);
     }
 
     private List<GoodsTypeVO> appendChildType(List<GoodsTypeVO> allType, String pid)
@@ -60,26 +64,24 @@ public class GoodsBrowseServiceImpl implements GoodsBrowseService
     }
 
     @Override
-    public ResultVO findGoodsList(SessionVO sessionVO, GoodsTypeVO goodsTypeVO)
+    public String findGoodsList(SessionVO sessionVO, GoodsTypeVO goodsTypeVO, PageVO pageVO)
     {
-        int start = (goodsTypeVO.getPageNum() - 1) * goodsTypeVO.getPageSize();
-        int end = start + goodsTypeVO.getPageSize();
-        goodsTypeVO.setPageNum(start);
-        goodsTypeVO.setPageSize(end);
+        int start = PagingUtil.getStart(pageVO.getPageNum(), pageVO.getPageSize());
+        int end = pageVO.getPageSize();
+        int pageCount = dao.countGoodsByType(goodsTypeVO.getGoodsTypeId());
 
-        Set<String> childTypeId = findChildTypeId(goodsTypeVO.getGoodsTypeId());
+//        Set<String> childTypeId = findChildTypeId(goodsTypeVO.getGoodsTypeId());
 
-        List<GoodsInfoVO> result = dao.findGoodsList(goodsTypeVO.getGoodsTypeId(), goodsTypeVO.getPageNum(), goodsTypeVO.getPageSize());
+        List<GoodsInfoVO> result = dao.findGoodsList(goodsTypeVO.getGoodsTypeId(), start, end);
 
-        for (String s : childTypeId)
-            if (result.size() < (end - start))
-                result.addAll(dao.findGoodsList(s, goodsTypeVO.getPageNum(), goodsTypeVO.getPageSize()));
+//        for (String s : childTypeId)
+//            if (result.size() < (end - start))
+//                result.addAll(dao.findGoodsList(s, start, end));
 
-        ResultVO resultVO = new ResultVO(result.size() < 1 ? 0 : 1, sessionVO.getToken(), result);
-//        if (result.size() > 0)
-//            resultVO.setPageCount(result.get(0).getPageCount() % goodsTypeVO.getPageSize() == 0 ? result.get(0).getPageCount() / goodsTypeVO.getPageSize() : result.get(0).getPageCount() / goodsTypeVO.getPageSize() + 1);
+        JSONObject json = (JSONObject) JSONObject.toJSON(new ResultVO(1, sessionVO.getToken(), result));
+        json.put(KeyConstant.PAGE_COUNT,PagingUtil.getCount(pageCount,end));
 
-        return resultVO;
+        return json.toJSONString();
     }
 
     public Set<String> findChildTypeId(String typeId)

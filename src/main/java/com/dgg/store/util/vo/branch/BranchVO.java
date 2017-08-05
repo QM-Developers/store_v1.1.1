@@ -8,6 +8,8 @@ public class BranchVO
 
     private String branchArea;
 
+    private String myTeamId;
+
     private String departmentId;
 
     private String departmentName;
@@ -108,5 +110,15 @@ public class BranchVO
     public void setLatLng(String latLng)
     {
         this.latLng = latLng;
+    }
+
+    public String getMyTeamId()
+    {
+        return myTeamId;
+    }
+
+    public void setMyTeamId(String myTeamId)
+    {
+        this.myTeamId = myTeamId;
     }
 }

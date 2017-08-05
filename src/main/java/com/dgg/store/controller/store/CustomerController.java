@@ -2,7 +2,6 @@ package com.dgg.store.controller.store;
 
 import com.dgg.store.service.store.CustomerService;
 import com.dgg.store.util.core.constant.Constant;
-import com.dgg.store.util.pojo.MyTeam;
 import com.dgg.store.util.vo.CustomerVO;
 import com.dgg.store.util.vo.core.ResultVO;
 import com.dgg.store.util.vo.core.SessionVO;
@@ -38,13 +37,13 @@ public class CustomerController
         return service.updateCustomer(sessionVO, customerVO);
     }
 
-    @RequestMapping(value = "/s/findCustomerUpdateCount",method = RequestMethod.POST)
+    @RequestMapping(value = "/s/findCustomerUpdateCount", method = RequestMethod.POST)
     @ResponseBody
-    public ResultVO findCustomerUpdateCount(HttpServletRequest request,CustomerVO customerVO)
+    public ResultVO findCustomerUpdateCount(HttpServletRequest request, CustomerVO customerVO)
     {
         SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
 
-        return service.findCustomerUpdateCount(sessionVO,customerVO);
+        return service.findCustomerUpdateCount(sessionVO, customerVO);
     }
 
     @RequestMapping(value = "/s/findCustomerGroup", method = RequestMethod.POST)
@@ -73,41 +72,4 @@ public class CustomerController
 
         return service.findCustomerInfo(sessionVO, customerVO);
     }
-
-//    @RequestMapping(value = "/s/addCooperation", method = RequestMethod.POST)
-//    @ResponseBody
-//    public ResultVO addCooperation(HttpServletRequest request, MyTeam myTeam)
-//    {
-//        SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
-//
-//        return service.insertCooperation(sessionVO, myTeam);
-//    }
-//
-//    @RequestMapping(value = "/s/addCustomerToCooper", method = RequestMethod.POST)
-//    @ResponseBody
-//    public ResultVO addCustomerToCooper(HttpServletRequest request, CustomerVO customerVO)
-//    {
-//        SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
-//
-//        return service.insertCustomerToCooper(sessionVO, customerVO);
-//    }
-
-//    @RequestMapping(value = "/s/findCooperation", method = RequestMethod.POST)
-//    @ResponseBody
-//    public ResultVO findCooperation(HttpServletRequest request)
-//    {
-//        SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
-//
-//        return service.findCooperation(sessionVO);
-//    }
-
-//    @RequestMapping(value = "/s/findPartner", method = RequestMethod.POST)
-//    @ResponseBody
-//    public ResultVO findPartner(HttpServletRequest request)
-//    {
-//        String cooperId = request.getParameter("cooperId");
-//        SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
-//
-//        return service.findPartner(sessionVO, cooperId);
-//    }
 }

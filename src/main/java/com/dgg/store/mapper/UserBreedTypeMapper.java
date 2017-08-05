@@ -10,7 +10,7 @@ public interface UserBreedTypeMapper {
 
     int deleteByExample(UserBreedTypeExample example);
 
-    int deleteByPrimaryKey(String userBreedTypeId);
+    int deleteByPrimaryKey(String breedId);
 
     int insert(UserBreedType record);
 
@@ -18,7 +18,7 @@ public interface UserBreedTypeMapper {
 
     List<UserBreedType> selectByExample(UserBreedTypeExample example);
 
-    UserBreedType selectByPrimaryKey(String userBreedTypeId);
+    UserBreedType selectByPrimaryKey(String breedId);
 
     int updateByExampleSelective(@Param("record") UserBreedType record, @Param("example") UserBreedTypeExample example);
 

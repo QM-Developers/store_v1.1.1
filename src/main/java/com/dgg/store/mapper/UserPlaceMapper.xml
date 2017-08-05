@@ -1,63 +1,303 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dgg.store.mapper.UserPlaceMapper">
-  <resultMap id="UserPlaceMap" type="com.dgg.store.util.vo.UserPlaceVO">
-    <id column="user_place_id" jdbcType="VARCHAR" property="userPlaceId"/>
-    <result column="user_id" jdbcType="VARCHAR" property="userId"/>
-    <result column="user_place_acreage" jdbcType="INTEGER" property="userPlaceAcreage"/>
-    <result column="user_employee_num" jdbcType="INTEGER" property="userEmployeeNum"/>
-    <result column="user_place_address" jdbcType="VARCHAR" property="userPlaceAddress"/>
-    <result column="user_place_area" jdbcType="VARCHAR" property="userPlaceArea"/>
-    <result column="user_place_type" jdbcType="VARCHAR" property="userPlaceType"/>
-    <result column="user_place_name" jdbcType="VARCHAR" property="userPlaceName"/>
-    <result column="breed_count" jdbcType="INTEGER" property="breedCount"/>
-    <result column="hardware_count" jdbcType="INTEGER" property="hardwareCount"/>
+  <resultMap id="BaseResultMap" type="com.dgg.store.util.pojo.UserPlace">
+    <id column="user_place_id" jdbcType="VARCHAR" property="userPlaceId" />
+    <result column="customer_id" jdbcType="VARCHAR" property="customerId" />
+    <result column="user_place_name" jdbcType="VARCHAR" property="userPlaceName" />
+    <result column="user_place_acreage" jdbcType="INTEGER" property="userPlaceAcreage" />
+    <result column="user_employee_num" jdbcType="INTEGER" property="userEmployeeNum" />
+    <result column="user_owner_num" jdbcType="INTEGER" property="userOwnerNum" />
+    <result column="user_already_use" jdbcType="INTEGER" property="userAlreadyUse" />
+    <result column="user_place_address" jdbcType="VARCHAR" property="userPlaceAddress" />
+    <result column="user_place_area" jdbcType="VARCHAR" property="userPlaceArea" />
+    <result column="user_place_type" jdbcType="VARCHAR" property="userPlaceType" />
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="is_deleted" jdbcType="TINYINT" property="isDeleted" />
+    <result column="delete_date" jdbcType="DATE" property="deleteDate" />
   </resultMap>
-
-  <resultMap id="UserBreedTypeMap" type="com.dgg.store.util.pojo.UserBreedType">
-    <id column="user_breed_type_id" jdbcType="VARCHAR" property="userBreedTypeId" />
-    <result column="user_place_id" jdbcType="VARCHAR" property="userPlaceId" />
-    <result column="user_breed_type" jdbcType="VARCHAR" property="userBreedType" />
-    <result column="user_breed_variety" jdbcType="VARCHAR" property="userBreedVariety" />
-    <result column="user_breed_num" jdbcType="VARCHAR" property="userBreedNum" />
-    <result column="user_sell_num" jdbcType="VARCHAR" property="userSellNum" />
-    <result column="user_breed_style" jdbcType="VARCHAR" property="userBreedStyle" />
-    <result column="user_fodder_type" jdbcType="VARCHAR" property="userFodderType" />
-    <result column="user_fodder_style" jdbcType="VARCHAR" property="userFodderStyle" />
-    <result column="user_fodder_num" jdbcType="INTEGER" property="userFodderNum" />
-  </resultMap>
-
-  <resultMap id="HardwareMap" type="com.dgg.store.util.pojo.UserPlaceHardware">
-    <id column="user_hardware_id" jdbcType="VARCHAR" property="userHardwareId" />
-    <result column="user_place_id" jdbcType="VARCHAR" property="userPlaceId" />
-    <result column="user_hardware_name" jdbcType="VARCHAR" property="userHardwareName" />
-    <result column="user_hardware_num" jdbcType="INTEGER" property="userHardwareNum" />
-  </resultMap>
-
-  <delete id="deleteUserPlace" parameterType="com.dgg.store.util.pojo.UserPlace">
-    DELETE FROM user_place
-    WHERE user_place_id = #{userPlaceId}
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    user_place_id, customer_id, user_place_name, user_place_acreage, user_employee_num, 
+    user_owner_num, user_already_use, user_place_address, user_place_area, user_place_type, 
+    create_date, is_deleted, delete_date
+  </sql>
+  <select id="selectByExample" parameterType="com.dgg.store.util.pojo.UserPlaceExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from user_place
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from user_place
+    where user_place_id = #{userPlaceId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from user_place
+    where user_place_id = #{userPlaceId,jdbcType=VARCHAR}
   </delete>
-
-  <insert id="insertUserPlace" parameterType="com.dgg.store.util.pojo.UserPlace">
-    insert into dgg_store.user_place (user_place_id, user_id, user_place_name,
-    user_place_acreage,user_employee_num,
-    user_place_address, user_place_area, user_place_type
-    )
-    values (#{userPlaceId,jdbcType=VARCHAR}, #{customerId,jdbcType=VARCHAR}, #{userPlaceName,jdbcType=VARCHAR},
-    #{userPlaceAcreage,jdbcType=INTEGER}, #{userEmployeeNum,jdbcType=INTEGER},
-    #{userPlaceAddress,jdbcType=VARCHAR}, #{userPlaceArea,jdbcType=VARCHAR}, #{userPlaceType,jdbcType=VARCHAR}
-    )
+  <delete id="deleteByExample" parameterType="com.dgg.store.util.pojo.UserPlaceExample">
+    delete from user_place
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.dgg.store.util.pojo.UserPlace">
+    insert into user_place (user_place_id, customer_id, user_place_name, 
+      user_place_acreage, user_employee_num, user_owner_num, 
+      user_already_use, user_place_address, user_place_area, 
+      user_place_type, create_date, is_deleted, 
+      delete_date)
+    values (#{userPlaceId,jdbcType=VARCHAR}, #{customerId,jdbcType=VARCHAR}, #{userPlaceName,jdbcType=VARCHAR}, 
+      #{userPlaceAcreage,jdbcType=INTEGER}, #{userEmployeeNum,jdbcType=INTEGER}, #{userOwnerNum,jdbcType=INTEGER}, 
+      #{userAlreadyUse,jdbcType=INTEGER}, #{userPlaceAddress,jdbcType=VARCHAR}, #{userPlaceArea,jdbcType=VARCHAR}, 
+      #{userPlaceType,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}, #{isDeleted,jdbcType=TINYINT}, 
+      #{deleteDate,jdbcType=DATE})
   </insert>
-
-  <update id="updateUserPlace" parameterType="com.dgg.store.util.pojo.UserPlace">
+  <insert id="insertSelective" parameterType="com.dgg.store.util.pojo.UserPlace">
+    insert into user_place
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userPlaceId != null">
+        user_place_id,
+      </if>
+      <if test="customerId != null">
+        customer_id,
+      </if>
+      <if test="userPlaceName != null">
+        user_place_name,
+      </if>
+      <if test="userPlaceAcreage != null">
+        user_place_acreage,
+      </if>
+      <if test="userEmployeeNum != null">
+        user_employee_num,
+      </if>
+      <if test="userOwnerNum != null">
+        user_owner_num,
+      </if>
+      <if test="userAlreadyUse != null">
+        user_already_use,
+      </if>
+      <if test="userPlaceAddress != null">
+        user_place_address,
+      </if>
+      <if test="userPlaceArea != null">
+        user_place_area,
+      </if>
+      <if test="userPlaceType != null">
+        user_place_type,
+      </if>
+      <if test="createDate != null">
+        create_date,
+      </if>
+      <if test="isDeleted != null">
+        is_deleted,
+      </if>
+      <if test="deleteDate != null">
+        delete_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="userPlaceId != null">
+        #{userPlaceId,jdbcType=VARCHAR},
+      </if>
+      <if test="customerId != null">
+        #{customerId,jdbcType=VARCHAR},
+      </if>
+      <if test="userPlaceName != null">
+        #{userPlaceName,jdbcType=VARCHAR},
+      </if>
+      <if test="userPlaceAcreage != null">
+        #{userPlaceAcreage,jdbcType=INTEGER},
+      </if>
+      <if test="userEmployeeNum != null">
+        #{userEmployeeNum,jdbcType=INTEGER},
+      </if>
+      <if test="userOwnerNum != null">
+        #{userOwnerNum,jdbcType=INTEGER},
+      </if>
+      <if test="userAlreadyUse != null">
+        #{userAlreadyUse,jdbcType=INTEGER},
+      </if>
+      <if test="userPlaceAddress != null">
+        #{userPlaceAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="userPlaceArea != null">
+        #{userPlaceArea,jdbcType=VARCHAR},
+      </if>
+      <if test="userPlaceType != null">
+        #{userPlaceType,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDeleted != null">
+        #{isDeleted,jdbcType=TINYINT},
+      </if>
+      <if test="deleteDate != null">
+        #{deleteDate,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.dgg.store.util.pojo.UserPlaceExample" resultType="java.lang.Long">
+    select count(*) from user_place
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
     update user_place
     <set>
+      <if test="record.userPlaceId != null">
+        user_place_id = #{record.userPlaceId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.customerId != null">
+        customer_id = #{record.customerId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userPlaceName != null">
+        user_place_name = #{record.userPlaceName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userPlaceAcreage != null">
+        user_place_acreage = #{record.userPlaceAcreage,jdbcType=INTEGER},
+      </if>
+      <if test="record.userEmployeeNum != null">
+        user_employee_num = #{record.userEmployeeNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.userOwnerNum != null">
+        user_owner_num = #{record.userOwnerNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.userAlreadyUse != null">
+        user_already_use = #{record.userAlreadyUse,jdbcType=INTEGER},
+      </if>
+      <if test="record.userPlaceAddress != null">
+        user_place_address = #{record.userPlaceAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userPlaceArea != null">
+        user_place_area = #{record.userPlaceArea,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userPlaceType != null">
+        user_place_type = #{record.userPlaceType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createDate != null">
+        create_date = #{record.createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.isDeleted != null">
+        is_deleted = #{record.isDeleted,jdbcType=TINYINT},
+      </if>
+      <if test="record.deleteDate != null">
+        delete_date = #{record.deleteDate,jdbcType=DATE},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update user_place
+    set user_place_id = #{record.userPlaceId,jdbcType=VARCHAR},
+      customer_id = #{record.customerId,jdbcType=VARCHAR},
+      user_place_name = #{record.userPlaceName,jdbcType=VARCHAR},
+      user_place_acreage = #{record.userPlaceAcreage,jdbcType=INTEGER},
+      user_employee_num = #{record.userEmployeeNum,jdbcType=INTEGER},
+      user_owner_num = #{record.userOwnerNum,jdbcType=INTEGER},
+      user_already_use = #{record.userAlreadyUse,jdbcType=INTEGER},
+      user_place_address = #{record.userPlaceAddress,jdbcType=VARCHAR},
+      user_place_area = #{record.userPlaceArea,jdbcType=VARCHAR},
+      user_place_type = #{record.userPlaceType,jdbcType=VARCHAR},
+      create_date = #{record.createDate,jdbcType=TIMESTAMP},
+      is_deleted = #{record.isDeleted,jdbcType=TINYINT},
+      delete_date = #{record.deleteDate,jdbcType=DATE}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dgg.store.util.pojo.UserPlace">
+    update user_place
+    <set>
+      <if test="customerId != null">
+        customer_id = #{customerId,jdbcType=VARCHAR},
+      </if>
+      <if test="userPlaceName != null">
+        user_place_name = #{userPlaceName,jdbcType=VARCHAR},
+      </if>
       <if test="userPlaceAcreage != null">
         user_place_acreage = #{userPlaceAcreage,jdbcType=INTEGER},
       </if>
       <if test="userEmployeeNum != null">
         user_employee_num = #{userEmployeeNum,jdbcType=INTEGER},
+      </if>
+      <if test="userOwnerNum != null">
+        user_owner_num = #{userOwnerNum,jdbcType=INTEGER},
+      </if>
+      <if test="userAlreadyUse != null">
+        user_already_use = #{userAlreadyUse,jdbcType=INTEGER},
       </if>
       <if test="userPlaceAddress != null">
         user_place_address = #{userPlaceAddress,jdbcType=VARCHAR},
@@ -68,152 +308,32 @@
       <if test="userPlaceType != null">
         user_place_type = #{userPlaceType,jdbcType=VARCHAR},
       </if>
-      <if test="userPlaceName != null">
-        user_place_name = #{userPlaceName,jdbcType=VARCHAR},
+      <if test="createDate != null">
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDeleted != null">
+        is_deleted = #{isDeleted,jdbcType=TINYINT},
+      </if>
+      <if test="deleteDate != null">
+        delete_date = #{deleteDate,jdbcType=DATE},
       </if>
     </set>
     where user_place_id = #{userPlaceId,jdbcType=VARCHAR}
   </update>
-
-  <select id="findPlacesTitle" resultMap="UserPlaceMap">
-    SELECT up.user_place_id,up.user_place_name
-    FROM user_place up
-    INNER JOIN user u
-    ON u.user_id = up.user_id
-    WHERE u.user_id =  #{userId}
-  </select>
-
-  <select id="findPlace" resultMap="UserPlaceMap">
-    SELECT up.user_place_id,up.user_place_acreage,up.user_employee_num,up.user_place_address,up.user_place_area,up.user_place_type,up.user_place_name
-    FROM user_place up
-    WHERE up.user_place_id = #{placeId}
-  </select>
-
-  <select id="findSinglePlace" resultMap="UserPlaceMap">
-    SELECT up.user_place_id,up.user_place_acreage,up.user_employee_num,up.user_place_address,up.user_place_area,up.user_place_type,up.user_place_name,
-    (SELECT COUNT(0) from user_place_hardware uph WHERE up.user_place_id = uph.user_place_id) hardware_count,
-    (SELECT COUNT(0) from user_breed_type ubt WHERE up.user_place_id = ubt.user_place_id) breed_count
-    FROM user_place up
-    INNER JOIN user u
-    ON u.user_id = up.user_id
-    WHERE u.user_id = #{userId}
-    LIMIT 1
-  </select>
-
-  <select id="findAllPlace" resultMap="UserPlaceMap">
-    SELECT up.user_place_id,up.user_place_acreage,up.user_employee_num,up.user_place_address,up.user_place_area,up.user_place_type,up.user_place_name,
-    (SELECT COUNT(0) from user_place_hardware uph WHERE up.user_place_id = uph.user_place_id) hardware_count,
-    (SELECT COUNT(0) from user_breed_type ubt WHERE up.user_place_id = ubt.user_place_id) breed_count
-    FROM user_place up
-    INNER JOIN user u
-    ON u.user_id = up.user_id
-    WHERE u.user_id = #{userId}
-  </select>
-
-  <select id="findHardwareById" resultMap="HardwareMap">
-    SELECT uph.user_hardware_id,uph.user_hardware_name,uph.user_hardware_num
-    FROM user_place_hardware uph
-    WHERE uph.user_hardware_id = #{hardwareId}
-  </select>
-
-  <select id="findPlaceHardware" resultMap="HardwareMap">
-    SELECT uph.user_hardware_id,uph.user_hardware_name,uph.user_hardware_num
-    FROM user_place_hardware uph
-    WHERE uph.user_place_id = #{placeId}
-  </select>
-
-  <update id="updateHardwareById" parameterType="com.dgg.store.util.pojo.UserPlaceHardware">
-    UPDATE user_place_hardware
-    <set>
-      <if test="userHardwareName != null">
-        user_hardware_name = #{userHardwareName},
-      </if>
-      <if test="userHardwareNum != null">
-        user_hardware_num = #{userHardwareNum},
-      </if>
-    </set>
-    WHERE user_hardware_id = #{userHardwareId}
+  <update id="updateByPrimaryKey" parameterType="com.dgg.store.util.pojo.UserPlace">
+    update user_place
+    set customer_id = #{customerId,jdbcType=VARCHAR},
+      user_place_name = #{userPlaceName,jdbcType=VARCHAR},
+      user_place_acreage = #{userPlaceAcreage,jdbcType=INTEGER},
+      user_employee_num = #{userEmployeeNum,jdbcType=INTEGER},
+      user_owner_num = #{userOwnerNum,jdbcType=INTEGER},
+      user_already_use = #{userAlreadyUse,jdbcType=INTEGER},
+      user_place_address = #{userPlaceAddress,jdbcType=VARCHAR},
+      user_place_area = #{userPlaceArea,jdbcType=VARCHAR},
+      user_place_type = #{userPlaceType,jdbcType=VARCHAR},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      is_deleted = #{isDeleted,jdbcType=TINYINT},
+      delete_date = #{deleteDate,jdbcType=DATE}
+    where user_place_id = #{userPlaceId,jdbcType=VARCHAR}
   </update>
-
-  <insert id="insertPlaceHardware" parameterType="com.dgg.store.util.pojo.UserPlaceHardware">
-    insert into user_place_hardware (user_hardware_id, user_place_id, user_hardware_name,
-    user_hardware_num)
-    values (#{userHardwareId,jdbcType=VARCHAR}, #{userPlaceId,jdbcType=VARCHAR}, #{userHardwareName,jdbcType=VARCHAR},
-    #{userHardwareNum,jdbcType=INTEGER})
-  </insert>
-
-  <insert id="insertBreedType" parameterType="com.dgg.store.util.pojo.UserBreedType">
-    insert into user_breed_type (user_breed_type_id, user_place_id, user_breed_type,
-    user_breed_variety, user_breed_num, user_sell_num,
-    user_breed_style, user_fodder_type, user_fodder_style,
-    user_fodder_num)
-    values (#{userBreedTypeId,jdbcType=VARCHAR}, #{userPlaceId,jdbcType=VARCHAR}, #{userBreedType,jdbcType=VARCHAR},
-    #{userBreedVariety,jdbcType=VARCHAR}, #{userBreedNum,jdbcType=VARCHAR}, #{userSellNum,jdbcType=VARCHAR},
-    #{userBreedStyle,jdbcType=VARCHAR}, #{userFodderType,jdbcType=VARCHAR}, #{userFodderStyle,jdbcType=VARCHAR},
-    #{userFodderNum,jdbcType=INTEGER})
-  </insert>
-
-  <update id="updateBreedTypeById" parameterType="com.dgg.store.util.pojo.UserBreedType">
-    update user_breed_type
-    <set>
-      <if test="userBreedType != null">
-        user_breed_type = #{userBreedType,jdbcType=VARCHAR},
-      </if>
-      <if test="userBreedVariety != null">
-        user_breed_variety = #{userBreedVariety,jdbcType=VARCHAR},
-      </if>
-      <if test="userBreedNum != null">
-        user_breed_num = #{userBreedNum,jdbcType=VARCHAR},
-      </if>
-      <if test="userSellNum != null">
-        user_sell_num = #{userSellNum,jdbcType=VARCHAR},
-      </if>
-      <if test="userBreedStyle != null">
-        user_breed_style = #{userBreedStyle,jdbcType=VARCHAR},
-      </if>
-      <if test="userFodderType != null">
-        user_fodder_type = #{userFodderType,jdbcType=VARCHAR},
-      </if>
-      <if test="userFodderStyle != null">
-        user_fodder_style = #{userFodderStyle,jdbcType=VARCHAR},
-      </if>
-      <if test="userFodderNum != null">
-        user_fodder_num = #{userFodderNum,jdbcType=INTEGER},
-      </if>
-    </set>
-    WHERE user_breed_type_id = #{userBreedTypeId}
-  </update>
-
-  <select id="findBreedTypeById" resultMap="UserBreedTypeMap">
-    SELECT ubt.user_breed_type_id, ubt.user_breed_type, ubt.user_breed_variety,ubt.user_breed_num,ubt.user_sell_num,ubt.user_breed_style,ubt.user_fodder_type,ubt.user_fodder_style,ubt.user_fodder_num
-    FROM user_breed_type ubt
-    WHERE ubt.user_breed_type_id = #{typeId}
-  </select>
-
-  <select id="findBreedTypes" parameterType="com.dgg.store.util.pojo.UserBreedType" resultMap="UserBreedTypeMap">
-    SELECT ubt.user_breed_type_id, ubt.user_breed_type, ubt.user_breed_variety,ubt.user_breed_num,ubt.user_sell_num,ubt.user_breed_style,ubt.user_fodder_type,ubt.user_fodder_style,ubt.user_fodder_num
-    FROM user_breed_type ubt
-    WHERE ubt.user_place_id = #{placeId}
-  </select>
-
-  <insert id="insertPlaceHistory">
-    insert into user_place_records(user_place_area, user_employee_num, user_place_address, user_place_type, user_place_id, user_place_name, user_place_acreage,create_date)
-    select user_place_area, user_employee_num, user_place_address, user_place_type, user_place_id, user_place_name, user_place_acreage,now()
-    from user_place
-    where user_place_id = #{placeId}
-  </insert>
-
-    <insert id="insertHardwareHistory">
-        insert into user_place_hardware_records(user_hardware_id, user_place_id, user_hardware_name, user_hardware_num,create_date)
-        select user_hardware_id, user_place_id, user_hardware_name, user_hardware_num,now()
-        from user_place_hardware
-        where user_hardware_id = #{hardwareId}
-    </insert>
-
-    <insert id="insertBreedHistory">
-        insert into user_breed_type_records(user_breed_type_id, user_place_id, user_breed_type, user_breed_variety, user_breed_num, user_sell_num, user_breed_style, user_fodder_type, user_fodder_style, user_fodder_num,create_date)
-        select user_breed_type_id, user_place_id, user_breed_type, user_breed_variety, user_breed_num, user_sell_num, user_breed_style, user_fodder_type, user_fodder_style, user_fodder_num,now()
-        from user_breed_type
-        where user_breed_type_id = #{typeId}
-    </insert>
 </mapper>

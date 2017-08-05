@@ -1,53 +1,30 @@
 package com.dgg.store.mapper;
 
-import com.dgg.store.util.pojo.UserBreedType;
 import com.dgg.store.util.pojo.UserPlace;
-import com.dgg.store.util.pojo.UserPlaceHardware;
-import com.dgg.store.util.vo.UserPlaceVO;
+import com.dgg.store.util.pojo.UserPlaceExample;
+import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
-import java.util.List;
+public interface UserPlaceMapper {
+    long countByExample(UserPlaceExample example);
 
-public interface UserPlaceMapper
-{
+    int deleteByExample(UserPlaceExample example);
 
-    Integer deleteUserPlace(UserPlace place);
+    int deleteByPrimaryKey(String userPlaceId);
 
-    int insertUserPlace(UserPlace userPlace);
+    int insert(UserPlace record);
 
-    Integer updateUserPlace(UserPlace place);
+    int insertSelective(UserPlace record);
 
-    List<UserPlaceVO> findPlacesTitle(@Param("userId") String userId);
+    List<UserPlace> selectByExample(UserPlaceExample example);
 
-    UserPlaceVO findPlace(@Param("placeId") String userPlaceId);
+    UserPlace selectByPrimaryKey(String userPlaceId);
 
-    UserPlaceVO findSinglePlace(@Param("myTeamId") String myTeamId, @Param("userPhone") String userPhone);
+    int updateByExampleSelective(@Param("record") UserPlace record, @Param("example") UserPlaceExample example);
 
-    List<UserPlaceVO> findAllPlace(@Param("myTeamId") String myTeamId, @Param("userPhone") String userPhone);
+    int updateByExample(@Param("record") UserPlace record, @Param("example") UserPlaceExample example);
 
-    UserPlaceHardware findHardwareById(@Param("hardwareId") String userHardwareId);
+    int updateByPrimaryKeySelective(UserPlace record);
 
-    List<UserPlaceHardware> findPlaceHardware(@Param("placeId") String userPlaceId);
-
-    Integer updateHardwareById(UserPlaceHardware hardware);
-
-    int insertPlaceHardware(UserPlaceHardware placeHardware);
-
-    Integer deletePlaceHardware(UserPlaceHardware placeHardware);
-
-    int insertBreedType(UserBreedType type);
-
-    Integer updateBreedTypeById(UserBreedType type);
-
-    UserBreedType findBreedTypeById(@Param("typeId") String userBreedTypeId);
-
-    List<UserBreedType> findBreedTypes(@Param("placeId") String userPlaceId);
-
-    Integer deleteBreedType(UserBreedType type);
-
-    Integer insertPlaceHistory(@Param("placeId") String userPlaceId);
-
-    Integer insertHardwareHistory(@Param("hardwareId")String userHardwareId);
-
-    Integer insertBreedHistory(@Param("typeId")String userBreedTypeId);
+    int updateByPrimaryKey(UserPlace record);
 }

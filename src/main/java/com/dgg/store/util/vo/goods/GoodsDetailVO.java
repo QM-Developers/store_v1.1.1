@@ -2,6 +2,7 @@ package com.dgg.store.util.vo.goods;
 
 import com.dgg.store.util.pojo.GoodsStandard;
 
+import java.util.Date;
 import java.util.List;
 
 public class GoodsDetailVO
@@ -19,6 +20,8 @@ public class GoodsDetailVO
     private Integer goodsFreight;
 
     private Integer goodsSales;
+
+    private Date goodsCreateDate;
 
     private List<String> goodsImages;
 
@@ -124,5 +127,15 @@ public class GoodsDetailVO
     public void setGoodsAttr(String goodsAttr)
     {
         this.goodsAttr = goodsAttr;
+    }
+
+    public Date getGoodsCreateDate()
+    {
+        return goodsCreateDate;
+    }
+
+    public void setGoodsCreateDate(Date goodsCreateDate)
+    {
+        this.goodsCreateDate = goodsCreateDate;
     }
 }

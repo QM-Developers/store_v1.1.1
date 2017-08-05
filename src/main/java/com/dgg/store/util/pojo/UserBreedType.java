@@ -1,32 +1,124 @@
 package com.dgg.store.util.pojo;
 
+import java.util.Date;
+
 public class UserBreedType {
-    private String userBreedTypeId;
+    private String breedId;
+
+    private String breedCategory;
+
+    private String breedVariety;
+
+    private String breedType;
+
+    private Integer maleNum;
+
+    private Integer femaleNum;
+
+    private Integer obstetricTableNum;
+
+    private Integer shedNum;
+
+    private Integer emptyShedNum;
+
+    private String competitiveBrand;
+
+    private Integer livestockNum;
 
     private String userPlaceId;
 
-    private String userBreedType;
+    private Date createDate;
 
-    private String userBreedVariety;
+    private Byte isDeleted;
 
-    private String userBreedNum;
+    private Date deleteDate;
 
-    private String userSellNum;
-
-    private String userBreedStyle;
-
-    private String userFodderType;
-
-    private String userFodderStyle;
-
-    private Integer userFodderNum;
-
-    public String getUserBreedTypeId() {
-        return userBreedTypeId;
+    public String getBreedId() {
+        return breedId;
     }
 
-    public void setUserBreedTypeId(String userBreedTypeId) {
-        this.userBreedTypeId = userBreedTypeId == null ? null : userBreedTypeId.trim();
+    public void setBreedId(String breedId) {
+        this.breedId = breedId == null ? null : breedId.trim();
+    }
+
+    public String getBreedCategory() {
+        return breedCategory;
+    }
+
+    public void setBreedCategory(String breedCategory) {
+        this.breedCategory = breedCategory == null ? null : breedCategory.trim();
+    }
+
+    public String getBreedVariety() {
+        return breedVariety;
+    }
+
+    public void setBreedVariety(String breedVariety) {
+        this.breedVariety = breedVariety == null ? null : breedVariety.trim();
+    }
+
+    public String getBreedType() {
+        return breedType;
+    }
+
+    public void setBreedType(String breedType) {
+        this.breedType = breedType == null ? null : breedType.trim();
+    }
+
+    public Integer getMaleNum() {
+        return maleNum;
+    }
+
+    public void setMaleNum(Integer maleNum) {
+        this.maleNum = maleNum;
+    }
+
+    public Integer getFemaleNum() {
+        return femaleNum;
+    }
+
+    public void setFemaleNum(Integer femaleNum) {
+        this.femaleNum = femaleNum;
+    }
+
+    public Integer getObstetricTableNum() {
+        return obstetricTableNum;
+    }
+
+    public void setObstetricTableNum(Integer obstetricTableNum) {
+        this.obstetricTableNum = obstetricTableNum;
+    }
+
+    public Integer getShedNum() {
+        return shedNum;
+    }
+
+    public void setShedNum(Integer shedNum) {
+        this.shedNum = shedNum;
+    }
+
+    public Integer getEmptyShedNum() {
+        return emptyShedNum;
+    }
+
+    public void setEmptyShedNum(Integer emptyShedNum) {
+        this.emptyShedNum = emptyShedNum;
+    }
+
+    public String getCompetitiveBrand() {
+        return competitiveBrand;
+    }
+
+    public void setCompetitiveBrand(String competitiveBrand) {
+        this.competitiveBrand = competitiveBrand == null ? null : competitiveBrand.trim();
+    }
+
+    public Integer getLivestockNum() {
+        return livestockNum;
+    }
+
+    public void setLivestockNum(Integer livestockNum) {
+        this.livestockNum = livestockNum;
     }
 
     public String getUserPlaceId() {
@@ -37,68 +129,27 @@ public class UserBreedType {
         this.userPlaceId = userPlaceId == null ? null : userPlaceId.trim();
     }
 
-    public String getUserBreedType() {
-        return userBreedType;
+    public Date getCreateDate() {
+        return createDate;
     }
 
-    public void setUserBreedType(String userBreedType) {
-        this.userBreedType = userBreedType == null ? null : userBreedType.trim();
+    public void setCreateDate(Date createDate) {
+        this.createDate = createDate;
     }
 
-    public String getUserBreedVariety() {
-        return userBreedVariety;
+    public Byte getIsDeleted() {
+        return isDeleted;
     }
 
-    public void setUserBreedVariety(String userBreedVariety) {
-        this.userBreedVariety = userBreedVariety == null ? null : userBreedVariety.trim();
+    public void setIsDeleted(Byte isDeleted) {
+        this.isDeleted = isDeleted;
     }
 
-    public String getUserBreedNum() {
-        return userBreedNum;
+    public Date getDeleteDate() {
+        return deleteDate;
     }
 
-    public void setUserBreedNum(String userBreedNum) {
-        this.userBreedNum = userBreedNum == null ? null : userBreedNum.trim();
+    public void setDeleteDate(Date deleteDate) {
+        this.deleteDate = deleteDate;
     }
-
-    public String getUserSellNum() {
-        return userSellNum;
-    }
-
-    public void setUserSellNum(String userSellNum) {
-        this.userSellNum = userSellNum == null ? null : userSellNum.trim();
-    }
-
-    public String getUserBreedStyle() {
-        return userBreedStyle;
-    }
-
-    public void setUserBreedStyle(String userBreedStyle) {
-        this.userBreedStyle = userBreedStyle == null ? null : userBreedStyle.trim();
-    }
-
-    public String getUserFodderType() {
-        return userFodderType;
-    }
-
-    public void setUserFodderType(String userFodderType) {
-        this.userFodderType = userFodderType == null ? null : userFodderType.trim();
-    }
-
-    public String getUserFodderStyle() {
-        return userFodderStyle;
-    }
-
-    public void setUserFodderStyle(String userFodderStyle) {
-        this.userFodderStyle = userFodderStyle == null ? null : userFodderStyle.trim();
-    }
-
-    public Integer getUserFodderNum() {
-        return userFodderNum;
-    }
-
-    public void setUserFodderNum(Integer userFodderNum) {
-        this.userFodderNum = userFodderNum;
-    }
-
 }

@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dgg.store.mapper.PlaceImageMapper">
+  <resultMap id="BaseResultMap" type="com.dgg.store.util.pojo.PlaceImage">
+    <id column="img_id" jdbcType="VARCHAR" property="imgId" />
+    <result column="img_type" jdbcType="TINYINT" property="imgType" />
+    <result column="user_place_id" jdbcType="VARCHAR" property="userPlaceId" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.dgg.store.util.pojo.PlaceImage">
+    <result column="img_url" jdbcType="LONGVARCHAR" property="imgUrl" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    img_id, img_type, user_place_id
+  </sql>
+  <sql id="Blob_Column_List">
+    img_url
+  </sql>
+  <select id="selectByExampleWithBLOBs" parameterType="com.dgg.store.util.pojo.PlaceImageExample" resultMap="ResultMapWithBLOBs">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from place_image
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" parameterType="com.dgg.store.util.pojo.PlaceImageExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from place_image
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from place_image
+    where img_id = #{imgId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from place_image
+    where img_id = #{imgId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.dgg.store.util.pojo.PlaceImageExample">
+    delete from place_image
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.dgg.store.util.pojo.PlaceImage">
+    insert into place_image (img_id, img_type, user_place_id, 
+      img_url)
+    values (#{imgId,jdbcType=VARCHAR}, #{imgType,jdbcType=TINYINT}, #{userPlaceId,jdbcType=VARCHAR}, 
+      #{imgUrl,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.dgg.store.util.pojo.PlaceImage">
+    insert into place_image
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="imgId != null">
+        img_id,
+      </if>
+      <if test="imgType != null">
+        img_type,
+      </if>
+      <if test="userPlaceId != null">
+        user_place_id,
+      </if>
+      <if test="imgUrl != null">
+        img_url,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="imgId != null">
+        #{imgId,jdbcType=VARCHAR},
+      </if>
+      <if test="imgType != null">
+        #{imgType,jdbcType=TINYINT},
+      </if>
+      <if test="userPlaceId != null">
+        #{userPlaceId,jdbcType=VARCHAR},
+      </if>
+      <if test="imgUrl != null">
+        #{imgUrl,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.dgg.store.util.pojo.PlaceImageExample" resultType="java.lang.Long">
+    select count(*) from place_image
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update place_image
+    <set>
+      <if test="record.imgId != null">
+        img_id = #{record.imgId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.imgType != null">
+        img_type = #{record.imgType,jdbcType=TINYINT},
+      </if>
+      <if test="record.userPlaceId != null">
+        user_place_id = #{record.userPlaceId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.imgUrl != null">
+        img_url = #{record.imgUrl,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map">
+    update place_image
+    set img_id = #{record.imgId,jdbcType=VARCHAR},
+      img_type = #{record.imgType,jdbcType=TINYINT},
+      user_place_id = #{record.userPlaceId,jdbcType=VARCHAR},
+      img_url = #{record.imgUrl,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update place_image
+    set img_id = #{record.imgId,jdbcType=VARCHAR},
+      img_type = #{record.imgType,jdbcType=TINYINT},
+      user_place_id = #{record.userPlaceId,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dgg.store.util.pojo.PlaceImage">
+    update place_image
+    <set>
+      <if test="imgType != null">
+        img_type = #{imgType,jdbcType=TINYINT},
+      </if>
+      <if test="userPlaceId != null">
+        user_place_id = #{userPlaceId,jdbcType=VARCHAR},
+      </if>
+      <if test="imgUrl != null">
+        img_url = #{imgUrl,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where img_id = #{imgId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.dgg.store.util.pojo.PlaceImage">
+    update place_image
+    set img_type = #{imgType,jdbcType=TINYINT},
+      user_place_id = #{userPlaceId,jdbcType=VARCHAR},
+      img_url = #{imgUrl,jdbcType=LONGVARCHAR}
+    where img_id = #{imgId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dgg.store.util.pojo.PlaceImage">
+    update place_image
+    set img_type = #{imgType,jdbcType=TINYINT},
+      user_place_id = #{userPlaceId,jdbcType=VARCHAR}
+    where img_id = #{imgId,jdbcType=VARCHAR}
+  </update>
+</mapper>

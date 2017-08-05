@@ -7,7 +7,6 @@
         <result column="goods_price" property="goodsPrice" jdbcType="FLOAT"/>
         <result column="image_path" property="goodsImages" jdbcType="VARCHAR"/>
         <result column="goods_sales" property="goodsSales" jdbcType="INTEGER"/>
-        <result column="count" property="pageCount" jdbcType="INTEGER"/>
     </resultMap>
 
     <resultMap id="GoodsDetailVOMap" type="com.dgg.store.util.vo.goods.GoodsDetailVO">
@@ -52,8 +51,8 @@
     </select>
 
     <select id="findGoodsList" resultMap="GoodsVOMap">
-        SELECT gd.goods_id,gd.goods_name,gd.goods_price,gd.goods_sales,imgsp.image_path,
-          (SELECT COUNT(0) FROM goodsinfo gd WHERE img.goods_img_type = 1 AND gd.goods_type_id = #{typeId}) count
+        SELECT gd.goods_id,gd.goods_name,gd.goods_sales,imgsp.image_path,
+          (SELECT gs.standard_price FROM goods_standard gs WHERE gs.goods_id = gd.goods_id ORDER BY standard_price LIMIT 0,1) goods_price
         FROM goodsinfo gd
         INNER JOIN goods_image img
         ON img.goods_id = gd.goods_id
@@ -61,6 +60,12 @@
         ON imgsp.image_id = img.image_id
         WHERE img.goods_img_type = 1 AND gd.goods_type_id = #{typeId}
         LIMIT #{pageNum},#{pageSize}
+    </select>
+
+    <select id="countGoodsByType" resultType="java.lang.Integer">
+        SELECT COUNT(0)
+        FROM goodsinfo gd
+        WHERE gd.goods_type_id = #{typeId}
     </select>
 
     <select id="findGoodsDetail" resultMap="GoodsDetailVOMap">

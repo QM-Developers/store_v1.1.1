@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dgg.store.mapper.UserPlaceHardwareMapper">
+  <resultMap id="BaseResultMap" type="com.dgg.store.util.pojo.UserPlaceHardware">
+    <id column="user_hardware_id" jdbcType="VARCHAR" property="userHardwareId" />
+    <result column="user_place_id" jdbcType="VARCHAR" property="userPlaceId" />
+    <result column="user_hardware_name" jdbcType="VARCHAR" property="userHardwareName" />
+    <result column="user_hardware_num" jdbcType="INTEGER" property="userHardwareNum" />
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="is_deleted" jdbcType="TINYINT" property="isDeleted" />
+    <result column="delete_date" jdbcType="DATE" property="deleteDate" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    user_hardware_id, user_place_id, user_hardware_name, user_hardware_num, create_date, 
+    is_deleted, delete_date
+  </sql>
+  <select id="selectByExample" parameterType="com.dgg.store.util.pojo.UserPlaceHardwareExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from user_place_hardware
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from user_place_hardware
+    where user_hardware_id = #{userHardwareId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from user_place_hardware
+    where user_hardware_id = #{userHardwareId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.dgg.store.util.pojo.UserPlaceHardwareExample">
+    delete from user_place_hardware
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.dgg.store.util.pojo.UserPlaceHardware">
+    insert into user_place_hardware (user_hardware_id, user_place_id, user_hardware_name, 
+      user_hardware_num, create_date, is_deleted, 
+      delete_date)
+    values (#{userHardwareId,jdbcType=VARCHAR}, #{userPlaceId,jdbcType=VARCHAR}, #{userHardwareName,jdbcType=VARCHAR}, 
+      #{userHardwareNum,jdbcType=INTEGER}, #{createDate,jdbcType=TIMESTAMP}, #{isDeleted,jdbcType=TINYINT}, 
+      #{deleteDate,jdbcType=DATE})
+  </insert>
+  <insert id="insertSelective" parameterType="com.dgg.store.util.pojo.UserPlaceHardware">
+    insert into user_place_hardware
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userHardwareId != null">
+        user_hardware_id,
+      </if>
+      <if test="userPlaceId != null">
+        user_place_id,
+      </if>
+      <if test="userHardwareName != null">
+        user_hardware_name,
+      </if>
+      <if test="userHardwareNum != null">
+        user_hardware_num,
+      </if>
+      <if test="createDate != null">
+        create_date,
+      </if>
+      <if test="isDeleted != null">
+        is_deleted,
+      </if>
+      <if test="deleteDate != null">
+        delete_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="userHardwareId != null">
+        #{userHardwareId,jdbcType=VARCHAR},
+      </if>
+      <if test="userPlaceId != null">
+        #{userPlaceId,jdbcType=VARCHAR},
+      </if>
+      <if test="userHardwareName != null">
+        #{userHardwareName,jdbcType=VARCHAR},
+      </if>
+      <if test="userHardwareNum != null">
+        #{userHardwareNum,jdbcType=INTEGER},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDeleted != null">
+        #{isDeleted,jdbcType=TINYINT},
+      </if>
+      <if test="deleteDate != null">
+        #{deleteDate,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.dgg.store.util.pojo.UserPlaceHardwareExample" resultType="java.lang.Long">
+    select count(*) from user_place_hardware
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update user_place_hardware
+    <set>
+      <if test="record.userHardwareId != null">
+        user_hardware_id = #{record.userHardwareId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userPlaceId != null">
+        user_place_id = #{record.userPlaceId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userHardwareName != null">
+        user_hardware_name = #{record.userHardwareName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userHardwareNum != null">
+        user_hardware_num = #{record.userHardwareNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.createDate != null">
+        create_date = #{record.createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.isDeleted != null">
+        is_deleted = #{record.isDeleted,jdbcType=TINYINT},
+      </if>
+      <if test="record.deleteDate != null">
+        delete_date = #{record.deleteDate,jdbcType=DATE},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update user_place_hardware
+    set user_hardware_id = #{record.userHardwareId,jdbcType=VARCHAR},
+      user_place_id = #{record.userPlaceId,jdbcType=VARCHAR},
+      user_hardware_name = #{record.userHardwareName,jdbcType=VARCHAR},
+      user_hardware_num = #{record.userHardwareNum,jdbcType=INTEGER},
+      create_date = #{record.createDate,jdbcType=TIMESTAMP},
+      is_deleted = #{record.isDeleted,jdbcType=TINYINT},
+      delete_date = #{record.deleteDate,jdbcType=DATE}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dgg.store.util.pojo.UserPlaceHardware">
+    update user_place_hardware
+    <set>
+      <if test="userPlaceId != null">
+        user_place_id = #{userPlaceId,jdbcType=VARCHAR},
+      </if>
+      <if test="userHardwareName != null">
+        user_hardware_name = #{userHardwareName,jdbcType=VARCHAR},
+      </if>
+      <if test="userHardwareNum != null">
+        user_hardware_num = #{userHardwareNum,jdbcType=INTEGER},
+      </if>
+      <if test="createDate != null">
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDeleted != null">
+        is_deleted = #{isDeleted,jdbcType=TINYINT},
+      </if>
+      <if test="deleteDate != null">
+        delete_date = #{deleteDate,jdbcType=DATE},
+      </if>
+    </set>
+    where user_hardware_id = #{userHardwareId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dgg.store.util.pojo.UserPlaceHardware">
+    update user_place_hardware
+    set user_place_id = #{userPlaceId,jdbcType=VARCHAR},
+      user_hardware_name = #{userHardwareName,jdbcType=VARCHAR},
+      user_hardware_num = #{userHardwareNum,jdbcType=INTEGER},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      is_deleted = #{isDeleted,jdbcType=TINYINT},
+      delete_date = #{deleteDate,jdbcType=DATE}
+    where user_hardware_id = #{userHardwareId,jdbcType=VARCHAR}
+  </update>
+</mapper>

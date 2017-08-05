@@ -22,6 +22,8 @@ public class RegisterVO
 
     private String userStatus;
 
+    private String token;
+
     public String getUserStatus()
     {
         return userStatus;
@@ -120,5 +122,15 @@ public class RegisterVO
     public void setCardId(String cardId)
     {
         this.cardId = cardId;
+    }
+
+    public String getToken()
+    {
+        return token;
+    }
+
+    public void setToken(String token)
+    {
+        this.token = token;
     }
 }

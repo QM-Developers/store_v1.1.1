@@ -64,4 +64,10 @@ public class GoodsBrowseDaoImpl implements GoodsBrowseDao
     {
         return mapper.findChildTypeId(typeId);
     }
+
+    @Override
+    public int countGoodsByType(String goodsTypeId)
+    {
+        return mapper.countGoodsByType(goodsTypeId);
+    }
 }

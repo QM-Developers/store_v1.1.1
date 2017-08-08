@@ -13,7 +13,7 @@ public interface GoodsBrowseMapper
 {
     List<GoodsTypeVO> findGoodsType(@Param("typeId") String goodsTypePid);
 
-    List<GoodsInfoVO> findGoodsList(@Param("typeId") String goodsTypeId,@Param("pageNum") int pageNum, @Param("pageSize") int pageSize);
+    List<GoodsInfoVO> findGoodsList(@Param("type") GoodsTypeVO goodsTypeId, @Param("pageNum") int pageNum, @Param("pageSize") int pageSize);
 
     GoodsDetailVO findGoodsDetail(@Param("goodsId") String goodsId);
 
@@ -27,5 +27,5 @@ public interface GoodsBrowseMapper
 
     Set<String> findChildTypeId(@Param("typeId") String typeId);
 
-    int countGoodsByType(@Param("typeId") String goodsTypeId);
+    int countGoodsByType(@Param("type") GoodsTypeVO goodsTypeId);
 }

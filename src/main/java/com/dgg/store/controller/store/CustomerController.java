@@ -19,9 +19,9 @@ public class CustomerController
     @Autowired
     private CustomerService service;
 
-    @RequestMapping(value = "/s/addCustomerRecord", method = RequestMethod.POST)
+    @RequestMapping(value = "/s/saveCustomerRecord", method = RequestMethod.POST)
     @ResponseBody
-    public ResultVO addCustomerRecord(CustomerVO customerVO, HttpServletRequest request)
+    public String saveCustomerRecord(CustomerVO customerVO, HttpServletRequest request)
     {
         SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
 

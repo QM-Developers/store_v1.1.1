@@ -1,6 +1,7 @@
 package com.dgg.store.service.common;
 
 import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.dgg.store.dao.common.ShoppingCarDao;
 import com.dgg.store.util.core.constant.Constant;
 import com.dgg.store.util.core.generator.IDGenerator;
@@ -22,13 +23,15 @@ public class ShoppingCarServiceImpl implements ShoppingCarService
     private ShoppingCarDao dao;
 
     @Override
-    public ResultVO insertGoodsToCar(SessionVO sessionVO, ShoppingCar shoppingCar)
+    public String insertGoodsToCar(SessionVO sessionVO, ShoppingCar shoppingCar)
     {
+//        int inventory = dao.countGoodsInventory(shoppingCar.getGoodsId());
+
         Integer result = dao.insertGoodsToCar(shoppingCar);
 
-        ResultVO resultVO = new ResultVO(result, sessionVO.getToken(), result);
+        JSONObject json = (JSONObject) JSONObject.toJSON(new ResultVO(result, sessionVO.getToken(), result));
 
-        return resultVO;
+        return json.toJSONString();
     }
 
     @Override

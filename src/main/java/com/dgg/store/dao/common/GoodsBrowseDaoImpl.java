@@ -24,9 +24,9 @@ public class GoodsBrowseDaoImpl implements GoodsBrowseDao
     }
 
     @Override
-    public List<GoodsInfoVO> findGoodsList(String goodsTypeId, int pageNum, int pageSize)
+    public List<GoodsInfoVO> findGoodsList(GoodsTypeVO goodsType, int pageNum, int pageSize)
     {
-        return mapper.findGoodsList(goodsTypeId,pageNum,pageSize);
+        return mapper.findGoodsList(goodsType,pageNum,pageSize);
     }
 
     @Override
@@ -66,8 +66,9 @@ public class GoodsBrowseDaoImpl implements GoodsBrowseDao
     }
 
     @Override
-    public int countGoodsByType(String goodsTypeId)
+    public int countGoodsByType(GoodsTypeVO goodsType)
     {
-        return mapper.countGoodsByType(goodsTypeId);
+        return mapper.countGoodsByType(goodsType);
     }
+
 }

@@ -21,9 +21,9 @@ public class ShoppingCarController
     @Autowired
     private ShoppingCarService service;
 
-    @RequestMapping(value = "user_addGoodsToCar", method = RequestMethod.POST)
+    @RequestMapping(value = "user_saveGoodsToCar", method = RequestMethod.POST)
     @ResponseBody
-    public ResultVO addGoodsToCar(HttpServletRequest request, ShoppingCar shoppingCar)
+    public String saveGoodsToCar(HttpServletRequest request, ShoppingCar shoppingCar)
     {
         SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
 

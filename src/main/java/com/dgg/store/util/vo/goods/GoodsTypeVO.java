@@ -6,6 +6,10 @@ public class GoodsTypeVO
 {
     private String goodsTypeId;
 
+    private String keyword;
+
+    private String myTeamId;
+
     private String goodsTypeName;
 
     private String goodsTypePid;
@@ -62,5 +66,25 @@ public class GoodsTypeVO
     public void setChildren(List<GoodsTypeVO> children)
     {
         this.children = children;
+    }
+
+    public String getKeyword()
+    {
+        return keyword;
+    }
+
+    public void setKeyword(String keyword)
+    {
+        this.keyword = keyword;
+    }
+
+    public String getMyTeamId()
+    {
+        return myTeamId;
+    }
+
+    public void setMyTeamId(String myTeamId)
+    {
+        this.myTeamId = myTeamId;
     }
 }

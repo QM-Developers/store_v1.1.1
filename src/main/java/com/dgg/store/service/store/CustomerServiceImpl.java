@@ -1,9 +1,9 @@
 package com.dgg.store.service.store;
 
+import com.alibaba.fastjson.JSONObject;
 import com.dgg.store.dao.store.CustomerDao;
 import com.dgg.store.util.core.constant.Constant;
 import com.dgg.store.util.core.generator.IDGenerator;
-import com.dgg.store.util.pojo.MyTeam;
 import com.dgg.store.util.vo.CustomerGroupVO;
 import com.dgg.store.util.vo.CustomerVO;
 import com.dgg.store.util.vo.core.ResultVO;
@@ -39,48 +39,6 @@ public class CustomerServiceImpl implements CustomerService
         return resultVO;
     }
 
-    @Override
-    public ResultVO insertCooperation(SessionVO sessionVO, MyTeam myTeam)
-    {
-        myTeam.setMyTeamUid(sessionVO.getUserId());
-
-        Integer result = dao.insertCooperation(myTeam);
-
-        ResultVO resultVO = new ResultVO(result, sessionVO.getToken());
-
-        return resultVO;
-    }
-
-    @Override
-    public ResultVO findCooperation(SessionVO sessionVO)
-    {
-        List<MyTeam> result = dao.findCooperation(sessionVO.getUserId());
-
-        ResultVO resultVO = new ResultVO(result.size() < 1 ? 0 : 1, sessionVO.getToken(), result);
-
-        return resultVO;
-    }
-
-    @Override
-    public ResultVO findPartner(SessionVO sessionVO, String cooperId)
-    {
-        List<CustomerVO> result = dao.findPartner(Integer.parseInt(cooperId));
-
-        ResultVO resultVO = new ResultVO(result.size() < 1 ? 0 : 1, sessionVO.getToken(), result);
-
-        return resultVO;
-    }
-
-    @Override
-    public ResultVO insertCustomerToCooper(SessionVO sessionVO, CustomerVO customerVO)
-    {
-        customerVO.setUserId(IDGenerator.generator());
-        Integer result = dao.insertStoreUser(customerVO);
-
-        ResultVO resultVO = new ResultVO(result, sessionVO.getToken());
-
-        return resultVO;
-    }
 
     @Override
     public ResultVO updateCustomer(SessionVO sessionVO, CustomerVO customerVO)
@@ -132,7 +90,7 @@ public class CustomerServiceImpl implements CustomerService
     }
 
     @Override
-    public ResultVO insertCustomerRecord(CustomerVO customerVO, SessionVO sessionVO)
+    public String insertCustomerRecord(CustomerVO customerVO, SessionVO sessionVO)
     {
         Integer result = 1;
         int i = 0;
@@ -166,17 +124,17 @@ public class CustomerServiceImpl implements CustomerService
         else
             result = 1;
 
-        ResultVO resultVO = new ResultVO(result, sessionVO.getToken());
+        JSONObject json = (JSONObject) JSONObject.toJSON(new ResultVO(result, sessionVO.getToken()));
 
-        return resultVO;
+        return json.toJSONString();
     }
 
     @Override
-    public ResultVO findCustomerUpdateCount(SessionVO sessionVO,CustomerVO customerVO)
+    public ResultVO findCustomerUpdateCount(SessionVO sessionVO, CustomerVO customerVO)
     {
         int result = dao.findCustomerUpdateCount(customerVO.getCustomerId());
 
-        ResultVO resultVO = new ResultVO(1,sessionVO.getToken(),result);
+        ResultVO resultVO = new ResultVO(1, sessionVO.getToken(), result);
 
         return resultVO;
     }

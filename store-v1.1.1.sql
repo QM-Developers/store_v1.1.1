@@ -3,46 +3,80 @@ create database store_v1_1_1 charset="utf8";
 use store_v1_1_1;
 
 /*==============================================================*/
-/* 国内地区
-/*==============================================================*/
-drop table if exists china;
-create table china
-(
-   id                   varchar(10) not null,
-   name                 varchar(20) not null default '',
-   pid                  varchar(10) not null default ''
-);
-
-/*==============================================================*/
 /* 客户信息表
 /*==============================================================*/
 drop table if exists customer;
 create table customer
 (
+   customer_id			varchar(35) not null primary key,	-- 客户Id
    user_id              varchar(35) not null default '',
    promoter_id			varchar(35) not null default '',
-   customer_id			varchar(35) not null default '',
-   customer_group_id    varchar(35) not null default '',
    my_team_id 			varchar(35) not null default '',
    customer_remard      varchar(20) not null default '',
-   credit_rating		tinyint not null default 0,
-   primary key (customer_id)
+   credit_rating		tinyint not null default 0
 );
 
 /*==============================================================*/
-/* 客户分组
+/* 客户场地信息
 /*==============================================================*/
-create table customer_group
+drop table if exists user_place;
+create table user_place
 (
-   customer_group_id    varchar(35) not null,
-   customer_group_name  varchar(20) not null default '',
-   sort                 varchar(2) not null default '',
-   primary key (customer_group_id)
+   user_place_id        varchar(35) not null,	-- id
+   customer_id              varchar(35) not null default '',	-- 客户 id
+   user_place_name      varchar(20) not null default '',	-- 名称
+   user_place_acreage   int not null default 0,	-- 面积
+   user_employee_num    int not null default 0,	-- 工人数量
+   user_owner_num    int not null default 0,	-- 权属人数
+   user_already_use int not null default 0,	-- 使用情况
+   user_place_address   varchar(50) not null default '',	-- 地址
+   user_place_area      varchar(50) not null default '',	-- 区域
+   user_place_type      varchar(15) not null default '',	-- 区域性质
+   create_date			datetime not null default now(),	-- 创建时间
+   is_deleted           tinyint not null default 0,
+   delete_date          date,
+   primary key (user_place_id)
+);
+
+/*==============================================================*/
+/* 场地图片
+/*==============================================================*/
+drop table if exists place_image;
+create table place_image
+(
+	img_id varchar(35) not null primary key,	-- 图片 Id
+    img_type tinyint not null default 0,	-- 图片类型 1为场地证明，2为场地环境
+    img_url text,	-- 图片物理地址
+    user_place_id varchar(35) not null default '' -- 场地Id
+);
+
+/*==============================================================*/
+/* 养殖类型
+/*==============================================================*/
+drop table if exists user_breed_type;
+create table user_breed_type
+(
+   breed_id varchar(35) not null primary key,	-- 养殖 id
+   breed_category varchar(30) not null default '', -- 养殖类目
+   breed_variety varchar(30) not null default '', -- 品种
+   breed_type varchar(30) not null default '', -- 类型
+   male_num int not null default 0,	-- 公体数量
+   female_num int not null default 0,	-- 母体数量
+   obstetric_table_num int not null default 0,	-- 产床数量
+   shed_num int not null default 0,	-- 栏舍数量
+   empty_shed_num int not null default 0,	-- 空栏数量
+   competitive_brand varchar(50) not null default '',	-- 竞争品牌
+   livestock_num int not null default 0,	-- 存栏数量
+   user_place_id        varchar(35) not null,	-- 场地 id
+   create_date			datetime not null default now(),
+   is_deleted           tinyint not null default 0,
+   delete_date          datetime
 );
 
 /*==============================================================*/
 /* 数据字典
 /*==============================================================*/
+drop table if exists dictionary;
 create table dictionary
 (
    dict_id              varchar(35) not null,
@@ -105,6 +139,7 @@ create table chat_history
 /*==============================================================*/
 /* 商品图片
 /*==============================================================*/
+drop table if exists goods_image;
 create table goods_image
 (
    goods_id             varchar(35) not null default '',
@@ -116,6 +151,7 @@ create table goods_image
 /*==============================================================*/
 /* 商品规格
 /*==============================================================*/
+drop table if exists goods_standard;
 create table goods_standard
 (
    standard_id          varchar(35) not null,
@@ -210,6 +246,7 @@ create table menu
 /*==============================================================*/
 /* 我的订单
 /*==============================================================*/
+drop table if exists my_order;
 create table my_order
 (
    order_id             varchar(35) not null,
@@ -231,6 +268,7 @@ create table my_order
 /*==============================================================*/
 /* 订单商品列表
 /*==============================================================*/
+drop table if exists my_order_list;
 create table my_order_list
 (
    order_list_id        varchar(35) not null,
@@ -390,6 +428,7 @@ create table shopping_address
 /*==============================================================*/
 /* 购物车
 /*==============================================================*/
+drop table if exists shopping_cart;
 create table shopping_cart
 (
    customer_id              varchar(35) not null default '',
@@ -495,81 +534,6 @@ create table role_permission_RE
    permission_id        varchar(35) not null,
    role_id              int not null,
    primary key (permission_id, role_id)
-);
-
-/*==============================================================*/
-/* 客户场地信息
-/*==============================================================*/
-drop table if exists user_place;
-create table user_place
-(
-   user_place_id        varchar(35) not null,	-- id
-   customer_id              varchar(35) not null default '',	-- 客户 id
-   user_place_name      varchar(20) not null default '',	-- 名称
-   user_place_acreage   int not null default 0,	-- 面积
-   user_employee_num    int not null default 0,	-- 工人数量
-   user_owner_num    int not null default 0,	-- 权属人数
-   user_already_use int not null default 0,	-- 使用情况
-   user_place_address   varchar(50) not null default '',	-- 地址
-   user_place_area      varchar(50) not null default '',	-- 区域
-   user_place_type      varchar(15) not null default '',	-- 区域性质
-   create_date			datetime not null default now(),	-- 创建时间
-   is_deleted           tinyint not null default 0,
-   delete_date          date,
-   primary key (user_place_id)
-);
-
-
-/*==============================================================*/
-/* 场地图片
-/*==============================================================*/
-drop table if exists place_image;
-create table place_image
-(
-	img_id varchar(35) not null primary key,
-    img_type tinyint not null default 0,
-    img_url text,
-    user_place_id varchar(35) not null default ''
-);
-
-
-/*==============================================================*/
-/* 养殖类型
-/*==============================================================*/
-drop table if exists user_breed_type;
-create table user_breed_type
-(
-   breed_id varchar(35) not null primary key,	-- 养殖 id
-   breed_category varchar(30) not null default '', -- 养殖类目
-   breed_variety varchar(30) not null default '', -- 品种
-   breed_type varchar(30) not null default '', -- 类型
-   male_num int not null default 0,	-- 公体数量
-   female_num int not null default 0,	-- 母体数量
-   obstetric_table_num int not null default 0,	-- 产床数量
-   shed_num int not null default 0,	-- 栏舍数量
-   empty_shed_num int not null default 0,	-- 空栏数量
-   competitive_brand varchar(50) not null default '',	-- 竞争品牌
-   livestock_num int not null default 0,	-- 存栏数量
-   user_place_id        varchar(35) not null,	-- 场地 id
-   create_date			datetime not null default now(),
-   is_deleted           tinyint not null default 0,
-   delete_date          datetime
-);
-
-/*==============================================================*/
-/* 场地硬件信息
-/*==============================================================*/
-drop table if exists user_place_hardware;
-create table user_place_hardware
-(
-   user_hardware_id     varchar(35) not null,
-   user_place_id        varchar(35) not null default '',
-   user_hardware_name   varchar(20) not null default '',
-   user_hardware_num    int not null default 0,
-   create_date			datetime not null default now(),
-   is_deleted           tinyint not null default 0,
-   delete_date          date,
-   primary key (user_hardware_id)
 );
 
 /*==============================================================*/

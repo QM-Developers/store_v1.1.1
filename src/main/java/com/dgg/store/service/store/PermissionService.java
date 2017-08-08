@@ -18,4 +18,6 @@ public interface PermissionService
     Integer delete(Permission permission);
 
     Object findPermissionById(Permission permission);
+
+    Integer exportPermissionToExcel();
 }

@@ -3,7 +3,9 @@ package com.dgg.store.service.common;
 import com.alibaba.fastjson.JSONObject;
 import com.dgg.store.dao.common.GoodsBrowseDao;
 import com.dgg.store.util.core.constant.KeyConstant;
+import com.dgg.store.util.core.constant.SymbolConstant;
 import com.dgg.store.util.core.page.PagingUtil;
+import com.dgg.store.util.core.string.StringUtil;
 import com.dgg.store.util.pojo.GoodsStandard;
 import com.dgg.store.util.vo.core.PageVO;
 import com.dgg.store.util.vo.core.ResultVO;
@@ -68,18 +70,13 @@ public class GoodsBrowseServiceImpl implements GoodsBrowseService
     {
         int start = PagingUtil.getStart(pageVO.getPageNum(), pageVO.getPageSize());
         int end = pageVO.getPageSize();
-        int pageCount = dao.countGoodsByType(goodsTypeVO.getGoodsTypeId());
+        int pageCount = dao.countGoodsByType(goodsTypeVO);
 
-//        Set<String> childTypeId = findChildTypeId(goodsTypeVO.getGoodsTypeId());
-
-        List<GoodsInfoVO> result = dao.findGoodsList(goodsTypeVO.getGoodsTypeId(), start, end);
-
-//        for (String s : childTypeId)
-//            if (result.size() < (end - start))
-//                result.addAll(dao.findGoodsList(s, start, end));
+        goodsTypeVO.setMyTeamId(sessionVO.getMyTeamId());
+        List<GoodsInfoVO> result = dao.findGoodsList(goodsTypeVO, start, end);
 
         JSONObject json = (JSONObject) JSONObject.toJSON(new ResultVO(1, sessionVO.getToken(), result));
-        json.put(KeyConstant.PAGE_COUNT,PagingUtil.getCount(pageCount,end));
+        json.put(KeyConstant.PAGE_COUNT, PagingUtil.getCount(pageCount, end));
 
         return json.toJSONString();
     }
@@ -110,6 +107,7 @@ public class GoodsBrowseServiceImpl implements GoodsBrowseService
             result.setDetailImages(resultList);
         }
 
+        result.setGoodsAttr(StringUtil.isEmpty(result.getGoodsAttr()) ? "" : result.getGoodsAttr().split(SymbolConstant.QUESTION)[1]);
         ResultVO resultVO = new ResultVO(result == null ? 0 : 1, sessionVO.getToken(), result);
 
         return resultVO;

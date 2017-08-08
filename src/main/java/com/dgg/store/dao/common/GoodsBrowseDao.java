@@ -12,7 +12,7 @@ public interface GoodsBrowseDao
 {
     List<GoodsTypeVO> findGoodsType(String goodsTypePid);
 
-    List<GoodsInfoVO> findGoodsList(String goodsTypeId, int pageNum, int pageSize);
+    List<GoodsInfoVO> findGoodsList(GoodsTypeVO goodsType, int pageNum, int pageSize);
 
     GoodsDetailVO findGoodsDetail(String goodsId);
 
@@ -26,5 +26,5 @@ public interface GoodsBrowseDao
 
     Set<String> findChildTypeId(String typeId);
 
-    int countGoodsByType(String goodsTypeId);
+    int countGoodsByType(GoodsTypeVO goodsType);
 }

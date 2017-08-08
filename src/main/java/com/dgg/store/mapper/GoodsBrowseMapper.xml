@@ -13,8 +13,6 @@
         <id column="goods_id" property="goodsId" jdbcType="VARCHAR"/>
         <result column="goods_name" property="goodsName" jdbcType="VARCHAR"/>
         <result column="goods_attr" property="goodsAttr" jdbcType="VARCHAR"/>
-        <result column="goods_price" property="goodsPrice" jdbcType="FLOAT"/>
-        <result column="goods_count" property="goodsCount" jdbcType="INTEGER"/>
         <result column="goods_freight" property="goodsFreight" jdbcType="INTEGER"/>
         <result column="goods_sales" property="goodsSales" jdbcType="INTEGER"/>
         <collection property="goodsImages" ofType="java.lang.String">
@@ -50,7 +48,7 @@
         FROM goods_typeinfo gt
     </select>
 
-    <select id="findGoodsList" resultMap="GoodsVOMap">
+    <select id="findGoodsList" resultMap="GoodsVOMap" parameterType="com.dgg.store.util.vo.goods.GoodsTypeVO">
         SELECT gd.goods_id,gd.goods_name,gd.goods_sales,imgsp.image_path,
           (SELECT gs.standard_price FROM goods_standard gs WHERE gs.goods_id = gd.goods_id ORDER BY standard_price LIMIT 0,1) goods_price
         FROM goodsinfo gd
@@ -58,23 +56,35 @@
         ON img.goods_id = gd.goods_id
         INNER JOIN image_space imgsp
         ON imgsp.image_id = img.image_id
-        WHERE img.goods_img_type = 1 AND gd.goods_type_id = #{typeId}
+        WHERE img.goods_img_type = 1
+        AND gd.my_team_id = #{type.myTeamId}
+        <if test="type.goodsTypeId != null and type.goodsTypeId != ''">
+            AND gd.goods_type_id = #{type.goodsTypeId}
+        </if>
+        <if test="type.keyword != null and type.keyword != ''">
+            AND gd.goods_name LIKE CONCAT('%', #{type.keyword}, '%')
+        </if>
         LIMIT #{pageNum},#{pageSize}
     </select>
 
-    <select id="countGoodsByType" resultType="java.lang.Integer">
+    <select id="countGoodsByType" resultType="java.lang.Integer" parameterType="com.dgg.store.util.vo.goods.GoodsTypeVO">
         SELECT COUNT(0)
         FROM goodsinfo gd
-        WHERE gd.goods_type_id = #{typeId}
+        WHERE 1 = 1
+        AND gd.my_team_id = #{type.myTeamId}
+        <if test="type.goodsTypeId != null and type.goodsTypeId != ''">
+            AND gd.goods_type_id = #{type.goodsTypeId}
+        </if>
+        <if test="type.keyword != null and type.keyword != ''">
+            AND gd.goods_name LIKE CONCAT('%', #{type.keyword}, '%')
+        </if>
     </select>
 
     <select id="findGoodsDetail" resultMap="GoodsDetailVOMap">
         SELECT gd.goods_id,gd.goods_name, gd.goods_price,gd.goods_sales,gd.goods_attr,
-          gd.goods_count,tof.template_default_price goods_freight,img.image_path goods_images,
+          gd.goods_count,img.image_path goods_images,
           gs.standard_name,gs.standard_id,gs.standard_price,gs.standard_count
         FROM goodsinfo gd
-        INNER JOIN template_of_freight tof
-        ON gd.template_freight_id = tof.template_freight_id
         INNER JOIN goods_image gi
         ON gi.goods_id = gd.goods_id
         INNER JOIN image_space img

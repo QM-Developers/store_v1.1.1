@@ -28,41 +28,62 @@ public class GoodsBrowseController
     {
         SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
 
-        return service.findGoodsType(sessionVO,goodsTypeVO);
+        return service.findGoodsType(sessionVO, goodsTypeVO);
     }
 
-    @RequestMapping(value = "user_findGoodsList",method = RequestMethod.POST,produces = {"application/json;charset=UTF-8"})
+    @RequestMapping(value = "user_findGoodsList", method = RequestMethod.POST, produces = {"application/json;charset=UTF-8"})
     @ResponseBody
     public String findGoodsList(HttpServletRequest request, GoodsTypeVO goodsTypeVO, PageVO pageVO)
     {
         SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
 
-        return service.findGoodsList(sessionVO,goodsTypeVO,pageVO);
+        return service.findGoodsList(sessionVO, goodsTypeVO, pageVO);
     }
 
-    @RequestMapping(value = "user_findGoodsDetail",method = RequestMethod.POST)
+    @RequestMapping(value = "user_findGoodsDetail", method = RequestMethod.POST)
     @ResponseBody
-    public ResultVO findGoodsDetail(HttpServletRequest request,GoodsDetailVO goodsDetailVO)
+    public ResultVO findGoodsDetail(HttpServletRequest request, GoodsDetailVO goodsDetailVO)
     {
         SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
 
-        return service.findGoodsDetail(sessionVO,goodsDetailVO);
+        return service.findGoodsDetail(sessionVO, goodsDetailVO);
     }
 
-    @RequestMapping(value = "user_findGoodsDescribe",method = RequestMethod.GET)
-    public String findGoodsDescribe(HttpServletRequest request,String goodsId)
+    @RequestMapping(value = "user_findGoodsByKeyword", method = RequestMethod.POST, produces = {"application/json;charset=UTF-8"})
+    @ResponseBody
+    public String user_findGoodsByKeyword(HttpServletRequest request, GoodsTypeVO goodsTypeVO, PageVO pageVO)
     {
-        request.setAttribute("images",service.findGoodsDescribe(goodsId));
+        SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
+
+        return service.findGoodsList(sessionVO, goodsTypeVO, pageVO);
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+    @RequestMapping(value = "user_findGoodsDescribe", method = RequestMethod.GET)
+    public String findGoodsDescribe(HttpServletRequest request, String goodsId)
+    {
+        request.setAttribute("images", service.findGoodsDescribe(goodsId));
 
         return "pages/mall/goods/backup/innerView";
     }
 
-    @RequestMapping(value = "user_findGoodsStandard",method = RequestMethod.POST)
+    @RequestMapping(value = "user_findGoodsStandard", method = RequestMethod.POST)
     @ResponseBody
     public ResultVO findGoodsStandard(HttpServletRequest request, GoodsStandard standard)
     {
         SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
 
-        return service.findGoodsStandard(sessionVO,standard);
+        return service.findGoodsStandard(sessionVO, standard);
     }
 }

@@ -228,6 +228,14 @@
             <artifactId>protobuf-java</artifactId>
             <version>3.3.0</version>
         </dependency>
+
+        <!-- excel -->
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi</artifactId>
+            <version>3.16</version>
+        </dependency>
+
     </dependencies>
 
 

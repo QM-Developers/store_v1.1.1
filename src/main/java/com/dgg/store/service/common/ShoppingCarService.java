@@ -9,7 +9,7 @@ import com.dgg.store.util.vo.core.SessionVO;
 public interface ShoppingCarService
 {
 
-    ResultVO insertGoodsToCar(SessionVO sessionVO, ShoppingCar shoppingCar);
+    String insertGoodsToCar(SessionVO sessionVO, ShoppingCar shoppingCar);
 
     ResultVO deleteGoodsInCar(SessionVO sessionVO, ShoppingCar shoppingCar);
 

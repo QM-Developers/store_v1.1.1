@@ -13,10 +13,6 @@ public class GoodsDetailVO
 
     private String goodsAttr;
 
-    private Float goodsPrice;
-
-    private Integer goodsCount;
-
     private Integer goodsFreight;
 
     private Integer goodsSales;
@@ -47,26 +43,6 @@ public class GoodsDetailVO
     public void setGoodsName(String goodsName)
     {
         this.goodsName = goodsName;
-    }
-
-    public Float getGoodsPrice()
-    {
-        return goodsPrice;
-    }
-
-    public void setGoodsPrice(Float goodsPrice)
-    {
-        this.goodsPrice = goodsPrice;
-    }
-
-    public Integer getGoodsCount()
-    {
-        return goodsCount;
-    }
-
-    public void setGoodsCount(Integer goodsCount)
-    {
-        this.goodsCount = goodsCount;
     }
 
     public Integer getGoodsFreight()

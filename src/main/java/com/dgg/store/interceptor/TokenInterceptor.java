@@ -35,12 +35,12 @@ public class TokenInterceptor implements HandlerInterceptor
             if (sessionVO.getToken().equals(token))
             {
                 token = TokenUtil.getToken();
-//                service.updateUserById(sessionVO.getUserId(),token);
+                service.updateUserById(sessionVO.getUserId(), token);
                 sessionVO.setToken(token);
             }
         }
 
-//        service.updateLastLoginTimeById(userId == null?sessionVO.getUserId():userId);
+        service.updateLastLoginTimeById(userId == null ? sessionVO.getUserId() : userId);
         request.setAttribute(Constant.LOGININFO, sessionVO);
 
         return true;

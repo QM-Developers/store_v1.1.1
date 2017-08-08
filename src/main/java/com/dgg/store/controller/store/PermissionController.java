@@ -32,6 +32,13 @@ public class PermissionController
         return service.insert(permission);
     }
 
+    @RequestMapping(value = "/s/exportPermissionToExcel",method = RequestMethod.GET)
+    @ResponseBody
+    public Integer exportPermissionToExcel()
+    {
+        return service.exportPermissionToExcel();
+    }
+
     @RequestMapping(value = "/s/updatePermission",method = RequestMethod.POST)
     @ResponseBody
     public Integer updatePermission(Permission permission)

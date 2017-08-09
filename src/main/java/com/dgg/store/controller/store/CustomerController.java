@@ -3,7 +3,7 @@ package com.dgg.store.controller.store;
 import com.dgg.store.service.store.CustomerService;
 import com.dgg.store.util.core.constant.Constant;
 import com.dgg.store.util.vo.CustomerVO;
-import com.dgg.store.util.vo.core.ResultVO;
+import com.dgg.store.util.vo.core.PageVO;
 import com.dgg.store.util.vo.core.SessionVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,7 +19,7 @@ public class CustomerController
     @Autowired
     private CustomerService service;
 
-    @RequestMapping(value = "/s/saveCustomerRecord", method = RequestMethod.POST)
+    @RequestMapping(value = "/s/saveCustomerRecord", method = RequestMethod.POST, produces = {"application/json;charset=UTF-8"})
     @ResponseBody
     public String saveCustomerRecord(CustomerVO customerVO, HttpServletRequest request)
     {
@@ -28,48 +28,21 @@ public class CustomerController
         return service.insertCustomerRecord(customerVO, sessionVO);
     }
 
-    @RequestMapping(value = "/s/updateCustomer", method = RequestMethod.POST)
+    @RequestMapping(value = "/s/listCustomer", method = RequestMethod.POST, produces = {"application/json;charset=UTF-8"})
     @ResponseBody
-    public ResultVO updateCustomer(HttpServletRequest request, CustomerVO customerVO)
+    public String listCustomer(HttpServletRequest request, PageVO pageVO,CustomerVO customerVO)
     {
         SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
 
-        return service.updateCustomer(sessionVO, customerVO);
+        return service.listCustomer(sessionVO,pageVO,customerVO);
     }
 
-    @RequestMapping(value = "/s/findCustomerUpdateCount", method = RequestMethod.POST)
+    @RequestMapping(value = "/s/updateCustomer", method = RequestMethod.POST, produces = {"application/json;charset=UTF-8"})
     @ResponseBody
-    public ResultVO findCustomerUpdateCount(HttpServletRequest request, CustomerVO customerVO)
+    public String updateCustomer(HttpServletRequest request, CustomerVO customerVO)
     {
         SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
 
-        return service.findCustomerUpdateCount(sessionVO, customerVO);
-    }
-
-    @RequestMapping(value = "/s/findCustomerGroup", method = RequestMethod.POST)
-    @ResponseBody
-    public ResultVO findCustomerGroup(HttpServletRequest request)
-    {
-        SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
-
-        return service.findCustomerGroup(sessionVO);
-    }
-
-    @RequestMapping(value = "/s/findCustomerByGroup", method = RequestMethod.POST)
-    @ResponseBody
-    public ResultVO findCustomerByGroup(HttpServletRequest request, CustomerVO customerVO)
-    {
-        SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
-
-        return service.findCustomerByGroup(sessionVO, customerVO);
-    }
-
-    @RequestMapping(value = "/s/findCustomerInfo", method = RequestMethod.POST)
-    @ResponseBody
-    public ResultVO findCustomerInfo(HttpServletRequest request, CustomerVO customerVO)
-    {
-        SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
-
-        return service.findCustomerInfo(sessionVO, customerVO);
+        return service.updateCustomer(sessionVO,customerVO);
     }
 }

@@ -70,6 +70,36 @@ LOCK TABLES `chat_history` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `customer`
+--
+
+DROP TABLE IF EXISTS `customer`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `customer` (
+  `customer_id` varchar(35) NOT NULL,
+  `customer_type` varchar(20) NOT NULL DEFAULT '',
+  `user_id` varchar(35) NOT NULL DEFAULT '',
+  `promoter_id` varchar(35) NOT NULL DEFAULT '',
+  `my_team_id` varchar(35) NOT NULL DEFAULT '',
+  `business_address` varchar(50) NOT NULL DEFAULT '',
+  `station` varchar(20) NOT NULL DEFAULT '',
+  `credit_rating` tinyint(4) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`customer_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `customer`
+--
+
+LOCK TABLES `customer` WRITE;
+/*!40000 ALTER TABLE `customer` DISABLE KEYS */;
+INSERT INTO `customer` VALUES ('22fbd2f300f5415785f1d97969e51e5a','personal','e6540c96ee894ea098f9cb24497a0647','89d9317fb3834353bcf2a507bee2eb82','10001','','',0),('559042c7d6054436b5f6b1cd6dbe19a7','personal','313d189c4c804e23b83529a4b18330fd','89d9317fb3834353bcf2a507bee2eb82','10001','','',1),('83dfb8bddac641dcbf0719c0af2baaba','dealer','18eda0f3db774553afc02b18a79bc4b8','89d9317fb3834353bcf2a507bee2eb82','10001','','',0),('c7328f7277664c42847c089d7bbf1e02','dealer','fbb8be72b57346b895e43c138e1c516c','89d9317fb3834353bcf2a507bee2eb82','10001','','',0);
+/*!40000 ALTER TABLE `customer` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `department_position`
 --
 
@@ -122,6 +152,30 @@ LOCK TABLES `dictionary` WRITE;
 /*!40000 ALTER TABLE `dictionary` DISABLE KEYS */;
 INSERT INTO `dictionary` VALUES ('11ab454a1bfa45e7b8f93871c617d037','60da30408feb45b78a6340e45427a77d','女','sex_0','2017-06-17 09:06:21','1'),('23616b1025cc44e4af1268c541bfb85b','b3a5fa19c94d4a18b5b6c75ce8d3c828','次图','2','2017-05-19 09:23:49','1'),('3b69b0b46801437a80b7d9436a5db1d4','7358aa8f92bd43dfb8e9472a7a4c74f5','等待发货','order_st_waiting_deliver','2017-05-19 10:37:16','3'),('41ce4f97b0414cce823af762169792b1','297ebc9fd0f640fca9f04c8fc067414e','填写','in_t_0','2017-05-19 09:22:13','0'),('43e1b93384cf47edac841d6f639cf308','ca970ab6c3d847b0b14cc6cd64ea253c','用户已建账','u_st_1','2017-05-19 09:51:21','1'),('48427fea6c4d4da0bdb0262fbe24141e','60da30408feb45b78a6340e45427a77d','男','sex_1','2017-06-17 09:06:21','0'),('4998bc243b704849a70c5322d24c8355','9fb5903640b340b795bc68481f1b48e3','合作社','c_g_3','2017-05-19 09:35:58','3'),('5f1fd7c385624f7d9f2f7c05ad9ce231','7358aa8f92bd43dfb8e9472a7a4c74f5','等待付款','order_st_waiting_pay','2017-05-19 10:37:16','2'),('65e6982be1a64e689c286f9bc874bfc1','297ebc9fd0f640fca9f04c8fc067414e','填写选择','in_t_2','2017-05-19 09:22:13','2'),('672b02e15beb4808945feab02ff93242','ca970ab6c3d847b0b14cc6cd64ea253c','用户已注册','u_st_2','2017-05-19 09:51:21','2'),('70b44cfa2133407690a408c0d141cfd2','7358aa8f92bd43dfb8e9472a7a4c74f5','等待评价','order_st_waiting_estimate','2017-05-19 10:37:16','5'),('719623566b1b48f4987dfb16f0e19a5c','9fb5903640b340b795bc68481f1b48e3','合作农户','c_g_2','2017-05-19 09:35:58','2'),('78b059a98fa04c11a6d9badca4650cf4','7358aa8f92bd43dfb8e9472a7a4c74f5','交易成功','order_st_succeeded','2017-05-19 10:37:16','4'),('a056459ca4144a9d879f5b5441354380','297ebc9fd0f640fca9f04c8fc067414e','选择','in_t_1','2017-05-19 09:22:13','1'),('a256240b3ec544188b4228028dc27099','8a17ada2ba50486db550935f4ca90780','已拒绝','negative','2017-06-16 17:06:42','2'),('a37079a23bff4a069652ec4ab45cabb2','7358aa8f92bd43dfb8e9472a7a4c74f5','正在审核','order_st_checking','2017-05-19 10:37:16','0'),('c120146b6eaa4c5a94d2e0b4e4c48ff6','9fb5903640b340b795bc68481f1b48e3','个体户','c_g_0','2017-05-19 09:35:58','0'),('cd36e1adee22447281805b45a9b51ac3','58c359e4f354459aa2d9692a50ca3e19','否','0','2017-05-19 09:38:38','0'),('d25adc48227a42fb8a6d7a53d7150ef5','58c359e4f354459aa2d9692a50ca3e19','是','1','2017-05-19 09:38:38','1'),('d643610b2ade4853b650cfb35230ca6a','7c91ff9e7e3b47a7ba42b4d4ea78ab5a','已付款','pyment_method_2','2017-05-19 09:50:00','2'),('da0ffec3e70f4cef9fef0fc7b8efd1c1','8a17ada2ba50486db550935f4ca90780','等待确认','request','2017-06-16 17:06:42','0'),('e21f405b452d4341ad8492f12289caf5','7358aa8f92bd43dfb8e9472a7a4c74f5','审核通过','order_st_pass','2017-05-19 10:37:16','1'),('e657734638874998b73d5cd958c48aac','7c91ff9e7e3b47a7ba42b4d4ea78ab5a','月结','pyment_method_0','2017-05-19 09:50:00','0'),('e66d45092957445f8d2df43c34b4326d','7c91ff9e7e3b47a7ba42b4d4ea78ab5a','到付','pyment_method_1','2017-05-19 09:50:00','1'),('e7837f343ff24baf8e0f15d8f607f4d2','9fb5903640b340b795bc68481f1b48e3','经销商','c_g_1','2017-05-19 09:35:58','1'),('e8acaa7cbed0462cb1c8913b3e432d5d','b3a5fa19c94d4a18b5b6c75ce8d3c828','主图','1','2017-05-19 09:23:49','0'),('eb9a8c796c9e4e2397de53603d7e6b75','8a17ada2ba50486db550935f4ca90780','已同意','agree','2017-06-16 17:06:42','1'),('efb2ca5424e34119970cbcdd9f17dde0','ca970ab6c3d847b0b14cc6cd64ea253c','用户已建档','u_st_0','2017-05-19 09:51:21','0');
 /*!40000 ALTER TABLE `dictionary` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `farmer`
+--
+
+DROP TABLE IF EXISTS `farmer`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `farmer` (
+  `farmer_id` varchar(35) NOT NULL,
+  `farmer_name` varchar(20) NOT NULL DEFAULT '',
+  `farmer_phone` varchar(20) NOT NULL DEFAULT '',
+  PRIMARY KEY (`farmer_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `farmer`
+--
+
+LOCK TABLES `farmer` WRITE;
+/*!40000 ALTER TABLE `farmer` DISABLE KEYS */;
+/*!40000 ALTER TABLE `farmer` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -423,6 +477,32 @@ LOCK TABLES `image_space` WRITE;
 /*!40000 ALTER TABLE `image_space` DISABLE KEYS */;
 INSERT INTO `image_space` VALUES ('7f919e4356a44fe8a199dde18d561cbc','10001','/upload/img/user/space/89d9317fb3834353bcf2a507bee2eb82/a22f4e8ce09c43d58b1690058e439d80.jpg'),('bc13439ff4384bcab77d93911ce783f6','10001','/upload/img/user/space/89d9317fb3834353bcf2a507bee2eb82/c61467dcc89848c2aab2c13f1aa0fdce.jpg'),('df85119137904e93895d8c76e06b1924','10001','/upload/img/user/space/89d9317fb3834353bcf2a507bee2eb82/a174c63eb79e40dd9044e95f68283abe.png');
 /*!40000 ALTER TABLE `image_space` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `manage_unit`
+--
+
+DROP TABLE IF EXISTS `manage_unit`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `manage_unit` (
+  `manage_id` varchar(35) NOT NULL,
+  `manage_name` varchar(20) NOT NULL DEFAULT '',
+  `manage_type` text,
+  `manage_address` varchar(50) NOT NULL DEFAULT '',
+  `manage_acreage` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`manage_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `manage_unit`
+--
+
+LOCK TABLES `manage_unit` WRITE;
+/*!40000 ALTER TABLE `manage_unit` DISABLE KEYS */;
+/*!40000 ALTER TABLE `manage_unit` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -900,13 +980,13 @@ INSERT INTO `user` VALUES ('41370f132bd44bca943e2fe5dd9862ab','10001','27a9c57b4
 UNLOCK TABLES;
 
 --
--- Table structure for table `user_breed_type`
+-- Table structure for table `user_breed`
 --
 
-DROP TABLE IF EXISTS `user_breed_type`;
+DROP TABLE IF EXISTS `user_breed`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `user_breed_type` (
+CREATE TABLE `user_breed` (
   `breed_id` varchar(35) NOT NULL,
   `breed_category` varchar(30) NOT NULL DEFAULT '',
   `breed_variety` varchar(30) NOT NULL DEFAULT '',
@@ -927,12 +1007,12 @@ CREATE TABLE `user_breed_type` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `user_breed_type`
+-- Dumping data for table `user_breed`
 --
 
-LOCK TABLES `user_breed_type` WRITE;
-/*!40000 ALTER TABLE `user_breed_type` DISABLE KEYS */;
-/*!40000 ALTER TABLE `user_breed_type` ENABLE KEYS */;
+LOCK TABLES `user_breed` WRITE;
+/*!40000 ALTER TABLE `user_breed` DISABLE KEYS */;
+/*!40000 ALTER TABLE `user_breed` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -1228,6 +1308,7 @@ CREATE TABLE `user_record` (
 
 LOCK TABLES `user_record` WRITE;
 /*!40000 ALTER TABLE `user_record` DISABLE KEYS */;
+INSERT INTO `user_record` VALUES ('313d189c4c804e23b83529a4b18330fd','10001','',1001,'啊呜','','男','13355553333','1995-05-15','address-555','','','2017-08-09 17:28:09','2017-08-09 17:28:09','u_st_0','','','','','',0,NULL,'','','2017-08-09 17:28:09',NULL,NULL,NULL,'',2),('fbb8be72b57346b895e43c138e1c516c','10001','',1001,'啊呜','','男','13355553333','1995-05-15','address-555','','','2017-08-09 17:28:24','2017-08-09 17:28:24','u_st_0','','','','','',0,NULL,'','','2017-08-09 17:28:24',NULL,NULL,NULL,'',2);
 /*!40000 ALTER TABLE `user_record` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1294,4 +1375,4 @@ SET character_set_client = @saved_cs_client;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-08-08 18:09:04
+-- Dump completed on 2017-08-09 18:04:29

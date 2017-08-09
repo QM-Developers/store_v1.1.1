@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dgg.store.mapper.ManageUnitMapper">
+  <resultMap id="BaseResultMap" type="com.dgg.store.util.pojo.ManageUnit">
+    <id column="manage_id" jdbcType="VARCHAR" property="manageId" />
+    <result column="manage_name" jdbcType="VARCHAR" property="manageName" />
+    <result column="manage_address" jdbcType="VARCHAR" property="manageAddress" />
+    <result column="manage_acreage" jdbcType="INTEGER" property="manageAcreage" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.dgg.store.util.pojo.ManageUnit">
+    <result column="manage_type" jdbcType="LONGVARCHAR" property="manageType" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    manage_id, manage_name, manage_address, manage_acreage
+  </sql>
+  <sql id="Blob_Column_List">
+    manage_type
+  </sql>
+  <select id="selectByExampleWithBLOBs" parameterType="com.dgg.store.util.pojo.ManageUnitExample" resultMap="ResultMapWithBLOBs">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from manage_unit
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" parameterType="com.dgg.store.util.pojo.ManageUnitExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from manage_unit
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from manage_unit
+    where manage_id = #{manageId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from manage_unit
+    where manage_id = #{manageId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.dgg.store.util.pojo.ManageUnitExample">
+    delete from manage_unit
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.dgg.store.util.pojo.ManageUnit">
+    insert into manage_unit (manage_id, manage_name, manage_address, 
+      manage_acreage, manage_type)
+    values (#{manageId,jdbcType=VARCHAR}, #{manageName,jdbcType=VARCHAR}, #{manageAddress,jdbcType=VARCHAR}, 
+      #{manageAcreage,jdbcType=INTEGER}, #{manageType,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.dgg.store.util.pojo.ManageUnit">
+    insert into manage_unit
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="manageId != null">
+        manage_id,
+      </if>
+      <if test="manageName != null">
+        manage_name,
+      </if>
+      <if test="manageAddress != null">
+        manage_address,
+      </if>
+      <if test="manageAcreage != null">
+        manage_acreage,
+      </if>
+      <if test="manageType != null">
+        manage_type,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="manageId != null">
+        #{manageId,jdbcType=VARCHAR},
+      </if>
+      <if test="manageName != null">
+        #{manageName,jdbcType=VARCHAR},
+      </if>
+      <if test="manageAddress != null">
+        #{manageAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="manageAcreage != null">
+        #{manageAcreage,jdbcType=INTEGER},
+      </if>
+      <if test="manageType != null">
+        #{manageType,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.dgg.store.util.pojo.ManageUnitExample" resultType="java.lang.Long">
+    select count(*) from manage_unit
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update manage_unit
+    <set>
+      <if test="record.manageId != null">
+        manage_id = #{record.manageId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.manageName != null">
+        manage_name = #{record.manageName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.manageAddress != null">
+        manage_address = #{record.manageAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.manageAcreage != null">
+        manage_acreage = #{record.manageAcreage,jdbcType=INTEGER},
+      </if>
+      <if test="record.manageType != null">
+        manage_type = #{record.manageType,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map">
+    update manage_unit
+    set manage_id = #{record.manageId,jdbcType=VARCHAR},
+      manage_name = #{record.manageName,jdbcType=VARCHAR},
+      manage_address = #{record.manageAddress,jdbcType=VARCHAR},
+      manage_acreage = #{record.manageAcreage,jdbcType=INTEGER},
+      manage_type = #{record.manageType,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update manage_unit
+    set manage_id = #{record.manageId,jdbcType=VARCHAR},
+      manage_name = #{record.manageName,jdbcType=VARCHAR},
+      manage_address = #{record.manageAddress,jdbcType=VARCHAR},
+      manage_acreage = #{record.manageAcreage,jdbcType=INTEGER}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dgg.store.util.pojo.ManageUnit">
+    update manage_unit
+    <set>
+      <if test="manageName != null">
+        manage_name = #{manageName,jdbcType=VARCHAR},
+      </if>
+      <if test="manageAddress != null">
+        manage_address = #{manageAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="manageAcreage != null">
+        manage_acreage = #{manageAcreage,jdbcType=INTEGER},
+      </if>
+      <if test="manageType != null">
+        manage_type = #{manageType,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where manage_id = #{manageId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.dgg.store.util.pojo.ManageUnit">
+    update manage_unit
+    set manage_name = #{manageName,jdbcType=VARCHAR},
+      manage_address = #{manageAddress,jdbcType=VARCHAR},
+      manage_acreage = #{manageAcreage,jdbcType=INTEGER},
+      manage_type = #{manageType,jdbcType=LONGVARCHAR}
+    where manage_id = #{manageId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dgg.store.util.pojo.ManageUnit">
+    update manage_unit
+    set manage_name = #{manageName,jdbcType=VARCHAR},
+      manage_address = #{manageAddress,jdbcType=VARCHAR},
+      manage_acreage = #{manageAcreage,jdbcType=INTEGER}
+    where manage_id = #{manageId,jdbcType=VARCHAR}
+  </update>
+</mapper>

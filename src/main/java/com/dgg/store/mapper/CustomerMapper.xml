@@ -1,181 +1,87 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dgg.store.mapper.CustomerMapper">
-    <resultMap id="CustomerVOMap" type="com.dgg.store.util.vo.CustomerVO">
-        <result column="user_id" property="userId" jdbcType="VARCHAR"/>
+    <resultMap id="CustomerVO" type="com.dgg.store.util.vo.CustomerVO">
+        <result column="customer_id" property="customerId" jdbcType="VARCHAR"/>
         <result column="user_name" property="userName" jdbcType="VARCHAR"/>
-        <result column="user_img" property="userImg" jdbcType="VARCHAR"/>
         <result column="user_phone" property="userPhone" jdbcType="VARCHAR"/>
-        <result column="user_area" property="userArea" jdbcType="VARCHAR"/>
         <result column="user_sex" property="userSex" jdbcType="VARCHAR"/>
         <result column="user_birthday" property="userBirthday" jdbcType="VARCHAR"/>
         <result column="user_address" property="userAddress" jdbcType="VARCHAR"/>
-        <result column="user_identity" property="userIdentity" jdbcType="VARCHAR"/>
-        <result column="user_status" property="userStatus" jdbcType="VARCHAR"/>
-        <result column="my_team_id" property="myTeamId" jdbcType="VARCHAR"/>
-        <result column="customer_id" property="customerId" jdbcType="VARCHAR"/>
-        <result column="customer_remark" property="customerRemark" jdbcType="VARCHAR"/>
-        <result column="customer_group_name" property="customerGroupName" jdbcType="VARCHAR"/>
-        <result column="customer_group_id" property="customerGroupId" jdbcType="VARCHAR"/>
         <result column="credit_rating" property="creditRating" jdbcType="INTEGER"/>
-        <result column="lng_and_lat" property="lngAndLat" jdbcType="VARCHAR"/>
-        <result column="user_update_time" property="userUpdateTime" jdbcType="DATE"/>
+        <result column="business_address" property="businessAddress" jdbcType="VARCHAR"/>
+        <result column="station" property="station" jdbcType="VARCHAR"/>
+        <result column="customer_type" property="customerType" jdbcType="VARCHAR"/>
     </resultMap>
 
-    <resultMap id="MyTeamMap" type="com.dgg.store.util.pojo.MyTeam">
-        <result column="my_team_id" property="myTeamId" jdbcType="VARCHAR"/>
-        <result column="my_team_name" property="myTeamName" jdbcType="VARCHAR"/>
-        <result column="my_team_area" property="myTeamArea" jdbcType="VARCHAR"/>
-        <result column="my_team_address" property="myTeamAddress" jdbcType="VARCHAR"/>
-    </resultMap>
-
-    <resultMap id="CustomerGroupMap" type="com.dgg.store.util.vo.CustomerGroupVO">
-        <id column="customer_group_id" property="customerGroupId" jdbcType="VARCHAR"/>
-        <result column="customer_group_name" property="customerGroupName" jdbcType="VARCHAR"/>
-    </resultMap>
-
-    <insert id="insertStoreUser" parameterType="com.dgg.store.util.vo.CustomerVO">
-        insert into user (user_id, role_id, user_name,
-            user_sex, user_phone,my_team_id,
-            user_birthday, user_address, user_area,
-            user_create_date, user_status)
-        values (#{customerId},#{roleId},#{userName},
-            #{userSex},#{userPhone},#{myTeamId},
-            #{userBirthday},#{userAddress},#{userArea},
-            NOW(),#{userStatus})
-    </insert>
-
-    <insert id="insertCustomerGroup" parameterType="com.dgg.store.util.vo.CustomerVO">
-        INSERT INTO customer(customer_group_id, customer_id,user_id)
-        VALUES
-        (#{customerGroupId},#{customerId},#{userId})
-    </insert>
-
-    <select id="findCustomerInfo" resultMap="CustomerVOMap">
-        SELECT u.user_name,dt_state.dict_name user_status,u.user_phone,u.user_img,
-            u.user_sex,u.user_birthday,u.user_address,
-            u.user_area,u.user_create_date,u.lng_and_lat,
-            u.user_identity,c.credit_rating,c.customer_group_id,
-            u.user_update_time
-        FROM customer c
-        INNER JOIN user_view u
-        ON u.user_id = c.user_id
-        INNER JOIN dictionary dt_state
-        ON dt_state.dict_code = u.user_status
-        WHERE c.customer_id = #{customerId}
-    </select>
-
-    <select id="findCustomerByGroup" resultMap="CustomerVOMap">
-        SELECT u.user_name,u.user_sex,u.user_phone,dt_state.dict_name user_status,
-          c.customer_id,
-          cg.customer_group_name
-        FROM customer c
-        INNER JOIN customer_group cg
-        ON cg.customer_group_id = c.customer_group_id
-        INNER JOIN user_view u
-        ON u.user_id = c.user_id
-        INNER JOIN dictionary dt_state
-        ON dt_state.dict_code = u.user_status
-        WHERE cg.customer_group_id = #{groupId}
-        AND c.promoter_id = #{userId}
-    </select>
-
-    <select id="findPartner" resultMap="CustomerVOMap">
-        SELECT u.user_id,u.user_name,u.user_img,u.user_phone,u.user_status,u.user_area
-        FROM user u
-        WHERE u.my_team_id = #{cooperId}
-    </select>
-
-    <select id="findCustomerGroup" resultMap="CustomerGroupMap">
-        SELECT customer_group_id,dt.dict_name customer_group_name
-        FROM customer_group
-        INNER JOIN dictionary dt
-        ON customer_group_name = dt.dict_code
-    </select>
-
-    <insert id="insertCooperation" useGeneratedKeys="true" keyProperty="myTeamId" parameterType="com.dgg.store.util.pojo.MyTeam">
-        INSERT INTO my_team(my_team_name, my_team_uid,my_team_area,my_team_address)
-        VALUES
-        (#{myTeamName},#{myTeamUid},#{myTeamArea},#{myTeamAddress})
-    </insert>
-
-    <select id="findCooperation" resultMap="MyTeamMap">
-        SELECT t.my_team_id,t.my_team_name,t.my_team_area,t.my_team_address
-        FROM my_team t
-        WHERE t.my_team_uid = #{userId}
-    </select>
-
-    <update id="updateCustomer" parameterType="com.dgg.store.util.vo.CustomerVO">
-        UPDATE customer
-        <set>
-            <if test="customerRemark != null">
-                customer_remark = #{customerRemark},
-            </if>
-            <if test="creditRating != null">
-                credit_rating = #{creditRating},
-            </if>
-            <if test="promoterId != null and promoterId != ''">
-                promoter_id = #{promoterId},
-            </if>
-        </set>
-        WHERE customer_id = #{customerId}
-    </update>
-
-    <insert id="insertCustomerHistory">
-        INSERT INTO user_history
-        (user_id, my_team_id, team_department_id, role_id, user_name, user_password, user_sex, user_phone, user_birthday, user_address, user_area, user_email, user_create_date, user_last_login_time, user_status, user_qq, uesr_wechat, user_img, user_nickname, token, is_deleted, delete_date, lng_and_lat, user_identity)
-        SELECT u.user_id, u.my_team_id, u.team_department_id, u.role_id, u.user_name, u.user_password, u.user_sex, u.user_phone, u.user_birthday, u.user_address, u.user_area, u.user_email, u.user_create_date, u.user_last_login_time, u.user_status, u.user_qq, u.uesr_wechat, u.user_img, u.user_nickname, u.token, u.is_deleted, u.delete_date, u.lng_and_lat, u.user_identity
-        FROM user_view u
-        INNER JOIN customer c
-        ON c.user_id = u.user_id
-        WHERE c.customer_id = #{customerId}
-    </insert>
 
     <insert id="insertCustomerRecord" parameterType="com.dgg.store.util.vo.CustomerVO">
-        INSERT INTO user_record(
-            user_id, my_team_id, role_id,
-            user_name, user_sex, user_phone,
-            user_birthday, user_address, user_area,
-            user_status,user_identity, lng_and_lat)
-        VALUES (#{userId},#{myTeamId},#{roleId},
-            #{userName},#{userSex},#{userPhone},
-            #{userBirthday},#{userAddress},#{userArea},
-            #{userStatus},#{userIdentity},#{lngAndLat})
+        INSERT INTO user_record
+        (user_id,my_team_id,user_name,user_phone,
+        user_birthday,user_address,user_sex,
+        user_status,role_id)
+        VALUES
+        (#{userId},#{myTeamId},#{userName},#{userPhone},
+        #{userBirthday},#{userAddress},#{userSex},
+        #{userStatus},#{roleId})
     </insert>
 
     <insert id="insertCustomer" parameterType="com.dgg.store.util.vo.CustomerVO">
-        INSERT INTO customer (
-            user_id, customer_id, customer_group_id,
-            credit_rating, promoter_id,my_team_id)
-        VALUES (#{userId},#{customerId},#{customerGroupId},
-            #{creditRating},#{promoterId},#{myTeamId})
+        INSERT INTO customer
+        (customer_id, user_id, promoter_id,
+        my_team_id, business_address, station,
+        credit_rating,customer_type)
+        VALUES (#{customerId},#{userId},#{promoterId},
+        #{myTeamId},#{businessAddress},#{station},
+        #{creditRating},#{customerType})
     </insert>
 
-    <update id="updateCustomerRecord" parameterType="com.dgg.store.util.vo.CustomerVO">
+    <select id="listCustomer" resultMap="CustomerVO">
+        SELECT c.customer_id,c.business_address,c.credit_rating,
+            c.customer_type,c.station,
+            u.user_name,u.user_phone,u.user_birthday,
+            u.user_address,u.user_sex
+        FROM customer c
+        INNER JOIN user_view u
+        ON u.user_id = c.user_id
+        WHERE c.my_team_id = #{customer.myTeamId}
+        AND c.promoter_id = #{customer.userId}
+        <if test="customer.customerType != null and customer.customerType != ''">
+            AND c.customer_type = #{customer.customerType}
+        </if>
+        LIMIT #{start},#{end}
+    </select>
+
+    <select id="countCustomer" parameterType="com.dgg.store.util.vo.CustomerVO" resultType="java.lang.Integer">
+        SELECT COUNT(0)
+        FROM customer c
+        INNER JOIN user_view u
+        ON u.user_id = c.user_id
+        WHERE c.my_team_id = #{myTeamId}
+        AND c.promoter_id = #{userId}
+        <if test="customerType != null and customerType != ''">
+            AND c.customer_type = #{customerType}
+        </if>
+    </select>
+
+    <update id="updateCustomerUserRecord" parameterType="com.dgg.store.util.vo.CustomerVO">
         UPDATE user_record
         <set>
-            <if test="userName != null and userName != ''">
+            <if test="userName != null">
                 user_name = #{userName},
             </if>
-            <if test="userSex != null and userSex != ''">
-                user_sex = #{userSex},
-            </if>
-            <if test="userPhone != null and userPhone != ''">
+            <if test="userPhone != null">
                 user_phone = #{userPhone},
             </if>
-            <if test="userBirthday != null and userBirthday != ''">
+            <if test="userSex != null">
+                user_sex = #{userSex},
+            </if>
+            <if test="userBirthday != null">
                 user_birthday = #{userBirthday},
             </if>
-            <if test="userIdentity != null and userIdentity != ''">
-                user_identity = #{userIdentity},
-            </if>
-            <if test="userArea != null and userArea != ''">
-                user_area = #{userArea},
-            </if>
-            <if test="userAddress != null and userAddress != ''">
+            <if test="userAddress != null">
                 user_address = #{userAddress},
             </if>
-            user_update_time = NOW(),
         </set>
         WHERE user_id = (SELECT user_id FROM customer WHERE customer_id = #{customerId})
     </update>
@@ -183,36 +89,42 @@
     <update id="updateCustomerUser" parameterType="com.dgg.store.util.vo.CustomerVO">
         UPDATE user
         <set>
-            <if test="userName != null and userName != ''">
+            <if test="userName != null">
                 user_name = #{userName},
             </if>
-            <if test="userSex != null and userSex != ''">
-                user_sex = #{userSex},
-            </if>
-            <if test="userPhone != null and userPhone != ''">
+            <if test="userPhone != null">
                 user_phone = #{userPhone},
             </if>
-            <if test="userBirthday != null and userBirthday != ''">
+            <if test="userSex != null">
+                user_sex = #{userSex},
+            </if>
+            <if test="userBirthday != null">
                 user_birthday = #{userBirthday},
             </if>
-            <if test="userIdentity != null and userIdentity != ''">
-                user_identity = #{userIdentity},
-            </if>
-            <if test="userArea != null and userArea != ''">
-                user_area = #{userArea},
-            </if>
-            <if test="userAddress != null and userAddress != ''">
+            <if test="userAddress != null">
                 user_address = #{userAddress},
             </if>
-            user_update_time = NOW(),
         </set>
         WHERE user_id = (SELECT user_id FROM customer WHERE customer_id = #{customerId})
     </update>
 
-    <select id="findCustomerUpdateCount" resultType="java.lang.Integer">
-        SELECT COUNT(1)
-        FROM user_history
-        WHERE user_id =
-        (SELECT user_id FROM customer WHERE customer_id = #{customerId});
-    </select>
+    <update id="updateCustomer" parameterType="com.dgg.store.util.vo.CustomerVO">
+        UPDATE customer
+        <set>
+            <if test="promoterId != null">
+                promoter_id = #{promoterId},
+            </if>
+            <if test="businessAddress != null">
+                business_address = #{businessAddress},
+            </if>
+            <if test="station != null">
+                station = #{station},
+            </if>
+            <if test="creditRating != null">
+                credit_rating = #{creditRating},
+            </if>
+        </set>
+        WHERE customer_id = #{customerId}
+    </update>
+
 </mapper>

@@ -1,5 +1,8 @@
-select * from permission
+select * from user
 ;
 
-select * from qm_permission
+select * from user_record
+;
+
+select * from customer
 ;

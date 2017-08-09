@@ -1,8 +1,6 @@
 package com.dgg.store.dao.store;
 
 import com.dgg.store.mapper.CustomerMapper;
-import com.dgg.store.util.pojo.MyTeam;
-import com.dgg.store.util.vo.CustomerGroupVO;
 import com.dgg.store.util.vo.CustomerVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -14,66 +12,6 @@ public class CustomerDaoImpl implements CustomerDao
 {
     @Autowired
     private CustomerMapper mapper;
-
-    @Override
-    public Integer insertStoreUser(CustomerVO customerVO)
-    {
-        return mapper.insertStoreUser(customerVO);
-    }
-
-    @Override
-    public Integer insertCustomerGroup(CustomerVO customerVO)
-    {
-        return mapper.insertCustomerGroup(customerVO);
-    }
-
-    @Override
-    public List<CustomerVO> findCustomerByGroup(String customerGroupId, String userId)
-    {
-        return mapper.findCustomerByGroup(customerGroupId,userId);
-    }
-
-    @Override
-    public CustomerVO findCustomerInfo(String customerId)
-    {
-        return mapper.findCustomerInfo(customerId);
-    }
-
-    @Override
-    public List<MyTeam> findCooperation(String userId)
-    {
-        return mapper.findCooperation(userId);
-    }
-
-    @Override
-    public List<CustomerVO> findPartner(Integer integer)
-    {
-        return mapper.findPartner(integer);
-    }
-
-    @Override
-    public Integer insertCooperation(MyTeam myTeam)
-    {
-        return mapper.insertCooperation(myTeam);
-    }
-
-    @Override
-    public Integer updateCustomer(CustomerVO customerVO)
-    {
-        return mapper.updateCustomer(customerVO);
-    }
-
-    @Override
-    public Integer insertCustomerHistory(String customerId)
-    {
-        return mapper.insertCustomerHistory(customerId);
-    }
-
-    @Override
-    public List<CustomerGroupVO> findCustomerGroup()
-    {
-        return mapper.findCustomerGroup();
-    }
 
     @Override
     public int insertCustomerRecord(CustomerVO customerVO)
@@ -88,9 +26,15 @@ public class CustomerDaoImpl implements CustomerDao
     }
 
     @Override
-    public Integer updateCustomerRecord(CustomerVO customerVO)
+    public List<CustomerVO> listCustomer(CustomerVO condition, int start, int end)
     {
-        return mapper.updateCustomerRecord(customerVO);
+        return mapper.listCustomer(condition,start,end);
+    }
+
+    @Override
+    public Integer updateCustomer(CustomerVO customerVO)
+    {
+        return mapper.updateCustomer(customerVO);
     }
 
     @Override
@@ -100,9 +44,15 @@ public class CustomerDaoImpl implements CustomerDao
     }
 
     @Override
-    public int findCustomerUpdateCount(String customerId)
+    public Integer updateCustomerUserRecord(CustomerVO customerVO)
     {
-        return mapper.findCustomerUpdateCount(customerId);
+        return mapper.updateCustomerUserRecord(customerVO);
+    }
+
+    @Override
+    public int countCustomer(CustomerVO customerVO)
+    {
+        return mapper.countCustomer(customerVO);
     }
 
 }

@@ -5,64 +5,65 @@ import java.util.Date;
 public class CustomerVO
 {
     private String userId;
+
     private String customerId;
+
     private String promoterId;
+
     private String userName;
+
     private String userPhone;
-    private String userArea;
-    private String userAddress;
+
     private String userSex;
+
     private String userBirthday;
-    private String userIdentity;
-    private String userImg;
+
     private String userStatus;
-    private String lngAndLat;
-    private String customerRemark;
-    private Integer creditRating;
-    private String customerGroupName;
-    private String customerGroupId;
+
+    private String userAddress;
+
     private String myTeamId;
+
     private Integer roleId;
+
     private Date userUpdateTime;
 
-    public String getCustomerGroupId()
+    private Integer creditRating;
+
+    private String businessAddress;
+
+    private String station;
+
+    private String customerType;
+
+    public String getUserId()
     {
-        return customerGroupId;
+        return userId;
     }
 
-    public void setCustomerGroupId(String customerGroupId)
+    public void setUserId(String userId)
     {
-        this.customerGroupId = customerGroupId;
+        this.userId = userId;
     }
 
-    public String getUserPhone()
+    public String getCustomerId()
     {
-        return userPhone;
+        return customerId;
     }
 
-    public void setUserPhone(String userPhone)
+    public void setCustomerId(String customerId)
     {
-        this.userPhone = userPhone;
+        this.customerId = customerId;
     }
 
-    public String getCustomerRemark()
+    public String getPromoterId()
     {
-        return customerRemark;
+        return promoterId;
     }
 
-    public void setCustomerRemark(String customerRemark)
+    public void setPromoterId(String promoterId)
     {
-        this.customerRemark = customerRemark;
-    }
-
-    public String getUserImg()
-    {
-        return userImg;
-    }
-
-    public void setUserImg(String userImg)
-    {
-        this.userImg = userImg;
+        this.promoterId = promoterId;
     }
 
     public String getUserName()
@@ -75,24 +76,14 @@ public class CustomerVO
         this.userName = userName;
     }
 
-    public String getCustomerGroupName()
+    public String getUserPhone()
     {
-        return customerGroupName;
+        return userPhone;
     }
 
-    public void setCustomerGroupName(String customerGroupName)
+    public void setUserPhone(String userPhone)
     {
-        this.customerGroupName = customerGroupName;
-    }
-
-    public String getUserArea()
-    {
-        return userArea;
-    }
-
-    public void setUserArea(String userArea)
-    {
-        this.userArea = userArea;
+        this.userPhone = userPhone;
     }
 
     public String getUserSex()
@@ -115,26 +106,6 @@ public class CustomerVO
         this.userBirthday = userBirthday;
     }
 
-    public String getUserAddress()
-    {
-        return userAddress;
-    }
-
-    public void setUserAddress(String userAddress)
-    {
-        this.userAddress = userAddress;
-    }
-
-    public String getUserId()
-    {
-        return userId;
-    }
-
-    public void setUserId(String userId)
-    {
-        this.userId = userId;
-    }
-
     public String getUserStatus()
     {
         return userStatus;
@@ -143,6 +114,16 @@ public class CustomerVO
     public void setUserStatus(String userStatus)
     {
         this.userStatus = userStatus;
+    }
+
+    public Integer getCreditRating()
+    {
+        return creditRating;
+    }
+
+    public void setCreditRating(Integer creditRating)
+    {
+        this.creditRating = creditRating;
     }
 
     public String getMyTeamId()
@@ -165,56 +146,6 @@ public class CustomerVO
         this.roleId = roleId;
     }
 
-    public String getCustomerId()
-    {
-        return customerId;
-    }
-
-    public void setCustomerId(String customerId)
-    {
-        this.customerId = customerId;
-    }
-
-    public Integer getCreditRating()
-    {
-        return creditRating;
-    }
-
-    public void setCreditRating(Integer creditRating)
-    {
-        this.creditRating = creditRating;
-    }
-
-    public String getPromoterId()
-    {
-        return promoterId;
-    }
-
-    public void setPromoterId(String promoterId)
-    {
-        this.promoterId = promoterId;
-    }
-
-    public String getUserIdentity()
-    {
-        return userIdentity;
-    }
-
-    public void setUserIdentity(String userIdentity)
-    {
-        this.userIdentity = userIdentity;
-    }
-
-    public String getLngAndLat()
-    {
-        return lngAndLat;
-    }
-
-    public void setLngAndLat(String lngAndLat)
-    {
-        this.lngAndLat = lngAndLat;
-    }
-
     public Date getUserUpdateTime()
     {
         return userUpdateTime;
@@ -223,5 +154,45 @@ public class CustomerVO
     public void setUserUpdateTime(Date userUpdateTime)
     {
         this.userUpdateTime = userUpdateTime;
+    }
+
+    public String getUserAddress()
+    {
+        return userAddress;
+    }
+
+    public void setUserAddress(String userAddress)
+    {
+        this.userAddress = userAddress;
+    }
+
+    public String getBusinessAddress()
+    {
+        return businessAddress;
+    }
+
+    public void setBusinessAddress(String businessAddress)
+    {
+        this.businessAddress = businessAddress;
+    }
+
+    public String getStation()
+    {
+        return station;
+    }
+
+    public void setStation(String station)
+    {
+        this.station = station;
+    }
+
+    public String getCustomerType()
+    {
+        return customerType;
+    }
+
+    public void setCustomerType(String customerType)
+    {
+        this.customerType = customerType;
     }
 }

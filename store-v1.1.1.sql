@@ -9,11 +9,37 @@ drop table if exists customer;
 create table customer
 (
    customer_id			varchar(35) not null primary key,	-- 客户Id
-   user_id              varchar(35) not null default '',
-   promoter_id			varchar(35) not null default '',
-   my_team_id 			varchar(35) not null default '',
-   customer_remard      varchar(20) not null default '',
-   credit_rating		tinyint not null default 0
+   customer_type        varchar(20) not null default '',	-- 客户类型
+   user_id	varchar(35) not null default '',	-- 客户指向的用户Id
+   promoter_id			varchar(35) not null default '',	-- 业务员Id
+   my_team_id 			varchar(35) not null default '',	-- 企业码
+   business_address		varchar(50) not null default '',	-- 经营地址
+   station	varchar(20) not null default '',	-- 从事岗位
+   credit_rating		tinyint not null default 0	-- 客户评级
+);
+
+/*==============================================================*/
+/* 农户信息表
+/*==============================================================*/
+drop table if exists farmer;
+create table farmer
+(
+   farmer_id varchar(35) not null primary key,
+   farmer_name varchar(20) not null default '',
+   farmer_phone varchar(20) not null default ''
+);
+
+/*==============================================================*/
+/* 经营单位
+/*==============================================================*/
+drop table if exists manage_unit;
+create table manage_unit
+(
+   manage_id varchar(35) not null primary key,	-- 经营单位Id
+   manage_name varchar(20) not null default '',	-- 经营单位名称
+   manage_type text,	-- 经营类目
+   manage_address varchar(50) not null default '',	-- 经营地址
+   manage_acreage int not null default 0	-- 经营面积
 );
 
 /*==============================================================*/
@@ -53,8 +79,8 @@ create table place_image
 /*==============================================================*/
 /* 养殖类型
 /*==============================================================*/
-drop table if exists user_breed_type;
-create table user_breed_type
+drop table if exists user_breed;
+create table user_breed
 (
    breed_id varchar(35) not null primary key,	-- 养殖 id
    breed_category varchar(30) not null default '', -- 养殖类目

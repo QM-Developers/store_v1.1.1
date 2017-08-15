@@ -8,6 +8,8 @@ var qm_goodslist = {
     {
         var url = path + "/s/findGoodsList" + Constant.URL_SUFFIX;
         var params = {};
+        params["pageNum"] = "1";
+        params["pageSize"] = "10";
 
         myjs.ajax_post(url, params, function (data)
         {
@@ -39,7 +41,7 @@ var qm_goodslist = {
                     '</div>';
             item += '</div><div class="item4">' + new Date(data[i]["createDate"]).format("yyyy/MM/dd") + '</div>' +
                 '<div class="item4">' +
-                '<a href="javascript:(0)" onclick="qm_goodslist.toReleaseGoods(\'' + data[i]["goodsId"] + '\')">详情/编辑</a>' +
+                '<a onclick="qm_goodslist.toReleaseGoods(\'' + data[i]["goodsId"] + '\')">详情/编辑</a>' +
                 '</div></li>';
         }
         $("#goods-list").append(item);

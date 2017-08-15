@@ -133,13 +133,12 @@
 <script type="text/javascript" src="${path}/pages/common/Constant.js"></script>
 
 <script type="text/javascript">
-    Addduty = function (name, positionId)
-    {
+    Addduty = function (name, positionId) {
         var count = $(".position-cont").length;
         var id = "position-id-" + count;
         var $dutynode = '<div class="position-cont">' +
             '<div class="position-input">' +
-            '<input value="' + name + '"/>' +
+            '<input id="' + positionId + '" value="' + name + '"/>' +
             '</div>' +
             '<hidden id="' + id + '"/>' +
             '<div class="position-duty" onclick="qm_department.permissionWindow(this,\'position-id-' + count + '\')">职位权限</div>' +
@@ -149,37 +148,30 @@
         return id;
     }
 
-    Delduty = function (item)
-    {
+    Delduty = function (item) {
         var $cont = $(item).parents('#Contbox').find(".position-cont").length;
         if ($cont == 1)
             return;
         $(item).parents(".position-cont").remove();
     }
-    PromptOff = function (item)
-    {
+    PromptOff = function (item) {
         $(item).parents(".Del-all").css("display", "none")
     }
-    Delall = function (text)
-    {
+    Delall = function (text) {
         $("#Delall .prompt-frame1").html(text);
         $("#Delall").css("display", "block");
     }
-    DutyPower = function ()
-    {
+    DutyPower = function () {
         $(".duty-Power").css("display", "block")
     }
-    Dutyoff = function ()
-    {
+    Dutyoff = function () {
 
         $(".duty-Power").css("display", "none")
     }
-    Power = function ()
-    {
+    Power = function () {
         $(".department-power").css("display", "block")
     }
-    Poweroff = function ()
-    {
+    Poweroff = function () {
         $(".department-power").css("display", "none")
     }
 

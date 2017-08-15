@@ -3,6 +3,8 @@ package com.dgg.store.util.pojo;
 public class Farmer {
     private String farmerId;
 
+    private String customerId;
+
     private String farmerName;
 
     private String farmerPhone;
@@ -13,6 +15,14 @@ public class Farmer {
 
     public void setFarmerId(String farmerId) {
         this.farmerId = farmerId == null ? null : farmerId.trim();
+    }
+
+    public String getCustomerId() {
+        return customerId;
+    }
+
+    public void setCustomerId(String customerId) {
+        this.customerId = customerId == null ? null : customerId.trim();
     }
 
     public String getFarmerName() {

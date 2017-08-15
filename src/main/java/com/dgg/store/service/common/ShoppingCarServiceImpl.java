@@ -35,9 +35,9 @@ public class ShoppingCarServiceImpl implements ShoppingCarService
     }
 
     @Override
-    public ResultVO deleteGoodsInCar(SessionVO sessionVO, ShoppingCar shoppingCar)
+    public ResultVO deleteGoodsFromCar(SessionVO sessionVO, ShoppingCar shoppingCar)
     {
-        Integer result = dao.deleteGoodsInCar(shoppingCar.getGoodsId());
+        Integer result = dao.deleteGoodsFromCar(shoppingCar.getGoodsId());
 
         ResultVO resultVO = new ResultVO(result, sessionVO.getToken());
 

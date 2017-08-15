@@ -1,6 +1,7 @@
 package com.dgg.store.service.store;
 
 import com.dgg.store.util.pojo.FreightTemp;
+import com.dgg.store.util.vo.core.PageVO;
 import com.dgg.store.util.vo.core.SessionVO;
 
 public interface FreightTempService
@@ -11,5 +12,5 @@ public interface FreightTempService
 
     String updateFreightTemp(SessionVO sessionVO, FreightTemp freightTemp);
 
-    String listFreightTemp(SessionVO sessionVO, FreightTemp freightTemp);
+    String listFreightTemp(SessionVO sessionVO, FreightTemp freightTemp, PageVO pageVO);
 }

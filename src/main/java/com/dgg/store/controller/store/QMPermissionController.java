@@ -19,7 +19,7 @@ public class QMPermissionController
     @Autowired
     private QMPermissionService service;
 
-    @RequestMapping(value = "/s/findQMPermissionTree.action",method = RequestMethod.POST)
+    @RequestMapping(value = "/s/findQMPermissionTree",method = RequestMethod.POST)
     @ResponseBody
     public ResultVO findQMPermissionTree(HttpServletRequest request)
     {

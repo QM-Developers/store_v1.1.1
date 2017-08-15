@@ -4,6 +4,7 @@ import com.dgg.store.service.store.GoodsManageService;
 import com.dgg.store.util.core.constant.Constant;
 import com.dgg.store.util.pojo.GoodsTypeAttr;
 import com.dgg.store.util.pojo.GoodsTypeinfo;
+import com.dgg.store.util.vo.core.PageVO;
 import com.dgg.store.util.vo.goods.GoodsInfoVO;
 import com.dgg.store.util.vo.core.ResultVO;
 import com.dgg.store.util.vo.core.SessionVO;
@@ -70,11 +71,11 @@ public class GoodsManageController
 
     @RequestMapping(value = "/s/deleteGoods", method = RequestMethod.POST)
     @ResponseBody
-    public ResultVO deleteGoods(HttpServletRequest request,GoodsInfoVO goodsInfo)
+    public ResultVO deleteGoods(HttpServletRequest request, GoodsInfoVO goodsInfo)
     {
         SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
 
-        return service.deleteGoods(sessionVO,goodsInfo);
+        return service.deleteGoods(sessionVO, goodsInfo);
     }
 
     @RequestMapping(value = "/s/saveGoodsDraft", method = RequestMethod.POST)
@@ -95,22 +96,22 @@ public class GoodsManageController
         return service.findImages(sessionVO);
     }
 
-    @RequestMapping(value = "/s/findGoodsList", method = RequestMethod.POST)
+    @RequestMapping(value = "/s/findGoodsList", method = RequestMethod.POST, produces = {"application/json;charset=UTF-8"})
     @ResponseBody
-    public ResultVO findGoodsList(HttpServletRequest request)
+    public String findGoodsList(HttpServletRequest request, PageVO pageVO)
     {
         SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
 
-        return service.findGoodsList(sessionVO);
+        return service.findGoodsList(sessionVO, pageVO);
     }
 
-    @RequestMapping(value = "/s/findGoodsListByKeyword", method = RequestMethod.POST)
+    @RequestMapping(value = "/s/findGoodsListByKeyword", method = RequestMethod.POST, produces = {"application/json;charset=UTF-8"})
     @ResponseBody
-    public ResultVO findGoodsListByKeyword(HttpServletRequest request,GoodsInfoVO goodsInfo)
+    public String findGoodsListByKeyword(HttpServletRequest request, GoodsInfoVO goodsInfo,PageVO pageVO)
     {
         SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
 
-        return service.findGoodsListByKeyword(sessionVO,goodsInfo);
+        return service.findGoodsListByKeyword(sessionVO, goodsInfo,pageVO);
     }
 
     @RequestMapping(value = "/s/findGoodsInfo", method = RequestMethod.POST)

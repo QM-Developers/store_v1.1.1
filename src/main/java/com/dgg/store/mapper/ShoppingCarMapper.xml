@@ -16,7 +16,7 @@
         (#{userId},#{goodsId},#{standardId},#{goodsNum})
     </insert>
 
-    <delete id="deleteGoodsInCar">
+    <delete id="deleteGoodsFromCar">
         DELETE FROM dgg_store.shopping_cart
         WHERE goods_id = #{goodsId}
     </delete>

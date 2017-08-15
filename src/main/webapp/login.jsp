@@ -71,13 +71,13 @@
 
         <div class="am-form">
             <label>手机号:</label>
-            <input onkeypress="if(event.keyCode==13) login.login();" id="userPhone" type="text">
+            <input onkeypress="if(event.keyCode==13) login.login();" id="userPhone" value="13688888888" type="text">
             <br>
             <label>密 码:</label>
-            <input onkeypress="if(event.keyCode==13) login.login();" id="userPassword" type="password">
+            <input onkeypress="if(event.keyCode==13) login.login();" id="userPassword" value="dggadmin" type="password">
             <br>
             <label>企业码:</label>
-            <input onkeypress="if(event.keyCode==13) login.login();" id="myTeamId" type="text">
+            <input onkeypress="if(event.keyCode==13) login.login();" id="myTeamId" value="10001" type="text">
             <br>
             <div class="am-cf">
                 <input type="button" onclick="login.login();" value="登 录" class="am-btn am-btn-primary am-btn-sm am-fl">

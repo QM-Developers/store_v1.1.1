@@ -12,7 +12,7 @@ public interface ShoppingCarMapper
 {
     Integer insertGoodsToCar(ShoppingCar shoppingCar);
 
-    Integer deleteGoodsInCar(@Param("goodsId") String goodsId);
+    Integer deleteGoodsFromCar(@Param("goodsId") String goodsId);
 
     ShoppingAddress findDefaultAddress(@Param("userId") String userId);
 

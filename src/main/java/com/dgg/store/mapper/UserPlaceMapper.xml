@@ -113,13 +113,11 @@
     insert into user_place (user_place_id, customer_id, user_place_name, 
       user_place_acreage, user_employee_num, user_owner_num, 
       user_already_use, user_place_address, user_place_area, 
-      user_place_type, create_date, is_deleted, 
-      delete_date)
+      user_place_type)
     values (#{userPlaceId,jdbcType=VARCHAR}, #{customerId,jdbcType=VARCHAR}, #{userPlaceName,jdbcType=VARCHAR}, 
       #{userPlaceAcreage,jdbcType=INTEGER}, #{userEmployeeNum,jdbcType=INTEGER}, #{userOwnerNum,jdbcType=INTEGER}, 
       #{userAlreadyUse,jdbcType=INTEGER}, #{userPlaceAddress,jdbcType=VARCHAR}, #{userPlaceArea,jdbcType=VARCHAR}, 
-      #{userPlaceType,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}, #{isDeleted,jdbcType=TINYINT}, 
-      #{deleteDate,jdbcType=DATE})
+      #{userPlaceType,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.dgg.store.util.pojo.UserPlace">
     insert into user_place
@@ -336,4 +334,74 @@
       delete_date = #{deleteDate,jdbcType=DATE}
     where user_place_id = #{userPlaceId,jdbcType=VARCHAR}
   </update>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <resultMap id="UserPlace" type="com.dgg.store.util.pojo.UserPlace">
+    <id column="user_place_id" jdbcType="VARCHAR" property="userPlaceId" />
+    <result column="customer_id" jdbcType="VARCHAR" property="customerId" />
+    <result column="user_place_acreage" jdbcType="INTEGER" property="userPlaceAcreage" />
+    <result column="user_employee_num" jdbcType="INTEGER" property="userEmployeeNum" />
+    <result column="user_owner_num" jdbcType="INTEGER" property="userOwnerNum" />
+    <result column="user_already_use" jdbcType="INTEGER" property="userAlreadyUse" />
+    <result column="user_place_area" jdbcType="VARCHAR" property="userPlaceArea" />
+    <result column="user_place_type" jdbcType="VARCHAR" property="userPlaceType" />
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+    <collection property="imageList" ofType="com.dgg.store.util.pojo.PlaceImage">
+      <result column="img_id" property="imgId" jdbcType="VARCHAR"/>
+      <result column="img_type" property="imgType" jdbcType="TINYINT"/>
+      <result column="img_url" property="imgUrl" jdbcType="VARCHAR"/>
+    </collection>
+  </resultMap>
+
+  <insert id="insertPlaceImage" parameterType="com.dgg.store.util.pojo.PlaceImage">
+    insert into place_image (img_id, img_type, user_place_id,
+    img_url)
+    values (#{imgId,jdbcType=VARCHAR}, #{imgType,jdbcType=TINYINT}, #{userPlaceId,jdbcType=VARCHAR},
+    #{imgUrl,jdbcType=LONGVARCHAR})
+  </insert>
+
+  <update id="updatePlaceImage">
+    UPDATE place_image
+    <set>
+      user_place_id = #{placeId},
+    </set>
+    WHERE img_id
+    IN
+    <foreach collection="images" index="i" open="(" close=")" item="item" separator=",">
+      #{item}
+    </foreach>
+  </update>
+
+  <select id="listUserPlace" parameterType="com.dgg.store.util.pojo.UserPlace" resultMap="UserPlace">
+    SELECT up.user_place_id, up.customer_id,
+          up.user_place_acreage, up.user_employee_num, up.user_owner_num,
+          up.user_already_use, up.user_place_area, up.user_place_type,
+          pi.img_id,pi.img_url,pi.img_type
+    FROM user_place up
+    LEFT JOIN place_image pi
+    ON pi.user_place_id = up.user_place_id
+    WHERE up.customer_id = #{customerId}
+  </select>
+
+  <delete id="deletePlaceImage" parameterType="com.dgg.store.util.pojo.PlaceImage">
+    DELETE FROM place_image
+    WHERE
+    <if test="imgId != null and imgId != ''">
+      img_id = #{imgId}
+    </if>
+    <if test="userPlaceId != null and userPlaceId != ''">
+      user_place_id = #{userPlaceId}
+    </if>
+  </delete>
 </mapper>

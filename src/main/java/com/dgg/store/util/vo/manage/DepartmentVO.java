@@ -11,6 +11,8 @@ public class DepartmentVO
 
     private Date createDate;
 
+    private String positionId;
+
     private String position;
 
     private String permission;
@@ -87,5 +89,15 @@ public class DepartmentVO
     public void setPositionList(List<PositionVO> positionList)
     {
         this.positionList = positionList;
+    }
+
+    public String getPositionId()
+    {
+        return positionId;
+    }
+
+    public void setPositionId(String positionId)
+    {
+        this.positionId = positionId;
     }
 }

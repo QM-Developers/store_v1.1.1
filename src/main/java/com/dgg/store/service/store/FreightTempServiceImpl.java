@@ -2,9 +2,13 @@ package com.dgg.store.service.store;
 
 import com.alibaba.fastjson.JSONObject;
 import com.dgg.store.dao.store.FreightTempDao;
+import com.dgg.store.util.core.constant.Constant;
+import com.dgg.store.util.core.constant.KeyConstant;
 import com.dgg.store.util.core.generator.IDGenerator;
+import com.dgg.store.util.core.page.PagingUtil;
 import com.dgg.store.util.pojo.FreightTemp;
 import com.dgg.store.util.pojo.FreightTempExample;
+import com.dgg.store.util.vo.core.PageVO;
 import com.dgg.store.util.vo.core.ResultVO;
 import com.dgg.store.util.vo.core.SessionVO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,18 +54,24 @@ public class FreightTempServiceImpl implements FreightTempService
     }
 
     @Override
-    public String listFreightTemp(SessionVO sessionVO, FreightTemp freightTemp)
+    public String listFreightTemp(SessionVO sessionVO, FreightTemp freightTemp, PageVO pageVO)
     {
         FreightTempExample example = new FreightTempExample();
         FreightTempExample.Criteria criteria = example.createCriteria();
 
+        example.setPageNum(PagingUtil.getStart(pageVO.getPageNum(), pageVO.getPageSize()));
+        example.setPageSize(pageVO.getPageSize());
+
         criteria.andMyTeamIdEqualTo(sessionVO.getMyTeamId());
 
         List<FreightTemp> result = dao.selectByExample(example);
+        int pageCount = (int) dao.countByExample(example);
+        pageCount = PagingUtil.getCount(pageCount, pageVO.getPageSize());
 
-        ResultVO resultVO = new ResultVO(1, sessionVO.getToken(), result);
+        JSONObject json = (JSONObject) JSONObject.toJSON(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), result));
+        json.put(KeyConstant.PAGE_COUNT, pageCount);
 
-        return JSONObject.toJSONString(resultVO);
+        return json.toJSONString();
     }
 
 

@@ -3,6 +3,7 @@ package com.dgg.store.service.store;
 
 import com.dgg.store.util.pojo.GoodsTypeAttr;
 import com.dgg.store.util.pojo.GoodsTypeinfo;
+import com.dgg.store.util.vo.core.PageVO;
 import com.dgg.store.util.vo.goods.GoodsInfoVO;
 import com.dgg.store.util.vo.core.ResultVO;
 import com.dgg.store.util.vo.core.SessionVO;
@@ -20,7 +21,7 @@ public interface GoodsManageService
 
     ResultVO findImages(SessionVO sessionVO);
 
-    ResultVO findGoodsList(SessionVO sessionVO);
+    String findGoodsList(SessionVO sessionVO, PageVO pageVO);
 
     ResultVO findGoodsInfo(SessionVO sessionVO, GoodsInfoVO infoVO);
 
@@ -30,5 +31,5 @@ public interface GoodsManageService
 
     ResultVO deleteGoods(SessionVO sessionVO, GoodsInfoVO goodsInfo);
 
-    ResultVO findGoodsListByKeyword(SessionVO sessionVO, GoodsInfoVO goodsInfo);
+    String findGoodsListByKeyword(SessionVO sessionVO, GoodsInfoVO goodsInfo, PageVO pageVO);
 }

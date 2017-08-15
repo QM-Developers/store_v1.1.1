@@ -11,7 +11,7 @@ public interface ShoppingCarDao
 {
     Integer insertGoodsToCar(ShoppingCar shoppingCar);
 
-    Integer deleteGoodsInCar(String goodsId);
+    Integer deleteGoodsFromCar(String goodsId);
 
     ShoppingAddress findDefaultAddress(String userId);
 

@@ -14,6 +14,8 @@
     <result column="competitive_brand" jdbcType="VARCHAR" property="competitiveBrand" />
     <result column="livestock_num" jdbcType="INTEGER" property="livestockNum" />
     <result column="user_place_id" jdbcType="VARCHAR" property="userPlaceId" />
+    <result column="breed_age" jdbcType="INTEGER" property="breedAge" />
+    <result column="breed_scale" jdbcType="INTEGER" property="breedScale" />
     <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
     <result column="is_deleted" jdbcType="TINYINT" property="isDeleted" />
     <result column="delete_date" jdbcType="TIMESTAMP" property="deleteDate" />
@@ -78,8 +80,8 @@
   </sql>
   <sql id="Base_Column_List">
     breed_id, breed_category, breed_variety, breed_type, male_num, female_num, obstetric_table_num, 
-    shed_num, empty_shed_num, competitive_brand, livestock_num, user_place_id, create_date, 
-    is_deleted, delete_date
+    shed_num, empty_shed_num, competitive_brand, livestock_num, user_place_id, breed_age, 
+    breed_scale, create_date, is_deleted, delete_date
   </sql>
   <select id="selectByExample" parameterType="com.dgg.store.util.pojo.UserBreedExample" resultMap="BaseResultMap">
     select
@@ -116,21 +118,19 @@
       breed_type, male_num, female_num, 
       obstetric_table_num, shed_num, empty_shed_num, 
       competitive_brand, livestock_num, user_place_id, 
-      create_date, is_deleted, delete_date
-      )
+      breed_age, breed_scale, create_date, 
+      is_deleted, delete_date)
     values (#{breedId,jdbcType=VARCHAR}, #{breedCategory,jdbcType=VARCHAR}, #{breedVariety,jdbcType=VARCHAR}, 
       #{breedType,jdbcType=VARCHAR}, #{maleNum,jdbcType=INTEGER}, #{femaleNum,jdbcType=INTEGER}, 
       #{obstetricTableNum,jdbcType=INTEGER}, #{shedNum,jdbcType=INTEGER}, #{emptyShedNum,jdbcType=INTEGER}, 
       #{competitiveBrand,jdbcType=VARCHAR}, #{livestockNum,jdbcType=INTEGER}, #{userPlaceId,jdbcType=VARCHAR}, 
-      #{createDate,jdbcType=TIMESTAMP}, #{isDeleted,jdbcType=TINYINT}, #{deleteDate,jdbcType=TIMESTAMP}
-      )
+      #{breedAge,jdbcType=INTEGER}, #{breedScale,jdbcType=INTEGER}, #{createDate,jdbcType=TIMESTAMP}, 
+      #{isDeleted,jdbcType=TINYINT}, #{deleteDate,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.dgg.store.util.pojo.UserBreed">
     insert into user_breed
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="breedId != null">
         breed_id,
-      </if>
       <if test="breedCategory != null">
         breed_category,
       </if>
@@ -161,8 +161,12 @@
       <if test="livestockNum != null">
         livestock_num,
       </if>
-      <if test="userPlaceId != null">
         user_place_id,
+      <if test="breedAge != null">
+        breed_age,
+      </if>
+      <if test="breedScale != null">
+        breed_scale,
       </if>
       <if test="createDate != null">
         create_date,
@@ -175,9 +179,7 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="breedId != null">
         #{breedId,jdbcType=VARCHAR},
-      </if>
       <if test="breedCategory != null">
         #{breedCategory,jdbcType=VARCHAR},
       </if>
@@ -208,8 +210,12 @@
       <if test="livestockNum != null">
         #{livestockNum,jdbcType=INTEGER},
       </if>
-      <if test="userPlaceId != null">
         #{userPlaceId,jdbcType=VARCHAR},
+      <if test="breedAge != null">
+        #{breedAge,jdbcType=INTEGER},
+      </if>
+      <if test="breedScale != null">
+        #{breedScale,jdbcType=INTEGER},
       </if>
       <if test="createDate != null">
         #{createDate,jdbcType=TIMESTAMP},
@@ -267,6 +273,12 @@
       <if test="record.userPlaceId != null">
         user_place_id = #{record.userPlaceId,jdbcType=VARCHAR},
       </if>
+      <if test="record.breedAge != null">
+        breed_age = #{record.breedAge,jdbcType=INTEGER},
+      </if>
+      <if test="record.breedScale != null">
+        breed_scale = #{record.breedScale,jdbcType=INTEGER},
+      </if>
       <if test="record.createDate != null">
         create_date = #{record.createDate,jdbcType=TIMESTAMP},
       </if>
@@ -295,6 +307,8 @@
       competitive_brand = #{record.competitiveBrand,jdbcType=VARCHAR},
       livestock_num = #{record.livestockNum,jdbcType=INTEGER},
       user_place_id = #{record.userPlaceId,jdbcType=VARCHAR},
+      breed_age = #{record.breedAge,jdbcType=INTEGER},
+      breed_scale = #{record.breedScale,jdbcType=INTEGER},
       create_date = #{record.createDate,jdbcType=TIMESTAMP},
       is_deleted = #{record.isDeleted,jdbcType=TINYINT},
       delete_date = #{record.deleteDate,jdbcType=TIMESTAMP}
@@ -338,6 +352,12 @@
       <if test="userPlaceId != null">
         user_place_id = #{userPlaceId,jdbcType=VARCHAR},
       </if>
+      <if test="breedAge != null">
+        breed_age = #{breedAge,jdbcType=INTEGER},
+      </if>
+      <if test="breedScale != null">
+        breed_scale = #{breedScale,jdbcType=INTEGER},
+      </if>
       <if test="createDate != null">
         create_date = #{createDate,jdbcType=TIMESTAMP},
       </if>
@@ -363,6 +383,8 @@
       competitive_brand = #{competitiveBrand,jdbcType=VARCHAR},
       livestock_num = #{livestockNum,jdbcType=INTEGER},
       user_place_id = #{userPlaceId,jdbcType=VARCHAR},
+      breed_age = #{breedAge,jdbcType=INTEGER},
+      breed_scale = #{breedScale,jdbcType=INTEGER},
       create_date = #{createDate,jdbcType=TIMESTAMP},
       is_deleted = #{isDeleted,jdbcType=TINYINT},
       delete_date = #{deleteDate,jdbcType=TIMESTAMP}

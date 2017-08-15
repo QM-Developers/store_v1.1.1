@@ -3,6 +3,7 @@
 <mapper namespace="com.dgg.store.mapper.FarmerMapper">
   <resultMap id="BaseResultMap" type="com.dgg.store.util.pojo.Farmer">
     <id column="farmer_id" jdbcType="VARCHAR" property="farmerId" />
+    <result column="customer_id" jdbcType="VARCHAR" property="customerId" />
     <result column="farmer_name" jdbcType="VARCHAR" property="farmerName" />
     <result column="farmer_phone" jdbcType="VARCHAR" property="farmerPhone" />
   </resultMap>
@@ -65,7 +66,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    farmer_id, farmer_name, farmer_phone
+    farmer_id, customer_id, farmer_name, farmer_phone
   </sql>
   <select id="selectByExample" parameterType="com.dgg.store.util.pojo.FarmerExample" resultMap="BaseResultMap">
     select
@@ -98,16 +99,19 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.dgg.store.util.pojo.Farmer">
-    insert into farmer (farmer_id, farmer_name, farmer_phone
-      )
-    values (#{farmerId,jdbcType=VARCHAR}, #{farmerName,jdbcType=VARCHAR}, #{farmerPhone,jdbcType=VARCHAR}
-      )
+    insert into farmer (farmer_id, customer_id, farmer_name, 
+      farmer_phone)
+    values (#{farmerId,jdbcType=VARCHAR}, #{customerId,jdbcType=VARCHAR}, #{farmerName,jdbcType=VARCHAR}, 
+      #{farmerPhone,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.dgg.store.util.pojo.Farmer">
     insert into farmer
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="farmerId != null">
         farmer_id,
+      </if>
+      <if test="customerId != null">
+        customer_id,
       </if>
       <if test="farmerName != null">
         farmer_name,
@@ -119,6 +123,9 @@
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="farmerId != null">
         #{farmerId,jdbcType=VARCHAR},
+      </if>
+      <if test="customerId != null">
+        #{customerId,jdbcType=VARCHAR},
       </if>
       <if test="farmerName != null">
         #{farmerName,jdbcType=VARCHAR},
@@ -140,6 +147,9 @@
       <if test="record.farmerId != null">
         farmer_id = #{record.farmerId,jdbcType=VARCHAR},
       </if>
+      <if test="record.customerId != null">
+        customer_id = #{record.customerId,jdbcType=VARCHAR},
+      </if>
       <if test="record.farmerName != null">
         farmer_name = #{record.farmerName,jdbcType=VARCHAR},
       </if>
@@ -154,6 +164,7 @@
   <update id="updateByExample" parameterType="map">
     update farmer
     set farmer_id = #{record.farmerId,jdbcType=VARCHAR},
+      customer_id = #{record.customerId,jdbcType=VARCHAR},
       farmer_name = #{record.farmerName,jdbcType=VARCHAR},
       farmer_phone = #{record.farmerPhone,jdbcType=VARCHAR}
     <if test="_parameter != null">
@@ -163,6 +174,9 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.dgg.store.util.pojo.Farmer">
     update farmer
     <set>
+      <if test="customerId != null">
+        customer_id = #{customerId,jdbcType=VARCHAR},
+      </if>
       <if test="farmerName != null">
         farmer_name = #{farmerName,jdbcType=VARCHAR},
       </if>
@@ -174,8 +188,47 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.dgg.store.util.pojo.Farmer">
     update farmer
-    set farmer_name = #{farmerName,jdbcType=VARCHAR},
+    set customer_id = #{customerId,jdbcType=VARCHAR},
+      farmer_name = #{farmerName,jdbcType=VARCHAR},
       farmer_phone = #{farmerPhone,jdbcType=VARCHAR}
     where farmer_id = #{farmerId,jdbcType=VARCHAR}
   </update>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <delete id="deleteBreed" parameterType="com.dgg.store.util.pojo.Farmer">
+    DELETE FROM user_breed
+    WHERE user_place_id IN
+    (SELECT user_place_id FROM user_place WHERE customer_id =
+    (SELECT customer_id FROM farmer WHERE farmer_id = #{farmerId}))
+  </delete>
+
+  <delete id="deletePlace" parameterType="com.dgg.store.util.pojo.Farmer">
+    DELETE FROM user_place
+    WHERE customer_id =
+    (SELECT customer_id FROM farmer WHERE farmer_id = #{farmerId})
+  </delete>
 </mapper>

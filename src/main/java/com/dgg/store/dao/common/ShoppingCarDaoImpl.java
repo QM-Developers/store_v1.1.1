@@ -23,9 +23,9 @@ public class ShoppingCarDaoImpl implements ShoppingCarDao
     }
 
     @Override
-    public Integer deleteGoodsInCar(String goodsId)
+    public Integer deleteGoodsFromCar(String goodsId)
     {
-        return mapper.deleteGoodsInCar(goodsId);
+        return mapper.deleteGoodsFromCar(goodsId);
     }
 
     @Override

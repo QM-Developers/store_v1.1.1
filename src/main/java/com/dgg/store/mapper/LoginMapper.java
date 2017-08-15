@@ -6,10 +6,7 @@ import org.apache.ibatis.annotations.Param;
 
 public interface LoginMapper
 {
-
-    int updateToken(@Param("loginName") String loginName,@Param("token") String token);
-
     LoginRepVO findLoginUser(LoginVO loginVO);
 
-    Object findLoginUserByPhone(LoginVO loginVO);
+    int updateLoginInfo(@Param("userId") String userId);
 }

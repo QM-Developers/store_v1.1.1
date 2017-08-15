@@ -128,7 +128,7 @@ var qm_member = {
 
         myjs.ajax_post(url, params, function (data)
         {
-            data = qm_member.getPermission(data.result, Constant.WORKER_PERMISSION);
+            data = data.result;
             var item = "";
             for (var i = 0; i < data.length; i++)
             {

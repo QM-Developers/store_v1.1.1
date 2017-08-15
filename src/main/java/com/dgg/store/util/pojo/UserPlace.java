@@ -1,6 +1,7 @@
 package com.dgg.store.util.pojo;
 
 import java.util.Date;
+import java.util.List;
 
 public class UserPlace {
     private String userPlaceId;
@@ -28,6 +29,16 @@ public class UserPlace {
     private Byte isDeleted;
 
     private Date deleteDate;
+
+    private String environment;
+
+    private String certificate;
+
+    private List<PlaceImage> imageList;
+
+    private List<PlaceImage> environmentList;
+
+    private List<PlaceImage> certificateList;
 
     public String getUserPlaceId() {
         return userPlaceId;
@@ -131,5 +142,55 @@ public class UserPlace {
 
     public void setDeleteDate(Date deleteDate) {
         this.deleteDate = deleteDate;
+    }
+
+    public String getEnvironment()
+    {
+        return environment;
+    }
+
+    public void setEnvironment(String environment)
+    {
+        this.environment = environment;
+    }
+
+    public String getCertificate()
+    {
+        return certificate;
+    }
+
+    public void setCertificate(String certificate)
+    {
+        this.certificate = certificate;
+    }
+
+    public List<PlaceImage> getImageList()
+    {
+        return imageList;
+    }
+
+    public void setImageList(List<PlaceImage> imageList)
+    {
+        this.imageList = imageList;
+    }
+
+    public List<PlaceImage> getEnvironmentList()
+    {
+        return environmentList;
+    }
+
+    public void setEnvironmentList(List<PlaceImage> environmentList)
+    {
+        this.environmentList = environmentList;
+    }
+
+    public List<PlaceImage> getCertificateList()
+    {
+        return certificateList;
+    }
+
+    public void setCertificateList(List<PlaceImage> certificateList)
+    {
+        this.certificateList = certificateList;
     }
 }

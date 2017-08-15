@@ -30,50 +30,5 @@ public class ShoppingCarController
         return service.insertGoodsToCar(sessionVO, shoppingCar);
     }
 
-    @RequestMapping(value = "user_deleteGoodsInCar", method = RequestMethod.POST)
-    @ResponseBody
-    public ResultVO deleteGoodsInCar(HttpServletRequest request, ShoppingCar shoppingCar)
-    {
-        SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
 
-        return service.deleteGoodsInCar(sessionVO, shoppingCar);
-    }
-
-    @RequestMapping(value = "user_findDefaultAddress", method = RequestMethod.POST)
-    @ResponseBody
-    public ResultVO findDefaultAddress(HttpServletRequest request)
-    {
-        SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
-
-        return service.findDefaultAddress(sessionVO);
-    }
-
-    @RequestMapping(value = "user_findShoppingAddresses",method = RequestMethod.POST)
-    @ResponseBody
-    public ResultVO findShoppingAddresses(HttpServletRequest request)
-    {
-        SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
-
-        return service.findShoppingAddresses(sessionVO);
-    }
-
-    @RequestMapping(value = "user_findShoppingAddress",method = RequestMethod.POST)
-    @ResponseBody
-    public ResultVO findShoppingAddress(HttpServletRequest request, ShoppingAddress shoppingAddress)
-    {
-        SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
-
-        return service.findShoppingAddress(sessionVO,shoppingAddress);
-    }
-
-
-
-    @RequestMapping(value = "user_makeMyOrder",method = RequestMethod.POST)
-    @ResponseBody
-    public ResultVO makeMyOrder(HttpServletRequest request, MyOrderVO orderVO)
-    {
-        SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
-
-        return service.insertMyOrder(sessionVO,orderVO);
-    }
 }

@@ -3,6 +3,7 @@ package com.dgg.store.controller.store;
 import com.dgg.store.service.store.FreightTempService;
 import com.dgg.store.util.core.constant.Constant;
 import com.dgg.store.util.pojo.FreightTemp;
+import com.dgg.store.util.vo.core.PageVO;
 import com.dgg.store.util.vo.core.SessionVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,7 +25,7 @@ public class FreightTempController
     {
         SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
 
-        return service.insertFreightTemp(sessionVO,freightTemp);
+        return service.insertFreightTemp(sessionVO, freightTemp);
     }
 
     @RequestMapping(value = "/s/removeFreightTemp", method = RequestMethod.POST, produces = {"application/json;charset=UTF-8"})
@@ -33,7 +34,7 @@ public class FreightTempController
     {
         SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
 
-        return service.deleteFreightTemp(sessionVO,freightTemp);
+        return service.deleteFreightTemp(sessionVO, freightTemp);
     }
 
     @RequestMapping(value = "/s/updateFreightTemp", method = RequestMethod.POST, produces = {"application/json;charset=UTF-8"})
@@ -42,15 +43,15 @@ public class FreightTempController
     {
         SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
 
-        return service.updateFreightTemp(sessionVO,freightTemp);
+        return service.updateFreightTemp(sessionVO, freightTemp);
     }
 
     @RequestMapping(value = "/s/listFreightTemp", method = RequestMethod.POST, produces = {"application/json;charset=UTF-8"})
     @ResponseBody
-    public String listFreightTemp(HttpServletRequest request, FreightTemp freightTemp)
+    public String listFreightTemp(HttpServletRequest request, FreightTemp freightTemp, PageVO pageVO)
     {
         SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
 
-        return service.listFreightTemp(sessionVO,freightTemp);
+        return service.listFreightTemp(sessionVO, freightTemp, pageVO);
     }
 }

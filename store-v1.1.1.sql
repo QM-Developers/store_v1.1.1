@@ -24,9 +24,10 @@ create table customer
 drop table if exists farmer;
 create table farmer
 (
-   farmer_id varchar(35) not null primary key,
-   farmer_name varchar(20) not null default '',
-   farmer_phone varchar(20) not null default ''
+   farmer_id varchar(35) not null primary key,	-- 农户Id
+   customer_id varchar(35) not null default '',	-- 客户Id
+   farmer_name varchar(20) not null default '',	-- 农户名称
+   farmer_phone varchar(20) not null default ''	-- 农户电话
 );
 
 /*==============================================================*/
@@ -36,8 +37,9 @@ drop table if exists manage_unit;
 create table manage_unit
 (
    manage_id varchar(35) not null primary key,	-- 经营单位Id
+   customer_id varchar(35) not null default '',	-- 客户Id
    manage_name varchar(20) not null default '',	-- 经营单位名称
-   manage_type text,	-- 经营类目
+   manage_type varchar(200),	-- 经营类目
    manage_address varchar(50) not null default '',	-- 经营地址
    manage_acreage int not null default 0	-- 经营面积
 );
@@ -94,6 +96,8 @@ create table user_breed
    competitive_brand varchar(50) not null default '',	-- 竞争品牌
    livestock_num int not null default 0,	-- 存栏数量
    user_place_id        varchar(35) not null,	-- 场地 id
+   breed_age int not null default 0, -- 养殖年限
+   breed_scale int not null default 0,	-- 养殖规模
    create_date			datetime not null default now(),
    is_deleted           tinyint not null default 0,
    delete_date          datetime
@@ -457,10 +461,11 @@ create table shopping_address
 drop table if exists shopping_cart;
 create table shopping_cart
 (
-   customer_id              varchar(35) not null default '',
+   user_id              varchar(35) not null default '',
    goods_id             varchar(35) not null default '',
    standard_id          varchar(35) not null default '',
-   goods_num            int not null default 0
+   goods_num            int not null default 0,
+   create_date datetime not null default now()
 );
 
 /*==============================================================*/

@@ -19,32 +19,18 @@ public class LoginController
     @Autowired
     private LoginService service;
 
-    @RequestMapping(value = "/login",method = RequestMethod.POST)
+    @RequestMapping(value = "/login", method = RequestMethod.POST, produces = {"application/json;charset=UTF-8"})
     @ResponseBody
-    public ResultVO Login(LoginVO loginVO)
+    public String Login(LoginVO loginVO)
     {
-        return service.login(loginVO);
+        return service.updateLoginInfo(loginVO);
     }
 
-    @RequestMapping(value = "/login_on_browser",method = RequestMethod.POST)
+    @RequestMapping(value = "/login_on_browser", method = RequestMethod.POST)
     @ResponseBody
-    public Object storeLogin(HttpSession session, LoginVO loginVO)
+    public String storeLogin(HttpSession session, LoginVO loginVO)
     {
-        Object obj = service.findUserByLogin(loginVO);
-        Object status = new Object();
-
-        if (obj != null)
-        {   // 如果登录成功，就把用户数据存入 session
-            session.setAttribute(Constant.LOGININFO,obj);
-            status = 1;
-        } else
-        {   // 登录失败则返回 错误信息
-            JSONObject json = new JSONObject();
-            json.put("hint", "用户名或密码错误");
-            status = json;
-        }
-
-        return status;
+        return service.findUserByLogin(session, loginVO);
     }
 
 }

@@ -83,7 +83,7 @@ public class QMPermissionServiceImpl implements QMPermissionService
             switch (i)
             {
                 case 0:
-                    result = dao.updateQMPermission(permission);
+                    dao.updateQMPermission(permission);
                     break;
                 case 1:
                     dao.cleanQMPermissionRe(permission.getPermissionId());

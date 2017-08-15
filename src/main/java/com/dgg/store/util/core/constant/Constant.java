@@ -1,15 +1,16 @@
 package com.dgg.store.util.core.constant;
 
-import java.io.IOException;
-import java.util.Properties;
-
 public class Constant
 {
     public static final int REQUEST_SUCCESS = 1;
 
     public static final int REQUEST_FAILED = 2;
 
+    public static final int REQUEST_NOT_PERMISSION = 101;
+
     public static final String EMPTY = "";
+
+    public static final int ZERO = 0;
 
     public static final String delimiterStr = "_#_";
 
@@ -39,12 +40,6 @@ public class Constant
      */
     public static final String SALT = "nx";
 
-    /**
-     * 角色 id
-     */
-    public static final String ROLE_DEFAULT_USER = "1001";  // 普通用户
-    public static final String ROLE_MANAGER = "1002";   // 超级管理员
-    public static final String ROLE_BUSINESS = "1003"; // 普通员工
 
     /**
      * 团队类型
@@ -78,15 +73,6 @@ public class Constant
 
 
     /**
-     * 用户图片上传路径
-     */
-    public static final String USER_PLACE_IMG_PATH; // 用户场地图片路径
-    public static final String USER_PERSONAL_INFO_IMG_PATH; // 用户个人信息图片路径
-    public static final String USER_HEAD_PORTRAIT_IMG_PATH; // 用户头像图片路径
-    public static final String USER_IMAGE_SPACE_PATH;   // 用户图片空间路径
-    public static final String USER_ID_CARD_PATH;   // 身份证图片路径
-
-    /**
      * 订单状态
      */
     public static final String WAITING_PAY = "order_st_waiting_pay";    // 新订单，等待付款
@@ -95,29 +81,4 @@ public class Constant
     public static final String WAITING_DELIVER = "order_st_waiting_deliver";    // 等待发货
     public static final String WAITING_ESTIMATE = "order_st_waiting_estimate";  // 等待评价
     public static final String ORDER_SUCCEEDED = "order_st_succeeded";    // 交易成功
-
-    public static String NETTY_HOST;
-    public static int NETTY_PORT;
-
-    static
-    {
-        ClassLoader classloader = Thread.currentThread().getContextClassLoader();
-        Properties uploadPath = new Properties();
-        Properties netty = new Properties();
-        try
-        {
-            uploadPath.load(classloader.getResourceAsStream("uploadPath.ini"));
-            netty.load(classloader.getResourceAsStream("netty.ini"));
-        } catch (IOException e)
-        {
-            e.printStackTrace();
-        }
-        USER_PLACE_IMG_PATH = uploadPath.getProperty("USER_PLACE_IMG_PATH");
-        USER_PERSONAL_INFO_IMG_PATH = uploadPath.getProperty("USER_PERSONAL_INFO_IMG_PATH");
-        USER_HEAD_PORTRAIT_IMG_PATH = uploadPath.getProperty("USER_HEAD_PORTRAIT_IMG_PATH");
-        USER_IMAGE_SPACE_PATH = uploadPath.getProperty("USER_IMAGE_SPACE_PATH");
-        USER_ID_CARD_PATH = uploadPath.getProperty("USER_ID_CARD_PATH");
-        NETTY_HOST = netty.getProperty("HOST");
-        NETTY_PORT = Integer.valueOf(netty.getProperty("PORT"));
-    }
 }

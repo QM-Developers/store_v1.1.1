@@ -27,4 +27,8 @@ public interface FarmerMapper {
     int updateByPrimaryKeySelective(Farmer record);
 
     int updateByPrimaryKey(Farmer record);
+
+    Integer deleteBreed(Farmer farmer);
+
+    Integer deletePlace(Farmer farmer);
 }

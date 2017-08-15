@@ -18,7 +18,7 @@ var login = {
 
         myjs.ajax_post(url, params, function (data)
         {
-            if (parseInt(data) != 1)
+            if (parseInt(data.state) != 1)
             {
                 alert(data);
                 return;

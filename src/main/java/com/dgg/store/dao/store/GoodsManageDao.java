@@ -3,6 +3,7 @@ package com.dgg.store.dao.store;
 import com.dgg.store.util.pojo.GoodsStandard;
 import com.dgg.store.util.pojo.GoodsTypeAttr;
 import com.dgg.store.util.pojo.ImageSpace;
+import com.dgg.store.util.vo.core.PageVO;
 import com.dgg.store.util.vo.goods.GoodsImgVO;
 import com.dgg.store.util.vo.goods.GoodsInfoVO;
 import com.dgg.store.util.vo.goods.GoodsTypeVO;
@@ -27,7 +28,7 @@ public interface GoodsManageDao
 
     Integer insertStandardToGoods(GoodsStandard standard);
 
-    List<GoodsInfoVO> findGoodsList(GoodsInfoVO condition);
+    List<GoodsInfoVO> findGoodsList(GoodsInfoVO condition, int start,int end);
 
     GoodsInfoVO findGoodsInfo(GoodsInfoVO infoVO);
 
@@ -40,4 +41,8 @@ public interface GoodsManageDao
     Integer updateGoods(GoodsInfoVO goodsInfo);
 
     Integer deleteGoodsInfo(GoodsInfoVO condition);
+
+    int countGoods(GoodsInfoVO condition);
+
+    List<GoodsStandard> listStandards(String goodsId);
 }

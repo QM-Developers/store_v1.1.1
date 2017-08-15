@@ -120,7 +120,7 @@ CREATE TABLE `department_position` (
 
 LOCK TABLES `department_position` WRITE;
 /*!40000 ALTER TABLE `department_position` DISABLE KEYS */;
-INSERT INTO `department_position` VALUES ('4ae60c74c30143feb898d721a1299dd7','负责人','6256feb92d844cd5951d7cfe01d922ed'),('5f759af244784603bc4ffc6f7dab8508','成员','27a9c57b4c69441aa569ef4ae1a9ef7c'),('6d163a17a8b842dd98de4b059b893664','成员','6256feb92d844cd5951d7cfe01d922ed'),('6d163a17a8b842dd98de4b059b893666','负责人','27a9c57b4c69441aa569ef4ae1a9ef7d'),('b63366bffb23473cbbd2b00225e05620','负责人','27a9c57b4c69441aa569ef4ae1a9ef7c');
+INSERT INTO `department_position` VALUES ('4ae60c74c30143feb898d721a1299dd7','负责人','6256feb92d844cd5951d7cfe01d922ed'),('6192971fdd4d47d2b4ce77a3723a311b','负责人','27a9c57b4c69441aa569ef4ae1a9ef7c'),('6d163a17a8b842dd98de4b059b893664','成员','6256feb92d844cd5951d7cfe01d922ed'),('6d163a17a8b842dd98de4b059b893666','负责人','27a9c57b4c69441aa569ef4ae1a9ef7d'),('da1f6e509bdb43cd93e2bb4c7cbaa0e5','成员','27a9c57b4c69441aa569ef4ae1a9ef7c');
 /*!40000 ALTER TABLE `department_position` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -163,6 +163,7 @@ DROP TABLE IF EXISTS `farmer`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `farmer` (
   `farmer_id` varchar(35) NOT NULL,
+  `customer_id` varchar(35) NOT NULL DEFAULT '',
   `farmer_name` varchar(20) NOT NULL DEFAULT '',
   `farmer_phone` varchar(20) NOT NULL DEFAULT '',
   PRIMARY KEY (`farmer_id`)
@@ -318,7 +319,7 @@ CREATE TABLE `goods_image` (
 
 LOCK TABLES `goods_image` WRITE;
 /*!40000 ALTER TABLE `goods_image` DISABLE KEYS */;
-INSERT INTO `goods_image` VALUES ('9c3ed28bb39e4b079f548e69a3681cba','7f919e4356a44fe8a199dde18d561cbc','0',1),('9c3ed28bb39e4b079f548e69a3681cba','bc13439ff4384bcab77d93911ce783f6','1',2),('22a91981f71a43e7a8c34472bc7cc1c6','7f919e4356a44fe8a199dde18d561cbc','0',1),('22a91981f71a43e7a8c34472bc7cc1c6','bc13439ff4384bcab77d93911ce783f6','1',2);
+INSERT INTO `goods_image` VALUES ('9c3ed28bb39e4b079f548e69a3681cba','7f919e4356a44fe8a199dde18d561cbc','0',1),('9c3ed28bb39e4b079f548e69a3681cba','bc13439ff4384bcab77d93911ce783f6','1',2),('22a91981f71a43e7a8c34472bc7cc1c6','7f919e4356a44fe8a199dde18d561cbc','0',1),('22a91981f71a43e7a8c34472bc7cc1c6','bc13439ff4384bcab77d93911ce783f6','1',2),('211de7c120a94e8d923a1032e363275e','7f919e4356a44fe8a199dde18d561cbc','0',1),('211de7c120a94e8d923a1032e363275e','bc13439ff4384bcab77d93911ce783f6','1',2),('d94c07686d0b4483bccd3c0066c46c1f','7f919e4356a44fe8a199dde18d561cbc','0',1),('d94c07686d0b4483bccd3c0066c46c1f','bc13439ff4384bcab77d93911ce783f6','1',2),('457c81e4dda3487187bab10eda5355ed','7f919e4356a44fe8a199dde18d561cbc','0',1),('457c81e4dda3487187bab10eda5355ed','bc13439ff4384bcab77d93911ce783f6','1',2),('534d6156325a4c1a89510ddc0b5bcbeb','7f919e4356a44fe8a199dde18d561cbc','0',1),('534d6156325a4c1a89510ddc0b5bcbeb','bc13439ff4384bcab77d93911ce783f6','1',2),('91a39e42fb614f13bfca0d419f8f3f5c','7f919e4356a44fe8a199dde18d561cbc','0',1),('91a39e42fb614f13bfca0d419f8f3f5c','bc13439ff4384bcab77d93911ce783f6','1',2),('d661c8d99dc74f2ab32419a96e156833','7f919e4356a44fe8a199dde18d561cbc','0',1),('d661c8d99dc74f2ab32419a96e156833','bc13439ff4384bcab77d93911ce783f6','1',2),('e4d8553d166045d792f37f8f837b4024','7f919e4356a44fe8a199dde18d561cbc','0',1),('e4d8553d166045d792f37f8f837b4024','bc13439ff4384bcab77d93911ce783f6','1',2),('f8b24567adfc48cf82f617822a63c628','7f919e4356a44fe8a199dde18d561cbc','0',1),('f8b24567adfc48cf82f617822a63c628','bc13439ff4384bcab77d93911ce783f6','1',2),('db073ab0dc5c4b719deaa1b8705327d2','7f919e4356a44fe8a199dde18d561cbc','0',1),('db073ab0dc5c4b719deaa1b8705327d2','bc13439ff4384bcab77d93911ce783f6','1',2),('01402a4e26d14f1dbe5135ef69b6b385','7f919e4356a44fe8a199dde18d561cbc','0',1),('01402a4e26d14f1dbe5135ef69b6b385','bc13439ff4384bcab77d93911ce783f6','1',2);
 /*!40000 ALTER TABLE `goods_image` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -348,7 +349,7 @@ CREATE TABLE `goods_standard` (
 
 LOCK TABLES `goods_standard` WRITE;
 /*!40000 ALTER TABLE `goods_standard` DISABLE KEYS */;
-INSERT INTO `goods_standard` VALUES ('1f9b286b836c4175ab09a9b02cacbb7d','22a91981f71a43e7a8c34472bc7cc1c6','小包',5,110,30),('44a91ec5692442d28ac752b066cafa03','22a91981f71a43e7a8c34472bc7cc1c6','大包',10,100,60),('9190f4574805419187a8029042803617','9c3ed28bb39e4b079f548e69a3681cba','大包',10,100,60),('97be34802bda49f6b4ee2c200ee3a16a','9c3ed28bb39e4b079f548e69a3681cba','小包',5,200,30);
+INSERT INTO `goods_standard` VALUES ('0b4bff177fa145098f83aef5422377db','d661c8d99dc74f2ab32419a96e156833','23',2,3,41),('1f9b286b836c4175ab09a9b02cacbb7d','22a91981f71a43e7a8c34472bc7cc1c6','小包',5,0,30),('41beb4180ebe42a3bef04a85d32df9bb','d94c07686d0b4483bccd3c0066c46c1f','23',2,5,41),('44a91ec5692442d28ac752b066cafa03','22a91981f71a43e7a8c34472bc7cc1c6','大包',10,100,60),('5f4810d815ff4042a0fe80e11b74313f','e4d8553d166045d792f37f8f837b4024','23',2,5,41),('7b073f443ad7449f931fc01d11517dac','211de7c120a94e8d923a1032e363275e','23',2,5,41),('9190f4574805419187a8029042803617','9c3ed28bb39e4b079f548e69a3681cba','大包',10,100,60),('91bf66bdc4dd424f90a7e22295695881','534d6156325a4c1a89510ddc0b5bcbeb','23',2,5,41),('9382b49b2d864760bda8cb2e66891259','f8b24567adfc48cf82f617822a63c628','23',2,5,41),('97be34802bda49f6b4ee2c200ee3a16a','9c3ed28bb39e4b079f548e69a3681cba','小包',5,200,30),('9df9355a73de40d594826f745cf345ab','457c81e4dda3487187bab10eda5355ed','23',2,5,41),('ac36dcfd049a4748936617a0e8f083b2','91a39e42fb614f13bfca0d419f8f3f5c','23',2,5,41),('ea59e23aa08d4a9c8856c6d825634e18','db073ab0dc5c4b719deaa1b8705327d2','23',2,5,41),('f46b125006204687b18ca8f7ecbee87e','01402a4e26d14f1dbe5135ef69b6b385','23',2,5,41);
 /*!40000 ALTER TABLE `goods_standard` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -448,7 +449,7 @@ CREATE TABLE `goodsinfo` (
 
 LOCK TABLES `goodsinfo` WRITE;
 /*!40000 ALTER TABLE `goodsinfo` DISABLE KEYS */;
-INSERT INTO `goodsinfo` VALUES ('22a91981f71a43e7a8c34472bc7cc1c6','0b49ef854bb74ff9b9317132dba053d7','10001','','倍润828B,20%生长育肥猪浓缩饲料 使用阶段：60kg-出栏',0,0,'品牌?倍润','7f919e4356a44fe8a199dde18d561cbc|bc13439ff4384bcab77d93911ce783f6|df85119137904e93895d8c76e06b1924|',NULL,0,0,'2017-07-18 14:22:21',0,NULL),('9c3ed28bb39e4b079f548e69a3681cba','0b49ef854bb74ff9b9317132dba053d7','10001','','【畅消】4%中猪预混料 长势快 后劲强 适用于30~60KG',0,0,'品牌?新希望六和','7f919e4356a44fe8a199dde18d561cbc|bc13439ff4384bcab77d93911ce783f6|df85119137904e93895d8c76e06b1924|',NULL,0,0,'2017-07-18 14:21:26',0,NULL);
+INSERT INTO `goodsinfo` VALUES ('01402a4e26d14f1dbe5135ef69b6b385','1fb7c7f35d5d495d8f37a26ef73701d5','10001','','【畅消】4%中猪预混料 长势快 后劲强 适用于30~90KG',0,0,'品牌?新希望六和','bc13439ff4384bcab77d93911ce783f6|df85119137904e93895d8c76e06b1924|',NULL,0,0,'2017-08-11 09:51:03',0,NULL),('211de7c120a94e8d923a1032e363275e','1fb7c7f35d5d495d8f37a26ef73701d5','10001','','【畅消】4%中猪预混料 长势快 后劲强 适用于30~90KG',0,0,'品牌?新希望六和','bc13439ff4384bcab77d93911ce783f6|df85119137904e93895d8c76e06b1924|',NULL,0,0,'2017-08-11 09:51:02',0,NULL),('22a91981f71a43e7a8c34472bc7cc1c6','0b49ef854bb74ff9b9317132dba053d7','10001','','倍润828B,20%生长育肥猪浓缩饲料 使用阶段：60kg-出栏',0,0,'品牌?倍润','7f919e4356a44fe8a199dde18d561cbc|bc13439ff4384bcab77d93911ce783f6|df85119137904e93895d8c76e06b1924|',NULL,0,0,'2017-07-18 14:22:21',0,NULL),('457c81e4dda3487187bab10eda5355ed','1fb7c7f35d5d495d8f37a26ef73701d5','10001','','【畅消】4%中猪预混料 长势快 后劲强 适用于30~90KG',0,0,'品牌?新希望六和','bc13439ff4384bcab77d93911ce783f6|df85119137904e93895d8c76e06b1924|',NULL,0,0,'2017-08-11 09:51:02',0,NULL),('534d6156325a4c1a89510ddc0b5bcbeb','1fb7c7f35d5d495d8f37a26ef73701d5','10001','','【畅消】4%中猪预混料 长势快 后劲强 适用于30~90KG',0,0,'品牌?新希望六和','bc13439ff4384bcab77d93911ce783f6|df85119137904e93895d8c76e06b1924|',NULL,0,0,'2017-08-11 09:51:02',0,NULL),('91a39e42fb614f13bfca0d419f8f3f5c','1fb7c7f35d5d495d8f37a26ef73701d5','10001','','【畅消】4%中猪预混料 长势快 后劲强 适用于30~90KG',0,0,'品牌?新希望六和','bc13439ff4384bcab77d93911ce783f6|df85119137904e93895d8c76e06b1924|',NULL,0,0,'2017-08-11 09:51:02',0,NULL),('9c3ed28bb39e4b079f548e69a3681cba','0b49ef854bb74ff9b9317132dba053d7','10001','','【畅消】4%中猪预混料 长势快 后劲强 适用于30~60KG',0,0,'品牌?新希望六和','7f919e4356a44fe8a199dde18d561cbc|bc13439ff4384bcab77d93911ce783f6|df85119137904e93895d8c76e06b1924|',NULL,0,0,'2017-07-18 14:21:26',0,NULL),('d661c8d99dc74f2ab32419a96e156833','1fb7c7f35d5d495d8f37a26ef73701d5','10001','','【畅消】4%中猪预混料 长势快 后劲强 适用于30~90KG',0,0,'品牌?新希望六和','bc13439ff4384bcab77d93911ce783f6|df85119137904e93895d8c76e06b1924|',NULL,0,0,'2017-08-11 09:51:03',0,NULL),('d94c07686d0b4483bccd3c0066c46c1f','1fb7c7f35d5d495d8f37a26ef73701d5','10001','','【畅消】4%中猪预混料 长势快 后劲强 适用于30~90KG',0,0,'品牌?新希望六和','bc13439ff4384bcab77d93911ce783f6|df85119137904e93895d8c76e06b1924|',NULL,0,0,'2017-08-11 09:51:02',0,NULL),('db073ab0dc5c4b719deaa1b8705327d2','1fb7c7f35d5d495d8f37a26ef73701d5','10001','','【畅消】4%中猪预混料 长势快 后劲强 适用于30~90KG',0,0,'品牌?新希望六和','bc13439ff4384bcab77d93911ce783f6|df85119137904e93895d8c76e06b1924|',NULL,0,0,'2017-08-11 09:51:03',0,NULL),('e4d8553d166045d792f37f8f837b4024','1fb7c7f35d5d495d8f37a26ef73701d5','10001','','【畅消】4%中猪预混料 长势快 后劲强 适用于30~90KG',0,0,'品牌?新希望六和','bc13439ff4384bcab77d93911ce783f6|df85119137904e93895d8c76e06b1924|',NULL,0,0,'2017-08-11 09:51:03',0,NULL),('f8b24567adfc48cf82f617822a63c628','1fb7c7f35d5d495d8f37a26ef73701d5','10001','','【畅消】4%中猪预混料 长势快 后劲强 适用于30~90KG',0,0,'品牌?新希望六和','bc13439ff4384bcab77d93911ce783f6|df85119137904e93895d8c76e06b1924|',NULL,0,0,'2017-08-11 09:51:03',0,NULL);
 /*!40000 ALTER TABLE `goodsinfo` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -488,8 +489,9 @@ DROP TABLE IF EXISTS `manage_unit`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `manage_unit` (
   `manage_id` varchar(35) NOT NULL,
+  `customer_id` varchar(35) NOT NULL DEFAULT '',
   `manage_name` varchar(20) NOT NULL DEFAULT '',
-  `manage_type` text,
+  `manage_type` varchar(200) DEFAULT NULL,
   `manage_address` varchar(50) NOT NULL DEFAULT '',
   `manage_acreage` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`manage_id`)
@@ -502,6 +504,7 @@ CREATE TABLE `manage_unit` (
 
 LOCK TABLES `manage_unit` WRITE;
 /*!40000 ALTER TABLE `manage_unit` DISABLE KEYS */;
+INSERT INTO `manage_unit` VALUES ('259e99cfbc5a41c8ae99fc47bea55ba5','22fbd2f300f5415785f1d97969e51e5a','西瓜零售','水果','江门鹤山',100);
 /*!40000 ALTER TABLE `manage_unit` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -666,7 +669,7 @@ CREATE TABLE `position_permission_re` (
 
 LOCK TABLES `position_permission_re` WRITE;
 /*!40000 ALTER TABLE `position_permission_re` DISABLE KEYS */;
-INSERT INTO `position_permission_re` VALUES ('4ae60c74c30143feb898d721a1299dd7','986b810014e44d2c9d5b383f2a83da3c'),('b63366bffb23473cbbd2b00225e05620',''),('5f759af244784603bc4ffc6f7dab8508','986b810014e44d2c9d5b383f2a83da3c');
+INSERT INTO `position_permission_re` VALUES ('6192971fdd4d47d2b4ce77a3723a311b','986b810014e44d2c9d5b383f2a83da3c');
 /*!40000 ALTER TABLE `position_permission_re` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -723,7 +726,7 @@ CREATE TABLE `qm_branch_goods` (
 
 LOCK TABLES `qm_branch_goods` WRITE;
 /*!40000 ALTER TABLE `qm_branch_goods` DISABLE KEYS */;
-INSERT INTO `qm_branch_goods` VALUES ('c1ac8fadcd8d4806a35518be39703393','22a91981f71a43e7a8c34472bc7cc1c6','1f9b286b836c4175ab09a9b02cacbb7d',90);
+INSERT INTO `qm_branch_goods` VALUES ('c1ac8fadcd8d4806a35518be39703393','22a91981f71a43e7a8c34472bc7cc1c6','1f9b286b836c4175ab09a9b02cacbb7d',200);
 /*!40000 ALTER TABLE `qm_branch_goods` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -779,7 +782,7 @@ CREATE TABLE `qm_permission` (
 
 LOCK TABLES `qm_permission` WRITE;
 /*!40000 ALTER TABLE `qm_permission` DISABLE KEYS */;
-INSERT INTO `qm_permission` VALUES ('986b810014e44d2c9d5b383f2a83da3c','我的好友使用权','查找、添加好友，删除好友，推荐好友，添加好友备注','c80bfab8902c402ba3019dfca8cf3a61',1,0,NULL),('c80bfab8902c402ba3019dfca8cf3a61','我的好友','','worker_permission',1,0,NULL),('personal_permission','人事权','','0',1,0,NULL),('worker_permission','办事权','','0',1,0,NULL);
+INSERT INTO `qm_permission` VALUES ('6a3479c94a4d43348b7fe37054013126','后台系统登陆','','0',1,0,NULL),('83ffc4a0432e4945890534583d62dd0a','登陆后台系统','登陆后台系统的权限','6a3479c94a4d43348b7fe37054013126',1,0,NULL),('986b810014e44d2c9d5b383f2a83da3c','我的好友使用权','查找、添加好友，删除好友，推荐好友，添加好友备注','c80bfab8902c402ba3019dfca8cf3a61',1,0,NULL),('986b810014e44d2c9d5b383f2a83da3d','添加部门/职位','拥有添加部门和职位的权限','c80bfab8902c402ba3019dfca8cf3a62',1,0,NULL),('c80bfab8902c402ba3019dfca8cf3a61','我的好友','','0',1,0,NULL),('c80bfab8902c402ba3019dfca8cf3a62','部门/职位管理权','','0',1,0,NULL);
 /*!40000 ALTER TABLE `qm_permission` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -802,7 +805,7 @@ CREATE TABLE `qm_permission_re` (
 
 LOCK TABLES `qm_permission_re` WRITE;
 /*!40000 ALTER TABLE `qm_permission_re` DISABLE KEYS */;
-INSERT INTO `qm_permission_re` VALUES ('986b810014e44d2c9d5b383f2a83da3c','42b95b8f711447c49038e922c6f6167d'),('986b810014e44d2c9d5b383f2a83da3c','caa3b16c0cd04f31ae63681d53c95fd4'),('986b810014e44d2c9d5b383f2a83da3c','cb6831e81c274cc8b6d1e3f81847ea35'),('986b810014e44d2c9d5b383f2a83da3c','d31989274caa46c59e8e6990101586cb'),('986b810014e44d2c9d5b383f2a83da3c','e2db4bd557094c43879fc49b0607da36'),('986b810014e44d2c9d5b383f2a83da3c','eec5a2fa74d749d49c8d1a6777f60332'),('986b810014e44d2c9d5b383f2a83da3c','f88e3b58298f475192a346608da993bf'),('986b810014e44d2c9d5b383f2a83da3c','c9c6b6a0f3a040e2a02cf93f7c886400'),('986b810014e44d2c9d5b383f2a83da3c','c442c7be80f7428eae971888176647c4'),('986b810014e44d2c9d5b383f2a83da3c','6bb47e49d7cc470680a586da0bd85f33'),('986b810014e44d2c9d5b383f2a83da3c','71478daa45b54bc3a94f81a11f5c292f'),('986b810014e44d2c9d5b383f2a83da3c','fa3c507ecc664802841f4eb53ded32a3');
+INSERT INTO `qm_permission_re` VALUES ('42b95b8f711447c49038e922c6f6167d','986b810014e44d2c9d5b383f2a83da3c'),('caa3b16c0cd04f31ae63681d53c95fd4','986b810014e44d2c9d5b383f2a83da3c'),('cb6831e81c274cc8b6d1e3f81847ea35','986b810014e44d2c9d5b383f2a83da3c'),('d31989274caa46c59e8e6990101586cb','986b810014e44d2c9d5b383f2a83da3c'),('e2db4bd557094c43879fc49b0607da36','986b810014e44d2c9d5b383f2a83da3c'),('eec5a2fa74d749d49c8d1a6777f60332','986b810014e44d2c9d5b383f2a83da3c'),('f88e3b58298f475192a346608da993bf','986b810014e44d2c9d5b383f2a83da3c'),('c9c6b6a0f3a040e2a02cf93f7c886400','986b810014e44d2c9d5b383f2a83da3c'),('c442c7be80f7428eae971888176647c4','986b810014e44d2c9d5b383f2a83da3c'),('6bb47e49d7cc470680a586da0bd85f33','986b810014e44d2c9d5b383f2a83da3c'),('71478daa45b54bc3a94f81a11f5c292f','986b810014e44d2c9d5b383f2a83da3c'),('fa3c507ecc664802841f4eb53ded32a3','986b810014e44d2c9d5b383f2a83da3c'),('649663c1e3e247708df7de7c0018fb3b','83ffc4a0432e4945890534583d62dd0a'),('649663c1e3e247708df7de7c0018fb3b','83ffc4a0432e4945890534583d62dd0a'),('649663c1e3e247708df7de7c0018fb3b','83ffc4a0432e4945890534583d62dd0a'),('649663c1e3e247708df7de7c0018fb3b','83ffc4a0432e4945890534583d62dd0a'),('649663c1e3e247708df7de7c0018fb3b','83ffc4a0432e4945890534583d62dd0a'),('649663c1e3e247708df7de7c0018fb3b','83ffc4a0432e4945890534583d62dd0a'),('649663c1e3e247708df7de7c0018fb3b','986b810014e44d2c9d5b383f2a83da3d');
 /*!40000 ALTER TABLE `qm_permission_re` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -891,6 +894,31 @@ LOCK TABLES `shopping_address` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `shopping_cart`
+--
+
+DROP TABLE IF EXISTS `shopping_cart`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `shopping_cart` (
+  `user_id` varchar(35) NOT NULL DEFAULT '',
+  `goods_id` varchar(35) NOT NULL DEFAULT '',
+  `standard_id` varchar(35) NOT NULL DEFAULT '',
+  `goods_num` int(11) NOT NULL DEFAULT '0',
+  `create_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `shopping_cart`
+--
+
+LOCK TABLES `shopping_cart` WRITE;
+/*!40000 ALTER TABLE `shopping_cart` DISABLE KEYS */;
+/*!40000 ALTER TABLE `shopping_cart` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `team_department`
 --
 
@@ -975,7 +1003,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES ('41370f132bd44bca943e2fe5dd9862ab','10001','27a9c57b4c69441aa569ef4ae1a9ef7c',1003,'赵六','','女','13657981326',NULL,'','','','2017-07-07 17:16:19','2017-07-07 17:16:19','u_st_2','','','','','',0,NULL,'135621567845465420','','2017-07-07 17:16:19','/WEB-INF/upload/img/id_card/4d69b8cb68c84988aa74e389287fe2a7.jpg','/WEB-INF/upload/img/id_card/11bcde7361d54d61b6f5d192e57f8645.jpg',NULL,'5f759af244784603bc4ffc6f7dab8508',2),('89d9317fb3834353bcf2a507bee2eb82','10001','27a9c57b4c69441aa569ef4ae1a9ef7c',1002,'张三','825682eafec59c2e1632828195133a52','男','13688888888','2017-06-14','x胡同y巷z号','北京市 西城区','','2017-06-14 10:38:46','2017-06-14 10:38:46','u_st_2','','','/upload/img/user/head_portrait/89d9317fb3834353bcf2a507bee2eb82/34ac4d747a35414dbf249b6add3e8348.jpg','','22766697f14448c4ab032e2f168ca2d41500285106132',0,NULL,'','','2017-07-01 11:56:19',NULL,'b765c637c95e43e6b395348b6ef72435','285746c4af0949518c2dbf301d2ad7ab','b63366bffb23473cbbd2b00225e05620',2),('89d9317fb3834353bcf2a507bee2eb83','10001','27a9c57b4c69441aa569ef4ae1a9ef7d',1002,'李四','825682eafec59c2e1632828195133a52','女','13699999999','2017-06-14','z胡同y巷x号','北京市 西城区','','2017-06-14 10:38:46','2017-06-14 10:38:46','u_st_2','','','','','',0,NULL,'','','2017-07-01 11:56:19',NULL,NULL,NULL,'6d163a17a8b842dd98de4b059b893666',2),('89d9317fb3834353bcf2a507bee2eb84','10001','27a9c57b4c69441aa569ef4ae1a9ef7c',1002,'王五','825682eafec59c2e1632828195133a52','男','13677777777','2017-06-14','a胡同b巷c号','北京市 西城区','','2017-06-14 10:38:46','2017-06-14 10:38:46','u_st_2','','','/upload/img/user/head_portrait/89d9317fb3834353bcf2a507bee2eb82/34ac4d747a35414dbf249b6add3e8348.jpg','','',0,NULL,'','','2017-07-01 11:56:19',NULL,NULL,NULL,'5f759af244784603bc4ffc6f7dab8508',2),('93ca6a0c638243aeab0b3412915581e2','10001','6256feb92d844cd5951d7cfe01d922ed',1003,'tom','825682eafec59c2e1632828195133a52','男','13597165115',NULL,'','','','2017-07-19 08:53:52','2017-07-19 08:53:52','u_st_2','','','','','',0,NULL,'465465121354678945','','2017-07-19 08:53:52','','',NULL,'4ae60c74c30143feb898d721a1299dd7',2);
+INSERT INTO `user` VALUES ('41370f132bd44bca943e2fe5dd9862ab','10001','27a9c57b4c69441aa569ef4ae1a9ef7c',1003,'赵六','825682eafec59c2e1632828195133a52','女','13657981326',NULL,'','','','2017-07-07 17:16:19','2017-07-07 17:16:19','u_st_2','','','','','',0,NULL,'135621567845465420','','2017-07-07 17:16:19','/WEB-INF/upload/img/id_card/4d69b8cb68c84988aa74e389287fe2a7.jpg','/WEB-INF/upload/img/id_card/11bcde7361d54d61b6f5d192e57f8645.jpg',NULL,'da1f6e509bdb43cd93e2bb4c7cbaa0e5',2),('89d9317fb3834353bcf2a507bee2eb82','10001','27a9c57b4c69441aa569ef4ae1a9ef7c',1002,'张三','825682eafec59c2e1632828195133a52','男','13688888888','2017-06-14','x胡同y巷z号','北京市 西城区','','2017-06-14 10:38:46','2017-06-14 10:38:46','u_st_2','','','/upload/img/user/head_portrait/89d9317fb3834353bcf2a507bee2eb82/34ac4d747a35414dbf249b6add3e8348.jpg','','22766697f14448c4ab032e2f168ca2d41500285106132',0,NULL,'','','2017-07-01 11:56:19',NULL,'b765c637c95e43e6b395348b6ef72435','285746c4af0949518c2dbf301d2ad7ab','6d163a17a8b842dd98de4b059b893666',2),('89d9317fb3834353bcf2a507bee2eb83','10001','27a9c57b4c69441aa569ef4ae1a9ef7d',1002,'李四','825682eafec59c2e1632828195133a52','女','13699999999','2017-06-14','z胡同y巷x号','北京市 西城区','','2017-06-14 10:38:46','2017-08-12 14:59:41','u_st_2','','','','','',0,NULL,'','','2017-07-01 11:56:19',NULL,NULL,NULL,'6d163a17a8b842dd98de4b059b893666',2),('89d9317fb3834353bcf2a507bee2eb84','10001','27a9c57b4c69441aa569ef4ae1a9ef7c',1002,'王五','825682eafec59c2e1632828195133a52','男','13677777777','2017-06-14','a胡同b巷c号','北京市 西城区','','2017-06-14 10:38:46','2017-06-14 10:38:46','u_st_2','','','/upload/img/user/head_portrait/89d9317fb3834353bcf2a507bee2eb82/34ac4d747a35414dbf249b6add3e8348.jpg','','',0,NULL,'','','2017-07-01 11:56:19',NULL,NULL,NULL,'da1f6e509bdb43cd93e2bb4c7cbaa0e5',2),('93ca6a0c638243aeab0b3412915581e2','10001','6256feb92d844cd5951d7cfe01d922ed',1003,'tom','825682eafec59c2e1632828195133a52','男','13597165115',NULL,'','','','2017-07-19 08:53:52','2017-07-19 08:53:52','u_st_2','','','','','',0,NULL,'465465121354678945','','2017-07-19 08:53:52','','',NULL,'4ae60c74c30143feb898d721a1299dd7',2);
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -999,6 +1027,8 @@ CREATE TABLE `user_breed` (
   `competitive_brand` varchar(50) NOT NULL DEFAULT '',
   `livestock_num` int(11) NOT NULL DEFAULT '0',
   `user_place_id` varchar(35) NOT NULL,
+  `breed_age` int(11) NOT NULL DEFAULT '0',
+  `breed_scale` int(11) NOT NULL DEFAULT '0',
   `create_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `is_deleted` tinyint(4) NOT NULL DEFAULT '0',
   `delete_date` datetime DEFAULT NULL,
@@ -1153,6 +1183,40 @@ LOCK TABLES `user_menu_re` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `user_place`
+--
+
+DROP TABLE IF EXISTS `user_place`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `user_place` (
+  `user_place_id` varchar(35) NOT NULL,
+  `customer_id` varchar(35) NOT NULL DEFAULT '',
+  `user_place_name` varchar(20) NOT NULL DEFAULT '',
+  `user_place_acreage` int(11) NOT NULL DEFAULT '0',
+  `user_employee_num` int(11) NOT NULL DEFAULT '0',
+  `user_owner_num` int(11) NOT NULL DEFAULT '0',
+  `user_already_use` int(11) NOT NULL DEFAULT '0',
+  `user_place_address` varchar(50) NOT NULL DEFAULT '',
+  `user_place_area` varchar(50) NOT NULL DEFAULT '',
+  `user_place_type` varchar(15) NOT NULL DEFAULT '',
+  `create_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `is_deleted` tinyint(4) NOT NULL DEFAULT '0',
+  `delete_date` date DEFAULT NULL,
+  PRIMARY KEY (`user_place_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `user_place`
+--
+
+LOCK TABLES `user_place` WRITE;
+/*!40000 ALTER TABLE `user_place` DISABLE KEYS */;
+/*!40000 ALTER TABLE `user_place` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `user_place_hardware`
 --
 
@@ -1257,7 +1321,7 @@ CREATE TABLE `user_qm_permission_re` (
 
 LOCK TABLES `user_qm_permission_re` WRITE;
 /*!40000 ALTER TABLE `user_qm_permission_re` DISABLE KEYS */;
-INSERT INTO `user_qm_permission_re` VALUES ('0f82fac92fe4431a9a7ef66c26207bd8','986b810014e44d2c9d5b383f2a83da3c'),('ba98c457e25a48a78f1aeaa4062351a4','986b810014e44d2c9d5b383f2a83da3c'),('642f36253272427c8fb0bf153116aefc','986b810014e44d2c9d5b383f2a83da3c'),('41370f132bd44bca943e2fe5dd9862ab','986b810014e44d2c9d5b383f2a83da3c'),('93ca6a0c638243aeab0b3412915581e2','');
+INSERT INTO `user_qm_permission_re` VALUES ('89d9317fb3834353bcf2a507bee2eb82','83ffc4a0432e4945890534583d62dd0a'),('89d9317fb3834353bcf2a507bee2eb82','986b810014e44d2c9d5b383f2a83da3c');
 /*!40000 ALTER TABLE `user_qm_permission_re` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1375,4 +1439,4 @@ SET character_set_client = @saved_cs_client;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-08-09 18:04:29
+-- Dump completed on 2017-08-15 18:03:03

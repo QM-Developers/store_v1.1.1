@@ -4,6 +4,7 @@ import com.dgg.store.mapper.GoodsinfoMapper;
 import com.dgg.store.util.pojo.GoodsStandard;
 import com.dgg.store.util.pojo.GoodsTypeAttr;
 import com.dgg.store.util.pojo.ImageSpace;
+import com.dgg.store.util.vo.core.PageVO;
 import com.dgg.store.util.vo.goods.GoodsImgVO;
 import com.dgg.store.util.vo.goods.GoodsInfoVO;
 import com.dgg.store.util.vo.goods.GoodsTypeVO;
@@ -27,7 +28,7 @@ public class GoodsManageDaoImpl implements GoodsManageDao
     @Override
     public int insertImgToSpace(String imgId, String path, String teamId)
     {
-        return mapper.insertImgToSpace(imgId,path,teamId);
+        return mapper.insertImgToSpace(imgId, path, teamId);
     }
 
     @Override
@@ -67,9 +68,9 @@ public class GoodsManageDaoImpl implements GoodsManageDao
     }
 
     @Override
-    public List<GoodsInfoVO> findGoodsList(GoodsInfoVO condition)
+    public List<GoodsInfoVO> findGoodsList(GoodsInfoVO condition, int start, int end)
     {
-        return mapper.findGoodsList(condition);
+        return mapper.findGoodsList(condition, start, end);
     }
 
     @Override
@@ -106,5 +107,17 @@ public class GoodsManageDaoImpl implements GoodsManageDao
     public Integer deleteGoodsInfo(GoodsInfoVO condition)
     {
         return mapper.deleteGoodsInfo(condition);
+    }
+
+    @Override
+    public int countGoods(GoodsInfoVO condition)
+    {
+        return mapper.countGoods(condition);
+    }
+
+    @Override
+    public List<GoodsStandard> listStandards(String goodsId)
+    {
+        return mapper.listStandards(goodsId);
     }
 }

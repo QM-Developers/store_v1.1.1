@@ -14,6 +14,8 @@ public class GoodsStandard
 
     private Integer standardCount;
 
+    private Integer branchStandardCount;
+
     public GoodsStandard()
     {
     }
@@ -82,5 +84,15 @@ public class GoodsStandard
     public void setStandardCount(Integer standardCount)
     {
         this.standardCount = standardCount;
+    }
+
+    public Integer getBranchStandardCount()
+    {
+        return branchStandardCount;
+    }
+
+    public void setBranchStandardCount(Integer branchStandardCount)
+    {
+        this.branchStandardCount = branchStandardCount;
     }
 }

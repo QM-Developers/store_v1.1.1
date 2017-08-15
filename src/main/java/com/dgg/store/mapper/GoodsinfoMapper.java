@@ -3,6 +3,7 @@ package com.dgg.store.mapper;
 import com.dgg.store.util.pojo.GoodsStandard;
 import com.dgg.store.util.pojo.GoodsTypeAttr;
 import com.dgg.store.util.pojo.ImageSpace;
+import com.dgg.store.util.vo.core.PageVO;
 import com.dgg.store.util.vo.goods.GoodsImgVO;
 import com.dgg.store.util.vo.goods.GoodsInfoVO;
 import com.dgg.store.util.vo.goods.GoodsTypeVO;
@@ -28,7 +29,7 @@ public interface GoodsinfoMapper
 
     Integer insertStandardToGoods(GoodsStandard standard);
 
-    List<GoodsInfoVO> findGoodsList(GoodsInfoVO condition);
+    List<GoodsInfoVO> findGoodsList(@Param("condition") GoodsInfoVO condition, @Param("start") int start, @Param("end") int end);
 
     GoodsInfoVO findGoodsInfo(GoodsInfoVO infoVO);
 
@@ -41,4 +42,8 @@ public interface GoodsinfoMapper
     Integer updateGoods(GoodsInfoVO goodsInfo);
 
     Integer deleteGoodsInfo(GoodsInfoVO condition);
+
+    int countGoods(GoodsInfoVO condition);
+
+    List<GoodsStandard> listStandards(@Param("goodsId") String goodsId);
 }

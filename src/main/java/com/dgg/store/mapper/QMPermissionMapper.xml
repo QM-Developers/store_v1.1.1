@@ -25,7 +25,7 @@
 
     <insert id="insertQMPermissionRe">
         INSERT INTO qm_permission_re
-          (permission_id, qm_permission_id)
+          (qm_permission_id,permission_id)
         VALUES
         <foreach collection="ids" index="index" item="id" open="" separator="," close="">
             (#{permissionId},#{id})

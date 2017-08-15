@@ -3,13 +3,15 @@ package com.dgg.store.util.pojo;
 public class ManageUnit {
     private String manageId;
 
+    private String customerId;
+
     private String manageName;
+
+    private String manageType;
 
     private String manageAddress;
 
     private Integer manageAcreage;
-
-    private String manageType;
 
     public String getManageId() {
         return manageId;
@@ -19,12 +21,28 @@ public class ManageUnit {
         this.manageId = manageId == null ? null : manageId.trim();
     }
 
+    public String getCustomerId() {
+        return customerId;
+    }
+
+    public void setCustomerId(String customerId) {
+        this.customerId = customerId == null ? null : customerId.trim();
+    }
+
     public String getManageName() {
         return manageName;
     }
 
     public void setManageName(String manageName) {
         this.manageName = manageName == null ? null : manageName.trim();
+    }
+
+    public String getManageType() {
+        return manageType;
+    }
+
+    public void setManageType(String manageType) {
+        this.manageType = manageType == null ? null : manageType.trim();
     }
 
     public String getManageAddress() {
@@ -41,13 +59,5 @@ public class ManageUnit {
 
     public void setManageAcreage(Integer manageAcreage) {
         this.manageAcreage = manageAcreage;
-    }
-
-    public String getManageType() {
-        return manageType;
-    }
-
-    public void setManageType(String manageType) {
-        this.manageType = manageType == null ? null : manageType.trim();
     }
 }

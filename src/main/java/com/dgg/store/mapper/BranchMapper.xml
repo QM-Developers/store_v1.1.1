@@ -22,12 +22,15 @@
         <result column="goods_count" property="goodsCount" jdbcType="INTEGER"/>
         <result column="goods_freight" property="goodsFreight" jdbcType="INTEGER"/>
         <result column="goods_sales" property="goodsSales" jdbcType="INTEGER"/>
-        <collection property="standards" ofType="com.dgg.store.util.pojo.GoodsStandard">
-            <result column="standard_name" property="standardName" jdbcType="VARCHAR"/>
-            <result column="standard_id" property="standardId" jdbcType="VARCHAR"/>
-            <result column="standard_price" property="standardPrice" jdbcType="VARCHAR"/>
-            <result column="standard_count" property="standardCount" jdbcType="VARCHAR"/>
-        </collection>
+        <result column="goods_type" property="goodsType" jdbcType="VARCHAR"/>
+        <result column="goods_create_date" property="goodsCreateDate" jdbcType="DATE"/>
+    </resultMap>
+
+    <resultMap id="GoodsStandard" type="com.dgg.store.util.pojo.GoodsStandard">
+        <result column="standard_id" property="standardId" jdbcType="VARCHAR"/>
+        <result column="standard_name" property="standardName" jdbcType="VARCHAR"/>
+        <result column="standard_price" property="standardPrice" jdbcType="FLOAT"/>
+        <result column="standard_count" property="standardCount" jdbcType="INTEGER"/>
     </resultMap>
 
     <insert id="insertBranch" parameterType="com.dgg.store.util.vo.branch.BranchVO">
@@ -115,13 +118,29 @@
     </update>
 
     <select id="listGoods" resultMap="GoodsDetailVO" parameterType="com.dgg.store.util.vo.branch.BranchVO">
-        SELECT gi.goods_id,gi.goods_name,
-            gs.standard_id,gs.standard_name,gs.standard_price,gs.standard_count
+        SELECT gi.goods_id,gi.goods_name,gt.goods_type_name goods_type
         FROM goodsinfo gi
-        INNER JOIN goods_standard gs
-        ON gs.goods_id = gi.goods_id
-        WHERE gi.my_team_id = #{condition.myTeamId}
+        INNER JOIN goods_typeinfo gt
+        ON gt.goods_type_id = gi.goods_type_id
+        WHERE my_team_id = #{condition.myTeamId}
         LIMIT #{start},#{end}
+    </select>
+
+    <select id="listStandards" resultMap="GoodsStandard" parameterType="com.dgg.store.util.vo.goods.GoodsDetailVO">
+        SELECT gs.standard_id,gs.standard_name,gs.standard_price,
+            gs.standard_count
+        FROM goods_standard gs
+        WHERE gs.goods_id = #{goodsId}
+    </select>
+
+    <select id="listBranchStandards" resultMap="GoodsStandard" parameterType="com.dgg.store.util.vo.goods.GoodsDetailVO">
+        SELECT gs.standard_id,gs.standard_name,gs.standard_price,
+            bg.standard_count
+        FROM goods_standard gs
+        INNER JOIN qm_branch_goods bg
+        ON bg.standard_id = gs.standard_id
+        WHERE gs.goods_id = #{goodsId}
+        AND bg.branch_id = #{branchId}
     </select>
 
     <select id="countGoods" resultType="java.lang.Integer">
@@ -165,15 +184,15 @@
     </select>
 
     <select id="listBranchGoods" resultMap="GoodsDetailVO" parameterType="com.dgg.store.util.vo.branch.BranchVO">
-        SELECT gi.goods_id,gi.goods_name,
-            gs.standard_id,gs.standard_name,gs.standard_price,
-            bg.standard_count
+        SELECT gi.goods_id,gi.goods_name,gi.goods_create_date,
+          gt.goods_type_name goods_type
         FROM goodsinfo gi
-        INNER JOIN goods_standard gs
-        ON gs.goods_id = gi.goods_id
         INNER JOIN qm_branch_goods bg
-        ON bg.standard_id = gs.standard_id
+        ON bg.goods_id = gi.goods_id
+        INNER JOIN goods_typeinfo gt
+        ON gt.goods_type_id = gi.goods_type_id
         WHERE bg.branch_id = #{condition.branchId}
+        GROUP BY gi.goods_id
         LIMIT #{start},#{end}
     </select>
 
@@ -185,5 +204,12 @@
         INNER JOIN qm_branch_goods bg
         ON bg.standard_id = gs.standard_id
         WHERE bg.branch_id = #{branchId}
+    </select>
+
+    <select id="countBranchStandard" resultType="java.lang.Integer">
+        SELECT COALESCE(SUM(standard_count),0)
+        FROM qm_branch_goods
+        WHERE standard_id = #{standardId}
+        AND branch_id = #{branchId}
     </select>
 </mapper>

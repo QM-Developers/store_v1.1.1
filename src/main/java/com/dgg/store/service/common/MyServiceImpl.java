@@ -1,7 +1,7 @@
 package com.dgg.store.service.common;
 
 import com.dgg.store.dao.common.MyDao;
-import com.dgg.store.util.core.constant.Constant;
+import com.dgg.store.util.core.constant.PathConstant;
 import com.dgg.store.util.core.generator.IDGenerator;
 import com.dgg.store.util.core.upload.UploadFileUtil;
 import com.dgg.store.util.vo.MyAddressVO;
@@ -97,7 +97,7 @@ public class MyServiceImpl implements MyService
             File oldImg = new File(imgPath);
             if (oldImg.exists())
                 oldImg.delete();
-            path.append(Constant.USER_HEAD_PORTRAIT_IMG_PATH).append(sessionVO.getUserId()).append("/");
+            path.append(PathConstant.USER_HEAD_PORTRAIT_IMG_PATH).append(sessionVO.getUserId()).append("/");
             fileName = UploadFileUtil.doUpload(file, path.toString(), basePath,IDGenerator.generator());
             result = dao.updateUserImg(sessionVO.getUserId(), fileName);
         } catch (IOException e)

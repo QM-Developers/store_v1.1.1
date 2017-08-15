@@ -19,6 +19,8 @@ public class GoodsDetailVO
 
     private Date goodsCreateDate;
 
+    private String goodsType;
+
     private List<String> goodsImages;
 
     private List<String> detailImages;
@@ -113,5 +115,15 @@ public class GoodsDetailVO
     public void setGoodsCreateDate(Date goodsCreateDate)
     {
         this.goodsCreateDate = goodsCreateDate;
+    }
+
+    public String getGoodsType()
+    {
+        return goodsType;
+    }
+
+    public void setGoodsType(String goodsType)
+    {
+        this.goodsType = goodsType;
     }
 }

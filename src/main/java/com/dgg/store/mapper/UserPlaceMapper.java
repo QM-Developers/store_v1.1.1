@@ -1,5 +1,6 @@
 package com.dgg.store.mapper;
 
+import com.dgg.store.util.pojo.PlaceImage;
 import com.dgg.store.util.pojo.UserPlace;
 import com.dgg.store.util.pojo.UserPlaceExample;
 import java.util.List;
@@ -27,4 +28,12 @@ public interface UserPlaceMapper {
     int updateByPrimaryKeySelective(UserPlace record);
 
     int updateByPrimaryKey(UserPlace record);
+
+    int insertPlaceImage(PlaceImage placeImage);
+
+    int updatePlaceImage(@Param("images") List<String> images,@Param("placeId") String placeId);
+
+    int deletePlaceImage(PlaceImage placeImage);
+
+    List<UserPlace> listUserPlace(UserPlace place);
 }

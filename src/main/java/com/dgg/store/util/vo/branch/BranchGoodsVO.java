@@ -8,7 +8,7 @@ public class BranchGoodsVO
 
     private String standardId;
 
-    private int standardCount;
+    private String standardCount;
 
     public String getBranchId()
     {
@@ -40,12 +40,12 @@ public class BranchGoodsVO
         this.standardId = standardId;
     }
 
-    public int getStandardCount()
+    public String getStandardCount()
     {
         return standardCount;
     }
 
-    public void setStandardCount(int standardCount)
+    public void setStandardCount(String standardCount)
     {
         this.standardCount = standardCount;
     }

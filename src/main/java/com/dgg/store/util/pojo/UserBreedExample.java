@@ -885,6 +885,126 @@ public class UserBreedExample {
             return (Criteria) this;
         }
 
+        public Criteria andBreedAgeIsNull() {
+            addCriterion("breed_age is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andBreedAgeIsNotNull() {
+            addCriterion("breed_age is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andBreedAgeEqualTo(Integer value) {
+            addCriterion("breed_age =", value, "breedAge");
+            return (Criteria) this;
+        }
+
+        public Criteria andBreedAgeNotEqualTo(Integer value) {
+            addCriterion("breed_age <>", value, "breedAge");
+            return (Criteria) this;
+        }
+
+        public Criteria andBreedAgeGreaterThan(Integer value) {
+            addCriterion("breed_age >", value, "breedAge");
+            return (Criteria) this;
+        }
+
+        public Criteria andBreedAgeGreaterThanOrEqualTo(Integer value) {
+            addCriterion("breed_age >=", value, "breedAge");
+            return (Criteria) this;
+        }
+
+        public Criteria andBreedAgeLessThan(Integer value) {
+            addCriterion("breed_age <", value, "breedAge");
+            return (Criteria) this;
+        }
+
+        public Criteria andBreedAgeLessThanOrEqualTo(Integer value) {
+            addCriterion("breed_age <=", value, "breedAge");
+            return (Criteria) this;
+        }
+
+        public Criteria andBreedAgeIn(List<Integer> values) {
+            addCriterion("breed_age in", values, "breedAge");
+            return (Criteria) this;
+        }
+
+        public Criteria andBreedAgeNotIn(List<Integer> values) {
+            addCriterion("breed_age not in", values, "breedAge");
+            return (Criteria) this;
+        }
+
+        public Criteria andBreedAgeBetween(Integer value1, Integer value2) {
+            addCriterion("breed_age between", value1, value2, "breedAge");
+            return (Criteria) this;
+        }
+
+        public Criteria andBreedAgeNotBetween(Integer value1, Integer value2) {
+            addCriterion("breed_age not between", value1, value2, "breedAge");
+            return (Criteria) this;
+        }
+
+        public Criteria andBreedScaleIsNull() {
+            addCriterion("breed_scale is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andBreedScaleIsNotNull() {
+            addCriterion("breed_scale is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andBreedScaleEqualTo(Integer value) {
+            addCriterion("breed_scale =", value, "breedScale");
+            return (Criteria) this;
+        }
+
+        public Criteria andBreedScaleNotEqualTo(Integer value) {
+            addCriterion("breed_scale <>", value, "breedScale");
+            return (Criteria) this;
+        }
+
+        public Criteria andBreedScaleGreaterThan(Integer value) {
+            addCriterion("breed_scale >", value, "breedScale");
+            return (Criteria) this;
+        }
+
+        public Criteria andBreedScaleGreaterThanOrEqualTo(Integer value) {
+            addCriterion("breed_scale >=", value, "breedScale");
+            return (Criteria) this;
+        }
+
+        public Criteria andBreedScaleLessThan(Integer value) {
+            addCriterion("breed_scale <", value, "breedScale");
+            return (Criteria) this;
+        }
+
+        public Criteria andBreedScaleLessThanOrEqualTo(Integer value) {
+            addCriterion("breed_scale <=", value, "breedScale");
+            return (Criteria) this;
+        }
+
+        public Criteria andBreedScaleIn(List<Integer> values) {
+            addCriterion("breed_scale in", values, "breedScale");
+            return (Criteria) this;
+        }
+
+        public Criteria andBreedScaleNotIn(List<Integer> values) {
+            addCriterion("breed_scale not in", values, "breedScale");
+            return (Criteria) this;
+        }
+
+        public Criteria andBreedScaleBetween(Integer value1, Integer value2) {
+            addCriterion("breed_scale between", value1, value2, "breedScale");
+            return (Criteria) this;
+        }
+
+        public Criteria andBreedScaleNotBetween(Integer value1, Integer value2) {
+            addCriterion("breed_scale not between", value1, value2, "breedScale");
+            return (Criteria) this;
+        }
+
         public Criteria andCreateDateIsNull() {
             addCriterion("create_date is null");
             return (Criteria) this;

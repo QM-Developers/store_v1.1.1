@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.dgg.store.dao.store.CustomerDao;
 import com.dgg.store.util.core.constant.Constant;
 import com.dgg.store.util.core.constant.KeyConstant;
+import com.dgg.store.util.core.constant.RoleConstant;
 import com.dgg.store.util.core.generator.IDGenerator;
 import com.dgg.store.util.core.page.PagingUtil;
 import com.dgg.store.util.core.string.StringUtil;
@@ -36,7 +37,7 @@ public class CustomerServiceImpl implements CustomerService
                 case 0:
                     customerVO.setUserId(IDGenerator.generator());
                     customerVO.setUserStatus(Constant.USER_STATE_0);
-                    customerVO.setRoleId(Integer.parseInt(Constant.ROLE_DEFAULT_USER));
+                    customerVO.setRoleId(Integer.parseInt(RoleConstant.USER));
                     customerVO.setMyTeamId(sessionVO.getMyTeamId());
                     result = dao.insertCustomerRecord(customerVO);
                     break;
@@ -70,14 +71,14 @@ public class CustomerServiceImpl implements CustomerService
         int start = PagingUtil.getStart(pageVO.getPageNum(), pageVO.getPageSize());
         int end = pageVO.getPageSize();
         int pageCount = dao.countCustomer(customerVO);
-        pageCount = PagingUtil.getCount(pageCount,pageVO.getPageSize());
+        pageCount = PagingUtil.getCount(pageCount, pageVO.getPageSize());
 
         customerVO.setMyTeamId(sessionVO.getMyTeamId());
         customerVO.setUserId(sessionVO.getUserId());
         List<CustomerVO> result = dao.listCustomer(customerVO, start, end);
 
         JSONObject json = (JSONObject) JSONObject.toJSON(new ResultVO(1, sessionVO.getToken(), result));
-        json.put(KeyConstant.PAGE_COUNT,pageCount);
+        json.put(KeyConstant.PAGE_COUNT, pageCount);
 
         return json.toJSONString();
     }

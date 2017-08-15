@@ -1,12 +1,8 @@
 package com.dgg.store.dao.store;
 
 import com.dgg.store.mapper.RoleMapper;
-import com.dgg.store.util.pojo.Role;
-import com.dgg.store.util.vo.core.TreeVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-
-import java.util.List;
 
 @Repository
 public class RoleDaoImpl implements RoleDao
@@ -15,56 +11,26 @@ public class RoleDaoImpl implements RoleDao
     private RoleMapper mapper;
 
     @Override
-    public List<TreeVO> findPermissionByRole(Role role)
+    public int countPersonalPermission(String userId, String url)
     {
-        return mapper.findPermissionByRole(role);
+        return mapper.countPersonalPermission(userId,url);
     }
 
     @Override
-    public void cleanPermissions(String roleId)
+    public String getPositionId(String userId)
     {
-        mapper.cleanPermissions(roleId);
+        return mapper.getPositionId(userId);
     }
 
     @Override
-    public int insertPermissionInRole(String roleId, String permissionId)
+    public int countWorkerPermission(String positionId, String url)
     {
-        return mapper.insertPermissionToRole(roleId,permissionId);
+        return mapper.countWorkerPermission(positionId,url);
     }
 
     @Override
-    public int findHadPermission(String roleId, String servletPath)
+    public String getRoleId(String userId)
     {
-        return mapper.findHadPermission(roleId,servletPath);
-    }
-
-    @Override
-    public Integer updateRole(Role role)
-    {
-        return mapper.updateRole(role);
-    }
-
-    @Override
-    public Role findRoleById(Integer roleId)
-    {
-        return mapper.findRoleById(roleId);
-    }
-
-    @Override
-    public Integer insertRole(Role role)
-    {
-        return mapper.insertRole(role);
-    }
-
-    @Override
-    public Integer deleteRole(Integer roleId)
-    {
-        return mapper.deleteRole(roleId);
-    }
-
-    @Override
-    public List<Role> findRoles()
-    {
-        return mapper.findRoles();
+        return mapper.getRoleId(userId);
     }
 }

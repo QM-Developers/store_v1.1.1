@@ -1,5 +1,6 @@
 package com.dgg.store.mapper;
 
+import com.dgg.store.util.pojo.GoodsStandard;
 import com.dgg.store.util.vo.branch.BranchGoodsVO;
 import com.dgg.store.util.vo.branch.BranchVO;
 import com.dgg.store.util.vo.goods.GoodsDetailVO;
@@ -38,4 +39,10 @@ public interface BranchMapper
     int countBranchGoods(BranchVO condition);
 
     int countGoods(BranchVO condition);
+
+    List<GoodsStandard> listStandards(GoodsDetailVO vo);
+
+    List<GoodsStandard> listBranchStandards(@Param("goodsId") String goodsId,@Param("branchId") String branchId);
+
+    int countBranchStandard(@Param("standardId") String standardId,@Param("branchId") String branchId);
 }

@@ -11,7 +11,7 @@ public interface ShoppingCarService
 
     String insertGoodsToCar(SessionVO sessionVO, ShoppingCar shoppingCar);
 
-    ResultVO deleteGoodsInCar(SessionVO sessionVO, ShoppingCar shoppingCar);
+    ResultVO deleteGoodsFromCar(SessionVO sessionVO, ShoppingCar shoppingCar);
 
     ResultVO findDefaultAddress(SessionVO sessionVO);
 

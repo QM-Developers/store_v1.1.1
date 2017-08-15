@@ -3,8 +3,11 @@ package com.dgg.store.service.store;
 import com.alibaba.fastjson.JSONObject;
 import com.dgg.store.dao.store.BranchDao;
 import com.dgg.store.util.core.constant.Constant;
+import com.dgg.store.util.core.constant.KeyConstant;
+import com.dgg.store.util.core.constant.SymbolConstant;
 import com.dgg.store.util.core.generator.IDGenerator;
 import com.dgg.store.util.core.page.PagingUtil;
+import com.dgg.store.util.pojo.GoodsStandard;
 import com.dgg.store.util.vo.branch.BranchGoodsVO;
 import com.dgg.store.util.vo.branch.BranchVO;
 import com.dgg.store.util.vo.core.PageVO;
@@ -93,10 +96,19 @@ public class BranchServiceImpl implements BranchService
         int end = pageVO.getPageSize();
         int pageCount = dao.countGoods(condition);
         pageCount = PagingUtil.getCount(pageCount, pageVO.getPageSize());
+
         List<GoodsDetailVO> result = dao.listGoods(condition, start, end);
 
+        for (GoodsDetailVO vo : result)
+        {
+            vo.setStandards(dao.listStandards(vo));
+            for (GoodsStandard s : vo.getStandards())
+                s.setBranchStandardCount(dao.countBranchStandard(s.getStandardId(), branchVO.getBranchId()));
+        }
+
+
         JSONObject json = (JSONObject) JSONObject.toJSON(new ResultVO(1, sessionVO.getToken(), result));
-        json.put("pageCount", pageCount);
+        json.put(KeyConstant.PAGE_COUNT, pageCount);
 
         return json.toJSONString();
     }
@@ -105,49 +117,62 @@ public class BranchServiceImpl implements BranchService
     public ResultVO updateBranchGoods(SessionVO sessionVO, BranchGoodsVO branchGoodsVO)
     {
         int result = 1;
-        int index = 0;
+        BranchGoodsVO condition = new BranchGoodsVO();
         int count = 3;
-        Integer branchInventory;
-        int inventory = 0;
+        int index;
+        int inventory;
 
-        while (result > 0)
+        String[] standardIdArray = branchGoodsVO.getStandardId().split(SymbolConstant.COMMA);
+        String[] goodsIdArray = branchGoodsVO.getGoodsId().split(SymbolConstant.COMMA);
+        String[] standardCountArray = branchGoodsVO.getStandardCount().split(SymbolConstant.COMMA);
+
+        condition.setBranchId(branchGoodsVO.getBranchId());
+        for (int i = 0; i < standardIdArray.length; i++)
         {
-            switch (index)
+            Integer branchInventory;
+            inventory = 0;
+            index = 0;
+
+            condition.setStandardId(standardIdArray[i]);
+            condition.setGoodsId(goodsIdArray[i]);
+            condition.setStandardCount(standardCountArray[i]);
+
+            while (result > 0)
             {
-                case 0:
-                    BranchGoodsVO condition = new BranchGoodsVO();
-                    condition.setBranchId(branchGoodsVO.getBranchId());
-                    condition.setStandardId(branchGoodsVO.getStandardId());
+                switch (index)
+                {
+                    case 0: // 删除销售点库存
+                        branchInventory = dao.getBranchInventory(condition);
+                        inventory = dao.getGoodsInventory(condition.getStandardId());
 
-                    branchInventory = dao.getBranchInventory(condition);
-                    inventory = dao.getGoodsInventory(branchGoodsVO.getStandardId());
-
-                    if (branchInventory != null)
-                    {
-                        inventory += branchInventory;
-                        result = dao.deleteBranchGoods(condition);
-                    }
-                    break;
-                case 1:
-                    result = inventory = inventory - branchGoodsVO.getStandardCount();
-                    break;
-                case 2:
-                    result = dao.insertBranchGoods(branchGoodsVO);
-                    break;
-                case 3:
-                    result = dao.updateGoodsInventory(branchGoodsVO.getStandardId(), inventory);
-                    break;
-                default:
-                    result = 0;
-                    break;
+                        if (branchInventory != null)
+                        {
+                            inventory += branchInventory;
+                            result = dao.deleteBranchGoods(condition);
+                        }
+                        break;
+                    case 1: // 计算总库存
+                        result = (inventory = inventory - Integer.parseInt(condition.getStandardCount())) >= 0 ? 1 : 0;
+                        break;
+                    case 2: // 插入销售点商品
+                        if (condition.getStandardCount() != null && Integer.parseInt(condition.getStandardCount()) > 1)
+                            result = dao.insertBranchGoods(condition);
+                        break;
+                    case 3: // 更新总库存
+                        result = dao.updateGoodsInventory(condition.getStandardId(), inventory);
+                        break;
+                    default:
+                        result = 0;
+                        break;
+                }
+                index++;
             }
-            index++;
+            if (index - 1 < count)
+                throw new RuntimeException(Constant.STR_ADD_FAILED);
+            else
+                result = 1;
         }
 
-        if (index - 1 < count)
-            throw new RuntimeException(Constant.STR_ADD_FAILED);
-        else
-            result = 1;
 
         ResultVO resultVO = new ResultVO(result, sessionVO.getToken());
 
@@ -163,7 +188,10 @@ public class BranchServiceImpl implements BranchService
         int end = pageVO.getPageSize();
         int pageCount = dao.countBranchGoods(condition);
         pageCount = PagingUtil.getCount(pageCount, pageVO.getPageSize());
-        List<GoodsDetailVO> result = dao.listBranchGoods(condition,start,end);
+        List<GoodsDetailVO> result = dao.listBranchGoods(condition, start, end);
+
+        for (GoodsDetailVO vo : result)
+            vo.setStandards(dao.listBranchStandards(vo.getGoodsId(), condition.getBranchId()));
 
         JSONObject json = (JSONObject) JSONObject.toJSON(new ResultVO(1, sessionVO.getToken(), result));
         json.put("pageCount", pageCount);

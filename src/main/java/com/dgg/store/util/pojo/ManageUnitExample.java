@@ -174,6 +174,76 @@ public class ManageUnitExample {
             return (Criteria) this;
         }
 
+        public Criteria andCustomerIdIsNull() {
+            addCriterion("customer_id is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCustomerIdIsNotNull() {
+            addCriterion("customer_id is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCustomerIdEqualTo(String value) {
+            addCriterion("customer_id =", value, "customerId");
+            return (Criteria) this;
+        }
+
+        public Criteria andCustomerIdNotEqualTo(String value) {
+            addCriterion("customer_id <>", value, "customerId");
+            return (Criteria) this;
+        }
+
+        public Criteria andCustomerIdGreaterThan(String value) {
+            addCriterion("customer_id >", value, "customerId");
+            return (Criteria) this;
+        }
+
+        public Criteria andCustomerIdGreaterThanOrEqualTo(String value) {
+            addCriterion("customer_id >=", value, "customerId");
+            return (Criteria) this;
+        }
+
+        public Criteria andCustomerIdLessThan(String value) {
+            addCriterion("customer_id <", value, "customerId");
+            return (Criteria) this;
+        }
+
+        public Criteria andCustomerIdLessThanOrEqualTo(String value) {
+            addCriterion("customer_id <=", value, "customerId");
+            return (Criteria) this;
+        }
+
+        public Criteria andCustomerIdLike(String value) {
+            addCriterion("customer_id like", value, "customerId");
+            return (Criteria) this;
+        }
+
+        public Criteria andCustomerIdNotLike(String value) {
+            addCriterion("customer_id not like", value, "customerId");
+            return (Criteria) this;
+        }
+
+        public Criteria andCustomerIdIn(List<String> values) {
+            addCriterion("customer_id in", values, "customerId");
+            return (Criteria) this;
+        }
+
+        public Criteria andCustomerIdNotIn(List<String> values) {
+            addCriterion("customer_id not in", values, "customerId");
+            return (Criteria) this;
+        }
+
+        public Criteria andCustomerIdBetween(String value1, String value2) {
+            addCriterion("customer_id between", value1, value2, "customerId");
+            return (Criteria) this;
+        }
+
+        public Criteria andCustomerIdNotBetween(String value1, String value2) {
+            addCriterion("customer_id not between", value1, value2, "customerId");
+            return (Criteria) this;
+        }
+
         public Criteria andManageNameIsNull() {
             addCriterion("manage_name is null");
             return (Criteria) this;
@@ -241,6 +311,76 @@ public class ManageUnitExample {
 
         public Criteria andManageNameNotBetween(String value1, String value2) {
             addCriterion("manage_name not between", value1, value2, "manageName");
+            return (Criteria) this;
+        }
+
+        public Criteria andManageTypeIsNull() {
+            addCriterion("manage_type is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andManageTypeIsNotNull() {
+            addCriterion("manage_type is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andManageTypeEqualTo(String value) {
+            addCriterion("manage_type =", value, "manageType");
+            return (Criteria) this;
+        }
+
+        public Criteria andManageTypeNotEqualTo(String value) {
+            addCriterion("manage_type <>", value, "manageType");
+            return (Criteria) this;
+        }
+
+        public Criteria andManageTypeGreaterThan(String value) {
+            addCriterion("manage_type >", value, "manageType");
+            return (Criteria) this;
+        }
+
+        public Criteria andManageTypeGreaterThanOrEqualTo(String value) {
+            addCriterion("manage_type >=", value, "manageType");
+            return (Criteria) this;
+        }
+
+        public Criteria andManageTypeLessThan(String value) {
+            addCriterion("manage_type <", value, "manageType");
+            return (Criteria) this;
+        }
+
+        public Criteria andManageTypeLessThanOrEqualTo(String value) {
+            addCriterion("manage_type <=", value, "manageType");
+            return (Criteria) this;
+        }
+
+        public Criteria andManageTypeLike(String value) {
+            addCriterion("manage_type like", value, "manageType");
+            return (Criteria) this;
+        }
+
+        public Criteria andManageTypeNotLike(String value) {
+            addCriterion("manage_type not like", value, "manageType");
+            return (Criteria) this;
+        }
+
+        public Criteria andManageTypeIn(List<String> values) {
+            addCriterion("manage_type in", values, "manageType");
+            return (Criteria) this;
+        }
+
+        public Criteria andManageTypeNotIn(List<String> values) {
+            addCriterion("manage_type not in", values, "manageType");
+            return (Criteria) this;
+        }
+
+        public Criteria andManageTypeBetween(String value1, String value2) {
+            addCriterion("manage_type between", value1, value2, "manageType");
+            return (Criteria) this;
+        }
+
+        public Criteria andManageTypeNotBetween(String value1, String value2) {
+            addCriterion("manage_type not between", value1, value2, "manageType");
             return (Criteria) this;
         }
 

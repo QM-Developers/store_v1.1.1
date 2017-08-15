@@ -1,7 +1,10 @@
 package com.dgg.store.interceptor;
 
+import com.alibaba.fastjson.JSONObject;
 import com.dgg.store.service.store.RoleService;
 import com.dgg.store.util.core.constant.Constant;
+import com.dgg.store.util.core.servlet.ServletUtil;
+import com.dgg.store.util.vo.core.ResultVO;
 import com.dgg.store.util.vo.core.SessionVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.HandlerInterceptor;
@@ -20,15 +23,12 @@ public class PermissionInterceptor implements HandlerInterceptor
     {
         SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
 
-//        if(service.findHadPermission(sessionVO.getRoleId().toString(),request.getServletPath()) == 0)
-//        {
-//            JSONObject obj = new JSONObject();
-//            obj.put("errorMsg", "权限不足");
-//            ServletUtil.printData(response,obj);
-//            return false;
-//        }
+        boolean flag = service.countPermission(sessionVO, request.getServletPath());
 
-        return true;
+        if (!flag)
+            ServletUtil.printData(response, JSONObject.toJSONString(new ResultVO(Constant.REQUEST_NOT_PERMISSION)));
+
+        return flag;
     }
 
     @Override

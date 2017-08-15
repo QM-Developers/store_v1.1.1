@@ -2,9 +2,12 @@ package com.dgg.store.service.store;
 
 import com.dgg.store.dao.store.ManageDao;
 import com.dgg.store.util.core.constant.Constant;
+import com.dgg.store.util.core.constant.PathConstant;
+import com.dgg.store.util.core.constant.RoleConstant;
 import com.dgg.store.util.core.constant.SymbolConstant;
 import com.dgg.store.util.core.generator.IDGenerator;
 import com.dgg.store.util.core.shiro.CryptographyUtil;
+import com.dgg.store.util.core.string.StringUtil;
 import com.dgg.store.util.core.upload.UploadFileUtil;
 import com.dgg.store.util.vo.core.LoginVO;
 import com.dgg.store.util.vo.core.ResultVO;
@@ -123,7 +126,7 @@ public class ManageServiceImpl implements ManageService
     public ResultVO updateDepartment(SessionVO sessionVO, DepartmentVO department)
     {
         Integer result = 1;
-        int i = 0;
+        int index = 0;
         int count = 4;
 
         List<PositionVO> positionList = new ArrayList<>();
@@ -131,7 +134,7 @@ public class ManageServiceImpl implements ManageService
 
         while (result > 0)
         {
-            switch (i)
+            switch (index)
             {
                 case 0:
                     result = dao.updateDepartment(department);
@@ -141,9 +144,13 @@ public class ManageServiceImpl implements ManageService
                     result = dao.cleanPosition(department.getDepartmentId());
                     break;
                 case 2:
+                    String[] positionIds = department.getPositionId().split(SymbolConstant.COMMA);
                     String[] positionNames = department.getPosition().split(SymbolConstant.COMMA);
-                    for (String name : positionNames)
-                        positionList.add(new PositionVO(IDGenerator.generator(), name, department.getDepartmentId()));
+                    for (int i = 0; i < positionNames.length; i++)
+                    {
+                        String id = StringUtil.isEmpty(positionIds[i]) ? IDGenerator.generator() : positionIds[i];
+                        positionList.add(new PositionVO(id, positionNames[i], department.getDepartmentId()));
+                    }
                     result = dao.insertPosition(positionList);
                     break;
                 case 3:
@@ -160,10 +167,10 @@ public class ManageServiceImpl implements ManageService
                     result = 0;
                     break;
             }
-            i++;
+            index++;
         }
 
-        if (i - 1 < count)
+        if (index - 1 < count)
             throw new RuntimeException(Constant.STR_ADD_FAILED);
         else
             result = 1;
@@ -268,7 +275,7 @@ public class ManageServiceImpl implements ManageService
             {
                 case 0:
                     member.setUserId(IDGenerator.generator());
-                    member.setRoleId(Constant.ROLE_BUSINESS);
+                    member.setRoleId(RoleConstant.BUSINESS);
                     member.setUserStatus(Constant.USER_STATE_1);
                     member.setMyTeamId(sessionVO.getMyTeamId());
                     member.setUserCardFront(member.getUserCardFront() == null ? Constant.EMPTY : member.getUserCardFront());
@@ -398,7 +405,7 @@ public class ManageServiceImpl implements ManageService
 
         try
         {
-            path.append(Constant.USER_ID_CARD_PATH);
+            path.append(PathConstant.USER_ID_CARD_PATH);
             fileName = UploadFileUtil.doUpload(file, path.toString(), realPath, IDGenerator.generator());
         } catch (IOException e)
         {

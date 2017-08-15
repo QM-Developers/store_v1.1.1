@@ -2,7 +2,8 @@ var gdReleaseJS = {
     uploader: null,
     flag: false,
 
-    init: function () {
+    init: function ()
+    {
         urlParams = urlUtil.paramsToObj(urlParams);
         //      gdReleaseJS.findFreightTemps();
         // gdReleaseJS.findTypeAttr();
@@ -16,25 +17,29 @@ var gdReleaseJS = {
         gdReleaseJS.initBind();
     },
 
-    initBind: function () {
+    initBind: function ()
+    {
         $(".lileft").mouseenter(gdReleaseJS.showDeleteBtn);
         $(".lileft").mouseleave(gdReleaseJS.hideDeleteBtn);
         $(".add-off").click(gdReleaseJS.removeImage);
     },
 
-    removeImage: function () {
+    removeImage: function ()
+    {
         $(this).next().removeAttr("real-path");
         $(this).next().removeAttr("src");
         $(this).parents('.add-two').css('display', 'none').removeClass("imgbox-sign");
     },
 
-    findTypeAndParents: function () {
+    findTypeAndParents: function ()
+    {
         var url = path + "/s/findTypeAndParents.action";
         var params = {};
 
         params["goodsTypeId"] = urlParams.typeId;
 
-        myjs.ajax_post(url, params, function (data) {
+        myjs.ajax_post(url, params, function (data)
+        {
             data = data.result;
             var text = "";
 
@@ -51,13 +56,15 @@ var gdReleaseJS = {
         });
     },
 
-    findGoodsInfo: function () {
+    findGoodsInfo: function ()
+    {
         var url = path + "/s/findGoodsInfo.action";
         var params = {};
 
         params["goodsId"] = urlParams.goodsId;
 
-        myjs.ajax_post(url, params, function (data) {
+        myjs.ajax_post(url, params, function (data)
+        {
             data = data.result;
 
             if (myjs.isNull(urlParams.typeId))
@@ -75,7 +82,8 @@ var gdReleaseJS = {
             for (var i = 0; i < imgList.length; i++)
                 gdReleaseJS.insertBannerImage(imgList[i]["imagePath"], imgList[i]["imageId"]);
 
-            myjs.ajax_post(path + "/s/findGoodsDescribe.action", {goodsDescribe: data["goodsDescribe"]}, function (data) {
+            myjs.ajax_post(path + "/s/findGoodsDescribe.action", {goodsDescribe: data["goodsDescribe"]}, function (data)
+            {
                 var describeList = data.result;
                 for (var i = 0; i < describeList.length; i++)
                     gdReleaseJS.insertDescribeImage(describeList[i]["imagePath"], describeList[i]["imageId"]);
@@ -83,7 +91,8 @@ var gdReleaseJS = {
         });
     },
 
-    addStandard: function (data) {
+    addStandard: function (data)
+    {
         if (myjs.isNull(data))
             data = {standardId: "", standardName: "", standardWeight: "", standardPrice: "", standardCount: ""};
         var tr = '<tr>' +
@@ -97,10 +106,12 @@ var gdReleaseJS = {
         body.append(tr);
     },
 
-    findFreightTemps: function () {
+    findFreightTemps: function ()
+    {
         var url = path + "/s/findFreightTemps.action";
 
-        myjs.ajax_post(url, {}, function (data) {
+        myjs.ajax_post(url, {}, function (data)
+        {
             data = data.result;
             var item = "";
             for (var i = 0; i < data.length; i++)
@@ -109,13 +120,15 @@ var gdReleaseJS = {
         });
     },
 
-    findTypeAttr: function () {
+    findTypeAttr: function ()
+    {
         var url = path + "/s/findTypeAttr.action";
         var params = {};
 
         params["goodsTypeId"] = urlParams.typeId;
 
-        myjs.ajax_post(url, params, function (data) {
+        myjs.ajax_post(url, params, function (data)
+        {
             var item1 = '';
             var item2 = '';
             var result = data.result;
@@ -158,7 +171,8 @@ var gdReleaseJS = {
         input: 'in_t_0',
         inputSel: 'in_t_2',
 
-        getSelAttr: function (name, text) {
+        getSelAttr: function (name, text)
+        {
             var opt = '';
             var arr = text.split("=");
 
@@ -169,12 +183,14 @@ var gdReleaseJS = {
             return item;
         },
 
-        getInputAttr: function (name) {
+        getInputAttr: function (name)
+        {
             var item = '<tr class="attr-list-tr-0" data-type="' + gdReleaseJS.items.input + '"><td class="attr-list-td-0">' + name + '</td><td><input type="text"></td></tr>';
             return item;
         },
 
-        getInputSelAttr: function (name, text) {
+        getInputSelAttr: function (name, text)
+        {
             var opt = '';
             var arr = text.split("=");
             var item = "";
@@ -194,17 +210,21 @@ var gdReleaseJS = {
         },
     },
 
-    onInitModel: function () {
-        $("#my-popup").on("open.modal.amui", function () {
+    onInitModel: function ()
+    {
+        $("#my-popup").on("open.modal.amui", function ()
+        {
             gdReleaseJS.initWebUpload();
         });
 
-        $("#my-popup").on("closed.modal.amui", function () {
+        $("#my-popup").on("closed.modal.amui", function ()
+        {
             gdReleaseJS.uploader.destroy();
         });
     },
 
-    initWebUpload: function () {
+    initWebUpload: function ()
+    {
         gdReleaseJS.uploader = WebUploader.create({
             // 选完文件后，是否自动上传。
             auto: true,
@@ -225,7 +245,8 @@ var gdReleaseJS = {
             }
         });
 
-        gdReleaseJS.uploader.on('fileQueued', function (file) {
+        gdReleaseJS.uploader.on('fileQueued', function (file)
+        {
             var $list = $("#upload-list");
 
             var $li = $('<div onclick="gdReleaseJS.onSelectImg(this);" class="imgbox am-img-thumbnail">' +
@@ -236,7 +257,8 @@ var gdReleaseJS = {
             // $list为容器jQuery实例
             $list.append($li);
 
-            gdReleaseJS.uploader.makeThumb(file, function (error, src) {
+            gdReleaseJS.uploader.makeThumb(file, function (error, src)
+            {
                 if (error)
                 {
                     $img.replaceWith('<span>不能预览</span>');
@@ -247,7 +269,8 @@ var gdReleaseJS = {
         });
 
         // 文件上传过程中创建进度条实时显示。
-        gdReleaseJS.uploader.on('uploadProgress', function (file, percentage) {
+        gdReleaseJS.uploader.on('uploadProgress', function (file, percentage)
+        {
             var $li = $('#' + file.id),
                 $percent = $li.find('.upload-progress');
 
@@ -263,7 +286,8 @@ var gdReleaseJS = {
         });
 
         // 文件上传成功，给item添加成功class, 用样式标记上传成功。
-        gdReleaseJS.uploader.on('uploadSuccess', function (file, data) {
+        gdReleaseJS.uploader.on('uploadSuccess', function (file, data)
+        {
             var $li = $('#' + file.id),
                 $percent = $li.find('.upload-progress');
 
@@ -276,7 +300,8 @@ var gdReleaseJS = {
         });
 
         // 文件上传失败，显示上传出错。
-        gdReleaseJS.uploader.on('uploadError', function (file) {
+        gdReleaseJS.uploader.on('uploadError', function (file)
+        {
             var $li = $('#' + file.id),
                 $percent = $li.find('.upload-progress');
 
@@ -287,20 +312,24 @@ var gdReleaseJS = {
         });
 
         // 完成上传完了，成功或者失败，先删除进度条。
-        gdReleaseJS.uploader.on('uploadComplete', function (file) {
+        gdReleaseJS.uploader.on('uploadComplete', function (file)
+        {
 
         });
     },
 
-    showDeleteBtn: function () {
+    showDeleteBtn: function ()
+    {
         $(this).find("span:eq(0)").show();
     },
 
-    hideDeleteBtn: function () {
+    hideDeleteBtn: function ()
+    {
         $(this).find("span:eq(0)").hide();
     },
 
-    test: function () {
+    test: function ()
+    {
 //		$('#my-popup').modal({open,"dimmer":false});
         $('#my-popup').modal("open");
 
@@ -308,12 +337,14 @@ var gdReleaseJS = {
         gdReleaseJS.flag = true;
     },
 
-    AppendImg: function () {
+    AppendImg: function ()
+    {
         $('#my-popup').modal("open");
         gdReleaseJS.flag = false;
     },
 
-    insertImg: function () {
+    insertImg: function ()
+    {
         var items = $(".imgbox-sign");
         var attrs = [];
         var path = [];
@@ -340,7 +371,8 @@ var gdReleaseJS = {
         }
     },
 
-    insertDescribeImage: function (src, path) {
+    insertDescribeImage: function (src, path)
+    {
         var li = '' +
             '<li class="li-mid lileft" onmouseenter="gdReleaseJS.leftandrigthmove(this)">' +
             '<div class="mid-box">' +
@@ -352,7 +384,8 @@ var gdReleaseJS = {
         $("#middleimg").append(li);
     },
 
-    insertBannerImage: function (src, path) {
+    insertBannerImage: function (src, path)
+    {
         var imgBox = $(".add-two");
         for (var i = 0; i < imgBox.length; i++)
             if (myjs.isNull($(imgBox[i]).find("img").attr("src")))
@@ -363,21 +396,25 @@ var gdReleaseJS = {
             }
     },
 
-    leftandrigthmove: function (item) {
+    leftandrigthmove: function (item)
+    {
         var $DisThis = $(item).find(".mid-box");
         $DisThis.css("display", "block");
     },
 
-    Moveout: function (item) {
+    Moveout: function (item)
+    {
         var $Disout = $(item).find(".mid-box");
         $Disout.css("display", "none");
     },
 
-    Midboxremove: function (item) {
+    Midboxremove: function (item)
+    {
         $(item).parents('li').remove();
     },
 
-    onSelectImg: function (item) {
+    onSelectImg: function (item)
+    {
         var $count = $(".imgbox-sign").length;
         var Boximg = $(".add-two");
         var imgBox = $(".add-two").find("img");
@@ -413,7 +450,8 @@ var gdReleaseJS = {
         //--------到这
     },
 
-    moveToRight: function (item) {
+    moveToRight: function (item)
+    {
         var $current = $(item).parents("li:eq(0)");
         var $next = $($current).next("li");
 
@@ -421,7 +459,8 @@ var gdReleaseJS = {
             gdReleaseJS.moveImage($current, $next);
     },
 
-    moveToLeft: function (item) {
+    moveToLeft: function (item)
+    {
         var $current = $(item).parents("li:eq(0)");
         var $prev = $($current).prev("li");
 
@@ -429,7 +468,8 @@ var gdReleaseJS = {
             gdReleaseJS.moveImage($current, $prev);
     },
 
-    moveImage: function ($origin, $target) {
+    moveImage: function ($origin, $target)
+    {
         $origin = $($origin).find("img");
         $target = $($target).find("img");
 
@@ -452,8 +492,10 @@ var gdReleaseJS = {
     },
 
     //---------------------
-    pichandle: function () {//初始化
-        $(".add-picture li").each(function () {
+    pichandle: function ()
+    {//初始化
+        $(".add-picture li").each(function ()
+        {
             var $Thisliimg = $(this).find("img").attr("src");
             if (myjs.isNull($Thisliimg))
             {
@@ -462,7 +504,8 @@ var gdReleaseJS = {
         });
     },
 
-    getStandard: function () {
+    getStandard: function ()
+    {
         var standards = [];
         var tr = $("#standard-list tr");
 
@@ -484,7 +527,8 @@ var gdReleaseJS = {
         return standards;
     },
 
-    saveOrUpdateGoods: function () {
+    saveOrUpdateGoods: function ()
+    {
         var url = path;
         var params = {};
 
@@ -502,18 +546,21 @@ var gdReleaseJS = {
             url += "/s/updateGoods";
         url += Constant.URL_SUFFIX;
 
-        myjs.ajax_post(url, params, function (data) {
+        myjs.ajax_post(url, params, function (data)
+        {
             console.log(data);
         });
     },
 
-    getGoodsAttr: function () {
+    getGoodsAttr: function ()
+    {
         var attr = "品牌" + "?" + $("#goods-attr").val() + "|";
 
         return attr.substring(0, attr.length - 1);
     },
 
-    getImages: function () {
+    getImages: function ()
+    {
         var items = $("#img-list").find("img");
         var images = "";
 
@@ -524,7 +571,8 @@ var gdReleaseJS = {
         return images;
     },
 
-    getDescribe: function () {
+    getDescribe: function ()
+    {
         var items = $("#middleimg").find("img");
         var images = "";
 
@@ -534,10 +582,12 @@ var gdReleaseJS = {
         return images;
     },
 
-    findImages: function () {
+    findImages: function ()
+    {
         var url = path + "/s/findImages.action";
 
-        myjs.ajax_post(url, {}, function (data) {
+        myjs.ajax_post(url, {}, function (data)
+        {
             var item = "";
             data = data.result;
             for (var i = 0; i < data.length; i++)
@@ -546,17 +596,20 @@ var gdReleaseJS = {
         });
     },
 
-    toTypeSelect: function () {
+    toTypeSelect: function ()
+    {
         self.location.href = path + "/pages/mall/goods/qm-typeSelect.jsp?" + urlUtil.objToParams(urlParams);
     },
 
-    deleteGoods: function () {
+    deleteGoods: function ()
+    {
         var url = path + "/s/deleteGoods" + Constant.URL_SUFFIX;
         var params = {};
 
         params["goodsId"] = urlParams.goodsId;
 
-        myjs.ajax_post(url, params, function (data) {
+        myjs.ajax_post(url, params, function (data)
+        {
             console.log(data);
         });
     },

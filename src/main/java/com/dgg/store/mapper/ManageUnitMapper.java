@@ -16,21 +16,15 @@ public interface ManageUnitMapper {
 
     int insertSelective(ManageUnit record);
 
-    List<ManageUnit> selectByExampleWithBLOBs(ManageUnitExample example);
-
     List<ManageUnit> selectByExample(ManageUnitExample example);
 
     ManageUnit selectByPrimaryKey(String manageId);
 
     int updateByExampleSelective(@Param("record") ManageUnit record, @Param("example") ManageUnitExample example);
 
-    int updateByExampleWithBLOBs(@Param("record") ManageUnit record, @Param("example") ManageUnitExample example);
-
     int updateByExample(@Param("record") ManageUnit record, @Param("example") ManageUnitExample example);
 
     int updateByPrimaryKeySelective(ManageUnit record);
-
-    int updateByPrimaryKeyWithBLOBs(ManageUnit record);
 
     int updateByPrimaryKey(ManageUnit record);
 }

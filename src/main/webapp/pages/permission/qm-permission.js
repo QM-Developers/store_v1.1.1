@@ -5,7 +5,7 @@ var qm_permission = {
         qm_permission.findQMPermissionTree();
     },
 
-    findQMPermissionTree:function ()
+    findQMPermissionTree: function ()
     {
         var url = path + "/s/findQMPermissionTree.action";
 
@@ -32,7 +32,7 @@ var qm_permission = {
         });
     },
 
-    findPermissionTree:function ()
+    findPermissionTree: function ()
     {
         var url = path + "/s/findPermissionTree.action";
 
@@ -65,9 +65,9 @@ var qm_permission = {
         var permissionRe = "";
         var treeObj = $.fn.zTree.getZTreeObj("permissionTree");
         var nodes = treeObj.getChangeCheckedNodes();
-        for(var i = 0;i<nodes.length;i++)
-            if(!nodes[i].isParent)
-                permissionRe += nodes[i].id+",";
+        for (var i = 0; i < nodes.length; i++)
+            if (!nodes[i].isParent)
+                permissionRe += nodes[i].id + ",";
 
         var permissionId = $("#permissionId").val();
         var url = '';
@@ -75,14 +75,18 @@ var qm_permission = {
             'permissionId': permissionId,
             'permissionName': $("#permissionName").val(),
             'permissionDescribe': $("#permissionDescribe").val(),
-            'permissionPid':$("#permissionPid").val(),
-            'permissionRe':permissionRe
+            'permissionPid': $("#permissionPid").val(),
+            'permissionRe': permissionRe
         };
 
         if (myjs.isNull(permissionId))
             url = path + "/s/addQMPermission.action";
         else
+        {
             url = path + "/s/updateQMPermission.action";
+            var qmTree = $.fn.zTree.getZTreeObj("qm-permission-tree");
+            params['permissionPid'] = qmTree.getSelectedNodes()[0].getParentNode().id;
+        }
 
         myjs.ajax_post(url, params, function (data)
         {
@@ -90,24 +94,24 @@ var qm_permission = {
         });
     },
 
-    addPermission:function ()
+    addPermission: function ()
     {
         $("#permissionId").val('');
         $("#permissionName").val('');
         $("#permissionDescribe").val('');
     },
 
-    delPermission:function ()
+    delPermission: function ()
     {
         var treeObj = $.fn.zTree.getZTreeObj("permissionTree");
         var nodes = treeObj.getSelectedNodes();
 
-        if(myjs.isNull(nodes))
+        if (myjs.isNull(nodes))
         {
             alert("请选择一条权限");
             return;
         }
-        if(nodes[0].isParent)
+        if (nodes[0].isParent)
         {
             alert("不能选择权限集合");
             return;
@@ -116,9 +120,9 @@ var qm_permission = {
         if (confirm("确定删除吗？"))
         {
             var url = path + "/s/deletePermission.action";
-            var params = { 'permissionId' :$("#permissionId").val()};
+            var params = {'permissionId': $("#permissionId").val()};
 
-            myjs.ajax_post(url,params,function (data)
+            myjs.ajax_post(url, params, function (data)
             {
                 console.log(data);
                 qm_permission.initTree();

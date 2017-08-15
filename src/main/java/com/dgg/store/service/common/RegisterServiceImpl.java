@@ -3,7 +3,7 @@ package com.dgg.store.service.common;
 import com.dgg.store.dao.common.RegisterDao;
 import com.dgg.store.netease.CloudMessageUtil;
 import com.dgg.store.util.core.constant.Constant;
-import com.dgg.store.util.core.constant.LoginConstant;
+import com.dgg.store.util.core.constant.PathConstant;
 import com.dgg.store.util.core.constant.RegisterConstant;
 import com.dgg.store.util.core.generator.IDGenerator;
 import com.dgg.store.util.core.shiro.CryptographyUtil;
@@ -12,15 +12,12 @@ import com.dgg.store.util.core.upload.UploadFileUtil;
 import com.dgg.store.util.vo.core.LoginRepVO;
 import com.dgg.store.util.vo.core.ResultVO;
 import com.dgg.store.util.vo.core.SessionVO;
-import com.dgg.store.util.vo.manage.PerUserReVO;
 import com.dgg.store.util.vo.register.RegisterVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 @Service
 public class RegisterServiceImpl implements RegisterService
@@ -180,7 +177,7 @@ public class RegisterServiceImpl implements RegisterService
 
         try
         {
-            path.append(Constant.USER_ID_CARD_PATH);
+            path.append(PathConstant.USER_ID_CARD_PATH);
             fileName = UploadFileUtil.doUpload(file, path.toString(), realPath, uuid);
         } catch (IOException e)
         {

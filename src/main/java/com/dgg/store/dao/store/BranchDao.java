@@ -1,5 +1,6 @@
 package com.dgg.store.dao.store;
 
+import com.dgg.store.util.pojo.GoodsStandard;
 import com.dgg.store.util.vo.branch.BranchGoodsVO;
 import com.dgg.store.util.vo.branch.BranchVO;
 import com.dgg.store.util.vo.goods.GoodsDetailVO;
@@ -37,4 +38,10 @@ public interface BranchDao
     int countGoods(BranchVO condition);
 
     int countBranchGoods(BranchVO condition);
+
+    List<GoodsStandard> listStandards(GoodsDetailVO vo);
+
+    List<GoodsStandard> listBranchStandards(String goodsId, String branchId);
+
+    int countBranchStandard(String standardId, String branchId);
 }

@@ -19,8 +19,6 @@ var qm_department = {
         if ($("#Contbox .position-cont").length < 1)
             return;
 
-        console.log($("#Contbox .position-cont").length);
-
         var url = path;
         if (myjs.isNull(departmentId))
             url += "/s/addDepartment.action";
@@ -30,18 +28,19 @@ var qm_department = {
         var items = $("#Contbox").find(".position-cont");
         var position = "";
         var permission = "";
+        var positionId = "";
         for (var i = 0; i < items.length; i++)
         {
-            var po = $(items[i]).find("input").val();
-            var pe = $(items[i]).find("hidden").val();
-            if (!myjs.isNull(po))
-                position += po + Constant.COMMA;
-            permission += pe + Constant.STRING_45;
+            position += $(items[i]).find("input").val() + Constant.COMMA;
+            permission += $(items[i]).find("hidden").val() + Constant.STRING_45;
+            var poId = $(items[i]).find("input").attr("id");
+            positionId += myjs.isNull(poId) ? "" : poId + Constant.COMMA;
         }
         params["departmentId"] = departmentId;
         params["departmentName"] = $("#department-name").val();
         params["createDate"] = $("#create-date").val();
         params["position"] = position;
+        params["positionId"] = positionId;
         params["permission"] = permission;
 
         myjs.ajax_post(url, params, function (data)
@@ -82,7 +81,8 @@ var qm_department = {
 
         myjs.ajax_post(url, params, function (data)
         {
-            data = qm_department.getPermission(data.result, Constant.WORKER_PERMISSION);
+            console.log(data);
+            data = data.result;
             var item = "";
             for (var i = 0; i < data.length; i++)
             {

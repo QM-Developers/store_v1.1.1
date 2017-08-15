@@ -1,6 +1,7 @@
 package com.dgg.store.dao.store;
 
 import com.dgg.store.mapper.BranchMapper;
+import com.dgg.store.util.pojo.GoodsStandard;
 import com.dgg.store.util.vo.branch.BranchGoodsVO;
 import com.dgg.store.util.vo.branch.BranchVO;
 import com.dgg.store.util.vo.goods.GoodsDetailVO;
@@ -103,5 +104,23 @@ public class BranchDaoImpl implements BranchDao
     public int countBranchGoods(BranchVO condition)
     {
         return mapper.countBranchGoods(condition);
+    }
+
+    @Override
+    public List<GoodsStandard> listStandards(GoodsDetailVO vo)
+    {
+        return mapper.listStandards(vo);
+    }
+
+    @Override
+    public List<GoodsStandard> listBranchStandards(String goodsId, String branchId)
+    {
+        return mapper.listBranchStandards(goodsId, branchId);
+    }
+
+    @Override
+    public int countBranchStandard(String standardId, String branchId)
+    {
+        return mapper.countBranchStandard(standardId,branchId);
     }
 }

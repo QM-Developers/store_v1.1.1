@@ -2,16 +2,21 @@ package com.dgg.store.service.store;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.dgg.store.dao.store.GoodsManageDao;
 import com.dgg.store.util.core.constant.Constant;
+import com.dgg.store.util.core.constant.KeyConstant;
+import com.dgg.store.util.core.constant.PathConstant;
 import com.dgg.store.util.core.constant.SymbolConstant;
 import com.dgg.store.util.core.generator.IDGenerator;
+import com.dgg.store.util.core.page.PagingUtil;
 import com.dgg.store.util.core.string.StringUtil;
 import com.dgg.store.util.core.upload.UploadFileUtil;
 import com.dgg.store.util.pojo.GoodsStandard;
 import com.dgg.store.util.pojo.GoodsTypeAttr;
 import com.dgg.store.util.pojo.GoodsTypeinfo;
 import com.dgg.store.util.pojo.ImageSpace;
+import com.dgg.store.util.vo.core.PageVO;
 import com.dgg.store.util.vo.core.ResultVO;
 import com.dgg.store.util.vo.core.SessionVO;
 import com.dgg.store.util.vo.goods.GoodsImgVO;
@@ -116,7 +121,7 @@ public class GoodsManageServiceImpl implements GoodsManageService
 
         try
         {
-            path.append(Constant.USER_IMAGE_SPACE_PATH).append(sessionVO.getUserId()).append("/");
+            path.append(PathConstant.USER_IMAGE_SPACE_PATH).append(sessionVO.getUserId()).append("/");
             fileName = UploadFileUtil.doUpload(file, path.toString(), basePath, IDGenerator.generator());
             dao.insertImgToSpace(imageId, fileName, sessionVO.getMyTeamId());
         } catch (IOException e)
@@ -140,15 +145,24 @@ public class GoodsManageServiceImpl implements GoodsManageService
     }
 
     @Override
-    public ResultVO findGoodsList(SessionVO sessionVO)
+    public String findGoodsList(SessionVO sessionVO, PageVO pageVO)
     {
         GoodsInfoVO condition = new GoodsInfoVO();
         condition.setMyTeamId(sessionVO.getMyTeamId());
-        List<GoodsInfoVO> result = dao.findGoodsList(condition);
 
-        ResultVO resultVO = new ResultVO(1, sessionVO.getToken(), result);
+        int start = PagingUtil.getStart(pageVO.getPageNum(), pageVO.getPageSize());
+        int end = pageVO.getPageSize();
+        int pageCount = PagingUtil.getCount(dao.countGoods(condition), pageVO.getPageSize());
 
-        return resultVO;
+        List<GoodsInfoVO> result = dao.findGoodsList(condition, start, end);
+
+        for (GoodsInfoVO vo : result)
+            vo.setStandardList(dao.listStandards(vo.getGoodsId()));
+
+        JSONObject json = (JSONObject) JSONObject.toJSON(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), result));
+        json.put(KeyConstant.PAGE_COUNT, pageCount);
+
+        return json.toJSONString();
     }
 
     @Override
@@ -275,15 +289,23 @@ public class GoodsManageServiceImpl implements GoodsManageService
     }
 
     @Override
-    public ResultVO findGoodsListByKeyword(SessionVO sessionVO, GoodsInfoVO goodsInfo)
+    public String findGoodsListByKeyword(SessionVO sessionVO, GoodsInfoVO goodsInfo, PageVO pageVO)
     {
         GoodsInfoVO condition = new GoodsInfoVO();
         condition.setMyTeamId(sessionVO.getMyTeamId());
         condition.setGoodsName(goodsInfo.getGoodsName());
-        List<GoodsInfoVO> result = dao.findGoodsList(condition);
 
-        ResultVO resultVO = new ResultVO(1,sessionVO.getToken(),result);
+        int start = PagingUtil.getStart(pageVO.getPageNum(), pageVO.getPageSize());
+        int end = pageVO.getPageSize();
+        int pageCount = PagingUtil.getCount(dao.countGoods(condition), pageVO.getPageSize());
 
-        return resultVO;
+        List<GoodsInfoVO> result = dao.findGoodsList(condition, start, end);
+        for (GoodsInfoVO vo : result)
+            vo.setStandardList(dao.listStandards(vo.getGoodsId()));
+
+        JSONObject json = (JSONObject) JSONObject.toJSON(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), result));
+        json.put(KeyConstant.PAGE_COUNT, pageCount);
+
+        return json.toJSONString();
     }
 }

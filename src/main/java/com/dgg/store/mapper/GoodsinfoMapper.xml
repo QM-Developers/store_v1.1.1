@@ -23,6 +23,13 @@
         </collection>
     </resultMap>
 
+    <resultMap id="GoodsStandard" type="com.dgg.store.util.pojo.GoodsStandard">
+        <result column="standard_id" property="standardId" jdbcType="VARCHAR"/>
+        <result column="standard_name" property="standardName" jdbcType="VARCHAR"/>
+        <result column="standard_price" property="standardPrice" jdbcType="FLOAT"/>
+        <result column="standard_count" property="standardCount" jdbcType="INTEGER"/>
+    </resultMap>
+
     <resultMap id="TypeVOMap" type="com.dgg.store.util.vo.goods.GoodsTypeVO">
         <id column="goods_type_id" jdbcType="VARCHAR" property="goodsTypeId"/>
         <result column="goods_type_name" jdbcType="VARCHAR" property="goodsTypeName"/>
@@ -100,15 +107,36 @@
         (#{standardId},#{goodsId},#{standardName},#{standardPrice},#{standardWeight},#{standardCount})
     </insert>
 
-    <select id="findGoodsList" resultMap="GoodsInfoVO" parameterType="com.dgg.store.util.vo.goods.GoodsInfoVO">
+    <select id="findGoodsList" resultMap="GoodsInfoVO">
         SELECT gi.goods_id,gi.goods_name,gi.goods_create_date,
-        gt.goods_type_name,
-        gs.standard_name,gs.standard_price,gs.standard_count
+        gt.goods_type_name
         FROM goodsinfo gi
         INNER JOIN goods_typeinfo gt
         ON gt.goods_type_id = gi.goods_type_id
-        INNER JOIN goods_standard gs
-        ON gs.goods_id = gi.goods_id
+        WHERE 1 = 1
+        <if test="condition.myTeamId != null and condition.myTeamId != ''">
+            AND gi.my_team_id = #{condition.myTeamId}
+        </if>
+        <if test="condition.goodsId != null and condition.goodsId != ''">
+            AND gi.goods_id = #{condition.goodsId}
+        </if>
+        <if test="condition.goodsName != null and condition.goodsName != ''">
+            AND gi.goods_name LIKE CONCAT('%',#{condition.goodsName},'%')
+        </if>
+        LIMIT #{start},#{end}
+    </select>
+
+    <select id="listStandards" resultMap="GoodsStandard">
+        SELECT gs.standard_name,gs.standard_price,gs.standard_count
+        FROM goods_standard gs
+        WHERE gs.goods_id = #{goodsId}
+    </select>
+
+    <select id="countGoods" parameterType="com.dgg.store.util.vo.goods.GoodsInfoVO" resultType="java.lang.Integer">
+        SELECT COUNT(0)
+        FROM goodsinfo gi
+        INNER JOIN goods_typeinfo gt
+        ON gt.goods_type_id = gi.goods_type_id
         WHERE 1 = 1
         <if test="myTeamId != null and myTeamId != ''">
             AND gi.my_team_id = #{myTeamId}

@@ -279,20 +279,20 @@ create table menu
 drop table if exists my_order;
 create table my_order
 (
-   order_id             varchar(35) not null,
-   customer_id              varchar(35) not null default '',
-   order_type           varchar(15) not null default '',
-   order_status         varchar(15) not null default '',
-   recipient            varchar(20) not null default '',
-   contact_number       varchar(20) not null default '',
-   address              varchar(100) not null default '',
-   remark               varchar(100) not null default '',
-   payment              varchar(20) not null default '',
-   order_create_date    datetime not null default now(),
-   roder_success_date   datetime,
-   is_deleted           tinyint not null default 0,
-   delete_date          date,
-   primary key (order_id)
+   order_id varchar(35) not null primary key,	-- 订单Id
+   order_status tinyint not null default 0,	 -- 订单状态
+   order_status_before tinyint,	-- 订单状态保存
+   user_id varchar(35) not null default '',	-- 用户Id
+   seller_message varchar(150) not null default '',	-- 卖家留言
+   buyer_message varchar(150) not null default '',	-- 买家留言
+   freight float not null default 0,	-- 运费
+   payment_type tinyint not null default 0,	-- 付款状态
+   payment_status tinyint not null default 0,	-- 支付方式
+   shopping_address varchar(150) not null default '',	-- 收货地址
+   logistics_status text,	-- 物流状态
+   create_date datetime not null default now(),	-- 创建时间
+   refund_date datetime,	-- 退款时间
+   finish_date datetime	-- 完成时间
 );
 
 /*==============================================================*/
@@ -301,13 +301,14 @@ create table my_order
 drop table if exists my_order_list;
 create table my_order_list
 (
-   order_list_id        varchar(35) not null,
-   order_id             varchar(35) not null default '',
-   goods_num            int not null default 0,
-   price                float not null default 0,
-   goods_name           varchar(60) not null default '',
-   goods_id        varchar(35) not null default '',
-   primary key (order_list_id)
+	order_id varchar(35) not null default '',	-- 订单Id
+    goods_name varchar(60) not null default '',	-- 商品名称
+    goods_price float not null default 0,	-- 商品价格
+    goods_image text,	-- 商品图片
+    goods_describe text,	-- 商品详情
+    standard_name varchar(20) not null default '',	-- 规格名称
+    buy_num int not null default 0,	-- 购买数量
+    refund_num int not null default 0	-- 退货数量
 );
 
 /*==============================================================*/

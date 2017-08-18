@@ -3,6 +3,8 @@ package com.dgg.store.mapper;
 import com.dgg.store.util.pojo.ShoppingCart;
 import com.dgg.store.util.pojo.ShoppingCartExample;
 import java.util.List;
+
+import com.dgg.store.util.vo.cart.ShoppingCartVO;
 import org.apache.ibatis.annotations.Param;
 
 public interface ShoppingCartMapper {
@@ -19,4 +21,8 @@ public interface ShoppingCartMapper {
     int updateByExampleSelective(@Param("record") ShoppingCart record, @Param("example") ShoppingCartExample example);
 
     int updateByExample(@Param("record") ShoppingCart record, @Param("example") ShoppingCartExample example);
+
+    List<ShoppingCartVO> listGoodsFromCart(@Param("userId") String userId,@Param("start") int start,@Param("end") int end);
+
+    String getGoodsImg(@Param("goodsId") String goodsId);
 }

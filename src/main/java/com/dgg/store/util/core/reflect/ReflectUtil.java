@@ -34,7 +34,7 @@ public class ReflectUtil
                     }
                 }
             }
-        }catch (Exception e)
+        } catch (Exception e)
         {
             e.printStackTrace();
         }
@@ -46,5 +46,24 @@ public class ReflectUtil
         char[] cs = name.toCharArray();
         cs[0] -= 32;
         return String.valueOf(cs);
+    }
+
+    public static boolean hadNull(Object obj)
+    {
+        Class clazz = obj.getClass();
+        Field[] fields = clazz.getDeclaredFields();
+        try
+        {
+            for (Field f : fields)
+            {
+                Method get = clazz.getMethod("get" + captureName(f.getName()));
+                if (get.invoke(obj) == null)
+                    return true;
+            }
+        } catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+        return false;
     }
 }

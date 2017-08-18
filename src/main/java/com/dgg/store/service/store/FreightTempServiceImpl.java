@@ -25,6 +25,8 @@ public class FreightTempServiceImpl implements FreightTempService
     @Override
     public String insertFreightTemp(SessionVO sessionVO, FreightTemp freightTemp)
     {
+        freightTemp.setUserId(sessionVO.getUserId());
+        freightTemp.setMyTeamId(sessionVO.getMyTeamId());
         freightTemp.setFreightId(IDGenerator.generator());
         int result = dao.insert(freightTemp);
 
@@ -46,7 +48,7 @@ public class FreightTempServiceImpl implements FreightTempService
     @Override
     public String updateFreightTemp(SessionVO sessionVO, FreightTemp freightTemp)
     {
-        int result = dao.updateByPrimaryKey(freightTemp);
+        int result = dao.updateByPrimaryKeySelective(freightTemp);
 
         ResultVO resultVO = new ResultVO(result < 1 ? 2 : 1, sessionVO.getToken(), result);
 

@@ -172,4 +172,63 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <resultMap id="ShoppingCartVO" type="com.dgg.store.util.vo.cart.ShoppingCartVO">
+    <result column="goods_num" property="goodsNum" jdbcType="VARCHAR"/>
+    <result column="goods_id" property="goodsId" jdbcType="VARCHAR"/>
+    <result column="goods_name" property="goodsName" jdbcType="VARCHAR"/>
+    <result column="standard_id" property="standardId" jdbcType="VARCHAR"/>
+    <result column="standard_name" property="standardName" jdbcType="VARCHAR"/>
+    <result column="standard_price" property="standardPrice" jdbcType="FLOAT"/>
+  </resultMap>
+
+  <select id="listGoodsFromCart" resultMap="ShoppingCartVO">
+    SELECT sc.goods_num,
+        gi.goods_id,gi.goods_name,
+        gs.standard_id,gs.standard_name,gs.standard_price
+    FROM shopping_cart sc
+    INNER JOIN goodsinfo gi
+    ON gi.goods_id = sc.goods_id
+    INNER JOIN goods_standard gs
+    ON gs.standard_id = sc.standard_id
+    WHERE sc.user_id = #{userId}
+  </select>
+
+  <select id="getGoodsImg" resultType="java.lang.String">
+    SELECT imgs.image_path
+    FROM goods_image gimg
+    INNER JOIN image_space imgs
+    ON imgs.image_id = gimg.image_id
+    WHERE gimg.goods_id = #{goodsId}
+    limit 0,1
+  </select>
+
 </mapper>

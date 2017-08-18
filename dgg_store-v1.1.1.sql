@@ -540,6 +540,70 @@ INSERT INTO `menu` VALUES (1,'我的客户','/pages/customer/group.jsp',0,'',0,1
 UNLOCK TABLES;
 
 --
+-- Table structure for table `my_order`
+--
+
+DROP TABLE IF EXISTS `my_order`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `my_order` (
+  `order_id` varchar(35) NOT NULL,
+  `order_status` tinyint(4) NOT NULL DEFAULT '0',
+  `order_status_before` tinyint(4) DEFAULT NULL,
+  `user_id` varchar(35) NOT NULL DEFAULT '',
+  `seller_message` varchar(150) NOT NULL DEFAULT '',
+  `buyer_message` varchar(150) NOT NULL DEFAULT '',
+  `freight` float NOT NULL DEFAULT '0',
+  `payment_type` tinyint(4) NOT NULL DEFAULT '0',
+  `payment_status` tinyint(4) NOT NULL DEFAULT '0',
+  `shopping_address` varchar(150) NOT NULL DEFAULT '',
+  `logistics_status` text,
+  `create_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `refund_date` datetime DEFAULT NULL,
+  `finish_date` datetime DEFAULT NULL,
+  PRIMARY KEY (`order_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `my_order`
+--
+
+LOCK TABLES `my_order` WRITE;
+/*!40000 ALTER TABLE `my_order` DISABLE KEYS */;
+/*!40000 ALTER TABLE `my_order` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `my_order_list`
+--
+
+DROP TABLE IF EXISTS `my_order_list`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `my_order_list` (
+  `order_id` varchar(35) NOT NULL DEFAULT '',
+  `goods_name` varchar(60) NOT NULL DEFAULT '',
+  `goods_price` float NOT NULL DEFAULT '0',
+  `goods_image` text,
+  `goods_describe` text,
+  `standard_name` varchar(20) NOT NULL DEFAULT '',
+  `buy_num` int(11) NOT NULL DEFAULT '0',
+  `refund_num` int(11) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `my_order_list`
+--
+
+LOCK TABLES `my_order_list` WRITE;
+/*!40000 ALTER TABLE `my_order_list` DISABLE KEYS */;
+INSERT INTO `my_order_list` VALUES ('129fe84a89074128914f9054e10b2ff0','倍润828B,20%生长育肥猪浓缩饲料 使用阶段：60kg-出栏',5,'7f919e4356a44fe8a199dde18d561cbc|bc13439ff4384bcab77d93911ce783f6|','7f919e4356a44fe8a199dde18d561cbc|bc13439ff4384bcab77d93911ce783f6|df85119137904e93895d8c76e06b1924|','小包',3,0),('394c6eae9c1348a4b44d242a6e2ee4e5','倍润828B,20%生长育肥猪浓缩饲料 使用阶段：60kg-出栏',5,'7f919e4356a44fe8a199dde18d561cbc|bc13439ff4384bcab77d93911ce783f6|','7f919e4356a44fe8a199dde18d561cbc|bc13439ff4384bcab77d93911ce783f6|df85119137904e93895d8c76e06b1924|','小包',3,0),('394c6eae9c1348a4b44d242a6e2ee4e5','【畅消】4%中猪预混料 长势快 后劲强 适用于30~60KG',10,'7f919e4356a44fe8a199dde18d561cbc|bc13439ff4384bcab77d93911ce783f6|7f919e4356a44fe8a199dde18d561cbc|bc13439ff4384bcab77d93911ce783f6|','7f919e4356a44fe8a199dde18d561cbc|bc13439ff4384bcab77d93911ce783f6|df85119137904e93895d8c76e06b1924|','大包',30,0);
+/*!40000 ALTER TABLE `my_order_list` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `my_team`
 --
 
@@ -1439,4 +1503,4 @@ SET character_set_client = @saved_cs_client;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-08-15 18:03:03
+-- Dump completed on 2017-08-18 18:06:43

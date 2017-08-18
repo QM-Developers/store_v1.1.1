@@ -1,2 +1,3 @@
-select * from goodsinfo
+select * from my_order
 ;
+

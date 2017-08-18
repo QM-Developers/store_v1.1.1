@@ -47,15 +47,18 @@
     </insert>
 
     <select id="listBranch" parameterType="com.dgg.store.util.vo.branch.BranchVO" resultMap="BranchVO">
-        SELECT branch_id, branch_name,
-            user_name, user_phone
+        SELECT qb.branch_id, qb.branch_name,
+        qb.user_name, qb.user_phone,
+        td.team_department_name department_name
         FROM qm_branch qb
+        INNER JOIN team_department td
+        ON td.team_department_id = qb.department_id
         WHERE 1 = 1
         <if test="condition.myTeamId != null and condition.myTeamId != ''">
-            AND my_team_id = #{condition.myTeamId}
+            AND qb.my_team_id = #{condition.myTeamId}
         </if>
         <if test="condition.departmentId != null and condition.departmentId != ''">
-            AND department_id = #{condition.departmentId}
+            AND qb.department_id = #{condition.departmentId}
         </if>
         LIMIT #{start},#{end}
     </select>

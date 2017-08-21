@@ -58,8 +58,11 @@
         ON imgsp.image_id = img.image_id
         WHERE img.goods_img_type = 1
         AND gd.my_team_id = #{type.myTeamId}
-        <if test="type.goodsTypeId != null and type.goodsTypeId != ''">
-            AND gd.goods_type_id = #{type.goodsTypeId}
+        <if test="childType != null">
+            AND gd.goods_type_id IN
+            <foreach collection="childType" item="typeId" separator="," open="(" close=")" index="i">
+                #{typeId}
+            </foreach>
         </if>
         <if test="type.keyword != null and type.keyword != ''">
             AND gd.goods_name LIKE CONCAT('%', #{type.keyword}, '%')

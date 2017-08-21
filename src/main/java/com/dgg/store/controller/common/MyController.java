@@ -81,7 +81,6 @@ public class MyController
     @ResponseBody
     public ResultVO uploadHeadPortrait(@RequestParam(value = "img", required = false) MultipartFile file, HttpServletRequest request)
     {
-
         SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
 
         return service.updateUserImg(sessionVO, file, request.getSession().getServletContext().getRealPath("/"));

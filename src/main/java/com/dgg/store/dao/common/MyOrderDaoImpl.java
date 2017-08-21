@@ -111,4 +111,10 @@ public class MyOrderDaoImpl implements MyOrderDao
         return mapper.getImage(imageId);
     }
 
+    @Override
+    public int updateListByPrimaryKeySelective(MyOrderListVO myOrderList)
+    {
+        return mapper.updateListByPrimaryKeySelective(myOrderList);
+    }
+
 }

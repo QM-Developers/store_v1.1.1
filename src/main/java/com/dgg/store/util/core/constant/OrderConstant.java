@@ -6,16 +6,19 @@ public class OrderConstant
     public static final Byte WAITING_DELIVER = 101; // 待发货
     public static final Byte ALREADY_DELIVERED = 102;    // 已发货
     public static final Byte ALREADY_SIGN = 103;    // 已签收
-    public static final Byte WAITING_SALESMAN_CHECK = 104;   // 待财务审核
-    public static final Byte WAITING_FINANCE_CHECK_B = 105;   // 待财务审核
-    public static final Byte FINANCE_CHECK_FAIL_A = 106;   // 待财务审核
-    public static final Byte ORDER_CLOSE = 106;    // 订单关闭
-    public static final Byte ORDER_SUCCESS = 107;    // 交易成功
+    public static final Byte WAITING_SALESMAN_CHECK = 104;   // 待业务审核
+    public static final Byte FINANCE_CHECK_FAIL_A = 105;   // 财务审核不通过
+    public static final Byte FINANCE_CHECK_FAIL_B = 106;    // 财务审核不通过
+    public static final Byte ORDER_CLOSE = 107;    // 订单关闭
+    public static final Byte ORDER_SUCCESS = 108;    // 交易成功
 
-    public static final Byte ALREADY_PAY = 111;
-    public static final Byte NOT_PAY = 112;
+    public static final Byte ALREADY_PAY = 111; // 已付款
+    public static final Byte NOT_PAY = 112; // 未付款
 
-    public static final Byte WAITING_REFUND = 120;
+    public static final Byte REFUND_WAITING = 120;  // 申请退款，等待审核
+    public static final Byte REFUND_PASS = 121; // 退款审核通过
+    public static final Byte REFUND_GOODS = 122;    // 已退货
+    public static final Byte REFUND_RECEIVE = 123;  // 已收到退货
 
     public static final Byte PAYMENT_TRANSFER = 10; // 转账
     public static final Byte PAYMENT_MONTHLY = 20;  // 月结

@@ -18,6 +18,8 @@ public class MyOrder {
 
     private String buyerMessage;
 
+    private String refundMessage;
+
     private Float freight;
 
     private Byte paymentType;
@@ -82,6 +84,14 @@ public class MyOrder {
 
     public void setBuyerMessage(String buyerMessage) {
         this.buyerMessage = buyerMessage == null ? null : buyerMessage.trim();
+    }
+
+    public String getRefundMessage() {
+        return refundMessage;
+    }
+
+    public void setRefundMessage(String refundMessage) {
+        this.refundMessage = refundMessage == null ? null : refundMessage.trim();
     }
 
     public Float getFreight() {

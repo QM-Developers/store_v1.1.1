@@ -1,6 +1,7 @@
 package com.dgg.store.util.vo.goods;
 
 import java.util.List;
+import java.util.Set;
 
 public class GoodsTypeVO
 {

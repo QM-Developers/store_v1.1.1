@@ -24,9 +24,9 @@ public class GoodsBrowseDaoImpl implements GoodsBrowseDao
     }
 
     @Override
-    public List<GoodsInfoVO> findGoodsList(GoodsTypeVO goodsType, int pageNum, int pageSize)
+    public List<GoodsInfoVO> findGoodsList(GoodsTypeVO goodsType, int pageNum, int pageSize, Set<String> childType)
     {
-        return mapper.findGoodsList(goodsType,pageNum,pageSize);
+        return mapper.findGoodsList(goodsType, pageNum, pageSize, childType);
     }
 
     @Override

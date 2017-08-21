@@ -8,6 +8,7 @@
     <result column="user_id" jdbcType="VARCHAR" property="userId" />
     <result column="seller_message" jdbcType="VARCHAR" property="sellerMessage" />
     <result column="buyer_message" jdbcType="VARCHAR" property="buyerMessage" />
+    <result column="refund_message" jdbcType="VARCHAR" property="refundMessage" />
     <result column="freight" jdbcType="REAL" property="freight" />
     <result column="payment_type" jdbcType="TINYINT" property="paymentType" />
     <result column="payment_status" jdbcType="TINYINT" property="paymentStatus" />
@@ -79,8 +80,8 @@
   </sql>
   <sql id="Base_Column_List">
     order_id, order_status, order_status_before, user_id, seller_message, buyer_message, 
-    freight, payment_type, payment_status, shopping_address, create_date, refund_date, 
-    finish_date
+    refund_message, freight, payment_type, payment_status, shopping_address, create_date, 
+    refund_date, finish_date
   </sql>
   <sql id="Blob_Column_List">
     logistics_status
@@ -136,14 +137,16 @@
   <insert id="insert" parameterType="com.dgg.store.util.pojo.MyOrder">
     insert into my_order (order_id, order_status, order_status_before, 
       user_id, seller_message, buyer_message, 
-      freight, payment_type, payment_status, 
-      shopping_address, create_date, refund_date, 
-      finish_date, logistics_status)
+      refund_message, freight, payment_type, 
+      payment_status, shopping_address, create_date, 
+      refund_date, finish_date, logistics_status
+      )
     values (#{orderId,jdbcType=VARCHAR}, #{orderStatus,jdbcType=TINYINT}, #{orderStatusBefore,jdbcType=TINYINT}, 
       #{userId,jdbcType=VARCHAR}, #{sellerMessage,jdbcType=VARCHAR}, #{buyerMessage,jdbcType=VARCHAR}, 
-      #{freight,jdbcType=REAL}, #{paymentType,jdbcType=TINYINT}, #{paymentStatus,jdbcType=TINYINT}, 
-      #{shoppingAddress,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}, #{refundDate,jdbcType=TIMESTAMP}, 
-      #{finishDate,jdbcType=TIMESTAMP}, #{logisticsStatus,jdbcType=LONGVARCHAR})
+      #{refundMessage,jdbcType=VARCHAR}, #{freight,jdbcType=REAL}, #{paymentType,jdbcType=TINYINT}, 
+      #{paymentStatus,jdbcType=TINYINT}, #{shoppingAddress,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}, 
+      #{refundDate,jdbcType=TIMESTAMP}, #{finishDate,jdbcType=TIMESTAMP}, #{logisticsStatus,jdbcType=LONGVARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.dgg.store.util.pojo.MyOrder">
     insert into my_order
@@ -165,6 +168,9 @@
       </if>
       <if test="buyerMessage != null">
         buyer_message,
+      </if>
+      <if test="refundMessage != null">
+        refund_message,
       </if>
       <if test="freight != null">
         freight,
@@ -209,6 +215,9 @@
       </if>
       <if test="buyerMessage != null">
         #{buyerMessage,jdbcType=VARCHAR},
+      </if>
+      <if test="refundMessage != null">
+        #{refundMessage,jdbcType=VARCHAR},
       </if>
       <if test="freight != null">
         #{freight,jdbcType=REAL},
@@ -263,6 +272,9 @@
       <if test="record.buyerMessage != null">
         buyer_message = #{record.buyerMessage,jdbcType=VARCHAR},
       </if>
+      <if test="record.refundMessage != null">
+        refund_message = #{record.refundMessage,jdbcType=VARCHAR},
+      </if>
       <if test="record.freight != null">
         freight = #{record.freight,jdbcType=REAL},
       </if>
@@ -300,6 +312,7 @@
       user_id = #{record.userId,jdbcType=VARCHAR},
       seller_message = #{record.sellerMessage,jdbcType=VARCHAR},
       buyer_message = #{record.buyerMessage,jdbcType=VARCHAR},
+      refund_message = #{record.refundMessage,jdbcType=VARCHAR},
       freight = #{record.freight,jdbcType=REAL},
       payment_type = #{record.paymentType,jdbcType=TINYINT},
       payment_status = #{record.paymentStatus,jdbcType=TINYINT},
@@ -320,6 +333,7 @@
       user_id = #{record.userId,jdbcType=VARCHAR},
       seller_message = #{record.sellerMessage,jdbcType=VARCHAR},
       buyer_message = #{record.buyerMessage,jdbcType=VARCHAR},
+      refund_message = #{record.refundMessage,jdbcType=VARCHAR},
       freight = #{record.freight,jdbcType=REAL},
       payment_type = #{record.paymentType,jdbcType=TINYINT},
       payment_status = #{record.paymentStatus,jdbcType=TINYINT},
@@ -348,6 +362,9 @@
       </if>
       <if test="buyerMessage != null">
         buyer_message = #{buyerMessage,jdbcType=VARCHAR},
+      </if>
+      <if test="refundMessage != null">
+        refund_message = #{refundMessage,jdbcType=VARCHAR},
       </if>
       <if test="freight != null">
         freight = #{freight,jdbcType=REAL},
@@ -383,6 +400,7 @@
       user_id = #{userId,jdbcType=VARCHAR},
       seller_message = #{sellerMessage,jdbcType=VARCHAR},
       buyer_message = #{buyerMessage,jdbcType=VARCHAR},
+      refund_message = #{refundMessage,jdbcType=VARCHAR},
       freight = #{freight,jdbcType=REAL},
       payment_type = #{paymentType,jdbcType=TINYINT},
       payment_status = #{paymentStatus,jdbcType=TINYINT},
@@ -400,6 +418,7 @@
       user_id = #{userId,jdbcType=VARCHAR},
       seller_message = #{sellerMessage,jdbcType=VARCHAR},
       buyer_message = #{buyerMessage,jdbcType=VARCHAR},
+      refund_message = #{refundMessage,jdbcType=VARCHAR},
       freight = #{freight,jdbcType=REAL},
       payment_type = #{paymentType,jdbcType=TINYINT},
       payment_status = #{paymentStatus,jdbcType=TINYINT},
@@ -409,7 +428,7 @@
       finish_date = #{finishDate,jdbcType=TIMESTAMP}
     where order_id = #{orderId,jdbcType=VARCHAR}
   </update>
-    
+      
 
 
 
@@ -426,6 +445,7 @@
 
 
   <resultMap id="MyOrderListVO" type="com.dgg.store.util.vo.order.MyOrderListVO">
+    <result column="standard_id" property="standardId" jdbcType="VARCHAR"/>
     <result column="goods_name" property="goodsName" jdbcType="VARCHAR"/>
     <result column="goods_price" property="goodsPrice" jdbcType="FLOAT"/>
     <result column="goods_image" property="goodsImage" jdbcType="VARCHAR"/>
@@ -439,16 +459,16 @@
     INSERT INTO my_order_list
     (order_id, goods_name, goods_price,
     goods_image, goods_describe, standard_name,
-    buy_num, refund_num)
+    buy_num, refund_num,standard_id)
     VALUES
     (#{orderId},#{goodsName},#{goodsPrice},
     #{goodsImage},#{goodsDescribe},#{standardName},
-    #{buyNum},#{refundNum})
+    #{buyNum},#{refundNum},#{standardId})
   </insert>
 
   <select id="getOrderList" resultMap="MyOrderListVO">
     SELECT gi.goods_name,gi.goods_describe,
-    gs.standard_name,gs.standard_price goods_price
+    gs.standard_name,gs.standard_price goods_price,gs.standard_id
     FROM goodsinfo gi
     INNER JOIN goods_standard gs
     ON gs.goods_id = gi.goods_id
@@ -464,7 +484,7 @@
 
   <select id="listOrderList" resultMap="MyOrderListVO">
     SELECT mol.goods_name, mol.goods_price, mol.goods_image,
-    mol.standard_name, mol.buy_num,
+    mol.standard_name, mol.buy_num,mol.standard_id,
     mol.refund_num
     FROM my_order_list mol
     WHERE mol.order_id = #{orderId}
@@ -475,4 +495,35 @@
     FROM image_space
     WHERE image_id = #{imageId}
   </select>
+
+  <update id="updateListByPrimaryKeySelective" parameterType="com.dgg.store.util.vo.order.MyOrderListVO">
+    UPDATE my_order_list
+    <set>
+      <if test="goodsName != null">
+        goods_name = #{goodsName},
+      </if>
+      <if test="goodsPrice != null">
+        goods_price = #{goodsPrice},
+      </if>
+      <if test="goodsImage != null">
+        goods_image = #{goodsImage},
+      </if>
+      <if test="goodsDescribe != null">
+        goods_describe = #{goodsDescribe},
+      </if>
+      <if test="standardName != null">
+        standard_name = #{standardName},
+      </if>
+      <if test="buyNum != null">
+        buy_num = #{buyNum},
+      </if>
+      <if test="refundNum != null">
+        refund_num = #{refundNum},
+      </if>
+    </set>
+    WHERE order_id = #{orderId}
+    <if test="standardId != null">
+      AND standard_id = #{standardId}
+    </if>
+  </update>
 </mapper>

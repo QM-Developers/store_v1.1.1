@@ -73,7 +73,14 @@ public class GoodsBrowseServiceImpl implements GoodsBrowseService
         int pageCount = dao.countGoodsByType(goodsTypeVO);
 
         goodsTypeVO.setMyTeamId(sessionVO.getMyTeamId());
-        List<GoodsInfoVO> result = dao.findGoodsList(goodsTypeVO, start, end);
+        Set<String> childType = null;
+        if (!StringUtil.isEmpty(goodsTypeVO.getGoodsTypeId()))
+        {
+            childType = findChildTypeId(goodsTypeVO.getGoodsTypeId());
+            childType.add(goodsTypeVO.getGoodsTypeId());
+        }
+
+        List<GoodsInfoVO> result = dao.findGoodsList(goodsTypeVO, start, end, childType);
 
         JSONObject json = (JSONObject) JSONObject.toJSON(new ResultVO(1, sessionVO.getToken(), result));
         json.put(KeyConstant.PAGE_COUNT, PagingUtil.getCount(pageCount, end));

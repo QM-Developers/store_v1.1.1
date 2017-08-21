@@ -81,6 +81,7 @@ CREATE TABLE `customer` (
   `customer_type` varchar(20) NOT NULL DEFAULT '',
   `user_id` varchar(35) NOT NULL DEFAULT '',
   `promoter_id` varchar(35) NOT NULL DEFAULT '',
+  `merchandiser_id` varchar(35) NOT NULL DEFAULT '',
   `my_team_id` varchar(35) NOT NULL DEFAULT '',
   `business_address` varchar(50) NOT NULL DEFAULT '',
   `station` varchar(20) NOT NULL DEFAULT '',
@@ -95,7 +96,6 @@ CREATE TABLE `customer` (
 
 LOCK TABLES `customer` WRITE;
 /*!40000 ALTER TABLE `customer` DISABLE KEYS */;
-INSERT INTO `customer` VALUES ('22fbd2f300f5415785f1d97969e51e5a','personal','e6540c96ee894ea098f9cb24497a0647','89d9317fb3834353bcf2a507bee2eb82','10001','','',0),('559042c7d6054436b5f6b1cd6dbe19a7','personal','313d189c4c804e23b83529a4b18330fd','89d9317fb3834353bcf2a507bee2eb82','10001','','',1),('83dfb8bddac641dcbf0719c0af2baaba','dealer','18eda0f3db774553afc02b18a79bc4b8','89d9317fb3834353bcf2a507bee2eb82','10001','','',0),('c7328f7277664c42847c089d7bbf1e02','dealer','fbb8be72b57346b895e43c138e1c516c','89d9317fb3834353bcf2a507bee2eb82','10001','','',0);
 /*!40000 ALTER TABLE `customer` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -553,6 +553,7 @@ CREATE TABLE `my_order` (
   `user_id` varchar(35) NOT NULL DEFAULT '',
   `seller_message` varchar(150) NOT NULL DEFAULT '',
   `buyer_message` varchar(150) NOT NULL DEFAULT '',
+  `refund_message` varchar(150) DEFAULT NULL,
   `freight` float NOT NULL DEFAULT '0',
   `payment_type` tinyint(4) NOT NULL DEFAULT '0',
   `payment_status` tinyint(4) NOT NULL DEFAULT '0',
@@ -571,6 +572,7 @@ CREATE TABLE `my_order` (
 
 LOCK TABLES `my_order` WRITE;
 /*!40000 ALTER TABLE `my_order` DISABLE KEYS */;
+INSERT INTO `my_order` VALUES ('426f9ace0f6f4e629eaf5811eff0391c',106,120,'89d9317fb3834353bcf2a507bee2eb82','','','不想买了',1,1,112,'1','','2017-08-19 11:04:42',NULL,NULL);
 /*!40000 ALTER TABLE `my_order` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -583,6 +585,7 @@ DROP TABLE IF EXISTS `my_order_list`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `my_order_list` (
   `order_id` varchar(35) NOT NULL DEFAULT '',
+  `standard_id` varchar(35) NOT NULL DEFAULT '',
   `goods_name` varchar(60) NOT NULL DEFAULT '',
   `goods_price` float NOT NULL DEFAULT '0',
   `goods_image` text,
@@ -599,7 +602,7 @@ CREATE TABLE `my_order_list` (
 
 LOCK TABLES `my_order_list` WRITE;
 /*!40000 ALTER TABLE `my_order_list` DISABLE KEYS */;
-INSERT INTO `my_order_list` VALUES ('129fe84a89074128914f9054e10b2ff0','倍润828B,20%生长育肥猪浓缩饲料 使用阶段：60kg-出栏',5,'7f919e4356a44fe8a199dde18d561cbc|bc13439ff4384bcab77d93911ce783f6|','7f919e4356a44fe8a199dde18d561cbc|bc13439ff4384bcab77d93911ce783f6|df85119137904e93895d8c76e06b1924|','小包',3,0),('394c6eae9c1348a4b44d242a6e2ee4e5','倍润828B,20%生长育肥猪浓缩饲料 使用阶段：60kg-出栏',5,'7f919e4356a44fe8a199dde18d561cbc|bc13439ff4384bcab77d93911ce783f6|','7f919e4356a44fe8a199dde18d561cbc|bc13439ff4384bcab77d93911ce783f6|df85119137904e93895d8c76e06b1924|','小包',3,0),('394c6eae9c1348a4b44d242a6e2ee4e5','【畅消】4%中猪预混料 长势快 后劲强 适用于30~60KG',10,'7f919e4356a44fe8a199dde18d561cbc|bc13439ff4384bcab77d93911ce783f6|7f919e4356a44fe8a199dde18d561cbc|bc13439ff4384bcab77d93911ce783f6|','7f919e4356a44fe8a199dde18d561cbc|bc13439ff4384bcab77d93911ce783f6|df85119137904e93895d8c76e06b1924|','大包',30,0);
+INSERT INTO `my_order_list` VALUES ('426f9ace0f6f4e629eaf5811eff0391c','1f9b286b836c4175ab09a9b02cacbb7d','倍润828B,20%生长育肥猪浓缩饲料 使用阶段：60kg-出栏',5,'7f919e4356a44fe8a199dde18d561cbc|bc13439ff4384bcab77d93911ce783f6|','7f919e4356a44fe8a199dde18d561cbc|bc13439ff4384bcab77d93911ce783f6|df85119137904e93895d8c76e06b1924|','小包',0,3),('426f9ace0f6f4e629eaf5811eff0391c','9190f4574805419187a8029042803617','【畅消】4%中猪预混料 长势快 后劲强 适用于30~60KG',10,'7f919e4356a44fe8a199dde18d561cbc|bc13439ff4384bcab77d93911ce783f6|7f919e4356a44fe8a199dde18d561cbc|bc13439ff4384bcab77d93911ce783f6|','7f919e4356a44fe8a199dde18d561cbc|bc13439ff4384bcab77d93911ce783f6|df85119137904e93895d8c76e06b1924|','大包',0,30);
 /*!40000 ALTER TABLE `my_order_list` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -685,7 +688,7 @@ CREATE TABLE `permission` (
 
 LOCK TABLES `permission` WRITE;
 /*!40000 ALTER TABLE `permission` DISABLE KEYS */;
-INSERT INTO `permission` VALUES ('42b95b8f711447c49038e922c6f6167d','根据手机或姓名查找用户','/user_findUserByPhoneOrName','e7d92c8a7a914cc1ac4c69f19e6280a9','',0,NULL),('5d4c37102aa943f48a679cca07fe2bb3','客户管理','','0','',0,NULL),('649663c1e3e247708df7de7c0018fb3b','登录组织管理','/s/login','71e4956673c14543a2ed8c8e3c65e0a4','',0,NULL),('678dba65e68f4bf88648e81d5bd9be8a','查找分类下的客户','/s/findCustomerByGroup','5d4c37102aa943f48a679cca07fe2bb3','',0,NULL),('6bb47e49d7cc470680a586da0bd85f33','发起添加好友申请','/user_addFriendRequest','e7d92c8a7a914cc1ac4c69f19e6280a9','',0,NULL),('71478daa45b54bc3a94f81a11f5c292f','设置好友申请为已读','/user_updateRequestIsRead','e7d92c8a7a914cc1ac4c69f19e6280a9','',0,NULL),('71e4956673c14543a2ed8c8e3c65e0a4','组织管理','','0','',0,NULL),('942f55f2332646a581de2bc6540f03a1','查找客户更新次数','/s/findCustomerUpdateCount','5d4c37102aa943f48a679cca07fe2bb3','',0,NULL),('b18ea1a89d0948c4a293a6d21b47afeb','查找部门下成员','/s/findMemberList','71e4956673c14543a2ed8c8e3c65e0a4','',0,NULL),('c442c7be80f7428eae971888176647c4','获取好友申请总数','/user_findFriendRequestCount','e7d92c8a7a914cc1ac4c69f19e6280a9','',0,NULL),('c901587599ad40c7a1f2dd6c0e7ccbb1','查看客户详情','/s/findCustomerInfo','5d4c37102aa943f48a679cca07fe2bb3','',0,NULL),('c9c6b6a0f3a040e2a02cf93f7c886400','更新好友备注','/user_updateFriendRemark','e7d92c8a7a914cc1ac4c69f19e6280a9','',0,NULL),('caa3b16c0cd04f31ae63681d53c95fd4','获取未读消息总数','/user_findNotReadChatHistoryCount','e7d92c8a7a914cc1ac4c69f19e6280a9','',0,NULL),('cb6831e81c274cc8b6d1e3f81847ea35','获取好友申请','/user_findFriendRequest','e7d92c8a7a914cc1ac4c69f19e6280a9','',0,NULL),('cede163f9abd4bcca09e11714c61bb05','客户建档','/s/addCustomerRecord','5d4c37102aa943f48a679cca07fe2bb3','',0,NULL),('d31989274caa46c59e8e6990101586cb','查看好友列表','/user_findFriendList','e7d92c8a7a914cc1ac4c69f19e6280a9','',0,NULL),('e2db4bd557094c43879fc49b0607da36','查看好友详情','/user_findFriendData','e7d92c8a7a914cc1ac4c69f19e6280a9','',0,NULL),('e7d92c8a7a914cc1ac4c69f19e6280a9','我的好友','','0','',0,NULL),('eec5a2fa74d749d49c8d1a6777f60332','获取未读消息','/user_findNotReadChatHistory','e7d92c8a7a914cc1ac4c69f19e6280a9','',0,NULL),('f88e3b58298f475192a346608da993bf','拒绝好友申请','/user_negativeFriendRequest','e7d92c8a7a914cc1ac4c69f19e6280a9','',0,NULL),('fa3c507ecc664802841f4eb53ded32a3','同意好友申请','/user_agreeFriendRequest','e7d92c8a7a914cc1ac4c69f19e6280a9','',0,NULL);
+INSERT INTO `permission` VALUES ('2c26b3cf90d0478ab7e167d325fe18f2','业务订单','','0','',0,NULL),('42b95b8f711447c49038e922c6f6167d','根据手机或姓名查找用户','/user_findUserByPhoneOrName','e7d92c8a7a914cc1ac4c69f19e6280a9','',0,NULL),('499aeeadb21d4311bd79d712761a989c','业务审核通过','/user_updateSalesmanPass','2c26b3cf90d0478ab7e167d325fe18f2','',0,NULL),('4da35a0112bd458f924232d98132a283','财务A轮审核不通过','/user_updateFinanceFailA','2c26b3cf90d0478ab7e167d325fe18f2','',0,NULL),('5d4c37102aa943f48a679cca07fe2bb3','客户管理','','0','',0,NULL),('649663c1e3e247708df7de7c0018fb3b','登录组织管理','/s/login','71e4956673c14543a2ed8c8e3c65e0a4','',0,NULL),('678dba65e68f4bf88648e81d5bd9be8a','查找分类下的客户','/s/findCustomerByGroup','5d4c37102aa943f48a679cca07fe2bb3','',0,NULL),('6bb47e49d7cc470680a586da0bd85f33','发起添加好友申请','/user_addFriendRequest','e7d92c8a7a914cc1ac4c69f19e6280a9','',0,NULL),('71478daa45b54bc3a94f81a11f5c292f','设置好友申请为已读','/user_updateRequestIsRead','e7d92c8a7a914cc1ac4c69f19e6280a9','',0,NULL),('71e4956673c14543a2ed8c8e3c65e0a4','组织管理','','0','',0,NULL),('742cbb56d23e45048611200e846933a7','财务退款','/user_updateRefundMoney','2c26b3cf90d0478ab7e167d325fe18f2','',0,NULL),('942f55f2332646a581de2bc6540f03a1','查找客户更新次数','/s/findCustomerUpdateCount','5d4c37102aa943f48a679cca07fe2bb3','',0,NULL),('a91b37fd239d4b73ba92226e6d95f7d4','跟单确认收到退货','/user_updateRefundReceive','2c26b3cf90d0478ab7e167d325fe18f2','',0,NULL),('b08a3600a23a4fc19617b75d0b61fe9b','财务B轮审核通过','/user_updateFinancePassB','2c26b3cf90d0478ab7e167d325fe18f2','',0,NULL),('b10aec46954a49aa9857c02746b874fc','财务B轮审核不通过','/user_updateFinanceFailB','2c26b3cf90d0478ab7e167d325fe18f2','',0,NULL),('b18ea1a89d0948c4a293a6d21b47afeb','查找部门下成员','/s/findMemberList','71e4956673c14543a2ed8c8e3c65e0a4','',0,NULL),('bad6c8f4a96343fd88749925cc852e15','跟单同意退款','/user_updateRefundPass','2c26b3cf90d0478ab7e167d325fe18f2','',0,NULL),('bcb06295c7b04ba8b3b56a42ca66a9ce','确认发货','/user_updateDelivered','2c26b3cf90d0478ab7e167d325fe18f2','',0,NULL),('c442c7be80f7428eae971888176647c4','获取好友申请总数','/user_findFriendRequestCount','e7d92c8a7a914cc1ac4c69f19e6280a9','',0,NULL),('c901587599ad40c7a1f2dd6c0e7ccbb1','查看客户详情','/s/findCustomerInfo','5d4c37102aa943f48a679cca07fe2bb3','',0,NULL),('c9c6b6a0f3a040e2a02cf93f7c886400','更新好友备注','/user_updateFriendRemark','e7d92c8a7a914cc1ac4c69f19e6280a9','',0,NULL),('caa3b16c0cd04f31ae63681d53c95fd4','获取未读消息总数','/user_findNotReadChatHistoryCount','e7d92c8a7a914cc1ac4c69f19e6280a9','',0,NULL),('cb6831e81c274cc8b6d1e3f81847ea35','获取好友申请','/user_findFriendRequest','e7d92c8a7a914cc1ac4c69f19e6280a9','',0,NULL),('cede163f9abd4bcca09e11714c61bb05','客户建档','/s/addCustomerRecord','5d4c37102aa943f48a679cca07fe2bb3','',0,NULL),('d2d8cff538074519b2835409eccee4cf','财务A轮审核通过','/user_updateFinancePassA','2c26b3cf90d0478ab7e167d325fe18f2','',0,NULL),('d31989274caa46c59e8e6990101586cb','查看好友列表','/user_findFriendList','e7d92c8a7a914cc1ac4c69f19e6280a9','',0,NULL),('e2db4bd557094c43879fc49b0607da36','查看好友详情','/user_findFriendData','e7d92c8a7a914cc1ac4c69f19e6280a9','',0,NULL),('e7d92c8a7a914cc1ac4c69f19e6280a9','我的好友','','0','',0,NULL),('eec5a2fa74d749d49c8d1a6777f60332','获取未读消息','/user_findNotReadChatHistory','e7d92c8a7a914cc1ac4c69f19e6280a9','',0,NULL),('f88e3b58298f475192a346608da993bf','拒绝好友申请','/user_negativeFriendRequest','e7d92c8a7a914cc1ac4c69f19e6280a9','',0,NULL),('fa3c507ecc664802841f4eb53ded32a3','同意好友申请','/user_agreeFriendRequest','e7d92c8a7a914cc1ac4c69f19e6280a9','',0,NULL);
 /*!40000 ALTER TABLE `permission` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -846,7 +849,7 @@ CREATE TABLE `qm_permission` (
 
 LOCK TABLES `qm_permission` WRITE;
 /*!40000 ALTER TABLE `qm_permission` DISABLE KEYS */;
-INSERT INTO `qm_permission` VALUES ('6a3479c94a4d43348b7fe37054013126','后台系统登陆','','0',1,0,NULL),('83ffc4a0432e4945890534583d62dd0a','登陆后台系统','登陆后台系统的权限','6a3479c94a4d43348b7fe37054013126',1,0,NULL),('986b810014e44d2c9d5b383f2a83da3c','我的好友使用权','查找、添加好友，删除好友，推荐好友，添加好友备注','c80bfab8902c402ba3019dfca8cf3a61',1,0,NULL),('986b810014e44d2c9d5b383f2a83da3d','添加部门/职位','拥有添加部门和职位的权限','c80bfab8902c402ba3019dfca8cf3a62',1,0,NULL),('c80bfab8902c402ba3019dfca8cf3a61','我的好友','','0',1,0,NULL),('c80bfab8902c402ba3019dfca8cf3a62','部门/职位管理权','','0',1,0,NULL);
+INSERT INTO `qm_permission` VALUES ('47d99008f4594d64a66300e96e2f0b5b','订单管理','','0',1,0,NULL),('6a3479c94a4d43348b7fe37054013126','后台系统登陆','','0',1,0,NULL),('83ffc4a0432e4945890534583d62dd0a','登陆后台系统','登陆后台系统的权限','6a3479c94a4d43348b7fe37054013126',1,0,NULL),('986b810014e44d2c9d5b383f2a83da3c','我的好友使用权','查找、添加好友，删除好友，推荐好友，添加好友备注','c80bfab8902c402ba3019dfca8cf3a61',1,0,NULL),('986b810014e44d2c9d5b383f2a83da3d','添加部门/职位','拥有添加部门和职位的权限','c80bfab8902c402ba3019dfca8cf3a62',1,0,NULL),('c80bfab8902c402ba3019dfca8cf3a61','我的好友','','0',1,0,NULL),('c80bfab8902c402ba3019dfca8cf3a62','部门/职位管理权','','0',1,0,NULL),('follow','跟单权限','对客户订单的跟进权限','47d99008f4594d64a66300e96e2f0b5b',1,0,NULL);
 /*!40000 ALTER TABLE `qm_permission` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -869,7 +872,7 @@ CREATE TABLE `qm_permission_re` (
 
 LOCK TABLES `qm_permission_re` WRITE;
 /*!40000 ALTER TABLE `qm_permission_re` DISABLE KEYS */;
-INSERT INTO `qm_permission_re` VALUES ('42b95b8f711447c49038e922c6f6167d','986b810014e44d2c9d5b383f2a83da3c'),('caa3b16c0cd04f31ae63681d53c95fd4','986b810014e44d2c9d5b383f2a83da3c'),('cb6831e81c274cc8b6d1e3f81847ea35','986b810014e44d2c9d5b383f2a83da3c'),('d31989274caa46c59e8e6990101586cb','986b810014e44d2c9d5b383f2a83da3c'),('e2db4bd557094c43879fc49b0607da36','986b810014e44d2c9d5b383f2a83da3c'),('eec5a2fa74d749d49c8d1a6777f60332','986b810014e44d2c9d5b383f2a83da3c'),('f88e3b58298f475192a346608da993bf','986b810014e44d2c9d5b383f2a83da3c'),('c9c6b6a0f3a040e2a02cf93f7c886400','986b810014e44d2c9d5b383f2a83da3c'),('c442c7be80f7428eae971888176647c4','986b810014e44d2c9d5b383f2a83da3c'),('6bb47e49d7cc470680a586da0bd85f33','986b810014e44d2c9d5b383f2a83da3c'),('71478daa45b54bc3a94f81a11f5c292f','986b810014e44d2c9d5b383f2a83da3c'),('fa3c507ecc664802841f4eb53ded32a3','986b810014e44d2c9d5b383f2a83da3c'),('649663c1e3e247708df7de7c0018fb3b','83ffc4a0432e4945890534583d62dd0a'),('649663c1e3e247708df7de7c0018fb3b','83ffc4a0432e4945890534583d62dd0a'),('649663c1e3e247708df7de7c0018fb3b','83ffc4a0432e4945890534583d62dd0a'),('649663c1e3e247708df7de7c0018fb3b','83ffc4a0432e4945890534583d62dd0a'),('649663c1e3e247708df7de7c0018fb3b','83ffc4a0432e4945890534583d62dd0a'),('649663c1e3e247708df7de7c0018fb3b','83ffc4a0432e4945890534583d62dd0a'),('649663c1e3e247708df7de7c0018fb3b','986b810014e44d2c9d5b383f2a83da3d');
+INSERT INTO `qm_permission_re` VALUES ('42b95b8f711447c49038e922c6f6167d','986b810014e44d2c9d5b383f2a83da3c'),('caa3b16c0cd04f31ae63681d53c95fd4','986b810014e44d2c9d5b383f2a83da3c'),('cb6831e81c274cc8b6d1e3f81847ea35','986b810014e44d2c9d5b383f2a83da3c'),('d31989274caa46c59e8e6990101586cb','986b810014e44d2c9d5b383f2a83da3c'),('e2db4bd557094c43879fc49b0607da36','986b810014e44d2c9d5b383f2a83da3c'),('eec5a2fa74d749d49c8d1a6777f60332','986b810014e44d2c9d5b383f2a83da3c'),('f88e3b58298f475192a346608da993bf','986b810014e44d2c9d5b383f2a83da3c'),('c9c6b6a0f3a040e2a02cf93f7c886400','986b810014e44d2c9d5b383f2a83da3c'),('c442c7be80f7428eae971888176647c4','986b810014e44d2c9d5b383f2a83da3c'),('6bb47e49d7cc470680a586da0bd85f33','986b810014e44d2c9d5b383f2a83da3c'),('71478daa45b54bc3a94f81a11f5c292f','986b810014e44d2c9d5b383f2a83da3c'),('fa3c507ecc664802841f4eb53ded32a3','986b810014e44d2c9d5b383f2a83da3c'),('649663c1e3e247708df7de7c0018fb3b','83ffc4a0432e4945890534583d62dd0a'),('649663c1e3e247708df7de7c0018fb3b','83ffc4a0432e4945890534583d62dd0a'),('649663c1e3e247708df7de7c0018fb3b','83ffc4a0432e4945890534583d62dd0a'),('649663c1e3e247708df7de7c0018fb3b','83ffc4a0432e4945890534583d62dd0a'),('649663c1e3e247708df7de7c0018fb3b','83ffc4a0432e4945890534583d62dd0a'),('649663c1e3e247708df7de7c0018fb3b','83ffc4a0432e4945890534583d62dd0a'),('649663c1e3e247708df7de7c0018fb3b','986b810014e44d2c9d5b383f2a83da3d'),('bcb06295c7b04ba8b3b56a42ca66a9ce','follow'),('bad6c8f4a96343fd88749925cc852e15','follow'),('499aeeadb21d4311bd79d712761a989c','follow'),('a91b37fd239d4b73ba92226e6d95f7d4','follow');
 /*!40000 ALTER TABLE `qm_permission_re` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1503,4 +1506,4 @@ SET character_set_client = @saved_cs_client;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-08-18 18:06:43
+-- Dump completed on 2017-08-21 16:34:41

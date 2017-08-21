@@ -12,6 +12,7 @@ create table customer
    customer_type        varchar(20) not null default '',	-- 客户类型
    user_id	varchar(35) not null default '',	-- 客户指向的用户Id
    promoter_id			varchar(35) not null default '',	-- 业务员Id
+   merchandiser_id varchar(35) not null default '',	-- 跟单员Id
    my_team_id 			varchar(35) not null default '',	-- 企业码
    business_address		varchar(50) not null default '',	-- 经营地址
    station	varchar(20) not null default '',	-- 从事岗位
@@ -285,6 +286,7 @@ create table my_order
    user_id varchar(35) not null default '',	-- 用户Id
    seller_message varchar(150) not null default '',	-- 卖家留言
    buyer_message varchar(150) not null default '',	-- 买家留言
+   refund_message varchar(150),	-- 退货理由
    freight float not null default 0,	-- 运费
    payment_type tinyint not null default 0,	-- 付款状态
    payment_status tinyint not null default 0,	-- 支付方式
@@ -302,6 +304,7 @@ drop table if exists my_order_list;
 create table my_order_list
 (
 	order_id varchar(35) not null default '',	-- 订单Id
+    standard_id varchar(35) not null default '',	-- 规格Id
     goods_name varchar(60) not null default '',	-- 商品名称
     goods_price float not null default 0,	-- 商品价格
     goods_image text,	-- 商品图片

@@ -86,7 +86,6 @@ public class MyOrderExample {
         return end;
     }
 
-
     protected abstract static class GeneratedCriteria {
         protected List<Criterion> criteria;
 
@@ -525,6 +524,76 @@ public class MyOrderExample {
 
         public Criteria andBuyerMessageNotBetween(String value1, String value2) {
             addCriterion("buyer_message not between", value1, value2, "buyerMessage");
+            return (Criteria) this;
+        }
+
+        public Criteria andRefundMessageIsNull() {
+            addCriterion("refund_message is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andRefundMessageIsNotNull() {
+            addCriterion("refund_message is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andRefundMessageEqualTo(String value) {
+            addCriterion("refund_message =", value, "refundMessage");
+            return (Criteria) this;
+        }
+
+        public Criteria andRefundMessageNotEqualTo(String value) {
+            addCriterion("refund_message <>", value, "refundMessage");
+            return (Criteria) this;
+        }
+
+        public Criteria andRefundMessageGreaterThan(String value) {
+            addCriterion("refund_message >", value, "refundMessage");
+            return (Criteria) this;
+        }
+
+        public Criteria andRefundMessageGreaterThanOrEqualTo(String value) {
+            addCriterion("refund_message >=", value, "refundMessage");
+            return (Criteria) this;
+        }
+
+        public Criteria andRefundMessageLessThan(String value) {
+            addCriterion("refund_message <", value, "refundMessage");
+            return (Criteria) this;
+        }
+
+        public Criteria andRefundMessageLessThanOrEqualTo(String value) {
+            addCriterion("refund_message <=", value, "refundMessage");
+            return (Criteria) this;
+        }
+
+        public Criteria andRefundMessageLike(String value) {
+            addCriterion("refund_message like", value, "refundMessage");
+            return (Criteria) this;
+        }
+
+        public Criteria andRefundMessageNotLike(String value) {
+            addCriterion("refund_message not like", value, "refundMessage");
+            return (Criteria) this;
+        }
+
+        public Criteria andRefundMessageIn(List<String> values) {
+            addCriterion("refund_message in", values, "refundMessage");
+            return (Criteria) this;
+        }
+
+        public Criteria andRefundMessageNotIn(List<String> values) {
+            addCriterion("refund_message not in", values, "refundMessage");
+            return (Criteria) this;
+        }
+
+        public Criteria andRefundMessageBetween(String value1, String value2) {
+            addCriterion("refund_message between", value1, value2, "refundMessage");
+            return (Criteria) this;
+        }
+
+        public Criteria andRefundMessageNotBetween(String value1, String value2) {
+            addCriterion("refund_message not between", value1, value2, "refundMessage");
             return (Criteria) this;
         }
 

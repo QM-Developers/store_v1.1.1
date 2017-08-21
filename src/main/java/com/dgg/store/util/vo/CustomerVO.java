@@ -36,6 +36,8 @@ public class CustomerVO
 
     private String customerType;
 
+    private String merchandiserId;
+
     public String getUserId()
     {
         return userId;
@@ -194,5 +196,15 @@ public class CustomerVO
     public void setCustomerType(String customerType)
     {
         this.customerType = customerType;
+    }
+
+    public String getMerchandiserId()
+    {
+        return merchandiserId;
+    }
+
+    public void setMerchandiserId(String merchandiserId)
+    {
+        this.merchandiserId = merchandiserId;
     }
 }

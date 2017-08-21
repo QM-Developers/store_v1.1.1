@@ -35,7 +35,7 @@ public interface MyOrderMapper {
     int updateByPrimaryKeyWithBLOBs(MyOrder record);
 
     int updateByPrimaryKey(MyOrder record);
-	
+		
 	int insertOrderList(MyOrderListVO orderList);
 
     MyOrderListVO getOrderList(@Param("standardId") String standardId);
@@ -45,4 +45,6 @@ public interface MyOrderMapper {
     List<MyOrderListVO> listOrderList(@Param("orderId") String orderId);
 
     String getImage(String imageId);
+
+    int updateListByPrimaryKeySelective(MyOrderListVO myOrderList);
 }

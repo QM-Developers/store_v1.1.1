@@ -39,4 +39,6 @@ public interface MyOrderDao
     List<MyOrderListVO> listOrderList(String orderId);
 
     String getImage(String imageId);
+
+    int updateListByPrimaryKeySelective(MyOrderListVO myOrderList);
 }

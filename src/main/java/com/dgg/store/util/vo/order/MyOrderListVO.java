@@ -4,6 +4,8 @@ public class MyOrderListVO
 {
     private String orderId;
 
+    private String standardId;
+
     private String goodsName;
 
     private Float goodsPrice;
@@ -96,5 +98,15 @@ public class MyOrderListVO
     public void setRefundNum(int refundNum)
     {
         this.refundNum = refundNum;
+    }
+
+    public String getStandardId()
+    {
+        return standardId;
+    }
+
+    public void setStandardId(String standardId)
+    {
+        this.standardId = standardId;
     }
 }

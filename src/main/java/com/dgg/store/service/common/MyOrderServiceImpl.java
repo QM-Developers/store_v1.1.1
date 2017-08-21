@@ -49,15 +49,18 @@ public class MyOrderServiceImpl implements MyOrderService
         List<String> imageList = null;
         StringBuilder image = new StringBuilder();
         MyOrderListVO orderList = new MyOrderListVO();
+        String standardId = null;
         for (int i = 0; i < goods.size(); i++)
         {
             json = (JSONObject) goods.get(i);
             imageList = dao.listImage(json.get(KeyConstant.GOODS_ID).toString());
+            standardId = json.get(KeyConstant.STANDARD_ID).toString();
 
             for (String s : imageList)
                 image.append(s).append(SymbolConstant.VERTICAL);
 
-            orderList = dao.getOrderList(json.get(KeyConstant.STANDARD_ID).toString());
+            orderList = dao.getOrderList(standardId);
+            orderList.setStandardId(standardId);
             orderList.setOrderId(myOrder.getOrderId());
             orderList.setGoodsImage(image.toString());
             orderList.setBuyNum(Integer.parseInt(json.get(KeyConstant.GOODS_NUM).toString()));
@@ -83,14 +86,7 @@ public class MyOrderServiceImpl implements MyOrderService
         int pageCount = PagingUtil.getCount((int) dao.countByExample(example), pageVO.getPageSize());
 
         List<MyOrder> result = dao.selectByExample(example);
-        List<MyOrderListVO> orderList = null;
-        for (MyOrder order : result)
-        {
-            orderList = dao.listOrderList(order.getOrderId());
-            for (MyOrderListVO orderListVO : orderList)
-                orderListVO.setGoodsImage(dao.getImage(orderListVO.getGoodsImage().split(SymbolConstant.REG_VERTICAL)[0]));
-            order.setOrderList(orderList);
-        }
+        result = getOrderList(result);
 
         JSONObject json = (JSONObject) JSONObject.toJSON(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), result));
         json.put(KeyConstant.PAGE_COUNT, pageCount);
@@ -206,7 +202,52 @@ public class MyOrderServiceImpl implements MyOrderService
 
         MyOrder record = new MyOrder();
         record.setOrderId(myOrder.getOrderId());
-        record.setOrderStatus(myOrder.getPaymentStatus().equals(OrderConstant.ALREADY_PAY) ? OrderConstant.ORDER_SUCCESS : OrderConstant.ALREADY_SIGN);
+        if (myOrder.getPaymentStatus().equals(OrderConstant.ALREADY_PAY))
+        {
+            record.setOrderStatus(OrderConstant.ORDER_SUCCESS);
+            record.setFinishDate(new Date());
+        } else
+            record.setOrderStatus(OrderConstant.ALREADY_SIGN);
+
+        int result = dao.updateByPrimaryKeySelective(record);
+
+        return JSONObject.toJSONString(new ResultVO(result < 1 ? 2 : 1, sessionVO.getToken()));
+    }
+
+    @Override
+    public String updateFinancePassB(SessionVO sessionVO, MyOrder myOrder)
+    {
+        myOrder = dao.selectByPrimaryKey(myOrder.getOrderId());
+
+        boolean flag = myOrder.getOrderStatus().equals(OrderConstant.ALREADY_SIGN);
+        flag |= myOrder.getOrderStatus().equals(OrderConstant.FINANCE_CHECK_FAIL_B);
+
+        if (!flag)
+            return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_FAILED, sessionVO.getToken()));
+
+        MyOrder record = new MyOrder();
+        record.setOrderId(myOrder.getOrderId());
+        record.setOrderStatus(OrderConstant.ORDER_SUCCESS);
+        record.setFinishDate(new Date());
+
+        int result = dao.updateByPrimaryKeySelective(record);
+
+        return JSONObject.toJSONString(new ResultVO(result < 1 ? 2 : 1, sessionVO.getToken()));
+    }
+
+    @Override
+    public String updateFinanceFailB(SessionVO sessionVO, MyOrder myOrder)
+    {
+        myOrder = dao.selectByPrimaryKey(myOrder.getOrderId());
+
+        boolean flag = myOrder.getOrderStatus().equals(OrderConstant.ALREADY_SIGN);
+
+        if (!flag)
+            return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_FAILED, sessionVO.getToken()));
+
+        MyOrder record = new MyOrder();
+        record.setOrderId(myOrder.getOrderId());
+        record.setOrderStatus(OrderConstant.FINANCE_CHECK_FAIL_B);
 
         int result = dao.updateByPrimaryKeySelective(record);
 
@@ -216,17 +257,204 @@ public class MyOrderServiceImpl implements MyOrderService
     @Override
     public String updateRefund(SessionVO sessionVO, MyOrder myOrder)
     {
+        int result = 1;
+        int count = 2;
+        int index = 0;
+
+        JSONArray jArray = JSONArray.parseArray(myOrder.getGoods());
+        String message = myOrder.getRefundMessage();
         myOrder = dao.selectByPrimaryKey(myOrder.getOrderId());
+
+        while (result > 0)
+        {
+            switch (index)
+            {
+                case 0:
+                    MyOrder record = new MyOrder();
+
+                    record.setOrderId(myOrder.getOrderId());
+                    record.setOrderStatus(OrderConstant.REFUND_WAITING);
+                    record.setOrderStatusBefore(myOrder.getOrderStatus());
+                    record.setRefundMessage(message);
+
+                    result = dao.updateByPrimaryKeySelective(record);
+                    break;
+                case 1:
+                    JSONObject json = null;
+                    MyOrderListVO myOrderList = new MyOrderListVO();
+
+                    myOrderList.setOrderId(myOrder.getOrderId());
+                    for (int i = 0; i < jArray.size(); i++)
+                    {
+                        json = (JSONObject) jArray.get(i);
+                        myOrderList.setStandardId(json.getString(KeyConstant.STANDARD_ID));
+                        myOrderList.setRefundNum(json.getInteger(KeyConstant.GOODS_NUM));
+                        if (result < 1)
+                            break;
+                        result = dao.updateListByPrimaryKeySelective(myOrderList);
+                    }
+                    break;
+                default:
+                    result = 0;
+                    break;
+            }
+            index++;
+        }
+
+        if (index - 1 < count)
+            throw new RuntimeException(Constant.STR_ADD_FAILED);
+        else
+            result = 1;
+
+        return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken()));
+    }
+
+    @Override
+    public String updateRefundCancel(SessionVO sessionVO, MyOrder myOrder)
+    {
+        myOrder = dao.selectByPrimaryKey(myOrder.getOrderId());
+
+        boolean flag = myOrder.getOrderStatus().equals(OrderConstant.REFUND_WAITING);
+
+        if (!flag)
+            return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_FAILED, sessionVO.getToken()));
 
         MyOrder record = new MyOrder();
         record.setOrderId(myOrder.getOrderId());
-        record.setOrderStatus(OrderConstant.WAITING_REFUND);
-        record.setOrderStatusBefore(myOrder.getOrderStatus());
-
+        record.setOrderStatus(myOrder.getOrderStatusBefore());
         int result = dao.updateByPrimaryKeySelective(record);
 
-        return JSONObject.toJSONString(new ResultVO(result < 1 ? 2 : 1, sessionVO.getToken()));
+        if (result < 1)
+            throw new RuntimeException(Constant.STR_ADD_FAILED);
+
+        return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken()));
     }
 
+    @Override
+    public String updateRefundPass(SessionVO sessionVO, MyOrder myOrder)
+    {
+        myOrder = dao.selectByPrimaryKey(myOrder.getOrderId());
+
+        boolean flag = myOrder.getOrderStatus().equals(OrderConstant.REFUND_WAITING);
+
+        if (!flag)
+            return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_FAILED, sessionVO.getToken()));
+
+        MyOrder record = new MyOrder();
+        record.setOrderId(myOrder.getOrderId());
+        record.setOrderStatus(OrderConstant.REFUND_PASS);
+        int result = dao.updateByPrimaryKeySelective(record);
+
+        if (result < 1)
+            throw new RuntimeException(Constant.STR_ADD_FAILED);
+
+        return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken()));
+    }
+
+    @Override
+    public String updateRefundGoods(SessionVO sessionVO, MyOrder myOrder)
+    {
+        myOrder = dao.selectByPrimaryKey(myOrder.getOrderId());
+
+        boolean flag = myOrder.getOrderStatus().equals(OrderConstant.REFUND_PASS);
+
+        if (!flag)
+            return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_FAILED, sessionVO.getToken()));
+
+        MyOrder record = new MyOrder();
+        record.setOrderId(myOrder.getOrderId());
+        record.setOrderStatus(OrderConstant.REFUND_GOODS);
+        int result = dao.updateByPrimaryKeySelective(record);
+
+        if (result < 1)
+            throw new RuntimeException(Constant.STR_ADD_FAILED);
+
+        return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken()));
+    }
+
+    @Override
+    public String updateRefundReceive(SessionVO sessionVO, MyOrder myOrder)
+    {
+        myOrder = dao.selectByPrimaryKey(myOrder.getOrderId());
+
+        boolean flag = myOrder.getOrderStatus().equals(OrderConstant.REFUND_GOODS);
+
+        if (!flag)
+            return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_FAILED, sessionVO.getToken()));
+
+        MyOrder record = new MyOrder();
+        record.setOrderId(myOrder.getOrderId());
+        record.setOrderStatus(OrderConstant.REFUND_RECEIVE);
+        int result = dao.updateByPrimaryKeySelective(record);
+
+        if (result < 1)
+            throw new RuntimeException(Constant.STR_ADD_FAILED);
+
+        return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken()));
+    }
+
+    @Override
+    public String updateRefundMoney(SessionVO sessionVO, MyOrder myOrder)
+    {
+        myOrder = dao.selectByPrimaryKey(myOrder.getOrderId());
+
+        boolean flag = myOrder.getOrderStatus().equals(OrderConstant.REFUND_RECEIVE);
+
+        if (!flag)
+            return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_FAILED, sessionVO.getToken()));
+
+        MyOrder record = new MyOrder();
+        record.setOrderId(myOrder.getOrderId());
+        record.setOrderStatus(OrderConstant.ORDER_CLOSE);
+        int result = dao.updateByPrimaryKeySelective(record);
+
+        if (result < 1)
+            throw new RuntimeException(Constant.STR_ADD_FAILED);
+
+        return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken()));
+    }
+
+    @Override
+    public String listMyOrderSelective(SessionVO sessionVO, MyOrder myOrder, PageVO pageVO)
+    {
+        MyOrderExample example = new MyOrderExample();
+        MyOrderExample.Criteria criteria = example.createCriteria();
+
+        example.setStart(PagingUtil.getStart(pageVO.getPageNum(), pageVO.getPageSize()));
+        example.setEnd(pageVO.getPageSize());
+        int pageCount = PagingUtil.getCount((int) dao.countByExample(example), pageVO.getPageSize());
+
+        criteria.andUserIdEqualTo(sessionVO.getUserId());
+        if (myOrder.getOrderStatus() != null)
+            criteria.andOrderStatusBeforeEqualTo(myOrder.getOrderStatus());
+        if (myOrder.getCreateDate() != null && myOrder.getFinishDate() != null)
+            criteria.andCreateDateBetween(myOrder.getCreateDate(), myOrder.getFinishDate());
+        if (myOrder.getPaymentType() != null)
+            criteria.andPaymentTypeEqualTo(myOrder.getPaymentType());
+        if (myOrder.getPaymentStatus() != null)
+            criteria.andPaymentStatusEqualTo(myOrder.getPaymentStatus());
+
+        List<MyOrder> result = dao.selectByExample(example);
+        result = getOrderList(result);
+
+        JSONObject json = (JSONObject) JSONObject.toJSON(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), result));
+        json.put(KeyConstant.PAGE_COUNT, pageCount);
+
+        return json.toJSONString();
+    }
+
+    private List<MyOrder> getOrderList(List<MyOrder> data)
+    {
+        List<MyOrderListVO> orderList = null;
+        for (MyOrder order : data)
+        {
+            orderList = dao.listOrderList(order.getOrderId());
+            for (MyOrderListVO orderListVO : orderList)
+                orderListVO.setGoodsImage(dao.getImage(orderListVO.getGoodsImage().split(SymbolConstant.REG_VERTICAL)[0]));
+            order.setOrderList(orderList);
+        }
+
+        return data;
+    }
 
 }

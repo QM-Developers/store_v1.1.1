@@ -30,6 +30,8 @@ public class CustomerVO
 
     private Integer creditRating;
 
+    private Date userCreateDate;
+
     private String businessAddress;
 
     private String station;
@@ -37,6 +39,16 @@ public class CustomerVO
     private String customerType;
 
     private String merchandiserId;
+
+    private Integer hadAccount;
+
+    private String userCardFront;
+
+    private String userCardBack;
+
+    private String userCardHand;
+
+    private Integer updateCount;
 
     public String getUserId()
     {
@@ -206,5 +218,65 @@ public class CustomerVO
     public void setMerchandiserId(String merchandiserId)
     {
         this.merchandiserId = merchandiserId;
+    }
+
+    public Integer getHadAccount()
+    {
+        return hadAccount;
+    }
+
+    public void setHadAccount(Integer hadAccount)
+    {
+        this.hadAccount = hadAccount;
+    }
+
+    public String getUserCardFront()
+    {
+        return userCardFront;
+    }
+
+    public void setUserCardFront(String userCardFront)
+    {
+        this.userCardFront = userCardFront;
+    }
+
+    public String getUserCardBack()
+    {
+        return userCardBack;
+    }
+
+    public void setUserCardBack(String userCardBack)
+    {
+        this.userCardBack = userCardBack;
+    }
+
+    public String getUserCardHand()
+    {
+        return userCardHand;
+    }
+
+    public void setUserCardHand(String userCardHand)
+    {
+        this.userCardHand = userCardHand;
+    }
+
+    public Date getUserCreateDate()
+    {
+        return userCreateDate;
+    }
+
+    public void setUserCreateDate(Date userCreateDate)
+    {
+        this.userCreateDate = userCreateDate;
+    }
+
+    public Integer getUpdateCount()
+    {
+        return updateCount;
+    }
+
+    public void setUpdateCount(Integer updateCount)
+    {
+        this.updateCount = updateCount;
     }
 }

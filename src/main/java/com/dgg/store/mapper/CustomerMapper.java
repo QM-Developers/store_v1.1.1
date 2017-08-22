@@ -20,4 +20,12 @@ public interface CustomerMapper
     Integer updateCustomerUser(CustomerVO customerVO);
 
     int countCustomer(CustomerVO customerVO);
+
+    CustomerVO getCustomer(CustomerVO customerVO);
+
+    int insertFrontImage(@Param("fileName") String fileName,@Param("customerId") String customerId);
+
+    int insertBackImage(@Param("fileName") String fileName,@Param("customerId") String customerId);
+
+    int insertHandImage(@Param("fileName") String fileName,@Param("customerId") String customerId);
 }

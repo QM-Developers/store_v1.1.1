@@ -16,7 +16,21 @@ create table customer
    my_team_id 			varchar(35) not null default '',	-- 企业码
    business_address		varchar(50) not null default '',	-- 经营地址
    station	varchar(20) not null default '',	-- 从事岗位
-   credit_rating		tinyint not null default 0	-- 客户评级
+   credit_rating		tinyint not null default 0,	-- 客户评级
+   had_account tinyint not null default 0,	-- 是否建账 0为未建账 1为已建账
+   update_date datetime,	-- 更新时间
+   update_count int not null default 0	-- 更新次数
+);
+
+/*==============================================================*/
+/* 客户库存类型
+/*==============================================================*/
+drop table if exists customer_repertory;
+create table customer_repertory
+(
+   customer_type        varchar(20) not null default '',	-- 客户类型
+   my_team_id 			varchar(35) not null default '',	-- 企业码
+   repertory_type       tinyint not null default 0	-- 库存类型 0 为未分配 1 为一级 2 为二级
 );
 
 /*==============================================================*/
@@ -612,6 +626,33 @@ create table qm_branch
     user_phone varchar(20) not null default '',
     branch_area varchar(50) not null default '',
     lat_lng varchar(30) not null default ''
+);
+
+/*==============================================================*/
+/* 库存记录
+/*==============================================================*/
+drop table if exists repertory_record;
+create table repertory_record
+(
+   record_id varchar(35) not null primary key,	-- 记录Id
+   branch_id varchar(35) not null,	-- 销售点Id
+   create_date datetime not null,	-- 申请时间
+   proposer_id varchar(35) not null,	-- 申请人
+   approver_id varchar(35),	-- 审批人
+   record_status tinyint not null	-- 申请状态
+);
+
+/*==============================================================*/
+/* 库存申请列表
+/*==============================================================*/
+drop table if exists repertory_record_list;
+create table repertory_record_list
+(
+   goods_id varchar(35) not null primary key,	-- 商品Id
+   goods_name varchar(60) not null,	-- 商品名称
+   standard_id varchar(35) not null,	-- 规格Id
+   standard_name varchar(20) not null,	-- 规格名称
+   standard_count int not null	-- 申请数量
 );
 
 /*==============================================================*/

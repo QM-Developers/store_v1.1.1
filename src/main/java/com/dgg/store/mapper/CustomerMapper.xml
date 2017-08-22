@@ -12,8 +12,13 @@
         <result column="business_address" property="businessAddress" jdbcType="VARCHAR"/>
         <result column="station" property="station" jdbcType="VARCHAR"/>
         <result column="customer_type" property="customerType" jdbcType="VARCHAR"/>
+        <result column="had_account" property="hadAccount" jdbcType="INTEGER"/>
+        <result column="user_card_front" property="userCardFront" jdbcType="VARCHAR"/>
+        <result column="user_card_back" property="userCardBack" jdbcType="VARCHAR"/>
+        <result column="user_card_hand" property="userCardHand" jdbcType="VARCHAR"/>
+        <result column="update_date" property="userUpdateTime" jdbcType="VARCHAR"/>
+        <result column="update_count" property="updateCount" jdbcType="INTEGER"/>
     </resultMap>
-
 
     <insert id="insertCustomerRecord" parameterType="com.dgg.store.util.vo.CustomerVO">
         INSERT INTO user_record
@@ -38,7 +43,7 @@
 
     <select id="listCustomer" resultMap="CustomerVO">
         SELECT c.customer_id,c.business_address,c.credit_rating,
-            c.customer_type,c.station,
+            c.customer_type,c.station,c.had_account,
             u.user_name,u.user_phone,u.user_birthday,
             u.user_address,u.user_sex
         FROM customer c
@@ -123,8 +128,43 @@
             <if test="creditRating != null">
                 credit_rating = #{creditRating},
             </if>
+            update_date = now(),
+            count_update = (SELECT count_update + 1 FROM customer WHERE customer_id = #{customerId}),
         </set>
         WHERE customer_id = #{customerId}
     </update>
 
+    <select id="getCustomer" resultMap="CustomerVO">
+        SELECT c.customer_id,c.customer_type,c.had_account,
+            c.credit_rating,c.business_address,c.station,
+            c.update_count,c.update_date,
+            u.user_name,u.user_phone,u.user_birthday,
+            u.user_address,u.user_sex,u.user_create_date,
+            u.user_card_front,u.user_card_back,u.user_card_hand
+        FROM customer c
+        INNER JOIN user_view u
+        ON u.user_id = c.user_id
+        WHERE c.customer_id = #{customerId}
+    </select>
+
+    <update id="insertFrontImage">
+        UPDATE user u,user_record re
+        SET u.user_card_front = #{fileName},re.user_card_front = #{fileName}
+        WHERE u.user_id = (SELECT user_id FROM customer WHERE customer_id = #{customerId})
+        OR re.user_id = (SELECT user_id FROM customer WHERE customer_id = #{customerId})
+    </update>
+
+    <update id="insertBackImage">
+        UPDATE user u,user_record re
+        SET u.user_card_back = #{fileName},re.user_card_back = #{fileName}
+        WHERE u.user_id = (SELECT user_id FROM customer WHERE customer_id = #{customerId})
+        OR re.user_id = (SELECT user_id FROM customer WHERE customer_id = #{customerId})
+    </update>
+
+    <update id="insertHandImage">
+        UPDATE user u,user_record re
+        SET u.user_card_hand = #{fileName},re.user_card_hand = #{fileName}
+        WHERE u.user_id = (SELECT user_id FROM customer WHERE customer_id = #{customerId})
+        OR re.user_id = (SELECT user_id FROM customer WHERE customer_id = #{customerId})
+    </update>
 </mapper>

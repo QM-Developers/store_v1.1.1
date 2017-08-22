@@ -188,13 +188,11 @@
 
     <select id="listBranchGoods" resultMap="GoodsDetailVO" parameterType="com.dgg.store.util.vo.branch.BranchVO">
         SELECT gi.goods_id,gi.goods_name,gi.goods_create_date,
-          gt.goods_type_name goods_type
+          gt.goods_type_name goods_type,
+        ifnull((SELECT standard_count FROM qm_branch_goods WHERE branch_id = #{condition.branchId} and goods_id = gi.goods_id),0)
         FROM goodsinfo gi
-        INNER JOIN qm_branch_goods bg
-        ON bg.goods_id = gi.goods_id
-        INNER JOIN goods_typeinfo gt
+        LEFT JOIN goods_typeinfo gt
         ON gt.goods_type_id = gi.goods_type_id
-        WHERE bg.branch_id = #{condition.branchId}
         GROUP BY gi.goods_id
         LIMIT #{start},#{end}
     </select>

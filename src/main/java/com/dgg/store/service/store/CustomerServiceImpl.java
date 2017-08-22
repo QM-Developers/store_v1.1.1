@@ -2,19 +2,20 @@ package com.dgg.store.service.store;
 
 import com.alibaba.fastjson.JSONObject;
 import com.dgg.store.dao.store.CustomerDao;
-import com.dgg.store.util.core.constant.Constant;
-import com.dgg.store.util.core.constant.KeyConstant;
-import com.dgg.store.util.core.constant.RoleConstant;
+import com.dgg.store.util.core.constant.*;
 import com.dgg.store.util.core.generator.IDGenerator;
 import com.dgg.store.util.core.page.PagingUtil;
 import com.dgg.store.util.core.string.StringUtil;
+import com.dgg.store.util.core.upload.UploadFileUtil;
 import com.dgg.store.util.vo.CustomerVO;
 import com.dgg.store.util.vo.core.PageVO;
 import com.dgg.store.util.vo.core.ResultVO;
 import com.dgg.store.util.vo.core.SessionVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 
 @Service
@@ -119,6 +120,73 @@ public class CustomerServiceImpl implements CustomerService
         return json.toJSONString();
     }
 
-    
+    @Override
+    public String insertFrontImage(SessionVO sessionVO, MultipartFile file, String realPath, CustomerVO customerVO)
+    {
+        int result = 0;
+        StringBuffer path = new StringBuffer();
+        String fileName = null;
+
+        try
+        {
+            path.append(PathConstant.USER_ID_CARD_PATH).append(sessionVO.getUserId()).append(SymbolConstant.SLASH);
+            fileName = UploadFileUtil.doUpload(file, path.toString(), realPath, IDGenerator.generator());
+            result = dao.insertFrontImage(fileName,customerVO.getCustomerId());
+        } catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+
+        return JSONObject.toJSONString(new ResultVO(result, sessionVO.getToken(), fileName));
+    }
+
+    @Override
+    public String insertHandImage(SessionVO sessionVO, MultipartFile file, String realPath, CustomerVO customerVO)
+    {
+        int result = 0;
+        StringBuffer path = new StringBuffer();
+        String fileName = null;
+
+        try
+        {
+            path.append(PathConstant.USER_ID_CARD_PATH).append(sessionVO.getUserId()).append(SymbolConstant.SLASH);
+            fileName = UploadFileUtil.doUpload(file, path.toString(), realPath, IDGenerator.generator());
+            result = dao.insertHandImage(fileName,customerVO.getCustomerId());
+        } catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+
+        return JSONObject.toJSONString(new ResultVO(result, sessionVO.getToken(), fileName));
+    }
+
+    @Override
+    public String getCustomer(SessionVO sessionVO, CustomerVO customerVO)
+    {
+        CustomerVO result = dao.getCustomer(customerVO);
+
+        return JSONObject.toJSONString(new ResultVO(result == null ? Constant.REQUEST_FAILED : Constant.REQUEST_SUCCESS, sessionVO.getToken(), result));
+    }
+
+    @Override
+    public String insertBackImage(SessionVO sessionVO, MultipartFile file, String realPath, CustomerVO customerVO)
+    {
+        int result = 0;
+        StringBuffer path = new StringBuffer();
+        String fileName = null;
+
+        try
+        {
+            path.append(PathConstant.USER_ID_CARD_PATH).append(sessionVO.getUserId()).append(SymbolConstant.SLASH);
+            fileName = UploadFileUtil.doUpload(file, path.toString(), realPath, IDGenerator.generator());
+            result = dao.insertBackImage(fileName,customerVO.getCustomerId());
+        } catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+
+        return JSONObject.toJSONString(new ResultVO(result, sessionVO.getToken(), fileName));
+    }
+
 
 }

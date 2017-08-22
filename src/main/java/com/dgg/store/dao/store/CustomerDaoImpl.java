@@ -55,4 +55,28 @@ public class CustomerDaoImpl implements CustomerDao
         return mapper.countCustomer(customerVO);
     }
 
+    @Override
+    public CustomerVO getCustomer(CustomerVO customerVO)
+    {
+        return mapper.getCustomer(customerVO);
+    }
+
+    @Override
+    public int insertFrontImage(String fileName, String customerId)
+    {
+        return mapper.insertFrontImage(fileName,customerId);
+    }
+
+    @Override
+    public int insertBackImage(String fileName, String customerId)
+    {
+        return mapper.insertBackImage(fileName,customerId);
+    }
+
+    @Override
+    public int insertHandImage(String fileName, String customerId)
+    {
+        return mapper.insertHandImage(fileName,customerId);
+    }
+
 }

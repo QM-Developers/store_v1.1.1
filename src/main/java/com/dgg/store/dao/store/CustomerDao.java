@@ -19,4 +19,12 @@ public interface CustomerDao
     Integer updateCustomerUserRecord(CustomerVO customerVO);
 
     int countCustomer(CustomerVO customerVO);
+
+    CustomerVO getCustomer(CustomerVO customerVO);
+
+    int insertFrontImage(String fileName, String customerId);
+
+    int insertBackImage(String fileName, String customerId);
+
+    int insertHandImage(String fileName, String customerId);
 }

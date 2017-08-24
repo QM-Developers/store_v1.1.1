@@ -1,23 +1,32 @@
+.opacity-box{
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
 .goodslist-header {
     width: 100%;
     height: 42px;
-    background: #F2F2F2;
+    background: #f1f0f5;
     margin-top: 10px;
 }
 
 .goodslist-but {
     display: inline-block;
-    width: 160px;
+    width: 120px;
     font-size: 18px;
     color: #000000;
     border: none;
     outline: 0;
-    background: #f2f2f2;
+    background: #f1f0f5;
     text-align: center;
     line-height: 42px;
+    margin-left: 25px;
     cursor: pointer;
 }
-
+.goodslist-but:hover{
+    color: #ffffff;
+    background-color: #02b4fe;
+}
 .goodslist-list-titlebox {
     width: 100%;
     height: 42px;
@@ -56,23 +65,25 @@
     line-height: 40px;
     display: flex;
     border-bottom: 1px solid #CCCCCC;
-    padding: 0 25px;
+    padding: 0 0 0 25px;
 }
 
 .goodslist-list-tr:nth-child(1) {
     height: 40px;
     line-height: 40px;
-    background: #e6e6e6;
+    background: #f1f0f5;
     border-bottom: 1px solid #CCCCCC;
 }
 
 .goodslist-list-tr div {
-    width: 25%;
+    width: 20%;
     float: left;
 }
-
+.goodslist-list-tr div:last-child {
+   min-width: 250px;
+}
 .item4 a {
-    margin-right: 15px;
+    padding: 4px;
 }
 
 .item4 a:last-child {
@@ -100,6 +111,10 @@
     border: 0;
     background: #FFFFFF;
 }
+.paging .pagingright{
+    cursor: pointer;
+}
+
 
 .paging .paging-num-box {
     width: 230px;
@@ -115,8 +130,13 @@
     border: 1px solid #CCCCCC;
     float: right;
     background: #f7f7f7;
+    cursor: pointer;
 }
+.paging-checked {
 
+    background: #71bcfd;
+
+}
 /*添加客户*/
 .change-popup {
     width: 440px;
@@ -229,7 +249,7 @@
     width: 100px;
     height: 40px;
     border: 1px solid #CCCCCC;
-    background: #FFFFFF;
+    background: #f1f0f5;
     float: right;
     margin-right: 60px;
 }
@@ -243,3 +263,4 @@
 .amap-sug-result{
     z-index: 1234 !important;
 }
+

@@ -12,82 +12,68 @@
         var basePath = "${basePath}";
     </script>
 
-    <link rel="stylesheet" href="../../../script/Amaze/assets/css/amazeui.min.css"/>
-    <link rel="stylesheet" type="text/css" href="../../../../reset.css"/>
+    <link rel="stylesheet" type="text/css" href="${path}/script/Amaze/assets/css/amazeui.min.css"/>
+    <link rel="stylesheet" type="text/css" href="${path}/pages/common/reset.css"/>
+    <link rel="stylesheet" type="text/css" href="${path}/pages/common/windowstyle.css"/>
     <link rel="stylesheet" href="qm-template.css"/>
 </head>
 
 <body>
-<div class="bodybox">
+<div class="bodybox opacity-box">
     <div class="goodslist-list-titlebox">
         <div class="goodslist-title-text">运费模板</div>
     </div>
     <div class="">
-        <table class="tablebox">
-            <tr>
+        <table class="tablebox" id="freight">
+            <tr class="firsttr">
                 <th>运输方式</th>
-                <th>满载量</th>
+                <th>限重/吨</th>
                 <th>起步范围/公里</th>
                 <th>起步价/元</th>
-                <th>没增加距离/公里</th>
+                <th>每增加距离/公里</th>
                 <th>增加费用/元</th>
                 <th>
-                    <span onclick="AddTr(this)">增加模板</span>
+                    <span class="addtemplate" onclick="AddTr()">增加模板</span>
                 </th>
             </tr>
-            <tr>
-                <td><input/></td>
-                <td><input/></td>
-                <td><input/></td>
-                <td><input/></td>
-                <td><input/></td>
-                <td><input/></td>
-                <td>
-                    <a href="javascript:void(0);" onclick="Conserve(this)">保存</a>
-                    <a href="javascript:void(0);" onclick="Deltr(this)">删除</a>
-                </td>
-            </tr>
+            <%--<tr>--%>
+                <%--<td><input/></td>--%>
+                <%--<td><input/></td>--%>
+                <%--<td><input/></td>--%>
+                <%--<td><input/></td>--%>
+                <%--<td><input/></td>--%>
+                <%--<td><input/></td>--%>
+                <%--<td>--%>
+                    <%--<a onclick="Conserve(this)">保存</a>--%>
+                    <%--<a onclick="Deltr(this)">删除</a>--%>
+                <%--</td>--%>
+            <%--</tr>--%>
         </table>
+    </div>
+    <div class="paging" >
+
+        <div class="pagingright" onclick="freightNextPage(this)">
+            下一页
+        </div>
+        <div class="pagingmodle">
+            <span id="branchpageleft">1</span>/<span id="branchpageright">1</span>
+        </div>
+
+        <div class="pagingright" onclick="freightNextPage(this)">
+            上一页
+        </div>
+        <div class="paging-num-box" id="branchshownum">
+            显示条数:<span class="paging-num " onclick="freightShowNum(this)">30</span>
+            <span class="paging-num " onclick="freightShowNum(this)">20</span>
+            <span class="paging-num paging-checked" onclick="freightShowNum(this)">10</span>
+        </div>
     </div>
 </div>
 </body>
 <script src="../../../script/jquery/jquery-3.0.0.min.js"></script>
 <script src="../../../script/Amaze/assets/js/amazeui.min.js"></script>
-<script type="text/javascript">
-    Deltr = function (item)
-    {
-        $(item).parents("tr").remove()
-    }
-    //控制模板编写
-    Conserve = function (item)
-    {
-        var $ThisInput = $(item).parents("tr").find("input");
-        if ($ThisInput.attr("disabled"))
-        {
-            $ThisInput.removeAttr("disabled").css('border', '1px solid #ccc')
-            $(item).text("保存")
-        } else
-        {
-            $ThisInput.attr("disabled", 'disabled').css('border', '0')
-            $(item).text("编辑")
-        }
-    }
-    Addtemplate = function (item)
-    {
-        var $Tr = '<tr>' +
-            '<td><input /></td>' +
-            '<td><input /></td>' +
-            '<td><input /></td>' +
-            '<td><input /></td>' +
-            '<td><input /></td>' +
-            '<td><input /></td>' +
-            '<td >' +
-            '<a href="javascript:void(0);"  onclick="Conserve(this)">保存</a>' +
-            '<a href="javascript:void(0);"  onclick="Deltr(this)">删除</a>' +
+<script type="text/javascript" src="${path}/script/js/myjs.js"></script>
+<script type="text/javascript" src="../../../pages/index/regularandpop.js"></script>
+<script type="text/javascript" src="qm-template.js"></script>
 
-            '</td>' +
-            '</tr>'
-
-    }
-</script>
 </html>

@@ -14,15 +14,17 @@
     <link rel="stylesheet" type="text/css" href="${path}/script/Amaze/assets/css/amazeui.min.css"/>
     <link rel="stylesheet" type="text/css" href="${path}/script/webuploader-0.1.5/webuploader.css">
     <link rel="stylesheet" type="text/css" href="${path}/pages/common/reset.css"/>
+    <link rel="stylesheet" type="text/css" href="${path}/pages/common/windowstyle.css"/>
     <link rel="stylesheet" type="text/css" href="${path}/pages/mall/goods/qm-goodsRelease.css"/>
 
     <script type="text/javascript">
+        console.log(document.URL);
         var urlParams = document.URL.split("?")[1];
     </script>
 </head>
 
 <body>
-<div class="bodybox">
+<div class="bodybox opacity-box">
     <div style="border: 1px solid #ccc;margin-top: 10px;border-radius: 2px;">
         <div class=" goods-title">
             <div class=""><span class="am-text-lg ">添加商品</span></div>
@@ -31,7 +33,7 @@
             <div class="goods-box1">
                 <div class="goods-box1-1">类　　目 :</div>
                 <div class="goods-box1-2">
-                    <span id="type-text">闪闪闪 ></span>
+                    <span id="type-text"></span>
                     <a href="javascript:(0)" onclick="gdReleaseJS.toTypeSelect();" class="goods-box1-a">切换类目</a>
                 </div>
             </div>
@@ -73,7 +75,7 @@
                                 <td><input/></td>
                                 <td><input/></td>
                                 <td class="tab4">
-                                    <a class="tab4-a " onclick="Delall(this)">删除</a>
+                                    <a class="tab4-a " onclick="gdReleaseJS.Delall(this)">删除</a>
                                 </td>
                             </tr>
                             </tbody>
@@ -202,13 +204,14 @@
             </div>
             <div class="am-g  data-del-off ">
                 <div>
+                    <button class="del-but" onclick="javascript:history.go(-1);">返回</button>
+                </div>
+                <div>
                     <button class="del-but" onclick="gdReleaseJS.deleteGoods();">删除</button>
                 </div>
+
                 <div>
-                    <button class="del-but">取消</button>
-                </div>
-                <div>
-                    <button class="del-but" onclick="gdReleaseJS.saveOrUpdateGoods();">提交</button>
+                    <button class="del-but" onclick="gdReleaseJS.saveOrUpdateGoods();">保存</button>
                 </div>
             </div>
         </div>
@@ -269,22 +272,23 @@
         </div>
     </div>
 </div>
-<div class="prompt-box Del-all">
-    <div class="pop-one pop-one1">
-        <div class="prompt-title">提示</div>
-        <div class="prompt-frame1">是否删除</div>
-        <div class="prompt-frame2">
-            <div class="prompt-frame-box">
-                <div class="prompt-frame-right" onclick="_deleteoff()">
-                    是
-                </div>
-                <div class="prompt-frame-left" onclick="DelOff(this)">
-                    否
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+<%--<div class="prompt-box Del-all">--%>
+    <%--<div class="pop-one pop-one1">--%>
+        <%--<div class="prompt-title">提示</div>--%>
+        <%--<div class="prompt-frame1">是否要删除这个规格</div>--%>
+        <%--<div class="prompt-frame2">--%>
+            <%--<div class="prompt-frame-box">--%>
+
+                <%--<div class="prompt-frame-left" onclick="_deleteoff()">--%>
+                    <%--是--%>
+                <%--</div>--%>
+                <%--<div class="prompt-frame-right" onclick="DelOff(this)">--%>
+                    <%--否--%>
+                <%--</div>--%>
+            <%--</div>--%>
+        <%--</div>--%>
+    <%--</div>--%>
+<%--</div>--%>
 </body>
 
 <script type="text/javascript" src="${path}/script/jquery/jquery-3.0.0.min.js"></script>
@@ -296,49 +300,51 @@
 
 <script type="text/javascript" src="${path}/pages/common/Constant.js"></script>
 <script type="text/javascript" src="${path}/pages/mall/goods/qm-url-params.js"></script>
+<script type="text/javascript" src="../../../pages/index/regularandpop.js"></script>
+
 <script type="text/javascript" src="${path}/pages/mall/goods/qm-goodsRelease.js"></script>
 <script type="text/javascript">
     gdReleaseJS.init();
 </script>
 
 <script type="text/javascript">
-    var optType = "";
-    var temp;
-    var optTypes = {DELETE: "delete"};
-
-    Deltr = function (item)
-    {
-        $(item).parents("tr").remove()
-    };
-    //删除规格
-    Delall = function (item)
-    {
-        if ($("#standard-list tr").length == 1)
-            return;
-        $(".Del-all").css("display", "block")
-        optType = optTypes.DELETE;
-        temp = item;
-    };
-
-    var _delete = function ()
-    {
-        Deltr(temp)
-    };
-
-    var _deleteoff = function ()
-    {
-        switch (optType)
-        {
-            case optTypes.DELETE:
-                _delete();
-                $(".Del-all").css("display", "none")
-                break;
-        }
-    };
-    DelOff = function (item)
-    {
-        $(item).parents(".Del-all").css("display", "none")
-    }
+//    var optType = "";
+//    var temp;
+//    var optTypes = {DELETE: "delete"};
+//
+//    Deltr = function (item)
+//    {
+//        $(item).parents("tr").remove()
+//    };
+//    //删除规格
+//    Delall = function (item)
+//    {
+//        if ($("#standard-list tr").length == 1)
+//            return;
+//        $(".Del-all").css("display", "block")
+//        optType = optTypes.DELETE;
+//        temp = item;
+//    };
+//
+//    var _delete = function ()
+//    {
+//        Deltr(temp)
+//    };
+//
+//    var _deleteoff = function ()
+//    {
+//        switch (optType)
+//        {
+//            case optTypes.DELETE:
+//                _delete();
+//                $(".Del-all").css("display", "none")
+//                break;
+//        }
+//    };
+//    DelOff = function (item)
+//    {
+//        $(item).parents(".Del-all").css("display", "none")
+//    }
 </script>
 
 </html>

@@ -46,4 +46,6 @@ public interface GoodsinfoMapper
     int countGoods(GoodsInfoVO condition);
 
     List<GoodsStandard> listStandards(@Param("goodsId") String goodsId);
+
+    List<GoodsImgVO> listImage(@Param("goodsId") String goodsId);
 }

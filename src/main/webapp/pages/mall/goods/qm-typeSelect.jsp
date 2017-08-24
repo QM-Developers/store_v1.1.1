@@ -17,15 +17,15 @@
 
     <script type="text/javascript">
         var urlParams = document.URL.split("?")[1];
+        console.log(urlParams,'a')
     </script>
 </head>
 <body>
-<div class="admin-content">
+<div class="admin-content bodybox">
     <div style="height: 90%" class="admin-content-body">
-        <div class="am-cf am-padding am-padding-bottom-0">
-            <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">请选择商品类目</strong></div>
+        <div class="am-cf  typetitle ">
+            <div class="am-fl am-cf"><strong class=" am-text-lg">商品类目选择</strong></div>
         </div>
-        <hr/>
         <div class="contains">
             <div class="wareSort clearfix">
                 <div id="type-list">
@@ -45,7 +45,6 @@
 <script type="text/javascript" src="${path}/script/js/UrlUtil.js"></script>
 <script type="text/javascript" src="${path}/pages/common/control.js"></script>
 <script type="text/javascript" src="${path}/pages/common/Constant.js"></script>
-
 <script type="text/javascript" src="${path}/pages/mall/goods/qm-typeSelect.js"></script>
 <script type="text/javascript">
     qm_type.init();

@@ -170,6 +170,8 @@ public class GoodsManageServiceImpl implements GoodsManageService
     {
         GoodsInfoVO result = dao.findGoodsInfo(infoVO);
 
+        result.setImgList(dao.listImage(result.getGoodsId()));
+
         ResultVO resultVO = new ResultVO(result == null ? 2 : 1, sessionVO.getToken(), result);
 
         return resultVO;
@@ -178,7 +180,7 @@ public class GoodsManageServiceImpl implements GoodsManageService
     @Override
     public ResultVO findGoodsDescribe(SessionVO sessionVO, GoodsInfoVO infoVO)
     {
-        String[] ids = infoVO.getGoodsDescribe().split(SymbolConstant.VERTICAL);
+        String[] ids = infoVO.getGoodsDescribe().split(SymbolConstant.REG_VERTICAL);
         List<GoodsImgVO> result = dao.findGoodsDescribe(ids);
 
         ResultVO resultVO = new ResultVO(1, sessionVO.getToken(), result);
@@ -193,7 +195,7 @@ public class GoodsManageServiceImpl implements GoodsManageService
         int i = 0;
         int count = 3;
 
-        String[] images = goodsInfo.getGoodsImages().split(SymbolConstant.VERTICAL);
+        String[] images = goodsInfo.getGoodsImages().split(SymbolConstant.REG_VERTICAL);
         GoodsImgVO imgVO = new GoodsImgVO(sessionVO.getUserId(), goodsInfo.getGoodsId());
 
         while (result > 0)

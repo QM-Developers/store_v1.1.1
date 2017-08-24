@@ -153,16 +153,19 @@
         SELECT gi.goods_id, gi.goods_type_id, gi.goods_name,
             gi.goods_attr, gi.goods_describe, gi.goods_standard,
             gs.standard_id,gs.standard_name,gs.standard_price,
-            gs.standard_count,gs.standard_weight,
-            img.image_path,img.image_id
+            gs.standard_count,gs.standard_weight
         FROM goodsinfo gi
         LEFT JOIN goods_standard gs
         ON gs.goods_id = gi.goods_id
-        LEFT JOIN goods_image gimg
-        ON gimg.goods_id = gi.goods_id
+        WHERE gi.goods_id = #{goodsId}
+    </select>
+
+    <select id="listImage" resultMap="GoodsImgVO">
+        SELECT img.image_path,img.image_id
+        FROM goods_image gimg
         LEFT JOIN image_space img
         ON img.image_id = gimg.image_id
-        WHERE gi.goods_id = #{goodsId}
+        WHERE goods_id = #{goodsId}
         ORDER BY gimg.sort
     </select>
 

@@ -1,7 +1,9 @@
 package com.dgg.store.dao.store;
 
 import com.dgg.store.mapper.CustomerMapper;
-import com.dgg.store.util.vo.CustomerVO;
+import com.dgg.store.util.pojo.CustomerAccountRequest;
+import com.dgg.store.util.vo.customer.CustomerRepertoryVO;
+import com.dgg.store.util.vo.customer.CustomerVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -77,6 +79,78 @@ public class CustomerDaoImpl implements CustomerDao
     public int insertHandImage(String fileName, String customerId)
     {
         return mapper.insertHandImage(fileName,customerId);
+    }
+
+    @Override
+    public int getRepertoryLevel(String customerType, String myTeamId)
+    {
+        return mapper.getRepertoryLevel(customerType,myTeamId);
+    }
+
+    @Override
+    public int countRepertoryLevel(CustomerRepertoryVO repertory)
+    {
+        return mapper.countRepertoryLevel(repertory);
+    }
+
+    @Override
+    public int insertRepertoryLevel(CustomerRepertoryVO repertory)
+    {
+        return mapper.insertRepertoryLevel(repertory);
+    }
+
+    @Override
+    public List<CustomerVO> listMerchandiserFirst(CustomerVO customerVO)
+    {
+        return mapper.listMerchandiserFirst(customerVO);
+    }
+
+    @Override
+    public List<CustomerVO> listMerchandiserSecond(CustomerVO customerVO)
+    {
+        return mapper.listMerchandiserSecond(customerVO);
+    }
+
+    @Override
+    public List<CustomerVO> listAccountChecker(String myTeamId, String accountCheck)
+    {
+        return mapper.listAccountChecker(myTeamId,accountCheck);
+    }
+
+    @Override
+    public int insertCustomerAccount(CustomerAccountRequest accountRequest)
+    {
+        return mapper.insertCustomerAccount(accountRequest);
+    }
+
+    @Override
+    public int updateCustomerAccountById(CustomerAccountRequest accountRequest)
+    {
+        return mapper.updateCustomerAccountById(accountRequest);
+    }
+
+    @Override
+    public int updateRecordToAccount(String customerId)
+    {
+        return mapper.updateRecordToAccount(customerId);
+    }
+
+    @Override
+    public int deleteRecord(String customerId)
+    {
+        return mapper.deleteRecord(customerId);
+    }
+
+    @Override
+    public CustomerAccountRequest getCustomerAccount(String requestId)
+    {
+        return mapper.getCustomerAccount(requestId);
+    }
+
+    @Override
+    public List<CustomerAccountRequest> listCustomerAccount(CustomerAccountRequest accountRequest)
+    {
+        return mapper.listCustomerAccount(accountRequest);
     }
 
 }

@@ -1,0 +1,135 @@
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="../../../script/Amaze/assets/css/amazeui.min.css" />
+		<link rel="stylesheet" type="text/css" href="../../../pages/common/reset.css"/>
+		<link rel="stylesheet" type="text/css" href="qm-branchgoodsdetails.css" />
+
+	</head>
+
+	<body>
+		<div class="bodybox">
+			<div style="border: 1px solid #ccc;margin-top: 10px;border-radius: 2px;">
+				<div class=" goods-title">
+					<div ><span class="am-text-lg" id="branchgoodsdetails">商品详情</span></div>
+				</div>
+				<div class="admin-content-body goods-cont">
+					<div class="goods-box1">
+						<div class="goods-box1-1">类　　目 :</div>
+						<div class="goods-box1-2">
+							<span id="type-text"></span>
+						</div>
+					</div>
+					<div class="goods-box1">
+						<div class=" goods-box1-1">商品名称 :</div>
+						<div class="goods-box1-2">
+							<input type="text" id="goods-name" disabled class="am-form-field am-input-sm">
+						</div>
+						<div class=""></div>
+					</div>
+					<div class="goods-box1">
+						<div class="goods-box1-1">商品品牌 :</div>
+						<div class="goods-box1-2">
+							<input type="text" id="goods-attr" disabled class="am-form-field am-input-sm">
+						</div>
+						<div class=""></div>
+					</div>
+					<div class="am-g">
+						<div class="goods-box1-1">商品规格 :</div>
+						<div class="attr-list-body  am-panel-default ">
+							<div class=" goodssize">
+								<table>
+									<thead>
+										<tr class="frist-tr">
+											<th>规格名称</th>
+											<th>商品重量</th>
+											<th>单价(元)</th>
+											<th>库存</th>
+											<th class="tab4">
+
+											</th>
+										</tr>
+									</thead>
+									<tbody id="standard-list">
+										<tr>
+											<td><input/></td>
+											<td><input/></td>
+											<td><input/></td>
+											<td><input/></td>
+											<td class="tab4">
+
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+					<div class="am-g" style="margin-top: 10px;">
+						<div class="goods-box1-1">商品图片 :</div>
+						<div class="add-picul">
+							<div class="add-picul-text">图片尺寸为800*800,JPG格式,小于300K,大于38K,不多于5张</div>
+							<ul id="img-list" class="add-picture" style=" zoom:1;">
+								<li class="lileft">
+									<div class="add-two">
+										<div class="a-shade">
+											商品主图
+										</div>
+										<img/>
+									</div>
+								</li>
+								<li class="lileft">
+									<div class="add-two">
+										<img src="" />
+									</div>
+								</li>
+								<li class="lileft">
+									<div class="add-two">
+										<img src="" />
+									</div>
+								</li>
+								<li class="lileft">
+									<div class="add-two">
+										<img src="" />
+									</div>
+								</li>
+								<li class="lileft">
+									<div class="add-two">
+										<img src="" />
+									</div>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<div class="am-g" style="margin-top: 10px;">
+						<div class="goods-box1-1">商品详情 :</div>
+						<div class="goods-phone">
+							<div class="add-picul-text">图片尺寸为宽480*620,高要不大于920,JPG格式,小于300K,大于38K,不多于20张</div>
+							<div class="img-box">
+								<div class="imgmiddle">
+									<div class="imgmiddletop">
+										<ul id="middleimg" class="middleimg"></ul>
+									</div>
+									<div id="imgmiddlebotton" class="imgmiddlebotton">
+
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="am-g  data-del-off ">
+						<div>
+							<button class="del-but" onclick="javascript:history.go(-1);">返回</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+
+	<script type="text/javascript" src="../../../script/jquery/jquery-3.0.0.min.js"></script>
+	<script type="text/javascript" src="../../../pages/mall/goods/qm-branchgoodsdetails.js"></script>
+	<script type="text/javascript" src="../../../script/js/myjs.js"></script>
+
+</html>

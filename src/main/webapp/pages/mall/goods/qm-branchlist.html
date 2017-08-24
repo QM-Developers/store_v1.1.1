@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+
+	<link rel="stylesheet" href="../../../script/Amaze/assets/css/amazeui.min.css" />
+	<link rel="stylesheet" type="text/css" href="../../../pages/common/reset.css"/>
+	<link rel="stylesheet" type="text/css" href="../../../pages/common/windowstyle.css"/>
+	<link rel="stylesheet" href="qm-branchlist.css" />
+
+</head>
+
+<body class="opacity-box">
+
+<div class=" bodybox ">
+
+	<section class="branchlist-list">
+		<div class="branchlist-list-titlebox">
+			<div class="branchlist-list-title">
+				<div class="branchlist-title-text"  id="goodslistId">分配商品到<span id="saletitletext"></span></div>
+				<!--<div class="branchlist-title-text branchlist-title-text1">(江门销售点)</div>-->
+			</div>
+
+		</div>
+		<div class="branchlist-list-table">
+			<ul id="goodslist">
+				<li class="branchlist-list-tr">
+					<div class="item1">序号</div>
+					<div class="item2">商品名称</div>
+					<div class="item4">分类</div>
+					<div class="item3">
+						<div class="item3-box">
+							<div class="item3-2">规格</div>
+							<div class="item3-3">单价(元)</div>
+							<div class="item3-4">库存</div>
+							<div class="item3-5">操作区</div>
+						</div>
+					</div>
+
+				</li>
+				<!--<li class="branchlist-list-tr">-->
+				<!--<div class="item1">1</div>-->
+				<!--<div class="item2">米4T型4%小米牧场猪饲料</div>-->
+				<!--<div class="item4">饲料原料</div>-->
+				<!--<div class="item3">-->
+				<!--<div class="item3-box">-->
+				<!--<div class="item3-2">10kg/包</div>-->
+				<!--<div class="item3-3">150</div>-->
+				<!--<div class="item3-4">1000</div>-->
+				<!--</div>-->
+				<!--<div class="item3-box">-->
+				<!--<div class="item3-2">10kg/包</div>-->
+				<!--<div class="item3-3">150</div>-->
+				<!--<div class="item3-4">1000</div>-->
+				<!--</div>-->
+				<!--</div>-->
+				<!---->
+				<!--<div class="item4">-->
+				<!--<input onkeypress="return noNumbers(event)" class="item4-input" type="" name=""  value="" />-->
+				<!--</div>-->
+				<!--</li>-->
+				<!--<li class="branchlist-list-tr">-->
+				<!--<div class="item1">1</div>-->
+				<!--<div class="item2">米4T型4%小米牧场猪饲料</div>-->
+				<!--<div class="item4">饲料原料</div>-->
+				<!--<div class="item3">-->
+				<!--<div class="item3-box">-->
+				<!--<div class="item3-2">10kg/包</div>-->
+				<!--<div class="item3-3">150</div>-->
+				<!--<div class="item3-4">1000</div>-->
+				<!--</div>-->
+				<!--</div>-->
+
+				<!--<div class="item4">-->
+				<!--<input onkeypress="return noNumbers(event)" class="item4-input" type="" name="" id="" value="" />-->
+
+				<!--</div>-->
+				<!--</li>-->
+
+			</ul>
+		</div>
+	</section>
+	<div class="paging" >
+
+		<div class="pagingright" onclick="pagePrompt(this)">
+			下一页
+		</div>
+		<div class="pagingmodle">
+			<span id="currentpage">1</span>/<span id="amountpage">1</span>
+		</div>
+
+		<div class="pagingright" onclick="pagePrompt(this)">
+			上一页
+		</div>
+		<div class="paging-num-box" id="pageshownum">
+			显示条数:<span class="paging-num " onclick="pageShowNum(this)">30</span>
+			<span class="paging-num " onclick="pageShowNum(this)">20</span>
+			<span class="paging-num paging-checked" onclick="pageShowNum(this)">10</span>
+		</div>
+	</div>
+	<div class="am-g  data-del-off ">
+		<div>
+			<button class="del-but" onclick="javascript :history.back(-1);">返回</button>
+		</div>
+		<div>
+			<button class="del-but"onclick="submitInputData()">提交</button>
+		</div>
+	</div>
+</div>
+
+</body>
+<script type="text/javascript" src="../../../script/jquery/jquery-3.0.0.min.js"></script>
+<script type="text/javascript" src="qm-branchlist.js"></script>
+<script type="text/javascript" src="../../../script/js/myjs.js"></script>
+<script type="text/javascript" src="../../../script/js/date.js"></script>
+<script type="text/javascript" src="../../../pages/index/regularandpop.js"></script>
+
+
+
+</html>

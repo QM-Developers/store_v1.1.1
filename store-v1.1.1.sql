@@ -119,6 +119,25 @@ create table user_breed
 );
 
 /*==============================================================*/
+/* 客户建账申请
+/*==============================================================*/
+drop table if exists customer_account_request;
+create table customer_account_request
+(
+   request_id varchar(35) not null primary key,	-- 申请Id
+   proposer_id varchar(35) not null,	-- 申请人Id
+   proposer_name varchar(20) not null,	-- 申请人名称
+   customer_id varchar(35) not null,	-- 客户Id
+   customer_name varchar(20) not null,	-- 客户名称
+   merchandiser_id varchar(35) not null,	-- 跟单Id
+   merchandiser_name varchar(20) not null,	-- 跟单名称
+   checker_id varchar(35) not null,	-- 审核员Id
+   checker_name varchar(20) not null,	-- 审核员名称
+   request_status tinyint not null,	-- 申请状态
+   create_date datetime not null -- 申请时间
+);
+
+/*==============================================================*/
 /* 数据字典
 /*==============================================================*/
 drop table if exists dictionary;

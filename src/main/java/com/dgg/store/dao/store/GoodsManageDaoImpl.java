@@ -120,4 +120,10 @@ public class GoodsManageDaoImpl implements GoodsManageDao
     {
         return mapper.listStandards(goodsId);
     }
+
+    @Override
+    public List<GoodsImgVO> listImage(String goodsId)
+    {
+        return mapper.listImage(goodsId);
+    }
 }

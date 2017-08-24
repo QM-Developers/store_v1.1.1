@@ -16,6 +16,8 @@ public class ShoppingCartVO
 
     private String standardPrice;
 
+    private Integer standardCount;
+
     public String getGoodsId()
     {
         return goodsId;
@@ -84,5 +86,15 @@ public class ShoppingCartVO
     public void setStandardPrice(String standardPrice)
     {
         this.standardPrice = standardPrice;
+    }
+
+    public Integer getStandardCount()
+    {
+        return standardCount;
+    }
+
+    public void setStandardCount(Integer standardCount)
+    {
+        this.standardCount = standardCount;
     }
 }

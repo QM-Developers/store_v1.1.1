@@ -1,0 +1,177 @@
+.opacity-box{
+	position: relative;
+	width: 100%;
+	height: 100%;
+}
+
+.branchlist-list-titlebox {
+	width: 100%;
+	height: 42px;
+	background: #FFFFFF;
+}
+
+.branchlist-list-title {
+	height: 100%;
+	padding-left: 20px;
+}
+
+.branchlist-title-text {
+	display: inline-block;
+	font-size: 18px;
+	font-weight: 600;
+	color: #000000;
+	text-align: center;
+	line-height: 42px;
+}
+
+.branchlist-title-text1 {
+	font-size: 14px;
+}
+
+
+/*列表*/
+
+.branchlist-list-tr {
+	overflow: hidden;
+	display: flex;
+	border-bottom: 1px solid #CCCCCC;
+}
+
+.branchlist-list-tr div {
+	float: left;
+	text-align: center;
+}
+
+.branchlist-list-tr:nth-child(1) {
+	height: 44px;
+	line-height: 44px;
+	text-align: center;
+	background: #f1f0f5;
+	border-bottom: 1px solid #CCCCCC;
+	border-top: 2px solid #00abf0;
+}
+
+.branchlist-list-tr:nth-child(1) .item3-box div {
+	height: 44px;
+	line-height: 44px;
+}
+
+.branchlist-list-tr .item1 {
+	width: 5%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.branchlist-list-tr .item2 {
+	width: 35%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.branchlist-list-tr .item3 {
+	width: 50%;
+}
+
+.branchlist-list-tr .item4 {
+	width: 10%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.branchlist-list-tr .item3 .item4-input{
+	width: 90px;
+}
+.item3 .item3-box {
+	width: 100%;
+	height: 30px;
+}
+
+.item3-box div {
+	width: 25%;
+	height: 30px;
+	line-height: 30px;
+}
+
+.paging {
+	padding: 0 41px;
+	width: 100%;
+	height: 35px;
+	margin-top: 10px;
+}
+
+.paging div {
+	border: 1px solid #ccc;
+	width: 90px;
+	height: 100%;
+	line-height: 33px;
+	float: right;
+	text-align: center;
+	background: #f7f7f7;
+}
+
+.paging .pagingmodle {
+	border: 0;
+	background: #FFFFFF;
+}
+.paging .pagingright{
+	cursor: pointer;
+}
+
+
+.paging .paging-num-box {
+	width: 230px;
+	border: 0;
+	line-height: 32px;
+	background: #FFFFFF;
+}
+
+.paging-num {
+	display: inline-block;
+	width: 31px;
+	margin-right: 8px;
+	border: 1px solid #CCCCCC;
+	float: right;
+	background: #f7f7f7;
+	cursor: pointer;
+}
+.paging-checked {
+
+	background: #71bcfd;
+
+}
+
+.alter-select {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	width:400px;
+	height: 200px;
+	margin: -266px 0 0 -200px;
+	z-index: 25;
+	background: #FFFFFF;
+	border: 1px solid #1345fe;
+}
+
+.data-del-off {
+	clear: both;
+	max-width: 1269px;
+	min-width: 1000px;
+	margin: 10px auto;
+	box-sizing: border-box;
+	height: 80px;
+}
+
+.del-but {
+	width: 100px;
+	height: 40px;
+	background: #f1f0f5;
+	margin: 10px 0px 0 40px;
+	border: none;
+	float: right;
+	border: 1px solid #CCCCCC;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+}

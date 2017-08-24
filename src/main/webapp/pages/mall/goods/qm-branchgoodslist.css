@@ -1,35 +1,21 @@
-.goodslist-header{
-	width: 100%;
-	height: 42px;
-	background: #f1f0f5;
-	margin-top: 10px;
-}
-.goodslist-but{
+.branchgoodslist-but {
 	display: inline-block;
-	width: 120px;
+	width: 160px;
 	font-size: 18px;
 	color: #000000;
 	text-align: center;
 	line-height: 42px;
 	cursor: pointer;
-	margin-left: 25px;
 }
-.goodslist-but:hover{
- background-color: #02b4fe;
-	color: #ffffff;
 
-}
-.goodslist-list-titlebox {
+.branchgoodslist-list-titlebox {
 	width: 100%;
 	height: 42px;
 	background: #FFFFFF;
 }
-.goodslist-list-title {
-	width: 50%;
+
+.branchgoodslist-title-text {
 	float: left;
-	height: 100%;
-}
-.goodslist-title-text {
 	display: inline-block;
 	width: 120px;
 	font-size: 18px;
@@ -38,19 +24,23 @@
 	text-align: center;
 	line-height: 42px;
 }
-.goodslist-title-text1{
-	font-size: 14px;
 
+.branchgoodslist-name {
+	float: left;
+	height: 100%;
+	font-size: 14px;
+	line-height: 42px;
 }
+
 .header-right {
 	width: 50%;
 	height: 100%;
-
 }
+
 .put-box {
 	width: 302px;
 	height: 35px;
-	margin: 4px 18px 0 0 ;
+	margin: 4px 18px 0 0;
 	border: 1px solid #ccc;
 	-webkit-border-radius: 5px;
 	-moz-border-radius: 5px;
@@ -81,62 +71,126 @@
 	line-height: 42px;
 	cursor: pointer;
 }
+
+
 /*列表*/
 
-.goodslist-list-tr {
+.branchgoodslist-list-tr {
 	overflow: hidden;
 	display: flex;
 	border-bottom: 1px solid #CCCCCC;
 }
-.goodslist-list-tr:hover {
-	background-color:#e8e8e8 ;
-}
-.goodslist-list-tr div {
+
+.branchgoodslist-list-tr div {
 	float: left;
 	text-align: center;
 }
-.goodslist-list-tr:nth-child(1) {
+
+.branchgoodslist-list-tr:nth-child(1) {
 	height: 44px;
 	line-height: 44px;
 	text-align: center;
 	background: #f1f0f5;
 	border-bottom: 1px solid #CCCCCC;
-	border-top:2px solid #00abf0;
+	border-top: 1px solid #00abf0;
 }
-.goodslist-list-tr:nth-child(1) .item3-box div {
+
+.branchgoodslist-list-tr:nth-child(1) .item3-box div {
 	height: 44px;
 	line-height: 44px;
 }
-.goodslist-list-tr .item1 {
+
+.branchgoodslist-list-tr .item1 {
 	width: 5%;
 	display: flex;
 	align-items: center;
 	justify-content: center;
 }
 
-.goodslist-list-tr .item2 {
+.branchgoodslist-list-tr .item2 {
 	width: 25%;
 	display: flex;
 	align-items: center;
 	justify-content: center;
 }
 
-.goodslist-list-tr .item3 {
+.branchgoodslist-list-tr .item3 {
 	width: 40%;
 }
-.goodslist-list-tr .item4 {
+
+.branchgoodslist-list-tr .item4 {
 	width: 10%;
 	display: flex;
 	align-items: center;
 	justify-content: center;
 }
+
 .item3 .item3-box {
 	width: 100%;
 	height: 30px;
 }
+
 .item3-box div {
 	width: 33.3%;
 	height: 30px;
 	line-height: 30px;
 }
 
+
+.paging {
+	padding: 0 41px;
+	width: 100%;
+	height: 35px;
+	margin-top: 10px;
+}
+
+.paging div {
+	border: 1px solid #ccc;
+	width: 90px;
+	height: 100%;
+	line-height: 33px;
+	float: right;
+	text-align: center;
+	background: #f7f7f7;
+}
+
+.paging .pagingmodle {
+	border: 0;
+	background: #FFFFFF;
+}
+.paging .pagingright{
+	cursor: pointer;
+}
+
+.paging .pagingbut{
+	margin-left: 30px;
+}
+.paging .pagingbut button{
+    width: 100%;
+	height: 100%;
+	background: #f7f7f7;
+	border: 0;
+	margin-top: -5px;
+	outline: 0;
+}
+.paging .paging-num-box {
+	width: 230px;
+	border: 0;
+	line-height: 32px;
+	background: #FFFFFF;
+}
+
+.paging-num {
+	display: inline-block;
+	width: 31px;
+	margin-right: 8px;
+	border: 1px solid #CCCCCC;
+	float: right;
+	background: #f7f7f7;
+	cursor: pointer;
+}
+.paging-checked {
+
+	background: #71bcfd;
+
+}

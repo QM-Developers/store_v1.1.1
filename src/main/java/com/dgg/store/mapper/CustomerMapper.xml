@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dgg.store.mapper.CustomerMapper">
-    <resultMap id="CustomerVO" type="com.dgg.store.util.vo.CustomerVO">
+    <resultMap id="CustomerVO" type="com.dgg.store.util.vo.customer.CustomerVO">
         <result column="customer_id" property="customerId" jdbcType="VARCHAR"/>
+        <result column="user_id" property="userId" jdbcType="VARCHAR"/>
         <result column="user_name" property="userName" jdbcType="VARCHAR"/>
         <result column="user_phone" property="userPhone" jdbcType="VARCHAR"/>
         <result column="user_sex" property="userSex" jdbcType="VARCHAR"/>
@@ -18,20 +19,37 @@
         <result column="user_card_hand" property="userCardHand" jdbcType="VARCHAR"/>
         <result column="update_date" property="userUpdateTime" jdbcType="VARCHAR"/>
         <result column="update_count" property="updateCount" jdbcType="INTEGER"/>
+        <result column="user_create_date" property="userCreateDate" jdbcType="VARCHAR"/>
     </resultMap>
 
-    <insert id="insertCustomerRecord" parameterType="com.dgg.store.util.vo.CustomerVO">
+    <resultMap id="CustomerAccountRequest" type="com.dgg.store.util.pojo.CustomerAccountRequest">
+        <result column="request_id" property="requestId" jdbcType="VARCHAR"/>
+        <result column="customer_id" property="customerId" jdbcType="VARCHAR"/>
+        <result column="customer_name" property="customerName" jdbcType="VARCHAR"/>
+        <result column="merchandiser_id" property="merchandiserId" jdbcType="VARCHAR"/>
+        <result column="merchandiser_name" property="merchandiserName" jdbcType="VARCHAR"/>
+        <result column="checker_id" property="checkerId" jdbcType="VARCHAR"/>
+        <result column="checker_name" property="checkerName" jdbcType="VARCHAR"/>
+        <result column="request_status" property="requestStatus" jdbcType="INTEGER"/>
+        <result column="create_date" property="createDate" jdbcType="DATE"/>
+        <result column="proposer_id" property="proposerId" jdbcType="VARCHAR"/>
+        <result column="proposer_name" property="proposerName" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <insert id="insertCustomerRecord" parameterType="com.dgg.store.util.vo.customer.CustomerVO">
         INSERT INTO user_record
         (user_id,my_team_id,user_name,user_phone,
         user_birthday,user_address,user_sex,
-        user_status,role_id)
+        user_status,role_id,user_create_date,
+        user_card_front,user_card_back,user_card_hand)
         VALUES
         (#{userId},#{myTeamId},#{userName},#{userPhone},
         #{userBirthday},#{userAddress},#{userSex},
-        #{userStatus},#{roleId})
+        #{userStatus},#{roleId},
+        #{userCardFront},#{userCardBack},#{userCardHand})
     </insert>
 
-    <insert id="insertCustomer" parameterType="com.dgg.store.util.vo.CustomerVO">
+    <insert id="insertCustomer" parameterType="com.dgg.store.util.vo.customer.CustomerVO">
         INSERT INTO customer
         (customer_id, user_id, promoter_id,
         my_team_id, business_address, station,
@@ -43,9 +61,9 @@
 
     <select id="listCustomer" resultMap="CustomerVO">
         SELECT c.customer_id,c.business_address,c.credit_rating,
-            c.customer_type,c.station,c.had_account,
-            u.user_name,u.user_phone,u.user_birthday,
-            u.user_address,u.user_sex
+        c.customer_type,c.station,c.had_account,
+        u.user_name,u.user_phone,u.user_birthday,
+        u.user_address,u.user_sex
         FROM customer c
         INNER JOIN user_view u
         ON u.user_id = c.user_id
@@ -57,7 +75,7 @@
         LIMIT #{start},#{end}
     </select>
 
-    <select id="countCustomer" parameterType="com.dgg.store.util.vo.CustomerVO" resultType="java.lang.Integer">
+    <select id="countCustomer" parameterType="com.dgg.store.util.vo.customer.CustomerVO" resultType="java.lang.Integer">
         SELECT COUNT(0)
         FROM customer c
         INNER JOIN user_view u
@@ -69,7 +87,7 @@
         </if>
     </select>
 
-    <update id="updateCustomerUserRecord" parameterType="com.dgg.store.util.vo.CustomerVO">
+    <update id="updateCustomerUserRecord" parameterType="com.dgg.store.util.vo.customer.CustomerVO">
         UPDATE user_record
         <set>
             <if test="userName != null">
@@ -91,7 +109,7 @@
         WHERE user_id = (SELECT user_id FROM customer WHERE customer_id = #{customerId})
     </update>
 
-    <update id="updateCustomerUser" parameterType="com.dgg.store.util.vo.CustomerVO">
+    <update id="updateCustomerUser" parameterType="com.dgg.store.util.vo.customer.CustomerVO">
         UPDATE user
         <set>
             <if test="userName != null">
@@ -113,7 +131,7 @@
         WHERE user_id = (SELECT user_id FROM customer WHERE customer_id = #{customerId})
     </update>
 
-    <update id="updateCustomer" parameterType="com.dgg.store.util.vo.CustomerVO">
+    <update id="updateCustomer" parameterType="com.dgg.store.util.vo.customer.CustomerVO">
         UPDATE customer
         <set>
             <if test="promoterId != null">
@@ -129,7 +147,7 @@
                 credit_rating = #{creditRating},
             </if>
             update_date = now(),
-            count_update = (SELECT count_update + 1 FROM customer WHERE customer_id = #{customerId}),
+            update_count = update_count + 1,
         </set>
         WHERE customer_id = #{customerId}
     </update>
@@ -167,4 +185,126 @@
         WHERE u.user_id = (SELECT user_id FROM customer WHERE customer_id = #{customerId})
         OR re.user_id = (SELECT user_id FROM customer WHERE customer_id = #{customerId})
     </update>
+
+    <select id="getRepertoryLevel" resultType="java.lang.Integer">
+        SELECT repertory_type FROM
+          customer_repertory cr
+        WHERE cr.my_team_id = #{myTeamId}
+        AND cr.customer_type = #{customerType}
+    </select>
+
+    <select id="countRepertoryLevel" resultType="java.lang.Integer" parameterType="com.dgg.store.util.vo.customer.CustomerRepertoryVO">
+        SELECT COUNT(0)
+        FROM customer_repertory cr
+        WHERE cr.my_team_id = #{myTeamId}
+        AND cr.customer_type = #{customerType}
+    </select>
+
+    <insert id="insertRepertoryLevel" parameterType="com.dgg.store.util.vo.customer.CustomerRepertoryVO">
+        INSERT INTO customer_repertory
+        (customer_type, my_team_id, repertory_type)
+        VALUES
+        (#{customerType},#{myTeamId},#{repertoryType})
+    </insert>
+
+    <select id="listMerchandiserFirst" parameterType="com.dgg.store.util.vo.customer.CustomerRepertoryVO" resultMap="CustomerVO">
+        SELECT u.user_id,u.user_name
+        FROM user u
+        WHERE u.my_team_id = #{myTeamId}
+        AND u.team_department_id NOT IN
+        (SELECT qb.department_id FROM qm_branch qb WHERE qb.my_team_id = #{myTeamId})
+    </select>
+
+    <select id="listMerchandiserSecond" parameterType="com.dgg.store.util.vo.customer.CustomerRepertoryVO" resultMap="CustomerVO">
+        SELECT u.user_id,u.user_name,
+          qb.branch_name
+        FROM user u
+        INNER JOIN qm_branch qb
+        ON qb.department_id = u.team_department_id
+        WHERE u.my_team_id = #{myTeamId}
+    </select>
+
+    <select id="listAccountChecker" resultMap="CustomerVO">
+        SELECT user_id,user_name FROM
+        (SELECT u.user_id,u.user_name
+        FROM user u
+        INNER JOIN department_position dp
+        ON dp.team_department_id = u.team_department_id
+        INNER JOIN position_permission_re ppr
+        ON ppr.position_id = dp.position_id
+        WHERE ppr.qm_permission_id = #{permissionId}
+        AND u.my_team_id = #{myTeamId}
+        UNION
+        SELECT u.user_id,u.user_name
+        FROM user u
+        INNER JOIN user_qm_permission_re uqpr
+        ON uqpr.user_id = u.user_id
+        WHERE uqpr.qm_permission_id = #{permissionId}
+        AND u.my_team_id = #{myTeamId}
+        ) t1
+        GROUP BY user_id
+    </select>
+
+    <insert id="insertCustomerAccount" parameterType="com.dgg.store.util.pojo.CustomerAccountRequest">
+        INSERT INTO
+        customer_account_request
+        (request_id, customer_id, customer_name,
+        merchandiser_id, merchandiser_name, checker_id,
+        checker_name, request_status, create_date,
+        proposer_id,proposer_name)
+        VALUES
+        (#{requestId},#{customerId},#{customerName},
+        #{merchandiserId},#{merchandiserName},#{checkerId},
+        #{checkerName},#{requestStatus},#{createDate},
+        #{proposerId},(SELECT user_name FROM user WHERE user_id = #{proposerId}))
+    </insert>
+
+    <update id="updateCustomerAccountById" parameterType="com.dgg.store.util.pojo.CustomerAccountRequest">
+        UPDATE customer_account_request
+        <set>
+            request_status = #{requestStatus},
+        </set>
+        WHERE request_id = #{requestId}
+    </update>
+
+    <insert id="updateRecordToAccount">
+        INSERT INTO user
+        SELECT * FROM user_record
+        WHERE user_id = (SELECT user_id FROM customer WHERE customer_id = #{customerId})
+    </insert>
+
+    <delete id="deleteRecord">
+        DELETE FROM customer_account_request
+        WHERE user_id = (SELECT user_id FROM customer WHERE customer_id = #{customerId})
+    </delete>
+
+    <select id="getCustomerAccount" resultMap="CustomerAccountRequest">
+        SELECT request_id, customer_id, customer_name,
+        merchandiser_id, merchandiser_name, checker_id,
+        checker_name, request_status, create_date,
+        proposer_id,proposer_name
+        FROM customer_account_request
+        WHERE request_id = #{requestId}
+    </select>
+
+    <select id="listCustomerAccount" resultMap="CustomerAccountRequest">
+        SELECT request_id, customer_id, customer_name,
+        merchandiser_id, merchandiser_name, checker_id,
+        checker_name, request_status, create_date,
+        proposer_id,proposer_name
+        FROM customer_account_request
+        WHERE 1 = 1
+        <if test="customerId != null">
+            AND customer_id = #{customerId}
+        </if>
+        <if test="checkerId != null">
+            AND checker_id = #{checkerId}
+        </if>
+        <if test="merchandiserId != null">
+            AND merchandiser_id = #{merchandiserId}
+        </if>
+        <if test="proposerId != null">
+            AND proposer_id = #{proposerId}
+        </if>
+    </select>
 </mapper>

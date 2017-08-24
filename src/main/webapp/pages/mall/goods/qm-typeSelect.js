@@ -3,6 +3,7 @@ var qm_type = {
 
     init: function ()
     {
+        console.log(urlParams);
         qm_type.findTypeList(0);
     },
 
@@ -16,7 +17,6 @@ var qm_type = {
         $("#releaseBtn").attr("disabled", "disabled");
         myjs.ajax_post(url, params, function (data)
         {
-            console.log(data);
             data = data.result;
             if (!myjs.isNull(data))
                 qm_type.appendList(data);

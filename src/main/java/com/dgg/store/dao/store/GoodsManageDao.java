@@ -45,4 +45,6 @@ public interface GoodsManageDao
     int countGoods(GoodsInfoVO condition);
 
     List<GoodsStandard> listStandards(String goodsId);
+
+    List<GoodsImgVO> listImage(String goodsId);
 }

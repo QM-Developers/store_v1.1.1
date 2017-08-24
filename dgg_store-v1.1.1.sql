@@ -99,7 +99,41 @@ CREATE TABLE `customer` (
 
 LOCK TABLES `customer` WRITE;
 /*!40000 ALTER TABLE `customer` DISABLE KEYS */;
+INSERT INTO `customer` VALUES ('1ddd3d18c22a4c129c2517d50e69a400','personal','3440e2c15478425298edb4c396c786d4','89d9317fb3834353bcf2a507bee2eb82','','10001','','',0,0,NULL,0);
 /*!40000 ALTER TABLE `customer` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `customer_account_request`
+--
+
+DROP TABLE IF EXISTS `customer_account_request`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `customer_account_request` (
+  `request_id` varchar(35) NOT NULL,
+  `proposer_id` varchar(35) NOT NULL,
+  `proposer_name` varchar(20) NOT NULL,
+  `customer_id` varchar(35) NOT NULL,
+  `customer_name` varchar(20) NOT NULL,
+  `merchandiser_id` varchar(35) NOT NULL,
+  `merchandiser_name` varchar(20) NOT NULL,
+  `checker_id` varchar(35) NOT NULL,
+  `checker_name` varchar(20) NOT NULL,
+  `request_status` tinyint(4) NOT NULL,
+  `create_date` datetime NOT NULL,
+  PRIMARY KEY (`request_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `customer_account_request`
+--
+
+LOCK TABLES `customer_account_request` WRITE;
+/*!40000 ALTER TABLE `customer_account_request` DISABLE KEYS */;
+INSERT INTO `customer_account_request` VALUES ('f7230fe1e2614a50bb977b3ea5ffa3c4','89d9317fb3834353bcf2a507bee2eb82','张三','1ddd3d18c22a4c129c2517d50e69a400','三三','89d9317fb3834353bcf2a507bee2eb83','李四','41370f132bd44bca943e2fe5dd9862ab','赵六',1,'2017-08-24 11:27:27');
+/*!40000 ALTER TABLE `customer_account_request` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -122,6 +156,7 @@ CREATE TABLE `customer_repertory` (
 
 LOCK TABLES `customer_repertory` WRITE;
 /*!40000 ALTER TABLE `customer_repertory` DISABLE KEYS */;
+INSERT INTO `customer_repertory` VALUES ('personal','10001',1),('dealer','10001',2);
 /*!40000 ALTER TABLE `customer_repertory` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -333,9 +368,7 @@ CREATE TABLE `goods_image` (
   `sort` varchar(2) NOT NULL DEFAULT '',
   `goods_img_type` tinyint(4) NOT NULL DEFAULT '0',
   KEY `FK_goods_img_RE` (`goods_id`),
-  KEY `FK_goods_img_space_re` (`image_id`),
-  CONSTRAINT `FK_goods_img_RE` FOREIGN KEY (`goods_id`) REFERENCES `goodsinfo` (`goods_id`),
-  CONSTRAINT `FK_goods_img_space_re` FOREIGN KEY (`image_id`) REFERENCES `image_space` (`image_id`)
+  KEY `FK_goods_img_space_re` (`image_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -345,7 +378,7 @@ CREATE TABLE `goods_image` (
 
 LOCK TABLES `goods_image` WRITE;
 /*!40000 ALTER TABLE `goods_image` DISABLE KEYS */;
-INSERT INTO `goods_image` VALUES ('9c3ed28bb39e4b079f548e69a3681cba','7f919e4356a44fe8a199dde18d561cbc','0',1),('9c3ed28bb39e4b079f548e69a3681cba','bc13439ff4384bcab77d93911ce783f6','1',2),('22a91981f71a43e7a8c34472bc7cc1c6','7f919e4356a44fe8a199dde18d561cbc','0',1),('22a91981f71a43e7a8c34472bc7cc1c6','bc13439ff4384bcab77d93911ce783f6','1',2),('211de7c120a94e8d923a1032e363275e','7f919e4356a44fe8a199dde18d561cbc','0',1),('211de7c120a94e8d923a1032e363275e','bc13439ff4384bcab77d93911ce783f6','1',2),('d94c07686d0b4483bccd3c0066c46c1f','7f919e4356a44fe8a199dde18d561cbc','0',1),('d94c07686d0b4483bccd3c0066c46c1f','bc13439ff4384bcab77d93911ce783f6','1',2),('457c81e4dda3487187bab10eda5355ed','7f919e4356a44fe8a199dde18d561cbc','0',1),('457c81e4dda3487187bab10eda5355ed','bc13439ff4384bcab77d93911ce783f6','1',2),('534d6156325a4c1a89510ddc0b5bcbeb','7f919e4356a44fe8a199dde18d561cbc','0',1),('534d6156325a4c1a89510ddc0b5bcbeb','bc13439ff4384bcab77d93911ce783f6','1',2),('91a39e42fb614f13bfca0d419f8f3f5c','7f919e4356a44fe8a199dde18d561cbc','0',1),('91a39e42fb614f13bfca0d419f8f3f5c','bc13439ff4384bcab77d93911ce783f6','1',2),('d661c8d99dc74f2ab32419a96e156833','7f919e4356a44fe8a199dde18d561cbc','0',1),('d661c8d99dc74f2ab32419a96e156833','bc13439ff4384bcab77d93911ce783f6','1',2),('e4d8553d166045d792f37f8f837b4024','7f919e4356a44fe8a199dde18d561cbc','0',1),('e4d8553d166045d792f37f8f837b4024','bc13439ff4384bcab77d93911ce783f6','1',2),('f8b24567adfc48cf82f617822a63c628','7f919e4356a44fe8a199dde18d561cbc','0',1),('f8b24567adfc48cf82f617822a63c628','bc13439ff4384bcab77d93911ce783f6','1',2),('db073ab0dc5c4b719deaa1b8705327d2','7f919e4356a44fe8a199dde18d561cbc','0',1),('db073ab0dc5c4b719deaa1b8705327d2','bc13439ff4384bcab77d93911ce783f6','1',2),('01402a4e26d14f1dbe5135ef69b6b385','7f919e4356a44fe8a199dde18d561cbc','0',1),('01402a4e26d14f1dbe5135ef69b6b385','bc13439ff4384bcab77d93911ce783f6','1',2);
+INSERT INTO `goods_image` VALUES ('9c3ed28bb39e4b079f548e69a3681cba','7f919e4356a44fe8a199dde18d561cbc','0',1),('9c3ed28bb39e4b079f548e69a3681cba','bc13439ff4384bcab77d93911ce783f6','1',2),('22a91981f71a43e7a8c34472bc7cc1c6','7f919e4356a44fe8a199dde18d561cbc','0',1),('22a91981f71a43e7a8c34472bc7cc1c6','bc13439ff4384bcab77d93911ce783f6','1',2),('d94c07686d0b4483bccd3c0066c46c1f','7f919e4356a44fe8a199dde18d561cbc','0',1),('d94c07686d0b4483bccd3c0066c46c1f','bc13439ff4384bcab77d93911ce783f6','1',2),('457c81e4dda3487187bab10eda5355ed','7f919e4356a44fe8a199dde18d561cbc','0',1),('457c81e4dda3487187bab10eda5355ed','bc13439ff4384bcab77d93911ce783f6','1',2),('534d6156325a4c1a89510ddc0b5bcbeb','7f919e4356a44fe8a199dde18d561cbc','0',1),('534d6156325a4c1a89510ddc0b5bcbeb','bc13439ff4384bcab77d93911ce783f6','1',2),('91a39e42fb614f13bfca0d419f8f3f5c','7f919e4356a44fe8a199dde18d561cbc','0',1),('91a39e42fb614f13bfca0d419f8f3f5c','bc13439ff4384bcab77d93911ce783f6','1',2),('d661c8d99dc74f2ab32419a96e156833','7f919e4356a44fe8a199dde18d561cbc','0',1),('d661c8d99dc74f2ab32419a96e156833','bc13439ff4384bcab77d93911ce783f6','1',2),('e4d8553d166045d792f37f8f837b4024','7f919e4356a44fe8a199dde18d561cbc','0',1),('e4d8553d166045d792f37f8f837b4024','bc13439ff4384bcab77d93911ce783f6','1',2),('f8b24567adfc48cf82f617822a63c628','7f919e4356a44fe8a199dde18d561cbc','0',1),('f8b24567adfc48cf82f617822a63c628','bc13439ff4384bcab77d93911ce783f6','1',2),('db073ab0dc5c4b719deaa1b8705327d2','7f919e4356a44fe8a199dde18d561cbc','0',1),('db073ab0dc5c4b719deaa1b8705327d2','bc13439ff4384bcab77d93911ce783f6','1',2),('01402a4e26d14f1dbe5135ef69b6b385','7f919e4356a44fe8a199dde18d561cbc','0',1),('01402a4e26d14f1dbe5135ef69b6b385','bc13439ff4384bcab77d93911ce783f6','1',2),('01402a4e26d14f1dbe5135ef69b6b385','bc13439ff4384bcab77d93911ce783f6','2',2),('01402a4e26d14f1dbe5135ef69b6b385','df85119137904e93895d8c76e06b1924','3',2),('211de7c120a94e8d923a1032e363275e','7f919e4356a44fe8a199dde18d561cbc','0',1),('211de7c120a94e8d923a1032e363275e','bc13439ff4384bcab77d93911ce783f6','1',2),('211de7c120a94e8d923a1032e363275e','df85119137904e93895d8c76e06b1924','2',2),('211de7c120a94e8d923a1032e363275e','7f919e4356a44fe8a199dde18d561cbc','3',2),('211de7c120a94e8d923a1032e363275e','bc13439ff4384bcab77d93911ce783f6','4',2);
 /*!40000 ALTER TABLE `goods_image` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -475,7 +508,7 @@ CREATE TABLE `goodsinfo` (
 
 LOCK TABLES `goodsinfo` WRITE;
 /*!40000 ALTER TABLE `goodsinfo` DISABLE KEYS */;
-INSERT INTO `goodsinfo` VALUES ('01402a4e26d14f1dbe5135ef69b6b385','1fb7c7f35d5d495d8f37a26ef73701d5','10001','','【畅消】4%中猪预混料 长势快 后劲强 适用于30~90KG',0,0,'品牌?新希望六和','bc13439ff4384bcab77d93911ce783f6|df85119137904e93895d8c76e06b1924|',NULL,0,0,'2017-08-11 09:51:03',0,NULL),('211de7c120a94e8d923a1032e363275e','1fb7c7f35d5d495d8f37a26ef73701d5','10001','','【畅消】4%中猪预混料 长势快 后劲强 适用于30~90KG',0,0,'品牌?新希望六和','bc13439ff4384bcab77d93911ce783f6|df85119137904e93895d8c76e06b1924|',NULL,0,0,'2017-08-11 09:51:02',0,NULL),('22a91981f71a43e7a8c34472bc7cc1c6','0b49ef854bb74ff9b9317132dba053d7','10001','','倍润828B,20%生长育肥猪浓缩饲料 使用阶段：60kg-出栏',0,0,'品牌?倍润','7f919e4356a44fe8a199dde18d561cbc|bc13439ff4384bcab77d93911ce783f6|df85119137904e93895d8c76e06b1924|',NULL,0,0,'2017-07-18 14:22:21',0,NULL),('457c81e4dda3487187bab10eda5355ed','1fb7c7f35d5d495d8f37a26ef73701d5','10001','','【畅消】4%中猪预混料 长势快 后劲强 适用于30~90KG',0,0,'品牌?新希望六和','bc13439ff4384bcab77d93911ce783f6|df85119137904e93895d8c76e06b1924|',NULL,0,0,'2017-08-11 09:51:02',0,NULL),('534d6156325a4c1a89510ddc0b5bcbeb','1fb7c7f35d5d495d8f37a26ef73701d5','10001','','【畅消】4%中猪预混料 长势快 后劲强 适用于30~90KG',0,0,'品牌?新希望六和','bc13439ff4384bcab77d93911ce783f6|df85119137904e93895d8c76e06b1924|',NULL,0,0,'2017-08-11 09:51:02',0,NULL),('91a39e42fb614f13bfca0d419f8f3f5c','1fb7c7f35d5d495d8f37a26ef73701d5','10001','','【畅消】4%中猪预混料 长势快 后劲强 适用于30~90KG',0,0,'品牌?新希望六和','bc13439ff4384bcab77d93911ce783f6|df85119137904e93895d8c76e06b1924|',NULL,0,0,'2017-08-11 09:51:02',0,NULL),('9c3ed28bb39e4b079f548e69a3681cba','0b49ef854bb74ff9b9317132dba053d7','10001','','【畅消】4%中猪预混料 长势快 后劲强 适用于30~60KG',0,0,'品牌?新希望六和','7f919e4356a44fe8a199dde18d561cbc|bc13439ff4384bcab77d93911ce783f6|df85119137904e93895d8c76e06b1924|',NULL,0,0,'2017-07-18 14:21:26',0,NULL),('d661c8d99dc74f2ab32419a96e156833','1fb7c7f35d5d495d8f37a26ef73701d5','10001','','【畅消】4%中猪预混料 长势快 后劲强 适用于30~90KG',0,0,'品牌?新希望六和','bc13439ff4384bcab77d93911ce783f6|df85119137904e93895d8c76e06b1924|',NULL,0,0,'2017-08-11 09:51:03',0,NULL),('d94c07686d0b4483bccd3c0066c46c1f','1fb7c7f35d5d495d8f37a26ef73701d5','10001','','【畅消】4%中猪预混料 长势快 后劲强 适用于30~90KG',0,0,'品牌?新希望六和','bc13439ff4384bcab77d93911ce783f6|df85119137904e93895d8c76e06b1924|',NULL,0,0,'2017-08-11 09:51:02',0,NULL),('db073ab0dc5c4b719deaa1b8705327d2','1fb7c7f35d5d495d8f37a26ef73701d5','10001','','【畅消】4%中猪预混料 长势快 后劲强 适用于30~90KG',0,0,'品牌?新希望六和','bc13439ff4384bcab77d93911ce783f6|df85119137904e93895d8c76e06b1924|',NULL,0,0,'2017-08-11 09:51:03',0,NULL),('e4d8553d166045d792f37f8f837b4024','1fb7c7f35d5d495d8f37a26ef73701d5','10001','','【畅消】4%中猪预混料 长势快 后劲强 适用于30~90KG',0,0,'品牌?新希望六和','bc13439ff4384bcab77d93911ce783f6|df85119137904e93895d8c76e06b1924|',NULL,0,0,'2017-08-11 09:51:03',0,NULL),('f8b24567adfc48cf82f617822a63c628','1fb7c7f35d5d495d8f37a26ef73701d5','10001','','【畅消】4%中猪预混料 长势快 后劲强 适用于30~90KG',0,0,'品牌?新希望六和','bc13439ff4384bcab77d93911ce783f6|df85119137904e93895d8c76e06b1924|',NULL,0,0,'2017-08-11 09:51:03',0,NULL);
+INSERT INTO `goodsinfo` VALUES ('01402a4e26d14f1dbe5135ef69b6b385','1fb7c7f35d5d495d8f37a26ef73701d5','10001','','【畅消】4%中猪预混料 长势快 后劲强 适用于30~90KG',0,0,'品牌?新希望六和','bc13439ff4384bcab77d93911ce783f6|df85119137904e93895d8c76e06b1924|',NULL,0,0,'2017-08-11 09:51:03',0,NULL),('211de7c120a94e8d923a1032e363275e','1fb7c7f35d5d495d8f37a26ef73701d5','10001','','【畅1消】4%中猪预混料 长势快 后劲强 适用于30~90KG',0,0,'品牌?新希望六和','bc13439ff4384bcab77d93911ce783f6|df85119137904e93895d8c76e06b1924|',NULL,0,0,'2017-08-11 09:51:02',0,NULL),('22a91981f71a43e7a8c34472bc7cc1c6','0b49ef854bb74ff9b9317132dba053d7','10001','','倍润828B,20%生长育肥猪浓缩饲料 使用阶段：60kg-出栏',0,0,'品牌?倍润','7f919e4356a44fe8a199dde18d561cbc|bc13439ff4384bcab77d93911ce783f6|df85119137904e93895d8c76e06b1924|',NULL,0,0,'2017-07-18 14:22:21',0,NULL),('457c81e4dda3487187bab10eda5355ed','1fb7c7f35d5d495d8f37a26ef73701d5','10001','','【畅消】4%中猪预混料 长势快 后劲强 适用于30~90KG',0,0,'品牌?新希望六和','bc13439ff4384bcab77d93911ce783f6|df85119137904e93895d8c76e06b1924|',NULL,0,0,'2017-08-11 09:51:02',0,NULL),('534d6156325a4c1a89510ddc0b5bcbeb','1fb7c7f35d5d495d8f37a26ef73701d5','10001','','【畅消】4%中猪预混料 长势快 后劲强 适用于30~90KG',0,0,'品牌?新希望六和','bc13439ff4384bcab77d93911ce783f6|df85119137904e93895d8c76e06b1924|',NULL,0,0,'2017-08-11 09:51:02',0,NULL),('91a39e42fb614f13bfca0d419f8f3f5c','1fb7c7f35d5d495d8f37a26ef73701d5','10001','','【畅消】4%中猪预混料 长势快 后劲强 适用于30~90KG',0,0,'品牌?新希望六和','bc13439ff4384bcab77d93911ce783f6|df85119137904e93895d8c76e06b1924|',NULL,0,0,'2017-08-11 09:51:02',0,NULL),('9c3ed28bb39e4b079f548e69a3681cba','0b49ef854bb74ff9b9317132dba053d7','10001','','【畅消】4%中猪预混料 长势快 后劲强 适用于30~60KG',0,0,'品牌?新希望六和','7f919e4356a44fe8a199dde18d561cbc|bc13439ff4384bcab77d93911ce783f6|df85119137904e93895d8c76e06b1924|',NULL,0,0,'2017-07-18 14:21:26',0,NULL),('d661c8d99dc74f2ab32419a96e156833','1fb7c7f35d5d495d8f37a26ef73701d5','10001','','【畅消】4%中猪预混料 长势快 后劲强 适用于30~90KG',0,0,'品牌?新希望六和','bc13439ff4384bcab77d93911ce783f6|df85119137904e93895d8c76e06b1924|',NULL,0,0,'2017-08-11 09:51:03',0,NULL),('d94c07686d0b4483bccd3c0066c46c1f','1fb7c7f35d5d495d8f37a26ef73701d5','10001','','【畅消】4%中猪预混料 长势快 后劲强 适用于30~90KG',0,0,'品牌?新希望六和','bc13439ff4384bcab77d93911ce783f6|df85119137904e93895d8c76e06b1924|',NULL,0,0,'2017-08-11 09:51:02',0,NULL),('db073ab0dc5c4b719deaa1b8705327d2','1fb7c7f35d5d495d8f37a26ef73701d5','10001','','【畅消】4%中猪预混料 长势快 后劲强 适用于30~90KG',0,0,'品牌?新希望六和','bc13439ff4384bcab77d93911ce783f6|df85119137904e93895d8c76e06b1924|',NULL,0,0,'2017-08-11 09:51:03',0,NULL),('e4d8553d166045d792f37f8f837b4024','1fb7c7f35d5d495d8f37a26ef73701d5','10001','','【畅消】4%中猪预混料 长势快 后劲强 适用于30~90KG',0,0,'品牌?新希望六和','bc13439ff4384bcab77d93911ce783f6|df85119137904e93895d8c76e06b1924|',NULL,0,0,'2017-08-11 09:51:03',0,NULL),('f8b24567adfc48cf82f617822a63c628','1fb7c7f35d5d495d8f37a26ef73701d5','10001','','【畅消】4%中猪预混料 长势快 后劲强 适用于30~90KG',0,0,'品牌?新希望六和','bc13439ff4384bcab77d93911ce783f6|df85119137904e93895d8c76e06b1924|',NULL,0,0,'2017-08-11 09:51:03',0,NULL);
 /*!40000 ALTER TABLE `goodsinfo` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -762,7 +795,7 @@ CREATE TABLE `position_permission_re` (
 
 LOCK TABLES `position_permission_re` WRITE;
 /*!40000 ALTER TABLE `position_permission_re` DISABLE KEYS */;
-INSERT INTO `position_permission_re` VALUES ('6192971fdd4d47d2b4ce77a3723a311b','986b810014e44d2c9d5b383f2a83da3c');
+INSERT INTO `position_permission_re` VALUES ('6192971fdd4d47d2b4ce77a3723a311b','account_check'),('6192971fdd4d47d2b4ce77a3723a311b','follow'),('6192971fdd4d47d2b4ce77a3723a311b','986b810014e44d2c9d5b383f2a83da3c');
 /*!40000 ALTER TABLE `position_permission_re` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -875,7 +908,7 @@ CREATE TABLE `qm_permission` (
 
 LOCK TABLES `qm_permission` WRITE;
 /*!40000 ALTER TABLE `qm_permission` DISABLE KEYS */;
-INSERT INTO `qm_permission` VALUES ('47d99008f4594d64a66300e96e2f0b5b','订单管理','','0',1,0,NULL),('6a3479c94a4d43348b7fe37054013126','后台系统登陆','','0',1,0,NULL),('83ffc4a0432e4945890534583d62dd0a','登陆后台系统','登陆后台系统的权限','6a3479c94a4d43348b7fe37054013126',1,0,NULL),('986b810014e44d2c9d5b383f2a83da3c','我的好友使用权','查找、添加好友，删除好友，推荐好友，添加好友备注','c80bfab8902c402ba3019dfca8cf3a61',1,0,NULL),('986b810014e44d2c9d5b383f2a83da3d','添加部门/职位','拥有添加部门和职位的权限','c80bfab8902c402ba3019dfca8cf3a62',1,0,NULL),('c80bfab8902c402ba3019dfca8cf3a61','我的好友','','0',1,0,NULL),('c80bfab8902c402ba3019dfca8cf3a62','部门/职位管理权','','0',1,0,NULL),('follow','跟单权限','对客户订单的跟进权限','47d99008f4594d64a66300e96e2f0b5b',1,0,NULL);
+INSERT INTO `qm_permission` VALUES ('47d99008f4594d64a66300e96e2f0b5b','订单管理','','0',1,0,NULL),('6a3479c94a4d43348b7fe37054013126','后台系统登陆','','0',1,0,NULL),('83ffc4a0432e4945890534583d62dd0a','登陆后台系统','登陆后台系统的权限','6a3479c94a4d43348b7fe37054013126',1,0,NULL),('986b810014e44d2c9d5b383f2a83da3c','我的好友使用权','查找、添加好友，删除好友，推荐好友，添加好友备注','c80bfab8902c402ba3019dfca8cf3a61',1,0,NULL),('986b810014e44d2c9d5b383f2a83da3d','添加部门/职位','拥有添加部门和职位的权限','c80bfab8902c402ba3019dfca8cf3a62',1,0,NULL),('account_check','建账审核','拥有审核客户建账的权限','47d99008f4594d64a66300e96e2f0b5b',1,0,NULL),('c80bfab8902c402ba3019dfca8cf3a61','我的好友','','0',1,0,NULL),('c80bfab8902c402ba3019dfca8cf3a62','部门/职位管理权','','0',1,0,NULL),('follow','跟单权限','对客户订单的跟进权限','47d99008f4594d64a66300e96e2f0b5b',1,0,NULL);
 /*!40000 ALTER TABLE `qm_permission` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1440,7 +1473,7 @@ CREATE TABLE `user_qm_permission_re` (
 
 LOCK TABLES `user_qm_permission_re` WRITE;
 /*!40000 ALTER TABLE `user_qm_permission_re` DISABLE KEYS */;
-INSERT INTO `user_qm_permission_re` VALUES ('89d9317fb3834353bcf2a507bee2eb82','83ffc4a0432e4945890534583d62dd0a'),('89d9317fb3834353bcf2a507bee2eb82','986b810014e44d2c9d5b383f2a83da3c');
+INSERT INTO `user_qm_permission_re` VALUES ('89d9317fb3834353bcf2a507bee2eb82','account_check'),('89d9317fb3834353bcf2a507bee2eb82','follow'),('89d9317fb3834353bcf2a507bee2eb82','83ffc4a0432e4945890534583d62dd0a'),('89d9317fb3834353bcf2a507bee2eb82','986b810014e44d2c9d5b383f2a83da3c');
 /*!40000 ALTER TABLE `user_qm_permission_re` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1491,7 +1524,7 @@ CREATE TABLE `user_record` (
 
 LOCK TABLES `user_record` WRITE;
 /*!40000 ALTER TABLE `user_record` DISABLE KEYS */;
-INSERT INTO `user_record` VALUES ('313d189c4c804e23b83529a4b18330fd','10001','',1001,'啊呜','','男','13355553333','1995-05-15','address-555','','','2017-08-09 17:28:09','2017-08-09 17:28:09','u_st_0','','','','','',0,NULL,'','','2017-08-09 17:28:09',NULL,NULL,NULL,'',2),('fbb8be72b57346b895e43c138e1c516c','10001','',1001,'啊呜','','男','13355553333','1995-05-15','address-555','','','2017-08-09 17:28:24','2017-08-09 17:28:24','u_st_0','','','','','',0,NULL,'','','2017-08-09 17:28:24',NULL,NULL,NULL,'',2);
+INSERT INTO `user_record` VALUES ('3440e2c15478425298edb4c396c786d4','10001','',1001,'三三','','女','13366663333','1993-03-13','address-333','','','2017-08-23 09:33:12','2017-08-23 09:33:12','u_st_0','','','','','',0,NULL,'','','2017-08-23 09:33:12','','','','',2);
 /*!40000 ALTER TABLE `user_record` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1563,4 +1596,4 @@ SET character_set_client = @saved_cs_client;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-08-22 15:56:55
+-- Dump completed on 2017-08-24 17:49:37

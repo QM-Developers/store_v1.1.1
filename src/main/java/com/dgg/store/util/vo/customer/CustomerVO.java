@@ -1,4 +1,4 @@
-package com.dgg.store.util.vo;
+package com.dgg.store.util.vo.customer;
 
 import java.util.Date;
 
@@ -37,8 +37,6 @@ public class CustomerVO
     private String station;
 
     private String customerType;
-
-    private String merchandiserId;
 
     private Integer hadAccount;
 
@@ -208,16 +206,6 @@ public class CustomerVO
     public void setCustomerType(String customerType)
     {
         this.customerType = customerType;
-    }
-
-    public String getMerchandiserId()
-    {
-        return merchandiserId;
-    }
-
-    public void setMerchandiserId(String merchandiserId)
-    {
-        this.merchandiserId = merchandiserId;
     }
 
     public Integer getHadAccount()

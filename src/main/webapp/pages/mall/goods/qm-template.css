@@ -28,6 +28,14 @@
 	border-bottom: 1px solid #959595;
 	min-width: 1000px;
 }
+.tablebox .firsttr{
+	background:#f1f0f5;
+}
+.tablebox .addtemplate{
+	color:#54c2ff;
+	cursor: pointer;
+}
+
 .tablebox th{
 	width: 14%;
 	height: 42px;
@@ -54,9 +62,16 @@
 	display: inline-block;	
 	text-align: center;
 	margin-right: 20px;
-	
+	color:#54c2ff ;
 }
-.tablebox td input{
+.tablebox td .getinput{
 	width: 100%;
 	background: #FFFFFF;
+    border: 0;
+}
+.tablebox td .addinput{
+	width: 100%;
+	background: #FFFFFF;
+    border-color: red;
+	border: 1px solid #cccccc;
 }

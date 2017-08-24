@@ -1,6 +1,8 @@
 package com.dgg.store.dao.store;
 
-import com.dgg.store.util.vo.CustomerVO;
+import com.dgg.store.util.pojo.CustomerAccountRequest;
+import com.dgg.store.util.vo.customer.CustomerRepertoryVO;
+import com.dgg.store.util.vo.customer.CustomerVO;
 
 import java.util.List;
 
@@ -27,4 +29,28 @@ public interface CustomerDao
     int insertBackImage(String fileName, String customerId);
 
     int insertHandImage(String fileName, String customerId);
+
+    int getRepertoryLevel(String customerType, String myTeamId);
+
+    int countRepertoryLevel(CustomerRepertoryVO repertory);
+
+    int insertRepertoryLevel(CustomerRepertoryVO repertory);
+
+    List<CustomerVO> listMerchandiserFirst(CustomerVO customerVO);
+
+    List<CustomerVO> listMerchandiserSecond(CustomerVO customerVO);
+
+    List<CustomerVO> listAccountChecker(String myTeamId, String accountCheck);
+
+    int insertCustomerAccount(CustomerAccountRequest accountRequest);
+
+    int updateCustomerAccountById(CustomerAccountRequest accountRequest);
+
+    int updateRecordToAccount(String customerId);
+
+    int deleteRecord(String customerId);
+
+    CustomerAccountRequest getCustomerAccount(String requestId);
+
+    List<CustomerAccountRequest> listCustomerAccount(CustomerAccountRequest accountRequest);
 }

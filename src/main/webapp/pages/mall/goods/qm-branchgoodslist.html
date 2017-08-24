@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+
+		<link rel="stylesheet" href="../../../script/Amaze/assets/css/amazeui.min.css" />
+		<link rel="stylesheet" type="text/css" href="../../../pages/common/reset.css"/>
+		<link rel="stylesheet" href="qm-branchgoodslist.css" />
+	</head>
+
+	<body>
+
+		<div class="branchgoodslist bodybox">
+			<section class="branchgoodslist-list">
+				<div class="branchgoodslist-list-titlebox">			
+						<div class="branchgoodslist-title-text">商品列表</div> 
+						<div class="branchgoodslist-name">(<span id="branchname"></span><span>销售点</span>)</div>
+					<div class=" am-fr header-right">
+						<div class="am-fr put-box">
+							<input class="header-put" type="" name="" value="" placeholder="输入关键字符" /><span id="seobut" class="header-span"></span>
+						</div>
+					</div>
+				</div>
+				<div class="branchgoodslist-list-table">
+					<ul id="branchgoodslist">
+						<li class="branchgoodslist-list-tr">
+							<div class="item1">序号</div>
+							<div class="item2">商品名称</div>
+							<div class="item4">分类</div>
+							<div class="item3">
+								<div class="item3-box">
+									<div class="item3-2">规格</div>
+									<div class="item3-3">单价(元)</div>
+									<div class="item3-4">库存</div>
+								</div>
+							</div>
+							<div class="item4">发布时间</div>
+							<div class="item4">操作区</div>
+
+						</li>
+						<!--<li class="branchgoodslist-list-tr">-->
+							<!--<div class="item1">1</div>-->
+							<!--<div class="item2">米4T型4%小米牧场猪饲料</div>-->
+							<!--<div class="item4">饲料原料</div>-->
+							<!--<div class="item3">-->
+								<!--<div class="item3-box">-->
+									<!--<div class="item3-2">10kg/包</div>-->
+									<!--<div class="item3-3">150</div>-->
+									<!--<div class="item3-4">1000</div>-->
+								<!--</div>-->
+								<!--<div class="item3-box">-->
+									<!--<div class="item3-2">10kg/包</div>-->
+									<!--<div class="item3-3">150</div>-->
+									<!--<div class="item3-4">1000</div>-->
+								<!--</div>-->
+							<!--</div>-->
+							<!--<div class="item4">2017/6/20</div>-->
+							<!--<div class="item4">-->
+								<!--<a href="qm-goodsRelease.html">详情信息</a>-->
+							<!--</div>-->
+						<!--</li>-->
+						<!--<li class="branchgoodslist-list-tr">-->
+							<!--<div class="item1">1</div>-->
+							<!--<div class="item2">米4T型4%小米牧场猪饲料</div>-->
+							<!--<div class="item4">饲料原料</div>-->
+							<!--<div class="item3">-->
+								<!--<div class="item3-box">-->
+									<!--<div class="item3-2">10kg/包</div>-->
+									<!--<div class="item3-3">150</div>-->
+									<!--<div class="item3-4">1000</div>-->
+								<!--</div>-->
+							<!--</div>-->
+							<!--<div class="item4">2017/6/20</div>-->
+							<!--<div class="item4">-->
+								<!--<a href="">详情信息</a>-->
+							<!--</div>-->
+						<!--</li>-->
+
+					</ul>
+				</div>
+			</section>
+			<div class="paging" >
+				<div class="pagingbut">
+					<button class="del-but" onclick="javascript :history.back(-1);">返回</button>
+				</div>
+				<div class="pagingright" onclick="nextPage(this)">
+					下一页
+				</div>
+				<div class="pagingmodle">
+					<span id="branchpageleft">1</span>/<span id="branchpageright">1</span>
+				</div>
+
+				<div class="pagingright" onclick="nextPage(this)">
+					上一页
+				</div>
+				<div class="paging-num-box" id="branchshownum">
+					显示条数:<span class="paging-num " onclick="pageShowNum(this)">30</span>
+					<span class="paging-num " onclick="pageShowNum(this)">20</span>
+					<span class="paging-num paging-checked" onclick="pageShowNum(this)">10</span>
+				</div>
+			</div>
+		</div>
+
+	</body>
+	<script type="text/javascript" src="../../../script/jquery/jquery-3.0.0.min.js"></script>
+	<script type="text/javascript" src="../../../pages/mall/goods/qm-branchgoodslist.js"></script>
+	<script type="text/javascript" src="../../../script/js/myjs.js"></script>
+	<script type="text/javascript" src="../../../script/js/date.js"></script>
+</html>

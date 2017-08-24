@@ -7,6 +7,7 @@ var gdReleaseJS = {
         urlParams = urlUtil.paramsToObj(urlParams);
         //      gdReleaseJS.findFreightTemps();
         // gdReleaseJS.findTypeAttr();
+        console.log(urlParams);
         if (urlParams.option == Constant.urlOptAdd)
             gdReleaseJS.findTypeAndParents();
         else
@@ -42,14 +43,12 @@ var gdReleaseJS = {
         {
             data = data.result;
             var text = "";
-
             function getType(data)
             {
                 if (!myjs.isNull(data["parent"]))
                     getType(data["parent"]);
                 text += (data["goodsTypeName"] + " > ");
             }
-
             getType(data);
             text = text.substring(0, text.length - 3);
             $("#type-text").text(text);
@@ -80,19 +79,20 @@ var gdReleaseJS = {
             var imgList = data["imgList"];
 
             for (var i = 0; i < imgList.length; i++)
-                gdReleaseJS.insertBannerImage(imgList[i]["imagePath"], imgList[i]["imageId"]);
+                gdReleaseJS.insertBannerImage(path + imgList[i]["imagePath"], imgList[i]["imageId"]);
 
             myjs.ajax_post(path + "/s/findGoodsDescribe.action", {goodsDescribe: data["goodsDescribe"]}, function (data)
             {
                 var describeList = data.result;
                 for (var i = 0; i < describeList.length; i++)
-                    gdReleaseJS.insertDescribeImage(describeList[i]["imagePath"], describeList[i]["imageId"]);
+                    gdReleaseJS.insertDescribeImage(path + describeList[i]["imagePath"], describeList[i]["imageId"]);
             });
         });
     },
 
     addStandard: function (data)
     {
+
         if (myjs.isNull(data))
             data = {standardId: "", standardName: "", standardWeight: "", standardPrice: "", standardCount: ""};
         var tr = '<tr>' +
@@ -100,10 +100,21 @@ var gdReleaseJS = {
             '<td><input value="' + data["standardWeight"] + '"/></td>' +
             '<td><input value="' + data["standardPrice"] + '"/></td>' +
             '<td><input value="' + data["standardCount"] + '"/></td>' +
-            '<td class="tab4"><a href="javascript:void(0);" class="tab4-a " onclick="Delall(this)">删除</a></td>' +
+            '<td class="tab4"><a class="tab4-a " onclick="gdReleaseJS.Delall(this)">删除</a></td>' +
             '</tr>';
         var body = $("#standard-list");
-        body.append(tr);
+        var inputval = 0;
+        $('#standard-list tr:last-child input').each(function ()
+        {
+            if (myjs.isNull($(this).val()))
+            {
+                inputval += 1
+            }
+        });
+        if (inputval == 0)
+        {
+            body.append(tr);
+        }
     },
 
     findFreightTemps: function ()
@@ -250,8 +261,8 @@ var gdReleaseJS = {
             var $list = $("#upload-list");
 
             var $li = $('<div onclick="gdReleaseJS.onSelectImg(this);" class="imgbox am-img-thumbnail">' +
-                '<a id="' + file.id + '"><img style="width: 100%;height: 100%" src=""/></a>' +
-                '</div>'),
+                    '<a id="' + file.id + '"><img style="width: 100%;height: 100%" src=""/></a>' +
+                    '</div>'),
                 $img = $li.find('img');
 
             // $list为容器jQuery实例
@@ -369,28 +380,29 @@ var gdReleaseJS = {
                     gdReleaseJS.insertDescribeImage(attrs[i], path[i]);
                 break;
         }
+       $('#my-popup').modal('close')
     },
 
-    insertDescribeImage: function (src, path)
+    insertDescribeImage: function (src, realPath)
     {
         var li = '' +
-            '<li class="li-mid lileft" onmouseenter="gdReleaseJS.leftandrigthmove(this)">' +
+            '<li class="li-mid lileft" onmouseenter="gdReleaseJS.leftandrigthmove(this)" onmouseleave="gdReleaseJS.leftandrigthmoveleave(this)">' +
             '<div class="mid-box">' +
             '<i class="mid-li" onclick="gdReleaseJS.moveToLeft(this);" class="top">上移</i>' +
             '<i class="mid-li" onclick="gdReleaseJS.moveToRight(this);" class="down">下移</i>' +
-            '<i class="mid-li">删除</i></div>' +
-            ' <a href="###"><img src="' + path + src + '" real-path="' + path + '"/></a>' +
+            '<i class="mid-li" onclick="gdReleaseJS.moveToRemove(this)">删除</i></div>' +
+            ' <a href="###"><img src="' + src + '" real-path="' + realPath + '"/></a>' +
             '</li>';
         $("#middleimg").append(li);
     },
 
-    insertBannerImage: function (src, path)
+    insertBannerImage: function (src, realPath)
     {
         var imgBox = $(".add-two");
         for (var i = 0; i < imgBox.length; i++)
             if (myjs.isNull($(imgBox[i]).find("img").attr("src")))
             {
-                $(imgBox[i]).find("img").attr({"src": path + src, "real-path": path});
+                $(imgBox[i]).find("img").attr({"src": src, "real-path": realPath});
                 $(imgBox[i]).css("display", "block");
                 break;
             }
@@ -400,6 +412,11 @@ var gdReleaseJS = {
     {
         var $DisThis = $(item).find(".mid-box");
         $DisThis.css("display", "block");
+    },
+    leftandrigthmoveleave: function (item)
+    {
+        var $DisThis = $(item).find(".mid-box");
+        $DisThis.css("display", "none");
     },
 
     Moveout: function (item)
@@ -467,7 +484,10 @@ var gdReleaseJS = {
         if ($prev.length > 0)
             gdReleaseJS.moveImage($current, $prev);
     },
-
+    moveToRemove: function (item)
+    {
+        $(item).parents("li").remove();
+    },
     moveImage: function ($origin, $target)
     {
         $origin = $($origin).find("img");
@@ -549,6 +569,7 @@ var gdReleaseJS = {
         myjs.ajax_post(url, params, function (data)
         {
             console.log(data);
+            location.href='qm-goodslist.jsp';
         });
     },
 
@@ -611,7 +632,28 @@ var gdReleaseJS = {
         myjs.ajax_post(url, params, function (data)
         {
             console.log(data);
+            location.href='qm-goodslist.jsp';
         });
     },
+    Delall : function (item)
+    {
+        if ($("#standard-list tr").length == 1)
+            return;
+        temp = item;
+        var titletext = '提示';
+        var conttext = '是否删除这个商品'
+        var leftbuttext = '是';
+        var fnleft = 'gdReleaseJS.Deltr()';
+        var rightbuttext = '否';
+        var fnright = 'indenxlogin.ErrorpopRemove(this)';
+        indenxlogin.Errorpoptwo(titletext, conttext, leftbuttext, fnleft, rightbuttext, fnright)
+
+    },
+    Deltr : function ()
+    {
+        console.log(temp)
+        $(temp).parents("tr").remove()
+        $('.password-box').remove();
+    }
 };
 

@@ -1,44 +1,169 @@
 ﻿@charset "utf-8";
 /**Style Reset**/
-body, div, span, h1, h2, h3, h4, h5, h6, p, pre, sup, sub, ul, ol, li, dl, dt, dd, form, fieldset, input, button, textarea, select, iframe, img, a, header, footer, section, article, aside, details, figcaption, figure, hgroup, nav, menu, canvas { padding: 0; margin: 0; }
-body { background-color: #fff; color: #000; font: 12px/20px "Microsoft Yahei", Tahoma, Arial, "Helvetica Neue", "Hiragino Sans GB", Simsun, sans-self; }
-ul, ol { list-style-type: none; }
-b, strong { font-weight: normal; }
-i, em { font-style: normal; }
-a { text-decoration: none; color: #333; }
-/*清除浮动*/
-.clearfix:after { clear: both; display: block; height: 0; content: ""; }
-/*主体部分*/
-.contains { width: 1000px; margin: 0 auto; }
-/*面包屑导航*/
-.crumbNav { padding: 18px 0; color: #323232; }
-.crumbNav a { color: #ed7f5a; }
-.crumbNav a:hover { color: #d95459; }
-.crumbNav font { padding: 0 2px; font-family: simsun; }
-/**选择商品分类**/
-.wareSort { padding: 15px 8px 15px 7px; border: 1px solid #ddd; background-color: #f6f6f6; }
-.wareSort ul { float: left; width: 178px;height: 300px;overflow: auto; padding: 10px; border: 1px solid #ddd; margin-right: 7px; margin-left: 8px; background-color: #fff; }
-.wareSort ul li a { display: block; padding-right: 25px; padding-left: 10px; border: 1px solid #fff; line-height: 28px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
-.wareSort ul li a:hover { color: #52bea6; }
-.wareSort ul li.active a { border-color: #52bea6; background: #cefff4 no-repeat right center; color: #52bea6; }
-.selectedSort { padding: 10px 15px; border: 1px solid #ed7f5a; margin-top: 10px; margin-bottom: 10px; background-color: #fff4f0; color: #ed7f5a; }
-.selectedSort b { font-weight: bold; }
-.selectedSort i font { font-family: simsun; }
-.wareSortBtn { padding-bottom: 50px; text-align: center; }
-.wareSortBtn input { width: 200px; height: 36px; border: 1px solid #ed7f5a; -webkit-border-radius: 2px; -moz-border-radius: 2px; border-radius: 2px; background-color: #ed7f5a; color: #fff; }
-.wareSortBtn input:hover { border-color: #d95459; background-color: #d95459; }
-.wareSortBtn input:disabled { border-color: #ddd; background-color: #f6f6f6; color: #9a9a9a; cursor: default; }
-
-.add_imgbox{
-	width: 260px;
-	height: 322px;
-	overflow: auto;
-	float: right;
+body, div, span, h1, h2, h3, h4, h5, h6, p, pre, sup, sub, ul, ol, li, dl, dt, dd, form, fieldset, input, button, textarea, select, iframe, img, a, header, footer, section, article, aside, details, figcaption, figure, hgroup, nav, menu, canvas {
+    padding: 0;
+    margin: 0;
 }
-.add_imgbox div{
-	width:45%;
-	height: 97px;
-	padding: 5px;
-	float: left;
-   background:   red ;
+
+body {
+    background-color: #fff;
+    color: #000;
+    font: 16px "Microsoft Yahei", Tahoma, Arial, "Helvetica Neue", "Hiragino Sans GB", Simsun, sans-self;
+}
+
+ul, ol {
+    list-style-type: none;
+}
+
+b, strong {
+    font-weight: normal;
+}
+
+i, em {
+    font-style: normal;
+}
+
+a {
+    text-decoration: none;
+    color: #333;
+}
+
+/*清除浮动*/
+.clearfix:after {
+    clear: both;
+    display: block;
+    height: 0;
+    content: "";
+}
+
+/*主体部分*/
+/*.contains {*/
+    /*width: 1000px;*/
+    /*margin: 0 auto;*/
+/*}*/
+
+/*面包屑导航*/
+.crumbNav {
+    padding: 18px 0;
+    color: #323232;
+}
+
+.crumbNav a {
+    color: #ed7f5a;
+}
+
+.crumbNav a:hover {
+    color: #d95459;
+}
+
+.crumbNav font {
+    padding: 0 2px;
+    font-family: simsun;
+}
+
+/**选择商品分类**/
+.wareSort {
+    padding: 15px 8px 15px 15px;
+
+}
+
+.wareSort ul {
+    float: left;
+    width: 250px;
+    height: 400px;
+    overflow: auto;
+    padding: 10px;
+    border: 1px solid #ddd;
+    margin-right: 7px;
+    margin-left: 8px;
+    background-color: #f1f0f5;
+}
+
+.wareSort ul li a {
+    display: block;
+    padding-right: 25px;
+    padding-left: 10px;
+
+    line-height: 28px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.wareSort ul li:hover {
+    background:#02b4fe ;
+    color: #ffffff;
+}
+
+.wareSort ul li.active a {
+    border-color: #52bea6;
+    background: #cefff4 no-repeat right center;
+    color: #52bea6;
+}
+
+.selectedSort {
+    padding: 10px 15px;
+    border: 1px solid #CCCCCC;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    background-color: #f1f0f5;
+
+}
+
+.selectedSort b {
+    font-weight: bold;
+}
+
+.selectedSort i font {
+    font-family: simsun;
+}
+
+.wareSortBtn {
+    padding-bottom: 50px;
+    text-align: center;
+}
+
+.wareSortBtn input {
+    width: 200px;
+    height: 36px;
+    border: 1px solid #CCCCCC;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+    background-color: #f1f0f5;
+    float: right;
+}
+
+.wareSortBtn input:hover {
+
+    background-color: #d95459;
+}
+
+.wareSortBtn input:disabled {
+    border-color: #ddd;
+    background-color: #f6f6f6;
+    color: #9a9a9a;
+    cursor: default;
+}
+
+.add_imgbox {
+    width: 260px;
+    height: 322px;
+    overflow: auto;
+    float: right;
+}
+
+.add_imgbox div {
+    width: 45%;
+    height: 97px;
+    padding: 5px;
+    float: left;
+    background: red;
+}
+.admin-content .typetitle{
+    width: 100%;
+    height: 44px;
+    padding-left: 20px;
+    line-height: 44px;
+    border-bottom: 2px solid #02b4fe;
 }

@@ -29,7 +29,7 @@
             </div>
             <div class=" am-fr header-right">
                 <div class="am-fr put-box">
-                    <input class="header-put" id="keyword" placeholder="输入关键字符"/><span onclick="qm_goodslist.findGoodsListByKeyword();" class="header-span"></span>
+                    <input class="header-put" id="keyword" placeholder="输入商品名称"/><span onclick="qm_goodslist.findGoodsListByKeyword();" class="header-span"></span>
                 </div>
             </div>
         </div>

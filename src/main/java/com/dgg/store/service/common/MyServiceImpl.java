@@ -75,7 +75,7 @@ public class MyServiceImpl implements MyService
     public ResultVO deleteMyAddress(SessionVO sessionVO, MyAddressVO addressVO)
     {
         Integer result = dao.deleteMyAddress(addressVO.getUserAddressId());
-        if (addressVO.getUserAddressDefault() == 1)
+        if (addressVO.getUserAddressDefault() != null && 1 == addressVO.getUserAddressDefault())
             dao.updateAddressToDefault(addressVO.getUserId());
 
         ResultVO resultVO = new ResultVO(result, sessionVO.getToken());

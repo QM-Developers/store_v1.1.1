@@ -648,17 +648,20 @@ create table qm_branch
 );
 
 /*==============================================================*/
-/* 库存记录
+/* 库存修改记录
 /*==============================================================*/
 drop table if exists repertory_record;
 create table repertory_record
 (
    record_id varchar(35) not null primary key,	-- 记录Id
+   my_team_id varchar(35) not null,	-- 团队Id
+   record_type tinyint not null,	-- 修改类型
    branch_id varchar(35) not null,	-- 销售点Id
-   create_date datetime not null,	-- 申请时间
-   proposer_id varchar(35) not null,	-- 申请人
-   approver_id varchar(35),	-- 审批人
-   record_status tinyint not null	-- 申请状态
+   branch_name varchar(35) not null,	-- 销售点名称
+   operator_id varchar(35) not null,	-- 操作员Id
+   operator_name varchar(20) not null,	-- 操作员姓名
+   create_date datetime not null,	-- 修改时间
+   record_remark varchar(255) not null	-- 备注
 );
 
 /*==============================================================*/
@@ -667,7 +670,41 @@ create table repertory_record
 drop table if exists repertory_record_list;
 create table repertory_record_list
 (
-   goods_id varchar(35) not null primary key,	-- 商品Id
+   record_id varchar(35) not null,
+   goods_id varchar(35) not null,	-- 商品Id
+   goods_name varchar(60) not null,	-- 商品名称
+   standard_id varchar(35) not null,	-- 规格Id
+   standard_name varchar(20) not null,	-- 规格名称
+   standard_count int not null	-- 申请数量
+);
+
+/*==============================================================*/
+/* 库存申请记录
+/*==============================================================*/
+drop table if exists repertory_apply;
+create table repertory_apply
+(
+   apply_id varchar(35) not null primary key,	-- 记录Id
+   branch_id varchar(35) not null,	-- 销售点Id
+   my_team_id varchar(35) not null,	-- 团队Id
+   branch_name varchar(35) not null,	-- 销售点名称
+   create_date datetime not null,	-- 申请时间
+   proposer_id varchar(35) not null,	-- 申请人
+   proposer_name varchar(20) not null,	-- 申请人姓名
+   approver_id varchar(35),	-- 审批人
+   approver_name varchar(20) not null,	-- 审批人姓名
+   apply_status tinyint not null,	-- 申请状态
+   apply_remark varchar(255) not null -- 备注
+);
+
+/*==============================================================*/
+/* 库存申请列表
+/*==============================================================*/
+drop table if exists repertory_apply_list;
+create table repertory_apply_list
+(
+   apply_id varchar(35) not null,
+   goods_id varchar(35) not null,	-- 商品Id
    goods_name varchar(60) not null,	-- 商品名称
    standard_id varchar(35) not null,	-- 规格Id
    standard_name varchar(20) not null,	-- 规格名称

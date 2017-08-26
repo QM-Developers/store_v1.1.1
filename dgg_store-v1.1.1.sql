@@ -408,7 +408,7 @@ CREATE TABLE `goods_standard` (
 
 LOCK TABLES `goods_standard` WRITE;
 /*!40000 ALTER TABLE `goods_standard` DISABLE KEYS */;
-INSERT INTO `goods_standard` VALUES ('0b4bff177fa145098f83aef5422377db','d661c8d99dc74f2ab32419a96e156833','23',2,3,41),('1f9b286b836c4175ab09a9b02cacbb7d','22a91981f71a43e7a8c34472bc7cc1c6','小包',5,0,30),('41beb4180ebe42a3bef04a85d32df9bb','d94c07686d0b4483bccd3c0066c46c1f','23',2,5,41),('44a91ec5692442d28ac752b066cafa03','22a91981f71a43e7a8c34472bc7cc1c6','大包',10,100,60),('5f4810d815ff4042a0fe80e11b74313f','e4d8553d166045d792f37f8f837b4024','23',2,5,41),('7b073f443ad7449f931fc01d11517dac','211de7c120a94e8d923a1032e363275e','23',2,5,41),('9190f4574805419187a8029042803617','9c3ed28bb39e4b079f548e69a3681cba','大包',10,100,60),('91bf66bdc4dd424f90a7e22295695881','534d6156325a4c1a89510ddc0b5bcbeb','23',2,5,41),('9382b49b2d864760bda8cb2e66891259','f8b24567adfc48cf82f617822a63c628','23',2,5,41),('97be34802bda49f6b4ee2c200ee3a16a','9c3ed28bb39e4b079f548e69a3681cba','小包',5,200,30),('9df9355a73de40d594826f745cf345ab','457c81e4dda3487187bab10eda5355ed','23',2,5,41),('ac36dcfd049a4748936617a0e8f083b2','91a39e42fb614f13bfca0d419f8f3f5c','23',2,5,41),('ea59e23aa08d4a9c8856c6d825634e18','db073ab0dc5c4b719deaa1b8705327d2','23',2,5,41),('f46b125006204687b18ca8f7ecbee87e','01402a4e26d14f1dbe5135ef69b6b385','23',2,5,41);
+INSERT INTO `goods_standard` VALUES ('0b4bff177fa145098f83aef5422377db','d661c8d99dc74f2ab32419a96e156833','23',2,3,41),('1f9b286b836c4175ab09a9b02cacbb7d','22a91981f71a43e7a8c34472bc7cc1c6','小包',5,50,30),('41beb4180ebe42a3bef04a85d32df9bb','d94c07686d0b4483bccd3c0066c46c1f','23',2,5,41),('44a91ec5692442d28ac752b066cafa03','22a91981f71a43e7a8c34472bc7cc1c6','大包',10,100,60),('5f4810d815ff4042a0fe80e11b74313f','e4d8553d166045d792f37f8f837b4024','23',2,5,41),('7b073f443ad7449f931fc01d11517dac','211de7c120a94e8d923a1032e363275e','23',2,11,41),('9190f4574805419187a8029042803617','9c3ed28bb39e4b079f548e69a3681cba','大包',10,125,60),('91bf66bdc4dd424f90a7e22295695881','534d6156325a4c1a89510ddc0b5bcbeb','23',2,5,41),('9382b49b2d864760bda8cb2e66891259','f8b24567adfc48cf82f617822a63c628','23',2,5,41),('97be34802bda49f6b4ee2c200ee3a16a','9c3ed28bb39e4b079f548e69a3681cba','小包',5,200,30),('9df9355a73de40d594826f745cf345ab','457c81e4dda3487187bab10eda5355ed','23',2,5,41),('ac36dcfd049a4748936617a0e8f083b2','91a39e42fb614f13bfca0d419f8f3f5c','23',2,5,41),('ea59e23aa08d4a9c8856c6d825634e18','db073ab0dc5c4b719deaa1b8705327d2','23',2,5,41),('f46b125006204687b18ca8f7ecbee87e','01402a4e26d14f1dbe5135ef69b6b385','23',2,5,41);
 /*!40000 ALTER TABLE `goods_standard` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -852,7 +852,7 @@ CREATE TABLE `qm_branch_goods` (
 
 LOCK TABLES `qm_branch_goods` WRITE;
 /*!40000 ALTER TABLE `qm_branch_goods` DISABLE KEYS */;
-INSERT INTO `qm_branch_goods` VALUES ('c1ac8fadcd8d4806a35518be39703393','22a91981f71a43e7a8c34472bc7cc1c6','1f9b286b836c4175ab09a9b02cacbb7d',200);
+INSERT INTO `qm_branch_goods` VALUES ('c1ac8fadcd8d4806a35518be39703393','22a91981f71a43e7a8c34472bc7cc1c6','1f9b286b836c4175ab09a9b02cacbb7d',210),('c1ac8fadcd8d4806a35518be39703393','9c3ed28bb39e4b079f548e69a3681cba','9190f4574805419187a8029042803617',5);
 /*!40000 ALTER TABLE `qm_branch_goods` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -908,7 +908,7 @@ CREATE TABLE `qm_permission` (
 
 LOCK TABLES `qm_permission` WRITE;
 /*!40000 ALTER TABLE `qm_permission` DISABLE KEYS */;
-INSERT INTO `qm_permission` VALUES ('47d99008f4594d64a66300e96e2f0b5b','订单管理','','0',1,0,NULL),('6a3479c94a4d43348b7fe37054013126','后台系统登陆','','0',1,0,NULL),('83ffc4a0432e4945890534583d62dd0a','登陆后台系统','登陆后台系统的权限','6a3479c94a4d43348b7fe37054013126',1,0,NULL),('986b810014e44d2c9d5b383f2a83da3c','我的好友使用权','查找、添加好友，删除好友，推荐好友，添加好友备注','c80bfab8902c402ba3019dfca8cf3a61',1,0,NULL),('986b810014e44d2c9d5b383f2a83da3d','添加部门/职位','拥有添加部门和职位的权限','c80bfab8902c402ba3019dfca8cf3a62',1,0,NULL),('account_check','建账审核','拥有审核客户建账的权限','47d99008f4594d64a66300e96e2f0b5b',1,0,NULL),('c80bfab8902c402ba3019dfca8cf3a61','我的好友','','0',1,0,NULL),('c80bfab8902c402ba3019dfca8cf3a62','部门/职位管理权','','0',1,0,NULL),('follow','跟单权限','对客户订单的跟进权限','47d99008f4594d64a66300e96e2f0b5b',1,0,NULL);
+INSERT INTO `qm_permission` VALUES ('47d99008f4594d64a66300e96e2f0b5b','订单管理','','0',1,0,NULL),('63eae3f2b2164114b5c31b462180436e','库存管理','','0',1,0,NULL),('6a3479c94a4d43348b7fe37054013126','后台系统登陆','','0',1,0,NULL),('83ffc4a0432e4945890534583d62dd0a','登陆后台系统','登陆后台系统的权限','6a3479c94a4d43348b7fe37054013126',1,0,NULL),('986b810014e44d2c9d5b383f2a83da3c','我的好友使用权','查找、添加好友，删除好友，推荐好友，添加好友备注','c80bfab8902c402ba3019dfca8cf3a61',1,0,NULL),('986b810014e44d2c9d5b383f2a83da3d','添加部门/职位','拥有添加部门和职位的权限','c80bfab8902c402ba3019dfca8cf3a62',1,0,NULL),('account_check','建账审核','拥有审核客户建账的权限','47d99008f4594d64a66300e96e2f0b5b',1,0,NULL),('c80bfab8902c402ba3019dfca8cf3a61','我的好友','','0',1,0,NULL),('c80bfab8902c402ba3019dfca8cf3a62','部门/职位管理权','','0',1,0,NULL),('f78234ffb82b4ec79d7eb5486ce9b3fc','库存申请权','对总部发起库存申请','63eae3f2b2164114b5c31b462180436e',1,0,NULL),('follow','跟单权限','对客户订单的跟进权限','47d99008f4594d64a66300e96e2f0b5b',1,0,NULL),('repertory_check','库存审批权','审批库存申请的权限','63eae3f2b2164114b5c31b462180436e',1,0,NULL);
 /*!40000 ALTER TABLE `qm_permission` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -936,6 +936,112 @@ INSERT INTO `qm_permission_re` VALUES ('42b95b8f711447c49038e922c6f6167d','986b8
 UNLOCK TABLES;
 
 --
+-- Temporary view structure for view `qm_permission_view`
+--
+
+DROP TABLE IF EXISTS `qm_permission_view`;
+/*!50001 DROP VIEW IF EXISTS `qm_permission_view`*/;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8;
+/*!50001 CREATE VIEW `qm_permission_view` AS SELECT 
+ 1 AS `user_id`,
+ 1 AS `user_name`,
+ 1 AS `my_team_id`,
+ 1 AS `qm_permission_id`*/;
+SET character_set_client = @saved_cs_client;
+
+--
+-- Table structure for table `repertory_apply`
+--
+
+DROP TABLE IF EXISTS `repertory_apply`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `repertory_apply` (
+  `apply_id` varchar(35) NOT NULL,
+  `branch_id` varchar(35) NOT NULL,
+  `my_team_id` varchar(35) NOT NULL,
+  `branch_name` varchar(35) NOT NULL,
+  `create_date` datetime NOT NULL,
+  `proposer_id` varchar(35) NOT NULL,
+  `proposer_name` varchar(20) NOT NULL,
+  `approver_id` varchar(35) DEFAULT NULL,
+  `approver_name` varchar(20) NOT NULL,
+  `apply_status` tinyint(4) NOT NULL,
+  `apply_remark` varchar(255) NOT NULL,
+  PRIMARY KEY (`apply_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `repertory_apply`
+--
+
+LOCK TABLES `repertory_apply` WRITE;
+/*!40000 ALTER TABLE `repertory_apply` DISABLE KEYS */;
+INSERT INTO `repertory_apply` VALUES ('022564f8573f4a97a0840a976dae2e31','c1ac8fadcd8d4806a35518be39703393','10001','广州销售点','2017-08-26 15:11:00','89d9317fb3834353bcf2a507bee2eb83','李四','89d9317fb3834353bcf2a507bee2eb82','张三',12,'备注'),('470b578ffab04316a6ba78ab25c6d0f3','c1ac8fadcd8d4806a35518be39703393','10001','广州销售点','2017-08-26 15:09:33','1','1','1','1',10,'备注');
+/*!40000 ALTER TABLE `repertory_apply` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `repertory_apply_list`
+--
+
+DROP TABLE IF EXISTS `repertory_apply_list`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `repertory_apply_list` (
+  `apply_id` varchar(35) NOT NULL,
+  `goods_id` varchar(35) NOT NULL,
+  `goods_name` varchar(60) NOT NULL,
+  `standard_id` varchar(35) NOT NULL,
+  `standard_name` varchar(20) NOT NULL,
+  `standard_count` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `repertory_apply_list`
+--
+
+LOCK TABLES `repertory_apply_list` WRITE;
+/*!40000 ALTER TABLE `repertory_apply_list` DISABLE KEYS */;
+INSERT INTO `repertory_apply_list` VALUES ('470b578ffab04316a6ba78ab25c6d0f3','22a91981f71a43e7a8c34472bc7cc1c6','倍润828B,20%生长育肥猪浓缩饲料 使用阶段：60kg-出栏','1f9b286b836c4175ab09a9b02cacbb7d','小包',10),('470b578ffab04316a6ba78ab25c6d0f3','9c3ed28bb39e4b079f548e69a3681cba','【畅消】4%中猪预混料 长势快 后劲强 适用于30~60KG','9190f4574805419187a8029042803617','大包',5),('022564f8573f4a97a0840a976dae2e31','22a91981f71a43e7a8c34472bc7cc1c6','倍润828B,20%生长育肥猪浓缩饲料 使用阶段：60kg-出栏','1f9b286b836c4175ab09a9b02cacbb7d','小包',10),('022564f8573f4a97a0840a976dae2e31','9c3ed28bb39e4b079f548e69a3681cba','【畅消】4%中猪预混料 长势快 后劲强 适用于30~60KG','9190f4574805419187a8029042803617','大包',5);
+/*!40000 ALTER TABLE `repertory_apply_list` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `repertory_record`
+--
+
+DROP TABLE IF EXISTS `repertory_record`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `repertory_record` (
+  `record_id` varchar(35) NOT NULL,
+  `my_team_id` varchar(35) NOT NULL,
+  `record_type` tinyint(4) NOT NULL,
+  `branch_id` varchar(35) NOT NULL,
+  `branch_name` varchar(35) NOT NULL,
+  `operator_id` varchar(35) NOT NULL,
+  `operator_name` varchar(20) NOT NULL,
+  `create_date` datetime NOT NULL,
+  `record_remark` varchar(255) NOT NULL,
+  PRIMARY KEY (`record_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `repertory_record`
+--
+
+LOCK TABLES `repertory_record` WRITE;
+/*!40000 ALTER TABLE `repertory_record` DISABLE KEYS */;
+INSERT INTO `repertory_record` VALUES ('85ca39b404a5495790edaf360113d2df','10001',1,'','','89d9317fb3834353bcf2a507bee2eb83','李四','2017-08-26 11:14:00','备注');
+/*!40000 ALTER TABLE `repertory_record` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `repertory_record_list`
 --
 
@@ -943,12 +1049,12 @@ DROP TABLE IF EXISTS `repertory_record_list`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `repertory_record_list` (
+  `record_id` varchar(35) NOT NULL,
   `goods_id` varchar(35) NOT NULL,
   `goods_name` varchar(60) NOT NULL,
   `standard_id` varchar(35) NOT NULL,
   `standard_name` varchar(20) NOT NULL,
-  `standard_count` int(11) NOT NULL,
-  PRIMARY KEY (`goods_id`)
+  `standard_count` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -958,6 +1064,7 @@ CREATE TABLE `repertory_record_list` (
 
 LOCK TABLES `repertory_record_list` WRITE;
 /*!40000 ALTER TABLE `repertory_record_list` DISABLE KEYS */;
+INSERT INTO `repertory_record_list` VALUES ('85ca39b404a5495790edaf360113d2df','22a91981f71a43e7a8c34472bc7cc1c6','倍润828B,20%生长育肥猪浓缩饲料 使用阶段：60kg-出栏','1f9b286b836c4175ab09a9b02cacbb7d','小包',60),('85ca39b404a5495790edaf360113d2df','9c3ed28bb39e4b079f548e69a3681cba','【畅消】4%中猪预混料 长势快 后劲强 适用于30~60KG','9190f4574805419187a8029042803617','大包',130);
 /*!40000 ALTER TABLE `repertory_record_list` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1155,7 +1262,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES ('41370f132bd44bca943e2fe5dd9862ab','10001','27a9c57b4c69441aa569ef4ae1a9ef7c',1003,'赵六','825682eafec59c2e1632828195133a52','女','13657981326',NULL,'','','','2017-07-07 17:16:19','2017-07-07 17:16:19','u_st_2','','','','','',0,NULL,'135621567845465420','','2017-07-07 17:16:19','/WEB-INF/upload/img/id_card/4d69b8cb68c84988aa74e389287fe2a7.jpg','/WEB-INF/upload/img/id_card/11bcde7361d54d61b6f5d192e57f8645.jpg',NULL,'da1f6e509bdb43cd93e2bb4c7cbaa0e5',2),('89d9317fb3834353bcf2a507bee2eb82','10001','27a9c57b4c69441aa569ef4ae1a9ef7c',1002,'张三','825682eafec59c2e1632828195133a52','男','13688888888','2017-06-14','x胡同y巷z号','北京市 西城区','','2017-06-14 10:38:46','2017-06-14 10:38:46','u_st_2','','','/upload/img/user/head_portrait/89d9317fb3834353bcf2a507bee2eb82/34ac4d747a35414dbf249b6add3e8348.jpg','','22766697f14448c4ab032e2f168ca2d41500285106132',0,NULL,'','','2017-07-01 11:56:19',NULL,'b765c637c95e43e6b395348b6ef72435','285746c4af0949518c2dbf301d2ad7ab','6d163a17a8b842dd98de4b059b893666',2),('89d9317fb3834353bcf2a507bee2eb83','10001','27a9c57b4c69441aa569ef4ae1a9ef7d',1002,'李四','825682eafec59c2e1632828195133a52','女','13699999999','2017-06-14','z胡同y巷x号','北京市 西城区','','2017-06-14 10:38:46','2017-08-12 14:59:41','u_st_2','','','','','',0,NULL,'','','2017-07-01 11:56:19',NULL,NULL,NULL,'6d163a17a8b842dd98de4b059b893666',2),('89d9317fb3834353bcf2a507bee2eb84','10001','27a9c57b4c69441aa569ef4ae1a9ef7c',1002,'王五','825682eafec59c2e1632828195133a52','男','13677777777','2017-06-14','a胡同b巷c号','北京市 西城区','','2017-06-14 10:38:46','2017-06-14 10:38:46','u_st_2','','','/upload/img/user/head_portrait/89d9317fb3834353bcf2a507bee2eb82/34ac4d747a35414dbf249b6add3e8348.jpg','','',0,NULL,'','','2017-07-01 11:56:19',NULL,NULL,NULL,'da1f6e509bdb43cd93e2bb4c7cbaa0e5',2),('93ca6a0c638243aeab0b3412915581e2','10001','6256feb92d844cd5951d7cfe01d922ed',1003,'tom','825682eafec59c2e1632828195133a52','男','13597165115',NULL,'','','','2017-07-19 08:53:52','2017-07-19 08:53:52','u_st_2','','','','','',0,NULL,'465465121354678945','','2017-07-19 08:53:52','','',NULL,'4ae60c74c30143feb898d721a1299dd7',2);
+INSERT INTO `user` VALUES ('41370f132bd44bca943e2fe5dd9862ab','10001','27a9c57b4c69441aa569ef4ae1a9ef7c',1003,'赵六','825682eafec59c2e1632828195133a52','女','13657981326',NULL,'','','','2017-07-07 17:16:19','2017-07-07 17:16:19','u_st_2','','','','','22766697f14448c4ab032e2f168ca2d41500285106132',0,NULL,'135621567845465420','','2017-07-07 17:16:19','/WEB-INF/upload/img/id_card/4d69b8cb68c84988aa74e389287fe2a7.jpg','/WEB-INF/upload/img/id_card/11bcde7361d54d61b6f5d192e57f8645.jpg',NULL,'da1f6e509bdb43cd93e2bb4c7cbaa0e5',2),('89d9317fb3834353bcf2a507bee2eb82','10001','27a9c57b4c69441aa569ef4ae1a9ef7c',1003,'张三','825682eafec59c2e1632828195133a52','男','13688888888','2017-06-14','x胡同y巷z号','北京市 西城区','','2017-06-14 10:38:46','2017-06-14 10:38:46','u_st_2','','','/upload/img/user/head_portrait/89d9317fb3834353bcf2a507bee2eb82/3c819c36f83341ad8f9b4c39fc65e175.jpg','','22766697f14448c4ab032e2f168ca2d41500285106132',0,NULL,'','','2017-07-01 11:56:19',NULL,'b765c637c95e43e6b395348b6ef72435','285746c4af0949518c2dbf301d2ad7ab','6192971fdd4d47d2b4ce77a3723a311b',2),('89d9317fb3834353bcf2a507bee2eb83','10001','27a9c57b4c69441aa569ef4ae1a9ef7d',1003,'李四','825682eafec59c2e1632828195133a52','女','13699999999','2017-06-14','z胡同y巷x号','北京市 西城区','','2017-06-14 10:38:46','2017-08-12 14:59:41','u_st_2','','','','','22766697f14448c4ab032e2f168ca2d41500285106132',0,NULL,'','','2017-07-01 11:56:19',NULL,NULL,NULL,'6d163a17a8b842dd98de4b059b893666',2),('89d9317fb3834353bcf2a507bee2eb84','10001','27a9c57b4c69441aa569ef4ae1a9ef7c',1003,'王五','825682eafec59c2e1632828195133a52','男','13677777777','2017-06-14','a胡同b巷c号','北京市 西城区','','2017-06-14 10:38:46','2017-06-14 10:38:46','u_st_2','','','/upload/img/user/head_portrait/89d9317fb3834353bcf2a507bee2eb82/34ac4d747a35414dbf249b6add3e8348.jpg','','22766697f14448c4ab032e2f168ca2d41500285106132',0,NULL,'','','2017-07-01 11:56:19',NULL,NULL,NULL,'da1f6e509bdb43cd93e2bb4c7cbaa0e5',2),('93ca6a0c638243aeab0b3412915581e2','10001','6256feb92d844cd5951d7cfe01d922ed',1003,'tom','825682eafec59c2e1632828195133a52','男','13597165115',NULL,'','','','2017-07-19 08:53:52','2017-07-19 08:53:52','u_st_2','','','','','22766697f14448c4ab032e2f168ca2d41500285106132',0,NULL,'465465121354678945','','2017-07-19 08:53:52','','',NULL,'4ae60c74c30143feb898d721a1299dd7',2);
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1473,7 +1580,7 @@ CREATE TABLE `user_qm_permission_re` (
 
 LOCK TABLES `user_qm_permission_re` WRITE;
 /*!40000 ALTER TABLE `user_qm_permission_re` DISABLE KEYS */;
-INSERT INTO `user_qm_permission_re` VALUES ('89d9317fb3834353bcf2a507bee2eb82','account_check'),('89d9317fb3834353bcf2a507bee2eb82','follow'),('89d9317fb3834353bcf2a507bee2eb82','83ffc4a0432e4945890534583d62dd0a'),('89d9317fb3834353bcf2a507bee2eb82','986b810014e44d2c9d5b383f2a83da3c');
+INSERT INTO `user_qm_permission_re` VALUES ('89d9317fb3834353bcf2a507bee2eb82','account_check'),('89d9317fb3834353bcf2a507bee2eb82','follow'),('89d9317fb3834353bcf2a507bee2eb82','repertory_check'),('89d9317fb3834353bcf2a507bee2eb82','83ffc4a0432e4945890534583d62dd0a'),('89d9317fb3834353bcf2a507bee2eb82','986b810014e44d2c9d5b383f2a83da3c');
 /*!40000 ALTER TABLE `user_qm_permission_re` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1570,6 +1677,24 @@ SET character_set_client = utf8;
 SET character_set_client = @saved_cs_client;
 
 --
+-- Final view structure for view `qm_permission_view`
+--
+
+/*!50001 DROP VIEW IF EXISTS `qm_permission_view`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = utf8 */;
+/*!50001 SET character_set_results     = utf8 */;
+/*!50001 SET collation_connection      = utf8_general_ci */;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`yf`@`localhost` SQL SECURITY DEFINER */
+/*!50001 VIEW `qm_permission_view` AS select `u`.`user_id` AS `user_id`,`u`.`user_name` AS `user_name`,`u`.`my_team_id` AS `my_team_id`,`uqpr`.`qm_permission_id` AS `qm_permission_id` from (`user` `u` join `user_qm_permission_re` `uqpr` on((`uqpr`.`user_id` = `u`.`user_id`))) union select `u`.`user_id` AS `user_id`,`u`.`user_name` AS `user_name`,`u`.`my_team_id` AS `my_team_id`,`ppr`.`qm_permission_id` AS `qm_permission_id` from (`user` `u` join `position_permission_re` `ppr` on((`ppr`.`position_id` = `u`.`position_id`))) */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
+
+--
 -- Final view structure for view `user_view`
 --
 
@@ -1596,4 +1721,4 @@ SET character_set_client = @saved_cs_client;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-08-24 17:49:37
+-- Dump completed on 2017-08-26 17:56:14

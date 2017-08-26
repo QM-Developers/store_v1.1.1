@@ -1,0 +1,396 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dgg.store.mapper.RepertoryApplyMapper">
+  <resultMap id="BaseResultMap" type="com.dgg.store.util.pojo.RepertoryApply">
+    <id column="apply_id" jdbcType="VARCHAR" property="applyId" />
+    <result column="branch_id" jdbcType="VARCHAR" property="branchId" />
+    <result column="my_team_id" jdbcType="VARCHAR" property="myTeamId" />
+    <result column="branch_name" jdbcType="VARCHAR" property="branchName" />
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="proposer_id" jdbcType="VARCHAR" property="proposerId" />
+    <result column="proposer_name" jdbcType="VARCHAR" property="proposerName" />
+    <result column="approver_id" jdbcType="VARCHAR" property="approverId" />
+    <result column="approver_name" jdbcType="VARCHAR" property="approverName" />
+    <result column="apply_status" jdbcType="TINYINT" property="applyStatus" />
+    <result column="apply_remark" jdbcType="VARCHAR" property="applyRemark" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    apply_id, branch_id, my_team_id, branch_name, create_date, proposer_id, proposer_name, 
+    approver_id, approver_name, apply_status, apply_remark
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from repertory_apply
+    where apply_id = #{applyId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from repertory_apply
+    where apply_id = #{applyId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.dgg.store.util.pojo.RepertoryApplyExample">
+    delete from repertory_apply
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.dgg.store.util.pojo.RepertoryApply">
+    insert into repertory_apply (apply_id, branch_id, my_team_id, 
+      branch_name, create_date, proposer_id, 
+      proposer_name, approver_id, approver_name, 
+      apply_status, apply_remark)
+    values (#{applyId,jdbcType=VARCHAR}, #{branchId,jdbcType=VARCHAR}, #{myTeamId,jdbcType=VARCHAR}, 
+      #{branchName,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}, #{proposerId,jdbcType=VARCHAR}, 
+      #{proposerName,jdbcType=VARCHAR}, #{approverId,jdbcType=VARCHAR}, #{approverName,jdbcType=VARCHAR}, 
+      #{applyStatus,jdbcType=TINYINT}, #{applyRemark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.dgg.store.util.pojo.RepertoryApply">
+    insert into repertory_apply
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="applyId != null">
+        apply_id,
+      </if>
+      <if test="branchId != null">
+        branch_id,
+      </if>
+      <if test="myTeamId != null">
+        my_team_id,
+      </if>
+      <if test="branchName != null">
+        branch_name,
+      </if>
+      <if test="createDate != null">
+        create_date,
+      </if>
+      <if test="proposerId != null">
+        proposer_id,
+      </if>
+      <if test="proposerName != null">
+        proposer_name,
+      </if>
+      <if test="approverId != null">
+        approver_id,
+      </if>
+      <if test="approverName != null">
+        approver_name,
+      </if>
+      <if test="applyStatus != null">
+        apply_status,
+      </if>
+      <if test="applyRemark != null">
+        apply_remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="applyId != null">
+        #{applyId,jdbcType=VARCHAR},
+      </if>
+      <if test="branchId != null">
+        #{branchId,jdbcType=VARCHAR},
+      </if>
+      <if test="myTeamId != null">
+        #{myTeamId,jdbcType=VARCHAR},
+      </if>
+      <if test="branchName != null">
+        #{branchName,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="proposerId != null">
+        #{proposerId,jdbcType=VARCHAR},
+      </if>
+      <if test="proposerName != null">
+        #{proposerName,jdbcType=VARCHAR},
+      </if>
+      <if test="approverId != null">
+        #{approverId,jdbcType=VARCHAR},
+      </if>
+      <if test="approverName != null">
+        #{approverName,jdbcType=VARCHAR},
+      </if>
+      <if test="applyStatus != null">
+        #{applyStatus,jdbcType=TINYINT},
+      </if>
+      <if test="applyRemark != null">
+        #{applyRemark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.dgg.store.util.pojo.RepertoryApplyExample" resultType="java.lang.Long">
+    select count(*) from repertory_apply
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update repertory_apply
+    <set>
+      <if test="record.applyId != null">
+        apply_id = #{record.applyId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.branchId != null">
+        branch_id = #{record.branchId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.myTeamId != null">
+        my_team_id = #{record.myTeamId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.branchName != null">
+        branch_name = #{record.branchName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createDate != null">
+        create_date = #{record.createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.proposerId != null">
+        proposer_id = #{record.proposerId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.proposerName != null">
+        proposer_name = #{record.proposerName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.approverId != null">
+        approver_id = #{record.approverId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.approverName != null">
+        approver_name = #{record.approverName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.applyStatus != null">
+        apply_status = #{record.applyStatus,jdbcType=TINYINT},
+      </if>
+      <if test="record.applyRemark != null">
+        apply_remark = #{record.applyRemark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update repertory_apply
+    set apply_id = #{record.applyId,jdbcType=VARCHAR},
+      branch_id = #{record.branchId,jdbcType=VARCHAR},
+      my_team_id = #{record.myTeamId,jdbcType=VARCHAR},
+      branch_name = #{record.branchName,jdbcType=VARCHAR},
+      create_date = #{record.createDate,jdbcType=TIMESTAMP},
+      proposer_id = #{record.proposerId,jdbcType=VARCHAR},
+      proposer_name = #{record.proposerName,jdbcType=VARCHAR},
+      approver_id = #{record.approverId,jdbcType=VARCHAR},
+      approver_name = #{record.approverName,jdbcType=VARCHAR},
+      apply_status = #{record.applyStatus,jdbcType=TINYINT},
+      apply_remark = #{record.applyRemark,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dgg.store.util.pojo.RepertoryApply">
+    update repertory_apply
+    <set>
+      <if test="branchId != null">
+        branch_id = #{branchId,jdbcType=VARCHAR},
+      </if>
+      <if test="myTeamId != null">
+        my_team_id = #{myTeamId,jdbcType=VARCHAR},
+      </if>
+      <if test="branchName != null">
+        branch_name = #{branchName,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null">
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="proposerId != null">
+        proposer_id = #{proposerId,jdbcType=VARCHAR},
+      </if>
+      <if test="proposerName != null">
+        proposer_name = #{proposerName,jdbcType=VARCHAR},
+      </if>
+      <if test="approverId != null">
+        approver_id = #{approverId,jdbcType=VARCHAR},
+      </if>
+      <if test="approverName != null">
+        approver_name = #{approverName,jdbcType=VARCHAR},
+      </if>
+      <if test="applyStatus != null">
+        apply_status = #{applyStatus,jdbcType=TINYINT},
+      </if>
+      <if test="applyRemark != null">
+        apply_remark = #{applyRemark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where apply_id = #{applyId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dgg.store.util.pojo.RepertoryApply">
+    update repertory_apply
+    set branch_id = #{branchId,jdbcType=VARCHAR},
+      my_team_id = #{myTeamId,jdbcType=VARCHAR},
+      branch_name = #{branchName,jdbcType=VARCHAR},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      proposer_id = #{proposerId,jdbcType=VARCHAR},
+      proposer_name = #{proposerName,jdbcType=VARCHAR},
+      approver_id = #{approverId,jdbcType=VARCHAR},
+      approver_name = #{approverName,jdbcType=VARCHAR},
+      apply_status = #{applyStatus,jdbcType=TINYINT},
+      apply_remark = #{applyRemark,jdbcType=VARCHAR}
+    where apply_id = #{applyId,jdbcType=VARCHAR}
+  </update>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <resultMap id="RepertoryApplyList" type="com.dgg.store.util.pojo.RepertoryApplyList">
+    <result column="goods_id" property="goodsId" jdbcType="VARCHAR"/>
+    <result column="goods_name" property="goodsName" jdbcType="VARCHAR"/>
+    <result column="standard_id" property="standardId" jdbcType="VARCHAR"/>
+    <result column="standard_name" property="standardName" jdbcType="VARCHAR"/>
+    <result column="standard_count" property="standardCount" jdbcType="INTEGER"/>
+  </resultMap>
+
+  <select id="listRepertoryChecker" resultMap="BaseResultMap">
+    SELECT user_id approver_id,user_name approver_name
+    FROM qm_permission_view
+    WHERE qm_permission_id = #{permissionId}
+    AND my_team_id = #{myTeamId}
+  </select>
+
+  <insert id="insertApplyList">
+    INSERT INTO repertory_apply_list
+    (apply_id, goods_id, goods_name,
+    standard_id, standard_name, standard_count)
+    VALUES
+    <foreach collection="list" index="i" open="" close="" separator="," item="item">
+      (#{applyId},#{item.goodsId},#{item.goodsName},
+      #{item.standardId},#{item.standardName},#{item.standardCount})
+    </foreach>
+  </insert>
+
+  <select id="listApplyList" resultMap="RepertoryApplyList">
+    SELECT ral.goods_id,ral.goods_name,ral.standard_id,
+    ral.standard_name,ral.standard_count
+    FROM repertory_apply_list ral
+    WHERE ral.apply_id = #{applyId}
+  </select>
+
+  <select id="selectByExample" parameterType="com.dgg.store.util.pojo.RepertoryApplyExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from repertory_apply
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+    LIMIT #{start},#{end}
+  </select>
+
+  <select id="getRepertory" resultType="java.lang.Integer">
+    SELECT standard_count
+    FROM goods_standard
+    WHERE standard_id = #{standardId}
+  </select>
+
+  <update id="updateGoodsCount">
+    UPDATE goods_standard
+    SET standard_count = #{count}
+    WHERE standard_id = #{standardId}
+  </update>
+
+  <select id="getSecondRepertory" resultType="java.lang.Integer">
+    SELECT IFNULL(MAX(standard_count),0)
+    FROM qm_branch_goods
+    WHERE standard_id = #{standardId}
+    AND branch_id = #{branchId}
+  </select>
+
+  <delete id="deleteSecondStandard">
+    DELETE FROM qm_branch_goods
+    WHERE standard_id = #{standardId}
+    AND branch_id = #{branchId}
+  </delete>
+
+  <insert id="insertSecondRepertory">
+    INSERT INTO qm_branch_goods
+    (branch_id, goods_id, standard_id,
+    standard_count)
+    VALUES
+    <foreach collection="list" item="item" separator="," close="" open="" index="index">
+      (#{branchId},#{item.goodsId},#{item.standardId},
+      #{item.standardCount})
+    </foreach>
+  </insert>
+</mapper>

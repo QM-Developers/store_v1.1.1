@@ -14,7 +14,7 @@ public class MyAddressVO
 
     private String userName;
 
-    private int userAddressDefault;
+    private Integer userAddressDefault;
 
     public String getUserId()
     {
@@ -76,12 +76,12 @@ public class MyAddressVO
         this.userName = userName;
     }
 
-    public int getUserAddressDefault()
+    public Integer getUserAddressDefault()
     {
         return userAddressDefault;
     }
 
-    public void setUserAddressDefault(int userAddressDefault)
+    public void setUserAddressDefault(Integer userAddressDefault)
     {
         this.userAddressDefault = userAddressDefault;
     }

@@ -31,6 +31,10 @@ public class TokenInterceptor implements HandlerInterceptor
         if (sessionVO == null)
         {
             sessionVO = service.findUserSessionVOById(userId);
+
+            if (sessionVO == null)
+                return false;
+
             sessionVO.setMyTeamId(teamId);
             if (sessionVO.getToken().equals(token))
             {

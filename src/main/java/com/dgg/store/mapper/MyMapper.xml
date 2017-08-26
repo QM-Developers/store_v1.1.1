@@ -15,6 +15,7 @@
         <result column="user_address_area" property="userArea" jdbcType="VARCHAR"/>
         <result column="user_address_text" property="userAddress" jdbcType="VARCHAR"/>
         <result column="user_address_name" property="userName" jdbcType="VARCHAR"/>
+        <result column="user_address_default" property="userAddressDefault" jdbcType="INTEGER"/>
     </resultMap>
 
     <select id="findMyInfo" resultMap="MyInfoVOMap">
@@ -24,7 +25,8 @@
     </select>
 
     <select id="findMyAddress" resultMap="MyAddressVO">
-        SELECT sa.user_address_id,sa.user_address_text, sa.user_address_phone, sa.user_address_area,sa.user_address_name
+        SELECT sa.user_address_id,sa.user_address_text, sa.user_address_phone,
+        sa.user_address_area,sa.user_address_name,sa.user_address_default
         FROM shopping_address sa
         WHERE sa.user_id = #{userId}
     </select>

@@ -19,6 +19,8 @@ public class FreightTemp {
 
     private String userId;
 
+    private String latLng;
+
     public String getFreightId() {
         return freightId;
     }
@@ -89,5 +91,15 @@ public class FreightTemp {
 
     public void setUserId(String userId) {
         this.userId = userId == null ? null : userId.trim();
+    }
+
+    public String getLatLng()
+    {
+        return latLng;
+    }
+
+    public void setLatLng(String latLng)
+    {
+        this.latLng = latLng;
     }
 }

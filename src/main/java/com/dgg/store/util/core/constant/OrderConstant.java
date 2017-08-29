@@ -24,4 +24,6 @@ public class OrderConstant
     public static final Byte PAYMENT_MONTHLY = 20;  // 月结
     public static final Byte PAYMENT_DESTINATION = 30;  // 到付
 
+    public static final Integer REPERTORY_NOT_ENOUGH = 3;
+
 }

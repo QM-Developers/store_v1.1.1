@@ -1,5 +1,6 @@
 package com.dgg.store.dao.common;
 
+import com.dgg.store.util.pojo.FreightTemp;
 import com.dgg.store.util.pojo.MyOrder;
 import com.dgg.store.util.pojo.MyOrderExample;
 import com.dgg.store.util.vo.order.MyOrderListVO;
@@ -41,4 +42,30 @@ public interface MyOrderDao
     String getImage(String imageId);
 
     int updateListByPrimaryKeySelective(MyOrderListVO myOrderList);
+
+    List<FreightTemp> listFreightTemp(String myTeamId);
+
+    int getCustomerRepertory(String customerType, String myTeamId);
+
+    String getCustomerType(String userId, String myTeamId);
+
+    String getLatLng1(String myTeamId);
+
+    String getLatLng2(String userId, String myTeamId);
+
+    int getGoodsRepertoryFirst(String standardId);
+
+    int getGoodsRepertorySecond(String standardId, String userId, String myTeamId);
+
+    int updateRepertoryFirst(String standardId, int repertory);
+
+    int updateRepertorySecond(String userId , String standardId, int repertory);
+
+    int countSalesOrder(MyOrder myOrder, String userId);
+
+    List<MyOrder> listSalesOrder(MyOrder myOrder, String userId, int pageNum, int pageSize);
+
+    int countFinanceOrder(MyOrder myOrder, String myTeamId);
+
+    List<MyOrder> listFinanceOrder(MyOrder myOrder, String myTeamId, int pageNum, int pageSize);
 }

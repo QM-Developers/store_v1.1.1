@@ -14,6 +14,8 @@ public class MyOrder {
 
     private String userId;
 
+    private String userName;
+
     private String sellerMessage;
 
     private String buyerMessage;
@@ -35,8 +37,14 @@ public class MyOrder {
     private Date finishDate;
 
     private String logisticsStatus;
+
     private List<MyOrderListVO> orderList;
+
     private String goods;
+
+    private String merchandiserId;
+
+    private String merchandiserName;
 
     public String getOrderId() {
         return orderId;
@@ -68,6 +76,14 @@ public class MyOrder {
 
     public void setUserId(String userId) {
         this.userId = userId == null ? null : userId.trim();
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName == null ? null : userName.trim();
     }
 
     public String getSellerMessage() {
@@ -176,5 +192,25 @@ public class MyOrder {
     public void setGoods(String goods)
     {
         this.goods = goods;
+    }
+
+    public String getMerchandiserId()
+    {
+        return merchandiserId;
+    }
+
+    public void setMerchandiserId(String merchandiserId)
+    {
+        this.merchandiserId = merchandiserId;
+    }
+
+    public String getMerchandiserName()
+    {
+        return merchandiserName;
+    }
+
+    public void setMerchandiserName(String merchandiserName)
+    {
+        this.merchandiserName = merchandiserName;
     }
 }

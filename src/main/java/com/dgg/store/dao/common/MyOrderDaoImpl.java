@@ -1,6 +1,7 @@
 package com.dgg.store.dao.common;
 
 import com.dgg.store.mapper.MyOrderMapper;
+import com.dgg.store.util.pojo.FreightTemp;
 import com.dgg.store.util.pojo.MyOrder;
 import com.dgg.store.util.pojo.MyOrderExample;
 import com.dgg.store.util.vo.order.MyOrderListVO;
@@ -115,6 +116,84 @@ public class MyOrderDaoImpl implements MyOrderDao
     public int updateListByPrimaryKeySelective(MyOrderListVO myOrderList)
     {
         return mapper.updateListByPrimaryKeySelective(myOrderList);
+    }
+
+    @Override
+    public List<FreightTemp> listFreightTemp(String myTeamId)
+    {
+        return mapper.listFreightTemp(myTeamId);
+    }
+
+    @Override
+    public int getCustomerRepertory(String customerType, String myTeamId)
+    {
+        return mapper.getCustomerRepertory(customerType, myTeamId);
+    }
+
+    @Override
+    public String getCustomerType(String userId, String myTeamId)
+    {
+        return mapper.getCustomerType(userId, myTeamId);
+    }
+
+    @Override
+    public String getLatLng1(String myTeamId)
+    {
+        return mapper.getLatLng1(myTeamId);
+    }
+
+    @Override
+    public String getLatLng2(String userId, String myTeamId)
+    {
+        return mapper.getLatLng2(userId, myTeamId);
+    }
+
+    @Override
+    public int getGoodsRepertoryFirst(String standardId)
+    {
+        return mapper.getGoodsRepertoryFirst(standardId);
+    }
+
+    @Override
+    public int getGoodsRepertorySecond(String standardId, String userId, String myTeamId)
+    {
+        return mapper.getGoodsRepertorySecond(standardId,userId,myTeamId);
+    }
+
+    @Override
+    public int updateRepertoryFirst(String standardId, int repertory)
+    {
+        return mapper.updateRepertoryFirst(standardId,repertory);
+    }
+
+    @Override
+    public int updateRepertorySecond(String userId, String standardId, int repertory)
+    {
+        return mapper.updateRepertorySecond(userId,standardId,repertory);
+    }
+
+    @Override
+    public int countSalesOrder(MyOrder myOrder, String userId)
+    {
+        return mapper.countSalesOrder(myOrder,userId);
+    }
+
+    @Override
+    public List<MyOrder> listSalesOrder(MyOrder myOrder, String userId, int pageNum, int pageSize)
+    {
+        return mapper.listSalesOrder(myOrder,userId,pageNum,pageSize);
+    }
+
+    @Override
+    public int countFinanceOrder(MyOrder myOrder, String userId)
+    {
+        return mapper.countFinanceOrder(myOrder,userId);
+    }
+
+    @Override
+    public List<MyOrder> listFinanceOrder(MyOrder myOrder, String myTeamId, int pageNum, int pageSize)
+    {
+        return mapper.listFinanceOrder(myOrder,myTeamId,pageNum,pageSize);
     }
 
 }

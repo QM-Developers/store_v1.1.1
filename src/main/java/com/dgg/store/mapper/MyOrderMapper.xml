@@ -6,6 +6,7 @@
     <result column="order_status" jdbcType="TINYINT" property="orderStatus" />
     <result column="order_status_before" jdbcType="TINYINT" property="orderStatusBefore" />
     <result column="user_id" jdbcType="VARCHAR" property="userId" />
+    <result column="user_name" jdbcType="VARCHAR" property="userName" />
     <result column="seller_message" jdbcType="VARCHAR" property="sellerMessage" />
     <result column="buyer_message" jdbcType="VARCHAR" property="buyerMessage" />
     <result column="refund_message" jdbcType="VARCHAR" property="refundMessage" />
@@ -16,6 +17,8 @@
     <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
     <result column="refund_date" jdbcType="TIMESTAMP" property="refundDate" />
     <result column="finish_date" jdbcType="TIMESTAMP" property="finishDate" />
+    <result column="merchandiser_id" jdbcType="TIMESTAMP" property="merchandiserId" />
+    <result column="merchandiser_name" jdbcType="TIMESTAMP" property="merchandiserName" />
   </resultMap>
   <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.dgg.store.util.pojo.MyOrder">
     <result column="logistics_status" jdbcType="LONGVARCHAR" property="logisticsStatus" />
@@ -79,9 +82,9 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    order_id, order_status, order_status_before, user_id, seller_message, buyer_message, 
-    refund_message, freight, payment_type, payment_status, shopping_address, create_date, 
-    refund_date, finish_date
+    order_id, order_status, order_status_before, user_id, user_name, seller_message,
+    buyer_message, refund_message, freight, payment_type, payment_status, shopping_address,
+    create_date, refund_date, finish_date
   </sql>
   <sql id="Blob_Column_List">
     logistics_status
@@ -117,7 +120,7 @@
     </if>
   </select>
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="ResultMapWithBLOBs">
-    select 
+    select
     <include refid="Base_Column_List" />
     ,
     <include refid="Blob_Column_List" />
@@ -134,20 +137,6 @@
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.dgg.store.util.pojo.MyOrder">
-    insert into my_order (order_id, order_status, order_status_before, 
-      user_id, seller_message, buyer_message, 
-      refund_message, freight, payment_type, 
-      payment_status, shopping_address, create_date, 
-      refund_date, finish_date, logistics_status
-      )
-    values (#{orderId,jdbcType=VARCHAR}, #{orderStatus,jdbcType=TINYINT}, #{orderStatusBefore,jdbcType=TINYINT}, 
-      #{userId,jdbcType=VARCHAR}, #{sellerMessage,jdbcType=VARCHAR}, #{buyerMessage,jdbcType=VARCHAR}, 
-      #{refundMessage,jdbcType=VARCHAR}, #{freight,jdbcType=REAL}, #{paymentType,jdbcType=TINYINT}, 
-      #{paymentStatus,jdbcType=TINYINT}, #{shoppingAddress,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}, 
-      #{refundDate,jdbcType=TIMESTAMP}, #{finishDate,jdbcType=TIMESTAMP}, #{logisticsStatus,jdbcType=LONGVARCHAR}
-      )
-  </insert>
   <insert id="insertSelective" parameterType="com.dgg.store.util.pojo.MyOrder">
     insert into my_order
     <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -162,6 +151,9 @@
       </if>
       <if test="userId != null">
         user_id,
+      </if>
+      <if test="userName != null">
+        user_name,
       </if>
       <if test="sellerMessage != null">
         seller_message,
@@ -209,6 +201,9 @@
       </if>
       <if test="userId != null">
         #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null">
+        #{userName,jdbcType=VARCHAR},
       </if>
       <if test="sellerMessage != null">
         #{sellerMessage,jdbcType=VARCHAR},
@@ -266,6 +261,9 @@
       <if test="record.userId != null">
         user_id = #{record.userId,jdbcType=VARCHAR},
       </if>
+      <if test="record.userName != null">
+        user_name = #{record.userName,jdbcType=VARCHAR},
+      </if>
       <if test="record.sellerMessage != null">
         seller_message = #{record.sellerMessage,jdbcType=VARCHAR},
       </if>
@@ -307,20 +305,21 @@
   <update id="updateByExampleWithBLOBs" parameterType="map">
     update my_order
     set order_id = #{record.orderId,jdbcType=VARCHAR},
-      order_status = #{record.orderStatus,jdbcType=TINYINT},
-      order_status_before = #{record.orderStatusBefore,jdbcType=TINYINT},
-      user_id = #{record.userId,jdbcType=VARCHAR},
-      seller_message = #{record.sellerMessage,jdbcType=VARCHAR},
-      buyer_message = #{record.buyerMessage,jdbcType=VARCHAR},
-      refund_message = #{record.refundMessage,jdbcType=VARCHAR},
-      freight = #{record.freight,jdbcType=REAL},
-      payment_type = #{record.paymentType,jdbcType=TINYINT},
-      payment_status = #{record.paymentStatus,jdbcType=TINYINT},
-      shopping_address = #{record.shoppingAddress,jdbcType=VARCHAR},
-      create_date = #{record.createDate,jdbcType=TIMESTAMP},
-      refund_date = #{record.refundDate,jdbcType=TIMESTAMP},
-      finish_date = #{record.finishDate,jdbcType=TIMESTAMP},
-      logistics_status = #{record.logisticsStatus,jdbcType=LONGVARCHAR}
+    order_status = #{record.orderStatus,jdbcType=TINYINT},
+    order_status_before = #{record.orderStatusBefore,jdbcType=TINYINT},
+    user_id = #{record.userId,jdbcType=VARCHAR},
+    user_name = #{record.userName,jdbcType=VARCHAR},
+    seller_message = #{record.sellerMessage,jdbcType=VARCHAR},
+    buyer_message = #{record.buyerMessage,jdbcType=VARCHAR},
+    refund_message = #{record.refundMessage,jdbcType=VARCHAR},
+    freight = #{record.freight,jdbcType=REAL},
+    payment_type = #{record.paymentType,jdbcType=TINYINT},
+    payment_status = #{record.paymentStatus,jdbcType=TINYINT},
+    shopping_address = #{record.shoppingAddress,jdbcType=VARCHAR},
+    create_date = #{record.createDate,jdbcType=TIMESTAMP},
+    refund_date = #{record.refundDate,jdbcType=TIMESTAMP},
+    finish_date = #{record.finishDate,jdbcType=TIMESTAMP},
+    logistics_status = #{record.logisticsStatus,jdbcType=LONGVARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -328,19 +327,20 @@
   <update id="updateByExample" parameterType="map">
     update my_order
     set order_id = #{record.orderId,jdbcType=VARCHAR},
-      order_status = #{record.orderStatus,jdbcType=TINYINT},
-      order_status_before = #{record.orderStatusBefore,jdbcType=TINYINT},
-      user_id = #{record.userId,jdbcType=VARCHAR},
-      seller_message = #{record.sellerMessage,jdbcType=VARCHAR},
-      buyer_message = #{record.buyerMessage,jdbcType=VARCHAR},
-      refund_message = #{record.refundMessage,jdbcType=VARCHAR},
-      freight = #{record.freight,jdbcType=REAL},
-      payment_type = #{record.paymentType,jdbcType=TINYINT},
-      payment_status = #{record.paymentStatus,jdbcType=TINYINT},
-      shopping_address = #{record.shoppingAddress,jdbcType=VARCHAR},
-      create_date = #{record.createDate,jdbcType=TIMESTAMP},
-      refund_date = #{record.refundDate,jdbcType=TIMESTAMP},
-      finish_date = #{record.finishDate,jdbcType=TIMESTAMP}
+    order_status = #{record.orderStatus,jdbcType=TINYINT},
+    order_status_before = #{record.orderStatusBefore,jdbcType=TINYINT},
+    user_id = #{record.userId,jdbcType=VARCHAR},
+    user_name = #{record.userName,jdbcType=VARCHAR},
+    seller_message = #{record.sellerMessage,jdbcType=VARCHAR},
+    buyer_message = #{record.buyerMessage,jdbcType=VARCHAR},
+    refund_message = #{record.refundMessage,jdbcType=VARCHAR},
+    freight = #{record.freight,jdbcType=REAL},
+    payment_type = #{record.paymentType,jdbcType=TINYINT},
+    payment_status = #{record.paymentStatus,jdbcType=TINYINT},
+    shopping_address = #{record.shoppingAddress,jdbcType=VARCHAR},
+    create_date = #{record.createDate,jdbcType=TIMESTAMP},
+    refund_date = #{record.refundDate,jdbcType=TIMESTAMP},
+    finish_date = #{record.finishDate,jdbcType=TIMESTAMP}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -356,6 +356,9 @@
       </if>
       <if test="userId != null">
         user_id = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null">
+        user_name = #{userName,jdbcType=VARCHAR},
       </if>
       <if test="sellerMessage != null">
         seller_message = #{sellerMessage,jdbcType=VARCHAR},
@@ -396,19 +399,20 @@
   <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.dgg.store.util.pojo.MyOrder">
     update my_order
     set order_status = #{orderStatus,jdbcType=TINYINT},
-      order_status_before = #{orderStatusBefore,jdbcType=TINYINT},
-      user_id = #{userId,jdbcType=VARCHAR},
-      seller_message = #{sellerMessage,jdbcType=VARCHAR},
-      buyer_message = #{buyerMessage,jdbcType=VARCHAR},
-      refund_message = #{refundMessage,jdbcType=VARCHAR},
-      freight = #{freight,jdbcType=REAL},
-      payment_type = #{paymentType,jdbcType=TINYINT},
-      payment_status = #{paymentStatus,jdbcType=TINYINT},
-      shopping_address = #{shoppingAddress,jdbcType=VARCHAR},
-      create_date = #{createDate,jdbcType=TIMESTAMP},
-      refund_date = #{refundDate,jdbcType=TIMESTAMP},
-      finish_date = #{finishDate,jdbcType=TIMESTAMP},
-      logistics_status = #{logisticsStatus,jdbcType=LONGVARCHAR}
+    order_status_before = #{orderStatusBefore,jdbcType=TINYINT},
+    user_id = #{userId,jdbcType=VARCHAR},
+    user_name = #{userName,jdbcType=VARCHAR},
+    seller_message = #{sellerMessage,jdbcType=VARCHAR},
+    buyer_message = #{buyerMessage,jdbcType=VARCHAR},
+    refund_message = #{refundMessage,jdbcType=VARCHAR},
+    freight = #{freight,jdbcType=REAL},
+    payment_type = #{paymentType,jdbcType=TINYINT},
+    payment_status = #{paymentStatus,jdbcType=TINYINT},
+    shopping_address = #{shoppingAddress,jdbcType=VARCHAR},
+    create_date = #{createDate,jdbcType=TIMESTAMP},
+    refund_date = #{refundDate,jdbcType=TIMESTAMP},
+    finish_date = #{finishDate,jdbcType=TIMESTAMP},
+    logistics_status = #{logisticsStatus,jdbcType=LONGVARCHAR}
     where order_id = #{orderId,jdbcType=VARCHAR}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.dgg.store.util.pojo.MyOrder">
@@ -416,6 +420,7 @@
     set order_status = #{orderStatus,jdbcType=TINYINT},
       order_status_before = #{orderStatusBefore,jdbcType=TINYINT},
       user_id = #{userId,jdbcType=VARCHAR},
+      user_name = #{userName,jdbcType=VARCHAR},
       seller_message = #{sellerMessage,jdbcType=VARCHAR},
       buyer_message = #{buyerMessage,jdbcType=VARCHAR},
       refund_message = #{refundMessage,jdbcType=VARCHAR},
@@ -453,6 +458,15 @@
     <result column="standard_name" property="standardName" jdbcType="VARCHAR"/>
     <result column="buy_num" property="buyNum" jdbcType="INTEGER"/>
     <result column="refund_num" property="refundNum" jdbcType="INTEGER"/>
+  </resultMap>
+
+  <resultMap id="FreightTemp" type="com.dgg.store.util.pojo.FreightTemp">
+    <result column="freight_name" jdbcType="VARCHAR" property="freightName" />
+    <result column="weight_allowance" jdbcType="REAL" property="weightAllowance" />
+    <result column="start_range" jdbcType="REAL" property="startRange" />
+    <result column="start_price" jdbcType="REAL" property="startPrice" />
+    <result column="increase_range" jdbcType="REAL" property="increaseRange" />
+    <result column="increase_price" jdbcType="REAL" property="increasePrice" />
   </resultMap>
 
   <insert id="insertOrderList" parameterType="com.dgg.store.util.vo.order.MyOrderListVO">
@@ -526,4 +540,201 @@
       AND standard_id = #{standardId}
     </if>
   </update>
+
+  <select id="listFreightTemp" resultMap="FreightTemp">
+    SELECT freight_name, weight_allowance,start_range,
+    start_price, increase_range,increase_price
+    FROM freight_temp
+    WHERE my_team_id = #{myTeamId}
+  </select>
+
+  <select id="getCustomerRepertory" resultType="java.lang.Integer">
+    SELECT repertory_type
+    FROM customer_repertory
+    WHERE my_team_id = #{myTeamId}
+    AND customer_type = #{customerType}
+  </select>
+
+  <select id="getCustomerType" resultType="java.lang.String">
+    SELECT customer_type
+    FROM customer
+    WHERE user_id = #{userId}
+    AND my_team_id = #{myTeamId}
+  </select>
+
+  <select id="getLatLng1" resultType="java.lang.String">
+    SELECT lat_lng
+    FROM my_team
+    WHERE my_team_id = #{myTeamId}
+  </select>
+
+  <select id="getLatLng2" resultType="java.lang.String">
+    SELECT lat_lng
+    FROM qm_branch qb
+    INNER JOIN user u
+    ON u.team_department_id = qb.department_id
+    INNER JOIN customer c
+    ON c.merchandiser_id = u.user_id
+    WHERE c.user_id = #{userId}
+    AND c.my_team_id = #{myTeamId}
+  </select>
+
+  <select id="getGoodsRepertoryFirst" resultType="java.lang.Integer">
+    SELECT gs.standard_count
+    FROM goods_standard gs
+    WHERE gs.standard_id = #{standardId}
+  </select>
+
+  <select id="getGoodsRepertorySecond" resultType="java.lang.Integer">
+    SELECT IFNULL(MAX(qbg.standard_count),0)
+    FROM qm_branch_goods qbg
+    INNER JOIN qm_branch qb
+    ON qb.branch_id = qbg.branch_id
+    INNER JOIN user u
+    ON u.team_department_id = qb.department_id
+    INNER JOIN customer c
+    ON c.merchandiser_id = u.user_id
+    WHERE c.user_id = #{userId}
+    AND c.my_team_id = #{myTeamId}
+    AND qbg.standard_id = #{standardId}
+  </select>
+
+  <update id="updateRepertoryFirst">
+    UPDATE goods_standard gs
+    SET gs.standard_count = #{repertory}
+    WHERE gs.standard_id = #{standardId}
+  </update>
+
+  <update id="updateRepertorySecond">
+    UPDATE qm_branch_goods qbg
+    SET qbg.standard_count = #{repertory}
+    WHERE qbg.standard_id = #{standardId}
+    AND qbg.branch_id =
+    (
+        SELECT branch_id
+        FROM qm_branch qb
+        INNER JOIN user u
+        ON u.team_department_id = qb.department_id
+        WHERE u.user_id = #{userId}
+    )
+  </update>
+
+  <select id="countSalesOrder" resultType="java.lang.Integer">
+    SELECT COUNT(0)
+    FROM my_order mo
+    WHERE 1 = 1
+    <if test="order.orderStatus != null">
+      AND mo.order_status = #{orderStatus}
+    </if>
+    <if test="order.createDate != null and order.finishDate != null">
+      AND mo.create_date BETWEEN #{createDate} AND #{finishDate}
+    </if>
+    <if test="order.paymentType != null">
+      AND mo.payment_type = #{paymentType}
+    </if>
+    <if test="order.paymentStatus != null">
+      AND mo.payment_status = #{paymentStatus}
+    </if>
+    AND mo.user_id IN
+    (
+    SELECT c.user_id
+    FROM customer c
+    WHERE c.merchandiser_id = #{userId}
+    )
+  </select>
+
+  <select id="listSalesOrder" resultMap="BaseResultMap">
+    SELECT mo.order_id, mo.order_status, mo.order_status_before,
+    mo.user_id,mo.user_name, mo.seller_message,
+    mo.buyer_message,mo.refund_message, mo.freight,
+    mo.payment_type, mo.payment_status, mo.shopping_address,
+    mo.create_date, mo.refund_date, mo.finish_date
+    FROM my_order mo
+    WHERE 1 = 1
+    <if test="order.orderStatus != null">
+      AND mo.order_status = #{orderStatus}
+    </if>
+    <if test="order.createDate != null and order.finishDate != null">
+      AND mo.create_date BETWEEN #{createDate} AND #{finishDate}
+    </if>
+    <if test="order.paymentType != null">
+      AND mo.payment_type = #{paymentType}
+    </if>
+    <if test="order.paymentStatus != null">
+      AND mo.payment_status = #{paymentStatus}
+    </if>
+    AND mo.user_id IN
+    (
+    SELECT c.user_id
+    FROM customer c
+    WHERE c.merchandiser_id = #{userId}
+    )
+  </select>
+
+  <insert id="insert" parameterType="com.dgg.store.util.pojo.MyOrder">
+    insert into my_order (order_id, order_status, order_status_before,
+    user_id, user_name, seller_message,
+    buyer_message, refund_message, freight,
+    payment_type, payment_status, shopping_address,
+    create_date, refund_date, finish_date,
+    logistics_status)
+    values (#{orderId,jdbcType=VARCHAR}, #{orderStatus,jdbcType=TINYINT}, #{orderStatusBefore,jdbcType=TINYINT},
+    #{userId,jdbcType=VARCHAR},
+    (SELECT user_name FROM (SELECT user_name FROM user WHERE user_id = #{userId}) t)
+    , #{sellerMessage,jdbcType=VARCHAR},
+    #{buyerMessage,jdbcType=VARCHAR}, #{refundMessage,jdbcType=VARCHAR}, #{freight,jdbcType=REAL},
+    #{paymentType,jdbcType=TINYINT}, #{paymentStatus,jdbcType=TINYINT}, #{shoppingAddress,jdbcType=VARCHAR},
+    #{createDate,jdbcType=TIMESTAMP}, #{refundDate,jdbcType=TIMESTAMP}, #{finishDate,jdbcType=TIMESTAMP},
+    #{logisticsStatus,jdbcType=LONGVARCHAR})
+  </insert>
+
+
+  <select id="countFinanceOrder" resultType="java.lang.Integer">
+    SELECT COUNT(0)
+    FROM my_order mo
+    INNER JOIN customer c
+    ON c.user_id = mo.user_id
+    INNER JOIN user u
+    ON u.user_id = c.merchandiser_id
+    WHERE c.my_team_id = #{myTeamId}
+    <if test="order.orderStatus != null">
+      AND mo.order_status = #{orderStatus}
+    </if>
+    <if test="order.createDate != null and order.finishDate != null">
+      AND mo.create_date BETWEEN #{createDate} AND #{finishDate}
+    </if>
+    <if test="order.paymentType != null">
+      AND mo.payment_type = #{paymentType}
+    </if>
+    <if test="order.paymentStatus != null">
+      AND mo.payment_status = #{paymentStatus}
+    </if>
+  </select>
+
+  <select id="listFinanceOrder" resultMap="BaseResultMap">
+    SELECT mo.order_id, mo.order_status, mo.order_status_before,
+    mo.user_id,mo.user_name, mo.seller_message,
+    mo.buyer_message,mo.refund_message, mo.freight,
+    mo.payment_type, mo.payment_status, mo.shopping_address,
+    mo.create_date, mo.refund_date, mo.finish_date,
+    u.user_id merchandiser_id,u.user_name merchandiser_name
+    FROM my_order mo
+    INNER JOIN customer c
+    ON c.user_id = mo.user_id
+    INNER JOIN user u
+    ON u.user_id = c.merchandiser_id
+    WHERE c.my_team_id = #{myTeamId}
+    <if test="order.orderStatus != null">
+      AND mo.order_status = #{orderStatus}
+    </if>
+    <if test="order.createDate != null and order.finishDate != null">
+      AND mo.create_date BETWEEN #{createDate} AND #{finishDate}
+    </if>
+    <if test="order.paymentType != null">
+      AND mo.payment_type = #{paymentType}
+    </if>
+    <if test="order.paymentStatus != null">
+      AND mo.payment_status = #{paymentStatus}
+    </if>
+  </select>
 </mapper>

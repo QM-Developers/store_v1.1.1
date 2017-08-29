@@ -47,6 +47,7 @@ public class CustomerServiceImpl implements CustomerService
                     customerVO.setUserCardFront(Constant.EMPTY);
                     customerVO.setUserCardBack(Constant.EMPTY);
                     customerVO.setUserCardHand(Constant.EMPTY);
+                    customerVO.setUserCreateDate(new Date());
                     result = dao.insertCustomerRecord(customerVO);
                     break;
                 case 1:

@@ -54,9 +54,14 @@
     </select>
 
     <select id="findTeamAndMemberCount" resultMap="MenuVO">
-        SELECT mt.my_team_name name,(SELECT COUNT(1) FROM user WHERE my_team_id = mt.my_team_id) count
+        SELECT mt.my_team_name name,
+            (SELECT COUNT(1)
+            FROM user u
+            INNER JOIN team_department td
+            ON td.team_department_id = u.team_department_id
+            WHERE u.my_team_id = mt.my_team_id) count
         FROM my_team mt
-        WHERE my_team_id = #{myTeamId}
+        WHERE mt.my_team_id = #{myTeamId}
     </select>
 
     <select id="findDepartmentAndMemberCount" resultMap="MenuVO">

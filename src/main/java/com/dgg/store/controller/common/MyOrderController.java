@@ -55,42 +55,6 @@ public class MyOrderController
         return service.getMyOrder(sessionVO, myOrder);
     }
 
-    @RequestMapping(value = "user_updateFinancePassA", method = RequestMethod.POST, produces = {"application/json;charset=UTF-8"})
-    @ResponseBody
-    public String updateOrder(HttpServletRequest request, MyOrder myOrder)
-    {
-        SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
-
-        return service.updateFinancePassA(sessionVO, myOrder);
-    }
-
-    @RequestMapping(value = "user_updateFinanceFailA", method = RequestMethod.POST, produces = {"application/json;charset=UTF-8"})
-    @ResponseBody
-    public String updateFinanceFailA(HttpServletRequest request, MyOrder myOrder)
-    {
-        SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
-
-        return service.updateFinanceFailA(sessionVO, myOrder);
-    }
-
-    @RequestMapping(value = "user_updateSalesmanPass", method = RequestMethod.POST, produces = {"application/json;charset=UTF-8"})
-    @ResponseBody
-    public String updateSalesmanPass(HttpServletRequest request, MyOrder myOrder)
-    {
-        SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
-
-        return service.updateSalesmanPass(sessionVO, myOrder);
-    }
-
-    @RequestMapping(value = "user_updateDelivered", method = RequestMethod.POST, produces = {"application/json;charset=UTF-8"})
-    @ResponseBody
-    public String updateDelivered(HttpServletRequest request, MyOrder myOrder)
-    {
-        SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
-
-        return service.updateDelivered(sessionVO, myOrder);
-    }
-
     @RequestMapping(value = "user_updateSign", method = RequestMethod.POST, produces = {"application/json;charset=UTF-8"})
     @ResponseBody
     public String updateSign(HttpServletRequest request, MyOrder myOrder)
@@ -98,24 +62,6 @@ public class MyOrderController
         SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
 
         return service.updateSign(sessionVO, myOrder);
-    }
-
-    @RequestMapping(value = "user_updateFinancePassB", method = RequestMethod.POST, produces = {"application/json;charset=UTF-8"})
-    @ResponseBody
-    public String updateFinancePassB(HttpServletRequest request, MyOrder myOrder)
-    {
-        SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
-
-        return service.updateFinancePassB(sessionVO, myOrder);
-    }
-
-    @RequestMapping(value = "user_updateFinanceFailB", method = RequestMethod.POST, produces = {"application/json;charset=UTF-8"})
-    @ResponseBody
-    public String updateFinanceFailB(HttpServletRequest request, MyOrder myOrder)
-    {
-        SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
-
-        return service.updateFinanceFailB(sessionVO, myOrder);
     }
 
     @RequestMapping(value = "user_updateRefund", method = RequestMethod.POST, produces = {"application/json;charset=UTF-8"})
@@ -136,15 +82,6 @@ public class MyOrderController
         return service.updateRefundCancel(sessionVO, myOrder);
     }
 
-    @RequestMapping(value = "user_updateRefundPass", method = RequestMethod.POST, produces = {"application/json;charset=UTF-8"})
-    @ResponseBody
-    public String updateRefundPass(HttpServletRequest request, MyOrder myOrder)
-    {
-        SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
-
-        return service.updateRefundPass(sessionVO, myOrder);
-    }
-
     @RequestMapping(value = "user_updateRefundGoods", method = RequestMethod.POST, produces = {"application/json;charset=UTF-8"})
     @ResponseBody
     public String updateRefundGoods(HttpServletRequest request, MyOrder myOrder)
@@ -154,21 +91,12 @@ public class MyOrderController
         return service.updateRefundGoods(sessionVO, myOrder);
     }
 
-    @RequestMapping(value = "user_updateRefundReceive", method = RequestMethod.POST, produces = {"application/json;charset=UTF-8"})
+    @RequestMapping(value = "user_listFreightTemp", method = RequestMethod.POST, produces = {"application/json;charset=UTF-8"})
     @ResponseBody
-    public String updateRefundReceive(HttpServletRequest request, MyOrder myOrder)
+    public String listFreightTemp(HttpServletRequest request)
     {
         SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
 
-        return service.updateRefundReceive(sessionVO, myOrder);
-    }
-
-    @RequestMapping(value = "user_updateRefundMoney", method = RequestMethod.POST, produces = {"application/json;charset=UTF-8"})
-    @ResponseBody
-    public String updateRefundMoney(HttpServletRequest request, MyOrder myOrder)
-    {
-        SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
-
-        return service.updateRefundMoney(sessionVO, myOrder);
+        return service.listFreightTemp(sessionVO);
     }
 }

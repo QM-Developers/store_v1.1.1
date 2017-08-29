@@ -317,6 +317,7 @@ create table my_order
    order_status tinyint not null default 0,	 -- 订单状态
    order_status_before tinyint,	-- 订单状态保存
    user_id varchar(35) not null default '',	-- 用户Id
+   user_name varchar(20) not null,	-- 用户姓名
    seller_message varchar(150) not null default '',	-- 卖家留言
    buyer_message varchar(150) not null default '',	-- 买家留言
    refund_message varchar(150),	-- 退货理由
@@ -358,10 +359,7 @@ create table my_team
    my_team_create_date  datetime not null default now(),
    my_team_area         varchar(50) not null default '',
    my_team_address      varchar(50) not null default '',
-   my_team_member_number int not null default 0,
-   my_team_sort         tinyint not null default 1,
-   my_team_type			varchar(20) not null default '',
-   my_team_pid          varchar(35) not null default '',	-- 上级团队Id
+   lat_lng varchar(30) not null default '',
    primary key (my_team_id)
 );
 -- INSERT INTO `my_team` VALUES ('10001','','2017-05-17 15:41:47','','',1,'','');
@@ -665,7 +663,7 @@ create table repertory_record
 );
 
 /*==============================================================*/
-/* 库存申请列表
+/* 库存修改记录列表
 /*==============================================================*/
 drop table if exists repertory_record_list;
 create table repertory_record_list
@@ -721,6 +719,45 @@ create table qm_branch_goods
     goods_id varchar(35) not null default '',
     standard_id          varchar(35) not null,
 	standard_count       int not null default 0
+);
+
+/*==============================================================*/
+/* 通用申请表
+/*==============================================================*/
+drop table if exists common_apply;
+create table common_apply(
+	apply_id varchar(35) not null primary key,	-- 申请的Id
+    apply_title varchar(100) not null,	-- 申请的标题
+	proposer_id varchar(35) not null,	-- 申请人Id
+	proposer_name varchar(20) not null,	-- 申请人姓名
+    begin_date date,	-- 开始时间
+    end_date date,	-- 结束时间
+    create_date	datetime not null, -- 创建时间
+    apply_result tinyint not null,	-- 申请状态
+    apply_reason text	-- 申请原因
+);
+
+/*==============================================================*/
+/* 通用申请审批人列表
+/*==============================================================*/
+drop table if exists common_apply_approve;
+create table common_apply_approve(
+	apply_id varchar(35) not null primary key,	-- 申请的Id
+	approve_id varchar(35) not null,	-- 审批人的Id
+    approve_name varchar(35) not null,	-- 审批人的姓名
+    approve_result tinyint not null,	-- 审批的结果
+    approve_sequence tinyint not null,	-- 审批的顺序
+    approve_advice text	-- 审批意见
+);
+
+/*==============================================================*/
+/* 通用申请图片
+/*==============================================================*/
+drop table if exists common_apply_image;
+create table common_apply_image(
+	apply_id varchar(35) not null primary key,	-- 申请的Id
+    image_path varchar(255) not null,	-- 图片路径
+    image_sort tinyint not null default 0
 );
       
 /*修改团队自增Id初值*/

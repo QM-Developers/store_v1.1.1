@@ -45,7 +45,7 @@
         VALUES
         (#{userId},#{myTeamId},#{userName},#{userPhone},
         #{userBirthday},#{userAddress},#{userSex},
-        #{userStatus},#{roleId},
+        #{userStatus},#{roleId},#{userCreateDate},
         #{userCardFront},#{userCardBack},#{userCardHand})
     </insert>
 
@@ -274,7 +274,7 @@
     </insert>
 
     <delete id="deleteRecord">
-        DELETE FROM customer_account_request
+        DELETE FROM user_record
         WHERE user_id = (SELECT user_id FROM customer WHERE customer_id = #{customerId})
     </delete>
 

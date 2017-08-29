@@ -16,9 +16,11 @@ public class MyOrderListVO
 
     private String standardName;
 
-    private int buyNum;
+    private Integer buyNum;
 
-    private int refundNum;
+    private Integer refundNum;
+
+    private Integer repertory;
 
     public String getOrderId()
     {
@@ -28,6 +30,16 @@ public class MyOrderListVO
     public void setOrderId(String orderId)
     {
         this.orderId = orderId;
+    }
+
+    public String getStandardId()
+    {
+        return standardId;
+    }
+
+    public void setStandardId(String standardId)
+    {
+        this.standardId = standardId;
     }
 
     public String getGoodsName()
@@ -80,33 +92,33 @@ public class MyOrderListVO
         this.standardName = standardName;
     }
 
-    public int getBuyNum()
+    public Integer getBuyNum()
     {
         return buyNum;
     }
 
-    public void setBuyNum(int buyNum)
+    public void setBuyNum(Integer buyNum)
     {
         this.buyNum = buyNum;
     }
 
-    public int getRefundNum()
+    public Integer getRefundNum()
     {
         return refundNum;
     }
 
-    public void setRefundNum(int refundNum)
+    public void setRefundNum(Integer refundNum)
     {
         this.refundNum = refundNum;
     }
 
-    public String getStandardId()
+    public Integer getRepertory()
     {
-        return standardId;
+        return repertory;
     }
 
-    public void setStandardId(String standardId)
+    public void setRepertory(Integer repertory)
     {
-        this.standardId = standardId;
+        this.repertory = repertory;
     }
 }

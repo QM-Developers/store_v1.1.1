@@ -96,6 +96,7 @@ CREATE TABLE `common_apply` (
 
 LOCK TABLES `common_apply` WRITE;
 /*!40000 ALTER TABLE `common_apply` DISABLE KEYS */;
+INSERT INTO `common_apply` VALUES ('a2f3449d9a2442ec95dfd79899e93ce7','请假申请','89d9317fb3834353bcf2a507bee2eb82','张三','2017-08-30','2017-08-31','2017-08-30 17:58:50',12,'累'),('d37a103a7eac40319174bdd34d9cca8f','请假申请','89d9317fb3834353bcf2a507bee2eb82','张三','2017-08-30','2017-08-31','2017-08-30 17:59:28',12,'累');
 /*!40000 ALTER TABLE `common_apply` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -111,9 +112,8 @@ CREATE TABLE `common_apply_approve` (
   `approve_id` varchar(35) NOT NULL,
   `approve_name` varchar(35) NOT NULL,
   `approve_result` tinyint(4) NOT NULL,
-  `approve_sequence` tinyint(4) NOT NULL,
-  `approve_advice` text,
-  PRIMARY KEY (`apply_id`)
+  `approve_sequence` tinyint(4) DEFAULT NULL,
+  `approve_advice` text
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -123,6 +123,7 @@ CREATE TABLE `common_apply_approve` (
 
 LOCK TABLES `common_apply_approve` WRITE;
 /*!40000 ALTER TABLE `common_apply_approve` DISABLE KEYS */;
+INSERT INTO `common_apply_approve` VALUES ('a2f3449d9a2442ec95dfd79899e93ce7','89d9317fb3834353bcf2a507bee2eb84','王五',22,1,NULL),('a2f3449d9a2442ec95dfd79899e93ce7','41370f132bd44bca943e2fe5dd9862ab','赵六',20,2,NULL),('d37a103a7eac40319174bdd34d9cca8f','89d9317fb3834353bcf2a507bee2eb84','王五',21,1,NULL),('d37a103a7eac40319174bdd34d9cca8f','41370f132bd44bca943e2fe5dd9862ab','赵六',22,2,NULL);
 /*!40000 ALTER TABLE `common_apply_approve` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -134,10 +135,10 @@ DROP TABLE IF EXISTS `common_apply_image`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `common_apply_image` (
-  `apply_id` varchar(35) NOT NULL,
+  `apply_id` varchar(35) NOT NULL DEFAULT '',
+  `image_id` varchar(35) NOT NULL,
   `image_path` varchar(255) NOT NULL,
-  `image_sort` tinyint(4) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`apply_id`)
+  `image_sort` tinyint(4) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -147,6 +148,7 @@ CREATE TABLE `common_apply_image` (
 
 LOCK TABLES `common_apply_image` WRITE;
 /*!40000 ALTER TABLE `common_apply_image` DISABLE KEYS */;
+INSERT INTO `common_apply_image` VALUES ('d37a103a7eac40319174bdd34d9cca8f','64801674a5c4457bb0e04cf5dbf269c4','/upload/img/user/apply/89d9317fb3834353bcf2a507bee2eb82\\acc2e795e5034d8b9d31e1ba8b05dfc2.jpg',0);
 /*!40000 ALTER TABLE `common_apply_image` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1805,4 +1807,4 @@ SET character_set_client = @saved_cs_client;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-08-29 17:42:31
+-- Dump completed on 2017-08-30 18:04:27

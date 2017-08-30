@@ -54,4 +54,10 @@ public interface CustomerMapper
     CustomerAccountRequest getCustomerAccount(@Param("requestId") String requestId);
 
     List<CustomerAccountRequest> listCustomerAccount(CustomerAccountRequest accountRequest);
+
+    int insertHandImageRecord(@Param("fileName") String fileName,@Param("customerId") String customerId);
+
+    int insertFrontImageRecord(@Param("fileName") String fileName,@Param("customerId") String customerId);
+
+    int insertBackImageRecord(@Param("fileName") String fileName,@Param("customerId") String customerId);
 }

@@ -53,4 +53,10 @@ public interface CustomerDao
     CustomerAccountRequest getCustomerAccount(String requestId);
 
     List<CustomerAccountRequest> listCustomerAccount(CustomerAccountRequest accountRequest);
+
+    int insertHandImageRecord(String fileName, String customerId);
+
+    int insertFrontImageRecord(String fileName, String customerId);
+
+    int insertBackImageRecord(String fileName, String customerId);
 }

@@ -105,6 +105,9 @@
             <if test="userAddress != null">
                 user_address = #{userAddress},
             </if>
+            <if test="hadAccount != null">
+                had_account = #{hadAccount},
+            </if>
         </set>
         WHERE user_id = (SELECT user_id FROM customer WHERE customer_id = #{customerId})
     </update>
@@ -166,24 +169,39 @@
     </select>
 
     <update id="insertFrontImage">
-        UPDATE user u,user_record re
-        SET u.user_card_front = #{fileName},re.user_card_front = #{fileName}
+        UPDATE user u
+        SET u.user_card_front = #{fileName}
         WHERE u.user_id = (SELECT user_id FROM customer WHERE customer_id = #{customerId})
-        OR re.user_id = (SELECT user_id FROM customer WHERE customer_id = #{customerId})
+    </update>
+
+    <update id="insertFrontImageRecord">
+        UPDATE user_record re
+        SET re.user_card_front = #{fileName}
+        WHERE re.user_id = (SELECT user_id FROM customer WHERE customer_id = #{customerId})
     </update>
 
     <update id="insertBackImage">
-        UPDATE user u,user_record re
-        SET u.user_card_back = #{fileName},re.user_card_back = #{fileName}
+        UPDATE user u
+        SET u.user_card_back = #{fileName}
         WHERE u.user_id = (SELECT user_id FROM customer WHERE customer_id = #{customerId})
-        OR re.user_id = (SELECT user_id FROM customer WHERE customer_id = #{customerId})
+    </update>
+
+    <update id="insertBackImageRecord">
+        UPDATE user_record re
+        SET re.user_card_back = #{fileName}
+        WHERE re.user_id = (SELECT user_id FROM customer WHERE customer_id = #{customerId})
     </update>
 
     <update id="insertHandImage">
-        UPDATE user u,user_record re
-        SET u.user_card_hand = #{fileName},re.user_card_hand = #{fileName}
+        UPDATE user u
+        SET u.user_card_hand = #{fileName}
         WHERE u.user_id = (SELECT user_id FROM customer WHERE customer_id = #{customerId})
-        OR re.user_id = (SELECT user_id FROM customer WHERE customer_id = #{customerId})
+    </update>
+
+    <update id="insertHandImageRecord">
+        UPDATE user_record re
+        SET re.user_card_hand = #{fileName}
+        WHERE re.user_id = (SELECT user_id FROM customer WHERE customer_id = #{customerId})
     </update>
 
     <select id="getRepertoryLevel" resultType="java.lang.Integer">

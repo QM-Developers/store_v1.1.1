@@ -742,11 +742,11 @@ create table common_apply(
 /*==============================================================*/
 drop table if exists common_apply_approve;
 create table common_apply_approve(
-	apply_id varchar(35) not null primary key,	-- 申请的Id
+	apply_id varchar(35) not null,	-- 申请的Id
 	approve_id varchar(35) not null,	-- 审批人的Id
     approve_name varchar(35) not null,	-- 审批人的姓名
     approve_result tinyint not null,	-- 审批的结果
-    approve_sequence tinyint not null,	-- 审批的顺序
+    approve_sequence tinyint,	-- 审批的顺序
     approve_advice text	-- 审批意见
 );
 
@@ -755,7 +755,8 @@ create table common_apply_approve(
 /*==============================================================*/
 drop table if exists common_apply_image;
 create table common_apply_image(
-	apply_id varchar(35) not null primary key,	-- 申请的Id
+	apply_id varchar(35) not null default '',	-- 申请的Id
+    image_id varchar(35) not null,	-- 图片的Id
     image_path varchar(255) not null,	-- 图片路径
     image_sort tinyint not null default 0
 );

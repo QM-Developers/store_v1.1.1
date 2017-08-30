@@ -19,4 +19,6 @@ public class CustomerConstant
     public static final byte ACCOUNT_STATUS_ACCEPT= 2;   // 通过建账状态
 
     public static final Byte ACCOUNT_STATUS_REFUSE = 3; // 未通过建账状态
+
+    public static final int HAD_ACCOUNT = 100;   // 已建账
 }

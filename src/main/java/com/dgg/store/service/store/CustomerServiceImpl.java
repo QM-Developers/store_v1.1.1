@@ -139,7 +139,10 @@ public class CustomerServiceImpl implements CustomerService
         {
             path.append(PathConstant.USER_ID_CARD_PATH).append(sessionVO.getUserId()).append(SymbolConstant.SLASH);
             fileName = UploadFileUtil.doUpload(file, path.toString(), realPath, IDGenerator.generator());
-            result = dao.insertFrontImage(fileName, customerVO.getCustomerId());
+            if (customerVO.getHadAccount().equals(CustomerConstant.HAD_ACCOUNT))
+                result = dao.insertFrontImage(fileName, customerVO.getCustomerId());
+            else
+                result = dao.insertFrontImageRecord(fileName, customerVO.getCustomerId());
         } catch (IOException e)
         {
             e.printStackTrace();
@@ -159,7 +162,11 @@ public class CustomerServiceImpl implements CustomerService
         {
             path.append(PathConstant.USER_ID_CARD_PATH).append(sessionVO.getUserId()).append(SymbolConstant.SLASH);
             fileName = UploadFileUtil.doUpload(file, path.toString(), realPath, IDGenerator.generator());
-            result = dao.insertHandImage(fileName, customerVO.getCustomerId());
+            customerVO = dao.getCustomer(customerVO);
+            if (customerVO.getHadAccount().equals(CustomerConstant.HAD_ACCOUNT))
+                result = dao.insertHandImage(fileName, customerVO.getCustomerId());
+            else
+                result = dao.insertHandImageRecord(fileName, customerVO.getCustomerId());
         } catch (IOException e)
         {
             e.printStackTrace();
@@ -187,7 +194,10 @@ public class CustomerServiceImpl implements CustomerService
         {
             path.append(PathConstant.USER_ID_CARD_PATH).append(sessionVO.getUserId()).append(SymbolConstant.SLASH);
             fileName = UploadFileUtil.doUpload(file, path.toString(), realPath, IDGenerator.generator());
-            result = dao.insertBackImage(fileName, customerVO.getCustomerId());
+            if (customerVO.getHadAccount().equals(CustomerConstant.HAD_ACCOUNT))
+                result = dao.insertBackImage(fileName, customerVO.getCustomerId());
+            else
+                result = dao.insertBackImageRecord(fileName, customerVO.getCustomerId());
         } catch (IOException e)
         {
             e.printStackTrace();
@@ -273,6 +283,11 @@ public class CustomerServiceImpl implements CustomerService
                 case 2:
                     result = dao.deleteRecord(accountRequest.getCustomerId());
                     break;
+                case 3:
+                    CustomerVO condition = new CustomerVO();
+                    condition.setCustomerId(accountRequest.getCustomerId());
+                    condition.setHadAccount(CustomerConstant.HAD_ACCOUNT);
+                    result = dao.updateCustomer(condition);
                 default:
                     result = 0;
                     break;

@@ -18,6 +18,8 @@ public class PathConstant
 
     public static final String USER_ID_CARD_PATH;   // 身份证图片路径
 
+    public static final String COMMON_APPLY_IMAGE;   // 通用审批图片路径
+
     static
     {
         ClassLoader classloader = Thread.currentThread().getContextClassLoader();
@@ -34,5 +36,6 @@ public class PathConstant
         USER_HEAD_PORTRAIT_IMG_PATH = uploadPath.getProperty("USER_HEAD_PORTRAIT_IMG_PATH");
         USER_IMAGE_SPACE_PATH = uploadPath.getProperty("USER_IMAGE_SPACE_PATH");
         USER_ID_CARD_PATH = uploadPath.getProperty("USER_ID_CARD_PATH");
+        COMMON_APPLY_IMAGE = uploadPath.getProperty("COMMON_APPLY_IMAGE");
     }
 }

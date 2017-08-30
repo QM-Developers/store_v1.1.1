@@ -1,0 +1,406 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dgg.store.mapper.CommonApplyMapper">
+  <resultMap id="BaseResultMap" type="com.dgg.store.util.pojo.CommonApply">
+    <id column="apply_id" jdbcType="VARCHAR" property="applyId" />
+    <result column="apply_title" jdbcType="VARCHAR" property="applyTitle" />
+    <result column="proposer_id" jdbcType="VARCHAR" property="proposerId" />
+    <result column="proposer_name" jdbcType="VARCHAR" property="proposerName" />
+    <result column="begin_date" jdbcType="DATE" property="beginDate" />
+    <result column="end_date" jdbcType="DATE" property="endDate" />
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="apply_result" jdbcType="TINYINT" property="applyResult" />
+    <result column="apply_reason" jdbcType="VARCHAR" property="applyReason" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    apply_id, apply_title, proposer_id, proposer_name, begin_date, end_date, create_date,
+    apply_result, apply_reason
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from common_apply
+    where apply_id = #{applyId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from common_apply
+    where apply_id = #{applyId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.dgg.store.util.pojo.CommonApplyExample">
+    delete from common_apply
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.dgg.store.util.pojo.CommonApply">
+    insert into common_apply (apply_id, apply_title, proposer_id,
+    proposer_name, begin_date, end_date,
+    create_date, apply_result, apply_reason
+    )
+    values (#{applyId,jdbcType=VARCHAR}, #{applyTitle,jdbcType=VARCHAR}, #{proposerId,jdbcType=VARCHAR},
+    #{proposerName,jdbcType=VARCHAR}, #{beginDate,jdbcType=DATE}, #{endDate,jdbcType=DATE},
+    #{createDate,jdbcType=TIMESTAMP}, #{applyResult,jdbcType=TINYINT}, #{applyReason,jdbcType=VARCHAR}
+    )
+  </insert>
+  <insert id="insertSelective" parameterType="com.dgg.store.util.pojo.CommonApply">
+    insert into common_apply
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="applyId != null">
+        apply_id,
+      </if>
+      <if test="applyTitle != null">
+        apply_title,
+      </if>
+      <if test="proposerId != null">
+        proposer_id,
+      </if>
+      <if test="proposerName != null">
+        proposer_name,
+      </if>
+      <if test="beginDate != null">
+        begin_date,
+      </if>
+      <if test="endDate != null">
+        end_date,
+      </if>
+      <if test="createDate != null">
+        create_date,
+      </if>
+      <if test="applyResult != null">
+        apply_result,
+      </if>
+      <if test="applyReason != null">
+        apply_reason,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="applyId != null">
+        #{applyId,jdbcType=VARCHAR},
+      </if>
+      <if test="applyTitle != null">
+        #{applyTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="proposerId != null">
+        #{proposerId,jdbcType=VARCHAR},
+      </if>
+      <if test="proposerName != null">
+        #{proposerName,jdbcType=VARCHAR},
+      </if>
+      <if test="beginDate != null">
+        #{beginDate,jdbcType=DATE},
+      </if>
+      <if test="endDate != null">
+        #{endDate,jdbcType=DATE},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="applyResult != null">
+        #{applyResult,jdbcType=TINYINT},
+      </if>
+      <if test="applyReason != null">
+        #{applyReason,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.dgg.store.util.pojo.CommonApplyExample" resultType="java.lang.Long">
+    select count(*) from common_apply
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update common_apply
+    <set>
+      <if test="record.applyId != null">
+        apply_id = #{record.applyId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.applyTitle != null">
+        apply_title = #{record.applyTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="record.proposerId != null">
+        proposer_id = #{record.proposerId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.proposerName != null">
+        proposer_name = #{record.proposerName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.beginDate != null">
+        begin_date = #{record.beginDate,jdbcType=DATE},
+      </if>
+      <if test="record.endDate != null">
+        end_date = #{record.endDate,jdbcType=DATE},
+      </if>
+      <if test="record.createDate != null">
+        create_date = #{record.createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.applyResult != null">
+        apply_result = #{record.applyResult,jdbcType=TINYINT},
+      </if>
+      <if test="record.applyReason != null">
+        apply_reason = #{record.applyReason,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update common_apply
+    set apply_id = #{record.applyId,jdbcType=VARCHAR},
+    apply_title = #{record.applyTitle,jdbcType=VARCHAR},
+    proposer_id = #{record.proposerId,jdbcType=VARCHAR},
+    proposer_name = #{record.proposerName,jdbcType=VARCHAR},
+    begin_date = #{record.beginDate,jdbcType=DATE},
+    end_date = #{record.endDate,jdbcType=DATE},
+    create_date = #{record.createDate,jdbcType=TIMESTAMP},
+    apply_result = #{record.applyResult,jdbcType=TINYINT},
+    apply_reason = #{record.applyReason,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dgg.store.util.pojo.CommonApply">
+    update common_apply
+    <set>
+      <if test="applyTitle != null">
+        apply_title = #{applyTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="proposerId != null">
+        proposer_id = #{proposerId,jdbcType=VARCHAR},
+      </if>
+      <if test="proposerName != null">
+        proposer_name = #{proposerName,jdbcType=VARCHAR},
+      </if>
+      <if test="beginDate != null">
+        begin_date = #{beginDate,jdbcType=DATE},
+      </if>
+      <if test="endDate != null">
+        end_date = #{endDate,jdbcType=DATE},
+      </if>
+      <if test="createDate != null">
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="applyResult != null">
+        apply_result = #{applyResult,jdbcType=TINYINT},
+      </if>
+      <if test="applyReason != null">
+        apply_reason = #{applyReason,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where apply_id = #{applyId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dgg.store.util.pojo.CommonApply">
+    update common_apply
+    set apply_title = #{applyTitle,jdbcType=VARCHAR},
+      proposer_id = #{proposerId,jdbcType=VARCHAR},
+      proposer_name = #{proposerName,jdbcType=VARCHAR},
+      begin_date = #{beginDate,jdbcType=DATE},
+      end_date = #{endDate,jdbcType=DATE},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      apply_result = #{applyResult,jdbcType=TINYINT},
+      apply_reason = #{applyReason,jdbcType=VARCHAR}
+    where apply_id = #{applyId,jdbcType=VARCHAR}
+  </update>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <resultMap id="CommonApplyImage" type="com.dgg.store.util.pojo.CommonApplyImage">
+    <id column="apply_id" jdbcType="VARCHAR" property="applyId" />
+    <result column="image_id" jdbcType="VARCHAR" property="imageId" />
+    <result column="image_path" jdbcType="VARCHAR" property="imagePath" />
+    <result column="image_sort" jdbcType="TINYINT" property="imageSort" />
+  </resultMap>
+
+  <resultMap id="CommonApplyApprove" type="com.dgg.store.util.pojo.CommonApplyApprove">
+    <id column="apply_id" jdbcType="VARCHAR" property="applyId" />
+    <result column="approve_id" jdbcType="VARCHAR" property="approveId" />
+    <result column="approve_name" jdbcType="VARCHAR" property="approveName" />
+    <result column="approve_result" jdbcType="TINYINT" property="approveResult" />
+    <result column="approve_sequence" jdbcType="TINYINT" property="approveSequence" />
+    <result column="approve_advice" jdbcType="VARCHAR" property="approveAdvice" />
+  </resultMap>
+
+  <select id="getUserNameById" resultType="java.lang.String">
+    SELECT user_name
+    FROM user
+    WHERE user_id = #{userId}
+  </select>
+
+  <insert id="insertCommonApplyImage">
+    INSERT INTO common_apply_image
+    (image_id, image_path)
+    VALUES
+    (#{imageId},#{imagePath})
+  </insert>
+
+  <insert id="insertApprove" parameterType="com.dgg.store.util.pojo.CommonApplyApprove">
+    INSERT INTO common_apply_approve
+    (apply_id, approve_id, approve_name, approve_sequence,approve_result)
+    VALUES
+    (#{applyId},#{approveId},#{approveName},#{approveSequence},#{approveResult})
+  </insert>
+
+  <update id="updateImage" parameterType="com.dgg.store.util.pojo.CommonApplyImage">
+    UPDATE common_apply_image
+    SET apply_id = #{applyId}
+    WHERE image_id = #{imageId}
+  </update>
+
+  <select id="listImage" resultMap="CommonApplyImage">
+    SELECT image_path
+    FROM common_apply_image
+    WHERE apply_id = #{applyId}
+  </select>
+
+  <select id="listApprove" resultMap="CommonApplyApprove">
+    SELECT approve_name, approve_sequence,approve_result,
+      approve_advice
+    FROM common_apply_approve
+    WHERE apply_id = #{applyId}
+    ORDER BY approve_sequence
+  </select>
+
+  <select id="selectByExample" parameterType="com.dgg.store.util.pojo.CommonApplyExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from common_apply
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+    LIMIT #{pageNum},#{pageSize}
+  </select>
+
+  <select id="countCommonApplyByApprove" resultType="java.lang.Integer">
+    SELECT COUNT(0)
+    FROM common_apply ca
+    INNER JOIN common_apply_approve caa
+    ON caa.apply_id = ca.apply_id
+    WHERE caa.approve_id = #{userId}
+  </select>
+
+  <select id="listCommonApplyByApprove" resultMap="BaseResultMap">
+    SELECT ca.apply_id, ca.apply_title, ca.proposer_id,
+      ca.proposer_name, ca.begin_date, ca.end_date,
+      ca.create_date, ca.apply_result, ca.apply_reason
+    FROM common_apply ca
+    INNER JOIN common_apply_approve caa
+    ON caa.apply_id = ca.apply_id
+    WHERE caa.approve_id = #{userId}
+    LIMIT #{pageNum},#{pageSize}
+  </select>
+
+  <update id="updateCommonApproveResult" parameterType="com.dgg.store.util.pojo.CommonApplyApprove">
+    UPDATE common_apply_approve
+    <set>
+      approve_result = #{approveResult},
+      <if test="approveAdvice != null">
+        approve_advice = #{approveAdvice},
+      </if>
+    </set>
+    WHERE approve_sequence = #{approveSequence}
+    AND apply_id = #{applyId}
+  </update>
+
+  <select id="getApplyApprove" resultMap="CommonApplyApprove">
+    SELECT apply_id, approve_id, approve_name, approve_sequence,approve_result
+    FROM common_apply_approve
+    WHERE apply_id = #{applyId}
+    <if test="approveId != null">
+      AND approve_id = #{approveId}
+    </if>
+    <if test="approveSequence != null">
+      AND approve_sequence = #{approveSequence}
+    </if>
+    <if test="approveResult != null">
+      AND approve_result = #{approveResult}
+    </if>
+  </select>
+</mapper>

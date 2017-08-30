@@ -35,7 +35,7 @@
         // swf文件路径
         swf: path + '/script/script/webuploader-0.1.5/Uploader.swf',
         // 文件接收服务端。
-        server: path + '/user_uploadHeadPortrait.action',
+        server: path + '/s/saveCommonApplyImage.action',
         threads: 1, // 上传并发数
         // 选择文件的按钮。可选。
         // 内部根据当前运行是创建，可能是input元素，也可能是flash.

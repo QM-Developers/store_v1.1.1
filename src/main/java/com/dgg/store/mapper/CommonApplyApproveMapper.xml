@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dgg.store.mapper.CommonApplyApproveMapper">
+  <resultMap id="BaseResultMap" type="com.dgg.store.util.pojo.CommonApplyApprove">
+    <id column="apply_id" jdbcType="VARCHAR" property="applyId" />
+    <result column="approve_id" jdbcType="VARCHAR" property="approveId" />
+    <result column="approve_name" jdbcType="VARCHAR" property="approveName" />
+    <result column="approve_result" jdbcType="TINYINT" property="approveResult" />
+    <result column="approve_sequence" jdbcType="TINYINT" property="approveSequence" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.dgg.store.util.pojo.CommonApplyApprove">
+    <result column="approve_advice" jdbcType="LONGVARCHAR" property="approveAdvice" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    apply_id, approve_id, approve_name, approve_result, approve_sequence
+  </sql>
+  <sql id="Blob_Column_List">
+    approve_advice
+  </sql>
+  <select id="selectByExampleWithBLOBs" parameterType="com.dgg.store.util.pojo.CommonApplyApproveExample" resultMap="ResultMapWithBLOBs">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from common_apply_approve
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" parameterType="com.dgg.store.util.pojo.CommonApplyApproveExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from common_apply_approve
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from common_apply_approve
+    where apply_id = #{applyId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from common_apply_approve
+    where apply_id = #{applyId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.dgg.store.util.pojo.CommonApplyApproveExample">
+    delete from common_apply_approve
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.dgg.store.util.pojo.CommonApplyApprove">
+    insert into common_apply_approve (apply_id, approve_id, approve_name, 
+      approve_result, approve_sequence, approve_advice
+      )
+    values (#{applyId,jdbcType=VARCHAR}, #{approveId,jdbcType=VARCHAR}, #{approveName,jdbcType=VARCHAR}, 
+      #{approveResult,jdbcType=TINYINT}, #{approveSequence,jdbcType=TINYINT}, #{approveAdvice,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.dgg.store.util.pojo.CommonApplyApprove">
+    insert into common_apply_approve
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="applyId != null">
+        apply_id,
+      </if>
+      <if test="approveId != null">
+        approve_id,
+      </if>
+      <if test="approveName != null">
+        approve_name,
+      </if>
+      <if test="approveResult != null">
+        approve_result,
+      </if>
+      <if test="approveSequence != null">
+        approve_sequence,
+      </if>
+      <if test="approveAdvice != null">
+        approve_advice,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="applyId != null">
+        #{applyId,jdbcType=VARCHAR},
+      </if>
+      <if test="approveId != null">
+        #{approveId,jdbcType=VARCHAR},
+      </if>
+      <if test="approveName != null">
+        #{approveName,jdbcType=VARCHAR},
+      </if>
+      <if test="approveResult != null">
+        #{approveResult,jdbcType=TINYINT},
+      </if>
+      <if test="approveSequence != null">
+        #{approveSequence,jdbcType=TINYINT},
+      </if>
+      <if test="approveAdvice != null">
+        #{approveAdvice,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.dgg.store.util.pojo.CommonApplyApproveExample" resultType="java.lang.Long">
+    select count(*) from common_apply_approve
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update common_apply_approve
+    <set>
+      <if test="record.applyId != null">
+        apply_id = #{record.applyId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.approveId != null">
+        approve_id = #{record.approveId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.approveName != null">
+        approve_name = #{record.approveName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.approveResult != null">
+        approve_result = #{record.approveResult,jdbcType=TINYINT},
+      </if>
+      <if test="record.approveSequence != null">
+        approve_sequence = #{record.approveSequence,jdbcType=TINYINT},
+      </if>
+      <if test="record.approveAdvice != null">
+        approve_advice = #{record.approveAdvice,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map">
+    update common_apply_approve
+    set apply_id = #{record.applyId,jdbcType=VARCHAR},
+      approve_id = #{record.approveId,jdbcType=VARCHAR},
+      approve_name = #{record.approveName,jdbcType=VARCHAR},
+      approve_result = #{record.approveResult,jdbcType=TINYINT},
+      approve_sequence = #{record.approveSequence,jdbcType=TINYINT},
+      approve_advice = #{record.approveAdvice,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update common_apply_approve
+    set apply_id = #{record.applyId,jdbcType=VARCHAR},
+      approve_id = #{record.approveId,jdbcType=VARCHAR},
+      approve_name = #{record.approveName,jdbcType=VARCHAR},
+      approve_result = #{record.approveResult,jdbcType=TINYINT},
+      approve_sequence = #{record.approveSequence,jdbcType=TINYINT}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dgg.store.util.pojo.CommonApplyApprove">
+    update common_apply_approve
+    <set>
+      <if test="approveId != null">
+        approve_id = #{approveId,jdbcType=VARCHAR},
+      </if>
+      <if test="approveName != null">
+        approve_name = #{approveName,jdbcType=VARCHAR},
+      </if>
+      <if test="approveResult != null">
+        approve_result = #{approveResult,jdbcType=TINYINT},
+      </if>
+      <if test="approveSequence != null">
+        approve_sequence = #{approveSequence,jdbcType=TINYINT},
+      </if>
+      <if test="approveAdvice != null">
+        approve_advice = #{approveAdvice,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where apply_id = #{applyId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.dgg.store.util.pojo.CommonApplyApprove">
+    update common_apply_approve
+    set approve_id = #{approveId,jdbcType=VARCHAR},
+      approve_name = #{approveName,jdbcType=VARCHAR},
+      approve_result = #{approveResult,jdbcType=TINYINT},
+      approve_sequence = #{approveSequence,jdbcType=TINYINT},
+      approve_advice = #{approveAdvice,jdbcType=LONGVARCHAR}
+    where apply_id = #{applyId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dgg.store.util.pojo.CommonApplyApprove">
+    update common_apply_approve
+    set approve_id = #{approveId,jdbcType=VARCHAR},
+      approve_name = #{approveName,jdbcType=VARCHAR},
+      approve_result = #{approveResult,jdbcType=TINYINT},
+      approve_sequence = #{approveSequence,jdbcType=TINYINT}
+    where apply_id = #{applyId,jdbcType=VARCHAR}
+  </update>
+</mapper>

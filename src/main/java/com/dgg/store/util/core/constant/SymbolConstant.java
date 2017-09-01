@@ -10,5 +10,9 @@ public class SymbolConstant
     public static final String REG_VERTICAL= "\\|";
     public static final String QUESTION = "\\?";
 
-    public static final String SLASH = File.separator;
+    public static final String SYSTEM_SLASH = File.separator;
+
+    public static final String FORWARD_SLASH = "/";
+
+    public static final String BACK_SLASH = "\\";
 }

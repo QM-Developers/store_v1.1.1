@@ -43,10 +43,12 @@ var qm_department = {
         params["positionId"] = positionId;
         params["permission"] = permission;
 
-        myjs.ajax_post(url, params, function (data)
-        {
-            console.log(data);
-        });
+        console.log(params);
+
+        // myjs.ajax_post(url, params, function (data)
+        // {
+        //     console.log(data);
+        // });
     },
 
     permissionClick: function ()

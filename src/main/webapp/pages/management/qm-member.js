@@ -185,10 +185,12 @@ var qm_member = {
         params["userCardBack"] = $("#img-card-back").attr("result");
         params["permission"] = $("#permission").val();
 
-        myjs.ajax_post(url, params, function (data)
-        {
-            console.log(data);
-        });
+        console.log(params);
+
+        // myjs.ajax_post(url, params, function (data)
+        // {
+        //     console.log(data);
+        // });
     },
 
     permissionClick: function ()

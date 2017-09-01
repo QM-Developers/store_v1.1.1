@@ -87,16 +87,14 @@ public class MyServiceImpl implements MyService
     public ResultVO updateUserImg(SessionVO sessionVO, MultipartFile file, String basePath)
     {
         int result = 0;
-        StringBuffer path = new StringBuffer();
+        StringBuilder path = new StringBuilder();
         String fileName = null;
 
-        String imgPath = basePath + dao.findUserImgPath(sessionVO.getUserId());
+        if (file == null)
+            return new ResultVO(0,sessionVO.getToken());
 
         try
         {
-            File oldImg = new File(imgPath);
-            if (oldImg.exists())
-                oldImg.delete();
             path.append(PathConstant.USER_HEAD_PORTRAIT_IMG_PATH).append(sessionVO.getUserId()).append("/");
             fileName = UploadFileUtil.doUpload(file, path.toString(), basePath,IDGenerator.generator());
             result = dao.updateUserImg(sessionVO.getUserId(), fileName);
@@ -105,9 +103,7 @@ public class MyServiceImpl implements MyService
             e.printStackTrace();
         }
 
-        ResultVO resultVO = new ResultVO(result, sessionVO.getToken(), fileName);
-
-        return resultVO;
+        return new ResultVO(result, sessionVO.getToken(), fileName);
     }
 
 }

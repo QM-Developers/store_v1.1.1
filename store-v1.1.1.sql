@@ -760,6 +760,12 @@ create table common_apply_image(
     image_path varchar(255) not null,	-- 图片路径
     image_sort tinyint not null default 0
 );
+
+drop table if exists user_department_customer_re;
+create table user_department_customer_re(
+	member_id varchar(35) not null,	-- 用户Id
+	department_id varchar(35) not null	-- 部门Id
+);
       
 /*修改团队自增Id初值*/
 /*alter table my_team AUTO_INCREMENT=1679617;*/

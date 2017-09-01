@@ -20,6 +20,7 @@ import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 
@@ -92,7 +93,7 @@ public class CustomerController
     {
         SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
 
-        return service.insertFrontImage(sessionVO, file, request.getSession().getServletContext().getRealPath(SymbolConstant.SLASH), customerVO);
+        return service.insertFrontImage(sessionVO, file, request.getSession().getServletContext().getRealPath(SymbolConstant.SYSTEM_SLASH), customerVO);
     }
 
     @RequestMapping(value = "/s/saveBackImage", method = POST)
@@ -101,7 +102,7 @@ public class CustomerController
     {
         SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
 
-        return service.insertBackImage(sessionVO, file, request.getSession().getServletContext().getRealPath(SymbolConstant.SLASH), customerVO);
+        return service.insertBackImage(sessionVO, file, request.getSession().getServletContext().getRealPath(SymbolConstant.SYSTEM_SLASH), customerVO);
     }
 
     @RequestMapping(value = "/s/saveHandImage", method = POST)
@@ -110,7 +111,7 @@ public class CustomerController
     {
         SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
 
-        return service.insertHandImage(sessionVO, file, request.getSession().getServletContext().getRealPath(SymbolConstant.SLASH), customerVO);
+        return service.insertHandImage(sessionVO, file, request.getSession().getServletContext().getRealPath(SymbolConstant.SYSTEM_SLASH), customerVO);
     }
 
     @RequestMapping(value = "/s/saveRepertoryLevel", method = POST, produces = {"application/json;charset=UTF-8"})
@@ -119,7 +120,7 @@ public class CustomerController
     {
         SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
 
-        return service.insertRepertoryLevel(sessionVO,repertory);
+        return service.insertRepertoryLevel(sessionVO, repertory);
     }
 
     @RequestMapping(value = "/s/saveCustomerAccount", method = POST, produces = {"application/json;charset=UTF-8"})
@@ -128,7 +129,7 @@ public class CustomerController
     {
         SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
 
-        return service.insertCustomerAccount(sessionVO,accountRequest);
+        return service.insertCustomerAccount(sessionVO, accountRequest);
     }
 
     @RequestMapping(value = "/s/updateCustomerAccountAccept", method = POST, produces = {"application/json;charset=UTF-8"})
@@ -137,7 +138,7 @@ public class CustomerController
     {
         SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
 
-        return service.updateCustomerAccountAccept(sessionVO,accountRequest);
+        return service.updateCustomerAccountAccept(sessionVO, accountRequest);
     }
 
     @RequestMapping(value = "/s/getCustomerAccount", method = POST, produces = {"application/json;charset=UTF-8"})
@@ -146,7 +147,7 @@ public class CustomerController
     {
         SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
 
-        return service.getCustomerAccount(sessionVO,accountRequest);
+        return service.getCustomerAccount(sessionVO, accountRequest);
     }
 
     @RequestMapping(value = "/s/updateCustomerAccountRefuse", method = POST, produces = {"application/json;charset=UTF-8"})
@@ -155,7 +156,7 @@ public class CustomerController
     {
         SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
 
-        return service.updateCustomerAccountRefuse(sessionVO,accountRequest);
+        return service.updateCustomerAccountRefuse(sessionVO, accountRequest);
     }
 
     @RequestMapping(value = "/s/listCustomerAccountByProposer", method = POST, produces = {"application/json;charset=UTF-8"})
@@ -164,7 +165,7 @@ public class CustomerController
     {
         SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
 
-        return service.listCustomerAccountByProposer(sessionVO,accountRequest);
+        return service.listCustomerAccountByProposer(sessionVO, accountRequest);
     }
 
     @RequestMapping(value = "/s/listCustomerAccountByChecker", method = POST, produces = {"application/json;charset=UTF-8"})
@@ -173,7 +174,7 @@ public class CustomerController
     {
         SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
 
-        return service.listCustomerAccountByChecker(sessionVO,accountRequest);
+        return service.listCustomerAccountByChecker(sessionVO, accountRequest);
     }
 
     @RequestMapping(value = "/s/getCustomerIDCard", method = GET)
@@ -183,7 +184,10 @@ public class CustomerController
         ServletOutputStream sos = null;
         try
         {
-            String path = request.getSession().getServletContext().getRealPath(SymbolConstant.SLASH) + SymbolConstant.SLASH + request.getParameter("path");
+            String path = request.getSession().getServletContext().getRealPath(SymbolConstant.SYSTEM_SLASH) + SymbolConstant.SYSTEM_SLASH + request.getParameter("path");
+            File file = new File(path);
+            if (!file.exists())
+                return;
             buffImg = ImageIO.read(new FileInputStream(path));
             // 将四位数字的验证码保存到Session中。
             // 禁止图像缓存。
@@ -201,7 +205,8 @@ public class CustomerController
         {
             try
             {
-                sos.close();
+                if (sos != null)
+                    sos.close();
             } catch (IOException e)
             {
                 e.printStackTrace();

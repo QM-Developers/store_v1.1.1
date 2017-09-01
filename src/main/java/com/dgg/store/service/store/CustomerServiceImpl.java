@@ -132,13 +132,14 @@ public class CustomerServiceImpl implements CustomerService
     public String insertFrontImage(SessionVO sessionVO, MultipartFile file, String realPath, CustomerVO customerVO)
     {
         int result = 0;
-        StringBuffer path = new StringBuffer();
+        StringBuilder path = new StringBuilder();
         String fileName = null;
 
         try
         {
-            path.append(PathConstant.USER_ID_CARD_PATH).append(sessionVO.getUserId()).append(SymbolConstant.SLASH);
+            path.append(PathConstant.USER_ID_CARD_PATH).append(sessionVO.getUserId()).append(SymbolConstant.FORWARD_SLASH);
             fileName = UploadFileUtil.doUpload(file, path.toString(), realPath, IDGenerator.generator());
+            customerVO = dao.getCustomer(customerVO);
             if (customerVO.getHadAccount().equals(CustomerConstant.HAD_ACCOUNT))
                 result = dao.insertFrontImage(fileName, customerVO.getCustomerId());
             else
@@ -155,12 +156,12 @@ public class CustomerServiceImpl implements CustomerService
     public String insertHandImage(SessionVO sessionVO, MultipartFile file, String realPath, CustomerVO customerVO)
     {
         int result = 0;
-        StringBuffer path = new StringBuffer();
+        StringBuilder path = new StringBuilder();
         String fileName = null;
 
         try
         {
-            path.append(PathConstant.USER_ID_CARD_PATH).append(sessionVO.getUserId()).append(SymbolConstant.SLASH);
+            path.append(PathConstant.USER_ID_CARD_PATH).append(sessionVO.getUserId()).append(SymbolConstant.FORWARD_SLASH);
             fileName = UploadFileUtil.doUpload(file, path.toString(), realPath, IDGenerator.generator());
             customerVO = dao.getCustomer(customerVO);
             if (customerVO.getHadAccount().equals(CustomerConstant.HAD_ACCOUNT))
@@ -187,13 +188,14 @@ public class CustomerServiceImpl implements CustomerService
     public String insertBackImage(SessionVO sessionVO, MultipartFile file, String realPath, CustomerVO customerVO)
     {
         int result = 0;
-        StringBuffer path = new StringBuffer();
+        StringBuilder path = new StringBuilder();
         String fileName = null;
 
         try
         {
-            path.append(PathConstant.USER_ID_CARD_PATH).append(sessionVO.getUserId()).append(SymbolConstant.SLASH);
+            path.append(PathConstant.USER_ID_CARD_PATH).append(sessionVO.getUserId()).append(SymbolConstant.FORWARD_SLASH);
             fileName = UploadFileUtil.doUpload(file, path.toString(), realPath, IDGenerator.generator());
+            customerVO = dao.getCustomer(customerVO);
             if (customerVO.getHadAccount().equals(CustomerConstant.HAD_ACCOUNT))
                 result = dao.insertBackImage(fileName, customerVO.getCustomerId());
             else
@@ -331,7 +333,7 @@ public class CustomerServiceImpl implements CustomerService
         accountRequest.setProposerId(sessionVO.getUserId());
         List<CustomerAccountRequest> result = dao.listCustomerAccount(accountRequest);
 
-        return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_SUCCESS,sessionVO.getToken(),result));
+        return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), result));
     }
 
     @Override
@@ -339,7 +341,7 @@ public class CustomerServiceImpl implements CustomerService
     {
         List<CustomerAccountRequest> result = dao.listCustomerAccount(accountRequest);
 
-        return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_SUCCESS,sessionVO.getToken(),result));
+        return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), result));
     }
 
 

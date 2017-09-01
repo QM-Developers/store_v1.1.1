@@ -39,7 +39,7 @@ public class CommonApplyServiceImpl implements CommonApplyService
 
         try
         {
-            path.append(PathConstant.COMMON_APPLY_IMAGE).append(sessionVO.getUserId()).append(SymbolConstant.SLASH);
+            path.append(PathConstant.COMMON_APPLY_IMAGE).append(sessionVO.getUserId()).append(SymbolConstant.SYSTEM_SLASH);
             fileName = UploadFileUtil.doUpload(file, path.toString(), realPath, IDGenerator.generator());
             result = dao.insertCommonApplyImage(imageId, fileName);
         } catch (IOException e)

@@ -18,7 +18,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -40,7 +39,7 @@ public class UserPlaceServiceImpl implements UserPlaceService
 
         try
         {
-            path.append(PathConstant.USER_PLACE_IMG_PATH).append(SymbolConstant.SLASH);
+            path.append(PathConstant.USER_PLACE_IMG_PATH).append(SymbolConstant.SYSTEM_SLASH);
             fileName = UploadFileUtil.doUpload(file, path.toString(), realPath, IDGenerator.generator());
             PlaceImage placeImage = new PlaceImage();
             placeImage.setImgId(imageId);
@@ -68,7 +67,7 @@ public class UserPlaceServiceImpl implements UserPlaceService
 
         try
         {
-            path.append(PathConstant.USER_PLACE_IMG_PATH).append(SymbolConstant.SLASH);
+            path.append(PathConstant.USER_PLACE_IMG_PATH).append(SymbolConstant.SYSTEM_SLASH);
             fileName = UploadFileUtil.doUpload(file, path.toString(), realPath, IDGenerator.generator());
             PlaceImage placeImage = new PlaceImage();
             placeImage.setImgId(imageId);

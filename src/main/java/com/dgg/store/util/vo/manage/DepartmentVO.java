@@ -19,7 +19,7 @@ public class DepartmentVO
 
     private String myTeamId;
 
-    List<PositionVO> positionList;
+    private List<PositionVO> positionList;
 
     public String getDepartmentId()
     {

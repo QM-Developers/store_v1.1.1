@@ -30,7 +30,7 @@ public class CommonApplyController
     {
         SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
 
-        return service.insertCommonApplyImage(sessionVO, file, request.getSession().getServletContext().getRealPath(SymbolConstant.SLASH));
+        return service.insertCommonApplyImage(sessionVO, file, request.getSession().getServletContext().getRealPath(SymbolConstant.SYSTEM_SLASH));
     }
 
     @RequestMapping(value = "/s/saveCommonApply", method = POST, produces = {"application/json;charset=UTF-8"})

@@ -7,22 +7,25 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="886cbd15-c3a0-40c9-bb8e-62f10811888a" name="Default" comment="框架搭建">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/需求分析/绘图/~$$通用申请.~vsd" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources/2fab1a59-02a2-44f6-827a-6c01dfe65f27/_metadata_/metadata" afterPath="$PROJECT_DIR$/.idea/dataSources/2fab1a59-02a2-44f6-827a-6c01dfe65f27/_metadata_/metadata" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources/2fab1a59-02a2-44f6-827a-6c01dfe65f27/_metadata_/metadata.values.at" afterPath="$PROJECT_DIR$/.idea/dataSources/2fab1a59-02a2-44f6-827a-6c01dfe65f27/_metadata_/metadata.values.at" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/需求分析/接口文档/客户接口 v1.0.0.xls" afterPath="$PROJECT_DIR$/需求分析/接口文档/客户接口 v1.0.0.xls" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/需求分析/接口文档/个人信息接口.xls" afterPath="$PROJECT_DIR$/需求分析/接口文档/个人信息接口.xls" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/需求分析/接口文档/通用申请接口.xlsx" afterPath="$PROJECT_DIR$/需求分析/接口文档/通用申请接口.xlsx" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/需求分析/接口文档/需求接口 v1.0.0.xlsx" afterPath="$PROJECT_DIR$/需求分析/接口文档/需求接口 v1.0.0.xlsx" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources/2fab1a59-02a2-44f6-827a-6c01dfe65f27.xml" afterPath="$PROJECT_DIR$/.idea/dataSources/2fab1a59-02a2-44f6-827a-6c01dfe65f27.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/需求分析/系统分析/库存用例.vsdx" afterPath="$PROJECT_DIR$/需求分析/系统分析/库存用例.vsdx" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dgg_store-v1.1.1.sql" afterPath="$PROJECT_DIR$/dgg_store-v1.1.1.sql" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/query.sql" afterPath="$PROJECT_DIR$/query.sql" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/dgg/store/dao/store/CustomerDao.java" afterPath="$PROJECT_DIR$/src/main/java/com/dgg/store/dao/store/CustomerDao.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/dgg/store/dao/store/CustomerDaoImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/dgg/store/dao/store/CustomerDaoImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/dgg/store/mapper/CustomerMapper.java" afterPath="$PROJECT_DIR$/src/main/java/com/dgg/store/mapper/CustomerMapper.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/dgg/store/mapper/CustomerMapper.xml" afterPath="$PROJECT_DIR$/src/main/java/com/dgg/store/mapper/CustomerMapper.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/dgg/store/controller/store/CommonApplyController.java" afterPath="$PROJECT_DIR$/src/main/java/com/dgg/store/controller/store/CommonApplyController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/dgg/store/controller/store/CustomerController.java" afterPath="$PROJECT_DIR$/src/main/java/com/dgg/store/controller/store/CustomerController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/dgg/store/controller/store/UserPlaceController.java" afterPath="$PROJECT_DIR$/src/main/java/com/dgg/store/controller/store/UserPlaceController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/dgg/store/service/common/MyServiceImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/dgg/store/service/common/MyServiceImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/dgg/store/service/store/CommonApplyServiceImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/dgg/store/service/store/CommonApplyServiceImpl.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/dgg/store/service/store/CustomerServiceImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/dgg/store/service/store/CustomerServiceImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/dgg/store/util/core/constant/CustomerConstant.java" afterPath="$PROJECT_DIR$/src/main/java/com/dgg/store/util/core/constant/CustomerConstant.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/dgg/store/util/core/constant/PathConstant.java" afterPath="$PROJECT_DIR$/src/main/java/com/dgg/store/util/core/constant/PathConstant.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/uploadPath.ini" afterPath="$PROJECT_DIR$/src/main/resources/uploadPath.ini" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/dgg/store/service/store/ManageServiceImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/dgg/store/service/store/ManageServiceImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/dgg/store/service/store/UserPlaceServiceImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/dgg/store/service/store/UserPlaceServiceImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/dgg/store/util/core/constant/SymbolConstant.java" afterPath="$PROJECT_DIR$/src/main/java/com/dgg/store/util/core/constant/SymbolConstant.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/dgg/store/util/vo/manage/DepartmentVO.java" afterPath="$PROJECT_DIR$/src/main/java/com/dgg/store/util/vo/manage/DepartmentVO.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/pages/management/qm-departments.js" afterPath="$PROJECT_DIR$/src/main/webapp/pages/management/qm-departments.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/pages/management/qm-member.js" afterPath="$PROJECT_DIR$/src/main/webapp/pages/management/qm-member.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/pages/test/test-upload.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/pages/test/test-upload.jsp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store-v1.1.1.sql" afterPath="$PROJECT_DIR$/store-v1.1.1.sql" />
     </list>
@@ -56,76 +59,101 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="CommonApplyController.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/dgg/store/controller/store/CommonApplyController.java">
+      <file leaf-file-name="ManageController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/dgg/store/controller/store/ManageController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="630">
-              <caret line="40" column="0" lean-forward="true" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="112">
+              <caret line="95" column="0" lean-forward="false" selection-start-line="95" selection-start-column="0" selection-end-line="95" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CommonApplyService.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/dgg/store/service/store/CommonApplyService.java">
+      <file leaf-file-name="qm-departments.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/pages/management/qm-departments.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="668">
+              <caret line="40" column="34" lean-forward="true" selection-start-line="40" selection-start-column="34" selection-end-line="40" selection-end-column="34" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ManageServiceImpl.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/dgg/store/service/store/ManageServiceImpl.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="720">
+              <caret line="97" column="24" lean-forward="true" selection-start-line="97" selection-start-column="24" selection-end-line="97" selection-end-column="24" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DepartmentVO.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/dgg/store/util/vo/manage/DepartmentVO.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="552">
+              <caret line="27" column="0" lean-forward="true" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="qm-index.jsp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/pages/index/qm-index.jsp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="504">
+              <caret line="174" column="38" lean-forward="true" selection-start-line="174" selection-start-column="38" selection-end-line="174" selection-end-column="38" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="map.jsp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/pages/map.jsp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="456">
+              <caret line="19" column="7" lean-forward="true" selection-start-line="19" selection-start-column="7" selection-end-line="19" selection-end-column="7" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="qm-departments.jsp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/pages/management/qm-departments.jsp">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="384">
-              <caret line="20" column="84" lean-forward="false" selection-start-line="20" selection-start-column="84" selection-end-line="20" selection-end-column="84" />
+              <caret line="46" column="22" lean-forward="true" selection-start-line="46" selection-start-column="22" selection-end-line="46" selection-end-column="22" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CommonApplyServiceImpl.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/dgg/store/service/store/CommonApplyServiceImpl.java">
+      <file leaf-file-name="qm-member.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/pages/management/qm-member.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="616">
-              <caret line="270" column="0" lean-forward="false" selection-start-line="270" selection-start-column="0" selection-end-line="270" selection-end-column="0" />
+            <state relative-caret-position="240">
+              <caret line="172" column="30" lean-forward="true" selection-start-line="172" selection-start-column="30" selection-end-line="172" selection-end-column="30" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CommonApplyMapper.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/dgg/store/mapper/CommonApplyMapper.xml">
+      <file leaf-file-name="CustomerController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/dgg/store/controller/store/CustomerController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="167">
-              <caret line="383" column="39" lean-forward="false" selection-start-line="383" selection-start-column="39" selection-end-line="383" selection-end-column="39" />
-              <folding>
-                <marker date="1504085462194" expanded="true" signature="3531:3649" ph="select from common_apply" />
-                <marker date="1504085462194" expanded="true" signature="3734:3807" ph="delete from " />
-                <marker date="1504085462194" expanded="true" signature="3915:3939" ph="delete from " />
-                <marker date="1504085462194" expanded="true" signature="4123:4581" ph="insert into common_apply... " />
-                <marker date="1504085462194" expanded="true" signature="6393:6426" ph="select count... common_apply" />
-                <marker date="1504085462194" expanded="true" signature="7847:8372" ph="update commo... " />
-                <marker date="1504085462194" expanded="true" signature="8587:9496" ph="update commo... " />
-                <marker date="1504085462194" expanded="true" signature="9600:10081" ph="update commo... " />
-                <marker date="1504085462194" expanded="true" signature="10031:10081" ph="update commo... " />
-                <marker date="1504085462194" expanded="true" signature="11153:11213" ph="SELECT user_... user" />
-                <marker date="1504085462194" expanded="true" signature="11270:11368" ph="INSERT INTO common_apply_image... " />
-                <marker date="1504085462194" expanded="true" signature="11475:11673" ph="INSERT INTO common_apply_approve... " />
-                <marker date="1504085462194" expanded="true" signature="11776:11809" ph="UPDATE commo... " />
-                <marker date="1504085462194" expanded="true" signature="11776:11831" ph="UPDATE commo... " />
-                <marker date="1504085462194" expanded="true" signature="11776:11863" ph="UPDATE commo... " />
-                <marker date="1504085462194" expanded="true" signature="11936:12013" ph="SELECT image... common_apply_image" />
-                <marker date="1504085462194" expanded="true" signature="12090:12256" ph="SELECT appro... common_apply_approve" />
-                <marker date="1504085462194" expanded="true" signature="12391:12715" ph="select disti... common_apply" />
-                <marker date="1504085462194" expanded="true" signature="12806:12957" ph="SELECT COUNT... common_apply" />
-                <marker date="1504085462194" expanded="true" signature="13042:13369" ph="SELECT ca.ap... common_apply" />
-                <marker date="1504085462194" expanded="true" signature="13488:13750" ph="UPDATE commo... " />
-                <marker date="1504085462194" expanded="true" signature="13831:13967" ph="SELECT apply... common_apply_approve" />
-              </folding>
+            <state relative-caret-position="397">
+              <caret line="112" column="0" lean-forward="true" selection-start-line="112" selection-start-column="0" selection-end-line="112" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CommonApplyApprove.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/dgg/store/util/pojo/CommonApplyApprove.java">
+      <file leaf-file-name="ManageUnitController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/dgg/store/controller/store/ManageUnitController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="3" column="27" lean-forward="true" selection-start-line="3" selection-start-column="27" selection-end-line="3" selection-end-column="27" />
+            <state relative-caret-position="120">
+              <caret line="15" column="13" lean-forward="false" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
               <folding />
             </state>
           </provider>
@@ -147,11 +175,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>findTeamAndMemberCount</find>
-      <find>INNER JOIN team_department</find>
-      <find>getCustomerRepertory</find>
-      <find>user_updateRefundReceive</find>
-      <find>user_updateRefundMoney</find>
       <find>user_updateRefundPass</find>
       <find>user_updateFinancePassB</find>
       <find>user_updateFinanceFailB</find>
@@ -177,10 +200,13 @@
       <find>had_account</find>
       <find>``</find>
       <find>getApplyApprove</find>
+      <find>SYSTEM_SLASH</find>
+      <find>StringBuffer</find>
+      <find>findPositionList</find>
+      <find>addDepartment</find>
+      <find>addOrUpdateDepartment</find>
     </findStrings>
     <replaceStrings>
-      <replace>Company</replace>
-      <replace>Corporation</replace>
       <replace>Department</replace>
       <replace>Personal</replace>
       <replace>findDepartmentInfo</replace>
@@ -209,6 +235,8 @@
       <replace>ral</replace>
       <replace>/s/</replace>
       <replace>CommonApply</replace>
+      <replace>FORWARD_SLASH</replace>
+      <replace>StringBuilder</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -222,14 +250,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/com/dgg/store/mapper/RepertoryRecordMapper.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/com/dgg/store/util/core/constant/QMPermissionConstant.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/dgg/store/service/store/RepertoryRecordServiceImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/dgg/store/util/core/constant/RepertoryConstant.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/dgg/store/util/pojo/RepertoryApplyExample.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/dgg/store/util/pojo/RepertoryApply.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/dgg/store/controller/store/RepertoryApplyController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/dgg/store/service/store/RepertoryApplyService.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/dgg/store/dao/store/RepertoryApplyDao.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/dgg/store/service/store/RepertoryApplyServiceImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/dgg/store/dao/store/RepertoryApplyDaoImpl.java" />
@@ -254,7 +274,6 @@
         <option value="$PROJECT_DIR$/src/main/java/com/dgg/store/dao/common/MyOrderDaoImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/dgg/store/util/core/constant/PathConstant.java" />
         <option value="$PROJECT_DIR$/src/main/resources/uploadPath.ini" />
-        <option value="$PROJECT_DIR$/src/main/webapp/pages/test/test-upload.jsp" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/2fab1a59-02a2-44f6-827a-6c01dfe65f27/console.sql" />
         <option value="$PROJECT_DIR$/src/main/java/com/dgg/store/util/pojo/CommonApply.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/dgg/store/util/pojo/CommonApplyExample.java" />
@@ -264,7 +283,6 @@
         <option value="$PROJECT_DIR$/src/main/java/com/dgg/store/dao/store/CustomerDao.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/dgg/store/dao/store/CustomerDaoImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/dgg/store/mapper/CustomerMapper.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/dgg/store/service/store/CustomerServiceImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/dgg/store/mapper/CustomerMapper.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/dgg/store/dao/store/CommonApplyDao.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/dgg/store/dao/store/CommonApplyDaoImpl.java" />
@@ -273,6 +291,16 @@
         <option value="$PROJECT_DIR$/src/main/java/com/dgg/store/controller/store/CommonApplyController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/dgg/store/service/store/CommonApplyService.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/dgg/store/service/store/CommonApplyServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/dgg/store/service/common/MyServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/dgg/store/controller/store/CustomerController.java" />
+        <option value="$PROJECT_DIR$/src/main/webapp/pages/test/test-upload.jsp" />
+        <option value="$PROJECT_DIR$/src/main/java/com/dgg/store/util/core/constant/SymbolConstant.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/dgg/store/service/store/CustomerServiceImpl.java" />
+        <option value="$USER_HOME$/Desktop/PushExample/html/umeng.html" />
+        <option value="$PROJECT_DIR$/src/main/webapp/pages/management/qm-departments.js" />
+        <option value="$PROJECT_DIR$/src/main/webapp/pages/management/qm-member.js" />
+        <option value="$PROJECT_DIR$/src/main/java/com/dgg/store/service/store/ManageServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/dgg/store/util/vo/manage/DepartmentVO.java" />
       </list>
     </option>
   </component>
@@ -297,10 +325,10 @@
     <option name="CUSTOM_FILTER" />
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="641" />
-    <option name="y" value="52" />
-    <option name="width" value="1240" />
-    <option name="height" value="973" />
+    <option name="x" value="158" />
+    <option name="y" value="75" />
+    <option name="width" value="1605" />
+    <option name="height" value="915" />
   </component>
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="1" id="Add" />
@@ -320,6 +348,10 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
+      <pane id="AndroidView" />
+      <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -343,62 +375,7 @@
               <item name="store_v1.1.1" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="store_v1.1.1" type="b2602c69:ProjectViewProjectNode" />
-              <item name="store_v1.1.1" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="store" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="store_v1.1.1" type="b2602c69:ProjectViewProjectNode" />
-              <item name="store_v1.1.1" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="store" type="462c0819:PsiDirectoryNode" />
-              <item name="controller" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="store_v1.1.1" type="b2602c69:ProjectViewProjectNode" />
-              <item name="store_v1.1.1" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="store" type="462c0819:PsiDirectoryNode" />
-              <item name="controller" type="462c0819:PsiDirectoryNode" />
-              <item name="store" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="store_v1.1.1" type="b2602c69:ProjectViewProjectNode" />
-              <item name="store_v1.1.1" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="store" type="462c0819:PsiDirectoryNode" />
-              <item name="mapper" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="store_v1.1.1" type="b2602c69:ProjectViewProjectNode" />
-              <item name="store_v1.1.1" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="store" type="462c0819:PsiDirectoryNode" />
-              <item name="util" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="store_v1.1.1" type="b2602c69:ProjectViewProjectNode" />
-              <item name="store_v1.1.1" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="store" type="462c0819:PsiDirectoryNode" />
-              <item name="util" type="462c0819:PsiDirectoryNode" />
-              <item name="core" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="store_v1.1.1" type="b2602c69:ProjectViewProjectNode" />
@@ -407,20 +384,33 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="webapp" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="store_v1.1.1" type="b2602c69:ProjectViewProjectNode" />
+              <item name="store_v1.1.1" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="webapp" type="462c0819:PsiDirectoryNode" />
+              <item name="pages" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="store_v1.1.1" type="b2602c69:ProjectViewProjectNode" />
+              <item name="store_v1.1.1" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="webapp" type="462c0819:PsiDirectoryNode" />
+              <item name="pages" type="462c0819:PsiDirectoryNode" />
+              <item name="index" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
-      <pane id="Scratches" />
-      <pane id="AndroidView" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../retrofit" />
     <property name="js.eslint.eslintPackage" value="" />
     <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.15" />
@@ -1221,6 +1211,9 @@
       <workItem from="1503971189154" duration="18522000" />
       <workItem from="1504054223077" duration="21532000" />
       <workItem from="1504083690425" duration="3706000" />
+      <workItem from="1504139842473" duration="12488000" />
+      <workItem from="1504229110703" duration="2238000" />
+      <workItem from="1504234163179" duration="13014000" />
     </task>
     <servers />
   </component>
@@ -1257,7 +1250,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2741898000" />
+    <option name="totallyTimeSpent" value="2769638000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1270,7 +1263,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.6826087" sideWeight="0.5261194" order="0" side_tool="true" content_ui="tabs" />
@@ -1282,18 +1274,18 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.14658849" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.57173914" sideWeight="0.4738806" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5423913" sideWeight="0.4738806" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32934782" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2771739" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32936078" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.60978264" sideWeight="0.4936034" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32717392" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.60978264" sideWeight="0.4936034" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32936078" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32936078" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17750533" sideWeight="0.47085202" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18390192" sideWeight="0.47085202" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.29609793" sideWeight="0.529148" order="6" side_tool="true" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -1341,12 +1333,6 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/dgg/store/service/common/LoginServiceImpl.java</url>
-          <line>54</line>
-          <properties />
-          <option name="timeStamp" value="728" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/dgg/store/service/store/CommonApplyServiceImpl.java</url>
           <line>226</line>
           <properties />
@@ -1356,7 +1342,7 @@
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="834" />
+      <option name="time" value="846" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1365,351 +1351,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/dgg/store/util/pojo/MyOrder.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="702">
-          <caret line="214" column="5" lean-forward="false" selection-start-line="214" selection-start-column="5" selection-end-line="214" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/dgg/store/controller/store/SalesOrderController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2544">
-          <caret line="117" column="35" lean-forward="false" selection-start-line="117" selection-start-column="35" selection-end-line="117" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/dgg/store/service/store/SalesOrderService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="624">
-          <caret line="28" column="11" lean-forward="false" selection-start-line="28" selection-start-column="11" selection-end-line="28" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/dgg/store/service/store/SalesOrderServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="7488">
-          <caret line="326" column="40" lean-forward="false" selection-start-line="326" selection-start-column="40" selection-end-line="326" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/dgg/store/dao/common/MyOrderDao.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1536">
-          <caret line="69" column="67" lean-forward="false" selection-start-line="69" selection-start-column="67" selection-end-line="69" selection-end-column="67" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/dgg/store/mapper/MyOrderMapper.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="16560">
-          <caret line="690" column="0" lean-forward="false" selection-start-line="690" selection-start-column="0" selection-end-line="690" selection-end-column="0" />
-          <folding>
-            <marker date="1503995949744" expanded="true" signature="5467:5628" ph="select , fro... " />
-            <marker date="1503995949744" expanded="true" signature="5713:5782" ph="delete from " />
-            <marker date="1503995949744" expanded="true" signature="5886:5906" ph="delete from " />
-            <marker date="1503995949744" expanded="true" signature="9006:9035" ph="select count... my_order" />
-            <marker date="1503995949744" expanded="true" signature="11354:12327" ph="update my_or... " />
-            <marker date="1503995949744" expanded="true" signature="12498:13400" ph="update my_or... " />
-            <marker date="1503995949744" expanded="true" signature="13611:15311" ph="update my_or... " />
-            <marker date="1503995949744" expanded="true" signature="15420:16286" ph="update my_or... " />
-            <marker date="1503995949744" expanded="true" signature="16386:17214" ph="update my_or... " />
-            <marker date="1503995949744" expanded="true" signature="16597:17214" ph="update my_or... " />
-            <marker date="1503995949744" expanded="true" signature="18606:18905" ph="INSERT INTO my_order_list... " />
-            <marker date="1503995949744" expanded="true" signature="18978:19212" ph="SELECT gi.go... goodsinfo" />
-            <marker date="1503995949744" expanded="true" signature="19286:19382" ph="SELECT image... goods_image" />
-            <marker date="1503995949744" expanded="true" signature="19456:19646" ph="SELECT mol.g... my_order_list" />
-            <marker date="1503995949744" expanded="true" signature="19719:19789" ph="SELECT image... image_space" />
-            <marker date="1503995949744" expanded="true" signature="20742:20896" ph="SELECT freig... freight_temp" />
-            <marker date="1503995949744" expanded="true" signature="20982:21106" ph="SELECT reper... customer_repertory" />
-            <marker date="1503995949744" expanded="true" signature="21186:21287" ph="SELECT custo... customer" />
-            <marker date="1503995949744" expanded="true" signature="21362:21428" ph="SELECT lat_l... my_team" />
-            <marker date="1503995949744" expanded="true" signature="21503:21738" ph="SELECT lat_l... qm_branch" />
-            <marker date="1503995949744" expanded="true" signature="21826:21918" ph="SELECT gs.st... goods_standard" />
-            <marker date="1503995949744" expanded="true" signature="22007:22366" ph="SELECT IFNUL... qm_branch_goods" />
-            <marker date="1503995949744" expanded="true" signature="22007:22379" ph="SELECT IFNUL... qm_branch_goods" />
-            <marker date="1503995949744" expanded="true" signature="22434:22540" ph="UPDATE goods... " />
-            <marker date="1503995949744" expanded="true" signature="22596:22906" ph="UPDATE qm_br... " />
-            <marker date="1503995949744" expanded="true" signature="22987:23039" ph="SELECT COUNT... my_order" />
-            <marker date="1503995949744" expanded="true" signature="22987:23590" ph="SELECT COUNT... my_order" />
-            <marker date="1503995949744" expanded="true" signature="23508:23584" ph="SELECT c.use... customer" />
-            <marker date="1503995949744" expanded="true" signature="23665:23671" ph="SELECT != nu... " />
-            <marker date="1503995949744" expanded="true" signature="23665:23974" ph="SELECT FROM my_order" />
-            <marker date="1503995949744" expanded="true" signature="23665:24525" ph="SELECT FROM my_order" />
-            <marker date="1503995949744" expanded="true" signature="24443:24519" ph="SELECT c.use... customer" />
-            <marker date="1503995949744" expanded="true" signature="24614:25511" ph="insert into my_order... " />
-            <marker date="1503995949744" expanded="true" signature="25032:25110" ph="SELECT user_... user_name" />
-            <marker date="1503995949744" expanded="true" signature="25055:25107" ph="SELECT user_... user" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/dgg/store/mapper/MyOrderMapper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1104">
-          <caret line="53" column="41" lean-forward="false" selection-start-line="53" selection-start-column="41" selection-end-line="53" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/dgg/store/dao/common/MyOrderDaoImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3072">
-          <caret line="199" column="0" lean-forward="false" selection-start-line="199" selection-start-column="0" selection-end-line="199" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/dgg/store/controller/store/ManageUnitController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="15" column="13" lean-forward="false" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/dgg/store/controller/store/ManageController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="720">
-          <caret line="46" column="67" lean-forward="false" selection-start-line="46" selection-start-column="67" selection-end-line="46" selection-end-column="67" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/dgg/store/util/vo/manage/MemberVO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="552">
-          <caret line="38" column="37" lean-forward="false" selection-start-line="38" selection-start-column="37" selection-end-line="38" selection-end-column="37" />
-          <folding>
-            <element signature="e#677#678#0" expanded="false" />
-            <element signature="e#706#707#0" expanded="false" />
-            <element signature="e#754#755#0" expanded="false" />
-            <element signature="e#790#791#0" expanded="false" />
-            <element signature="e#829#830#0" expanded="false" />
-            <element signature="e#860#861#0" expanded="false" />
-            <element signature="e#912#913#0" expanded="false" />
-            <element signature="e#952#953#0" expanded="false" />
-            <element signature="e#990#991#0" expanded="false" />
-            <element signature="e#1020#1021#0" expanded="false" />
-            <element signature="e#1070#1071#0" expanded="false" />
-            <element signature="e#1108#1109#0" expanded="false" />
-            <element signature="e#1148#1149#0" expanded="false" />
-            <element signature="e#1180#1181#0" expanded="false" />
-            <element signature="e#1234#1235#0" expanded="false" />
-            <element signature="e#1276#1277#0" expanded="false" />
-            <element signature="e#1319#1320#0" expanded="false" />
-            <element signature="e#1354#1355#0" expanded="false" />
-            <element signature="e#1414#1415#0" expanded="false" />
-            <element signature="e#1462#1463#0" expanded="false" />
-            <element signature="e#1505#1506#0" expanded="false" />
-            <element signature="e#1540#1541#0" expanded="false" />
-            <element signature="e#1600#1601#0" expanded="false" />
-            <element signature="e#1648#1649#0" expanded="false" />
-            <element signature="e#1689#1690#0" expanded="false" />
-            <element signature="e#1722#1723#0" expanded="false" />
-            <element signature="e#1778#1779#0" expanded="false" />
-            <element signature="e#1822#1823#0" expanded="false" />
-            <element signature="e#1866#1867#0" expanded="false" />
-            <element signature="e#1902#1903#0" expanded="false" />
-            <element signature="e#1964#1965#0" expanded="false" />
-            <element signature="e#2014#2015#0" expanded="false" />
-            <element signature="e#2057#2058#0" expanded="false" />
-            <element signature="e#2092#2093#0" expanded="false" />
-            <element signature="e#2152#2153#0" expanded="false" />
-            <element signature="e#2200#2201#0" expanded="false" />
-            <element signature="e#2241#2242#0" expanded="false" />
-            <element signature="e#2274#2275#0" expanded="false" />
-            <element signature="e#2330#2331#0" expanded="false" />
-            <element signature="e#2374#2375#0" expanded="false" />
-            <element signature="e#2415#2416#0" expanded="false" />
-            <element signature="e#2448#2449#0" expanded="false" />
-            <element signature="e#2504#2505#0" expanded="false" />
-            <element signature="e#2548#2549#0" expanded="false" />
-            <element signature="e#2585#2586#0" expanded="false" />
-            <element signature="e#2614#2615#0" expanded="false" />
-            <element signature="e#2662#2663#0" expanded="false" />
-            <element signature="e#2698#2699#0" expanded="false" />
-            <element signature="e#2737#2738#0" expanded="false" />
-            <element signature="e#2768#2769#0" expanded="false" />
-            <element signature="e#2820#2821#0" expanded="false" />
-            <element signature="e#2860#2861#0" expanded="false" />
-            <element signature="e#2905#2906#0" expanded="false" />
-            <element signature="e#2942#2943#0" expanded="false" />
-            <element signature="e#3006#3007#0" expanded="false" />
-            <element signature="e#3058#3059#0" expanded="false" />
-            <element signature="e#3101#3102#0" expanded="false" />
-            <element signature="e#3136#3137#0" expanded="false" />
-            <element signature="e#3196#3197#0" expanded="false" />
-            <element signature="e#3244#3245#0" expanded="false" />
-            <element signature="e#3283#3284#0" expanded="false" />
-            <element signature="e#3314#3315#0" expanded="false" />
-            <element signature="e#3366#3367#0" expanded="false" />
-            <element signature="e#3406#3407#0" expanded="false" />
-            <element signature="e#3449#3450#0" expanded="false" />
-            <element signature="e#3486#3487#0" expanded="false" />
-            <element signature="e#3548#3549#0" expanded="false" />
-            <element signature="e#3600#3601#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/dgg/store/util/pojo/CommonApplyImage.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="10" column="0" lean-forward="true" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/dgg/store/mapper/CommonApplyImageMapper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="552">
-          <caret line="26" column="46" lean-forward="false" selection-start-line="26" selection-start-column="46" selection-end-line="26" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/dgg/store/service/store/ManageServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="754">
-          <caret line="111" column="24" lean-forward="true" selection-start-line="65" selection-start-column="8" selection-end-line="111" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/dgg/store/service/store/GoodsTypeServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-954">
-          <caret line="17" column="13" lean-forward="false" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/dgg/store/service/store/FreightTempServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-738">
-          <caret line="19" column="13" lean-forward="false" selection-start-line="19" selection-start-column="13" selection-end-line="19" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/dgg/store/dao/store/BranchDao.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-138">
-          <caret line="11" column="4" lean-forward="false" selection-start-line="11" selection-start-column="4" selection-end-line="11" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/dgg/store/service/store/BranchServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="624">
-          <caret line="47" column="40" lean-forward="true" selection-start-line="47" selection-start-column="40" selection-end-line="47" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/dgg/store/dao/store/FarmerDaoImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="16" column="3" lean-forward="true" selection-start-line="16" selection-start-column="3" selection-end-line="80" selection-end-column="5" />
-          <folding>
-            <element signature="e#1835#1836#0" expanded="false" />
-            <element signature="e#1891#1892#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/dgg/store/dao/store/FarmerDao.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="288">
-          <caret line="16" column="8" lean-forward="false" selection-start-line="16" selection-start-column="8" selection-end-line="16" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/dgg/store/service/store/FarmerServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="26" column="29" lean-forward="false" selection-start-line="26" selection-start-column="29" selection-end-line="26" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/uploadPath.ini">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="5" column="42" lean-forward="false" selection-start-line="5" selection-start-column="42" selection-end-line="5" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/dgg/store/util/core/constant/PathConstant.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="750">
-          <caret line="37" column="63" lean-forward="false" selection-start-line="37" selection-start-column="63" selection-end-line="37" selection-end-column="63" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/pages/test/test-upload.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
-          <caret line="68" column="0" lean-forward="true" selection-start-line="68" selection-start-column="0" selection-end-line="68" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/2fab1a59-02a2-44f6-827a-6c01dfe65f27/console.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-tx/4.3.7.RELEASE/spring-tx-4.3.7.RELEASE.jar!/org/springframework/transaction/interceptor/TransactionAspectSupport.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="149" column="0" lean-forward="false" selection-start-line="149" selection-start-column="0" selection-end-line="149" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/dgg/store/util/pojo/CommonApplyExample.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="774">
-          <caret line="753" column="5" lean-forward="false" selection-start-line="753" selection-start-column="5" selection-end-line="753" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/dgg/store/mapper/CommonApplyImageMapper.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="3" column="0" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="8" selection-end-column="14" />
-          <folding>
-            <marker date="1504057322905" expanded="true" signature="3512:3637" ph="select from common_apply_image" />
-            <marker date="1504057322905" expanded="true" signature="3722:3801" ph="delete from " />
-            <marker date="1504057322905" expanded="true" signature="3914:3944" ph="delete from " />
-            <marker date="1504057322905" expanded="true" signature="4133:4354" ph="insert into common_apply_image... " />
-            <marker date="1504057322905" expanded="true" signature="5371:5410" ph="select count... common_apply_image" />
-            <marker date="1504057322905" expanded="true" signature="6241:6487" ph="update commo... " />
-            <marker date="1504057322905" expanded="true" signature="6707:7096" ph="update commo... " />
-            <marker date="1504057322905" expanded="true" signature="7205:7426" ph="update commo... " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/dgg/store/mapper/CommonApplyApproveMapper.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="3" column="0" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="9" selection-end-column="14" />
-          <folding>
-            <marker date="1504056065663" expanded="true" signature="4427:4601" ph="select , fro... " />
-            <marker date="1504056065663" expanded="true" signature="4686:4767" ph="delete from " />
-            <marker date="1504056065663" expanded="true" signature="4882:4914" ph="delete from " />
-            <marker date="1504056065663" expanded="true" signature="5105:5468" ph="insert into common_apply_approve... " />
-            <marker date="1504056065663" expanded="true" signature="6877:6918" ph="select count... common_apply_approve" />
-            <marker date="1504056065663" expanded="true" signature="8046:8448" ph="update commo... " />
-            <marker date="1504056065663" expanded="true" signature="8619:8952" ph="update commo... " />
-            <marker date="1504056065663" expanded="true" signature="9174:9823" ph="update commo... " />
-            <marker date="1504056065663" expanded="true" signature="9943:10306" ph="update commo... " />
-            <marker date="1504056065663" expanded="true" signature="10417:10718" ph="update commo... " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-aop/4.3.7.RELEASE/spring-aop-4.3.7.RELEASE.jar!/org/springframework/aop/support/AopUtils.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="185">
-          <caret line="179" column="0" lean-forward="false" selection-start-line="179" selection-start-column="0" selection-end-line="179" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/test.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1728,9 +1369,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="6" column="27" lean-forward="true" selection-start-line="6" selection-start-column="27" selection-end-line="6" selection-end-column="27" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1759,39 +1397,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="678">
           <caret line="170" column="63" lean-forward="false" selection-start-line="170" selection-start-column="63" selection-end-line="170" selection-end-column="63" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/dgg/store/dao/store/CustomerDao.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="726">
-          <caret line="60" column="66" lean-forward="false" selection-start-line="60" selection-start-column="66" selection-end-line="60" selection-end-column="66" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/dgg/store/service/store/CustomerServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="696">
-          <caret line="166" column="50" lean-forward="false" selection-start-line="166" selection-start-column="50" selection-end-line="166" selection-end-column="50" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/dgg/store/service/store/CustomerService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="510">
-          <caret line="33" column="11" lean-forward="false" selection-start-line="33" selection-start-column="11" selection-end-line="33" selection-end-column="11" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/dgg/store/controller/store/CustomerController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="454">
-          <caret line="139" column="41" lean-forward="false" selection-start-line="139" selection-start-column="41" selection-end-line="139" selection-end-column="41" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1799,7 +1404,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="726">
           <caret line="61" column="105" lean-forward="false" selection-start-line="61" selection-start-column="105" selection-end-line="61" selection-end-column="105" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1807,9 +1411,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="726">
           <caret line="51" column="1" lean-forward="true" selection-start-line="51" selection-start-column="1" selection-end-line="51" selection-end-column="1" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1817,9 +1418,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="654">
           <caret line="141" column="26" lean-forward="true" selection-start-line="141" selection-start-column="26" selection-end-line="141" selection-end-column="26" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1827,39 +1425,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="366">
           <caret line="297" column="0" lean-forward="true" selection-start-line="297" selection-start-column="0" selection-end-line="297" selection-end-column="0" />
-          <folding>
-            <marker date="1504083230729" expanded="true" signature="2902:3353" ph="INSERT INTO user_record... " />
-            <marker date="1504083230729" expanded="true" signature="3468:3763" ph="INSERT INTO customer... " />
-            <marker date="1504083230729" expanded="true" signature="3841:4400" ph="SELECT c.cus... customer" />
-            <marker date="1504083230729" expanded="true" signature="4980:5743" ph="UPDATE user_... " />
-            <marker date="1504083230729" expanded="true" signature="5862:6512" ph="UPDATE user " />
-            <marker date="1504083230729" expanded="true" signature="6627:7226" ph="UPDATE custo... " />
-            <marker date="1504083230729" expanded="true" signature="7303:7762" ph="SELECT c.cus... customer" />
-            <marker date="1504083230729" expanded="true" signature="7821:7969" ph="UPDATE user " />
-            <marker date="1504083230729" expanded="true" signature="8034:8192" ph="UPDATE user_... " />
-            <marker date="1504083230729" expanded="true" signature="8250:8397" ph="UPDATE user " />
-            <marker date="1504083230729" expanded="true" signature="8461:8618" ph="UPDATE user_... " />
-            <marker date="1504083230729" expanded="true" signature="8676:8823" ph="UPDATE user " />
-            <marker date="1504083230729" expanded="true" signature="8887:9044" ph="UPDATE user_... " />
-            <marker date="1504083230729" expanded="true" signature="9135:9282" ph="SELECT reper... customer_repertory" />
-            <marker date="1504083230729" expanded="true" signature="9442:9581" ph="SELECT COUNT... customer_repertory" />
-            <marker date="1504083230729" expanded="true" signature="9711:9863" ph="INSERT INTO customer_repertory... " />
-            <marker date="1504083230729" expanded="true" signature="10017:10232" ph="SELECT u.use... user" />
-            <marker date="1504083230729" expanded="true" signature="10156:10231" ph="SELECT qb.de... qm_branch" />
-            <marker date="1504083230729" expanded="true" signature="10387:10585" ph="SELECT u.use... user" />
-            <marker date="1504083230729" expanded="true" signature="10669:11320" ph="SELECT user_... user_id" />
-            <marker date="1504083230729" expanded="true" signature="10708:11036" ph="SELECT u.use... user" />
-            <marker date="1504083230729" expanded="true" signature="11059:11282" ph="SELECT u.use... user" />
-            <marker date="1504083230729" expanded="true" signature="11447:11947" ph="INSERT INTO customer_account_request" />
-            <marker date="1504083230729" expanded="true" signature="11889:11945" ph="SELECT user_... user" />
-            <marker date="1504083230729" expanded="true" signature="12078:12225" ph="UPDATE custo... " />
-            <marker date="1504083230729" expanded="true" signature="12289:12428" ph="INSERT INTO user... " />
-            <marker date="1504083230729" expanded="true" signature="12314:12428" ph="SELECT * FRO... user_record" />
-            <marker date="1504083230729" expanded="true" signature="12365:12427" ph="SELECT user_... customer" />
-            <marker date="1504083230729" expanded="true" signature="12483:12595" ph="DELETE FROM " />
-            <marker date="1504083230729" expanded="true" signature="12532:12594" ph="SELECT user_... customer" />
-            <marker date="1504083230729" expanded="true" signature="12691:12956" ph="SELECT reque... customer_account_request" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1867,48 +1432,20 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="654">
           <caret line="50" column="29" lean-forward="false" selection-start-line="50" selection-start-column="29" selection-end-line="50" selection-end-column="29" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/dgg/store/mapper/CommonApplyMapper.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="167">
+        <state relative-caret-position="9192">
           <caret line="383" column="39" lean-forward="false" selection-start-line="383" selection-start-column="39" selection-end-line="383" selection-end-column="39" />
-          <folding>
-            <marker date="1504085462194" expanded="true" signature="3531:3649" ph="select from common_apply" />
-            <marker date="1504085462194" expanded="true" signature="3734:3807" ph="delete from " />
-            <marker date="1504085462194" expanded="true" signature="3915:3939" ph="delete from " />
-            <marker date="1504085462194" expanded="true" signature="4123:4581" ph="insert into common_apply... " />
-            <marker date="1504085462194" expanded="true" signature="6393:6426" ph="select count... common_apply" />
-            <marker date="1504085462194" expanded="true" signature="7847:8372" ph="update commo... " />
-            <marker date="1504085462194" expanded="true" signature="8587:9496" ph="update commo... " />
-            <marker date="1504085462194" expanded="true" signature="9600:10081" ph="update commo... " />
-            <marker date="1504085462194" expanded="true" signature="10031:10081" ph="update commo... " />
-            <marker date="1504085462194" expanded="true" signature="11153:11213" ph="SELECT user_... user" />
-            <marker date="1504085462194" expanded="true" signature="11270:11368" ph="INSERT INTO common_apply_image... " />
-            <marker date="1504085462194" expanded="true" signature="11475:11673" ph="INSERT INTO common_apply_approve... " />
-            <marker date="1504085462194" expanded="true" signature="11776:11809" ph="UPDATE commo... " />
-            <marker date="1504085462194" expanded="true" signature="11776:11831" ph="UPDATE commo... " />
-            <marker date="1504085462194" expanded="true" signature="11776:11863" ph="UPDATE commo... " />
-            <marker date="1504085462194" expanded="true" signature="11936:12013" ph="SELECT image... common_apply_image" />
-            <marker date="1504085462194" expanded="true" signature="12090:12256" ph="SELECT appro... common_apply_approve" />
-            <marker date="1504085462194" expanded="true" signature="12391:12715" ph="select disti... common_apply" />
-            <marker date="1504085462194" expanded="true" signature="12806:12957" ph="SELECT COUNT... common_apply" />
-            <marker date="1504085462194" expanded="true" signature="13042:13369" ph="SELECT ca.ap... common_apply" />
-            <marker date="1504085462194" expanded="true" signature="13488:13750" ph="UPDATE commo... " />
-            <marker date="1504085462194" expanded="true" signature="13831:13967" ph="SELECT apply... common_apply_approve" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/dgg/store/util/pojo/CommonApplyApprove.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="3" column="27" lean-forward="true" selection-start-line="3" selection-start-column="27" selection-end-line="3" selection-end-column="27" />
-          <folding />
+        <state relative-caret-position="72">
+          <caret line="3" column="27" lean-forward="false" selection-start-line="3" selection-start-column="27" selection-end-line="3" selection-end-column="27" />
         </state>
       </provider>
     </entry>
@@ -1916,25 +1453,275 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="384">
           <caret line="20" column="84" lean-forward="false" selection-start-line="20" selection-start-column="84" selection-end-line="20" selection-end-column="84" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/dgg/store/service/store/CommonApplyServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="616">
-          <caret line="270" column="0" lean-forward="false" selection-start-line="270" selection-start-column="0" selection-end-line="270" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/dgg/store/controller/store/CommonApplyController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="630">
-          <caret line="40" column="0" lean-forward="true" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="366">
+          <caret line="29" column="5" lean-forward="true" selection-start-line="29" selection-start-column="5" selection-end-line="29" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/dgg/store/controller/common/MyController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="85" column="29" lean-forward="false" selection-start-line="85" selection-start-column="29" selection-end-line="85" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/dgg/store/service/common/MyService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="19" column="13" lean-forward="false" selection-start-line="19" selection-start-column="13" selection-end-line="19" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/dgg/store/service/common/LoginServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="98">
+          <caret line="56" column="29" lean-forward="false" selection-start-line="56" selection-start-column="29" selection-end-line="56" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/dgg/store/service/common/MyServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="342">
+          <caret line="93" column="27" lean-forward="true" selection-start-line="93" selection-start-column="27" selection-end-line="93" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/dgg/store/service/store/CommonApplyServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="832">
+          <caret line="270" column="0" lean-forward="false" selection-start-line="270" selection-start-column="0" selection-end-line="270" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/pages/customer/qm-addcustomer.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1728">
+          <caret line="96" column="10" lean-forward="true" selection-start-line="96" selection-start-column="10" selection-end-line="96" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/pages/customer/qm-customer.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/pages/customer/qm-customerdata.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-6048">
+          <caret line="24" column="46" lean-forward="false" selection-start-line="24" selection-start-column="46" selection-end-line="24" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/pages/customer/qm-customerrecord.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2178">
+          <caret line="19" column="26" lean-forward="true" selection-start-line="19" selection-start-column="26" selection-end-line="19" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/pages/test/test-upload.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="29" column="20" lean-forward="true" selection-start-line="29" selection-start-column="20" selection-end-line="29" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/dgg/store/service/store/CustomerService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="298">
+          <caret line="23" column="11" lean-forward="false" selection-start-line="23" selection-start-column="11" selection-end-line="23" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/dgg/store/dao/store/CustomerDao.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="298">
+          <caret line="28" column="8" lean-forward="false" selection-start-line="28" selection-start-column="8" selection-end-line="28" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/dgg/store/util/core/upload/UploadFileUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="318">
+          <caret line="22" column="53" lean-forward="true" selection-start-line="22" selection-start-column="53" selection-end-line="22" selection-end-column="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/dgg/store/util/core/constant/SymbolConstant.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="432">
+          <caret line="18" column="0" lean-forward="true" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/dgg/store/service/store/CustomerServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="286" column="26" lean-forward="true" selection-start-line="286" selection-start-column="26" selection-end-line="286" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/dgg/store/util/vo/core/LoginVO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="6" column="29" lean-forward="false" selection-start-line="6" selection-start-column="29" selection-end-line="6" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/dgg/store/controller/store/GoodsManageController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="21" column="13" lean-forward="false" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/dgg/store/util/vo/manage/PositionVO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="384">
+          <caret line="16" column="23" lean-forward="false" selection-start-line="16" selection-start-column="23" selection-end-line="16" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Desktop/PushExample/html/umeng.html" />
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="384">
+          <caret line="166" column="20" lean-forward="true" selection-start-line="166" selection-start-column="20" selection-end-line="166" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/dgg/store/util/vo/manage/MemberVO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="18" column="4" lean-forward="true" selection-start-line="18" selection-start-column="4" selection-end-line="18" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/pages/management/qm-enterpriselistt.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="22" column="6" lean-forward="true" selection-start-line="22" selection-start-column="6" selection-end-line="22" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/pages/management/qm-departments.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="668">
+          <caret line="40" column="34" lean-forward="true" selection-start-line="40" selection-start-column="34" selection-end-line="40" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/pages/management/qm-departments.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="384">
+          <caret line="46" column="22" lean-forward="true" selection-start-line="46" selection-start-column="22" selection-end-line="46" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/dgg/store/controller/store/CustomerController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="397">
+          <caret line="112" column="0" lean-forward="true" selection-start-line="112" selection-start-column="0" selection-end-line="112" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/dgg/store/controller/store/ManageUnitController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="15" column="13" lean-forward="false" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/dgg/store/service/store/ManageService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="428">
+          <caret line="32" column="13" lean-forward="false" selection-start-line="32" selection-start-column="13" selection-end-line="32" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-aop/4.3.7.RELEASE/spring-aop-4.3.7.RELEASE.jar!/org/springframework/aop/support/AopUtils.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="185">
+          <caret line="179" column="0" lean-forward="false" selection-start-line="179" selection-start-column="0" selection-end-line="179" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/pages/management/qm-member.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="172" column="30" lean-forward="true" selection-start-line="172" selection-start-column="30" selection-end-line="172" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/dgg/store/controller/store/ManageController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="112">
+          <caret line="95" column="0" lean-forward="false" selection-start-line="95" selection-start-column="0" selection-end-line="95" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/pages/common/drag-map.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/pages/map.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="456">
+          <caret line="19" column="7" lean-forward="true" selection-start-line="19" selection-start-column="7" selection-end-line="19" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/dgg/store/util/vo/manage/DepartmentVO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="552">
+          <caret line="27" column="0" lean-forward="true" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/pages/index/qm-index.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="504">
+          <caret line="174" column="38" lean-forward="true" selection-start-line="174" selection-start-column="38" selection-end-line="174" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/dgg/store/service/store/ManageServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="720">
+          <caret line="97" column="24" lean-forward="true" selection-start-line="97" selection-start-column="24" selection-end-line="97" selection-end-column="24" />
+          <folding />
         </state>
       </provider>
     </entry>

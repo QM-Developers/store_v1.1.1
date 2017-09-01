@@ -17,7 +17,7 @@
 
 <body>
 <div id="filePicker">添加图片</div>
-<img src="/store/upload/img/user/place/\b1b0bcd3e1e54dea97faf27e87595c67.jpg">
+<img src="${path}/s/getCustomerIDCard.action?path=/WEB-INF/upload/img/id_card/89d9317fb3834353bcf2a507bee2eb82/b25f4d925ca3481284f541555ca7a265.jpg">
 </body>
 
 <script type="text/javascript" src="${path}/script/jquery/jquery-3.0.0.min.js"></script>
@@ -35,7 +35,7 @@
         // swf文件路径
         swf: path + '/script/script/webuploader-0.1.5/Uploader.swf',
         // 文件接收服务端。
-        server: path + '/s/saveCommonApplyImage.action',
+        server: path + '/user_uploadHeadPortrait.action',
         threads: 1, // 上传并发数
         // 选择文件的按钮。可选。
         // 内部根据当前运行是创建，可能是input元素，也可能是flash.

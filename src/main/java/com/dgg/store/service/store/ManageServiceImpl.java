@@ -33,7 +33,7 @@ public class ManageServiceImpl implements ManageService
         loginVO.setUserPassword(CryptographyUtil.md5(loginVO.getUserPassword(), Constant.SALT));
         int result = dao.findLoginUser(loginVO);
 
-        ResultVO resultVO = new ResultVO(1, sessionVO.getToken(), result);
+        ResultVO resultVO = new ResultVO(result, sessionVO.getToken(), result);
 
         return resultVO;
     }
@@ -342,6 +342,8 @@ public class ManageServiceImpl implements ManageService
                     break;
                 case 1:
                     dao.cleanPerUserRe(member.getMemberId());
+                    if (member.getPermission() == null)
+                        break;
                     String[] ps = member.getPermission().split(SymbolConstant.COMMA);
                     for (String p : ps)
                         perUserReList.add(new PerUserReVO(member.getMemberId(), p));

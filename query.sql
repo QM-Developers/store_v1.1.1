@@ -1,5 +1,5 @@
-delete from common_apply
+select * from freight_temp
 ;
 
-delete from common_apply_approve
+select * from qm_branch
 ;

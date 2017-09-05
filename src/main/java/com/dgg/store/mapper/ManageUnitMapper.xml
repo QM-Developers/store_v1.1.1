@@ -70,20 +70,6 @@
   <sql id="Base_Column_List">
     manage_id, customer_id, manage_name, manage_type, manage_address, manage_acreage
   </sql>
-  <select id="selectByExample" parameterType="com.dgg.store.util.pojo.ManageUnitExample" resultMap="BaseResultMap">
-    select
-    <if test="distinct">
-      distinct
-    </if>
-    <include refid="Base_Column_List" />
-    from manage_unit
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-    <if test="orderByClause != null">
-      order by ${orderByClause}
-    </if>
-  </select>
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
@@ -225,4 +211,41 @@
       manage_acreage = #{manageAcreage,jdbcType=INTEGER}
     where manage_id = #{manageId,jdbcType=VARCHAR}
   </update>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <select id="selectByExample" parameterType="com.dgg.store.util.pojo.ManageUnitExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from manage_unit
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+    LIMIT #{pageNum},#{pageSize}
+  </select>
+
+
 </mapper>

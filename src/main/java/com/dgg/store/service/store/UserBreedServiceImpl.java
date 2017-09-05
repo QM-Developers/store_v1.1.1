@@ -2,11 +2,12 @@ package com.dgg.store.service.store;
 
 import com.alibaba.fastjson.JSONObject;
 import com.dgg.store.dao.store.UserBreedDao;
+import com.dgg.store.util.core.constant.KeyConstant;
 import com.dgg.store.util.core.generator.IDGenerator;
-import com.dgg.store.util.core.reflect.ReflectUtil;
-import com.dgg.store.util.core.string.StringUtil;
+import com.dgg.store.util.core.page.PagingUtil;
 import com.dgg.store.util.pojo.UserBreed;
 import com.dgg.store.util.pojo.UserBreedExample;
+import com.dgg.store.util.vo.core.PageVO;
 import com.dgg.store.util.vo.core.ResultVO;
 import com.dgg.store.util.vo.core.SessionVO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,16 +33,21 @@ public class UserBreedServiceImpl implements UserBreedService
     }
 
     @Override
-    public String listUserBreed(SessionVO sessionVO, UserBreed breed)
+    public String listUserBreed(SessionVO sessionVO, UserBreed breed, PageVO pageVO)
     {
         UserBreedExample example = new UserBreedExample();
         UserBreedExample.Criteria criteria = example.createCriteria();
 
         criteria.andUserPlaceIdEqualTo(breed.getUserPlaceId());
 
+        example.setPageNum(PagingUtil.getStart(pageVO.getPageNum(),pageVO.getPageSize()));
+        example.setPageSize(pageVO.getPageSize());
+        int pageCount = PagingUtil.getCount((int) dao.countByExample(example),pageVO.getPageSize());
+
         List<UserBreed> result = dao.selectByExample(example);
 
         JSONObject json = (JSONObject) JSONObject.toJSON(new ResultVO(1, sessionVO.getToken(), result));
+        json.put(KeyConstant.PAGE_COUNT,pageCount);
 
         return json.toJSONString();
     }

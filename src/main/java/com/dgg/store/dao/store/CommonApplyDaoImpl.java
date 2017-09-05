@@ -137,6 +137,12 @@ public class CommonApplyDaoImpl implements CommonApplyDao
     }
 
     @Override
+    public String getDeviceToken(String approveId)
+    {
+        return mapper.getDeviceToken(approveId);
+    }
+
+    @Override
     public CommonApplyApprove getApplyApprove(CommonApplyApprove approve)
     {
         return mapper.getApplyApprove(approve);

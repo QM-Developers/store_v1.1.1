@@ -128,4 +128,10 @@ public class RepertoryApplyDaoImpl implements RepertoryApplyDao
     {
         return mapper.insertSecondRepertory(applyList,branchId);
     }
+
+    @Override
+    public String getDeviceToken(String approverId)
+    {
+        return mapper.getDeviceToken(approverId);
+    }
 }

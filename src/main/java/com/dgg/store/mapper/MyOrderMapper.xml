@@ -737,4 +737,28 @@
       AND mo.payment_status = #{paymentStatus}
     </if>
   </select>
+
+  <select id="getFinanceDeviceToken" resultType="java.lang.String">
+    SELECT u.umeng_device_token
+    FROM user u
+    INNER JOIN user_qm_permission_re uqpr
+    ON uqpr.user_id = u.user_id
+    WHERE u.my_team_id = #{myTeamId}
+    AND uqpr.qm_permission_id = #{permissionId}
+  </select>
+
+  <select id="getSalesDeviceToken" resultType="java.lang.String">
+    SELECT u.umeng_device_token
+    FROM user u
+    INNER JOIN customer c
+    ON c.merchandiser_id = u.user_id
+    WHERE c.user_id = #{userId}
+    AND c.my_team_id = #{myTeamId}
+  </select>
+
+  <select id="getDeviceToken" resultType="java.lang.String">
+    SELECT u.umeng_device_token
+    FROM user u
+    WHERE u.user_id = #{userId}
+  </select>
 </mapper>

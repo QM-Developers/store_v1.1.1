@@ -40,6 +40,10 @@ public class UserPlace {
 
     private List<PlaceImage> certificateList;
 
+    private Integer pageNum;
+
+    private Integer pageSize;
+
     public String getUserPlaceId() {
         return userPlaceId;
     }
@@ -192,5 +196,25 @@ public class UserPlace {
     public void setCertificateList(List<PlaceImage> certificateList)
     {
         this.certificateList = certificateList;
+    }
+
+    public Integer getPageNum()
+    {
+        return pageNum;
+    }
+
+    public void setPageNum(Integer pageNum)
+    {
+        this.pageNum = pageNum;
+    }
+
+    public Integer getPageSize()
+    {
+        return pageSize;
+    }
+
+    public void setPageSize(Integer pageSize)
+    {
+        this.pageSize = pageSize;
     }
 }

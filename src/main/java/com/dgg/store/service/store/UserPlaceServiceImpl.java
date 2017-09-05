@@ -2,16 +2,15 @@ package com.dgg.store.service.store;
 
 import com.alibaba.fastjson.JSONObject;
 import com.dgg.store.dao.store.UserPlaceDao;
-import com.dgg.store.util.core.constant.Constant;
-import com.dgg.store.util.core.constant.PathConstant;
-import com.dgg.store.util.core.constant.PlaceConstant;
-import com.dgg.store.util.core.constant.SymbolConstant;
+import com.dgg.store.util.core.constant.*;
 import com.dgg.store.util.core.generator.IDGenerator;
+import com.dgg.store.util.core.page.PagingUtil;
 import com.dgg.store.util.core.string.StringUtil;
 import com.dgg.store.util.core.upload.UploadFileUtil;
 import com.dgg.store.util.pojo.PlaceImage;
 import com.dgg.store.util.pojo.UserPlace;
 import com.dgg.store.util.pojo.UserPlaceExample;
+import com.dgg.store.util.vo.core.PageVO;
 import com.dgg.store.util.vo.core.ResultVO;
 import com.dgg.store.util.vo.core.SessionVO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -97,10 +96,10 @@ public class UserPlaceServiceImpl implements UserPlaceService
             switch (index)
             {
                 case 0:
+                    if (place.getCustomerId() == null)
+                        return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_FAILED,sessionVO.getToken()));
                     place.setUserPlaceId(IDGenerator.generator());
-                    place.setUserPlaceName(StringUtil.isEmpty(place.getUserPlaceName()) ? "" : place.getUserPlaceName());
-                    place.setUserPlaceAddress(StringUtil.isEmpty(place.getUserPlaceAddress()) ? "" : place.getUserPlaceAddress());
-                    result = dao.insert(place);
+                    result = dao.insertSelective(place);
                     break;
                 case 1:
                     List<String> images = new ArrayList<>();
@@ -182,8 +181,11 @@ public class UserPlaceServiceImpl implements UserPlaceService
     }
 
     @Override
-    public String listUserPlace(SessionVO sessionVO, UserPlace place)
+    public String listUserPlace(SessionVO sessionVO, UserPlace place, PageVO pageVO)
     {
+        place.setPageNum(PagingUtil.getStart(pageVO.getPageNum(),pageVO.getPageSize()));
+        place.setPageSize(pageVO.getPageSize());
+        int pageCount = PagingUtil.getCount(dao.countUserPlace(place),pageVO.getPageSize());
         List<UserPlace> result = dao.listUserPlace(place);
 
         for (UserPlace up : result)
@@ -202,6 +204,7 @@ public class UserPlaceServiceImpl implements UserPlaceService
         }
 
         JSONObject json = (JSONObject) JSONObject.toJSON(new ResultVO(1, sessionVO.getToken(), result));
+        json.put(KeyConstant.PAGE_COUNT,pageCount);
 
         return json.toJSONString();
     }
@@ -214,6 +217,28 @@ public class UserPlaceServiceImpl implements UserPlaceService
         JSONObject json = (JSONObject) JSONObject.toJSON(new ResultVO(result < 1 ? 2 : 1, sessionVO.getToken()));
 
         return json.toJSONString();
+    }
+
+    @Override
+    public String getUserPlace(SessionVO sessionVO, UserPlace place)
+    {
+        UserPlace result = dao.getUserPlaceById(place.getUserPlaceId());
+
+        List<PlaceImage> certificateList = new ArrayList<>();
+        List<PlaceImage> environmentList = new ArrayList<>();
+        List<PlaceImage> imageList = result.getImageList();
+
+        for (PlaceImage pi : imageList)
+            if (pi.getImgType().equals(PlaceConstant.ENVIRONMENT))
+                environmentList.add(pi);
+            else
+                certificateList.add(pi);
+
+        result.setCertificateList(certificateList);
+        result.setEnvironmentList(environmentList);
+        result.setImageList(null);
+
+        return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_SUCCESS,sessionVO.getToken(),result));
     }
 
 }

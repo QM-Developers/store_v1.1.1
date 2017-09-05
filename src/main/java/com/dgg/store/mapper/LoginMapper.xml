@@ -30,6 +30,7 @@
         UPDATE user
         <set>
             user_last_login_time = NOW(),
+            umeng_device_token = #{deviceToken}
         </set>
         WHERE user_id = #{userId}
     </update>

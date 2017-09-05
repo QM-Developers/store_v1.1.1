@@ -4,6 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ManageUnitExample {
+    private Integer pageNum;
+
+    private Integer pageSize;
+
     protected String orderByClause;
 
     protected boolean distinct;
@@ -606,5 +610,25 @@ public class ManageUnitExample {
         protected Criterion(String condition, Object value, Object secondValue) {
             this(condition, value, secondValue, null);
         }
+    }
+
+    public Integer getPageNum()
+    {
+        return pageNum;
+    }
+
+    public void setPageNum(Integer pageNum)
+    {
+        this.pageNum = pageNum;
+    }
+
+    public Integer getPageSize()
+    {
+        return pageSize;
+    }
+
+    public void setPageSize(Integer pageSize)
+    {
+        this.pageSize = pageSize;
     }
 }

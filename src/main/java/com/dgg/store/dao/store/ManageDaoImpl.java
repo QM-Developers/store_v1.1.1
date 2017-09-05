@@ -39,18 +39,6 @@ public class ManageDaoImpl implements ManageDao
     }
 
     @Override
-    public Integer insertPosition(List<PositionVO> positionList)
-    {
-        return mapper.insertPosition(positionList);
-    }
-
-    @Override
-    public Integer insertPerPosRe(List<PerPosReVO> perPosReList)
-    {
-        return mapper.insertPerPosRe(perPosReList);
-    }
-
-    @Override
     public DepartmentVO findDepartmentInfo(String departmentId)
     {
         return mapper.findDepartmentInfo(departmentId);
@@ -144,6 +132,30 @@ public class ManageDaoImpl implements ManageDao
     public Integer deleteMember(MemberVO condition)
     {
         return mapper.deleteMember(condition);
+    }
+
+    @Override
+    public Integer insertCustomerVisit(String userId, String departmentId)
+    {
+        return mapper.insertCustomerVisit(userId,departmentId);
+    }
+
+    @Override
+    public int cleanCustomerVisit(String userId)
+    {
+        return mapper.cleanCustomerVisit(userId);
+    }
+
+    @Override
+    public Integer insertPosition(PositionVO positionVO)
+    {
+        return mapper.insertPosition(positionVO);
+    }
+
+    @Override
+    public Integer insertPerPosRe(PerPosReVO perPosReVO)
+    {
+        return mapper.insertPerPosRe(perPosReVO);
     }
 
 }

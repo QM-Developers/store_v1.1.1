@@ -2,10 +2,12 @@ package com.dgg.store.service.store;
 
 import com.alibaba.fastjson.JSONObject;
 import com.dgg.store.dao.common.MyOrderDao;
+import com.dgg.store.mapper.PushMessageMapper;
 import com.dgg.store.util.core.constant.*;
 import com.dgg.store.util.core.page.PagingUtil;
+import com.dgg.store.util.core.umeng.push.PushMessageFactory;
+import com.dgg.store.util.core.umeng.push.UMengUtil;
 import com.dgg.store.util.pojo.MyOrder;
-import com.dgg.store.util.pojo.MyOrderExample;
 import com.dgg.store.util.vo.core.PageVO;
 import com.dgg.store.util.vo.core.ResultVO;
 import com.dgg.store.util.vo.core.SessionVO;
@@ -21,6 +23,9 @@ public class SalesOrderServiceImpl implements SalesOrderService
 {
     @Autowired
     private MyOrderDao dao;
+
+    @Autowired
+    private PushMessageMapper mapper;
 
     @Override
     public String updateRefundReceive(SessionVO sessionVO, MyOrder myOrder)
@@ -92,6 +97,9 @@ public class SalesOrderServiceImpl implements SalesOrderService
         if (result < 1)
             throw new RuntimeException(Constant.STR_ADD_FAILED);
 
+        UMengUtil.sendUnicast(dao.getDeviceToken(myOrder.getUserId()), PushMessageFactory.getInstance(mapper).get(PushMessageConstant.REFUSE_SALES_PASS));
+        UMengUtil.sendUnicast(dao.getFinanceDeviceToken(sessionVO.getMyTeamId(),QMPermissionConstant.FINANCE_CHECK), PushMessageFactory.getInstance(mapper).get(PushMessageConstant.REFUSE_FINANCE_NEW));
+
         return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken()));
     }
 
@@ -112,6 +120,9 @@ public class SalesOrderServiceImpl implements SalesOrderService
 
         if (result < 1)
             throw new RuntimeException(Constant.STR_ADD_FAILED);
+
+        UMengUtil.sendUnicast(dao.getDeviceToken(myOrder.getUserId()), PushMessageFactory.getInstance(mapper).get(PushMessageConstant.REFUSE_FINANCE_PASS));
+        UMengUtil.sendUnicast(dao.getSalesDeviceToken(myOrder.getUserId(),sessionVO.getMyTeamId()), PushMessageFactory.getInstance(mapper).get(PushMessageConstant.REFUSE_FINANCE_PASS));
 
         return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken()));
     }
@@ -134,6 +145,9 @@ public class SalesOrderServiceImpl implements SalesOrderService
 
         int result = dao.updateByPrimaryKeySelective(record);
 
+        UMengUtil.sendUnicast(dao.getDeviceToken(myOrder.getUserId()), PushMessageFactory.getInstance(mapper).get(PushMessageConstant.ORDER_FINANCE_PASS));
+        UMengUtil.sendUnicast(dao.getSalesDeviceToken(myOrder.getUserId(),sessionVO.getMyTeamId()), PushMessageFactory.getInstance(mapper).get(PushMessageConstant.ORDER_FINANCE_PASS));
+
         return JSONObject.toJSONString(new ResultVO(result < 1 ? 2 : 1, sessionVO.getToken()));
     }
 
@@ -152,6 +166,9 @@ public class SalesOrderServiceImpl implements SalesOrderService
         record.setOrderStatus(OrderConstant.FINANCE_CHECK_FAIL_B);
 
         int result = dao.updateByPrimaryKeySelective(record);
+
+        UMengUtil.sendUnicast(dao.getDeviceToken(myOrder.getUserId()), PushMessageFactory.getInstance(mapper).get(PushMessageConstant.ORDER_FINANCE_REFUSE));
+        UMengUtil.sendUnicast(dao.getSalesDeviceToken(myOrder.getUserId(),sessionVO.getMyTeamId()), PushMessageFactory.getInstance(mapper).get(PushMessageConstant.ORDER_FINANCE_REFUSE));
 
         return JSONObject.toJSONString(new ResultVO(result < 1 ? 2 : 1, sessionVO.getToken()));
     }
@@ -175,6 +192,9 @@ public class SalesOrderServiceImpl implements SalesOrderService
 
         int result = dao.updateByPrimaryKeySelective(record);
 
+        UMengUtil.sendUnicast(dao.getDeviceToken(myOrder.getUserId()), PushMessageFactory.getInstance(mapper).get(PushMessageConstant.ORDER_FINANCE_PASS));
+        UMengUtil.sendUnicast(dao.getSalesDeviceToken(myOrder.getUserId(),sessionVO.getMyTeamId()), PushMessageFactory.getInstance(mapper).get(PushMessageConstant.ORDER_FINANCE_PASS));
+
         return JSONObject.toJSONString(new ResultVO(result < 1 ? 2 : 1, sessionVO.getToken()));
     }
 
@@ -195,6 +215,9 @@ public class SalesOrderServiceImpl implements SalesOrderService
         record.setOrderStatus(OrderConstant.FINANCE_CHECK_FAIL_A);
 
         int result = dao.updateByPrimaryKeySelective(record);
+
+        UMengUtil.sendUnicast(dao.getDeviceToken(myOrder.getUserId()), PushMessageFactory.getInstance(mapper).get(PushMessageConstant.ORDER_FINANCE_REFUSE));
+        UMengUtil.sendUnicast(dao.getSalesDeviceToken(myOrder.getUserId(),sessionVO.getMyTeamId()), PushMessageFactory.getInstance(mapper).get(PushMessageConstant.ORDER_FINANCE_REFUSE));
 
         return JSONObject.toJSONString(new ResultVO(result < 1 ? 2 : 1, sessionVO.getToken()));
     }
@@ -251,6 +274,8 @@ public class SalesOrderServiceImpl implements SalesOrderService
         result = dao.updateByPrimaryKeySelective(record);
         if (result < 1)
             throw new RuntimeException(Constant.STR_ADD_FAILED);
+
+        UMengUtil.sendUnicast(dao.getDeviceToken(myOrder.getUserId()), PushMessageFactory.getInstance(mapper).get(PushMessageConstant.ORDER_SALES_PASS));
 
         return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken()));
     }

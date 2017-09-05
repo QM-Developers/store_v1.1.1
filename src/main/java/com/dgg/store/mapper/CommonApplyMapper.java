@@ -49,4 +49,6 @@ public interface CommonApplyMapper {
     int updateCommonApproveResult(CommonApplyApprove approve);
 
     CommonApplyApprove getApplyApprove(CommonApplyApprove approve);
+
+    String getDeviceToken(@Param("userId") String approveId);
 }

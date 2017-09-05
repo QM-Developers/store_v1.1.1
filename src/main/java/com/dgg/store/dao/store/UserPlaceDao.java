@@ -38,4 +38,8 @@ public interface UserPlaceDao
     int deletePlaceImage(PlaceImage placeImage);
 
     List<UserPlace> listUserPlace(UserPlace place);
+
+    int countUserPlace(UserPlace place);
+
+    UserPlace getUserPlaceById(String userPlaceId);
 }

@@ -20,8 +20,8 @@ public class LoginDaoImpl implements LoginDao
     }
 
     @Override
-    public int updateLoginInfo(String userId)
+    public int updateLoginInfo(String userId,String deviceToken)
     {
-        return mapper.updateLoginInfo(userId);
+        return mapper.updateLoginInfo(userId,deviceToken);
     }
 }

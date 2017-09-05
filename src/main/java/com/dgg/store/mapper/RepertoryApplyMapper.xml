@@ -393,4 +393,10 @@
       #{item.standardCount})
     </foreach>
   </insert>
+
+  <select id="getDeviceToken" resultType="java.lang.String">
+    SELECT umeng_device_token
+    FROM user
+    WHERE user_id = #{userId}
+  </select>
 </mapper>

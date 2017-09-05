@@ -3,8 +3,13 @@ package com.dgg.store.service.common;
 import com.alibaba.fastjson.JSONObject;
 import com.dgg.store.dao.common.LoginDao;
 import com.dgg.store.util.core.constant.Constant;
+import com.dgg.store.util.core.constant.KeyConstant;
 import com.dgg.store.util.core.constant.LoginConstant;
+import com.dgg.store.util.core.constant.RCloudConstant;
+import com.dgg.store.util.core.rong.RCloudUtil;
+import com.dgg.store.util.core.rong.RongCloud;
 import com.dgg.store.util.core.shiro.CryptographyUtil;
+import com.dgg.store.util.core.string.StringUtil;
 import com.dgg.store.util.core.token.TokenUtil;
 import com.dgg.store.util.vo.core.LoginRepVO;
 import com.dgg.store.util.vo.core.LoginVO;
@@ -65,10 +70,27 @@ public class LoginServiceImpl implements LoginService
             return JSONObject.toJSONString(new ResultVO(LoginConstant.NO_ACCESS));
 
         result.setUserPhone(null);
-        if (dao.updateLoginInfo(result.getUserId()) < 1)
+        if (dao.updateLoginInfo(result.getUserId(), loginVO.getDeviceToken() == null ? Constant.EMPTY : loginVO.getDeviceToken()) < 1)
             throw new RuntimeException(Constant.STR_ADD_FAILED);
 
-        return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_SUCCESS, TokenUtil.getToken(), result));
+
+        ResultVO resultVO = new ResultVO(Constant.REQUEST_SUCCESS, TokenUtil.getToken());
+        RongCloud cloud = RongCloud.getInstance(RCloudConstant.APP_KEY, RCloudConstant.APP_SECRET);
+        String token = null;
+        try
+        {
+            token = RCloudUtil.getToken(cloud, result.getUserId(), result.getUserName());
+        } catch (Exception e)
+        {
+            e.printStackTrace();
+            resultVO.setState(5);
+        }
+
+        result.setrCloudToken(token);
+        resultVO.setResult(result);
+        JSONObject json = (JSONObject) JSONObject.toJSON(resultVO);
+
+        return json.toJSONString();
     }
 
 }

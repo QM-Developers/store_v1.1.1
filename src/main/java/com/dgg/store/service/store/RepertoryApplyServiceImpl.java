@@ -3,12 +3,12 @@ package com.dgg.store.service.store;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.dgg.store.dao.store.RepertoryApplyDao;
-import com.dgg.store.util.core.constant.Constant;
-import com.dgg.store.util.core.constant.KeyConstant;
-import com.dgg.store.util.core.constant.QMPermissionConstant;
-import com.dgg.store.util.core.constant.RepertoryConstant;
+import com.dgg.store.mapper.PushMessageMapper;
+import com.dgg.store.util.core.constant.*;
 import com.dgg.store.util.core.generator.IDGenerator;
 import com.dgg.store.util.core.page.PagingUtil;
+import com.dgg.store.util.core.umeng.push.PushMessageFactory;
+import com.dgg.store.util.core.umeng.push.UMengUtil;
 import com.dgg.store.util.pojo.RepertoryApply;
 import com.dgg.store.util.pojo.RepertoryApplyExample;
 import com.dgg.store.util.pojo.RepertoryApplyList;
@@ -27,6 +27,9 @@ public class RepertoryApplyServiceImpl implements RepertoryApplyService
 {
     @Autowired
     private RepertoryApplyDao dao;
+
+    @Autowired
+    private PushMessageMapper mapper;
 
     @Override
     public String listRepertoryChecker(SessionVO sessionVO)
@@ -71,6 +74,8 @@ public class RepertoryApplyServiceImpl implements RepertoryApplyService
 
         if (index - 1 < count)
             throw new RuntimeException(Constant.STR_ADD_FAILED);
+
+        UMengUtil.sendUnicast(dao.getDeviceToken(apply.getApproverId()), PushMessageFactory.getInstance(mapper).get(PushMessageConstant.REPERTORY_NEW));
 
         return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), apply.getApplyId()));
     }
@@ -165,6 +170,8 @@ public class RepertoryApplyServiceImpl implements RepertoryApplyService
 
         if (index - 1 < count)
             throw new RuntimeException(Constant.STR_ADD_FAILED);
+
+        UMengUtil.sendUnicast(dao.getDeviceToken(apply.getProposerId()), PushMessageFactory.getInstance(mapper).get(PushMessageConstant.REPERTORY_PASS));
 
         return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), apply.getApplyId()));
     }

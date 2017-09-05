@@ -3,6 +3,7 @@ package com.dgg.store.controller.store;
 import com.dgg.store.service.store.FarmerService;
 import com.dgg.store.util.core.constant.Constant;
 import com.dgg.store.util.pojo.Farmer;
+import com.dgg.store.util.vo.core.PageVO;
 import com.dgg.store.util.vo.core.SessionVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -29,11 +30,11 @@ public class FarmerController
 
     @RequestMapping(value = "/s/listFarmer", method = RequestMethod.POST, produces = {"application/json;charset=UTF-8"})
     @ResponseBody
-    public String listFarmer(HttpServletRequest request, Farmer farmer)
+    public String listFarmer(HttpServletRequest request, Farmer farmer, PageVO pageVO)
     {
         SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
 
-        return service.listFarmer(sessionVO,farmer);
+        return service.listFarmer(sessionVO,farmer,pageVO);
     }
 
     @RequestMapping(value = "/s/updateFarmer", method = RequestMethod.POST, produces = {"application/json;charset=UTF-8"})

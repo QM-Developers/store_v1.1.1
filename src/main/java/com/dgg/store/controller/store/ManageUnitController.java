@@ -3,6 +3,7 @@ package com.dgg.store.controller.store;
 import com.dgg.store.service.store.ManageUnitService;
 import com.dgg.store.util.core.constant.Constant;
 import com.dgg.store.util.pojo.ManageUnit;
+import com.dgg.store.util.vo.core.PageVO;
 import com.dgg.store.util.vo.core.SessionVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -29,11 +30,11 @@ public class ManageUnitController
 
     @RequestMapping(value = "/s/listManageUnit", method = RequestMethod.POST, produces = {"application/json;charset=UTF-8"})
     @ResponseBody
-    public String listManageUnit(HttpServletRequest request, ManageUnit unit)
+    public String listManageUnit(HttpServletRequest request, ManageUnit unit, PageVO pageVO)
     {
         SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
 
-        return service.listManageUnit(sessionVO,unit);
+        return service.listManageUnit(sessionVO,unit,pageVO);
     }
 
     @RequestMapping(value = "/s/updateManageUnit", method = RequestMethod.POST, produces = {"application/json;charset=UTF-8"})

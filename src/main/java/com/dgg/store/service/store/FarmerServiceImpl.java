@@ -3,9 +3,12 @@ package com.dgg.store.service.store;
 import com.alibaba.fastjson.JSONObject;
 import com.dgg.store.dao.store.FarmerDao;
 import com.dgg.store.util.core.constant.Constant;
+import com.dgg.store.util.core.constant.KeyConstant;
 import com.dgg.store.util.core.generator.IDGenerator;
+import com.dgg.store.util.core.page.PagingUtil;
 import com.dgg.store.util.pojo.Farmer;
 import com.dgg.store.util.pojo.FarmerExample;
+import com.dgg.store.util.vo.core.PageVO;
 import com.dgg.store.util.vo.core.ResultVO;
 import com.dgg.store.util.vo.core.SessionVO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,16 +35,20 @@ public class FarmerServiceImpl implements FarmerService
     }
 
     @Override
-    public String listFarmer(SessionVO sessionVO, Farmer farmer)
+    public String listFarmer(SessionVO sessionVO, Farmer farmer, PageVO pageVO)
     {
         FarmerExample example = new FarmerExample();
         FarmerExample.Criteria criteria = example.createCriteria();
 
         criteria.andCustomerIdEqualTo(farmer.getCustomerId());
 
+        example.setPageNum(PagingUtil.getStart(pageVO.getPageNum(),pageVO.getPageSize()));
+        int pageCount = PagingUtil.getCount((int) dao.countByExample(example),pageVO.getPageSize());
+
         List<Farmer> result = dao.selectByExample(example);
 
         JSONObject json = (JSONObject) JSONObject.toJSON(new ResultVO(1, sessionVO.getToken(), result));
+        json.put(KeyConstant.PAGE_COUNT,pageCount);
 
         return json.toJSONString();
     }

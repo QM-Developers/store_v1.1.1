@@ -81,18 +81,14 @@
         INSERT INTO department_position
         (position_id, position_name, team_department_id)
         VALUES
-        <foreach collection="list" index="i" item="item" open="" separator=")," close=")">
-            (#{item.positionId},#{item.positionName},#{item.teamDepartmentId}
-        </foreach>
+        (#{positionId},#{positionName},#{teamDepartmentId})
     </insert>
 
-    <insert id="insertPerPosRe" parameterType="java.util.List">
+    <insert id="insertPerPosRe" parameterType="com.dgg.store.util.vo.manage.PerPosReVO">
         INSERT INTO position_permission_re
         (position_id, qm_permission_id)
         VALUES
-        <foreach collection="list" index="i" item="item" open="" separator=")," close=")">
-            (#{item.positionId},#{item.permissionId}
-        </foreach>
+        (#{positionId},#{permissionId})
     </insert>
 
     <select id="findDepartmentInfo" resultMap="DepartmentVO">
@@ -250,4 +246,15 @@
         DELETE FROM user
         WHERE user_id = #{userId}
     </delete>
+
+    <delete id="cleanCustomerVisit">
+        DELETE FROM customer_visit
+        WHERE member_id = #{userId}
+    </delete>
+
+    <insert id="insertCustomerVisit">
+        INSERT INTO customer_visit
+        VALUES
+        (#{userId},#{departmentId})
+    </insert>
 </mapper>

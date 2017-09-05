@@ -15,6 +15,7 @@ public class LoginRepVO
     private String myTeamId;
     private String token;
     private String departmentId;
+    private String rCloudToken;
 
     public LoginRepVO()
     {
@@ -139,5 +140,15 @@ public class LoginRepVO
     public void setUserPassword(String userPassword)
     {
         this.userPassword = userPassword;
+    }
+
+    public String getrCloudToken()
+    {
+        return rCloudToken;
+    }
+
+    public void setrCloudToken(String rCloudToken)
+    {
+        this.rCloudToken = rCloudToken;
     }
 }

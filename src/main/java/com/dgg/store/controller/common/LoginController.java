@@ -1,10 +1,7 @@
 package com.dgg.store.controller.common;
 
-import com.alibaba.fastjson.JSONObject;
 import com.dgg.store.service.common.LoginService;
-import com.dgg.store.util.core.constant.Constant;
 import com.dgg.store.util.vo.core.LoginVO;
-import com.dgg.store.util.vo.core.ResultVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;

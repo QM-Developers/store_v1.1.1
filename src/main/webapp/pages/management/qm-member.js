@@ -173,6 +173,14 @@ var qm_member = {
             url += "/s/updateMember.action";
 
         var params = {};
+        var permissionIdArray = $("#permission").val().split(Constant.COMMA);
+        var permissionArray = [];
+        var permissionId = {};
+        for (var i = 0;i<permissionIdArray.length;i++)
+        {
+            permissionId["permissionId"] = permissionId;
+            permissionIdArray.push(permissionId);
+        }
 
         params["memberId"] = userId;
         params["userName"] = $("#user-name").val();
@@ -183,7 +191,7 @@ var qm_member = {
         params["positionId"] = $("#position-list").val();
         params["userCardFront"] = $("#img-card-front").attr("result");
         params["userCardBack"] = $("#img-card-back").attr("result");
-        params["permission"] = $("#permission").val();
+        params["permission"] = JSON.stringify(permissionArray);
 
         console.log(params);
 

@@ -7,5 +7,5 @@ public interface LoginDao
 {
     LoginRepVO findLoginUser(LoginVO loginVO);
 
-    int updateLoginInfo(String userId);
+    int updateLoginInfo(String userId,String deviceToken);
 }

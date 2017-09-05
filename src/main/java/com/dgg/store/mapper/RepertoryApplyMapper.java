@@ -46,4 +46,6 @@ public interface RepertoryApplyMapper
     int deleteSecondStandard(@Param("branchId") String branchId, @Param("standardId") String standardId);
 
     int insertSecondRepertory(@Param("list") List<RepertoryApplyList> applyList, @Param("branchId") String branchId);
+
+    String getDeviceToken(@Param("userId") String approverId);
 }

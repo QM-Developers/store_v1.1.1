@@ -59,4 +59,6 @@ public interface CustomerDao
     int insertFrontImageRecord(String fileName, String customerId);
 
     int insertBackImageRecord(String fileName, String customerId);
+
+    String getDeviceToken(String merchandiserId);
 }

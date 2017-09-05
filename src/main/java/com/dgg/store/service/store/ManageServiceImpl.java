@@ -1,10 +1,9 @@
 package com.dgg.store.service.store;
 
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.dgg.store.dao.store.ManageDao;
-import com.dgg.store.util.core.constant.Constant;
-import com.dgg.store.util.core.constant.PathConstant;
-import com.dgg.store.util.core.constant.RoleConstant;
-import com.dgg.store.util.core.constant.SymbolConstant;
+import com.dgg.store.util.core.constant.*;
 import com.dgg.store.util.core.generator.IDGenerator;
 import com.dgg.store.util.core.shiro.CryptographyUtil;
 import com.dgg.store.util.core.string.StringUtil;
@@ -18,6 +17,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.security.Key;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -65,10 +65,11 @@ public class ManageServiceImpl implements ManageService
     {
         Integer result = 1;
         int i = 0;
-        int count = 3;
+        int count = 2;
 
-        List<PositionVO> positionList = new ArrayList<>();
-        List<PerPosReVO> perPosReList = new ArrayList<>();
+        JSONArray jPosition;
+        JSONObject jObj;
+        PositionVO positionVO;
 
         while (result > 0)
         {
@@ -80,20 +81,17 @@ public class ManageServiceImpl implements ManageService
                     result = dao.insertDepartment(department);
                     break;
                 case 1:
-                    String[] positionNames = department.getPosition().split(SymbolConstant.COMMA);
-                    for (String name : positionNames)
-                        positionList.add(new PositionVO(IDGenerator.generator(), name, department.getDepartmentId()));
-                    result = dao.insertPosition(positionList);
-                    break;
-                case 2:
-                    String[] permission = department.getPermission().split(SymbolConstant.SUBTRACT);
-                    for (int j = 0; j < positionList.size() && j < permission.length; j++)
+                    jPosition = JSONArray.parseArray(department.getPosition());
+                    for (Object obj : jPosition)
                     {
-                        String[] ps = permission[j].split(SymbolConstant.COMMA);
-                        for (String per : ps)
-                            perPosReList.add(new PerPosReVO(per, positionList.get(j).getPositionId()));
+                        jObj = JSONObject.parseObject(obj.toString());
+                        positionVO = new PositionVO(IDGenerator.generator(), jObj.getString(KeyConstant.POSITION_NAME), department.getDepartmentId());
+                        result = dao.insertPosition(positionVO);
+                        if (result < 1)
+                            throw new RuntimeException(Constant.STR_ADD_FAILED);
+                        else
+                            insertPositionPermission(positionVO.getPositionId(), jObj.getString(KeyConstant.PERMISSION), jObj.getString(KeyConstant.DEPARTMENT));
                     }
-                    result = perPosReList.size() > 1 ? dao.insertPerPosRe(perPosReList) : 1;
                     break;
                 default:
                     result = 0;
@@ -107,9 +105,7 @@ public class ManageServiceImpl implements ManageService
         else
             result = 1;
 
-        ResultVO resultVO = new ResultVO(result, sessionVO.getToken());
-
-        return resultVO;
+        return new ResultVO(result, sessionVO.getToken());
     }
 
     @Override
@@ -127,10 +123,12 @@ public class ManageServiceImpl implements ManageService
     {
         Integer result = 1;
         int index = 0;
-        int count = 4;
+        int count = 3;
 
-        List<PositionVO> positionList = new ArrayList<>();
-        List<PerPosReVO> perPosReList = new ArrayList<>();
+        JSONArray jPosition;
+        JSONObject jObj;
+        PositionVO positionVO = new PositionVO();
+        String positionId;
 
         while (result > 0)
         {
@@ -144,24 +142,20 @@ public class ManageServiceImpl implements ManageService
                     result = dao.cleanPosition(department.getDepartmentId());
                     break;
                 case 2:
-                    String[] positionIds = department.getPositionId().split(SymbolConstant.COMMA);
-                    String[] positionNames = department.getPosition().split(SymbolConstant.COMMA);
-                    for (int i = 0; i < positionNames.length; i++)
+                    jPosition = JSONArray.parseArray(department.getPosition());
+                    for (Object position : jPosition)
                     {
-                        String id = StringUtil.isEmpty(positionIds[i]) ? IDGenerator.generator() : positionIds[i];
-                        positionList.add(new PositionVO(id, positionNames[i], department.getDepartmentId()));
+                        jObj = JSONObject.parseObject(position.toString());
+                        positionId = jObj.getString(KeyConstant.POSITION_ID);
+                        positionVO.setPositionId(StringUtil.isEmpty(positionId) ? IDGenerator.generator() : positionId);
+                        positionVO.setPositionName(jObj.getString(KeyConstant.POSITION_NAME));
+                        positionVO.setTeamDepartmentId(department.getDepartmentId());
+                        result = dao.insertPosition(positionVO);
+                        if (result < 1)
+                            throw new RuntimeException(Constant.STR_ADD_FAILED);
+                        else
+                            insertPositionPermission(positionVO.getPositionId(), jObj.getString(KeyConstant.PERMISSION), jObj.getString(KeyConstant.DEPARTMENT));
                     }
-                    result = dao.insertPosition(positionList);
-                    break;
-                case 3:
-                    String[] permission = department.getPermission().split(SymbolConstant.SUBTRACT);
-                    for (int j = 0; j < positionList.size() && j < permission.length; j++)
-                    {
-                        String[] ps = permission[j].split(SymbolConstant.COMMA);
-                        for (String per : ps)
-                            perPosReList.add(new PerPosReVO(per, positionList.get(j).getPositionId()));
-                    }
-                    result = dao.insertPerPosRe(perPosReList);
                     break;
                 default:
                     result = 0;
@@ -180,6 +174,27 @@ public class ManageServiceImpl implements ManageService
         return resultVO;
     }
 
+    private void insertPositionPermission(String positionId, String jsonString, String departmentId)
+    {
+        JSONArray jPermission;
+        JSONObject jObj;
+        String permissionId;
+        int result;
+        if (jsonString == null)
+            return;
+        jPermission = JSONArray.parseArray(jsonString);
+        for (Object permission : jPermission)
+        {
+            jObj = (JSONObject) permission;
+            permissionId = jObj.getString(KeyConstant.PERMISSION_ID);
+            result = dao.insertPerPosRe(new PerPosReVO(permissionId, positionId));
+            if (result < 1)
+                throw new RuntimeException(Constant.STR_ADD_FAILED);
+            if (permissionId.equals(QMPermissionConstant.CUSTOMER_VISIT))
+                insertCustomerVisit(positionId, departmentId);
+        }
+    }
+
     @Override
     public ResultVO deleteDepartment(SessionVO sessionVO, DepartmentVO department)
     {
@@ -196,6 +211,7 @@ public class ManageServiceImpl implements ManageService
             switch (i)
             {
                 case 0:
+                    dao.cleanCustomerVisit(department.getDepartmentId());
                     dao.cleanPerPosRe(department.getDepartmentId());
                     result = dao.cleanPosition(department.getDepartmentId());
                     break;
@@ -265,13 +281,16 @@ public class ManageServiceImpl implements ManageService
     public ResultVO insertMember(SessionVO sessionVO, MemberVO member)
     {
         Integer result = 1;
-        int i = 0;
+        int index = 0;
         int count = 2;
         List<PerUserReVO> perUserReList = new ArrayList<>();
+        JSONArray jArray;
+        JSONObject jObject;
+        String permissionId;
 
         while (result > 0)
         {
-            switch (i)
+            switch (index)
             {
                 case 0:
                     member.setUserId(IDGenerator.generator());
@@ -283,26 +302,39 @@ public class ManageServiceImpl implements ManageService
                     result = dao.insertMember(member);
                     break;
                 case 1:
-                    String[] ps = member.getPermission().split(SymbolConstant.COMMA);
-                    for (String p : ps)
-                        perUserReList.add(new PerUserReVO(member.getUserId(), p));
-                    result = dao.insertPerUserRe(perUserReList);
+                    insertMemberPermission(member.getUserId(), member.getPermission(), member.getDepartment());
                     break;
                 default:
                     result = 0;
                     break;
             }
-            i++;
+            index++;
         }
 
-        if (i - 1 < count)
+        if (index - 1 < count)
             throw new RuntimeException(Constant.STR_ADD_FAILED);
         else
             result = 1;
 
-        ResultVO resultVO = new ResultVO(result, sessionVO.getToken());
+        return new ResultVO(result, sessionVO.getToken());
+    }
 
-        return resultVO;
+    private void insertCustomerVisit(String userId, String jsonString)
+    {
+        int result;
+        JSONArray jArray;
+        JSONObject jObject;
+        jArray = JSONArray.parseArray(jsonString);
+        dao.cleanCustomerVisit(userId);
+        if (jsonString == null)
+            return;
+        for (Object aJArray : jArray)
+        {
+            jObject = (JSONObject) aJArray;
+            result = dao.insertCustomerVisit(userId, jObject.getString(KeyConstant.DEPARTMENT_ID));
+            if (result < 1)
+                throw new RuntimeException(Constant.STR_ADD_FAILED);
+        }
     }
 
     @Override
@@ -331,7 +363,6 @@ public class ManageServiceImpl implements ManageService
         Integer result = 1;
         int i = 0;
         int count = 2;
-        List<PerUserReVO> perUserReList = new ArrayList<>();
 
         while (result > 0)
         {
@@ -344,10 +375,7 @@ public class ManageServiceImpl implements ManageService
                     dao.cleanPerUserRe(member.getMemberId());
                     if (member.getPermission() == null)
                         break;
-                    String[] ps = member.getPermission().split(SymbolConstant.COMMA);
-                    for (String p : ps)
-                        perUserReList.add(new PerUserReVO(member.getMemberId(), p));
-                    result = dao.insertPerUserRe(perUserReList);
+                    insertMemberPermission(member.getMemberId(), member.getPermission(), member.getDepartment());
                     break;
                 default:
                     result = 0;
@@ -366,6 +394,27 @@ public class ManageServiceImpl implements ManageService
         return resultVO;
     }
 
+    private void insertMemberPermission(String memberId, String jsonString, String jsonDepartment)
+    {
+        JSONArray jArray;
+        JSONObject jObj;
+        String permissionId;
+        List<PerUserReVO> perUserReList = new ArrayList<>();
+        jArray = JSONArray.parseArray(jsonString);
+        int result;
+        for (Object permission : jArray)
+        {
+            jObj = (JSONObject) permission;
+            permissionId = jObj.getString(KeyConstant.PERMISSION_ID);
+            perUserReList.add(new PerUserReVO(memberId, permissionId));
+            if (permissionId.equals(QMPermissionConstant.CUSTOMER_VISIT))
+                insertCustomerVisit(memberId, jsonDepartment);
+        }
+        result = dao.insertPerUserRe(perUserReList);
+        if (result < 1)
+            throw new RuntimeException(Constant.STR_ADD_FAILED);
+    }
+
     @Override
     public ResultVO deleteMember(SessionVO sessionVO, MemberVO member)
     {
@@ -381,6 +430,7 @@ public class ManageServiceImpl implements ManageService
                     MemberVO condition = new MemberVO();
                     condition.setUserId(member.getMemberId());
                     dao.cleanPerUserRe(member.getMemberId());
+                    dao.cleanCustomerVisit(member.getMemberId());
                     result = dao.deleteMember(condition);
                     break;
                 default:

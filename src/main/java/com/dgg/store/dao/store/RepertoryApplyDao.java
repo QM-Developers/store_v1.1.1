@@ -45,4 +45,6 @@ public interface RepertoryApplyDao
     int deleteSecondStandard(String branchId, String standardId);
 
     int insertSecondRepertory(List<RepertoryApplyList> applyList, String branchId);
+
+    String getDeviceToken(String approverId);
 }

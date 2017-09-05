@@ -83,20 +83,6 @@
     shed_num, empty_shed_num, competitive_brand, livestock_num, user_place_id, breed_age, 
     breed_scale, create_date, is_deleted, delete_date
   </sql>
-  <select id="selectByExample" parameterType="com.dgg.store.util.pojo.UserBreedExample" resultMap="BaseResultMap">
-    select
-    <if test="distinct">
-      distinct
-    </if>
-    <include refid="Base_Column_List" />
-    from user_breed
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-    <if test="orderByClause != null">
-      order by ${orderByClause}
-    </if>
-  </select>
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
@@ -390,4 +376,43 @@
       delete_date = #{deleteDate,jdbcType=TIMESTAMP}
     where breed_id = #{breedId,jdbcType=VARCHAR}
   </update>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <select id="selectByExample" parameterType="com.dgg.store.util.pojo.UserBreedExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from user_breed
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+    LIMIT #{pageNum},#{pageSize}
+  </select>
+
 </mapper>

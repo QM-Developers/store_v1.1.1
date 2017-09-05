@@ -51,4 +51,6 @@ public interface CommonApplyDao
     CommonApplyApprove getApplyApprove(CommonApplyApprove condition);
 
     int updateCommonApproveResult(CommonApplyApprove approve);
+
+    String getDeviceToken(String approveId);
 }

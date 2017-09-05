@@ -171,4 +171,10 @@ public class CustomerDaoImpl implements CustomerDao
         return mapper.insertBackImageRecord(fileName,customerId);
     }
 
+    @Override
+    public String getDeviceToken(String merchandiserId)
+    {
+        return mapper.getDeviceToken(merchandiserId);
+    }
+
 }

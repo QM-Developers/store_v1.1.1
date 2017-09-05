@@ -7,4 +7,8 @@ public class QMPermissionConstant
     public static final String ORDER_FOLLW = "follow";  // 跟单权限
 
     public static final String REPERTORY_CHECK = "repertory_check";  // 库存申请审核权限
+
+    public static final String CUSTOMER_VISIT = "customer_visit";   // 查看他人客户的权限
+
+    public static final String FINANCE_CHECK = "finance_check"; // 财务审核权
 }

@@ -3,10 +3,13 @@ package com.dgg.store.service.store;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.dgg.store.dao.store.CommonApplyDao;
+import com.dgg.store.mapper.PushMessageMapper;
 import com.dgg.store.util.core.constant.*;
 import com.dgg.store.util.core.generator.IDGenerator;
 import com.dgg.store.util.core.page.PagingUtil;
 import com.dgg.store.util.core.string.StringUtil;
+import com.dgg.store.util.core.umeng.push.PushMessageFactory;
+import com.dgg.store.util.core.umeng.push.UMengUtil;
 import com.dgg.store.util.core.upload.UploadFileUtil;
 import com.dgg.store.util.pojo.CommonApply;
 import com.dgg.store.util.pojo.CommonApplyApprove;
@@ -28,6 +31,8 @@ public class CommonApplyServiceImpl implements CommonApplyService
 {
     @Autowired
     private CommonApplyDao dao;
+    @Autowired
+    private PushMessageMapper mapper;
 
     @Override
     public String insertCommonApplyImage(SessionVO sessionVO, MultipartFile file, String realPath)
@@ -59,6 +64,8 @@ public class CommonApplyServiceImpl implements CommonApplyService
         JSONArray jArray;
         CommonApplyApprove approve;
         CommonApplyImage image;
+        String approveId = "";
+
         while (result > 0)
         {
             switch (index)
@@ -82,10 +89,14 @@ public class CommonApplyServiceImpl implements CommonApplyService
                         result = dao.insertApprove(approve);
                         if (result < 1)
                             throw new RuntimeException(Constant.STR_ADD_FAILED);
+                        if (i == 0)
+                            approveId = approve.getApproveId();
                     }
                     break;
                 case 2:
                     jArray = JSONArray.parseArray(apply.getCommonApplyImage());
+                    if (jArray == null)
+                        break;
                     for (int i = 0; i < jArray.size(); i++)
                     {
                         image = JSONObject.parseObject(jArray.get(i).toString(), CommonApplyImage.class);
@@ -104,6 +115,8 @@ public class CommonApplyServiceImpl implements CommonApplyService
 
         if (index - 1 < count)
             throw new RuntimeException(Constant.STR_ADD_FAILED);
+
+        UMengUtil.sendUnicast(dao.getDeviceToken(approveId), PushMessageFactory.getInstance(mapper).get(PushMessageConstant.APPLY_NEW));
 
         return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken()));
     }
@@ -136,11 +149,11 @@ public class CommonApplyServiceImpl implements CommonApplyService
     @Override
     public String listCommonApplyByApprove(SessionVO sessionVO, PageVO pageVO)
     {
-        int pageNum = PagingUtil.getStart(pageVO.getPageNum(),pageVO.getPageSize());
+        int pageNum = PagingUtil.getStart(pageVO.getPageNum(), pageVO.getPageSize());
         int pageSize = pageVO.getPageSize();
-        int pageCount = PagingUtil.getCount(dao.countCommonApplyByApprove(sessionVO.getUserId()),pageVO.getPageSize());
+        int pageCount = PagingUtil.getCount(dao.countCommonApplyByApprove(sessionVO.getUserId()), pageVO.getPageSize());
 
-        List<CommonApply> result = dao.listCommonApplyByApprove(sessionVO.getUserId(),pageNum,pageSize);
+        List<CommonApply> result = dao.listCommonApplyByApprove(sessionVO.getUserId(), pageNum, pageSize);
 
         for (CommonApply a : result)
         {
@@ -161,7 +174,7 @@ public class CommonApplyServiceImpl implements CommonApplyService
 
         CommonApply apply = dao.selectByPrimaryKey(approve.getApplyId());
         if (!apply.getApplyResult().equals(ApplyConstant.APPLY_RESULT_APPROVING))
-            return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_FAILED,sessionVO.getToken()));
+            return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_FAILED, sessionVO.getToken()));
 
         CommonApplyApprove condition = new CommonApplyApprove();
         condition.setApplyId(approve.getApplyId());
@@ -171,7 +184,7 @@ public class CommonApplyServiceImpl implements CommonApplyService
         approve = dao.getApplyApprove(condition);
 
         if (approve == null)
-            return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_FAILED,sessionVO.getToken()));
+            return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_FAILED, sessionVO.getToken()));
 
         condition.setApproveId(null);
         condition.setApproveSequence((byte) (approve.getApproveSequence() - 1));
@@ -179,28 +192,16 @@ public class CommonApplyServiceImpl implements CommonApplyService
         condition.setApproveSequence((byte) (approve.getApproveSequence() + 1));
         CommonApplyApprove approveNext = dao.getApplyApprove(condition);
 
-        if (approvePrev == null)
-        {
-            if (approve.getApproveResult().equals(ApplyConstant.APPROVE_RESULT_APPROVING))
-            {
-                approve.setApproveResult(ApplyConstant.APPROVE_RESULT_SUCCESS);
-                result = dao.updateCommonApproveResult(approve);
-                if (result < 1)
-                    return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_FAILED, sessionVO.getToken()));
-            }else
-                return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_FAILED, sessionVO.getToken()));
-        }else
-        {
-            if (!ApplyConstant.APPROVE_RESULT_SUCCESS.equals(approvePrev.getApproveResult()))
-                return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_FAILED,sessionVO.getToken()));
-            else
-            {
-                approve.setApproveResult(ApplyConstant.APPROVE_RESULT_SUCCESS);
-                result = dao.updateCommonApproveResult(approve);
-                if (result < 1)
-                    return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_FAILED,sessionVO.getToken()));
-            }
-        }
+
+        if (!approve.getApproveResult().equals(ApplyConstant.APPROVE_RESULT_APPROVING))
+            return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_FAILED, sessionVO.getToken()));
+        if (approvePrev != null && !ApplyConstant.APPROVE_RESULT_SUCCESS.equals(approvePrev.getApproveResult()))
+            return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_FAILED, sessionVO.getToken()));
+
+        approve.setApproveResult(ApplyConstant.APPROVE_RESULT_SUCCESS);
+        result = dao.updateCommonApproveResult(approve);
+        if (result < 1)
+            return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_FAILED, sessionVO.getToken()));
 
         if (approveNext == null)
         {
@@ -210,9 +211,11 @@ public class CommonApplyServiceImpl implements CommonApplyService
             result = dao.updateByPrimaryKeySelective(applySelective);
             if (result < 1)
                 throw new RuntimeException(Constant.STR_ADD_FAILED);
-        }
+            UMengUtil.sendUnicast(dao.getDeviceToken(apply.getProposerId()),PushMessageFactory.getInstance(mapper).get(PushMessageConstant.APPLY_PASS));
+        }else
+            UMengUtil.sendUnicast(dao.getDeviceToken(approveNext.getApproveId()),PushMessageFactory.getInstance(mapper).get(PushMessageConstant.APPLY_NEW));
 
-        return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_SUCCESS,sessionVO.getToken()));
+        return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken()));
     }
 
     @Override
@@ -222,7 +225,7 @@ public class CommonApplyServiceImpl implements CommonApplyService
 
         CommonApply apply = dao.selectByPrimaryKey(approve.getApplyId());
         if (!apply.getApplyResult().equals(ApplyConstant.APPLY_RESULT_APPROVING))
-            return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_FAILED,sessionVO.getToken()));
+            return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_FAILED, sessionVO.getToken()));
 
         CommonApplyApprove condition = new CommonApplyApprove();
         condition.setApplyId(approve.getApplyId());
@@ -232,34 +235,21 @@ public class CommonApplyServiceImpl implements CommonApplyService
         approve = dao.getApplyApprove(condition);
 
         if (approve == null)
-            return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_FAILED,sessionVO.getToken()));
+            return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_FAILED, sessionVO.getToken()));
 
         condition.setApproveId(null);
         condition.setApproveSequence((byte) (approve.getApproveSequence() - 1));
         CommonApplyApprove approvePrev = dao.getApplyApprove(condition);
 
-        if (approvePrev == null)
-        {
-            if (approve.getApproveResult().equals(ApplyConstant.APPROVE_RESULT_APPROVING))
-            {
-                approve.setApproveResult(ApplyConstant.APPROVE_RESULT_FAILED);
-                result = dao.updateCommonApproveResult(approve);
-                if (result < 1)
-                    return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_FAILED, sessionVO.getToken()));
-            }else
-                return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_FAILED, sessionVO.getToken()));
-        }else
-        {
-            if (!ApplyConstant.APPROVE_RESULT_SUCCESS.equals(approvePrev.getApproveResult()))
-                return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_FAILED,sessionVO.getToken()));
-            else
-            {
-                approve.setApproveResult(ApplyConstant.APPROVE_RESULT_FAILED);
-                result = dao.updateCommonApproveResult(approve);
-                if (result < 1)
-                    return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_FAILED,sessionVO.getToken()));
-            }
-        }
+        if (!approve.getApproveResult().equals(ApplyConstant.APPROVE_RESULT_APPROVING))
+            return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_FAILED, sessionVO.getToken()));
+        if (approvePrev != null && !ApplyConstant.APPROVE_RESULT_SUCCESS.equals(approvePrev.getApproveResult()))
+            return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_FAILED, sessionVO.getToken()));
+
+        approve.setApproveResult(ApplyConstant.APPROVE_RESULT_FAILED);
+        result = dao.updateCommonApproveResult(approve);
+        if (result < 1)
+            return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_FAILED, sessionVO.getToken()));
 
         CommonApply applySelective = new CommonApply();
         applySelective.setApplyId(approve.getApplyId());
@@ -268,7 +258,9 @@ public class CommonApplyServiceImpl implements CommonApplyService
         if (result < 1)
             throw new RuntimeException(Constant.STR_ADD_FAILED);
 
-        return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_SUCCESS,sessionVO.getToken()));
+        UMengUtil.sendUnicast(dao.getDeviceToken(apply.getProposerId()),PushMessageFactory.getInstance(mapper).get(PushMessageConstant.APPLY_REFUSE));
+
+        return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken()));
     }
 
 }

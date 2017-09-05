@@ -4,9 +4,12 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.dgg.store.dao.common.MyOrderDao;
+import com.dgg.store.mapper.PushMessageMapper;
 import com.dgg.store.util.core.constant.*;
 import com.dgg.store.util.core.generator.IDGenerator;
 import com.dgg.store.util.core.page.PagingUtil;
+import com.dgg.store.util.core.umeng.push.PushMessageFactory;
+import com.dgg.store.util.core.umeng.push.UMengUtil;
 import com.dgg.store.util.pojo.FreightTemp;
 import com.dgg.store.util.pojo.MyOrder;
 import com.dgg.store.util.pojo.MyOrderExample;
@@ -26,6 +29,9 @@ public class MyOrderServiceImpl implements MyOrderService
     @Autowired
     private MyOrderDao dao;
 
+    @Autowired
+    private PushMessageMapper mapper;
+
     @Override
     public String insertMyOrder(SessionVO sessionVO, MyOrder myOrder)
     {
@@ -43,7 +49,7 @@ public class MyOrderServiceImpl implements MyOrderService
         myOrder.setOrderId(IDGenerator.generator());
         myOrder.setOrderStatus(OrderConstant.WAITING_CHECK);
         myOrder.setCreateDate(new Date());
-        myOrder.setBuyerMessage(myOrder.getSellerMessage() == null ? "" : myOrder.getSellerMessage());
+        myOrder.setBuyerMessage(myOrder.getSellerMessage() == null ? Constant.EMPTY : myOrder.getSellerMessage());
         myOrder.setSellerMessage(Constant.EMPTY);
         myOrder.setPaymentStatus(OrderConstant.NOT_PAY);
         myOrder.setLogisticsStatus(Constant.EMPTY);
@@ -71,6 +77,19 @@ public class MyOrderServiceImpl implements MyOrderService
 
             if (result < 1)
                 throw new RuntimeException(Constant.STR_ADD_FAILED);
+        }
+
+        switch (myOrder.getPaymentType())
+        {
+            case OrderConstant.PAYMENT_TRANSFER:
+                UMengUtil.sendUnicast(dao.getFinanceDeviceToken(sessionVO.getMyTeamId(),QMPermissionConstant.FINANCE_CHECK), PushMessageFactory.getInstance(mapper).get(PushMessageConstant.ORDER_FINANCE_NEW));
+                break;
+            case OrderConstant.PAYMENT_MONTHLY:
+                UMengUtil.sendUnicast(dao.getSalesDeviceToken(sessionVO.getUserId(),sessionVO.getMyTeamId()), PushMessageFactory.getInstance(mapper).get(PushMessageConstant.ORDER_SALES_NEW));
+                break;
+            case OrderConstant.PAYMENT_DESTINATION:
+                UMengUtil.sendUnicast(dao.getSalesDeviceToken(sessionVO.getUserId(),sessionVO.getMyTeamId()), PushMessageFactory.getInstance(mapper).get(PushMessageConstant.ORDER_SALES_NEW));
+                break;
         }
 
         return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), myOrder.getOrderId()));
@@ -236,6 +255,8 @@ public class MyOrderServiceImpl implements MyOrderService
             throw new RuntimeException(Constant.STR_ADD_FAILED);
         else
             result = 1;
+
+        UMengUtil.sendUnicast(dao.getSalesDeviceToken(sessionVO.getUserId(),sessionVO.getMyTeamId()), PushMessageFactory.getInstance(mapper).get(PushMessageConstant.REFUSE_SALES_NEW));
 
         return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken()));
     }

@@ -26,29 +26,32 @@ var qm_department = {
             url += "/s/updateDepartment.action";
         var params = {};
         var items = $("#Contbox").find(".position-cont");
-        var position = "";
-        var permission = "";
-        var positionId = "";
+        var positions = [];
         for (var i = 0; i < items.length; i++)
         {
-            position += $(items[i]).find("input").val() + Constant.COMMA;
-            permission += $(items[i]).find("hidden").val() + Constant.STRING_45;
-            var poId = $(items[i]).find("input").attr("id");
-            positionId += myjs.isNull(poId) ? "" : poId + Constant.COMMA;
+            var permissions = [];
+            var position = {};
+            position["positionName"] = $(items[i]).find("input").val();
+            position["positionId"] = $(items[i]).find("input").attr("id");
+            var arr = $(items[i]).find("hidden").val().split(Constant.COMMA);
+            for (var j = 0; j < arr.length - 1; j++)
+                permissions.push({"permissionId": arr[j]});
+            position["permission"] = JSON.stringify(permissions);
+            positions.push(JSON.stringify(position));
         }
+
+
         params["departmentId"] = departmentId;
-        params["departmentName"] = $("#department-name").val();
+        params["departmentName"] = $("#department-id").val();
         params["createDate"] = $("#create-date").val();
-        params["position"] = position;
-        params["positionId"] = positionId;
-        params["permission"] = permission;
+        params["position"] = JSON.stringify(positions);
 
-        console.log(params);
+        console.log(JSON.stringify(params));
 
-        // myjs.ajax_post(url, params, function (data)
-        // {
-        //     console.log(data);
-        // });
+        myjs.ajax_post(url, params, function (data)
+        {
+            console.log(data);
+        });
     },
 
     permissionClick: function ()

@@ -2,11 +2,14 @@ package com.dgg.store.service.store;
 
 import com.alibaba.fastjson.JSONObject;
 import com.dgg.store.dao.store.CustomerDao;
+import com.dgg.store.mapper.PushMessageMapper;
 import com.dgg.store.util.core.constant.*;
 import com.dgg.store.util.core.generator.IDGenerator;
 import com.dgg.store.util.core.page.PagingUtil;
 import com.dgg.store.util.core.reflect.ReflectUtil;
 import com.dgg.store.util.core.string.StringUtil;
+import com.dgg.store.util.core.umeng.push.PushMessageFactory;
+import com.dgg.store.util.core.umeng.push.UMengUtil;
 import com.dgg.store.util.core.upload.UploadFileUtil;
 import com.dgg.store.util.pojo.CustomerAccountRequest;
 import com.dgg.store.util.vo.customer.CustomerRepertoryVO;
@@ -27,6 +30,9 @@ public class CustomerServiceImpl implements CustomerService
 {
     @Autowired
     private CustomerDao dao;
+
+    @Autowired
+    private PushMessageMapper mapper;
 
     @Override
     public String insertCustomerRecord(CustomerVO customerVO, SessionVO sessionVO)
@@ -79,11 +85,12 @@ public class CustomerServiceImpl implements CustomerService
     {
         int start = PagingUtil.getStart(pageVO.getPageNum(), pageVO.getPageSize());
         int end = pageVO.getPageSize();
-        int pageCount = dao.countCustomer(customerVO);
-        pageCount = PagingUtil.getCount(pageCount, pageVO.getPageSize());
 
         customerVO.setMyTeamId(sessionVO.getMyTeamId());
         customerVO.setUserId(sessionVO.getUserId());
+
+        int pageCount = dao.countCustomer(customerVO);
+        pageCount = PagingUtil.getCount(pageCount, pageVO.getPageSize());
         List<CustomerVO> result = dao.listCustomer(customerVO, start, end);
 
         JSONObject json = (JSONObject) JSONObject.toJSON(new ResultVO(1, sessionVO.getToken(), result));
@@ -257,6 +264,8 @@ public class CustomerServiceImpl implements CustomerService
 
         int result = dao.insertCustomerAccount(accountRequest);
 
+        UMengUtil.sendUnicast(dao.getDeviceToken(accountRequest.getMerchandiserId()), PushMessageFactory.getInstance(mapper).get(PushMessageConstant.CUSTOMER_NEW));
+
         return JSONObject.toJSONString(new ResultVO(result < 1 ? Constant.REQUEST_FAILED : Constant.REQUEST_SUCCESS, sessionVO.getToken(), accountRequest.getRequestId()));
     }
 
@@ -302,6 +311,8 @@ public class CustomerServiceImpl implements CustomerService
         else
             result = 1;
 
+        UMengUtil.sendUnicast(dao.getDeviceToken(accountRequest.getProposerId()), PushMessageFactory.getInstance(mapper).get(PushMessageConstant.CUSTOMER_PASS));
+
         return JSONObject.toJSONString(new ResultVO(result, sessionVO.getToken()));
     }
 
@@ -323,6 +334,8 @@ public class CustomerServiceImpl implements CustomerService
 
         accountRequest.setRequestStatus(CustomerConstant.ACCOUNT_STATUS_REFUSE);
         int result = dao.updateCustomerAccountById(accountRequest);
+
+        UMengUtil.sendUnicast(dao.getDeviceToken(accountRequest.getProposerId()), PushMessageFactory.getInstance(mapper).get(PushMessageConstant.CUSTOMER_REFUSE));
 
         return JSONObject.toJSONString(new ResultVO(result < 1 ? Constant.REQUEST_FAILED : Constant.REQUEST_SUCCESS, sessionVO.getToken()));
     }

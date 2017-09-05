@@ -1,0 +1,8 @@
+{
+  "departmentName": "测试部",
+  "myTeamId": "10001",
+  "position": "[{\"positionName\":\"负责人\",\"permission\":\"[{\\\"permissionId\\\":\\\"account_check\\\"},{\\\"permissionId\\\":\\\"follow\\\"},{\\\"permissionId\\\":\\\"customer_visit\\\"}]\",\"department\":\"[{\\\"departmentId\\\":\\\"27a9c57b4c69441aa569ef4ae1a9ef7c\\\"},{\\\"departmentId\\\":\\\"27a9c57b4c69441aa569ef4ae1a9ef7d\\\"}]\"},{\"positionName\":\"成员\"}]",
+  "userId": "89d9317fb3834353bcf2a507bee2eb83",
+  "token": "1",
+  "createDate": "2017-9-1"
+}

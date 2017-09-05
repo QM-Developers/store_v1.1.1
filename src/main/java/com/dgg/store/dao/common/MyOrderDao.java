@@ -68,4 +68,10 @@ public interface MyOrderDao
     int countFinanceOrder(MyOrder myOrder, String myTeamId);
 
     List<MyOrder> listFinanceOrder(MyOrder myOrder, String myTeamId, int pageNum, int pageSize);
+
+    String getFinanceDeviceToken(String myTeamId, String permissionId);
+
+    String getSalesDeviceToken(String userId, String myTeamId);
+
+    String getDeviceToken(String userId);
 }

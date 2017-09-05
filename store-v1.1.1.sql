@@ -437,9 +437,8 @@ create table qm_permission
    qm_permission_name      varchar(20) not null default '',
    qm_permission_describe	varchar(100) not null default '',
    qm_permission_pid       varchar(35) not null default '0',
+   qm_permission_type_id varchar(35) not null default '',
    sort                 tinyint not null default 1,
-   is_deleted           tinyint not null default 0,
-   delete_date          date,
    primary key (qm_permission_id)
 );
 
@@ -459,6 +458,16 @@ create table user_qm_permission_re
 (
    user_id            varchar(35) not null,
    qm_permission_id   varchar(35) not null default ''
+);
+
+/*==============================================================*/
+/* 权限类型表
+/*==============================================================*/
+drop table if exists qm_permission_type;
+create table qm_permission_type
+(
+   qm_permission_type_id varchar(35) not null primary key,
+   qm_permission_type_name varchar(35) not null default ''
 );
 
 /*==============================================================*/
@@ -543,15 +552,13 @@ create table user
    user_last_login_time datetime not null default now(),
    user_update_time 	datetime not null default now(),
    user_status          varchar(10) not null default '',
-   user_qq              varchar(20) not null default '',
-   uesr_wechat          varchar(20) not null default '',
    user_img             varchar(150) not null default '',
-   user_nickname        varchar(30) not null default '',
    user_card_front      text,
    user_card_back       text,
    user_card_hand       text,
    real_name            tinyint not null default 2,
    token                varchar(50) not null default '',
+   umeng_device_token varchar(50) not null default '',
    is_deleted           tinyint not null default 0,
    delete_date          datetime,
    primary key (user_id)
@@ -761,11 +768,21 @@ create table common_apply_image(
     image_sort tinyint not null default 0
 );
 
-drop table if exists user_department_customer_re;
-create table user_department_customer_re(
+drop table if exists customer_visit;
+create table customer_visit(
 	member_id varchar(35) not null,	-- 用户Id
 	department_id varchar(35) not null	-- 部门Id
 );
+
+drop table if exists push_message;
+create table push_message(
+	msg_id varchar(35) not null primary key,	-- 消息Id
+	msg_title varchar(100) not null,	-- 标题
+	msg_text varchar(255) not null,	-- 内容
+	msg_ticker varchar(100) not null,	-- 提示文字
+	msg_type tinyint not null	-- 消息分类
+);
+
       
 /*修改团队自增Id初值*/
 /*alter table my_team AUTO_INCREMENT=1679617;*/

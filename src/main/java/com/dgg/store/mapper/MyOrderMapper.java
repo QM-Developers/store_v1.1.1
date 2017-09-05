@@ -76,4 +76,10 @@ public interface MyOrderMapper
     List<MyOrder> listFinanceOrder(@Param("order") MyOrder myOrder, @Param("myTeamId") String myTeamId, @Param("pageNum") int pageNum, @Param("pageSize") int pageSize);
 
     int countFinanceOrder(@Param("order") MyOrder myOrder, @Param("myTeamId") String myTeamId);
+
+    String getFinanceDeviceToken(@Param("myTeamId") String myTeamId,@Param("permissionId") String permissionId);
+
+    String getSalesDeviceToken(@Param("userId") String userId,@Param("myTeamId") String myTeamId);
+
+    String getDeviceToken(@Param("userId") String userId);
 }

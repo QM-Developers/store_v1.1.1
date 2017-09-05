@@ -325,4 +325,11 @@
             AND proposer_id = #{proposerId}
         </if>
     </select>
+
+    <select id="getDeviceToken" resultType="java.lang.String">
+        SELECT umeng_device_token
+        FROM user
+        WHERE user_id = #{userId}
+    </select>
+
 </mapper>

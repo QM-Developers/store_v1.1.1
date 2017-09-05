@@ -10,6 +10,8 @@ public class LoginVO
 
     private String myTeamId;
 
+    private String deviceToken;
+
     public String getUserPhone()
     {
         return userPhone;
@@ -48,5 +50,15 @@ public class LoginVO
     public void setUserId(String userId)
     {
         this.userId = userId;
+    }
+
+    public String getDeviceToken()
+    {
+        return deviceToken;
+    }
+
+    public void setDeviceToken(String deviceToken)
+    {
+        this.deviceToken = deviceToken;
     }
 }

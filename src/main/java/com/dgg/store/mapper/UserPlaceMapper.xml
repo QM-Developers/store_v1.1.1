@@ -392,6 +392,7 @@
     LEFT JOIN place_image pi
     ON pi.user_place_id = up.user_place_id
     WHERE up.customer_id = #{customerId}
+    LIMIT #{pageNum},#{pageSize}
   </select>
 
   <delete id="deletePlaceImage" parameterType="com.dgg.store.util.pojo.PlaceImage">
@@ -404,4 +405,20 @@
       user_place_id = #{userPlaceId}
     </if>
   </delete>
+
+  <select id="countUserPlace" resultType="java.lang.Integer">
+    SELECT COUNT(0)
+    FROM user_place up
+    LEFT JOIN place_image pi
+    ON pi.user_place_id = up.user_place_id
+    WHERE up.customer_id = #{customerId}
+  </select>
+
+  <select id="getUserPlaceById" resultMap="UserPlace">
+    SELECT up.user_place_id, up.customer_id,
+      up.user_place_acreage, up.user_employee_num, up.user_owner_num,
+      up.user_already_use, up.user_place_area, up.user_place_type
+    FROM user_place up
+    WHERE up.user_place_id = #{placeId}
+  </select>
 </mapper>

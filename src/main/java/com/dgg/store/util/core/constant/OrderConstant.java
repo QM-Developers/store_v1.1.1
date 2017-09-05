@@ -20,9 +20,9 @@ public class OrderConstant
     public static final Byte REFUND_GOODS = 122;    // 已退货
     public static final Byte REFUND_RECEIVE = 123;  // 已收到退货
 
-    public static final Byte PAYMENT_TRANSFER = 10; // 转账
-    public static final Byte PAYMENT_MONTHLY = 20;  // 月结
-    public static final Byte PAYMENT_DESTINATION = 30;  // 到付
+    public static final byte PAYMENT_TRANSFER = 10; // 转账
+    public static final byte PAYMENT_MONTHLY = 20;  // 月结
+    public static final byte PAYMENT_DESTINATION = 30;  // 到付
 
     public static final Integer REPERTORY_NOT_ENOUGH = 3;
 

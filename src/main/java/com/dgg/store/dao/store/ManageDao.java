@@ -15,10 +15,6 @@ public interface ManageDao
 
     Integer insertDepartment(DepartmentVO department);
 
-    Integer insertPosition(List<PositionVO> positionList);
-
-    Integer insertPerPosRe(List<PerPosReVO> perPosReList);
-
     DepartmentVO findDepartmentInfo(String departmentId);
 
     Integer updateDepartment(DepartmentVO department);
@@ -50,4 +46,12 @@ public interface ManageDao
     Integer cleanPerUserRe(String memberId);
 
     Integer deleteMember(MemberVO condition);
+
+    Integer insertCustomerVisit(String userId, String string);
+
+    int cleanCustomerVisit(String userId);
+
+    Integer insertPosition(PositionVO positionVO);
+
+    Integer insertPerPosRe(PerPosReVO perPosReVO);
 }

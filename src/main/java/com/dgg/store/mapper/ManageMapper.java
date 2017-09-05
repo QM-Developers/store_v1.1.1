@@ -16,9 +16,9 @@ public interface ManageMapper
 
     Integer insertDepartment(DepartmentVO department);
 
-    Integer insertPosition(@Param("list") List<PositionVO> positionList);
+    Integer insertPosition(PositionVO positionList);
 
-    Integer insertPerPosRe(@Param("list") List<PerPosReVO> perPosReList);
+    Integer insertPerPosRe(PerPosReVO perPosReList);
 
     DepartmentVO findDepartmentInfo(@Param("departmentId") String departmentId);
 
@@ -51,4 +51,8 @@ public interface ManageMapper
     Integer cleanPerUserRe(@Param("userId") String memberId);
 
     Integer deleteMember(MemberVO condition);
+
+    Integer insertCustomerVisit(@Param("userId") String userId, @Param("departmentId") String departmentId);
+
+    int cleanCustomerVisit(@Param("userId") String userId);
 }

@@ -104,4 +104,16 @@ public class UserPlaceDaoImpl implements UserPlaceDao
     {
         return mapper.listUserPlace(place);
     }
+
+    @Override
+    public int countUserPlace(UserPlace place)
+    {
+        return mapper.countUserPlace(place);
+    }
+
+    @Override
+    public UserPlace getUserPlaceById(String userPlaceId)
+    {
+        return mapper.getUserPlaceById(userPlaceId);
+    }
 }

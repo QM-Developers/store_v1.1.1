@@ -196,4 +196,22 @@ public class MyOrderDaoImpl implements MyOrderDao
         return mapper.listFinanceOrder(myOrder,myTeamId,pageNum,pageSize);
     }
 
+    @Override
+    public String getFinanceDeviceToken(String myTeamId, String permissionId)
+    {
+        return mapper.getFinanceDeviceToken(myTeamId,permissionId);
+    }
+
+    @Override
+    public String getSalesDeviceToken(String userId, String myTeamId)
+    {
+        return mapper.getSalesDeviceToken(userId,myTeamId);
+    }
+
+    @Override
+    public String getDeviceToken(String userId)
+    {
+        return mapper.getDeviceToken(userId);
+    }
+
 }

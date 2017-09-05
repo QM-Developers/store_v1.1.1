@@ -8,5 +8,5 @@ public interface LoginMapper
 {
     LoginRepVO findLoginUser(LoginVO loginVO);
 
-    int updateLoginInfo(@Param("userId") String userId);
+    int updateLoginInfo(@Param("userId") String userId,@Param("deviceToken") String deviceToken);
 }

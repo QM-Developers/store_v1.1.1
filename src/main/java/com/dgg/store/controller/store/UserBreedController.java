@@ -3,6 +3,7 @@ package com.dgg.store.controller.store;
 import com.dgg.store.service.store.UserBreedService;
 import com.dgg.store.util.core.constant.Constant;
 import com.dgg.store.util.pojo.UserBreed;
+import com.dgg.store.util.vo.core.PageVO;
 import com.dgg.store.util.vo.core.SessionVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -29,11 +30,11 @@ public class UserBreedController
 
     @RequestMapping(value = "/s/listUserBreed", method = RequestMethod.POST, produces = {"application/json;charset=UTF-8"})
     @ResponseBody
-    public String listUserBreed(HttpServletRequest request, UserBreed breed)
+    public String listUserBreed(HttpServletRequest request, UserBreed breed, PageVO pageVO)
     {
         SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
 
-        return service.listUserBreed(sessionVO,breed);
+        return service.listUserBreed(sessionVO,breed,pageVO);
     }
 
     @RequestMapping(value = "/s/updateUserBreed", method = RequestMethod.POST, produces = {"application/json;charset=UTF-8"})

@@ -38,6 +38,8 @@ public class MemberVO
 
     private List<PerUserReVO> permissionList;
 
+    private String department;
+
     public String getUserId()
     {
         return userId;
@@ -206,5 +208,15 @@ public class MemberVO
     public void setPermissionList(List permissionList)
     {
         this.permissionList = permissionList;
+    }
+
+    public String getDepartment()
+    {
+        return department;
+    }
+
+    public void setDepartment(String department)
+    {
+        this.department = department;
     }
 }

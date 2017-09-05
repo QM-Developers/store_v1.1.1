@@ -6,6 +6,7 @@ import com.dgg.store.util.core.constant.KeyConstant;
 import com.dgg.store.util.core.constant.SymbolConstant;
 import com.dgg.store.util.pojo.PlaceImage;
 import com.dgg.store.util.pojo.UserPlace;
+import com.dgg.store.util.vo.core.PageVO;
 import com.dgg.store.util.vo.core.SessionVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -52,11 +53,11 @@ public class UserPlaceController
 
     @RequestMapping(value = "/s/listUserPlace", method = RequestMethod.POST, produces = {"application/json;charset=UTF-8"})
     @ResponseBody
-    public String listUserPlace(HttpServletRequest request, UserPlace place)
+    public String listUserPlace(HttpServletRequest request, UserPlace place, PageVO pageVO)
     {
         SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
 
-        return service.listUserPlace(sessionVO,place);
+        return service.listUserPlace(sessionVO,place,pageVO);
     }
 
     @RequestMapping(value = "/s/uploadPlaceCertificate", method = RequestMethod.POST, produces = {"application/json;charset=UTF-8"})
@@ -86,6 +87,15 @@ public class UserPlaceController
         SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
 
         return service.deletePlaceImage(sessionVO, placeImage);
+    }
+
+    @RequestMapping(value = "/s/getUserPlace", method = RequestMethod.POST, produces = {"application/json;charset=UTF-8"})
+    @ResponseBody
+    public String getUserPlace(HttpServletRequest request, UserPlace place)
+    {
+        SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
+
+        return service.getUserPlace(sessionVO, place);
     }
 
 }

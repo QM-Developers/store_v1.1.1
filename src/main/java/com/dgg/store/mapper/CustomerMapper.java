@@ -60,4 +60,6 @@ public interface CustomerMapper
     int insertFrontImageRecord(@Param("fileName") String fileName,@Param("customerId") String customerId);
 
     int insertBackImageRecord(@Param("fileName") String fileName,@Param("customerId") String customerId);
+
+    String getDeviceToken(@Param("userId") String merchandiserId);
 }

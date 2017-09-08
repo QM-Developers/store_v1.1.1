@@ -1,5 +1,6 @@
 package com.dgg.store.dao.store;
 
+import com.dgg.store.util.vo.manage.DepartmentVO;
 import com.dgg.store.util.vo.team.MemberVO;
 import com.dgg.store.util.vo.team.TeamDepartmentVO;
 
@@ -12,4 +13,6 @@ public interface MyTeamDao
     List<MemberVO> findDepartmentMember(MemberVO member);
 
     List<MemberVO> findMemberByNameOrPhone(MemberVO member);
+
+    List<DepartmentVO> listTeamDepartment(String myTeamId);
 }

@@ -81,4 +81,5 @@ public class Constant
     public static final String WAITING_DELIVER = "order_st_waiting_deliver";    // 等待发货
     public static final String WAITING_ESTIMATE = "order_st_waiting_estimate";  // 等待评价
     public static final String ORDER_SUCCEEDED = "order_st_succeeded";    // 交易成功
+    public static final String MULTIPART_FORM_DATA = "multipart/form-data";
 }

@@ -16,14 +16,10 @@ public class RoleServiceImpl implements RoleService
     @Override
     public boolean countPermission(SessionVO sessionVO, String url)
     {
-        if(1 > 0)
+        if (1 > 0)
             return true;
 
         int result = 0;
-        String roleId = dao.getRoleId(sessionVO.getUserId());
-
-        if(roleId.equals(RoleConstant.MANAGER))
-            return true;
 
         result += (dao.countPersonalPermission(sessionVO.getUserId(), url) > 0) ? 1 : 0;
 

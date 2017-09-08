@@ -12,6 +12,8 @@ public class QMPermissionVO
 
     private String permissionRe;
 
+    private String permissionType;
+
     public String getPermissionId()
     {
         return permissionId;
@@ -60,5 +62,15 @@ public class QMPermissionVO
     public void setPermissionRe(String permissionRe)
     {
         this.permissionRe = permissionRe;
+    }
+
+    public String getPermissionType()
+    {
+        return permissionType;
+    }
+
+    public void setPermissionType(String permissionType)
+    {
+        this.permissionType = permissionType;
     }
 }

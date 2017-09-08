@@ -1,7 +1,9 @@
 package com.dgg.store.mapper;
 
+import com.dgg.store.util.vo.manage.DepartmentVO;
 import com.dgg.store.util.vo.team.MemberVO;
 import com.dgg.store.util.vo.team.TeamDepartmentVO;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -12,4 +14,6 @@ public interface MyTeamMapper
     List<MemberVO> findDepartmentMember(MemberVO member);
 
     List<MemberVO> findMemberByNameOrPhone(MemberVO member);
+
+    List<DepartmentVO> listTeamDepartment(@Param("myTeamId") String myTeamId);
 }

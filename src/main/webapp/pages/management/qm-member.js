@@ -167,7 +167,7 @@ var qm_member = {
     saveOrUpdateMember: function ()
     {
         var url = path;
-        if(myjs.isNull(userId))
+        if (myjs.isNull(userId))
             url += "/s/addMember.action";
         else
             url += "/s/updateMember.action";
@@ -175,12 +175,8 @@ var qm_member = {
         var params = {};
         var permissionIdArray = $("#permission").val().split(Constant.COMMA);
         var permissionArray = [];
-        var permissionId = {};
-        for (var i = 0;i<permissionIdArray.length;i++)
-        {
-            permissionId["permissionId"] = permissionId;
-            permissionIdArray.push(permissionId);
-        }
+        for (var i = 0; i < permissionIdArray.length - 1; i++)
+            permissionArray.push({"permissionId": permissionIdArray[i]});
 
         params["memberId"] = userId;
         params["userName"] = $("#user-name").val();
@@ -193,12 +189,12 @@ var qm_member = {
         params["userCardBack"] = $("#img-card-back").attr("result");
         params["permission"] = JSON.stringify(permissionArray);
 
-        console.log(params);
+        // console.log(params);
 
-        // myjs.ajax_post(url, params, function (data)
-        // {
-        //     console.log(data);
-        // });
+        myjs.ajax_post(url, params, function (data)
+        {
+            console.log(data);
+        });
     },
 
     permissionClick: function ()
@@ -324,17 +320,17 @@ var qm_member = {
         qm_member.cardBack.upload();
     },
 
-    deleteMember:function ()
+    deleteMember: function ()
     {
         if (myjs.isNull(userId))
             return;
 
-        var url = path + "/s/deleteMember"+Constant.URL_SUFFIX;
+        var url = path + "/s/deleteMember" + Constant.URL_SUFFIX;
         var params = {};
 
         params["memberId"] = userId;
 
-        myjs.ajax_post(url,params,function (data)
+        myjs.ajax_post(url, params, function (data)
         {
             console.log(data);
         });

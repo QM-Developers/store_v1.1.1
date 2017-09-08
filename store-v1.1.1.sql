@@ -768,12 +768,19 @@ create table common_apply_image(
     image_sort tinyint not null default 0
 );
 
+/*==============================================================*/
+/* 查看其他人客户
+/*==============================================================*/
 drop table if exists customer_visit;
 create table customer_visit(
 	member_id varchar(35) not null,	-- 用户Id
-	department_id varchar(35) not null	-- 部门Id
+	department_id varchar(35) not null,	-- 部门Id
+    department_name varchar(20) not null -- 部门名称
 );
 
+/*==============================================================*/
+/* 推送消息
+/*==============================================================*/
 drop table if exists push_message;
 create table push_message(
 	msg_id varchar(35) not null primary key,	-- 消息Id

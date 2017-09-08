@@ -1,8 +1,11 @@
 package com.dgg.store.service.store;
 
+import com.alibaba.fastjson.JSONObject;
 import com.dgg.store.dao.store.MyTeamDao;
+import com.dgg.store.util.core.constant.Constant;
 import com.dgg.store.util.vo.core.ResultVO;
 import com.dgg.store.util.vo.core.SessionVO;
+import com.dgg.store.util.vo.manage.DepartmentVO;
 import com.dgg.store.util.vo.team.MemberVO;
 import com.dgg.store.util.vo.team.TeamDepartmentVO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,6 +49,25 @@ public class MyTeamServiceImpl implements MyTeamService
         ResultVO resultVO = new ResultVO(1,sessionVO.getToken(),result);
 
         return resultVO;
+    }
+
+    @Override
+    public String listTeamDepartment(SessionVO sessionVO)
+    {
+        List<DepartmentVO> result = dao.listTeamDepartment(sessionVO.getMyTeamId());
+
+        return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), result));
+    }
+
+    @Override
+    public String getDepartmentMember(SessionVO sessionVO, MemberVO member)
+    {
+        List<MemberVO> result = dao.findDepartmentMember(member);
+        MemberVO memberVO = null;
+        if (result.size() > 0)
+            memberVO = result.get(0);
+
+        return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), memberVO));
     }
 
 }

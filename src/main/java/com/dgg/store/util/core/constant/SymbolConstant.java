@@ -15,4 +15,5 @@ public class SymbolConstant
     public static final String FORWARD_SLASH = "/";
 
     public static final String BACK_SLASH = "\\";
+    public static final String SEMICOLON = ";";
 }

@@ -22,4 +22,5 @@ public class KeyConstant
     public static final String DEPARTMENT = "department";
     public static final String R_CLOUD_TOKEN = "rCloudToken";
     public static final String TOKEN = "token";
+    public static final String CONTENT_TYPE = "Content-type";
 }

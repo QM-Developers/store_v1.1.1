@@ -48,6 +48,10 @@ public class CustomerVO
 
     private Integer updateCount;
 
+    private Integer pageNum;
+
+    private Integer pageSize;
+
     public String getUserId()
     {
         return userId;
@@ -266,5 +270,25 @@ public class CustomerVO
     public void setUpdateCount(Integer updateCount)
     {
         this.updateCount = updateCount;
+    }
+
+    public Integer getPageNum()
+    {
+        return pageNum;
+    }
+
+    public void setPageNum(Integer pageNum)
+    {
+        this.pageNum = pageNum;
+    }
+
+    public Integer getPageSize()
+    {
+        return pageSize;
+    }
+
+    public void setPageSize(Integer pageSize)
+    {
+        this.pageSize = pageSize;
     }
 }

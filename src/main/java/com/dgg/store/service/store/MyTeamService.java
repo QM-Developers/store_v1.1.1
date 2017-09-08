@@ -12,4 +12,8 @@ public interface MyTeamService
     ResultVO findDepartmentMember(SessionVO sessionVO, MemberVO member);
 
     ResultVO findMemberByNameOrPhone(SessionVO sessionVO, MemberVO member);
+
+    String listTeamDepartment(SessionVO sessionVO);
+
+    String getDepartmentMember(SessionVO sessionVO, MemberVO member);
 }

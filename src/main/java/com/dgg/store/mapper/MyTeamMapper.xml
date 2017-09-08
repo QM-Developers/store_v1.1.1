@@ -80,4 +80,10 @@
         AND (u.user_name LIKE CONCAT(#{userName},'%') OR u.user_phone = #{userName})
         ORDER BY dp.position_name DESC
     </select>
+
+    <select id="listTeamDepartment" resultMap="TeamDepartmentVO">
+        SELECT team_department_id,team_department_name
+        FROM team_department
+        WHERE my_team_id = #{myTeamId}
+    </select>
 </mapper>

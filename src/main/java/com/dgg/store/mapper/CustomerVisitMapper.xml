@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dgg.store.mapper.CustomerVisitMapper">
+    <resultMap id="DepartmentVO" type="com.dgg.store.util.vo.manage.DepartmentVO">
+        <result column="department_id" property="departmentId" jdbcType="VARCHAR"/>
+        <result column="department_name" property="departmentName" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <resultMap id="MemberVO" type="com.dgg.store.util.vo.manage.MemberVO">
+        <result column="user_id" property="memberId" jdbcType="VARCHAR"/>
+        <result column="user_name" property="userName" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <resultMap id="CustomerVO" type="com.dgg.store.util.vo.customer.CustomerVO">
+        <result column="customer_id" property="customerId" jdbcType="VARCHAR"/>
+        <result column="user_id" property="userId" jdbcType="VARCHAR"/>
+        <result column="user_name" property="userName" jdbcType="VARCHAR"/>
+        <result column="user_phone" property="userPhone" jdbcType="VARCHAR"/>
+        <result column="user_sex" property="userSex" jdbcType="VARCHAR"/>
+        <result column="user_birthday" property="userBirthday" jdbcType="VARCHAR"/>
+        <result column="user_address" property="userAddress" jdbcType="VARCHAR"/>
+        <result column="credit_rating" property="creditRating" jdbcType="INTEGER"/>
+        <result column="business_address" property="businessAddress" jdbcType="VARCHAR"/>
+        <result column="station" property="station" jdbcType="VARCHAR"/>
+        <result column="customer_type" property="customerType" jdbcType="VARCHAR"/>
+        <result column="had_account" property="hadAccount" jdbcType="INTEGER"/>
+        <result column="user_card_front" property="userCardFront" jdbcType="VARCHAR"/>
+        <result column="user_card_back" property="userCardBack" jdbcType="VARCHAR"/>
+        <result column="user_card_hand" property="userCardHand" jdbcType="VARCHAR"/>
+        <result column="update_date" property="userUpdateTime" jdbcType="VARCHAR"/>
+        <result column="update_count" property="updateCount" jdbcType="INTEGER"/>
+        <result column="user_create_date" property="userCreateDate" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <resultMap id="UserPlace" type="com.dgg.store.util.pojo.UserPlace">
+        <id column="user_place_id" jdbcType="VARCHAR" property="userPlaceId" />
+        <result column="customer_id" jdbcType="VARCHAR" property="customerId" />
+        <result column="user_place_acreage" jdbcType="INTEGER" property="userPlaceAcreage" />
+        <result column="user_employee_num" jdbcType="INTEGER" property="userEmployeeNum" />
+        <result column="user_owner_num" jdbcType="INTEGER" property="userOwnerNum" />
+        <result column="user_already_use" jdbcType="INTEGER" property="userAlreadyUse" />
+        <result column="user_place_area" jdbcType="VARCHAR" property="userPlaceArea" />
+        <result column="user_place_type" jdbcType="VARCHAR" property="userPlaceType" />
+        <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+        <collection property="imageList" ofType="com.dgg.store.util.pojo.PlaceImage">
+            <result column="img_id" property="imgId" jdbcType="VARCHAR"/>
+            <result column="img_type" property="imgType" jdbcType="TINYINT"/>
+            <result column="img_url" property="imgUrl" jdbcType="VARCHAR"/>
+        </collection>
+    </resultMap>
+
+    <select id="listVisitDepartment" resultMap="DepartmentVO">
+        SELECT department_id,department_name
+        FROM customer_visit
+        WHERE member_id = #{userId}
+    </select>
+
+    <select id="listVisitMember" resultMap="MemberVO">
+        SELECT u.user_id,u.user_name
+        FROM user u
+        WHERE u.team_department_id = #{departmentId}
+    </select>
+
+    <select id="countVisitCustomer" parameterType="com.dgg.store.util.vo.customer.CustomerVO" resultType="java.lang.Integer">
+        SELECT COUNT(0)
+        FROM customer c
+        INNER JOIN user_view u
+        ON u.user_id = c.user_id
+        WHERE c.my_team_id = #{myTeamId}
+        AND c.promoter_id = #{promoterId}
+        <if test="customerType != null and customerType != ''">
+            AND c.customer_type = #{customerType}
+        </if>
+    </select>
+
+    <select id="listVisitCustomer" parameterType="com.dgg.store.util.vo.customer.CustomerVO" resultMap="CustomerVO">
+        SELECT c.customer_id,c.business_address,c.credit_rating,
+            c.customer_type,c.station,c.had_account,
+            u.user_name,u.user_phone,u.user_birthday,
+            u.user_address,u.user_sex
+        FROM customer c
+        INNER JOIN user_view u
+        ON u.user_id = c.user_id
+        WHERE c.my_team_id = #{myTeamId}
+        AND c.promoter_id = #{promoterId}
+        <if test="customerType != null and customerType != ''">
+            AND c.customer_type = #{customerType}
+        </if>
+        LIMIT #{pageNum},#{pageSize}
+    </select>
+
+    <select id="getVisitCustomer" parameterType="com.dgg.store.util.vo.customer.CustomerVO" resultMap="CustomerVO">
+        SELECT c.customer_id,c.customer_type,c.had_account,
+            c.credit_rating,c.business_address,c.station,
+            c.update_count,c.update_date,
+            u.user_name,u.user_phone,u.user_birthday,
+            u.user_address,u.user_sex,u.user_create_date,
+            u.user_card_front,u.user_card_back,u.user_card_hand
+        FROM customer c
+        INNER JOIN user_view u
+        ON u.user_id = c.user_id
+        WHERE c.customer_id = #{customerId}
+    </select>
+
+    <select id="countVisitUserPlace" resultType="java.lang.Integer">
+        SELECT COUNT(0)
+        FROM user_place up
+        LEFT JOIN place_image pi
+        ON pi.user_place_id = up.user_place_id
+        WHERE up.customer_id = #{customerId}
+    </select>
+
+    <select id="listVisitUserPlace" parameterType="com.dgg.store.util.pojo.UserPlace" resultMap="UserPlace">
+        SELECT up.user_place_id, up.customer_id,
+              up.user_place_acreage, up.user_employee_num, up.user_owner_num,
+              up.user_already_use, up.user_place_area, up.user_place_type,
+              pi.img_id,pi.img_url,pi.img_type
+        FROM user_place up
+        LEFT JOIN place_image pi
+        ON pi.user_place_id = up.user_place_id
+        WHERE up.customer_id = #{customerId}
+        LIMIT #{pageNum},#{pageSize}
+    </select>
+
+    <select id="getUserPlaceById" resultMap="UserPlace">
+        SELECT up.user_place_id, up.customer_id,
+            up.user_place_acreage, up.user_employee_num, up.user_owner_num,
+            up.user_already_use, up.user_place_area, up.user_place_type
+        FROM user_place up
+        WHERE up.user_place_id = #{placeId}
+    </select>
+</mapper>

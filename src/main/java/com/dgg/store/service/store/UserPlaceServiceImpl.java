@@ -124,7 +124,7 @@ public class UserPlaceServiceImpl implements UserPlaceService
         else
             result = 1;
 
-        JSONObject json = (JSONObject) JSONObject.toJSON(new ResultVO(result < 1 ? 2 : 1, sessionVO.getToken()));
+        JSONObject json = (JSONObject) JSONObject.toJSON(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(),place.getUserPlaceId()));
 
         return json.toJSONString();
     }

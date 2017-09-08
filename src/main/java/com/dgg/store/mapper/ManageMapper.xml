@@ -255,6 +255,6 @@
     <insert id="insertCustomerVisit">
         INSERT INTO customer_visit
         VALUES
-        (#{userId},#{departmentId})
+        (#{userId},#{departmentId},(SELECT team_department_name FROM team_department WHERE team_department_id = #{departmentId}))
     </insert>
 </mapper>

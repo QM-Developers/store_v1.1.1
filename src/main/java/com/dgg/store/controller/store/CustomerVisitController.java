@@ -2,6 +2,9 @@ package com.dgg.store.controller.store;
 
 import com.dgg.store.service.store.CustomerVisitService;
 import com.dgg.store.util.core.constant.Constant;
+import com.dgg.store.util.pojo.CustomerFollow;
+import com.dgg.store.util.pojo.Farmer;
+import com.dgg.store.util.pojo.ManageUnit;
 import com.dgg.store.util.pojo.UserPlace;
 import com.dgg.store.util.vo.core.PageVO;
 import com.dgg.store.util.vo.core.SessionVO;
@@ -73,6 +76,51 @@ public class CustomerVisitController
         SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
 
         return service.getVisitUserPlace(sessionVO, place);
+    }
+
+    @RequestMapping(value = "/s/listVisitUserBreed", method = RequestMethod.POST, produces = {"application/json;charset=UTF-8"})
+    @ResponseBody
+    public String listVisitUserBreed(HttpServletRequest request, UserPlace place, PageVO pageVO)
+    {
+        SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
+
+        return service.listVisitUserBreed(sessionVO, place, pageVO);
+    }
+
+    @RequestMapping(value = "/s/listVisitFarmer", method = RequestMethod.POST, produces = {"application/json;charset=UTF-8"})
+    @ResponseBody
+    public String listVisitFarmer(HttpServletRequest request, Farmer farmer, PageVO pageVO)
+    {
+        SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
+
+        return service.listVisitFarmer(sessionVO, farmer, pageVO);
+    }
+
+    @RequestMapping(value = "/s/listVisitManageUnit", method = RequestMethod.POST, produces = {"application/json;charset=UTF-8"})
+    @ResponseBody
+    public String listVisitManageUnit(HttpServletRequest request, ManageUnit unit, PageVO pageVO)
+    {
+        SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
+
+        return service.listVisitManageUnit(sessionVO, unit, pageVO);
+    }
+
+    @RequestMapping(value = "/s/listVisitCustomerFollow", method = RequestMethod.POST, produces = {"application/json;charset=UTF-8"})
+    @ResponseBody
+    public String listVisitCustomerFollow(HttpServletRequest request, CustomerFollow follow, PageVO pageVO)
+    {
+        SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
+
+        return service.listVisitCustomerFollow(sessionVO, follow, pageVO);
+    }
+
+    @RequestMapping(value = "/s/getVisitCustomerFollow", method = RequestMethod.POST, produces = {"application/json;charset=UTF-8"})
+    @ResponseBody
+    public String getVisitCustomerFollow(HttpServletRequest request, CustomerFollow follow)
+    {
+        SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
+
+        return service.getVisitCustomerFollow(sessionVO, follow);
     }
 
     @RequestMapping(value = "/s/getVisitIDCard", method = RequestMethod.GET)

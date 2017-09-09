@@ -30,7 +30,7 @@ public class UserPlaceController
     {
         SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
 
-        return service.insertUserPlace(sessionVO,place);
+        return service.insertUserPlace(sessionVO, place);
     }
 
     @RequestMapping(value = "/s/removeUserPlace", method = RequestMethod.POST, produces = {"application/json;charset=UTF-8"})
@@ -39,7 +39,7 @@ public class UserPlaceController
     {
         SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
 
-        return service.deleteUserPlace(sessionVO,place);
+        return service.deleteUserPlace(sessionVO, place);
     }
 
     @RequestMapping(value = "/s/updateUserPlace", method = RequestMethod.POST, produces = {"application/json;charset=UTF-8"})
@@ -48,7 +48,7 @@ public class UserPlaceController
     {
         SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
 
-        return service.updateUserPlace(sessionVO,place);
+        return service.updateUserPlace(sessionVO, place);
     }
 
     @RequestMapping(value = "/s/listUserPlace", method = RequestMethod.POST, produces = {"application/json;charset=UTF-8"})
@@ -57,7 +57,7 @@ public class UserPlaceController
     {
         SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
 
-        return service.listUserPlace(sessionVO,place,pageVO);
+        return service.listUserPlace(sessionVO, place, pageVO);
     }
 
     @RequestMapping(value = "/s/uploadPlaceCertificate", method = RequestMethod.POST, produces = {"application/json;charset=UTF-8"})

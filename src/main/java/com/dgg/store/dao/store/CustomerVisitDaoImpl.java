@@ -1,6 +1,9 @@
 package com.dgg.store.dao.store;
 
 import com.dgg.store.mapper.CustomerVisitMapper;
+import com.dgg.store.util.pojo.Farmer;
+import com.dgg.store.util.pojo.ManageUnit;
+import com.dgg.store.util.pojo.UserBreed;
 import com.dgg.store.util.pojo.UserPlace;
 import com.dgg.store.util.vo.customer.CustomerVO;
 import com.dgg.store.util.vo.manage.DepartmentVO;
@@ -62,5 +65,41 @@ public class CustomerVisitDaoImpl implements CustomerVisitDao
     public UserPlace getUserPlaceById(String userPlaceId)
     {
         return mapper.getUserPlaceById(userPlaceId);
+    }
+
+    @Override
+    public int countVisitUserBreed(UserPlace place)
+    {
+        return mapper.countVisitUserBreed(place);
+    }
+
+    @Override
+    public List<UserBreed> listVisitUserBreed(UserPlace place)
+    {
+        return mapper.listVisitUserBreed(place);
+    }
+
+    @Override
+    public int countVisitFarmer(Farmer farmer)
+    {
+        return mapper.countVisitFarmer(farmer);
+    }
+
+    @Override
+    public List<Farmer> listVisitFarmer(Farmer farmer)
+    {
+        return mapper.listVisitFarmer(farmer);
+    }
+
+    @Override
+    public int countVisitManageUnit(ManageUnit unit)
+    {
+        return mapper.countVisitManageUnit(unit);
+    }
+
+    @Override
+    public List<Farmer> listVisitManageUnit(ManageUnit unit)
+    {
+        return mapper.listVisitManageUnit(unit);
     }
 }

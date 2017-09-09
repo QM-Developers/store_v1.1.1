@@ -219,6 +219,36 @@ INSERT INTO `customer_account_request` VALUES ('3326d9224961454d82e6f925be2de7e7
 UNLOCK TABLES;
 
 --
+-- Table structure for table `customer_follow`
+--
+
+DROP TABLE IF EXISTS `customer_follow`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `customer_follow` (
+  `follow_id` varchar(35) NOT NULL,
+  `follow_date` datetime NOT NULL,
+  `follow_content` text,
+  `follow_result` text,
+  `customer_id` varchar(35) NOT NULL,
+  `customer_name` varchar(20) NOT NULL,
+  `promoter_id` varchar(35) NOT NULL,
+  `promoter_name` varchar(20) NOT NULL,
+  PRIMARY KEY (`follow_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `customer_follow`
+--
+
+LOCK TABLES `customer_follow` WRITE;
+/*!40000 ALTER TABLE `customer_follow` DISABLE KEYS */;
+INSERT INTO `customer_follow` VALUES ('8585b717d27340d186a3424f251e33b0','2017-07-07 00:00:00','content','result','1ddd3d18c22a4c129c2517d50e69a400','三三','89d9317fb3834353bcf2a507bee2eb82','张三');
+/*!40000 ALTER TABLE `customer_follow` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `customer_repertory`
 --
 
@@ -1652,7 +1682,7 @@ CREATE TABLE `user_place` (
 
 LOCK TABLES `user_place` WRITE;
 /*!40000 ALTER TABLE `user_place` DISABLE KEYS */;
-INSERT INTO `user_place` VALUES ('86bf38e9da59470386988684f564922d','1ddd3d18c22a4c129c2517d50e69a400','',131,0,1,123,'','地区','allow','2017-09-05 09:34:58',0,NULL);
+INSERT INTO `user_place` VALUES ('104d09740ca74b5592859e74dfd203bd','1ddd3d18c22a4c129c2517d50e69a400','',222,0,1,123,'','地区','allow','2017-09-09 11:28:41',0,NULL),('86bf38e9da59470386988684f564922d','1ddd3d18c22a4c129c2517d50e69a400','',131,0,1,123,'','地区','allow','2017-09-05 09:34:58',0,NULL);
 /*!40000 ALTER TABLE `user_place` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1903,4 +1933,4 @@ SET character_set_client = @saved_cs_client;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-09-08 18:06:02
+-- Dump completed on 2017-09-09 18:07:13

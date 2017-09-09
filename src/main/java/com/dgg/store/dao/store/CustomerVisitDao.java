@@ -1,5 +1,8 @@
 package com.dgg.store.dao.store;
 
+import com.dgg.store.util.pojo.Farmer;
+import com.dgg.store.util.pojo.ManageUnit;
+import com.dgg.store.util.pojo.UserBreed;
 import com.dgg.store.util.pojo.UserPlace;
 import com.dgg.store.util.vo.customer.CustomerVO;
 import com.dgg.store.util.vo.manage.DepartmentVO;
@@ -24,4 +27,16 @@ public interface CustomerVisitDao
     List<UserPlace> listVisitUserPlace(UserPlace place);
 
     UserPlace getUserPlaceById(String userPlaceId);
+
+    int countVisitUserBreed(UserPlace place);
+
+    List<UserBreed> listVisitUserBreed(UserPlace place);
+
+    int countVisitFarmer(Farmer farmer);
+
+    List<Farmer> listVisitFarmer(Farmer farmer);
+
+    int countVisitManageUnit(ManageUnit unit);
+
+    List<Farmer> listVisitManageUnit(ManageUnit unit);
 }

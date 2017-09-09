@@ -416,9 +416,12 @@
 
   <select id="getUserPlaceById" resultMap="UserPlace">
     SELECT up.user_place_id, up.customer_id,
-      up.user_place_acreage, up.user_employee_num, up.user_owner_num,
-      up.user_already_use, up.user_place_area, up.user_place_type
+          up.user_place_acreage, up.user_employee_num, up.user_owner_num,
+          up.user_already_use, up.user_place_area, up.user_place_type,
+          pi.img_id,pi.img_url,pi.img_type
     FROM user_place up
+    LEFT JOIN place_image pi
+    ON pi.user_place_id = up.user_place_id
     WHERE up.user_place_id = #{placeId}
   </select>
 </mapper>

@@ -1,2 +1,4 @@
-delete from customer_visit
-where department_id = '27a9c57b4c69441aa569ef4ae1a9ef7d';
+select * from customer c
+inner join user u
+on u.user_id = c.user_id
+;

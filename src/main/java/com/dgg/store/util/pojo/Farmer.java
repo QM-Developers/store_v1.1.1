@@ -9,6 +9,10 @@ public class Farmer {
 
     private String farmerPhone;
 
+    private Integer pageNum;
+
+    private Integer pageSize;
+
     public String getFarmerId() {
         return farmerId;
     }
@@ -39,5 +43,25 @@ public class Farmer {
 
     public void setFarmerPhone(String farmerPhone) {
         this.farmerPhone = farmerPhone == null ? null : farmerPhone.trim();
+    }
+
+    public Integer getPageNum()
+    {
+        return pageNum;
+    }
+
+    public void setPageNum(Integer pageNum)
+    {
+        this.pageNum = pageNum;
+    }
+
+    public Integer getPageSize()
+    {
+        return pageSize;
+    }
+
+    public void setPageSize(Integer pageSize)
+    {
+        this.pageSize = pageSize;
     }
 }

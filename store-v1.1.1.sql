@@ -23,6 +23,39 @@ create table customer
 );
 
 /*==============================================================*/
+/* 客户跟进表
+/*==============================================================*/
+drop table if exists customer_follow;
+create table customer_follow
+(
+   follow_id	varchar(35) not null primary key,	-- 跟进Id
+   follow_date datetime not null,	-- 跟进时间
+   follow_content text,	-- 跟进内容
+   follow_result text,	-- 跟进结果
+   customer_id			varchar(35) not null,	-- 客户Id
+   customer_name	varchar(20) not null,	-- 客户姓名
+   promoter_id			varchar(35) not null,	-- 业务员Id
+   promoter_name	varchar(20) not null	-- 业务员姓名
+);
+
+/*==============================================================*/
+/* 客户协助表
+/*==============================================================*/
+drop table if exists customer_assist;
+create table customer_assist
+(
+   follow_id	varchar(35) not null primary key,	-- 跟进Id
+   follow_date datetime not null,	-- 跟进时间
+   follow_content text,	-- 跟进内容
+   follow_result text,	-- 跟进结果
+   customer_id			varchar(35) not null,	-- 客户Id
+   customer_name	varchar(20) not null,	-- 客户姓名
+   promoter_id			varchar(35) not null,	-- 业务员Id
+   promoter_name	varchar(20) not null	-- 业务员姓名
+);
+
+
+/*==============================================================*/
 /* 客户库存类型
 /*==============================================================*/
 drop table if exists customer_repertory;

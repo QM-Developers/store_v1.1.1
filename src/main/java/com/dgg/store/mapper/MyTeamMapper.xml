@@ -23,8 +23,7 @@
         <result column="position_name" property="positionName" jdbcType="VARCHAR"/>
     </resultMap>
 
-    <select id="findDepartmentDetail" resultMap="TeamDepartmentVO"
-            parameterType="com.dgg.store.util.vo.team.TeamDepartmentVO">
+    <select id="findDepartmentDetail" resultMap="TeamDepartmentVO" parameterType="com.dgg.store.util.vo.team.TeamDepartmentVO">
         SELECT td.team_department_id,td.team_department_name,td.create_date,
         mt.my_team_name,
         (SELECT COUNT(1) FROM user u WHERE u.team_department_id = td.team_department_id) count
@@ -82,8 +81,8 @@
     </select>
 
     <select id="listTeamDepartment" resultMap="TeamDepartmentVO">
-        SELECT team_department_id,team_department_name
-        FROM team_department
+        SELECT td.team_department_id,td.team_department_name,(SELECT COUNT(0) FROM user u WHERE u.team_department_id = td.team_department_id) count
+        FROM team_department td
         WHERE my_team_id = #{myTeamId}
     </select>
 </mapper>

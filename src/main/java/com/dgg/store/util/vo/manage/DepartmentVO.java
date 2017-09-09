@@ -19,6 +19,8 @@ public class DepartmentVO
 
     private String myTeamId;
 
+    private Integer count;
+
     private List<PositionVO> positionList;
 
     public String getDepartmentId()
@@ -99,5 +101,15 @@ public class DepartmentVO
     public void setPositionId(String positionId)
     {
         this.positionId = positionId;
+    }
+
+    public Integer getCount()
+    {
+        return count;
+    }
+
+    public void setCount(Integer count)
+    {
+        this.count = count;
     }
 }

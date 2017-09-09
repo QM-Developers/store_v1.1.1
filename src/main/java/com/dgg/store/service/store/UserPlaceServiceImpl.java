@@ -97,7 +97,7 @@ public class UserPlaceServiceImpl implements UserPlaceService
             {
                 case 0:
                     if (place.getCustomerId() == null)
-                        return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_FAILED,sessionVO.getToken()));
+                        return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_FAILED, sessionVO.getToken()));
                     place.setUserPlaceId(IDGenerator.generator());
                     result = dao.insertSelective(place);
                     break;
@@ -121,10 +121,8 @@ public class UserPlaceServiceImpl implements UserPlaceService
 
         if (index - 1 < count)
             throw new RuntimeException(Constant.STR_ADD_FAILED);
-        else
-            result = 1;
 
-        JSONObject json = (JSONObject) JSONObject.toJSON(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(),place.getUserPlaceId()));
+        JSONObject json = (JSONObject) JSONObject.toJSON(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), place.getUserPlaceId()));
 
         return json.toJSONString();
     }
@@ -134,7 +132,7 @@ public class UserPlaceServiceImpl implements UserPlaceService
     {
         int result = 1;
         int index = 0;
-        int count = 2;
+        int count = 1;
 
         while (result > 0)
         {
@@ -143,9 +141,7 @@ public class UserPlaceServiceImpl implements UserPlaceService
                 case 0:
                     PlaceImage placeImage = new PlaceImage();
                     placeImage.setUserPlaceId(place.getUserPlaceId());
-                    result = dao.deletePlaceImage(placeImage);
-                    break;
-                case 1:
+                    dao.deletePlaceImage(placeImage);
                     result = dao.deleteByPrimaryKey(place.getUserPlaceId());
                     break;
                 default:
@@ -160,7 +156,7 @@ public class UserPlaceServiceImpl implements UserPlaceService
         else
             result = 1;
 
-        JSONObject json = (JSONObject) JSONObject.toJSON(new ResultVO(result < 1 ? 2 : 1, sessionVO.getToken()));
+        JSONObject json = (JSONObject) JSONObject.toJSON(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken()));
 
         return json.toJSONString();
     }
@@ -183,9 +179,9 @@ public class UserPlaceServiceImpl implements UserPlaceService
     @Override
     public String listUserPlace(SessionVO sessionVO, UserPlace place, PageVO pageVO)
     {
-        place.setPageNum(PagingUtil.getStart(pageVO.getPageNum(),pageVO.getPageSize()));
+        place.setPageNum(PagingUtil.getStart(pageVO.getPageNum(), pageVO.getPageSize()));
         place.setPageSize(pageVO.getPageSize());
-        int pageCount = PagingUtil.getCount(dao.countUserPlace(place),pageVO.getPageSize());
+        int pageCount = PagingUtil.getCount(dao.countUserPlace(place), pageVO.getPageSize());
         List<UserPlace> result = dao.listUserPlace(place);
 
         for (UserPlace up : result)
@@ -204,7 +200,7 @@ public class UserPlaceServiceImpl implements UserPlaceService
         }
 
         JSONObject json = (JSONObject) JSONObject.toJSON(new ResultVO(1, sessionVO.getToken(), result));
-        json.put(KeyConstant.PAGE_COUNT,pageCount);
+        json.put(KeyConstant.PAGE_COUNT, pageCount);
 
         return json.toJSONString();
     }
@@ -238,7 +234,7 @@ public class UserPlaceServiceImpl implements UserPlaceService
         result.setEnvironmentList(environmentList);
         result.setImageList(null);
 
-        return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_SUCCESS,sessionVO.getToken(),result));
+        return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), result));
     }
 
 }

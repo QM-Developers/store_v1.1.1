@@ -10,12 +10,21 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
 
+/**
+ * 用户登陆控制器
+ */
 @Controller
 public class LoginController
 {
     @Autowired
     private LoginService service;
 
+    /**
+     * 用户登录(手机端)
+     *
+     * @param loginVO 账号信息
+     * @return 用户信息
+     */
     @RequestMapping(value = "/login", method = RequestMethod.POST, produces = {"application/json;charset=UTF-8"})
     @ResponseBody
     public String Login(LoginVO loginVO)
@@ -23,6 +32,13 @@ public class LoginController
         return service.updateLoginInfo(loginVO);
     }
 
+    /**
+     * 用户登录
+     *
+     * @param session 保存登陆状态session
+     * @param loginVO 账号信息
+     * @return 登陆结果
+     */
     @RequestMapping(value = "/login_on_browser", method = RequestMethod.POST)
     @ResponseBody
     public String storeLogin(HttpSession session, LoginVO loginVO)

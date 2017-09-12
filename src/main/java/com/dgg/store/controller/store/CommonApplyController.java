@@ -18,12 +18,22 @@ import javax.servlet.http.HttpServletRequest;
 
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
+/**
+ * 通用 申请/审批 控制器
+ */
 @Controller
 public class CommonApplyController
 {
     @Autowired
     private CommonApplyService service;
 
+    /**
+     * 上传申请用图片
+     *
+     * @param file    图片文件
+     * @param request 用户参数
+     * @return 图片的Id
+     */
     @RequestMapping(value = "/s/saveCommonApplyImage", method = POST, produces = {"application/json;charset=UTF-8"})
     @ResponseBody
     public String saveCommonApplyImage(@RequestParam(value = "img", required = false) MultipartFile file, HttpServletRequest request)
@@ -33,6 +43,13 @@ public class CommonApplyController
         return service.insertCommonApplyImage(sessionVO, file, request.getSession().getServletContext().getRealPath(SymbolConstant.SYSTEM_SLASH));
     }
 
+    /**
+     * 发起通用申请
+     *
+     * @param request 用户参数
+     * @param apply   通用申请参数
+     * @return 操作的结果
+     */
     @RequestMapping(value = "/s/saveCommonApply", method = POST, produces = {"application/json;charset=UTF-8"})
     @ResponseBody
     public String saveCommonApply(HttpServletRequest request, CommonApply apply)
@@ -42,6 +59,13 @@ public class CommonApplyController
         return service.insertCommonApply(sessionVO, apply);
     }
 
+    /**
+     * 发起人获取申请列表
+     *
+     * @param request 用户参数
+     * @param pageVO  分页参数
+     * @return 申请列表
+     */
     @RequestMapping(value = "/s/listCommonApplyByProposer", method = POST, produces = {"application/json;charset=UTF-8"})
     @ResponseBody
     public String listCommonApplyByProposer(HttpServletRequest request, PageVO pageVO)
@@ -51,27 +75,48 @@ public class CommonApplyController
         return service.listCommonApplyByProposer(sessionVO, pageVO);
     }
 
+    /**
+     * 审批人获取申请列表
+     *
+     * @param request 用户参数
+     * @param pageVO  分页参数
+     * @return 申请列表
+     */
     @RequestMapping(value = "/s/listCommonApplyByApprove", method = POST, produces = {"application/json;charset=UTF-8"})
     @ResponseBody
-    public String listCommonApplyByApprove(HttpServletRequest request,PageVO pageVO)
+    public String listCommonApplyByApprove(HttpServletRequest request, PageVO pageVO)
     {
         SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
 
         return service.listCommonApplyByApprove(sessionVO, pageVO);
     }
 
+    /**
+     * 同意申请
+     *
+     * @param request 用户参数
+     * @param approve 审批参数
+     * @return 操作的结果
+     */
     @RequestMapping(value = "/s/updateCommonApplyAccept", method = POST, produces = {"application/json;charset=UTF-8"})
     @ResponseBody
-    public String updateCommonApplyAccept(HttpServletRequest request,CommonApplyApprove approve)
+    public String updateCommonApplyAccept(HttpServletRequest request, CommonApplyApprove approve)
     {
         SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
 
         return service.updateCommonApplyAccept(sessionVO, approve);
     }
 
+    /**
+     * 拒绝申请
+     *
+     * @param request 用户参数
+     * @param approve 审批参数
+     * @return 操作的结果
+     */
     @RequestMapping(value = "/s/updateCommonApplyRefuse", method = POST, produces = {"application/json;charset=UTF-8"})
     @ResponseBody
-    public String updateCommonApplyRefuse(HttpServletRequest request,CommonApplyApprove approve)
+    public String updateCommonApplyRefuse(HttpServletRequest request, CommonApplyApprove approve)
     {
         SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
 

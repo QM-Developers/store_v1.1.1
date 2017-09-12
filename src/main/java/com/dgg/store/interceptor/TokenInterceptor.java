@@ -3,6 +3,7 @@ package com.dgg.store.interceptor;
 
 import com.dgg.store.service.user.UserService;
 import com.dgg.store.util.core.constant.Constant;
+import com.dgg.store.util.core.constant.KeyConstant;
 import com.dgg.store.util.core.token.TokenUtil;
 import com.dgg.store.util.vo.core.SessionVO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,9 +22,9 @@ public class TokenInterceptor implements HandlerInterceptor
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception
     {
-        String userId = request.getParameter("userId");
-        String teamId = request.getParameter("myTeamId");
-        String token = request.getParameter("token");
+        String userId = request.getParameter(KeyConstant.USER_ID);
+        String teamId = request.getParameter(KeyConstant.MY_TEAM_ID);
+        String token = request.getParameter(KeyConstant.TOKEN);
 
         HttpSession session = request.getSession();
         SessionVO sessionVO = (SessionVO) session.getAttribute(Constant.LOGININFO);
@@ -44,7 +45,6 @@ public class TokenInterceptor implements HandlerInterceptor
             }
         }
 
-        service.updateLastLoginTimeById(userId == null ? sessionVO.getUserId() : userId);
         request.setAttribute(Constant.LOGININFO, sessionVO);
 
         return true;

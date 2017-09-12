@@ -24,4 +24,10 @@ public class LoginDaoImpl implements LoginDao
     {
         return mapper.updateLoginInfo(userId,deviceToken);
     }
+
+    @Override
+    public String getDeviceToken(String userId)
+    {
+        return mapper.getDeviceToken(userId);
+    }
 }

@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dgg.store.mapper.CustomerAssistMapper">
+  <resultMap id="BaseResultMap" type="com.dgg.store.util.pojo.CustomerAssist">
+    <id column="assist_id" jdbcType="VARCHAR" property="assistId" />
+    <result column="assist_title" jdbcType="VARCHAR" property="assistTitle" />
+    <result column="assist_reason" jdbcType="VARCHAR" property="assistReason" />
+    <result column="user_id" jdbcType="VARCHAR" property="userId" />
+    <result column="user_name" jdbcType="VARCHAR" property="userName" />
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    assist_id, assist_title, assist_reason, user_id, user_name, create_date
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from customer_assist
+    where assist_id = #{assistId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from customer_assist
+    where assist_id = #{assistId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.dgg.store.util.pojo.CustomerAssistExample">
+    delete from customer_assist
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.dgg.store.util.pojo.CustomerAssist">
+    insert into customer_assist (assist_id, assist_title, assist_reason, 
+      user_id, user_name, create_date
+      )
+    values (#{assistId,jdbcType=VARCHAR}, #{assistTitle,jdbcType=VARCHAR}, #{assistReason,jdbcType=VARCHAR}, 
+      #{userId,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.dgg.store.util.pojo.CustomerAssist">
+    insert into customer_assist
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="assistId != null">
+        assist_id,
+      </if>
+      <if test="assistTitle != null">
+        assist_title,
+      </if>
+      <if test="assistReason != null">
+        assist_reason,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="userName != null">
+        user_name,
+      </if>
+      <if test="createDate != null">
+        create_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="assistId != null">
+        #{assistId,jdbcType=VARCHAR},
+      </if>
+      <if test="assistTitle != null">
+        #{assistTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="assistReason != null">
+        #{assistReason,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null">
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.dgg.store.util.pojo.CustomerAssistExample" resultType="java.lang.Long">
+    select count(*) from customer_assist
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update customer_assist
+    <set>
+      <if test="record.assistId != null">
+        assist_id = #{record.assistId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.assistTitle != null">
+        assist_title = #{record.assistTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="record.assistReason != null">
+        assist_reason = #{record.assistReason,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userId != null">
+        user_id = #{record.userId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userName != null">
+        user_name = #{record.userName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createDate != null">
+        create_date = #{record.createDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update customer_assist
+    set assist_id = #{record.assistId,jdbcType=VARCHAR},
+      assist_title = #{record.assistTitle,jdbcType=VARCHAR},
+      assist_reason = #{record.assistReason,jdbcType=VARCHAR},
+      user_id = #{record.userId,jdbcType=VARCHAR},
+      user_name = #{record.userName,jdbcType=VARCHAR},
+      create_date = #{record.createDate,jdbcType=TIMESTAMP}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dgg.store.util.pojo.CustomerAssist">
+    update customer_assist
+    <set>
+      <if test="assistTitle != null">
+        assist_title = #{assistTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="assistReason != null">
+        assist_reason = #{assistReason,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null">
+        user_name = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null">
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where assist_id = #{assistId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dgg.store.util.pojo.CustomerAssist">
+    update customer_assist
+    set assist_title = #{assistTitle,jdbcType=VARCHAR},
+      assist_reason = #{assistReason,jdbcType=VARCHAR},
+      user_id = #{userId,jdbcType=VARCHAR},
+      user_name = #{userName,jdbcType=VARCHAR},
+      create_date = #{createDate,jdbcType=TIMESTAMP}
+    where assist_id = #{assistId,jdbcType=VARCHAR}
+  </update>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <select id="getUserName" resultType="java.lang.String">
+    SELECT user_name
+    FROM user
+    WHERE user_id = #{userId}
+  </select>
+
+  <select id="selectByExample" parameterType="com.dgg.store.util.pojo.CustomerAssistExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from customer_assist
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+    LIMIT #{pageNum},#{pageSize}
+  </select>
+
+  <select id="countCustomerAssistByHelper" resultType="java.lang.Integer">
+    SELECT COUNT(0)
+    FROM customer_assist ca
+    INNER JOIN customer_assist_user cau
+    ON cau.assist_id = ca.assist_id
+    WHERE cau.user_id = #{userId}
+  </select>
+
+  <select id="listCustomerAssistByHelper" resultMap="BaseResultMap">
+    SELECT ca.assist_id, ca.assist_title, ca.assist_reason,
+      ca.user_id, ca.user_name, ca.create_date
+    FROM customer_assist ca
+    INNER JOIN customer_assist_user cau
+    ON cau.assist_id = ca.assist_id
+    WHERE cau.user_id = #{userId}
+    LIMIT #{pageNum},#{pageSize}
+  </select>
+</mapper>

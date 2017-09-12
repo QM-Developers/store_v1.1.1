@@ -11,6 +11,8 @@ public class PushMessage {
 
     private Byte msgType;
 
+    private String field;
+
     public String getMsgId() {
         return msgId;
     }
@@ -49,5 +51,15 @@ public class PushMessage {
 
     public void setMsgType(Byte msgType) {
         this.msgType = msgType;
+    }
+
+    public String getField()
+    {
+        return field;
+    }
+
+    public void setField(String field)
+    {
+        this.field = field;
     }
 }

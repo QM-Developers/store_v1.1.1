@@ -1,5 +1,7 @@
 package com.dgg.store.util.vo.manage;
 
+import com.dgg.store.util.vo.team.MemberVO;
+
 import java.util.Date;
 import java.util.List;
 
@@ -22,6 +24,8 @@ public class DepartmentVO
     private Integer count;
 
     private List<PositionVO> positionList;
+
+    private List<MemberVO> memberList;
 
     public String getDepartmentId()
     {
@@ -111,5 +115,15 @@ public class DepartmentVO
     public void setCount(Integer count)
     {
         this.count = count;
+    }
+
+    public List<MemberVO> getMemberList()
+    {
+        return memberList;
+    }
+
+    public void setMemberList(List<MemberVO> memberList)
+    {
+        this.memberList = memberList;
     }
 }

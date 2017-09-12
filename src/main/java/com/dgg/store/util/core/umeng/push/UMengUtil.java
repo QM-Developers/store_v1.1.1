@@ -19,11 +19,32 @@ public class UMengUtil
         UMengClientFactory.getInstance().send(unicast);
     }
 
+    public static void sendAndroidMessage(String token, PushMessage msg) throws Exception
+    {
+        AndroidUnicast unicast = new AndroidUnicast(UMConstant.APP_KEY, UMConstant.MASTER_SECRET);
+        unicast.setDeviceToken(token);
+        unicast.setCustomField(msg.getField());
+        unicast.setDisplayType(AndroidNotification.DisplayType.MESSAGE);
+        unicast.setProductionMode();
+        UMengClientFactory.getInstance().send(unicast);
+    }
+
     public static void sendUnicast(String deviceToken, PushMessage msg)
     {
         try
         {
-            sendAndroidUnicast(deviceToken,msg);
+            sendAndroidUnicast(deviceToken, msg);
+        } catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+    }
+
+    public static void sendMessage(String deviceToken, PushMessage msg)
+    {
+        try
+        {
+            sendAndroidMessage(deviceToken,msg);
         } catch (Exception e)
         {
             e.printStackTrace();

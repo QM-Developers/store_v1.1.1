@@ -48,8 +48,8 @@ public class BranchServiceImpl implements BranchService
         List<BranchVO> result = dao.listBranch(condition, start, end);
         pageCount = PagingUtil.getCount(pageCount, pageVO.getPageSize());
 
-        JSONObject json = (JSONObject) JSONObject.toJSON(new ResultVO(1, sessionVO.getToken(), result));
-        json.put("pageCount", pageCount);
+        JSONObject json = (JSONObject) JSONObject.toJSON(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), result));
+        json.put(KeyConstant.PAGE_COUNT, pageCount);
 
         return json.toJSONString();
     }
@@ -107,7 +107,7 @@ public class BranchServiceImpl implements BranchService
         }
 
 
-        JSONObject json = (JSONObject) JSONObject.toJSON(new ResultVO(1, sessionVO.getToken(), result));
+        JSONObject json = (JSONObject) JSONObject.toJSON(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), result));
         json.put(KeyConstant.PAGE_COUNT, pageCount);
 
         return json.toJSONString();
@@ -194,7 +194,7 @@ public class BranchServiceImpl implements BranchService
             vo.setStandards(dao.listBranchStandards(vo.getGoodsId(), condition.getBranchId()));
 
         JSONObject json = (JSONObject) JSONObject.toJSON(new ResultVO(1, sessionVO.getToken(), result));
-        json.put("pageCount", pageCount);
+        json.put(KeyConstant.PAGE_COUNT, pageCount);
 
         return json.toJSONString();
     }

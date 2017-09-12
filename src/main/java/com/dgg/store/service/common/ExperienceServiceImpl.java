@@ -19,8 +19,6 @@ public class ExperienceServiceImpl implements ExperienceService
         experienceVO.setExperienceId(IDGenerator.generator());
         int result = dao.insertExperience(experienceVO);
 
-        ResultVO resultVO = new ResultVO(result == 1 ? 1 : 2);
-
-        return resultVO;
+        return new ResultVO(result == 1 ? 1 : 2);
     }
 }

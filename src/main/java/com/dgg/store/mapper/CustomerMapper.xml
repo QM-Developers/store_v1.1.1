@@ -90,6 +90,7 @@
     <update id="updateCustomerUserRecord" parameterType="com.dgg.store.util.vo.customer.CustomerVO">
         UPDATE user_record
         <set>
+            is_deleted = 0,
             <if test="userName != null">
                 user_name = #{userName},
             </if>
@@ -115,6 +116,7 @@
     <update id="updateCustomerUser" parameterType="com.dgg.store.util.vo.customer.CustomerVO">
         UPDATE user
         <set>
+            is_deleted = 0,
             <if test="userName != null">
                 user_name = #{userName},
             </if>

@@ -11,12 +11,21 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 
+/**
+ * 申请体验控制器
+ */
 @Controller
 public class ExperienceController
 {
     @Autowired
     private ExperienceService service;
 
+    /**
+     * 添加申请体验记录
+     *
+     * @param experienceVO 体验信息
+     * @return 操作结果
+     */
     @RequestMapping(value = "registerExperience", method = RequestMethod.POST)
     @ResponseBody
     public ResultVO experienceRequest(ExperienceVO experienceVO)

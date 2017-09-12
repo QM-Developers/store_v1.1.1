@@ -1,5 +1,7 @@
 package com.dgg.store.util.vo.team;
 
+import java.util.List;
+
 public class TeamDepartmentVO
 {
     private String teamDepartmentId;
@@ -15,6 +17,8 @@ public class TeamDepartmentVO
     private String createDate;
 
     private Integer count;
+
+    private List<MemberVO> memberList;
 
     public String getTeamDepartmentId()
     {
@@ -84,5 +88,15 @@ public class TeamDepartmentVO
     public void setCount(Integer count)
     {
         this.count = count;
+    }
+
+    public List<MemberVO> getMemberList()
+    {
+        return memberList;
+    }
+
+    public void setMemberList(List<MemberVO> memberList)
+    {
+        this.memberList = memberList;
     }
 }

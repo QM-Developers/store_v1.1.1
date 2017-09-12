@@ -16,4 +16,7 @@ public interface MyTeamService
     String listTeamDepartment(SessionVO sessionVO);
 
     String getDepartmentMember(SessionVO sessionVO, MemberVO member);
+
+    String listDepartmentAndMember(SessionVO sessionVO);
+
 }

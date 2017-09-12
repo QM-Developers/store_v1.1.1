@@ -13,12 +13,22 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 
+/**
+ * 库存查看控制器
+ */
 @Controller
 public class RepertoryCheckController
 {
     @Autowired
     private RepertoryCheckService service;
 
+    /**
+     * 查看一级库存
+     *
+     * @param request 用户参数
+     * @param pageVO  分页参数
+     * @return 商品列表
+     */
     @RequestMapping(value = "/s/listRepertoryFirst", method = RequestMethod.POST, produces = {"application/json;charset=UTF-8"})
     @ResponseBody
     public String listRepertoryFirst(HttpServletRequest request, PageVO pageVO)
@@ -28,13 +38,20 @@ public class RepertoryCheckController
         return service.listRepertoryFirst(sessionVO, pageVO);
     }
 
+    /**
+     * 查看当前销售点库存
+     *
+     * @param request 用户参数
+     * @param pageVO  分页参数
+     * @return 商品列表
+     */
     @RequestMapping(value = "/s/getRepertory", method = RequestMethod.POST, produces = {"application/json;charset=UTF-8"})
     @ResponseBody
-    public String getRepertory(HttpServletRequest request,PageVO pageVO)
+    public String getRepertory(HttpServletRequest request, PageVO pageVO)
     {
         SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
 
-        return service.getRepertory(sessionVO,pageVO);
+        return service.getRepertory(sessionVO, pageVO);
     }
 
 

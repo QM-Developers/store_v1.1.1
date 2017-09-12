@@ -46,7 +46,7 @@ public class MyTeamServiceImpl implements MyTeamService
         member.setMyTeamId(sessionVO.getMyTeamId());
         List<MemberVO> result = dao.findMemberByNameOrPhone(member);
 
-        ResultVO resultVO = new ResultVO(1,sessionVO.getToken(),result);
+        ResultVO resultVO = new ResultVO(1, sessionVO.getToken(), result);
 
         return resultVO;
     }
@@ -54,7 +54,7 @@ public class MyTeamServiceImpl implements MyTeamService
     @Override
     public String listTeamDepartment(SessionVO sessionVO)
     {
-        List<DepartmentVO> result = dao.listTeamDepartment(sessionVO.getMyTeamId());
+        List<TeamDepartmentVO> result = dao.listTeamDepartment(sessionVO.getMyTeamId());
 
         return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), result));
     }
@@ -68,6 +68,20 @@ public class MyTeamServiceImpl implements MyTeamService
             memberVO = result.get(0);
 
         return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), memberVO));
+    }
+
+    @Override
+    public String listDepartmentAndMember(SessionVO sessionVO)
+    {
+        List<TeamDepartmentVO> result = dao.listTeamDepartment(sessionVO.getMyTeamId());
+        MemberVO member = new MemberVO();
+        for (TeamDepartmentVO department : result)
+        {
+            member.setTeamDepartmentId(department.getTeamDepartmentId());
+            department.setMemberList(dao.findDepartmentMember(member));
+        }
+
+        return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), result));
     }
 
 }

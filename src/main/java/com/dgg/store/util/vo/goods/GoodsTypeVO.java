@@ -9,6 +9,10 @@ public class GoodsTypeVO
 
     private String keyword;
 
+    private String orderBy;
+
+    private String sort;
+
     private String myTeamId;
 
     private String goodsTypeName;
@@ -87,5 +91,25 @@ public class GoodsTypeVO
     public void setMyTeamId(String myTeamId)
     {
         this.myTeamId = myTeamId;
+    }
+
+    public String getOrderBy()
+    {
+        return orderBy;
+    }
+
+    public void setOrderBy(String orderBy)
+    {
+        this.orderBy = orderBy;
+    }
+
+    public String getSort()
+    {
+        return sort;
+    }
+
+    public void setSort(String sort)
+    {
+        this.sort = sort;
     }
 }

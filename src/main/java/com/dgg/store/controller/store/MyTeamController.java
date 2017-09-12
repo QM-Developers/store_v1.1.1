@@ -14,12 +14,21 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 
+/**
+ * 团队控制器
+ */
 @Controller
 public class MyTeamController
 {
     @Autowired
     private MyTeamService service;
 
+    /**
+     * 获取部门列表
+     *
+     * @param request 用户参数
+     * @return 部门列表
+     */
     @RequestMapping(value = "/s/listTeamDepartment", method = RequestMethod.POST, produces = {"application/json;charset=UTF-8"})
     @ResponseBody
     public String listTeamDepartment(HttpServletRequest request)
@@ -29,6 +38,13 @@ public class MyTeamController
         return service.listTeamDepartment(sessionVO);
     }
 
+    /**
+     * 获取部门详情
+     *
+     * @param request    用户参数
+     * @param department 部门Id
+     * @return
+     */
     @RequestMapping(value = "/s/findDepartmentDetail", method = RequestMethod.POST)
     @ResponseBody
     public ResultVO findDepartmentDetail(HttpServletRequest request, TeamDepartmentVO department)
@@ -38,6 +54,13 @@ public class MyTeamController
         return service.findDepartmentDetail(sessionVO, department);
     }
 
+    /**
+     * 获取部门下成员列表
+     *
+     * @param request 用户参数
+     * @param member  部门Id
+     * @return 成员列表
+     */
     @RequestMapping(value = "/s/findDepartmentMember", method = RequestMethod.POST)
     @ResponseBody
     public ResultVO findDepartmentMember(HttpServletRequest request, MemberVO member)
@@ -47,6 +70,13 @@ public class MyTeamController
         return service.findDepartmentMember(sessionVO, member);
     }
 
+    /**
+     * 获取成员详情
+     *
+     * @param request 用户参数
+     * @param member  用户Id
+     * @return 成员详情
+     */
     @RequestMapping(value = "/s/getDepartmentMember", method = RequestMethod.POST, produces = {"application/json;charset=UTF-8"})
     @ResponseBody
     public String getDepartmentMember(HttpServletRequest request, MemberVO member)
@@ -56,6 +86,13 @@ public class MyTeamController
         return service.getDepartmentMember(sessionVO, member);
     }
 
+    /**
+     * 根据手机号或用户名搜索用户
+     *
+     * @param request 用户参数
+     * @param member  搜索关键字
+     * @return 成员列表
+     */
     @RequestMapping(value = "/s/findMemberByNameOrPhone", method = RequestMethod.POST)
     @ResponseBody
     public ResultVO findMemberByNameOrPhone(HttpServletRequest request, MemberVO member)
@@ -63,5 +100,20 @@ public class MyTeamController
         SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
 
         return service.findMemberByNameOrPhone(sessionVO, member);
+    }
+
+    /**
+     * 获取团队部门及成员
+     *
+     * @param request 用户参数
+     * @return 部门及成员
+     */
+    @RequestMapping(value = "/s/listDepartmentAndMember", method = RequestMethod.POST, produces = {"application/json;charset=UTF-8"})
+    @ResponseBody
+    public String listDepartmentAndMember(HttpServletRequest request)
+    {
+        SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
+
+        return service.listDepartmentAndMember(sessionVO);
     }
 }

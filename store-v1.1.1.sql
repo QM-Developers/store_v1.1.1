@@ -39,21 +39,53 @@ create table customer_follow
 );
 
 /*==============================================================*/
-/* 客户协助表
+/* 申请协助表
 /*==============================================================*/
 drop table if exists customer_assist;
 create table customer_assist
 (
-   follow_id	varchar(35) not null primary key,	-- 跟进Id
-   follow_date datetime not null,	-- 跟进时间
-   follow_content text,	-- 跟进内容
-   follow_result text,	-- 跟进结果
-   customer_id			varchar(35) not null,	-- 客户Id
-   customer_name	varchar(20) not null,	-- 客户姓名
-   promoter_id			varchar(35) not null,	-- 业务员Id
-   promoter_name	varchar(20) not null	-- 业务员姓名
+   assist_id	varchar(35) not null primary key,	-- 申请Id
+   assist_title varchar(100) not null default '',	-- 申请标题
+   assist_reason varchar(255) not null default '',	-- 申请原因
+   user_id	varchar(35) not null,	-- 申请人Id
+   user_name	varchar(20) not null,	-- 申请人姓名
+   create_date datetime	-- 申请时间
 );
 
+/*==============================================================*/
+/* 协助关联客户表
+/*==============================================================*/
+drop table if exists customer_assist_customer;
+create table customer_assist_customer
+(
+   assist_id	varchar(35) not null,	-- 申请Id
+   customer_id varchar(35) not null,	-- 客户Id
+   customer_name varchar(20) not null	-- 客户名称
+);
+
+/*==============================================================*/
+/* 协助者关联表
+/*==============================================================*/
+drop table if exists customer_assist_user;
+create table customer_assist_user
+(
+   assist_id	varchar(35) not null,	-- 申请Id
+   assist_result text,	-- 协助结果
+   user_id varchar(35) not null,	-- 协助者用户Id
+   user_name varchar(20) not null,	-- 协助者名称
+   department_name varchar(20) not null	-- 部门名称
+);
+
+/*==============================================================*/
+/* 协助关联图片表
+/*==============================================================*/
+drop table if exists customer_assist_image;
+create table customer_assist_image
+(
+   image_id varchar(35) not null primary key,	-- 图片Id
+   image_path text,
+   assist_id	varchar(35) not null	-- 申请Id
+);
 
 /*==============================================================*/
 /* 客户库存类型

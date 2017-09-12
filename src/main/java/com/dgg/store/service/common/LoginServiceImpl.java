@@ -2,15 +2,14 @@ package com.dgg.store.service.common;
 
 import com.alibaba.fastjson.JSONObject;
 import com.dgg.store.dao.common.LoginDao;
-import com.dgg.store.util.core.constant.Constant;
-import com.dgg.store.util.core.constant.KeyConstant;
-import com.dgg.store.util.core.constant.LoginConstant;
-import com.dgg.store.util.core.constant.RCloudConstant;
+import com.dgg.store.util.core.constant.*;
 import com.dgg.store.util.core.rong.RCloudUtil;
 import com.dgg.store.util.core.rong.RongCloud;
 import com.dgg.store.util.core.shiro.CryptographyUtil;
 import com.dgg.store.util.core.string.StringUtil;
 import com.dgg.store.util.core.token.TokenUtil;
+import com.dgg.store.util.core.umeng.push.UMengUtil;
+import com.dgg.store.util.pojo.PushMessage;
 import com.dgg.store.util.vo.core.LoginRepVO;
 import com.dgg.store.util.vo.core.LoginVO;
 import com.dgg.store.util.vo.core.ResultVO;
@@ -57,6 +56,7 @@ public class LoginServiceImpl implements LoginService
     @Override
     public String updateLoginInfo(LoginVO loginVO)
     {
+        String deviceToken;
         LoginVO condition = new LoginVO();
         condition.setUserPhone(loginVO.getUserPhone());
         condition.setMyTeamId(loginVO.getMyTeamId());
@@ -68,6 +68,14 @@ public class LoginServiceImpl implements LoginService
             return JSONObject.toJSONString(new ResultVO(LoginConstant.NOT_REGISTER));
         if (!CryptographyUtil.md5(loginVO.getUserPassword(), Constant.SALT).equals(result.getUserPassword()))
             return JSONObject.toJSONString(new ResultVO(LoginConstant.NO_ACCESS));
+
+//        deviceToken = dao.getDeviceToken(result.getUserId());
+//        if (!deviceToken.equals(loginVO.getDeviceToken()))
+//        {
+//            PushMessage msg = new PushMessage();
+//            msg.setField(PushMessageConstant.LOGOUT);
+//            UMengUtil.sendMessage(deviceToken, msg);
+//        }
 
         result.setUserPhone(null);
         if (dao.updateLoginInfo(result.getUserId(), loginVO.getDeviceToken() == null ? Constant.EMPTY : loginVO.getDeviceToken()) < 1)

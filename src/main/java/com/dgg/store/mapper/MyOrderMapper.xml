@@ -624,16 +624,16 @@
     FROM my_order mo
     WHERE 1 = 1
     <if test="order.orderStatus != null">
-      AND mo.order_status = #{orderStatus}
+      AND mo.order_status = #{order.orderStatus}
     </if>
     <if test="order.createDate != null and order.finishDate != null">
-      AND mo.create_date BETWEEN #{createDate} AND #{finishDate}
+      AND mo.create_date BETWEEN #{order.createDate} AND #{order.finishDate}
     </if>
     <if test="order.paymentType != null">
-      AND mo.payment_type = #{paymentType}
+      AND mo.payment_type = #{order.paymentType}
     </if>
     <if test="order.paymentStatus != null">
-      AND mo.payment_status = #{paymentStatus}
+      AND mo.payment_status = #{order.paymentStatus}
     </if>
     AND mo.user_id IN
     (
@@ -652,16 +652,16 @@
     FROM my_order mo
     WHERE 1 = 1
     <if test="order.orderStatus != null">
-      AND mo.order_status = #{orderStatus}
+      AND mo.order_status = #{order.orderStatus}
     </if>
     <if test="order.createDate != null and order.finishDate != null">
-      AND mo.create_date BETWEEN #{createDate} AND #{finishDate}
+      AND mo.create_date BETWEEN #{order.createDate} AND #{order.finishDate}
     </if>
     <if test="order.paymentType != null">
-      AND mo.payment_type = #{paymentType}
+      AND mo.payment_type = #{order.paymentType}
     </if>
     <if test="order.paymentStatus != null">
-      AND mo.payment_status = #{paymentStatus}
+      AND mo.payment_status = #{order.paymentStatus}
     </if>
     AND mo.user_id IN
     (
@@ -698,16 +698,16 @@
     ON u.user_id = c.merchandiser_id
     WHERE c.my_team_id = #{myTeamId}
     <if test="order.orderStatus != null">
-      AND mo.order_status = #{orderStatus}
+      AND mo.order_status = #{order.orderStatus}
     </if>
     <if test="order.createDate != null and order.finishDate != null">
-      AND mo.create_date BETWEEN #{createDate} AND #{finishDate}
+      AND mo.create_date BETWEEN #{order.createDate} AND #{order.finishDate}
     </if>
     <if test="order.paymentType != null">
-      AND mo.payment_type = #{paymentType}
+      AND mo.payment_type = #{order.paymentType}
     </if>
     <if test="order.paymentStatus != null">
-      AND mo.payment_status = #{paymentStatus}
+      AND mo.payment_status = #{order.paymentStatus}
     </if>
   </select>
 
@@ -725,16 +725,16 @@
     ON u.user_id = c.merchandiser_id
     WHERE c.my_team_id = #{myTeamId}
     <if test="order.orderStatus != null">
-      AND mo.order_status = #{orderStatus}
+      AND mo.order_status = #{order.orderStatus}
     </if>
     <if test="order.createDate != null and order.finishDate != null">
-      AND mo.create_date BETWEEN #{createDate} AND #{finishDate}
+      AND mo.create_date BETWEEN #{order.createDate} AND #{order.finishDate}
     </if>
     <if test="order.paymentType != null">
-      AND mo.payment_type = #{paymentType}
+      AND mo.payment_type = #{order.paymentType}
     </if>
     <if test="order.paymentStatus != null">
-      AND mo.payment_status = #{paymentStatus}
+      AND mo.payment_status = #{order.paymentStatus}
     </if>
   </select>
 

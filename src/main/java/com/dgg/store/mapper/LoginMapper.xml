@@ -34,4 +34,10 @@
         </set>
         WHERE user_id = #{userId}
     </update>
+
+    <select id="getDeviceToken" resultType="java.lang.String">
+        SELECT umeng_device_token
+        FROM user
+        WHERE user_id = #{userId}
+    </select>
 </mapper>

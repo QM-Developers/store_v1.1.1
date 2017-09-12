@@ -34,7 +34,7 @@ public class MyTeamDaoImpl implements MyTeamDao
     }
 
     @Override
-    public List<DepartmentVO> listTeamDepartment(String myTeamId)
+    public List<TeamDepartmentVO> listTeamDepartment(String myTeamId)
     {
         return mapper.listTeamDepartment(myTeamId);
     }

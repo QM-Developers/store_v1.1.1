@@ -8,4 +8,6 @@ public interface LoginDao
     LoginRepVO findLoginUser(LoginVO loginVO);
 
     int updateLoginInfo(String userId,String deviceToken);
+
+    String getDeviceToken(String userId);
 }

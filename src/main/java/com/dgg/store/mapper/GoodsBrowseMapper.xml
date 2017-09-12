@@ -50,7 +50,7 @@
 
     <select id="findGoodsList" resultMap="GoodsVOMap" parameterType="com.dgg.store.util.vo.goods.GoodsTypeVO">
         SELECT gd.goods_id,gd.goods_name,gd.goods_sales,imgsp.image_path,
-          (SELECT gs.standard_price FROM goods_standard gs WHERE gs.goods_id = gd.goods_id ORDER BY standard_price LIMIT 0,1) goods_price
+          (SELECT MIN(gs.standard_price) FROM goods_standard gs WHERE gs.goods_id = gd.goods_id) goods_price
         FROM goodsinfo gd
         INNER JOIN goods_image img
         ON img.goods_id = gd.goods_id
@@ -66,6 +66,26 @@
         </if>
         <if test="type.keyword != null and type.keyword != ''">
             AND gd.goods_name LIKE CONCAT('%', #{type.keyword}, '%')
+        </if>
+        <if test="type.orderBy != null and type.orderBy == 'goodsPrice'">
+            <choose>
+                <when test="type.sort != null and type.sort == 'desc'">
+                    ORDER BY goods_price desc
+                </when>
+                <otherwise>
+                    ORDER BY goods_price asc
+                </otherwise>
+            </choose>
+        </if>
+        <if test="type.orderBy != null and type.orderBy == 'goodsSales'">
+            <choose>
+                <when test="type.sort != null and type.sort == 'desc'">
+                    ORDER BY gd.goods_sales desc
+                </when>
+                <otherwise>
+                    ORDER BY gd.goods_sales asc
+                </otherwise>
+            </choose>
         </if>
         LIMIT #{pageNum},#{pageSize}
     </select>

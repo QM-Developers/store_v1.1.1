@@ -18,12 +18,22 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 
+/**
+ * 组织管理控制器
+ */
 @Controller
 public class ManageController
 {
     @Autowired
     private ManageService service;
 
+    /**
+     * 登录后台系统
+     *
+     * @param request 用户参数
+     * @param loginVO 登陆参数
+     * @return 操作的结果
+     */
     @RequestMapping(value = "/s/login", method = RequestMethod.POST)
     @ResponseBody
     public ResultVO login(HttpServletRequest request, LoginVO loginVO)
@@ -33,6 +43,12 @@ public class ManageController
         return service.findLoginUser(sessionVO, loginVO);
     }
 
+    /**
+     * 获取部门名称和部门下的成员总数
+     *
+     * @param request 用户参数
+     * @return 部门列表
+     */
     @RequestMapping(value = "/s/findTeamAndMemberCount", method = RequestMethod.POST)
     @ResponseBody
     public ResultVO findTeamAndMemberCount(HttpServletRequest request)
@@ -42,6 +58,13 @@ public class ManageController
         return service.findTeamAndMemberCount(sessionVO);
     }
 
+    /**
+     * 获取部门下成员列表
+     *
+     * @param request  用户参数
+     * @param memberVO (暂时没用到)
+     * @return 成员列表
+     */
     @RequestMapping(value = "/s/findMemberList", method = RequestMethod.POST)
     @ResponseBody
     public ResultVO findMemberList(HttpServletRequest request, MemberVO memberVO)
@@ -51,6 +74,13 @@ public class ManageController
         return service.findMemberList(sessionVO, memberVO);
     }
 
+    /**
+     * 获取部门列表
+     *
+     * @param request    用户参数
+     * @param department (暂时没用到)
+     * @return 部门列表
+     */
     @RequestMapping(value = "/s/findDepartmentList", method = RequestMethod.POST)
     @ResponseBody
     public ResultVO findDepartmentList(HttpServletRequest request, DepartmentVO department)
@@ -60,6 +90,13 @@ public class ManageController
         return service.findDepartmentList(sessionVO, department);
     }
 
+    /**
+     * 添加部门
+     *
+     * @param request    用户参数
+     * @param department 部门参数
+     * @return 操作的结果
+     */
     @RequestMapping(value = "/s/addDepartment", method = RequestMethod.POST)
     @ResponseBody
     public ResultVO addDepartment(HttpServletRequest request, DepartmentVO department)
@@ -69,6 +106,13 @@ public class ManageController
         return service.insertDepartment(sessionVO, department);
     }
 
+    /**
+     * 添加部门成员
+     *
+     * @param request 用户参数
+     * @param member  成员参数
+     * @return 操作的结果
+     */
     @RequestMapping(value = "/s/addMember", method = RequestMethod.POST)
     @ResponseBody
     public ResultVO addMember(HttpServletRequest request, MemberVO member)
@@ -78,15 +122,29 @@ public class ManageController
         return service.insertMember(sessionVO, member);
     }
 
-    @RequestMapping(value = "/s/updateMember",method = RequestMethod.POST)
+    /**
+     * 更新成员信息
+     *
+     * @param request 用户参数
+     * @param member  成员参数
+     * @return 操作的结果
+     */
+    @RequestMapping(value = "/s/updateMember", method = RequestMethod.POST)
     @ResponseBody
-    public ResultVO updateMember(HttpServletRequest request,MemberVO member)
+    public ResultVO updateMember(HttpServletRequest request, MemberVO member)
     {
         SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
 
-        return service.updateMember(sessionVO,member);
+        return service.updateMember(sessionVO, member);
     }
 
+    /**
+     * 更新部门信息
+     *
+     * @param request    用户参数
+     * @param department 部门Id
+     * @return 图片路径
+     */
     @RequestMapping(value = "/s/updateDepartment", method = RequestMethod.POST)
     @ResponseBody
     public ResultVO updateDepartment(HttpServletRequest request, DepartmentVO department)
@@ -96,6 +154,13 @@ public class ManageController
         return service.updateDepartment(sessionVO, department);
     }
 
+    /**
+     * 获取部门详情
+     *
+     * @param request    用户参数
+     * @param department 部门Id
+     * @return 操作的结果
+     */
     @RequestMapping(value = "/s/findDepartmentInfo", method = RequestMethod.POST)
     @ResponseBody
     public ResultVO findDepartmentInfo(HttpServletRequest request, DepartmentVO department)
@@ -105,6 +170,13 @@ public class ManageController
         return service.findDepartmentInfo(sessionVO, department);
     }
 
+    /**
+     * 删除部门
+     *
+     * @param request    用户参数
+     * @param department 部门Id
+     * @return 操作的结果
+     */
     @RequestMapping(value = "/s/deleteDepartment", method = RequestMethod.POST)
     @ResponseBody
     public ResultVO deleteDepartment(HttpServletRequest request, DepartmentVO department)
@@ -114,15 +186,29 @@ public class ManageController
         return service.deleteDepartment(sessionVO, department);
     }
 
-    @RequestMapping(value = "/s/deleteMember",method = RequestMethod.POST)
+    /**
+     * 删除部门成员
+     *
+     * @param request 用户参数
+     * @param member  成员的用户Id
+     * @return 操作的结果
+     */
+    @RequestMapping(value = "/s/deleteMember", method = RequestMethod.POST)
     @ResponseBody
-    public ResultVO deleteMember(HttpServletRequest request,MemberVO member)
+    public ResultVO deleteMember(HttpServletRequest request, MemberVO member)
     {
         SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
 
-        return service.deleteMember(sessionVO,member);
+        return service.deleteMember(sessionVO, member);
     }
 
+    /**
+     * 获取职位列表
+     *
+     * @param request    用户参数
+     * @param department 部门Id
+     * @return 职位列表
+     */
     @RequestMapping(value = "/s/findPositionList", method = RequestMethod.POST)
     @ResponseBody
     public ResultVO findPositionList(HttpServletRequest request, DepartmentVO department)
@@ -132,6 +218,13 @@ public class ManageController
         return service.findPositionList(sessionVO, department);
     }
 
+    /**
+     * 获取成员详细信息
+     *
+     * @param request 用户参数
+     * @param member  成员的用户Id
+     * @return 成员详细信息
+     */
     @RequestMapping(value = "/s/findMemberInfo", method = RequestMethod.POST)
     @ResponseBody
     public ResultVO findMemberInfo(HttpServletRequest request, MemberVO member)
@@ -141,6 +234,13 @@ public class ManageController
         return service.findMemberInfo(sessionVO, member);
     }
 
+    /**
+     * 获取当前在任职位的总人数
+     *
+     * @param request  用户参数
+     * @param position 职位的Id
+     * @return
+     */
     @RequestMapping(value = "/s/countPositionMember", method = RequestMethod.POST)
     @ResponseBody
     public ResultVO countPositionMember(HttpServletRequest request, PositionVO position)
@@ -150,6 +250,13 @@ public class ManageController
         return service.countPositionMember(sessionVO, position);
     }
 
+    /**
+     * 上传身份证正面照片
+     *
+     * @param file    图片文件
+     * @param request 用户参数
+     * @return 图片文件的物理地址
+     */
     @RequestMapping(value = "/s/insertCardFront", method = RequestMethod.POST)
     @ResponseBody
     public ResultVO insertCardFront(@RequestParam(value = "cardFront", required = false) MultipartFile file, HttpServletRequest request)
@@ -159,6 +266,13 @@ public class ManageController
         return service.insertCardFront(sessionVO, file, request.getSession().getServletContext().getRealPath("/"));
     }
 
+    /**
+     * 上传身份证背面照片
+     *
+     * @param file    图片文件
+     * @param request 用户参数
+     * @return 图片文件的物理地址
+     */
     @RequestMapping(value = "/s/insertCardBack", method = RequestMethod.POST)
     @ResponseBody
     public ResultVO insertCardBack(@RequestParam(value = "cardBack", required = false) MultipartFile file, HttpServletRequest request)
@@ -168,6 +282,12 @@ public class ManageController
         return service.insertCardBack(sessionVO, file, request.getSession().getServletContext().getRealPath("/"));
     }
 
+    /**
+     * 获取身份证图片
+     *
+     * @param path 图片路径
+     * @return 图片文件
+     */
     @RequestMapping(value = "/s/getCardImage", method = RequestMethod.GET)
     public String getCardFront(String path)
     {

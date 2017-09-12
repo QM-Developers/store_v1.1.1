@@ -219,6 +219,109 @@ INSERT INTO `customer_account_request` VALUES ('3326d9224961454d82e6f925be2de7e7
 UNLOCK TABLES;
 
 --
+-- Table structure for table `customer_assist`
+--
+
+DROP TABLE IF EXISTS `customer_assist`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `customer_assist` (
+  `assist_id` varchar(35) NOT NULL,
+  `assist_title` varchar(100) NOT NULL DEFAULT '',
+  `assist_reason` varchar(255) NOT NULL DEFAULT '',
+  `user_id` varchar(35) NOT NULL,
+  `user_name` varchar(20) NOT NULL,
+  `create_date` datetime DEFAULT NULL,
+  PRIMARY KEY (`assist_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `customer_assist`
+--
+
+LOCK TABLES `customer_assist` WRITE;
+/*!40000 ALTER TABLE `customer_assist` DISABLE KEYS */;
+INSERT INTO `customer_assist` VALUES ('20a0d03c621b4ffcbd06b25f970e4e8e','搞不定','太难搞','89d9317fb3834353bcf2a507bee2eb82','张三','2017-09-11 16:22:19');
+/*!40000 ALTER TABLE `customer_assist` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `customer_assist_customer`
+--
+
+DROP TABLE IF EXISTS `customer_assist_customer`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `customer_assist_customer` (
+  `assist_id` varchar(35) NOT NULL,
+  `customer_id` varchar(35) NOT NULL,
+  `customer_name` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `customer_assist_customer`
+--
+
+LOCK TABLES `customer_assist_customer` WRITE;
+/*!40000 ALTER TABLE `customer_assist_customer` DISABLE KEYS */;
+INSERT INTO `customer_assist_customer` VALUES ('20a0d03c621b4ffcbd06b25f970e4e8e','1ddd3d18c22a4c129c2517d50e69a400','三三');
+/*!40000 ALTER TABLE `customer_assist_customer` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `customer_assist_image`
+--
+
+DROP TABLE IF EXISTS `customer_assist_image`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `customer_assist_image` (
+  `image_id` varchar(35) NOT NULL,
+  `image_path` text,
+  `assist_id` varchar(35) NOT NULL,
+  PRIMARY KEY (`image_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `customer_assist_image`
+--
+
+LOCK TABLES `customer_assist_image` WRITE;
+/*!40000 ALTER TABLE `customer_assist_image` DISABLE KEYS */;
+INSERT INTO `customer_assist_image` VALUES ('698a60e791324ea8bfce26029108b110','/upload/img/user/assist/89d9317fb3834353bcf2a507bee2eb82/698a60e791324ea8bfce26029108b110.jpg','20a0d03c621b4ffcbd06b25f970e4e8e');
+/*!40000 ALTER TABLE `customer_assist_image` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `customer_assist_user`
+--
+
+DROP TABLE IF EXISTS `customer_assist_user`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `customer_assist_user` (
+  `assist_id` varchar(35) NOT NULL,
+  `assist_result` text,
+  `user_id` varchar(35) NOT NULL,
+  `user_name` varchar(20) NOT NULL,
+  `department_name` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `customer_assist_user`
+--
+
+LOCK TABLES `customer_assist_user` WRITE;
+/*!40000 ALTER TABLE `customer_assist_user` DISABLE KEYS */;
+INSERT INTO `customer_assist_user` VALUES ('20a0d03c621b4ffcbd06b25f970e4e8e','自己解决','89d9317fb3834353bcf2a507bee2eb83','李四','财务部');
+/*!40000 ALTER TABLE `customer_assist_user` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `customer_follow`
 --
 
@@ -1933,4 +2036,4 @@ SET character_set_client = @saved_cs_client;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-09-09 18:07:13
+-- Dump completed on 2017-09-12 17:50:34

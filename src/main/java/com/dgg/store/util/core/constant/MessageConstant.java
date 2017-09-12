@@ -16,4 +16,6 @@ public class MessageConstant
 
     public static final int CONNECT_SUCCESS = 0x00000005;   // 连接成功信号
     public static final int CONNECT_FAILED = 0x00000006; // 连接失败信号
+
+    public static final String LOGOUT = "logout";
 }

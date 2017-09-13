@@ -855,6 +855,113 @@ create table push_message(
 	msg_type tinyint not null	-- 消息分类
 );
 
+
+/*==============================================================*/
+/* 系统用户表
+/*==============================================================*/
+drop table if exists sys_user;
+create table sys_user(
+	user_id varchar(35) not null primary key,	-- 用户Id
+    user_name varchar(20) not null,	-- 用户姓名
+    user_phone varchar(20) not null,	-- 手机号
+    token varchar(50) not null default ''	-- 令牌
+);
+
+/*==============================================================*/
+/* 系统角色表
+/*==============================================================*/
+drop table if exists sys_role;
+create table sys_role(
+	role_id varchar(35) not null primary key,	-- 角色Id
+    role_name varchar(20) not null,	-- 角色名称
+    role_text varchar(100) not null default ''	-- 角色说明
+);
+
+/*==============================================================*/
+/* 系统用户角色关联表
+/*==============================================================*/
+drop table if exists sys_user_role_re;
+create table sys_user_role_re(
+	role_id varchar(35) not null,	-- 角色Id
+    user_id varchar(35) not null
+);
+
+
+/*==============================================================*/
+/* 系统权限表
+/*==============================================================*/
+drop table if exists sys_permission;
+create table sys_permission(
+	permission_id varchar(35) not null primary key,	-- 权限Id
+    permission_name varchar(20) not null,	-- 权限名称
+    permission_url varchar(255) not null default '',	-- 操作地址
+    permission_text varchar(100) not null default ''	-- 权限说明
+);
+
+/*==============================================================*/
+/* 系统角色权限关联表
+/*==============================================================*/
+drop table if exists sys_role_permission_re;
+create table sys_role_permission_re(
+	role_id varchar(35) not null ,	-- 角色Id
+    permission_id varchar(35) not null	-- 权限Id
+);
+
+/*==============================================================*/
+/* 养殖类目表
+/*==============================================================*/
+drop table if exists sys_breed_type;
+create table sys_breed_type(
+	type_id varchar(35) not null primary key,	-- 类目Id
+    type_pid varchar(35) not null default '',	-- 类目上级Id
+    type_name varchar(20) not null	-- 类目名称
+);
+
+/*==============================================================*/
+/* 养殖类目选项表
+/*==============================================================*/
+drop table if exists sys_breed_type_select;
+create table sys_breed_type_select(
+	select_id varchar(35) not null primary key,	-- 选项Id
+    select_name varchar(20) not null,	-- 选项名称
+    type_id varchar(35) not null	-- 类目Id
+);
+
+/*==============================================================*/
+/* 养殖类目信息表
+/*==============================================================*/
+drop table if exists sys_breed_type_info;
+create table sys_breed_type_info(
+	info_id varchar(35) not null primary key,	-- 信息Id
+    info_name varchar(20) not null,	-- 信息名称
+    info_type varchar(35) not null	-- 填写类型
+);
+
+/*==============================================================*/
+/* 客户信息表
+/*==============================================================*/
+drop table if exists sys_customer;
+create table sys_customer(
+	customer_id varchar(35) not null primary key,	-- 客户Id
+    customer_sex varchar(5) not null,	-- 客户性别
+    customer_name varchar(20) not null,	-- 客户姓名
+    customer_phone varchar(20) not null,	-- 手机号
+    customer_identity varchar(18) not null,	-- 身份证号
+    team_id varchar(35) not null	-- 企业码
+);
+
+/*==============================================================*/
+/* 客户建账申请
+/*==============================================================*/
+drop table if exists sys_customer_account;
+create table sys_customer_account(
+	account_id	varchar(35) not null primary key,	-- 申请的Id
+    user_id	varchar(35) not null,	-- 申请人Id
+    user_name	varchar(35) not null,	-- 申请人姓名
+	customer_id varchar(35) not null,	-- 客户Id
+	customer_name varchar(35) not null,	-- 客户名称
+    account_status	tinyint not null	-- 申请状态
+);
       
 /*修改团队自增Id初值*/
 /*alter table my_team AUTO_INCREMENT=1679617;*/

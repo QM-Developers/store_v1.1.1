@@ -1469,6 +1469,247 @@ INSERT INTO `shopping_cart` VALUES ('89d9317fb3834353bcf2a507bee2eb82','22a91981
 UNLOCK TABLES;
 
 --
+-- Table structure for table `sys_breed_type`
+--
+
+DROP TABLE IF EXISTS `sys_breed_type`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `sys_breed_type` (
+  `type_id` varchar(35) NOT NULL,
+  `type_pid` varchar(35) NOT NULL DEFAULT '',
+  `type_name` varchar(20) NOT NULL,
+  PRIMARY KEY (`type_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `sys_breed_type`
+--
+
+LOCK TABLES `sys_breed_type` WRITE;
+/*!40000 ALTER TABLE `sys_breed_type` DISABLE KEYS */;
+/*!40000 ALTER TABLE `sys_breed_type` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `sys_breed_type_info`
+--
+
+DROP TABLE IF EXISTS `sys_breed_type_info`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `sys_breed_type_info` (
+  `info_id` varchar(35) NOT NULL,
+  `info_name` varchar(20) NOT NULL,
+  `info_type` varchar(35) NOT NULL,
+  PRIMARY KEY (`info_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `sys_breed_type_info`
+--
+
+LOCK TABLES `sys_breed_type_info` WRITE;
+/*!40000 ALTER TABLE `sys_breed_type_info` DISABLE KEYS */;
+/*!40000 ALTER TABLE `sys_breed_type_info` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `sys_breed_type_select`
+--
+
+DROP TABLE IF EXISTS `sys_breed_type_select`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `sys_breed_type_select` (
+  `select_id` varchar(35) NOT NULL,
+  `select_name` varchar(20) NOT NULL,
+  `type_id` varchar(35) NOT NULL,
+  PRIMARY KEY (`select_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `sys_breed_type_select`
+--
+
+LOCK TABLES `sys_breed_type_select` WRITE;
+/*!40000 ALTER TABLE `sys_breed_type_select` DISABLE KEYS */;
+/*!40000 ALTER TABLE `sys_breed_type_select` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `sys_customer`
+--
+
+DROP TABLE IF EXISTS `sys_customer`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `sys_customer` (
+  `customer_id` varchar(35) NOT NULL,
+  `customer_sex` varchar(5) NOT NULL,
+  `customer_name` varchar(20) NOT NULL,
+  `customer_phone` varchar(20) NOT NULL,
+  `customer_identity` varchar(18) NOT NULL,
+  `team_id` varchar(35) NOT NULL,
+  PRIMARY KEY (`customer_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `sys_customer`
+--
+
+LOCK TABLES `sys_customer` WRITE;
+/*!40000 ALTER TABLE `sys_customer` DISABLE KEYS */;
+/*!40000 ALTER TABLE `sys_customer` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `sys_customer_account`
+--
+
+DROP TABLE IF EXISTS `sys_customer_account`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `sys_customer_account` (
+  `account_id` varchar(35) NOT NULL,
+  `customer_id` varchar(35) NOT NULL,
+  `customer_name` varchar(35) NOT NULL,
+  `account_status` tinyint(4) NOT NULL,
+  PRIMARY KEY (`account_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `sys_customer_account`
+--
+
+LOCK TABLES `sys_customer_account` WRITE;
+/*!40000 ALTER TABLE `sys_customer_account` DISABLE KEYS */;
+/*!40000 ALTER TABLE `sys_customer_account` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `sys_permission`
+--
+
+DROP TABLE IF EXISTS `sys_permission`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `sys_permission` (
+  `permission_id` varchar(35) NOT NULL,
+  `permission_name` varchar(20) NOT NULL,
+  `permission_url` varchar(255) NOT NULL DEFAULT '',
+  `permission_text` varchar(100) NOT NULL DEFAULT '',
+  PRIMARY KEY (`permission_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `sys_permission`
+--
+
+LOCK TABLES `sys_permission` WRITE;
+/*!40000 ALTER TABLE `sys_permission` DISABLE KEYS */;
+/*!40000 ALTER TABLE `sys_permission` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `sys_role`
+--
+
+DROP TABLE IF EXISTS `sys_role`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `sys_role` (
+  `role_id` varchar(35) NOT NULL,
+  `role_name` varchar(20) NOT NULL,
+  `role_text` varchar(100) NOT NULL DEFAULT '',
+  PRIMARY KEY (`role_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `sys_role`
+--
+
+LOCK TABLES `sys_role` WRITE;
+/*!40000 ALTER TABLE `sys_role` DISABLE KEYS */;
+/*!40000 ALTER TABLE `sys_role` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `sys_role_permission_re`
+--
+
+DROP TABLE IF EXISTS `sys_role_permission_re`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `sys_role_permission_re` (
+  `role_id` varchar(35) NOT NULL,
+  `permission_id` varchar(35) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `sys_role_permission_re`
+--
+
+LOCK TABLES `sys_role_permission_re` WRITE;
+/*!40000 ALTER TABLE `sys_role_permission_re` DISABLE KEYS */;
+/*!40000 ALTER TABLE `sys_role_permission_re` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `sys_user`
+--
+
+DROP TABLE IF EXISTS `sys_user`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `sys_user` (
+  `user_id` varchar(35) NOT NULL,
+  `user_name` varchar(20) NOT NULL,
+  `user_phone` varchar(20) NOT NULL,
+  PRIMARY KEY (`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `sys_user`
+--
+
+LOCK TABLES `sys_user` WRITE;
+/*!40000 ALTER TABLE `sys_user` DISABLE KEYS */;
+/*!40000 ALTER TABLE `sys_user` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `sys_user_role_re`
+--
+
+DROP TABLE IF EXISTS `sys_user_role_re`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `sys_user_role_re` (
+  `role_id` varchar(35) NOT NULL,
+  `user_id` varchar(35) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `sys_user_role_re`
+--
+
+LOCK TABLES `sys_user_role_re` WRITE;
+/*!40000 ALTER TABLE `sys_user_role_re` DISABLE KEYS */;
+/*!40000 ALTER TABLE `sys_user_role_re` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `team_department`
 --
 
@@ -2036,4 +2277,4 @@ SET character_set_client = @saved_cs_client;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-09-12 17:50:34
+-- Dump completed on 2017-09-13 18:05:45

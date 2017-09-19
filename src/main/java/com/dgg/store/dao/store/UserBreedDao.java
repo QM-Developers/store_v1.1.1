@@ -1,7 +1,6 @@
 package com.dgg.store.dao.store;
 
-import com.dgg.store.util.pojo.UserBreed;
-import com.dgg.store.util.pojo.UserBreedExample;
+import com.dgg.store.util.pojo.*;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -29,4 +28,10 @@ public interface UserBreedDao
     int updateByPrimaryKeySelective(UserBreed record);
 
     int updateByPrimaryKey(UserBreed record);
+
+    List<SysBreedType> listBreedType(String selectId);
+
+    List<SysBreedTypeSelect> listBreedSelect(String typeId);
+
+    List<SysBreedTypeInfo> listBreedInfo(String selectId);
 }

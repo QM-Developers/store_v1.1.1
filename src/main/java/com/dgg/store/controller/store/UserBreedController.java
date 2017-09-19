@@ -86,4 +86,51 @@ public class UserBreedController
 
         return service.deleteUserBreed(sessionVO, breed);
     }
+
+    /**
+     * 获取养殖类目列表
+     *
+     * @param request 用户参数
+     * @param breed   归属选项Id
+     * @return 类目列表
+     */
+    @RequestMapping(value = "/s/listBreedType", method = RequestMethod.POST, produces = {"application/json;charset=UTF-8"})
+    @ResponseBody
+    public String listBreedType(HttpServletRequest request, UserBreed breed)
+    {
+        SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
+
+        return service.listBreedType(sessionVO, breed);
+    }
+
+    /**
+     * 获取类目选项列表
+     *
+     * @param request 用户参数
+     * @param breed   归属类目Id
+     * @return 类目选项列表
+     */
+    @RequestMapping(value = "/s/listBreedSelect", method = RequestMethod.POST, produces = {"application/json;charset=UTF-8"})
+    @ResponseBody
+    public String listBreedSelect(HttpServletRequest request, UserBreed breed)
+    {
+        SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
+
+        return service.listBreedSelect(sessionVO, breed);
+    }
+
+    /**
+     * 获取输入信息列表
+     * @param request 用户参数
+     * @param breed 归属选项Id
+     * @return 输入信息列表
+     */
+    @RequestMapping(value = "/s/listBreedInfo", method = RequestMethod.POST, produces = {"application/json;charset=UTF-8"})
+    @ResponseBody
+    public String listBreedInfo(HttpServletRequest request, UserBreed breed)
+    {
+        SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
+
+        return service.listBreedInfo(sessionVO, breed);
+    }
 }

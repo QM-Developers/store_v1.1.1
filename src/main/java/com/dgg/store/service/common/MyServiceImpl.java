@@ -1,6 +1,8 @@
 package com.dgg.store.service.common;
 
+import com.alibaba.fastjson.JSONObject;
 import com.dgg.store.dao.common.MyDao;
+import com.dgg.store.util.core.constant.Constant;
 import com.dgg.store.util.core.constant.PathConstant;
 import com.dgg.store.util.core.generator.IDGenerator;
 import com.dgg.store.util.core.upload.UploadFileUtil;
@@ -91,12 +93,12 @@ public class MyServiceImpl implements MyService
         String fileName = null;
 
         if (file == null)
-            return new ResultVO(0,sessionVO.getToken());
+            return new ResultVO(0, sessionVO.getToken());
 
         try
         {
             path.append(PathConstant.USER_HEAD_PORTRAIT_IMG_PATH).append(sessionVO.getUserId()).append("/");
-            fileName = UploadFileUtil.doUpload(file, path.toString(), basePath,IDGenerator.generator());
+            fileName = UploadFileUtil.doUpload(file, path.toString(), basePath, IDGenerator.generator());
             result = dao.updateUserImg(sessionVO.getUserId(), fileName);
         } catch (IOException e)
         {
@@ -104,6 +106,14 @@ public class MyServiceImpl implements MyService
         }
 
         return new ResultVO(result, sessionVO.getToken(), fileName);
+    }
+
+    @Override
+    public String findMyDefaultAddress(SessionVO sessionVO)
+    {
+        MyAddressVO result = dao.findMyDefaultAddress(sessionVO.getUserId());
+
+        return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), result));
     }
 
 }

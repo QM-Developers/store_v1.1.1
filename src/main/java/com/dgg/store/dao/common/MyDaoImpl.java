@@ -67,4 +67,10 @@ public class MyDaoImpl implements MyDao
     {
         return mapper.updateAddressToDefault(userId);
     }
+
+    @Override
+    public MyAddressVO findMyDefaultAddress(String userId)
+    {
+        return mapper.findMyDefaultAddress(userId);
+    }
 }

@@ -13,4 +13,6 @@ public interface ManageUnitService
     String updateManageUnit(SessionVO sessionVO, ManageUnit unit);
 
     String deleteManageUnit(SessionVO sessionVO, ManageUnit unit);
+
+    String getManageUnit(SessionVO sessionVO, ManageUnit unit);
 }

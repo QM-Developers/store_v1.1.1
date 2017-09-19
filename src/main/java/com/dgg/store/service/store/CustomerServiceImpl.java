@@ -357,5 +357,34 @@ public class CustomerServiceImpl implements CustomerService
         return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), result));
     }
 
+    @Override
+    public String updateCustomerToPromoter(SessionVO sessionVO, CustomerVO customerVO)
+    {
+        CustomerVO condition = new CustomerVO();
+
+        condition.setCustomerId(customerVO.getCustomerId());
+        condition.setPromoterId(customerVO.getPromoterId());
+
+        int result = dao.updateCustomer(customerVO);
+        if (result != 1)
+            throw new RuntimeException(Constant.STR_ADD_FAILED);
+
+        return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_SUCCESS,sessionVO.getToken()));
+    }
+
+    @Override
+    public String updateCustomerToMerchandiser(SessionVO sessionVO, CustomerVO customerVO)
+    {
+        CustomerVO condition = new CustomerVO();
+
+        condition.setCustomerId(customerVO.getCustomerId());
+        condition.setMerchandiserId(customerVO.getMerchandiserId());
+
+        int result = dao.updateCustomer(customerVO);
+        if (result != 1)
+            throw new RuntimeException(Constant.STR_ADD_FAILED);
+
+        return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_SUCCESS,sessionVO.getToken()));
+    }
 
 }

@@ -53,9 +53,10 @@ public class ManageServiceImpl implements ManageService
     @Override
     public ResultVO findMemberList(SessionVO sessionVO, MemberVO memberVO)
     {
+        memberVO.setMyTeamId(sessionVO.getMyTeamId());
         List<MemberVO> result = dao.findMemberList(memberVO);
 
-        ResultVO resultVO = new ResultVO(1, sessionVO.getToken(), result);
+        ResultVO resultVO = new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), result);
 
         return resultVO;
     }
@@ -113,7 +114,7 @@ public class ManageServiceImpl implements ManageService
     {
         DepartmentVO result = dao.findDepartmentInfo(department.getDepartmentId());
 
-        ResultVO resultVO = new ResultVO(1, sessionVO.getToken(), result);
+        ResultVO resultVO = new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), result);
 
         return resultVO;
     }

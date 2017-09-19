@@ -1,8 +1,8 @@
 package com.dgg.store.mapper;
 
-import com.dgg.store.util.pojo.UserBreed;
-import com.dgg.store.util.pojo.UserBreedExample;
 import java.util.List;
+
+import com.dgg.store.util.pojo.*;
 import org.apache.ibatis.annotations.Param;
 
 public interface UserBreedMapper {
@@ -27,4 +27,10 @@ public interface UserBreedMapper {
     int updateByPrimaryKeySelective(UserBreed record);
 
     int updateByPrimaryKey(UserBreed record);
+
+    List<SysBreedType> listBreedType(@Param("selectId") String selectId);
+
+    List<SysBreedTypeSelect> listBreedSelect(@Param("typeId") String typeId);
+
+    List<SysBreedTypeInfo> listBreedInfo(@Param("selectId") String selectId);
 }

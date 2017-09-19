@@ -24,4 +24,6 @@ public interface MyDao
     Integer updateAddressNotDefault(String userId);
 
     Integer updateAddressToDefault(String userId);
+
+    MyAddressVO findMyDefaultAddress(String userId);
 }

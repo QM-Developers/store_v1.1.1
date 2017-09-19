@@ -41,14 +41,14 @@ public class ManageUnitServiceImpl implements ManageUnitService
 
         criteria.andCustomerIdEqualTo(unit.getCustomerId());
 
-        example.setPageNum(PagingUtil.getStart(pageVO.getPageNum(),pageVO.getPageSize()));
+        example.setPageNum(PagingUtil.getStart(pageVO.getPageNum(), pageVO.getPageSize()));
         example.setPageSize(pageVO.getPageSize());
-        int pageCount = PagingUtil.getCount((int) dao.countByExample(example),pageVO.getPageSize());
+        int pageCount = PagingUtil.getCount((int) dao.countByExample(example), pageVO.getPageSize());
 
         List<ManageUnit> result = dao.selectByExample(example);
 
         JSONObject json = (JSONObject) JSONObject.toJSON(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), result));
-        json.put(KeyConstant.PAGE_COUNT,pageCount);
+        json.put(KeyConstant.PAGE_COUNT, pageCount);
 
         return json.toJSONString();
     }
@@ -73,5 +73,15 @@ public class ManageUnitServiceImpl implements ManageUnitService
         JSONObject json = (JSONObject) JSONObject.toJSON(new ResultVO(result < 1 ? 2 : 1, sessionVO.getToken()));
 
         return json.toJSONString();
+    }
+
+    @Override
+    public String getManageUnit(SessionVO sessionVO, ManageUnit unit)
+    {
+        ManageUnit result = dao.selectByPrimaryKey(unit.getManageId());
+
+        int flag = result == null ? Constant.REQUEST_FAILED : Constant.REQUEST_SUCCESS;
+
+        return JSONObject.toJSONString(new ResultVO(flag, sessionVO.getToken(), result));
     }
 }

@@ -17,8 +17,7 @@
     <result column="breed_age" jdbcType="INTEGER" property="breedAge" />
     <result column="breed_scale" jdbcType="INTEGER" property="breedScale" />
     <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
-    <result column="is_deleted" jdbcType="TINYINT" property="isDeleted" />
-    <result column="delete_date" jdbcType="TIMESTAMP" property="deleteDate" />
+    <result column="json" jdbcType="VARCHAR" property="json" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -81,7 +80,7 @@
   <sql id="Base_Column_List">
     breed_id, breed_category, breed_variety, breed_type, male_num, female_num, obstetric_table_num, 
     shed_num, empty_shed_num, competitive_brand, livestock_num, user_place_id, breed_age, 
-    breed_scale, create_date, is_deleted, delete_date
+    breed_scale, create_date, json
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
@@ -105,18 +104,20 @@
       obstetric_table_num, shed_num, empty_shed_num, 
       competitive_brand, livestock_num, user_place_id, 
       breed_age, breed_scale, create_date, 
-      is_deleted, delete_date)
+      json)
     values (#{breedId,jdbcType=VARCHAR}, #{breedCategory,jdbcType=VARCHAR}, #{breedVariety,jdbcType=VARCHAR}, 
       #{breedType,jdbcType=VARCHAR}, #{maleNum,jdbcType=INTEGER}, #{femaleNum,jdbcType=INTEGER}, 
       #{obstetricTableNum,jdbcType=INTEGER}, #{shedNum,jdbcType=INTEGER}, #{emptyShedNum,jdbcType=INTEGER}, 
       #{competitiveBrand,jdbcType=VARCHAR}, #{livestockNum,jdbcType=INTEGER}, #{userPlaceId,jdbcType=VARCHAR}, 
       #{breedAge,jdbcType=INTEGER}, #{breedScale,jdbcType=INTEGER}, #{createDate,jdbcType=TIMESTAMP}, 
-      #{isDeleted,jdbcType=TINYINT}, #{deleteDate,jdbcType=TIMESTAMP})
+      #{json,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.dgg.store.util.pojo.UserBreed">
     insert into user_breed
     <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="breedId != null">
         breed_id,
+      </if>
       <if test="breedCategory != null">
         breed_category,
       </if>
@@ -147,7 +148,9 @@
       <if test="livestockNum != null">
         livestock_num,
       </if>
+      <if test="userPlaceId != null">
         user_place_id,
+      </if>
       <if test="breedAge != null">
         breed_age,
       </if>
@@ -157,15 +160,14 @@
       <if test="createDate != null">
         create_date,
       </if>
-      <if test="isDeleted != null">
-        is_deleted,
-      </if>
-      <if test="deleteDate != null">
-        delete_date,
+      <if test="json != null">
+        json,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="breedId != null">
         #{breedId,jdbcType=VARCHAR},
+      </if>
       <if test="breedCategory != null">
         #{breedCategory,jdbcType=VARCHAR},
       </if>
@@ -196,7 +198,9 @@
       <if test="livestockNum != null">
         #{livestockNum,jdbcType=INTEGER},
       </if>
+      <if test="userPlaceId != null">
         #{userPlaceId,jdbcType=VARCHAR},
+      </if>
       <if test="breedAge != null">
         #{breedAge,jdbcType=INTEGER},
       </if>
@@ -206,11 +210,8 @@
       <if test="createDate != null">
         #{createDate,jdbcType=TIMESTAMP},
       </if>
-      <if test="isDeleted != null">
-        #{isDeleted,jdbcType=TINYINT},
-      </if>
-      <if test="deleteDate != null">
-        #{deleteDate,jdbcType=TIMESTAMP},
+      <if test="json != null">
+        #{json,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -268,11 +269,8 @@
       <if test="record.createDate != null">
         create_date = #{record.createDate,jdbcType=TIMESTAMP},
       </if>
-      <if test="record.isDeleted != null">
-        is_deleted = #{record.isDeleted,jdbcType=TINYINT},
-      </if>
-      <if test="record.deleteDate != null">
-        delete_date = #{record.deleteDate,jdbcType=TIMESTAMP},
+      <if test="record.json != null">
+        json = #{record.json,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null">
@@ -296,8 +294,7 @@
       breed_age = #{record.breedAge,jdbcType=INTEGER},
       breed_scale = #{record.breedScale,jdbcType=INTEGER},
       create_date = #{record.createDate,jdbcType=TIMESTAMP},
-      is_deleted = #{record.isDeleted,jdbcType=TINYINT},
-      delete_date = #{record.deleteDate,jdbcType=TIMESTAMP}
+      json = #{record.json,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -347,11 +344,8 @@
       <if test="createDate != null">
         create_date = #{createDate,jdbcType=TIMESTAMP},
       </if>
-      <if test="isDeleted != null">
-        is_deleted = #{isDeleted,jdbcType=TINYINT},
-      </if>
-      <if test="deleteDate != null">
-        delete_date = #{deleteDate,jdbcType=TIMESTAMP},
+      <if test="json != null">
+        json = #{json,jdbcType=VARCHAR},
       </if>
     </set>
     where breed_id = #{breedId,jdbcType=VARCHAR}
@@ -372,8 +366,7 @@
       breed_age = #{breedAge,jdbcType=INTEGER},
       breed_scale = #{breedScale,jdbcType=INTEGER},
       create_date = #{createDate,jdbcType=TIMESTAMP},
-      is_deleted = #{isDeleted,jdbcType=TINYINT},
-      delete_date = #{deleteDate,jdbcType=TIMESTAMP}
+      json = #{json,jdbcType=VARCHAR}
     where breed_id = #{breedId,jdbcType=VARCHAR}
   </update>
 
@@ -397,7 +390,21 @@
 
 
 
+  <resultMap id="SysBreedType" type="com.dgg.store.util.pojo.SysBreedType">
+    <result column="type_id" property="typeId" jdbcType="VARCHAR"/>
+    <result column="type_name" property="typeName" jdbcType="VARCHAR"/>
+  </resultMap>
 
+  <resultMap id="SysBreedTypeSelect" type="com.dgg.store.util.pojo.SysBreedTypeSelect">
+    <result column="select_Id" property="selectId" jdbcType="VARCHAR"/>
+    <result column="select_name" property="selectName" jdbcType="VARCHAR"/>
+  </resultMap>
+
+  <resultMap id="SysBreedTypeInfo" type="com.dgg.store.util.pojo.SysBreedTypeInfo">
+    <result column="info_Id" property="infoId" jdbcType="VARCHAR"/>
+    <result column="info_name" property="infoName" jdbcType="VARCHAR"/>
+    <result column="info_type" property="infoType" jdbcType="VARCHAR"/>
+  </resultMap>
 
   <select id="selectByExample" parameterType="com.dgg.store.util.pojo.UserBreedExample" resultMap="BaseResultMap">
     select
@@ -412,7 +419,27 @@
     <if test="orderByClause != null">
       order by ${orderByClause}
     </if>
-    LIMIT #{pageNum},#{pageSize}
+    <if test="pageNum != null and pageSize != null">
+      LIMIT #{pageNum},#{pageSize}
+    </if>
+  </select>
+
+  <select id="listBreedType" resultMap="SysBreedType">
+    SELECT type_id,type_name
+    FROM sys_breed_type
+    WHERE select_id = #{selectId}
+  </select>
+
+  <select id="listBreedSelect" resultMap="SysBreedTypeSelect">
+    SELECT select_id,select_name
+    FROM sys_breed_type_select
+    WHERE type_id = #{typeId}
+  </select>
+
+  <select id="listBreedInfo" resultMap="SysBreedTypeInfo">
+    SELECT info_id,info_name,info_type
+    FROM sys_breed_type_info
+    WHERE select_id = #{selectId}
   </select>
 
 </mapper>

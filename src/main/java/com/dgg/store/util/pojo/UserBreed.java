@@ -33,9 +33,11 @@ public class UserBreed {
 
     private Date createDate;
 
-    private Byte isDeleted;
+    private String json;
 
-    private Date deleteDate;
+    private String selectId;
+
+    private String typeId;
 
     public String getBreedId() {
         return breedId;
@@ -157,19 +159,31 @@ public class UserBreed {
         this.createDate = createDate;
     }
 
-    public Byte getIsDeleted() {
-        return isDeleted;
+    public String getJson() {
+        return json;
     }
 
-    public void setIsDeleted(Byte isDeleted) {
-        this.isDeleted = isDeleted;
+    public void setJson(String json) {
+        this.json = json == null ? null : json.trim();
     }
 
-    public Date getDeleteDate() {
-        return deleteDate;
+    public String getSelectId()
+    {
+        return selectId;
     }
 
-    public void setDeleteDate(Date deleteDate) {
-        this.deleteDate = deleteDate;
+    public void setSelectId(String selectId)
+    {
+        this.selectId = selectId;
+    }
+
+    public String getTypeId()
+    {
+        return typeId;
+    }
+
+    public void setTypeId(String typeId)
+    {
+        this.typeId = typeId;
     }
 }

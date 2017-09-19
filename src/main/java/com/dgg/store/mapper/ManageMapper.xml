@@ -183,10 +183,11 @@
         ON td.team_department_id = u.team_department_id
         INNER JOIN department_position dp
         ON dp.position_id = u.position_id
-        WHERE 1 = 1
+        WHERE u.my_team_id = #{myTeamId}
         <if test="departmentId != null and departmentId != ''">
             AND u.team_department_id = #{departmentId}
         </if>
+
     </select>
 
     <select id="countPositionMember" resultType="java.lang.Integer">

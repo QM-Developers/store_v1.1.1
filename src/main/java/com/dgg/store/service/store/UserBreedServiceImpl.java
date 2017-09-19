@@ -2,11 +2,11 @@ package com.dgg.store.service.store;
 
 import com.alibaba.fastjson.JSONObject;
 import com.dgg.store.dao.store.UserBreedDao;
+import com.dgg.store.util.core.constant.Constant;
 import com.dgg.store.util.core.constant.KeyConstant;
 import com.dgg.store.util.core.generator.IDGenerator;
 import com.dgg.store.util.core.page.PagingUtil;
-import com.dgg.store.util.pojo.UserBreed;
-import com.dgg.store.util.pojo.UserBreedExample;
+import com.dgg.store.util.pojo.*;
 import com.dgg.store.util.vo.core.PageVO;
 import com.dgg.store.util.vo.core.ResultVO;
 import com.dgg.store.util.vo.core.SessionVO;
@@ -72,5 +72,29 @@ public class UserBreedServiceImpl implements UserBreedService
         JSONObject json = (JSONObject) JSONObject.toJSON(new ResultVO(result < 1 ? 2 : 1, sessionVO.getToken()));
 
         return json.toJSONString();
+    }
+
+    @Override
+    public String listBreedType(SessionVO sessionVO, UserBreed breed)
+    {
+        List<SysBreedType> result = dao.listBreedType(breed.getSelectId());
+
+        return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_SUCCESS,sessionVO.getToken(),result));
+    }
+
+    @Override
+    public String listBreedSelect(SessionVO sessionVO, UserBreed breed)
+    {
+        List<SysBreedTypeSelect> result = dao.listBreedSelect(breed.getTypeId());
+
+        return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_SUCCESS,sessionVO.getToken(),result));
+    }
+
+    @Override
+    public String listBreedInfo(SessionVO sessionVO, UserBreed breed)
+    {
+        List<SysBreedTypeInfo> result = dao.listBreedInfo(breed.getSelectId());
+
+        return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_SUCCESS,sessionVO.getToken(),result));
     }
 }

@@ -90,4 +90,12 @@
         (SELECT user_address_id FROM
         (SELECT user_address_id FROM shopping_address WHERE user_id = #{userId} LIMIT 0,1) temp)
     </update>
+
+    <select id="findMyDefaultAddress" resultMap="MyAddressVO">
+        SELECT sa.user_address_id,sa.user_address_text, sa.user_address_phone,
+        sa.user_address_area,sa.user_address_name,sa.user_address_default
+        FROM shopping_address sa
+        WHERE sa.user_id = #{userId}
+        AND sa.user_address_default = 1
+    </select>
 </mapper>

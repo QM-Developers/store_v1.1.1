@@ -1069,123 +1069,73 @@ public class UserBreedExample {
             return (Criteria) this;
         }
 
-        public Criteria andIsDeletedIsNull() {
-            addCriterion("is_deleted is null");
+        public Criteria andJsonIsNull() {
+            addCriterion("json is null");
             return (Criteria) this;
         }
 
-        public Criteria andIsDeletedIsNotNull() {
-            addCriterion("is_deleted is not null");
+        public Criteria andJsonIsNotNull() {
+            addCriterion("json is not null");
             return (Criteria) this;
         }
 
-        public Criteria andIsDeletedEqualTo(Byte value) {
-            addCriterion("is_deleted =", value, "isDeleted");
+        public Criteria andJsonEqualTo(String value) {
+            addCriterion("json =", value, "json");
             return (Criteria) this;
         }
 
-        public Criteria andIsDeletedNotEqualTo(Byte value) {
-            addCriterion("is_deleted <>", value, "isDeleted");
+        public Criteria andJsonNotEqualTo(String value) {
+            addCriterion("json <>", value, "json");
             return (Criteria) this;
         }
 
-        public Criteria andIsDeletedGreaterThan(Byte value) {
-            addCriterion("is_deleted >", value, "isDeleted");
+        public Criteria andJsonGreaterThan(String value) {
+            addCriterion("json >", value, "json");
             return (Criteria) this;
         }
 
-        public Criteria andIsDeletedGreaterThanOrEqualTo(Byte value) {
-            addCriterion("is_deleted >=", value, "isDeleted");
+        public Criteria andJsonGreaterThanOrEqualTo(String value) {
+            addCriterion("json >=", value, "json");
             return (Criteria) this;
         }
 
-        public Criteria andIsDeletedLessThan(Byte value) {
-            addCriterion("is_deleted <", value, "isDeleted");
+        public Criteria andJsonLessThan(String value) {
+            addCriterion("json <", value, "json");
             return (Criteria) this;
         }
 
-        public Criteria andIsDeletedLessThanOrEqualTo(Byte value) {
-            addCriterion("is_deleted <=", value, "isDeleted");
+        public Criteria andJsonLessThanOrEqualTo(String value) {
+            addCriterion("json <=", value, "json");
             return (Criteria) this;
         }
 
-        public Criteria andIsDeletedIn(List<Byte> values) {
-            addCriterion("is_deleted in", values, "isDeleted");
+        public Criteria andJsonLike(String value) {
+            addCriterion("json like", value, "json");
             return (Criteria) this;
         }
 
-        public Criteria andIsDeletedNotIn(List<Byte> values) {
-            addCriterion("is_deleted not in", values, "isDeleted");
+        public Criteria andJsonNotLike(String value) {
+            addCriterion("json not like", value, "json");
             return (Criteria) this;
         }
 
-        public Criteria andIsDeletedBetween(Byte value1, Byte value2) {
-            addCriterion("is_deleted between", value1, value2, "isDeleted");
+        public Criteria andJsonIn(List<String> values) {
+            addCriterion("json in", values, "json");
             return (Criteria) this;
         }
 
-        public Criteria andIsDeletedNotBetween(Byte value1, Byte value2) {
-            addCriterion("is_deleted not between", value1, value2, "isDeleted");
+        public Criteria andJsonNotIn(List<String> values) {
+            addCriterion("json not in", values, "json");
             return (Criteria) this;
         }
 
-        public Criteria andDeleteDateIsNull() {
-            addCriterion("delete_date is null");
+        public Criteria andJsonBetween(String value1, String value2) {
+            addCriterion("json between", value1, value2, "json");
             return (Criteria) this;
         }
 
-        public Criteria andDeleteDateIsNotNull() {
-            addCriterion("delete_date is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andDeleteDateEqualTo(Date value) {
-            addCriterion("delete_date =", value, "deleteDate");
-            return (Criteria) this;
-        }
-
-        public Criteria andDeleteDateNotEqualTo(Date value) {
-            addCriterion("delete_date <>", value, "deleteDate");
-            return (Criteria) this;
-        }
-
-        public Criteria andDeleteDateGreaterThan(Date value) {
-            addCriterion("delete_date >", value, "deleteDate");
-            return (Criteria) this;
-        }
-
-        public Criteria andDeleteDateGreaterThanOrEqualTo(Date value) {
-            addCriterion("delete_date >=", value, "deleteDate");
-            return (Criteria) this;
-        }
-
-        public Criteria andDeleteDateLessThan(Date value) {
-            addCriterion("delete_date <", value, "deleteDate");
-            return (Criteria) this;
-        }
-
-        public Criteria andDeleteDateLessThanOrEqualTo(Date value) {
-            addCriterion("delete_date <=", value, "deleteDate");
-            return (Criteria) this;
-        }
-
-        public Criteria andDeleteDateIn(List<Date> values) {
-            addCriterion("delete_date in", values, "deleteDate");
-            return (Criteria) this;
-        }
-
-        public Criteria andDeleteDateNotIn(List<Date> values) {
-            addCriterion("delete_date not in", values, "deleteDate");
-            return (Criteria) this;
-        }
-
-        public Criteria andDeleteDateBetween(Date value1, Date value2) {
-            addCriterion("delete_date between", value1, value2, "deleteDate");
-            return (Criteria) this;
-        }
-
-        public Criteria andDeleteDateNotBetween(Date value1, Date value2) {
-            addCriterion("delete_date not between", value1, value2, "deleteDate");
+        public Criteria andJsonNotBetween(String value1, String value2) {
+            addCriterion("json not between", value1, value2, "json");
             return (Criteria) this;
         }
     }

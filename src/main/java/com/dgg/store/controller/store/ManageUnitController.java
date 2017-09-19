@@ -56,6 +56,22 @@ public class ManageUnitController
     }
 
     /**
+     * 获取经营单位详情
+     *
+     * @param request 用户参数
+     * @param unit    经营单位Id
+     * @return 经营单位详情
+     */
+    @RequestMapping(value = "/s/getManageUnit", method = RequestMethod.POST, produces = {"application/json;charset=UTF-8"})
+    @ResponseBody
+    public String getManageUnit(HttpServletRequest request, ManageUnit unit)
+    {
+        SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
+
+        return service.getManageUnit(sessionVO, unit);
+    }
+
+    /**
      * 修改经营单位
      *
      * @param request 用户参数

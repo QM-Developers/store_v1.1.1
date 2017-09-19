@@ -1,8 +1,7 @@
 package com.dgg.store.dao.store;
 
 import com.dgg.store.mapper.UserBreedMapper;
-import com.dgg.store.util.pojo.UserBreed;
-import com.dgg.store.util.pojo.UserBreedExample;
+import com.dgg.store.util.pojo.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -78,5 +77,23 @@ public class UserBreedDaoImpl implements UserBreedDao
     public int updateByPrimaryKey(UserBreed record)
     {
         return mapper.updateByPrimaryKey(record);
+    }
+
+    @Override
+    public List<SysBreedType> listBreedType(String selectId)
+    {
+        return mapper.listBreedType(selectId);
+    }
+
+    @Override
+    public List<SysBreedTypeSelect> listBreedSelect(String typeId)
+    {
+        return mapper.listBreedSelect(typeId);
+    }
+
+    @Override
+    public List<SysBreedTypeInfo> listBreedInfo(String selectId)
+    {
+        return mapper.listBreedInfo(selectId);
     }
 }

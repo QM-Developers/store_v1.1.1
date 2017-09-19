@@ -179,8 +179,7 @@ create table user_breed
    breed_age int not null default 0, -- 养殖年限
    breed_scale int not null default 0,	-- 养殖规模
    create_date			datetime not null default now(),
-   is_deleted           tinyint not null default 0,
-   delete_date          datetime
+   json text
 );
 
 /*==============================================================*/
@@ -419,12 +418,12 @@ create table my_order_list
 drop table if exists my_team;
 create table my_team
 (
-   my_team_id           varchar(35) not null,
-   my_team_name         varchar(20) not null default '',
-   my_team_create_date  datetime not null default now(),
-   my_team_area         varchar(50) not null default '',
-   my_team_address      varchar(50) not null default '',
-   lat_lng varchar(30) not null default '',
+   my_team_id           varchar(35) not null,	-- 企业码
+   my_team_name         varchar(20) not null default '',	-- 公司名称
+   my_team_create_date  datetime not null default now(),	-- 创建时间
+   my_team_area         varchar(50) not null default '',	-- 所在区域
+   my_team_address      varchar(50) not null default '',	-- 详细地址
+   lat_lng varchar(30) not null default '',	-- 经纬度
    primary key (my_team_id)
 );
 -- INSERT INTO `my_team` VALUES ('10001','','2017-05-17 15:41:47','','',1,'','');
@@ -523,16 +522,6 @@ create table user_qm_permission_re
 (
    user_id            varchar(35) not null,
    qm_permission_id   varchar(35) not null default ''
-);
-
-/*==============================================================*/
-/* 权限类型表
-/*==============================================================*/
-drop table if exists qm_permission_type;
-create table qm_permission_type
-(
-   qm_permission_type_id varchar(35) not null primary key,
-   qm_permission_type_name varchar(35) not null default ''
 );
 
 /*==============================================================*/
@@ -855,7 +844,6 @@ create table push_message(
 	msg_type tinyint not null	-- 消息分类
 );
 
-
 /*==============================================================*/
 /* 系统用户表
 /*==============================================================*/
@@ -863,6 +851,7 @@ drop table if exists sys_user;
 create table sys_user(
 	user_id varchar(35) not null primary key,	-- 用户Id
     user_name varchar(20) not null,	-- 用户姓名
+    user_password varchar(32),	-- 登陆密码
     user_phone varchar(20) not null,	-- 手机号
     token varchar(50) not null default ''	-- 令牌
 );
@@ -913,8 +902,9 @@ create table sys_role_permission_re(
 drop table if exists sys_breed_type;
 create table sys_breed_type(
 	type_id varchar(35) not null primary key,	-- 类目Id
-    type_pid varchar(35) not null default '',	-- 类目上级Id
-    type_name varchar(20) not null	-- 类目名称
+    type_name varchar(20) not null,	-- 类目名称
+    select_id varchar(35) not null	default '',	-- 养殖类目选项Id
+    select_name varchar(20) not null default ''	-- 养殖类目选项名称
 );
 
 /*==============================================================*/
@@ -924,7 +914,8 @@ drop table if exists sys_breed_type_select;
 create table sys_breed_type_select(
 	select_id varchar(35) not null primary key,	-- 选项Id
     select_name varchar(20) not null,	-- 选项名称
-    type_id varchar(35) not null	-- 类目Id
+    type_id varchar(35) not null,	-- 类目Id
+    type_name varchar(20) not null	-- 类目名称
 );
 
 /*==============================================================*/
@@ -934,7 +925,9 @@ drop table if exists sys_breed_type_info;
 create table sys_breed_type_info(
 	info_id varchar(35) not null primary key,	-- 信息Id
     info_name varchar(20) not null,	-- 信息名称
-    info_type varchar(35) not null	-- 填写类型
+    info_type varchar(35) not null,	-- 填写类型
+    select_id varchar(35) not null	default '',	-- 养殖类目选项Id
+	select_name varchar(20) not null default ''	-- 养殖类目选项名称
 );
 
 /*==============================================================*/
@@ -943,11 +936,23 @@ create table sys_breed_type_info(
 drop table if exists sys_customer;
 create table sys_customer(
 	customer_id varchar(35) not null primary key,	-- 客户Id
-    customer_sex varchar(5) not null,	-- 客户性别
-    customer_name varchar(20) not null,	-- 客户姓名
-    customer_phone varchar(20) not null,	-- 手机号
-    customer_identity varchar(18) not null,	-- 身份证号
-    team_id varchar(35) not null	-- 企业码
+    customer_sex varchar(5) not null default '',	-- 客户性别
+    customer_name varchar(20) not null default '',	-- 客户姓名
+    customer_phone varchar(20) not null default '',	-- 手机号
+    customer_identity varchar(18) not null default '',	-- 身份证号
+    team_id varchar(35) not null default '',	-- 企业码
+	team_name         varchar(20) not null default '',	-- 公司名称
+	team_create_date  datetime not null default now(),	-- 创建时间
+	team_area         varchar(50) not null default '',	-- 所在区域
+	team_address      varchar(50) not null default '',	-- 详细地址
+    department_id varchar(35) not null,	-- 部门Id
+    department_name varchar(20) not null,	-- 部门名称
+    department_type varchar(20) not null,	-- 部门类型
+    position_id varchar(35) not null,	-- 职位Id
+    position_name varchar(10) not null,	-- 职位名称
+    user_id varchar(35) not null,	-- 业务员Id
+    had_account tinyint not null,	-- 是否建账
+    role_id int not null	-- 角色Id
 );
 
 /*==============================================================*/
@@ -956,11 +961,11 @@ create table sys_customer(
 drop table if exists sys_customer_account;
 create table sys_customer_account(
 	account_id	varchar(35) not null primary key,	-- 申请的Id
-    user_id	varchar(35) not null,	-- 申请人Id
+    account_status	tinyint not null,	-- 申请状态
+	user_id	varchar(35) not null,	-- 申请人Id
     user_name	varchar(35) not null,	-- 申请人姓名
 	customer_id varchar(35) not null,	-- 客户Id
-	customer_name varchar(35) not null,	-- 客户名称
-    account_status	tinyint not null	-- 申请状态
+	customer_name varchar(35) not null	-- 客户名称
 );
       
 /*修改团队自增Id初值*/

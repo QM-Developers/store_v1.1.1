@@ -9,6 +9,7 @@
         <result column="user_sex" property="userSex" jdbcType="VARCHAR"/>
         <result column="user_birthday" property="userBirthday" jdbcType="VARCHAR"/>
         <result column="user_address" property="userAddress" jdbcType="VARCHAR"/>
+        <result column="user_img" property="userImg" jdbcType="VARCHAR"/>
         <result column="credit_rating" property="creditRating" jdbcType="INTEGER"/>
         <result column="business_address" property="businessAddress" jdbcType="VARCHAR"/>
         <result column="station" property="station" jdbcType="VARCHAR"/>
@@ -63,7 +64,7 @@
         SELECT c.customer_id,c.business_address,c.credit_rating,
         c.customer_type,c.station,c.had_account,
         u.user_name,u.user_phone,u.user_birthday,
-        u.user_address,u.user_sex
+        u.user_address,u.user_sex,u.user_img
         FROM customer c
         INNER JOIN user_view u
         ON u.user_id = c.user_id
@@ -141,6 +142,9 @@
         <set>
             <if test="promoterId != null">
                 promoter_id = #{promoterId},
+            </if>
+            <if test="merchandiserId != null">
+                merchandiser_id = #{merchandiserId}
             </if>
             <if test="businessAddress != null">
                 business_address = #{businessAddress},

@@ -40,4 +40,8 @@ public interface CustomerService
     String listCustomerAccountByProposer(SessionVO sessionVO, CustomerAccountRequest accountRequest);
 
     String listCustomerAccountByChecker(SessionVO sessionVO, CustomerAccountRequest accountRequest);
+
+    String updateCustomerToPromoter(SessionVO sessionVO, CustomerVO customerVO);
+
+    String updateCustomerToMerchandiser(SessionVO sessionVO, CustomerVO customerVO);
 }

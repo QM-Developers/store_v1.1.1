@@ -25,4 +25,6 @@ public interface MyMapper
     Integer updateAddressNotDefault(@Param("userId") String userId);
 
     Integer updateAddressToDefault(@Param("userId") String userId);
+
+    MyAddressVO findMyDefaultAddress(@Param("userId") String userId);
 }

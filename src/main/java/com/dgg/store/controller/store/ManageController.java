@@ -62,7 +62,7 @@ public class ManageController
      * 获取部门下成员列表
      *
      * @param request  用户参数
-     * @param memberVO (暂时没用到)
+     * @param memberVO 部门Id
      * @return 成员列表
      */
     @RequestMapping(value = "/s/findMemberList", method = RequestMethod.POST)

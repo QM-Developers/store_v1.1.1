@@ -296,6 +296,38 @@ public class CustomerController
     }
 
     /**
+     * 业务员移交客户
+     *
+     * @param request    用户参数
+     * @param customerVO 客户Id+新的业务员Id
+     * @return 操作的结果
+     */
+    @RequestMapping(value = "/s/updateCustomerToPromoter", method = POST, produces = {"application/json;charset=UTF-8"})
+    @ResponseBody
+    public String updateCustomerToPromoter(HttpServletRequest request, CustomerVO customerVO)
+    {
+        SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
+
+        return service.updateCustomerToPromoter(sessionVO, customerVO);
+    }
+
+    /**
+     * 跟单员移交客户
+     *
+     * @param request    用户参数
+     * @param customerVO 客户Id+新的跟单员Id
+     * @return 操作的结果
+     */
+    @RequestMapping(value = "/s/updateCustomerToMerchandiser", method = POST, produces = {"application/json;charset=UTF-8"})
+    @ResponseBody
+    public String updateCustomerToMerchandiser(HttpServletRequest request, CustomerVO customerVO)
+    {
+        SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
+
+        return service.updateCustomerToMerchandiser(sessionVO, customerVO);
+    }
+
+    /**
      * 获取图片
      *
      * @param request  用户参数

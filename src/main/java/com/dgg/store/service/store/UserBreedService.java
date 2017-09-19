@@ -13,4 +13,10 @@ public interface UserBreedService
     String updateUserBreed(SessionVO sessionVO, UserBreed breed);
 
     String deleteUserBreed(SessionVO sessionVO, UserBreed breed);
+
+    String listBreedType(SessionVO sessionVO, UserBreed breed);
+
+    String listBreedSelect(SessionVO sessionVO, UserBreed breed);
+
+    String listBreedInfo(SessionVO sessionVO, UserBreed breed);
 }

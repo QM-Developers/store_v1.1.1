@@ -82,6 +82,22 @@ public class MyController
     }
 
     /**
+     * 获取默认收货地址
+     *
+     * @param request 用户参数
+     * @return 收货地址
+     */
+    @RequestMapping(value = "user_findMyDefaultAddress", method = RequestMethod.POST, produces = {"application/json;charset=UTF-8"})
+    @ResponseBody
+    public String findMyDefaultAddress(HttpServletRequest request)
+    {
+        SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
+
+        return service.findMyDefaultAddress(sessionVO);
+    }
+
+
+    /**
      * 更新指定收货地址
      *
      * @param request   用户参数

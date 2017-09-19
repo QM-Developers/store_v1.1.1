@@ -10,6 +10,8 @@ public class CustomerVO
 
     private String promoterId;
 
+    private String merchandiserId;
+
     private String userName;
 
     private String userPhone;
@@ -21,6 +23,8 @@ public class CustomerVO
     private String userStatus;
 
     private String userAddress;
+
+    private String userImg;
 
     private String myTeamId;
 
@@ -290,5 +294,25 @@ public class CustomerVO
     public void setPageSize(Integer pageSize)
     {
         this.pageSize = pageSize;
+    }
+
+    public String getUserImg()
+    {
+        return userImg;
+    }
+
+    public void setUserImg(String userImg)
+    {
+        this.userImg = userImg;
+    }
+
+    public String getMerchandiserId()
+    {
+        return merchandiserId;
+    }
+
+    public void setMerchandiserId(String merchandiserId)
+    {
+        this.merchandiserId = merchandiserId;
     }
 }

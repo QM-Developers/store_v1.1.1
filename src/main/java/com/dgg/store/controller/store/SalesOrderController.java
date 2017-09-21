@@ -199,4 +199,36 @@ public class SalesOrderController
 
         return service.listFinanceOrderSelective(sessionVO, myOrder, pageVO);
     }
+
+    /**
+     * 根据订单号获取订单列表
+     *
+     * @param request 用户参数
+     * @param myOrder 订单号
+     * @return 订单列表
+     */
+    @RequestMapping(value = "/s/listSalesOrderByOrderNumber", method = RequestMethod.POST, produces = {"application/json;charset=UTF-8"})
+    @ResponseBody
+    public String listSalesOrderByOrderNumber(HttpServletRequest request, MyOrder myOrder)
+    {
+        SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
+
+        return service.listSalesOrderByOrderNumber(sessionVO, myOrder);
+    }
+
+    /**
+     * 根据订单号获取订单列表
+     *
+     * @param request 用户参数
+     * @param myOrder 订单号
+     * @return 订单列表
+     */
+    @RequestMapping(value = "/s/listFinanceOrderByOrderNumber", method = RequestMethod.POST, produces = {"application/json;charset=UTF-8"})
+    @ResponseBody
+    public String listFinanceOrderByOrderNumber(HttpServletRequest request, MyOrder myOrder)
+    {
+        SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
+
+        return service.listSalesOrderByOrderNumber(sessionVO, myOrder);
+    }
 }

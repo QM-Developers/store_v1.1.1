@@ -2,12 +2,11 @@ package com.dgg.store.controller.common;
 
 import com.dgg.store.service.common.GoodsBrowseService;
 import com.dgg.store.util.core.constant.Constant;
-import com.dgg.store.util.pojo.GoodsStandard;
 import com.dgg.store.util.vo.core.PageVO;
-import com.dgg.store.util.vo.goods.GoodsDetailVO;
-import com.dgg.store.util.vo.goods.GoodsTypeVO;
 import com.dgg.store.util.vo.core.ResultVO;
 import com.dgg.store.util.vo.core.SessionVO;
+import com.dgg.store.util.vo.goods.GoodsDetailVO;
+import com.dgg.store.util.vo.goods.GoodsTypeVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;

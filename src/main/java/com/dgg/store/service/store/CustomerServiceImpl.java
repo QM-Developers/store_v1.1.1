@@ -12,11 +12,11 @@ import com.dgg.store.util.core.umeng.push.PushMessageFactory;
 import com.dgg.store.util.core.umeng.push.UMengUtil;
 import com.dgg.store.util.core.upload.UploadFileUtil;
 import com.dgg.store.util.pojo.CustomerAccountRequest;
-import com.dgg.store.util.vo.customer.CustomerRepertoryVO;
-import com.dgg.store.util.vo.customer.CustomerVO;
 import com.dgg.store.util.vo.core.PageVO;
 import com.dgg.store.util.vo.core.ResultVO;
 import com.dgg.store.util.vo.core.SessionVO;
+import com.dgg.store.util.vo.customer.CustomerRepertoryVO;
+import com.dgg.store.util.vo.customer.CustomerVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -258,6 +258,7 @@ public class CustomerServiceImpl implements CustomerService
         accountRequest.setRequestId(IDGenerator.generator());
         accountRequest.setRequestStatus(CustomerConstant.ACCOUNT_STATUS_REQUEST);
         accountRequest.setCreateDate(new Date());
+        accountRequest.setRequestReason(StringUtil.isEmpty(accountRequest.getRequestReason()) ? Constant.LOGININFO : accountRequest.getRequestReason());
 
         if (ReflectUtil.hadNull(accountRequest))
             JSONObject.toJSONString(new ResultVO(Constant.REQUEST_FAILED, sessionVO.getToken()));
@@ -273,7 +274,6 @@ public class CustomerServiceImpl implements CustomerService
     public String updateCustomerAccountAccept(SessionVO sessionVO, CustomerAccountRequest accountRequest)
     {
         int result = 1;
-        int count = 2;
         int index = 0;
 
         accountRequest = dao.getCustomerAccount(accountRequest.getRequestId());
@@ -306,10 +306,8 @@ public class CustomerServiceImpl implements CustomerService
             index++;
         }
 
-        if (index - 1 < count)
+        if (index < 4)
             throw new RuntimeException(Constant.STR_ADD_FAILED);
-        else
-            result = 1;
 
         UMengUtil.sendUnicast(dao.getDeviceToken(accountRequest.getProposerId()), PushMessageFactory.getInstance(mapper).get(PushMessageConstant.CUSTOMER_PASS));
 
@@ -369,7 +367,7 @@ public class CustomerServiceImpl implements CustomerService
         if (result != 1)
             throw new RuntimeException(Constant.STR_ADD_FAILED);
 
-        return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_SUCCESS,sessionVO.getToken()));
+        return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken()));
     }
 
     @Override
@@ -384,7 +382,85 @@ public class CustomerServiceImpl implements CustomerService
         if (result != 1)
             throw new RuntimeException(Constant.STR_ADD_FAILED);
 
-        return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_SUCCESS,sessionVO.getToken()));
+        return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken()));
+    }
+
+    @Override
+    public String updateCustomerFreeze(SessionVO sessionVO, CustomerVO customerVO)
+    {
+        CustomerVO condition = new CustomerVO();
+        condition.setCustomerId(customerVO.getCustomerId());
+        condition = dao.getCustomer(condition);
+        int result = 1;
+        int index = 0;
+
+        if (CustomerConstant.HAD_ACCOUNT != condition.getHadAccount())
+            return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_FAILED, sessionVO.getToken(), result));
+
+        while (result > 0)
+        {
+            switch (index)
+            {
+                case 0:
+                    condition.setHadAccount(CustomerConstant.HAD_ACCOUNT_FREEZE);
+                    result = dao.updateCustomer(condition);
+                    break;
+                case 1:
+                    result = dao.insertRecordByUser(customerVO.getCustomerId());
+                    break;
+                case 2:
+                    result = dao.deleteUser(customerVO.getCustomerId());
+                    break;
+                default:
+                    result = 0;
+                    break;
+            }
+            index++;
+        }
+
+        if (index < 3)
+            throw new RuntimeException(Constant.STR_ADD_FAILED);
+
+        return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken()));
+    }
+
+    @Override
+    public String updateCustomerUnfreeze(SessionVO sessionVO, CustomerVO customerVO)
+    {
+        CustomerVO condition = new CustomerVO();
+        condition.setCustomerId(customerVO.getCustomerId());
+        condition = dao.getCustomer(condition);
+        int result = 1;
+        int index = 0;
+
+        if (CustomerConstant.HAD_ACCOUNT_FREEZE != condition.getHadAccount())
+            return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_FAILED, sessionVO.getToken(), result));
+
+        while (result > 0)
+        {
+            switch (index)
+            {
+                case 0:
+                    condition.setHadAccount(CustomerConstant.HAD_ACCOUNT);
+                    result = dao.updateCustomer(condition);
+                    break;
+                case 1:
+                    result = dao.updateRecordToAccount(customerVO.getCustomerId());
+                    break;
+                case 2:
+                    result = dao.deleteRecord(customerVO.getCustomerId());
+                    break;
+                default:
+                    result = 0;
+                    break;
+            }
+            index++;
+        }
+
+        if (index < 3)
+            throw new RuntimeException(Constant.STR_ADD_FAILED);
+
+        return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken()));
     }
 
 }

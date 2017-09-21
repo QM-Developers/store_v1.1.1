@@ -1,2 +1,2 @@
-select * from user
+select * from sys_user
 ;

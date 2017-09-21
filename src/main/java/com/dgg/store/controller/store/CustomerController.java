@@ -328,6 +328,37 @@ public class CustomerController
     }
 
     /**
+     * 冻结客户账号
+     *
+     * @param request    用户参数
+     * @param customerVO 客户Id
+     * @return 操作的结果
+     */
+    @RequestMapping(value = "/s/updateCustomerFreeze", method = POST, produces = {"application/json;charset=UTF-8"})
+    @ResponseBody
+    public String updateCustomerFreeze(HttpServletRequest request, CustomerVO customerVO)
+    {
+        SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
+
+        return service.updateCustomerFreeze(sessionVO, customerVO);
+    }
+
+    /**
+     * 解冻客户账号
+     * @param request 用户参数
+     * @param customerVO 客户Id
+     * @return 操作的结果
+     */
+    @RequestMapping(value = "/s/updateCustomerUnfreeze", method = POST, produces = {"application/json;charset=UTF-8"})
+    @ResponseBody
+    public String updateCustomerUnfreeze(HttpServletRequest request, CustomerVO customerVO)
+    {
+        SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
+
+        return service.updateCustomerUnfreeze(sessionVO, customerVO);
+    }
+
+    /**
      * 获取图片
      *
      * @param request  用户参数

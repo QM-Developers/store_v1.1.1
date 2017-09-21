@@ -40,14 +40,14 @@ public class UserBreedServiceImpl implements UserBreedService
 
         criteria.andUserPlaceIdEqualTo(breed.getUserPlaceId());
 
-        example.setPageNum(PagingUtil.getStart(pageVO.getPageNum(),pageVO.getPageSize()));
+        example.setPageNum(PagingUtil.getStart(pageVO.getPageNum(), pageVO.getPageSize()));
         example.setPageSize(pageVO.getPageSize());
-        int pageCount = PagingUtil.getCount((int) dao.countByExample(example),pageVO.getPageSize());
+        int pageCount = PagingUtil.getCount((int) dao.countByExample(example), pageVO.getPageSize());
 
         List<UserBreed> result = dao.selectByExample(example);
 
         JSONObject json = (JSONObject) JSONObject.toJSON(new ResultVO(1, sessionVO.getToken(), result));
-        json.put(KeyConstant.PAGE_COUNT,pageCount);
+        json.put(KeyConstant.PAGE_COUNT, pageCount);
 
         return json.toJSONString();
     }
@@ -79,7 +79,7 @@ public class UserBreedServiceImpl implements UserBreedService
     {
         List<SysBreedType> result = dao.listBreedType(breed.getSelectId());
 
-        return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_SUCCESS,sessionVO.getToken(),result));
+        return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), result));
     }
 
     @Override
@@ -87,7 +87,7 @@ public class UserBreedServiceImpl implements UserBreedService
     {
         List<SysBreedTypeSelect> result = dao.listBreedSelect(breed.getTypeId());
 
-        return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_SUCCESS,sessionVO.getToken(),result));
+        return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), result));
     }
 
     @Override
@@ -95,6 +95,49 @@ public class UserBreedServiceImpl implements UserBreedService
     {
         List<SysBreedTypeInfo> result = dao.listBreedInfo(breed.getSelectId());
 
-        return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_SUCCESS,sessionVO.getToken(),result));
+        return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), result));
+    }
+
+    @Override
+    public String insertUserBreedJson(SessionVO sessionVO, UserBreed breed)
+    {
+        breed.setBreedId(IDGenerator.generator());
+        int result = dao.insertSelective(breed);
+
+        JSONObject json = (JSONObject) JSONObject.toJSON(new ResultVO(result < 1 ? 2 : 1, sessionVO.getToken(), breed.getBreedId()));
+
+        return json.toJSONString();
+    }
+
+    @Override
+    public String updateUserBreedJson(SessionVO sessionVO, UserBreed breed)
+    {
+        breed.setUserPlaceId(null);
+
+        int result = dao.updateByPrimaryKeySelective(breed);
+
+        JSONObject json = (JSONObject) JSONObject.toJSON(new ResultVO(result < 1 ? 2 : 1, sessionVO.getToken()));
+
+        return json.toJSONString();
+    }
+
+    @Override
+    public String listUserBreedJson(SessionVO sessionVO, UserBreed breed, PageVO pageVO)
+    {
+        UserBreedExample example = new UserBreedExample();
+        UserBreedExample.Criteria criteria = example.createCriteria();
+
+        criteria.andUserPlaceIdEqualTo(breed.getUserPlaceId());
+
+        example.setPageNum(PagingUtil.getStart(pageVO.getPageNum(), pageVO.getPageSize()));
+        example.setPageSize(pageVO.getPageSize());
+        int pageCount = PagingUtil.getCount((int) dao.countByExample(example), pageVO.getPageSize());
+
+        List<UserBreed> result = dao.selectByExample(example);
+
+        JSONObject json = (JSONObject) JSONObject.toJSON(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), result));
+        json.put(KeyConstant.PAGE_COUNT, pageCount);
+
+        return json.toJSONString();
     }
 }

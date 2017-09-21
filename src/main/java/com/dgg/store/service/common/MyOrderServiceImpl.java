@@ -20,8 +20,7 @@ import com.dgg.store.util.vo.order.MyOrderListVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @Service
 public class MyOrderServiceImpl implements MyOrderService
@@ -42,10 +41,18 @@ public class MyOrderServiceImpl implements MyOrderService
         JSONArray goods = JSON.parseArray(myOrder.getGoods());
         JSONObject json;
 
-        if (!hadEnoughRepertory(sessionVO, goods))
-            return JSONObject.toJSONString(new ResultVO(OrderConstant.REPERTORY_NOT_ENOUGH, sessionVO.getToken()));
+//        if (!hadEnoughRepertory(sessionVO, goods))
+//            return JSONObject.toJSONString(new ResultVO(OrderConstant.REPERTORY_NOT_ENOUGH, sessionVO.getToken()));
 
+        // 生成订单号
+        int index = 0;
+        String orderNumber = String.format("%08d", new Random(index).nextInt(100000000));
+        while(dao.countOrderNumber(orderNumber) > 0)
+            orderNumber = String.format("%08d", new Random(++index).nextInt(100000000));
+
+        // 设置订单参数
         myOrder.setUserId(sessionVO.getUserId());
+        myOrder.setOrderNumber(orderNumber);
         myOrder.setOrderId(IDGenerator.generator());
         myOrder.setOrderStatus(OrderConstant.WAITING_CHECK);
         myOrder.setCreateDate(new Date());
@@ -82,13 +89,13 @@ public class MyOrderServiceImpl implements MyOrderService
         switch (myOrder.getPaymentType())
         {
             case OrderConstant.PAYMENT_TRANSFER:
-                UMengUtil.sendUnicast(dao.getFinanceDeviceToken(sessionVO.getMyTeamId(),QMPermissionConstant.FINANCE_CHECK), PushMessageFactory.getInstance(mapper).get(PushMessageConstant.ORDER_FINANCE_NEW));
+                UMengUtil.sendUnicast(dao.getFinanceDeviceToken(sessionVO.getMyTeamId(), QMPermissionConstant.FINANCE_CHECK), PushMessageFactory.getInstance(mapper).get(PushMessageConstant.ORDER_FINANCE_NEW));
                 break;
             case OrderConstant.PAYMENT_MONTHLY:
-                UMengUtil.sendUnicast(dao.getSalesDeviceToken(sessionVO.getUserId(),sessionVO.getMyTeamId()), PushMessageFactory.getInstance(mapper).get(PushMessageConstant.ORDER_SALES_NEW));
+                UMengUtil.sendUnicast(dao.getSalesDeviceToken(sessionVO.getUserId(), sessionVO.getMyTeamId()), PushMessageFactory.getInstance(mapper).get(PushMessageConstant.ORDER_SALES_NEW));
                 break;
             case OrderConstant.PAYMENT_DESTINATION:
-                UMengUtil.sendUnicast(dao.getSalesDeviceToken(sessionVO.getUserId(),sessionVO.getMyTeamId()), PushMessageFactory.getInstance(mapper).get(PushMessageConstant.ORDER_SALES_NEW));
+                UMengUtil.sendUnicast(dao.getSalesDeviceToken(sessionVO.getUserId(), sessionVO.getMyTeamId()), PushMessageFactory.getInstance(mapper).get(PushMessageConstant.ORDER_SALES_NEW));
                 break;
         }
 
@@ -138,8 +145,8 @@ public class MyOrderServiceImpl implements MyOrderService
 
         criteria.andUserIdEqualTo(sessionVO.getUserId());
 
-        example.setStart(PagingUtil.getStart(pageVO.getPageNum(), pageVO.getPageSize()));
-        example.setEnd(pageVO.getPageSize());
+        example.setPageNum(PagingUtil.getStart(pageVO.getPageNum(), pageVO.getPageSize()));
+        example.setPageSize(pageVO.getPageSize());
         int pageCount = PagingUtil.getCount((int) dao.countByExample(example), pageVO.getPageSize());
 
         List<MyOrder> result = dao.selectByExample(example);
@@ -256,7 +263,7 @@ public class MyOrderServiceImpl implements MyOrderService
         else
             result = 1;
 
-        UMengUtil.sendUnicast(dao.getSalesDeviceToken(sessionVO.getUserId(),sessionVO.getMyTeamId()), PushMessageFactory.getInstance(mapper).get(PushMessageConstant.REFUSE_SALES_NEW));
+        UMengUtil.sendUnicast(dao.getSalesDeviceToken(sessionVO.getUserId(), sessionVO.getMyTeamId()), PushMessageFactory.getInstance(mapper).get(PushMessageConstant.REFUSE_SALES_NEW));
 
         return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken()));
     }
@@ -309,8 +316,8 @@ public class MyOrderServiceImpl implements MyOrderService
         MyOrderExample example = new MyOrderExample();
         MyOrderExample.Criteria criteria = example.createCriteria();
 
-        example.setStart(PagingUtil.getStart(pageVO.getPageNum(), pageVO.getPageSize()));
-        example.setEnd(pageVO.getPageSize());
+        example.setPageNum(PagingUtil.getStart(pageVO.getPageNum(), pageVO.getPageSize()));
+        example.setPageSize(pageVO.getPageSize());
 
         criteria.andUserIdEqualTo(sessionVO.getUserId());
         if (myOrder.getOrderStatus() != null)
@@ -357,6 +364,23 @@ public class MyOrderServiceImpl implements MyOrderService
             temp.setLatLng(latLng);
 
         return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), result));
+    }
+
+    @Override
+    public String listMyOrderByOrderNumber(SessionVO sessionVO, MyOrder myOrder, PageVO pageVO)
+    {
+        MyOrderExample example = new MyOrderExample();
+        MyOrderExample.Criteria criteria = example.createCriteria();
+
+        criteria.andUserIdEqualTo(sessionVO.getUserId());
+        criteria.andOrderNumberEqualTo(myOrder.getOrderNumber());
+
+        List<MyOrder> result = dao.selectByExample(example);
+        result = getOrderList(result);
+
+        JSONObject json = (JSONObject) JSONObject.toJSON(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), result));
+
+        return json.toJSONString();
     }
 
     private List<MyOrder> getOrderList(List<MyOrder> data)

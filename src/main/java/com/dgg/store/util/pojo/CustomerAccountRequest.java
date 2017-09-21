@@ -25,6 +25,8 @@ public class CustomerAccountRequest {
 
     private Date createDate;
 
+    private String requestReason;
+
     public String getRequestId() {
         return requestId;
     }
@@ -111,5 +113,15 @@ public class CustomerAccountRequest {
 
     public void setCreateDate(Date createDate) {
         this.createDate = createDate;
+    }
+
+    public String getRequestReason()
+    {
+        return requestReason;
+    }
+
+    public void setRequestReason(String requestReason)
+    {
+        this.requestReason = requestReason;
     }
 }

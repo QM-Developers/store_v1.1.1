@@ -17,7 +17,7 @@ create table customer
    business_address		varchar(50) not null default '',	-- 经营地址
    station	varchar(20) not null default '',	-- 从事岗位
    credit_rating		tinyint not null default 0,	-- 客户评级
-   had_account tinyint not null default 0,	-- 是否建账 0为未建账 1为已建账
+   had_account tinyint not null default 0,	-- 是否建账 0为未建账 1为已建账 2账号被冻结
    update_date datetime,	-- 更新时间
    update_count int not null default 0	-- 更新次数
 );
@@ -198,7 +198,8 @@ create table customer_account_request
    checker_id varchar(35) not null,	-- 审核员Id
    checker_name varchar(20) not null,	-- 审核员名称
    request_status tinyint not null,	-- 申请状态
-   create_date datetime not null -- 申请时间
+   create_date datetime not null, -- 申请时间
+   request_reason varchar(255) not null default ''	-- 申请事由
 );
 
 /*==============================================================*/
@@ -380,6 +381,7 @@ create table my_order
    order_id varchar(35) not null primary key,	-- 订单Id
    order_status tinyint not null default 0,	 -- 订单状态
    order_status_before tinyint,	-- 订单状态保存
+   order_number varchar(10) not null,	-- 订单号
    user_id varchar(35) not null default '',	-- 用户Id
    user_name varchar(20) not null,	-- 用户姓名
    seller_message varchar(150) not null default '',	-- 卖家留言
@@ -421,8 +423,8 @@ create table my_team
    my_team_id           varchar(35) not null,	-- 企业码
    my_team_name         varchar(20) not null default '',	-- 公司名称
    my_team_create_date  datetime not null default now(),	-- 创建时间
-   my_team_area         varchar(50) not null default '',	-- 所在区域
-   my_team_address      varchar(50) not null default '',	-- 详细地址
+   my_team_area         varchar(100) not null default '',	-- 所在区域
+   my_team_address      varchar(100) not null default '',	-- 详细地址
    lat_lng varchar(30) not null default '',	-- 经纬度
    primary key (my_team_id)
 );
@@ -903,7 +905,7 @@ drop table if exists sys_breed_type;
 create table sys_breed_type(
 	type_id varchar(35) not null primary key,	-- 类目Id
     type_name varchar(20) not null,	-- 类目名称
-    select_id varchar(35) not null	default '',	-- 养殖类目选项Id
+    select_id varchar(35) not null default '',	-- 养殖类目选项Id
     select_name varchar(20) not null default ''	-- 养殖类目选项名称
 );
 
@@ -926,7 +928,7 @@ create table sys_breed_type_info(
 	info_id varchar(35) not null primary key,	-- 信息Id
     info_name varchar(20) not null,	-- 信息名称
     info_type varchar(35) not null,	-- 填写类型
-    select_id varchar(35) not null	default '',	-- 养殖类目选项Id
+    select_id varchar(35) not null default '',	-- 养殖类目选项Id
 	select_name varchar(20) not null default ''	-- 养殖类目选项名称
 );
 
@@ -960,10 +962,10 @@ create table sys_customer(
 /*==============================================================*/
 drop table if exists sys_customer_account;
 create table sys_customer_account(
-	account_id	varchar(35) not null primary key,	-- 申请的Id
-    account_status	tinyint not null,	-- 申请状态
-	user_id	varchar(35) not null,	-- 申请人Id
-    user_name	varchar(35) not null,	-- 申请人姓名
+	account_id varchar(35) not null primary key,	-- 申请的Id
+    account_status tinyint not null,	-- 申请状态
+	user_id varchar(35) not null,	-- 申请人Id
+    user_name varchar(35) not null,	-- 申请人姓名
 	customer_id varchar(35) not null,	-- 客户Id
 	customer_name varchar(35) not null	-- 客户名称
 );

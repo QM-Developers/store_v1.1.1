@@ -18,6 +18,8 @@ public class ShoppingCartVO
 
     private Integer standardCount;
 
+    private Integer standardWeight;
+
     public String getGoodsId()
     {
         return goodsId;
@@ -96,5 +98,15 @@ public class ShoppingCartVO
     public void setStandardCount(Integer standardCount)
     {
         this.standardCount = standardCount;
+    }
+
+    public Integer getStandardWeight()
+    {
+        return standardWeight;
+    }
+
+    public void setStandardWeight(Integer standardWeight)
+    {
+        this.standardWeight = standardWeight;
     }
 }

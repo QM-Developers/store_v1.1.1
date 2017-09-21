@@ -5,13 +5,15 @@ import java.util.Date;
 import java.util.List;
 
 public class MyOrderExample {
+    private Integer pageNum;
+
+    private Integer pageSize;
+
     protected String orderByClause;
 
     protected boolean distinct;
 
     protected List<Criteria> oredCriteria;
-    private int start;
-    private int end;
 
     public MyOrderExample() {
         oredCriteria = new ArrayList<Criteria>();
@@ -64,26 +66,6 @@ public class MyOrderExample {
         oredCriteria.clear();
         orderByClause = null;
         distinct = false;
-    }
-
-    public void setStart(int start)
-    {
-        this.start = start;
-    }
-
-    public int getStart()
-    {
-        return start;
-    }
-
-    public void setEnd(int end)
-    {
-        this.end = end;
-    }
-
-    public int getEnd()
-    {
-        return end;
     }
 
     protected abstract static class GeneratedCriteria {
@@ -917,6 +899,76 @@ public class MyOrderExample {
             return (Criteria) this;
         }
 
+        public Criteria andLogisticsStatusIsNull() {
+            addCriterion("logistics_status is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andLogisticsStatusIsNotNull() {
+            addCriterion("logistics_status is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andLogisticsStatusEqualTo(String value) {
+            addCriterion("logistics_status =", value, "logisticsStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andLogisticsStatusNotEqualTo(String value) {
+            addCriterion("logistics_status <>", value, "logisticsStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andLogisticsStatusGreaterThan(String value) {
+            addCriterion("logistics_status >", value, "logisticsStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andLogisticsStatusGreaterThanOrEqualTo(String value) {
+            addCriterion("logistics_status >=", value, "logisticsStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andLogisticsStatusLessThan(String value) {
+            addCriterion("logistics_status <", value, "logisticsStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andLogisticsStatusLessThanOrEqualTo(String value) {
+            addCriterion("logistics_status <=", value, "logisticsStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andLogisticsStatusLike(String value) {
+            addCriterion("logistics_status like", value, "logisticsStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andLogisticsStatusNotLike(String value) {
+            addCriterion("logistics_status not like", value, "logisticsStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andLogisticsStatusIn(List<String> values) {
+            addCriterion("logistics_status in", values, "logisticsStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andLogisticsStatusNotIn(List<String> values) {
+            addCriterion("logistics_status not in", values, "logisticsStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andLogisticsStatusBetween(String value1, String value2) {
+            addCriterion("logistics_status between", value1, value2, "logisticsStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andLogisticsStatusNotBetween(String value1, String value2) {
+            addCriterion("logistics_status not between", value1, value2, "logisticsStatus");
+            return (Criteria) this;
+        }
+
         public Criteria andCreateDateIsNull() {
             addCriterion("create_date is null");
             return (Criteria) this;
@@ -1096,6 +1148,76 @@ public class MyOrderExample {
             addCriterion("finish_date not between", value1, value2, "finishDate");
             return (Criteria) this;
         }
+
+        public Criteria andOrderNumberIsNull() {
+            addCriterion("order_number is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrderNumberIsNotNull() {
+            addCriterion("order_number is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrderNumberEqualTo(String value) {
+            addCriterion("order_number =", value, "orderNumber");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrderNumberNotEqualTo(String value) {
+            addCriterion("order_number <>", value, "orderNumber");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrderNumberGreaterThan(String value) {
+            addCriterion("order_number >", value, "orderNumber");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrderNumberGreaterThanOrEqualTo(String value) {
+            addCriterion("order_number >=", value, "orderNumber");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrderNumberLessThan(String value) {
+            addCriterion("order_number <", value, "orderNumber");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrderNumberLessThanOrEqualTo(String value) {
+            addCriterion("order_number <=", value, "orderNumber");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrderNumberLike(String value) {
+            addCriterion("order_number like", value, "orderNumber");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrderNumberNotLike(String value) {
+            addCriterion("order_number not like", value, "orderNumber");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrderNumberIn(List<String> values) {
+            addCriterion("order_number in", values, "orderNumber");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrderNumberNotIn(List<String> values) {
+            addCriterion("order_number not in", values, "orderNumber");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrderNumberBetween(String value1, String value2) {
+            addCriterion("order_number between", value1, value2, "orderNumber");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrderNumberNotBetween(String value1, String value2) {
+            addCriterion("order_number not between", value1, value2, "orderNumber");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {
@@ -1189,5 +1311,25 @@ public class MyOrderExample {
         protected Criterion(String condition, Object value, Object secondValue) {
             this(condition, value, secondValue, null);
         }
+    }
+
+    public Integer getPageNum()
+    {
+        return pageNum;
+    }
+
+    public void setPageNum(Integer pageNum)
+    {
+        this.pageNum = pageNum;
+    }
+
+    public Integer getPageSize()
+    {
+        return pageSize;
+    }
+
+    public void setPageSize(Integer pageSize)
+    {
+        this.pageSize = pageSize;
     }
 }

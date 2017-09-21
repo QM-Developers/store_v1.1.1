@@ -121,8 +121,9 @@ public class UserBreedController
 
     /**
      * 获取输入信息列表
+     *
      * @param request 用户参数
-     * @param breed 归属选项Id
+     * @param breed   归属选项Id
      * @return 输入信息列表
      */
     @RequestMapping(value = "/s/listBreedInfo", method = RequestMethod.POST, produces = {"application/json;charset=UTF-8"})
@@ -133,4 +134,54 @@ public class UserBreedController
 
         return service.listBreedInfo(sessionVO, breed);
     }
+
+    /**
+     * 添加养殖信息
+     *
+     * @param request 用户参数
+     * @param breed   要添加的养殖信息
+     * @return 操作的结果+养殖信息Id
+     */
+    @RequestMapping(value = "/s/saveUserBreedJson", method = RequestMethod.POST, produces = {"application/json;charset=UTF-8"})
+    @ResponseBody
+    public String saveUserBreedJson(HttpServletRequest request, UserBreed breed)
+    {
+        SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
+
+        return service.insertUserBreedJson(sessionVO, breed);
+    }
+
+    /**
+     * 修改养殖信息
+     *
+     * @param request 用户参数
+     * @param breed   养殖信息Id+要修改的养殖信息
+     * @return 操作的结果
+     */
+    @RequestMapping(value = "/s/updateUserBreedJson", method = RequestMethod.POST, produces = {"application/json;charset=UTF-8"})
+    @ResponseBody
+    public String updateUserBreedJson(HttpServletRequest request, UserBreed breed)
+    {
+        SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
+
+        return service.updateUserBreedJson(sessionVO, breed);
+    }
+
+    /**
+     * 获取养殖信息列表
+     *
+     * @param request 用户参数
+     * @param breed   场地Id
+     * @param pageVO  分页参数
+     * @return 养殖信息列表
+     */
+    @RequestMapping(value = "/s/listUserBreedJson", method = RequestMethod.POST, produces = {"application/json;charset=UTF-8"})
+    @ResponseBody
+    public String listUserBreedJson(HttpServletRequest request, UserBreed breed, PageVO pageVO)
+    {
+        SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
+
+        return service.listUserBreedJson(sessionVO, breed, pageVO);
+    }
+
 }

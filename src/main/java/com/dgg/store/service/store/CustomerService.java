@@ -44,4 +44,8 @@ public interface CustomerService
     String updateCustomerToPromoter(SessionVO sessionVO, CustomerVO customerVO);
 
     String updateCustomerToMerchandiser(SessionVO sessionVO, CustomerVO customerVO);
+
+    String updateCustomerFreeze(SessionVO sessionVO, CustomerVO customerVO);
+
+    String updateCustomerUnfreeze(SessionVO sessionVO, CustomerVO customerVO);
 }

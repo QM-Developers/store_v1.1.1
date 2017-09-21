@@ -6,6 +6,8 @@ import java.util.Date;
 import java.util.List;
 
 public class MyOrder {
+    private String memberId;
+
     private String orderId;
 
     private Byte orderStatus;
@@ -30,21 +32,19 @@ public class MyOrder {
 
     private String shoppingAddress;
 
+    private String logisticsStatus;
+
     private Date createDate;
 
     private Date refundDate;
 
     private Date finishDate;
 
-    private String logisticsStatus;
+    private String orderNumber;
 
     private List<MyOrderListVO> orderList;
 
     private String goods;
-
-    private String merchandiserId;
-
-    private String merchandiserName;
 
     public String getOrderId() {
         return orderId;
@@ -142,6 +142,14 @@ public class MyOrder {
         this.shoppingAddress = shoppingAddress == null ? null : shoppingAddress.trim();
     }
 
+    public String getLogisticsStatus() {
+        return logisticsStatus;
+    }
+
+    public void setLogisticsStatus(String logisticsStatus) {
+        this.logisticsStatus = logisticsStatus == null ? null : logisticsStatus.trim();
+    }
+
     public Date getCreateDate() {
         return createDate;
     }
@@ -166,12 +174,12 @@ public class MyOrder {
         this.finishDate = finishDate;
     }
 
-    public String getLogisticsStatus() {
-        return logisticsStatus;
+    public String getOrderNumber() {
+        return orderNumber;
     }
 
-    public void setLogisticsStatus(String logisticsStatus) {
-        this.logisticsStatus = logisticsStatus == null ? null : logisticsStatus.trim();
+    public void setOrderNumber(String orderNumber) {
+        this.orderNumber = orderNumber == null ? null : orderNumber.trim();
     }
 
     public void setOrderList(List<MyOrderListVO> orderList)
@@ -194,23 +202,13 @@ public class MyOrder {
         this.goods = goods;
     }
 
-    public String getMerchandiserId()
+    public String getMemberId()
     {
-        return merchandiserId;
+        return memberId;
     }
 
-    public void setMerchandiserId(String merchandiserId)
+    public void setMemberId(String memberId)
     {
-        this.merchandiserId = merchandiserId;
-    }
-
-    public String getMerchandiserName()
-    {
-        return merchandiserName;
-    }
-
-    public void setMerchandiserName(String merchandiserName)
-    {
-        this.merchandiserName = merchandiserName;
+        this.memberId = memberId;
     }
 }

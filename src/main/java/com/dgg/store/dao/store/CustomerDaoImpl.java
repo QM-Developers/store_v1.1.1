@@ -177,4 +177,16 @@ public class CustomerDaoImpl implements CustomerDao
         return mapper.getDeviceToken(merchandiserId);
     }
 
+    @Override
+    public int insertRecordByUser(String customerId)
+    {
+        return mapper.insertRecordByUser(customerId);
+    }
+
+    @Override
+    public int deleteUser(String customerId)
+    {
+        return mapper.deleteUser(customerId);
+    }
+
 }

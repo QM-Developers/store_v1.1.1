@@ -209,13 +209,14 @@
     <result column="standard_name" property="standardName" jdbcType="VARCHAR"/>
     <result column="standard_price" property="standardPrice" jdbcType="FLOAT"/>
     <result column="standard_count" property="standardCount" jdbcType="INTEGER"/>
+    <result column="standard_weight" property="standardWeight" jdbcType="INTEGER"/>
   </resultMap>
 
   <select id="listGoodsFromCart" resultMap="ShoppingCartVO">
     SELECT sc.goods_num,
         gi.goods_id,gi.goods_name,
         gs.standard_id,gs.standard_name,gs.standard_price,
-        gs.standard_count
+        gs.standard_count,gs.standard_weight
     FROM shopping_cart sc
     INNER JOIN goodsinfo gi
     ON gi.goods_id = sc.goods_id

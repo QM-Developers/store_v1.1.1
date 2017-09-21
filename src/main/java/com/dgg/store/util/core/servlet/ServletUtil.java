@@ -6,7 +6,7 @@ import java.io.PrintWriter;
 
 public class ServletUtil
 {
-    public static final void printData(HttpServletResponse response, Object data) throws IOException
+    public static final void printData(HttpServletResponse response, Object data)
     {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = null;

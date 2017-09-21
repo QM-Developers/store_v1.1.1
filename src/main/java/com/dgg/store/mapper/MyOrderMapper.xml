@@ -14,14 +14,11 @@
     <result column="payment_type" jdbcType="TINYINT" property="paymentType" />
     <result column="payment_status" jdbcType="TINYINT" property="paymentStatus" />
     <result column="shopping_address" jdbcType="VARCHAR" property="shoppingAddress" />
+    <result column="logistics_status" jdbcType="VARCHAR" property="logisticsStatus" />
     <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
     <result column="refund_date" jdbcType="TIMESTAMP" property="refundDate" />
     <result column="finish_date" jdbcType="TIMESTAMP" property="finishDate" />
-    <result column="merchandiser_id" jdbcType="TIMESTAMP" property="merchandiserId" />
-    <result column="merchandiser_name" jdbcType="TIMESTAMP" property="merchandiserName" />
-  </resultMap>
-  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.dgg.store.util.pojo.MyOrder">
-    <result column="logistics_status" jdbcType="LONGVARCHAR" property="logisticsStatus" />
+    <result column="order_number" jdbcType="VARCHAR" property="orderNumber" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -84,46 +81,11 @@
   <sql id="Base_Column_List">
     order_id, order_status, order_status_before, user_id, user_name, seller_message,
     buyer_message, refund_message, freight, payment_type, payment_status, shopping_address,
-    create_date, refund_date, finish_date
+    logistics_status, create_date, refund_date, finish_date, order_number
   </sql>
-  <sql id="Blob_Column_List">
-    logistics_status
-  </sql>
-  <select id="selectByExampleWithBLOBs" parameterType="com.dgg.store.util.pojo.MyOrderExample" resultMap="ResultMapWithBLOBs">
-    select
-    <if test="distinct">
-      distinct
-    </if>
-    <include refid="Base_Column_List" />
-    ,
-    <include refid="Blob_Column_List" />
-    from my_order
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-    <if test="orderByClause != null">
-      order by ${orderByClause}
-    </if>
-  </select>
-  <select id="selectByExample" parameterType="com.dgg.store.util.pojo.MyOrderExample" resultMap="BaseResultMap">
-    select
-    <if test="distinct">
-      distinct
-    </if>
-    <include refid="Base_Column_List" />
-    from my_order
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-    <if test="orderByClause != null">
-      order by ${orderByClause}
-    </if>
-  </select>
-  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="ResultMapWithBLOBs">
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
-    ,
-    <include refid="Blob_Column_List" />
     from my_order
     where order_id = #{orderId,jdbcType=VARCHAR}
   </select>
@@ -176,6 +138,9 @@
       <if test="shoppingAddress != null">
         shopping_address,
       </if>
+      <if test="logisticsStatus != null">
+        logistics_status,
+      </if>
       <if test="createDate != null">
         create_date,
       </if>
@@ -185,8 +150,8 @@
       <if test="finishDate != null">
         finish_date,
       </if>
-      <if test="logisticsStatus != null">
-        logistics_status,
+      <if test="orderNumber != null">
+        order_number,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -226,6 +191,9 @@
       <if test="shoppingAddress != null">
         #{shoppingAddress,jdbcType=VARCHAR},
       </if>
+      <if test="logisticsStatus != null">
+        #{logisticsStatus,jdbcType=VARCHAR},
+      </if>
       <if test="createDate != null">
         #{createDate,jdbcType=TIMESTAMP},
       </if>
@@ -235,8 +203,8 @@
       <if test="finishDate != null">
         #{finishDate,jdbcType=TIMESTAMP},
       </if>
-      <if test="logisticsStatus != null">
-        #{logisticsStatus,jdbcType=LONGVARCHAR},
+      <if test="orderNumber != null">
+        #{orderNumber,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -285,6 +253,9 @@
       <if test="record.shoppingAddress != null">
         shopping_address = #{record.shoppingAddress,jdbcType=VARCHAR},
       </if>
+      <if test="record.logisticsStatus != null">
+        logistics_status = #{record.logisticsStatus,jdbcType=VARCHAR},
+      </if>
       <if test="record.createDate != null">
         create_date = #{record.createDate,jdbcType=TIMESTAMP},
       </if>
@@ -294,32 +265,10 @@
       <if test="record.finishDate != null">
         finish_date = #{record.finishDate,jdbcType=TIMESTAMP},
       </if>
-      <if test="record.logisticsStatus != null">
-        logistics_status = #{record.logisticsStatus,jdbcType=LONGVARCHAR},
+      <if test="record.orderNumber != null">
+        order_number = #{record.orderNumber,jdbcType=VARCHAR},
       </if>
     </set>
-    <if test="_parameter != null">
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByExampleWithBLOBs" parameterType="map">
-    update my_order
-    set order_id = #{record.orderId,jdbcType=VARCHAR},
-    order_status = #{record.orderStatus,jdbcType=TINYINT},
-    order_status_before = #{record.orderStatusBefore,jdbcType=TINYINT},
-    user_id = #{record.userId,jdbcType=VARCHAR},
-    user_name = #{record.userName,jdbcType=VARCHAR},
-    seller_message = #{record.sellerMessage,jdbcType=VARCHAR},
-    buyer_message = #{record.buyerMessage,jdbcType=VARCHAR},
-    refund_message = #{record.refundMessage,jdbcType=VARCHAR},
-    freight = #{record.freight,jdbcType=REAL},
-    payment_type = #{record.paymentType,jdbcType=TINYINT},
-    payment_status = #{record.paymentStatus,jdbcType=TINYINT},
-    shopping_address = #{record.shoppingAddress,jdbcType=VARCHAR},
-    create_date = #{record.createDate,jdbcType=TIMESTAMP},
-    refund_date = #{record.refundDate,jdbcType=TIMESTAMP},
-    finish_date = #{record.finishDate,jdbcType=TIMESTAMP},
-    logistics_status = #{record.logisticsStatus,jdbcType=LONGVARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -338,9 +287,11 @@
     payment_type = #{record.paymentType,jdbcType=TINYINT},
     payment_status = #{record.paymentStatus,jdbcType=TINYINT},
     shopping_address = #{record.shoppingAddress,jdbcType=VARCHAR},
+    logistics_status = #{record.logisticsStatus,jdbcType=VARCHAR},
     create_date = #{record.createDate,jdbcType=TIMESTAMP},
     refund_date = #{record.refundDate,jdbcType=TIMESTAMP},
-    finish_date = #{record.finishDate,jdbcType=TIMESTAMP}
+    finish_date = #{record.finishDate,jdbcType=TIMESTAMP},
+    order_number = #{record.orderNumber,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -381,6 +332,9 @@
       <if test="shoppingAddress != null">
         shopping_address = #{shoppingAddress,jdbcType=VARCHAR},
       </if>
+      <if test="logisticsStatus != null">
+        logistics_status = #{logisticsStatus,jdbcType=VARCHAR},
+      </if>
       <if test="createDate != null">
         create_date = #{createDate,jdbcType=TIMESTAMP},
       </if>
@@ -390,29 +344,10 @@
       <if test="finishDate != null">
         finish_date = #{finishDate,jdbcType=TIMESTAMP},
       </if>
-      <if test="logisticsStatus != null">
-        logistics_status = #{logisticsStatus,jdbcType=LONGVARCHAR},
+      <if test="orderNumber != null">
+        order_number = #{orderNumber,jdbcType=VARCHAR},
       </if>
     </set>
-    where order_id = #{orderId,jdbcType=VARCHAR}
-  </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.dgg.store.util.pojo.MyOrder">
-    update my_order
-    set order_status = #{orderStatus,jdbcType=TINYINT},
-    order_status_before = #{orderStatusBefore,jdbcType=TINYINT},
-    user_id = #{userId,jdbcType=VARCHAR},
-    user_name = #{userName,jdbcType=VARCHAR},
-    seller_message = #{sellerMessage,jdbcType=VARCHAR},
-    buyer_message = #{buyerMessage,jdbcType=VARCHAR},
-    refund_message = #{refundMessage,jdbcType=VARCHAR},
-    freight = #{freight,jdbcType=REAL},
-    payment_type = #{paymentType,jdbcType=TINYINT},
-    payment_status = #{paymentStatus,jdbcType=TINYINT},
-    shopping_address = #{shoppingAddress,jdbcType=VARCHAR},
-    create_date = #{createDate,jdbcType=TIMESTAMP},
-    refund_date = #{refundDate,jdbcType=TIMESTAMP},
-    finish_date = #{finishDate,jdbcType=TIMESTAMP},
-    logistics_status = #{logisticsStatus,jdbcType=LONGVARCHAR}
     where order_id = #{orderId,jdbcType=VARCHAR}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.dgg.store.util.pojo.MyOrder">
@@ -428,9 +363,11 @@
       payment_type = #{paymentType,jdbcType=TINYINT},
       payment_status = #{paymentStatus,jdbcType=TINYINT},
       shopping_address = #{shoppingAddress,jdbcType=VARCHAR},
+      logistics_status = #{logisticsStatus,jdbcType=VARCHAR},
       create_date = #{createDate,jdbcType=TIMESTAMP},
       refund_date = #{refundDate,jdbcType=TIMESTAMP},
-      finish_date = #{finishDate,jdbcType=TIMESTAMP}
+      finish_date = #{finishDate,jdbcType=TIMESTAMP},
+      order_number = #{orderNumber,jdbcType=VARCHAR}
     where order_id = #{orderId,jdbcType=VARCHAR}
   </update>
       
@@ -648,7 +585,8 @@
     mo.user_id,mo.user_name, mo.seller_message,
     mo.buyer_message,mo.refund_message, mo.freight,
     mo.payment_type, mo.payment_status, mo.shopping_address,
-    mo.create_date, mo.refund_date, mo.finish_date
+    mo.create_date, mo.refund_date, mo.finish_date,
+    mo.order_number
     FROM my_order mo
     WHERE 1 = 1
     <if test="order.orderStatus != null">
@@ -677,7 +615,7 @@
     buyer_message, refund_message, freight,
     payment_type, payment_status, shopping_address,
     create_date, refund_date, finish_date,
-    logistics_status)
+    logistics_status,order_number)
     values (#{orderId,jdbcType=VARCHAR}, #{orderStatus,jdbcType=TINYINT}, #{orderStatusBefore,jdbcType=TINYINT},
     #{userId,jdbcType=VARCHAR},
     (SELECT user_name FROM (SELECT user_name FROM user WHERE user_id = #{userId}) t)
@@ -685,7 +623,7 @@
     #{buyerMessage,jdbcType=VARCHAR}, #{refundMessage,jdbcType=VARCHAR}, #{freight,jdbcType=REAL},
     #{paymentType,jdbcType=TINYINT}, #{paymentStatus,jdbcType=TINYINT}, #{shoppingAddress,jdbcType=VARCHAR},
     #{createDate,jdbcType=TIMESTAMP}, #{refundDate,jdbcType=TIMESTAMP}, #{finishDate,jdbcType=TIMESTAMP},
-    #{logisticsStatus,jdbcType=LONGVARCHAR})
+    #{logisticsStatus,jdbcType=LONGVARCHAR},#{orderNumber})
   </insert>
 
 
@@ -761,4 +699,29 @@
     FROM user u
     WHERE u.user_id = #{userId}
   </select>
+
+  <select id="countOrderNumber" resultType="java.lang.Integer">
+    SELECT COUNT(0)
+    FROM my_order
+    WHERE order_number = #{orderNumber}
+  </select>
+
+  <select id="selectByExample" parameterType="com.dgg.store.util.pojo.MyOrderExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from my_order
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+    <if test="pageNum != null and pageSize != null">
+      LIMIT #{pageNum},#{pageSize}
+    </if>
+  </select>
+
 </mapper>

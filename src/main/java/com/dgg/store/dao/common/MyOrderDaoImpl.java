@@ -214,4 +214,10 @@ public class MyOrderDaoImpl implements MyOrderDao
         return mapper.getDeviceToken(userId);
     }
 
+    @Override
+    public int countOrderNumber(String orderNumber)
+    {
+        return mapper.countOrderNumber(orderNumber);
+    }
+
 }

@@ -61,4 +61,9 @@ public interface CustomerDao
     int insertBackImageRecord(String fileName, String customerId);
 
     String getDeviceToken(String merchandiserId);
+
+    int insertRecordByUser(String customerId);
+
+    int deleteUser(String customerId);
+
 }

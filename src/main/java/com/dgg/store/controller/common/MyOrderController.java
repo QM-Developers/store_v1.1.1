@@ -55,6 +55,23 @@ public class MyOrderController
     }
 
     /**
+     * 获取订单列表
+     *
+     * @param request 用户参数
+     * @param myOrder 订单号
+     * @param pageVO  分页参数
+     * @return 订单列表
+     */
+    @RequestMapping(value = "user_listMyOrderByOrderNumber", method = RequestMethod.POST, produces = {"application/json;charset=UTF-8"})
+    @ResponseBody
+    public String listMyOrderByOrderNumber(HttpServletRequest request, MyOrder myOrder, PageVO pageVO)
+    {
+        SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
+
+        return service.listMyOrderByOrderNumber(sessionVO, myOrder, pageVO);
+    }
+
+    /**
      * 筛选订单
      *
      * @param request 用户参数

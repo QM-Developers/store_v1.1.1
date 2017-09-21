@@ -27,4 +27,6 @@ public interface SalesOrderService
     String listSalesOrderSelective(SessionVO sessionVO, MyOrder myOrder, PageVO pageVO);
 
     String listFinanceOrderSelective(SessionVO sessionVO, MyOrder myOrder, PageVO pageVO);
+
+    String listSalesOrderByOrderNumber(SessionVO sessionVO, MyOrder myOrder);
 }

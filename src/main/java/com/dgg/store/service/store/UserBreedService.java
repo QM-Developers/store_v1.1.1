@@ -19,4 +19,10 @@ public interface UserBreedService
     String listBreedSelect(SessionVO sessionVO, UserBreed breed);
 
     String listBreedInfo(SessionVO sessionVO, UserBreed breed);
+
+    String insertUserBreedJson(SessionVO sessionVO, UserBreed breed);
+
+    String updateUserBreedJson(SessionVO sessionVO, UserBreed breed);
+
+    String listUserBreedJson(SessionVO sessionVO, UserBreed breed, PageVO pageVO);
 }

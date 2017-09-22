@@ -954,7 +954,8 @@ create table sys_customer(
     position_name varchar(10) not null,	-- 职位名称
     user_id varchar(35) not null,	-- 业务员Id
     had_account tinyint not null,	-- 是否建账
-    role_id int not null	-- 角色Id
+    role_id int not null,	-- 角色Id
+    lat_lng varchar(30) not null -- 经纬度
 );
 
 /*==============================================================*/

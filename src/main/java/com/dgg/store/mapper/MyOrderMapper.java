@@ -83,6 +83,6 @@ public interface MyOrderMapper
 
     String getDeviceToken(@Param("userId") String userId);
 
-    int countOrderNumber(@Param("orderNumber") String orderNumber);
+    int countOrderNumber(@Param("orderNumber") String orderNumber,@Param("myTeamId") String myTeamId);
 
 }

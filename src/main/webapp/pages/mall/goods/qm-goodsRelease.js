@@ -43,12 +43,14 @@ var gdReleaseJS = {
         {
             data = data.result;
             var text = "";
+
             function getType(data)
             {
                 if (!myjs.isNull(data["parent"]))
                     getType(data["parent"]);
                 text += (data["goodsTypeName"] + " > ");
             }
+
             getType(data);
             text = text.substring(0, text.length - 3);
             $("#type-text").text(text);
@@ -261,8 +263,8 @@ var gdReleaseJS = {
             var $list = $("#upload-list");
 
             var $li = $('<div onclick="gdReleaseJS.onSelectImg(this);" class="imgbox am-img-thumbnail">' +
-                    '<a id="' + file.id + '"><img style="width: 100%;height: 100%" src=""/></a>' +
-                    '</div>'),
+                '<a id="' + file.id + '"><img style="width: 100%;height: 100%" src=""/></a>' +
+                '</div>'),
                 $img = $li.find('img');
 
             // $list为容器jQuery实例
@@ -380,7 +382,7 @@ var gdReleaseJS = {
                     gdReleaseJS.insertDescribeImage(attrs[i], path[i]);
                 break;
         }
-       $('#my-popup').modal('close')
+        $('#my-popup').modal('close');
     },
 
     insertDescribeImage: function (src, realPath)
@@ -569,7 +571,7 @@ var gdReleaseJS = {
         myjs.ajax_post(url, params, function (data)
         {
             console.log(data);
-            location.href='qm-goodslist.jsp';
+            location.href = 'qm-goodslist.jsp';
         });
     },
 
@@ -632,10 +634,10 @@ var gdReleaseJS = {
         myjs.ajax_post(url, params, function (data)
         {
             console.log(data);
-            location.href='qm-goodslist.jsp';
+            location.href = 'qm-goodslist.jsp';
         });
     },
-    Delall : function (item)
+    Delall: function (item)
     {
         if ($("#standard-list tr").length == 1)
             return;
@@ -649,7 +651,7 @@ var gdReleaseJS = {
         indenxlogin.Errorpoptwo(titletext, conttext, leftbuttext, fnleft, rightbuttext, fnright)
 
     },
-    Deltr : function ()
+    Deltr: function ()
     {
         console.log(temp)
         $(temp).parents("tr").remove()

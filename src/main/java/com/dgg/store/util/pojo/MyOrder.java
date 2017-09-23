@@ -6,6 +6,8 @@ import java.util.Date;
 import java.util.List;
 
 public class MyOrder {
+    private String myTeamId;
+
     private String memberId;
 
     private String orderId;
@@ -210,5 +212,15 @@ public class MyOrder {
     public void setMemberId(String memberId)
     {
         this.memberId = memberId;
+    }
+
+    public String getMyTeamId()
+    {
+        return myTeamId;
+    }
+
+    public void setMyTeamId(String myTeamId)
+    {
+        this.myTeamId = myTeamId;
     }
 }

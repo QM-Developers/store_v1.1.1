@@ -215,9 +215,9 @@ public class MyOrderDaoImpl implements MyOrderDao
     }
 
     @Override
-    public int countOrderNumber(String orderNumber)
+    public int countOrderNumber(String number, String teamId)
     {
-        return mapper.countOrderNumber(orderNumber);
+        return mapper.countOrderNumber(number,teamId);
     }
 
 }

@@ -365,6 +365,7 @@ public class SalesOrderServiceImpl implements SalesOrderService
         MyOrderExample example = new MyOrderExample();
         MyOrderExample.Criteria criteria = example.createCriteria();
 
+        criteria.andMyTeamIdEqualTo(sessionVO.getMyTeamId());
         criteria.andOrderNumberEqualTo(myOrder.getOrderNumber());
 
         List<MyOrder> result = dao.selectByExample(example);

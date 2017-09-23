@@ -47,7 +47,7 @@ public class MyOrderServiceImpl implements MyOrderService
         // 生成订单号
         int index = 0;
         String orderNumber = String.format("%08d", new Random(index).nextInt(100000000));
-        while(dao.countOrderNumber(orderNumber) > 0)
+        while(dao.countOrderNumber(orderNumber,sessionVO.getMyTeamId()) > 0)
             orderNumber = String.format("%08d", new Random(++index).nextInt(100000000));
 
         // 设置订单参数
@@ -60,6 +60,7 @@ public class MyOrderServiceImpl implements MyOrderService
         myOrder.setSellerMessage(Constant.EMPTY);
         myOrder.setPaymentStatus(OrderConstant.NOT_PAY);
         myOrder.setLogisticsStatus(Constant.EMPTY);
+        myOrder.setMemberId(sessionVO.getMyTeamId());
 
         int result = dao.insert(myOrder);
         if (result < 1)

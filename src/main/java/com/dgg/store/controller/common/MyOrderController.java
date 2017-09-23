@@ -55,7 +55,7 @@ public class MyOrderController
     }
 
     /**
-     * 获取订单列表
+     * 根据订单号获取订单列表
      *
      * @param request 用户参数
      * @param myOrder 订单号

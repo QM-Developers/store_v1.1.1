@@ -1218,6 +1218,76 @@ public class MyOrderExample {
             addCriterion("order_number not between", value1, value2, "orderNumber");
             return (Criteria) this;
         }
+
+        public Criteria andMyTeamIdIsNull() {
+            addCriterion("my_team_id is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andMyTeamIdIsNotNull() {
+            addCriterion("my_team_id is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andMyTeamIdEqualTo(String value) {
+            addCriterion("my_team_id =", value, "myTeamId");
+            return (Criteria) this;
+        }
+
+        public Criteria andMyTeamIdNotEqualTo(String value) {
+            addCriterion("my_team_id <>", value, "myTeamId");
+            return (Criteria) this;
+        }
+
+        public Criteria andMyTeamIdGreaterThan(String value) {
+            addCriterion("my_team_id >", value, "myTeamId");
+            return (Criteria) this;
+        }
+
+        public Criteria andMyTeamIdGreaterThanOrEqualTo(String value) {
+            addCriterion("my_team_id >=", value, "myTeamId");
+            return (Criteria) this;
+        }
+
+        public Criteria andMyTeamIdLessThan(String value) {
+            addCriterion("my_team_id <", value, "myTeamId");
+            return (Criteria) this;
+        }
+
+        public Criteria andMyTeamIdLessThanOrEqualTo(String value) {
+            addCriterion("my_team_id <=", value, "myTeamId");
+            return (Criteria) this;
+        }
+
+        public Criteria andMyTeamIdLike(String value) {
+            addCriterion("my_team_id like", value, "myTeamId");
+            return (Criteria) this;
+        }
+
+        public Criteria andMyTeamIdNotLike(String value) {
+            addCriterion("my_team_id not like", value, "myTeamId");
+            return (Criteria) this;
+        }
+
+        public Criteria andMyTeamIdIn(List<String> values) {
+            addCriterion("my_team_id in", values, "myTeamId");
+            return (Criteria) this;
+        }
+
+        public Criteria andMyTeamIdNotIn(List<String> values) {
+            addCriterion("my_team_id not in", values, "myTeamId");
+            return (Criteria) this;
+        }
+
+        public Criteria andMyTeamIdBetween(String value1, String value2) {
+            addCriterion("my_team_id between", value1, value2, "myTeamId");
+            return (Criteria) this;
+        }
+
+        public Criteria andMyTeamIdNotBetween(String value1, String value2) {
+            addCriterion("my_team_id not between", value1, value2, "myTeamId");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

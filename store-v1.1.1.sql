@@ -316,7 +316,7 @@ create table goods_typeinfo
    goods_type_name      varchar(20) not null default '',
    goods_type_pid       varchar(35) not null default '0',
    is_deleted           tinyint not null default 0,
-   delete_date          datetime,
+   delete_date          date,
    primary key (goods_type_id)
 );
 
@@ -384,6 +384,7 @@ create table my_order
    order_number varchar(10) not null,	-- 订单号
    user_id varchar(35) not null default '',	-- 用户Id
    user_name varchar(20) not null,	-- 用户姓名
+   my_team_id varchar(35) not null,	-- 企业码
    seller_message varchar(150) not null default '',	-- 卖家留言
    buyer_message varchar(150) not null default '',	-- 买家留言
    refund_message varchar(150),	-- 退货理由
@@ -487,9 +488,6 @@ create table permission
    permission_name      varchar(20) not null default '',
    permission_url       varchar(100) not null default '',
    permission_pid       varchar(35) not null default '',
-   sort                 varchar(2) not null default '',
-   is_deleted           tinyint not null default 0,
-   delete_date          date,
    primary key (permission_id)
 );
 

@@ -75,5 +75,5 @@ public interface MyOrderDao
 
     String getDeviceToken(String userId);
 
-    int countOrderNumber(String orderNumber);
+    int countOrderNumber(String number, String teamId);
 }

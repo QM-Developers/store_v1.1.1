@@ -19,6 +19,7 @@
     <result column="refund_date" jdbcType="TIMESTAMP" property="refundDate" />
     <result column="finish_date" jdbcType="TIMESTAMP" property="finishDate" />
     <result column="order_number" jdbcType="VARCHAR" property="orderNumber" />
+    <result column="my_team_id" jdbcType="VARCHAR" property="myTeamId" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -81,7 +82,7 @@
   <sql id="Base_Column_List">
     order_id, order_status, order_status_before, user_id, user_name, seller_message,
     buyer_message, refund_message, freight, payment_type, payment_status, shopping_address,
-    logistics_status, create_date, refund_date, finish_date, order_number
+    logistics_status, create_date, refund_date, finish_date, order_number, my_team_id
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select
@@ -153,6 +154,9 @@
       <if test="orderNumber != null">
         order_number,
       </if>
+      <if test="myTeamId != null">
+        my_team_id,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="orderId != null">
@@ -205,6 +209,9 @@
       </if>
       <if test="orderNumber != null">
         #{orderNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="myTeamId != null">
+        #{myTeamId,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -268,6 +275,9 @@
       <if test="record.orderNumber != null">
         order_number = #{record.orderNumber,jdbcType=VARCHAR},
       </if>
+      <if test="record.myTeamId != null">
+        my_team_id = #{record.myTeamId,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -291,7 +301,8 @@
     create_date = #{record.createDate,jdbcType=TIMESTAMP},
     refund_date = #{record.refundDate,jdbcType=TIMESTAMP},
     finish_date = #{record.finishDate,jdbcType=TIMESTAMP},
-    order_number = #{record.orderNumber,jdbcType=VARCHAR}
+    order_number = #{record.orderNumber,jdbcType=VARCHAR},
+    my_team_id = #{record.myTeamId,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -347,6 +358,9 @@
       <if test="orderNumber != null">
         order_number = #{orderNumber,jdbcType=VARCHAR},
       </if>
+      <if test="myTeamId != null">
+        my_team_id = #{myTeamId,jdbcType=VARCHAR},
+      </if>
     </set>
     where order_id = #{orderId,jdbcType=VARCHAR}
   </update>
@@ -367,11 +381,14 @@
       create_date = #{createDate,jdbcType=TIMESTAMP},
       refund_date = #{refundDate,jdbcType=TIMESTAMP},
       finish_date = #{finishDate,jdbcType=TIMESTAMP},
-      order_number = #{orderNumber,jdbcType=VARCHAR}
+      order_number = #{orderNumber,jdbcType=VARCHAR},
+      my_team_id = #{myTeamId,jdbcType=VARCHAR}
     where order_id = #{orderId,jdbcType=VARCHAR}
   </update>
-      
 
+
+
+<!-- ==================== 我是一条华丽的分割线 ==================== -->
 
 
 
@@ -615,7 +632,7 @@
     buyer_message, refund_message, freight,
     payment_type, payment_status, shopping_address,
     create_date, refund_date, finish_date,
-    logistics_status,order_number)
+    logistics_status,order_number,my_team_id)
     values (#{orderId,jdbcType=VARCHAR}, #{orderStatus,jdbcType=TINYINT}, #{orderStatusBefore,jdbcType=TINYINT},
     #{userId,jdbcType=VARCHAR},
     (SELECT user_name FROM (SELECT user_name FROM user WHERE user_id = #{userId}) t)
@@ -623,7 +640,7 @@
     #{buyerMessage,jdbcType=VARCHAR}, #{refundMessage,jdbcType=VARCHAR}, #{freight,jdbcType=REAL},
     #{paymentType,jdbcType=TINYINT}, #{paymentStatus,jdbcType=TINYINT}, #{shoppingAddress,jdbcType=VARCHAR},
     #{createDate,jdbcType=TIMESTAMP}, #{refundDate,jdbcType=TIMESTAMP}, #{finishDate,jdbcType=TIMESTAMP},
-    #{logisticsStatus,jdbcType=LONGVARCHAR},#{orderNumber})
+    #{logisticsStatus,jdbcType=LONGVARCHAR},#{orderNumber},#{myTeamId})
   </insert>
 
 
@@ -704,6 +721,7 @@
     SELECT COUNT(0)
     FROM my_order
     WHERE order_number = #{orderNumber}
+    AND my_team_id = #{myTeamId}
   </select>
 
   <select id="selectByExample" parameterType="com.dgg.store.util.pojo.MyOrderExample" resultMap="BaseResultMap">

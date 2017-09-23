@@ -1,3 +1,2 @@
-select * from sys_user
+delete from position_permission_re
 ;
-

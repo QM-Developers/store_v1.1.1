@@ -219,6 +219,7 @@ public class CustomerServiceImpl implements CustomerService
     public String listMerchandiser(SessionVO sessionVO, CustomerVO customerVO)
     {
         customerVO.setMyTeamId(sessionVO.getMyTeamId());
+        customerVO.setPromoterId(QMPermissionConstant.ORDER_FOLLW);
         int repertoryLevel = dao.getRepertoryLevel(customerVO.getCustomerType(), sessionVO.getMyTeamId());
         List<CustomerVO> result;
 

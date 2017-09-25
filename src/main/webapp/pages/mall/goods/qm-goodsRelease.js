@@ -7,8 +7,7 @@ var gdReleaseJS = {
         urlParams = urlUtil.paramsToObj(urlParams);
         //      gdReleaseJS.findFreightTemps();
         // gdReleaseJS.findTypeAttr();
-        console.log(urlParams);
-        if (urlParams.option == Constant.urlOptAdd)
+        if (urlParams.option === Constant.urlOptAdd)
             gdReleaseJS.findTypeAndParents();
         else
             gdReleaseJS.findGoodsInfo();

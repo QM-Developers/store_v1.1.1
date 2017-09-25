@@ -56,6 +56,10 @@ public class CustomerVO
 
     private Integer pageSize;
 
+    private String permissionId;
+
+    private String departmentId;
+
     public String getUserId()
     {
         return userId;
@@ -314,5 +318,25 @@ public class CustomerVO
     public void setMerchandiserId(String merchandiserId)
     {
         this.merchandiserId = merchandiserId;
+    }
+
+    public String getPermissionId()
+    {
+        return permissionId;
+    }
+
+    public void setPermissionId(String permissionId)
+    {
+        this.permissionId = permissionId;
+    }
+
+    public String getDepartmentId()
+    {
+        return departmentId;
+    }
+
+    public void setDepartmentId(String departmentId)
+    {
+        this.departmentId = departmentId;
     }
 }

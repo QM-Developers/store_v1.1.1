@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dgg.store.mapper.PermissionModelMapper">
+    <resultMap id="QMPermissionVO" type="com.dgg.store.util.vo.permission.QMPermissionVO">
+        <result column="qm_permission_pid" property="permissionType" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <select id="listPermissionModel" resultMap="QMPermissionVO">
+        select qp.qm_permission_pid from qm_permission qp
+        inner join position_permission_re ppr
+        on qp.qm_permission_id = ppr.qm_permission_id
+        union
+        select qp.qm_permission_pid from qm_permission qp
+        inner join user_qm_permission_re uqpr
+        on uqpr.qm_permission_id = qp.qm_permission_id
+    </select>
+
+</mapper>

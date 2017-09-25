@@ -236,21 +236,48 @@
         (#{customerType},#{myTeamId},#{repertoryType})
     </insert>
 
-    <select id="listMerchandiserFirst" parameterType="com.dgg.store.util.vo.customer.CustomerRepertoryVO" resultMap="CustomerVO">
+    <select id="listMerchandiserFirst" parameterType="com.dgg.store.util.vo.customer.CustomerVO" resultMap="CustomerVO">
         SELECT u.user_id,u.user_name
         FROM user u
+        INNER JOIN position_permission_re ppr
+        ON ppr.position_id = u.position_id
+        INNER JOIN qm_permission_re qpr
+        ON qpr.qm_permission_id = ppr.qm_permission_id
         WHERE u.my_team_id = #{myTeamId}
+        AND qpr.permission_id = #{permissionId}
+        AND u.team_department_id NOT IN
+        (SELECT qb.department_id FROM qm_branch qb WHERE qb.my_team_id = #{myTeamId})
+        UNION
+        SELECT u.user_id,u.user_name
+        FROM user u
+        INNER JOIN user_qm_permission_re uqpr
+        ON uqpr.user_id = u.user_id
+        INNER JOIN qm_permission_re qpr
+        ON qpr.qm_permission_id = uqpr.qm_permission_id
+        WHERE u.my_team_id = #{myTeamId}
+        AND qpr.permission_id = #{permissionId}
         AND u.team_department_id NOT IN
         (SELECT qb.department_id FROM qm_branch qb WHERE qb.my_team_id = #{myTeamId})
     </select>
 
-    <select id="listMerchandiserSecond" parameterType="com.dgg.store.util.vo.customer.CustomerRepertoryVO" resultMap="CustomerVO">
-        SELECT u.user_id,u.user_name,
-          qb.branch_name
+    <select id="listMerchandiserSecond" parameterType="com.dgg.store.util.vo.customer.CustomerVO" resultMap="CustomerVO">
+        SELECT u.user_id,u.user_name
         FROM user u
-        INNER JOIN qm_branch qb
-        ON qb.department_id = u.team_department_id
+        INNER JOIN position_permission_re ppr
+        ON ppr.position_id = u.position_id
+        INNER JOIN qm_permission_re qpr
+        ON qpr.qm_permission_id = ppr.qm_permission_id
         WHERE u.my_team_id = #{myTeamId}
+        AND qpr.permission_id = #{permissionId}
+        UNION
+        SELECT u.user_id,u.user_name
+        FROM user u
+        INNER JOIN user_qm_permission_re uqpr
+        ON uqpr.user_id = u.user_id
+        INNER JOIN qm_permission_re qpr
+        ON qpr.qm_permission_id = uqpr.qm_permission_id
+        WHERE u.my_team_id = #{myTeamId}
+        AND qpr.permission_id = #{permissionId}
     </select>
 
     <select id="listAccountChecker" resultMap="CustomerVO">
@@ -261,14 +288,18 @@
         ON dp.team_department_id = u.team_department_id
         INNER JOIN position_permission_re ppr
         ON ppr.position_id = dp.position_id
-        WHERE ppr.qm_permission_id = #{permissionId}
+        INNER JOIN qm_permission_re qpr
+        ON qpr.qm_permission_id = ppr.qm_permission_id
+        AND qpr.permission_id = #{permissionId}
         AND u.my_team_id = #{myTeamId}
         UNION
         SELECT u.user_id,u.user_name
         FROM user u
         INNER JOIN user_qm_permission_re uqpr
         ON uqpr.user_id = u.user_id
-        WHERE uqpr.qm_permission_id = #{permissionId}
+        INNER JOIN qm_permission_re qpr
+        ON qpr.qm_permission_id = uqpr.qm_permission_id
+        AND qpr.permission_id = #{permissionId}
         AND u.my_team_id = #{myTeamId}
         ) t1
         GROUP BY user_id

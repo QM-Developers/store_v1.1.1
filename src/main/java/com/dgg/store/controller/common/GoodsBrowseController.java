@@ -21,8 +21,12 @@ import javax.servlet.http.HttpServletRequest;
 @Controller
 public class GoodsBrowseController
 {
-    @Autowired
-    private GoodsBrowseService service;
+    private final GoodsBrowseService service;
+
+    public GoodsBrowseController(GoodsBrowseService service)
+    {
+        this.service = service;
+    }
 
     /**
      * 查找商品分类
@@ -89,22 +93,4 @@ public class GoodsBrowseController
 
         return service.findGoodsList(sessionVO, goodsTypeVO, pageVO);
     }
-
-
-//    @RequestMapping(value = "user_findGoodsDescribe", method = RequestMethod.GET)
-//    public String findGoodsDescribe(HttpServletRequest request, String goodsId)
-//    {
-//        request.setAttribute("images", service.findGoodsDescribe(goodsId));
-//
-//        return "pages/mall/goods/backup/innerView";
-//    }
-
-//    @RequestMapping(value = "user_findGoodsStandard", method = RequestMethod.POST)
-//    @ResponseBody
-//    public ResultVO findGoodsStandard(HttpServletRequest request, GoodsStandard standard)
-//    {
-//        SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
-//
-//        return service.findGoodsStandard(sessionVO, standard);
-//    }
 }

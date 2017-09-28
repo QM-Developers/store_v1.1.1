@@ -27,6 +27,8 @@ public class GoodsDetailVO
 
     private List<GoodsStandard> standards;
 
+    private String userId;
+
     public String getGoodsId()
     {
         return goodsId;
@@ -125,5 +127,15 @@ public class GoodsDetailVO
     public void setGoodsType(String goodsType)
     {
         this.goodsType = goodsType;
+    }
+
+    public String getUserId()
+    {
+        return userId;
+    }
+
+    public void setUserId(String userId)
+    {
+        this.userId = userId;
     }
 }

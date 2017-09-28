@@ -597,7 +597,31 @@
     )
   </select>
 
-  <select id="listSalesOrder" resultMap="BaseResultMap">
+  <select id="countSalesOrder" resultType="java.lang.Integer">
+    SELECT COUNT(0)
+    FROM my_order mo
+    WHERE 1 = 1
+    <if test="order.orderStatus != null">
+      AND mo.order_status = #{order.orderStatus}
+    </if>
+    <if test="order.createDate != null and order.finishDate != null">
+      AND mo.create_date BETWEEN #{order.createDate} AND #{order.finishDate}
+    </if>
+    <if test="order.paymentType != null">
+      AND mo.payment_type = #{order.paymentType}
+    </if>
+    <if test="order.paymentStatus != null">
+      AND mo.payment_status = #{order.paymentStatus}
+    </if>
+    AND mo.user_id IN
+    (
+    SELECT c.user_id
+    FROM customer c
+    WHERE c.promoter_id = #{userId}
+    )
+  </select>
+
+  <select id="listFollowerOrder" resultMap="BaseResultMap">
     SELECT mo.order_id, mo.order_status, mo.order_status_before,
     mo.user_id,mo.user_name, mo.seller_message,
     mo.buyer_message,mo.refund_message, mo.freight,
@@ -623,6 +647,35 @@
     SELECT c.user_id
     FROM customer c
     WHERE c.merchandiser_id = #{userId}
+    )
+  </select>
+
+  <select id="listSalesOrder" resultMap="BaseResultMap">
+    SELECT mo.order_id, mo.order_status, mo.order_status_before,
+    mo.user_id,mo.user_name, mo.seller_message,
+    mo.buyer_message,mo.refund_message, mo.freight,
+    mo.payment_type, mo.payment_status, mo.shopping_address,
+    mo.create_date, mo.refund_date, mo.finish_date,
+    mo.order_number
+    FROM my_order mo
+    WHERE 1 = 1
+    <if test="order.orderStatus != null">
+      AND mo.order_status = #{order.orderStatus}
+    </if>
+    <if test="order.createDate != null and order.finishDate != null">
+      AND mo.create_date BETWEEN #{order.createDate} AND #{order.finishDate}
+    </if>
+    <if test="order.paymentType != null">
+      AND mo.payment_type = #{order.paymentType}
+    </if>
+    <if test="order.paymentStatus != null">
+      AND mo.payment_status = #{order.paymentStatus}
+    </if>
+    AND mo.user_id IN
+    (
+    SELECT c.user_id
+    FROM customer c
+    WHERE c.promoter_id = #{userId}
     )
   </select>
 
@@ -739,6 +792,68 @@
     </if>
     <if test="pageNum != null and pageSize != null">
       LIMIT #{pageNum},#{pageSize}
+    </if>
+  </select>
+
+  <select id="listSales" resultMap="BaseResultMap">
+    SELECT u1.user_id,u1.user_name
+    FROM user u1
+    WHERE u1.team_department_id =
+    (SELECT team_department_id FROM user WHERE user_id = #{userId})
+  </select>
+
+  <select id="countOrderSelectiveByManager" resultType="java.lang.Integer">
+    SELECT COUNT(0)
+    FROM my_order mo
+    INNER JOIN customer c
+    ON c.user_id = mo.user_id
+    INNER JOIN user u
+    ON u.user_id = c.promoter_id
+    WHERE u.team_department_id = WHERE u.team_department_id = (SELECT team_department_id FROM user WHERE user_id = #{userId})
+    <if test="order.orderStatus != null">
+      AND mo.order_status = #{order.orderStatus}
+    </if>
+    <if test="order.createDate != null and order.finishDate != null">
+      AND mo.create_date BETWEEN #{order.createDate} AND #{order.finishDate}
+    </if>
+    <if test="order.paymentType != null">
+      AND mo.payment_type = #{order.paymentType}
+    </if>
+    <if test="order.paymentStatus != null">
+      AND mo.payment_status = #{order.paymentStatus}
+    </if>
+    <if test="order.memberId != null">
+      AND c.promoter_id = #{order.memberId}
+    </if>
+  </select>
+
+  <select id="listOrderSelectiveByManager" resultMap="BaseResultMap">
+    SELECT mo.order_id, mo.order_status, mo.order_status_before,
+    mo.user_id,mo.user_name, mo.seller_message,
+    mo.buyer_message,mo.refund_message, mo.freight,
+    mo.payment_type, mo.payment_status, mo.shopping_address,
+    mo.create_date, mo.refund_date, mo.finish_date,
+    u.user_id merchandiser_id,u.user_name merchandiser_name
+    FROM my_order mo
+    INNER JOIN customer c
+    ON c.user_id = mo.user_id
+    INNER JOIN user u
+    ON u.user_id = c.promoter_id
+    WHERE u.team_department_id = WHERE u.team_department_id = (SELECT team_department_id FROM user WHERE user_id = #{userId})
+    <if test="order.orderStatus != null">
+      AND mo.order_status = #{order.orderStatus}
+    </if>
+    <if test="order.createDate != null and order.finishDate != null">
+      AND mo.create_date BETWEEN #{order.createDate} AND #{order.finishDate}
+    </if>
+    <if test="order.paymentType != null">
+      AND mo.payment_type = #{order.paymentType}
+    </if>
+    <if test="order.paymentStatus != null">
+      AND mo.payment_status = #{order.paymentStatus}
+    </if>
+    <if test="order.memberId != null">
+      AND c.promoter_id = #{order.memberId}
     </if>
   </select>
 

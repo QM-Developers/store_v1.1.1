@@ -76,4 +76,14 @@ public interface MyOrderDao
     String getDeviceToken(String userId);
 
     int countOrderNumber(String number, String teamId);
+
+    List<MyOrder> listFollowerOrder(MyOrder myOrder, String userId, int pageNum, int pageSize);
+
+    List<MyOrder> listSales(String userId);
+
+    int countFollowerOrder(MyOrder myOrder, String userId);
+
+    int countOrderSelectiveByManager(MyOrder myOrder, String userId);
+
+    List<MyOrder> listOrderSelectiveByManager(MyOrder myOrder, String userId, int pageNum, int pageSize);
 }

@@ -11,6 +11,7 @@
         <result column="user_status" property="userStatus" jdbcType="VARCHAR"/>
         <result column="user_password" property="userPassword" jdbcType="VARCHAR"/>
         <result column="my_team_id" property="myTeamId" jdbcType="VARCHAR"/>
+        <result column="my_team_name" property="myTeamName" jdbcType="VARCHAR"/>
         <result column="token" property="token" jdbcType="VARCHAR"/>
         <result column="team_department_id" property="departmentId" jdbcType="VARCHAR"/>
     </resultMap>
@@ -19,8 +20,11 @@
         SELECT u.user_id, u.user_name, u.user_phone,
         u.user_img,u.user_area, u.token,
         u.user_status,u.user_password,u.role_id,
-        u.my_team_id,u.team_department_id
+        u.my_team_id,u.team_department_id,
+        mt.my_team_name
         FROM user u
+        INNER JOIN my_team mt
+        ON mt.my_team_id = u.my_team_id
         WHERE 1 = 1
         AND u.user_phone = #{userPhone}
         AND u.my_team_id = #{myTeamId}

@@ -13,6 +13,7 @@ public class LoginRepVO
     private String userStatus;
     private String userPassword;
     private String myTeamId;
+    private String myTeamName;
     private String token;
     private String departmentId;
     private String rCloudToken;
@@ -150,5 +151,15 @@ public class LoginRepVO
     public void setrCloudToken(String rCloudToken)
     {
         this.rCloudToken = rCloudToken;
+    }
+
+    public String getMyTeamName()
+    {
+        return myTeamName;
+    }
+
+    public void setMyTeamName(String myTeamName)
+    {
+        this.myTeamName = myTeamName;
     }
 }

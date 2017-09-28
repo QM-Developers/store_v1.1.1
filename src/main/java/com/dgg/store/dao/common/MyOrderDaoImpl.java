@@ -157,55 +157,55 @@ public class MyOrderDaoImpl implements MyOrderDao
     @Override
     public int getGoodsRepertorySecond(String standardId, String userId, String myTeamId)
     {
-        return mapper.getGoodsRepertorySecond(standardId,userId,myTeamId);
+        return mapper.getGoodsRepertorySecond(standardId, userId, myTeamId);
     }
 
     @Override
     public int updateRepertoryFirst(String standardId, int repertory)
     {
-        return mapper.updateRepertoryFirst(standardId,repertory);
+        return mapper.updateRepertoryFirst(standardId, repertory);
     }
 
     @Override
     public int updateRepertorySecond(String userId, String standardId, int repertory)
     {
-        return mapper.updateRepertorySecond(userId,standardId,repertory);
+        return mapper.updateRepertorySecond(userId, standardId, repertory);
     }
 
     @Override
     public int countSalesOrder(MyOrder myOrder, String userId)
     {
-        return mapper.countSalesOrder(myOrder,userId);
+        return mapper.countSalesOrder(myOrder, userId);
     }
 
     @Override
     public List<MyOrder> listSalesOrder(MyOrder myOrder, String userId, int pageNum, int pageSize)
     {
-        return mapper.listSalesOrder(myOrder,userId,pageNum,pageSize);
+        return mapper.listSalesOrder(myOrder, userId, pageNum, pageSize);
     }
 
     @Override
     public int countFinanceOrder(MyOrder myOrder, String userId)
     {
-        return mapper.countFinanceOrder(myOrder,userId);
+        return mapper.countFinanceOrder(myOrder, userId);
     }
 
     @Override
     public List<MyOrder> listFinanceOrder(MyOrder myOrder, String myTeamId, int pageNum, int pageSize)
     {
-        return mapper.listFinanceOrder(myOrder,myTeamId,pageNum,pageSize);
+        return mapper.listFinanceOrder(myOrder, myTeamId, pageNum, pageSize);
     }
 
     @Override
     public String getFinanceDeviceToken(String myTeamId, String permissionId)
     {
-        return mapper.getFinanceDeviceToken(myTeamId,permissionId);
+        return mapper.getFinanceDeviceToken(myTeamId, permissionId);
     }
 
     @Override
     public String getSalesDeviceToken(String userId, String myTeamId)
     {
-        return mapper.getSalesDeviceToken(userId,myTeamId);
+        return mapper.getSalesDeviceToken(userId, myTeamId);
     }
 
     @Override
@@ -217,7 +217,37 @@ public class MyOrderDaoImpl implements MyOrderDao
     @Override
     public int countOrderNumber(String number, String teamId)
     {
-        return mapper.countOrderNumber(number,teamId);
+        return mapper.countOrderNumber(number, teamId);
+    }
+
+    @Override
+    public List<MyOrder> listFollowerOrder(MyOrder myOrder, String userId, int pageNum, int pageSize)
+    {
+        return mapper.listFollowerOrder(myOrder, userId, pageNum, pageSize);
+    }
+
+    @Override
+    public List<MyOrder> listSales(String userId)
+    {
+        return mapper.listSales(userId);
+    }
+
+    @Override
+    public int countFollowerOrder(MyOrder myOrder, String userId)
+    {
+        return mapper.countFollowerOrder(myOrder,userId);
+    }
+
+    @Override
+    public int countOrderSelectiveByManager(MyOrder myOrder, String userId)
+    {
+        return mapper.countOrderSelectiveByManager(myOrder,userId);
+    }
+
+    @Override
+    public List<MyOrder> listOrderSelectiveByManager(MyOrder myOrder, String userId, int pageNum, int pageSize)
+    {
+        return mapper.listOrderSelectiveByManager(myOrder, userId, pageNum, pageSize);
     }
 
 }

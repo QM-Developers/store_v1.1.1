@@ -88,7 +88,7 @@ public class GoodsBrowseServiceImpl implements GoodsBrowseService
         return json.toJSONString();
     }
 
-    public Set<String> findChildTypeId(String typeId)
+    private Set<String> findChildTypeId(String typeId)
     {
         Set<String> childTypeId = dao.findChildTypeId(typeId);
 
@@ -115,16 +115,6 @@ public class GoodsBrowseServiceImpl implements GoodsBrowseService
         }
 
         result.setGoodsAttr(StringUtil.isEmpty(result.getGoodsAttr()) ? "" : result.getGoodsAttr().split(SymbolConstant.QUESTION)[1]);
-        ResultVO resultVO = new ResultVO(result == null ? 0 : 1, sessionVO.getToken(), result);
-
-        return resultVO;
-    }
-
-    @Override
-    public ResultVO findGoodsStandard(SessionVO sessionVO, GoodsStandard standard)
-    {
-        GoodsStandard result = dao.findGoodsStandard(standard.getStandardId());
-
         ResultVO resultVO = new ResultVO(result == null ? 0 : 1, sessionVO.getToken(), result);
 
         return resultVO;

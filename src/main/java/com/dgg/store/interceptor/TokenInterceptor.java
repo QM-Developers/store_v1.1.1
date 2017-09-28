@@ -1,6 +1,5 @@
 package com.dgg.store.interceptor;
 
-
 import com.dgg.store.service.sys.UserService;
 import com.dgg.store.util.core.constant.Constant;
 import com.dgg.store.util.core.constant.KeyConstant;

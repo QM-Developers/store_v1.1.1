@@ -6,27 +6,9 @@ import com.dgg.store.util.vo.core.SessionVO;
 
 public interface SalesOrderService
 {
-    String updateRefundReceive(SessionVO sessionVO, MyOrder myOrder);
+    String listOrderSelective(SessionVO sessionVO, MyOrder myOrder, PageVO pageVO);
 
-    String updateRefundPass(SessionVO sessionVO, MyOrder myOrder);
+    String listSales(SessionVO sessionVO);
 
-    String updateRefundMoney(SessionVO sessionVO, MyOrder myOrder);
-
-    String updateFinancePassB(SessionVO sessionVO, MyOrder myOrder);
-
-    String updateFinanceFailB(SessionVO sessionVO, MyOrder myOrder);
-
-    String updateFinancePassA(SessionVO sessionVO, MyOrder myOrder);
-
-    String updateFinanceFailA(SessionVO sessionVO, MyOrder myOrder);
-
-    String updateSalesmanPass(SessionVO sessionVO, MyOrder myOrder);
-
-    String updateDelivered(SessionVO sessionVO, MyOrder myOrder);
-
-    String listSalesOrderSelective(SessionVO sessionVO, MyOrder myOrder, PageVO pageVO);
-
-    String listFinanceOrderSelective(SessionVO sessionVO, MyOrder myOrder, PageVO pageVO);
-
-    String listSalesOrderByOrderNumber(SessionVO sessionVO, MyOrder myOrder);
+    String listOrderSelectiveByManager(SessionVO sessionVO, MyOrder myOrder, PageVO pageVO);
 }

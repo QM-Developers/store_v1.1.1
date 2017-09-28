@@ -653,17 +653,6 @@ create table user_menu_re
 );
 
 /*==============================================================*/
-/* 角色拥有的权限
-/*==============================================================*/
-drop table if exists role_permission_RE;
-create table role_permission_RE
-(
-   permission_id        varchar(35) not null,
-   role_id              int not null,
-   primary key (permission_id, role_id)
-);
-
-/*==============================================================*/
 /* app 更新信息
 /*==============================================================*/
 drop table if exists app_update;
@@ -891,10 +880,10 @@ create table sys_permission(
 /* 系统角色权限关联表
 /*==============================================================*/
 drop table if exists sys_role_permission_re;
-create table sys_role_permission_re(
-	role_id varchar(35) not null ,	-- 角色Id
-    permission_id varchar(35) not null	-- 权限Id
-);
+ CREATE TABLE `sys_role_permission_re` (
+  `role_id` varchar(35) NOT NULL,
+  `permission_id` varchar(35) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*==============================================================*/
 /* 养殖类目表

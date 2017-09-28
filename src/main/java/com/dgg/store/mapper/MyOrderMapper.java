@@ -77,12 +77,21 @@ public interface MyOrderMapper
 
     int countFinanceOrder(@Param("order") MyOrder myOrder, @Param("myTeamId") String myTeamId);
 
-    String getFinanceDeviceToken(@Param("myTeamId") String myTeamId,@Param("permissionId") String permissionId);
+    String getFinanceDeviceToken(@Param("myTeamId") String myTeamId, @Param("permissionId") String permissionId);
 
-    String getSalesDeviceToken(@Param("userId") String userId,@Param("myTeamId") String myTeamId);
+    String getSalesDeviceToken(@Param("userId") String userId, @Param("myTeamId") String myTeamId);
 
     String getDeviceToken(@Param("userId") String userId);
 
-    int countOrderNumber(@Param("orderNumber") String orderNumber,@Param("myTeamId") String myTeamId);
+    int countOrderNumber(@Param("orderNumber") String orderNumber, @Param("myTeamId") String myTeamId);
 
+    List<MyOrder> listFollowerOrder(@Param("order") MyOrder myOrder, @Param("myTeamId") String myTeamId, @Param("pageNum") int pageNum, @Param("pageSize") int pageSize);
+
+    List<MyOrder> listSales(@Param("userId") String userId);
+
+    int countFollowerOrder(@Param("order") MyOrder myOrder, @Param("userId") String userId);
+
+    int countOrderSelectiveByManager(@Param("order") MyOrder myOrder, @Param("userId") String userId);
+
+    List<MyOrder> listOrderSelectiveByManager(@Param("order") MyOrder myOrder, @Param("userId") String userId, @Param("pageNum") int pageNum, @Param("pageSize") int pageSize);
 }

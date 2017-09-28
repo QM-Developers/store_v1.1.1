@@ -23,6 +23,8 @@ public class GoodsTypeVO
 
     private List<GoodsTypeVO> children;
 
+    private String userId;
+
     public String getGoodsTypeId()
     {
         return goodsTypeId;
@@ -111,5 +113,15 @@ public class GoodsTypeVO
     public void setSort(String sort)
     {
         this.sort = sort;
+    }
+
+    public String getUserId()
+    {
+        return userId;
+    }
+
+    public void setUserId(String userId)
+    {
+        this.userId = userId;
     }
 }

@@ -1,7 +1,6 @@
 package com.dgg.store.util.core;
 
 import com.dgg.store.dao.common.MyOrderDao;
-import com.dgg.store.mapper.MyMapper;
 import com.dgg.store.util.core.constant.SymbolConstant;
 import com.dgg.store.util.pojo.MyOrder;
 import com.dgg.store.util.vo.order.MyOrderListVO;
@@ -22,5 +21,21 @@ public class OrderUtil
         }
 
         return data;
+    }
+
+    public static List<MyOrder> getOrderCount(List<MyOrder> myOrder)
+    {
+        for (MyOrder order: myOrder)
+            for (MyOrderListVO list : order.getOrderList())
+                order.setOrderCount(list.getBuyNum() * list.getGoodsPrice());
+
+        return myOrder;
+    }
+
+    public static MyOrder getOrderCount(MyOrder myOrder)
+    {
+        for (MyOrderListVO list : myOrder.getOrderList())
+            myOrder.setOrderCount(list.getBuyNum() * list.getGoodsPrice());
+        return myOrder;
     }
 }

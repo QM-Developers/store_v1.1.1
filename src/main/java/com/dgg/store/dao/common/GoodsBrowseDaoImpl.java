@@ -66,9 +66,33 @@ public class GoodsBrowseDaoImpl implements GoodsBrowseDao
     }
 
     @Override
-    public int countGoodsByType(GoodsTypeVO goodsType)
+    public int countGoodsByType(GoodsTypeVO goodsType, Set<String> childType)
     {
-        return mapper.countGoodsByType(goodsType);
+        return mapper.countGoodsByType(goodsType, childType);
+    }
+
+    @Override
+    public int getRepertoryLevel(String userId, String myTeamId)
+    {
+        return 0;
+    }
+
+    @Override
+    public int countGoodsByType2(GoodsTypeVO goodsTypeVO, Set<String> childType)
+    {
+        return mapper.countGoodsByType2(goodsTypeVO, childType);
+    }
+
+    @Override
+    public List<GoodsInfoVO> findGoodsList2(GoodsTypeVO goodsTypeVO, int start, int end, Set<String> childType)
+    {
+        return mapper.findGoodsList2(goodsTypeVO, start, end, childType);
+    }
+
+    @Override
+    public GoodsDetailVO findGoodsDetail_2(String goodsId, String id)
+    {
+        return mapper.findGoodsDetail_2(goodsId,id);
     }
 
 }

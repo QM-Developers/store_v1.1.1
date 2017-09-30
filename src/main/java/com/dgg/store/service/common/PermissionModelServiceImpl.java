@@ -6,7 +6,6 @@ import com.dgg.store.util.core.constant.Constant;
 import com.dgg.store.util.vo.core.ResultVO;
 import com.dgg.store.util.vo.core.SessionVO;
 import com.dgg.store.util.vo.permission.QMPermissionVO;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,8 +13,12 @@ import java.util.List;
 @Service
 public class PermissionModelServiceImpl implements PermissionModelService
 {
-    @Autowired
-    private PermissionModelDao dao;
+    private final PermissionModelDao dao;
+
+    public PermissionModelServiceImpl(PermissionModelDao dao)
+    {
+        this.dao = dao;
+    }
 
     @Override
     public String listPermissionModel(SessionVO sessionVO)

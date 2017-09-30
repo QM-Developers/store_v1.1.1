@@ -34,6 +34,7 @@ public class SalesOrderServiceImpl implements SalesOrderService
         int pageCount = PagingUtil.getCount(dao.countSalesOrder(myOrder, sessionVO.getUserId()), pageVO.getPageSize());
         List<MyOrder> result = dao.listSalesOrder(myOrder, sessionVO.getUserId(), pageNum, pageSize);
         result = OrderUtil.getOrderList(result, dao);
+        result = OrderUtil.getOrderCount(result);
 
         JSONObject json = (JSONObject) JSONObject.toJSON(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), result));
         json.put(KeyConstant.PAGE_COUNT, pageCount);
@@ -58,6 +59,7 @@ public class SalesOrderServiceImpl implements SalesOrderService
         int pageCount = PagingUtil.getCount(dao.countOrderSelectiveByManager(myOrder, sessionVO.getUserId()), pageVO.getPageSize());
         List<MyOrder> result = dao.listOrderSelectiveByManager(myOrder, sessionVO.getUserId(), pageNum, pageSize);
         result = OrderUtil.getOrderList(result, dao);
+        result = OrderUtil.getOrderCount(result);
 
         JSONObject json = (JSONObject) JSONObject.toJSON(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), result));
         json.put(KeyConstant.PAGE_COUNT, pageCount);

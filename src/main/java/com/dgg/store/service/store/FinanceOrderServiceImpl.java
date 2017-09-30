@@ -38,6 +38,7 @@ public class FinanceOrderServiceImpl implements FinanceOrderService
         int pageCount = PagingUtil.getCount(dao.countFinanceOrder(myOrder, sessionVO.getMyTeamId()), pageVO.getPageSize());
         List<MyOrder> result = dao.listFinanceOrder(myOrder, sessionVO.getMyTeamId(), pageNum, pageSize);
         result = OrderUtil.getOrderList(result,dao);
+        result = OrderUtil.getOrderCount(result);
 
         JSONObject json = (JSONObject) JSONObject.toJSON(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), result));
         json.put(KeyConstant.PAGE_COUNT, pageCount);

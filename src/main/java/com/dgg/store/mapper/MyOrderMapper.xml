@@ -573,7 +573,7 @@
     )
   </update>
 
-  <select id="countSalesOrder" resultType="java.lang.Integer">
+  <select id="countFollowerOrder" resultType="java.lang.Integer">
     SELECT COUNT(0)
     FROM my_order mo
     WHERE 1 = 1

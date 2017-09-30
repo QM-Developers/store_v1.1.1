@@ -95,7 +95,7 @@ create table customer_repertory
 (
    customer_type        varchar(20) not null default '',	-- 客户类型
    my_team_id 			varchar(35) not null default '',	-- 企业码
-   repertory_type       tinyint not null default 0	-- 库存类型 0 为未分配 1 为一级 2 为二级
+   repertory_type       tinyint not null default 0	-- 库存类型 0 为未分配, 1 为一级, 2 为二级
 );
 
 /*==============================================================*/

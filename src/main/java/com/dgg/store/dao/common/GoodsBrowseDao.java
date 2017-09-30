@@ -26,5 +26,13 @@ public interface GoodsBrowseDao
 
     Set<String> findChildTypeId(String typeId);
 
-    int countGoodsByType(GoodsTypeVO goodsType);
+    int countGoodsByType(GoodsTypeVO goodsType, Set<String> childType);
+
+    int getRepertoryLevel(String userId, String myTeamId);
+
+    int countGoodsByType2(GoodsTypeVO goodsTypeVO, Set<String> childType);
+
+    List<GoodsInfoVO> findGoodsList2(GoodsTypeVO goodsTypeVO, int start, int end, Set<String> childType);
+
+    GoodsDetailVO findGoodsDetail_2(String goodsId, String id);
 }

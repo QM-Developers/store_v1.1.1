@@ -11,6 +11,7 @@ import com.dgg.store.util.vo.core.PageVO;
 import com.dgg.store.util.vo.core.ResultVO;
 import com.dgg.store.util.vo.core.SessionVO;
 import com.dgg.store.util.vo.goods.GoodsDetailVO;
+import com.dgg.store.util.vo.goods.GoodsImgVO;
 import com.dgg.store.util.vo.goods.GoodsInfoVO;
 import com.dgg.store.util.vo.goods.GoodsTypeVO;
 import org.springframework.stereotype.Service;
@@ -37,7 +38,6 @@ public class StoreGoodsBrowseServiceImpl implements StoreGoodsBrowseService
 
         goodsTypeVO.setUserId(sessionVO.getUserId());
         goodsTypeVO.setMyTeamId(sessionVO.getMyTeamId());
-        int pageCount = dao.countGoodsByType(goodsTypeVO);
 
         Set<String> childType = null;
         if (!StringUtil.isEmpty(goodsTypeVO.getGoodsTypeId()))
@@ -46,7 +46,15 @@ public class StoreGoodsBrowseServiceImpl implements StoreGoodsBrowseService
             childType.add(goodsTypeVO.getGoodsTypeId());
         }
 
+        int pageCount = dao.countGoodsByType(goodsTypeVO,childType);
         List<GoodsInfoVO> result = dao.findGoodsList(goodsTypeVO, start, end, childType);
+        List<GoodsImgVO> imageList;
+
+        for (GoodsInfoVO vo : result)
+        {
+            imageList = dao.listGoodsImage(vo.getGoodsId());
+            vo.setGoodsImages(imageList.size() > 0 ? imageList.get(0).getImagePath() : null);
+        }
 
         JSONObject json = (JSONObject) JSONObject.toJSON(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), result));
         json.put(KeyConstant.PAGE_COUNT, PagingUtil.getCount(pageCount, end));

@@ -16,6 +16,8 @@ public class MyOrder {
 
     private Byte orderStatusBefore;
 
+    private Float orderCount;
+
     private String userId;
 
     private String userName;
@@ -222,5 +224,15 @@ public class MyOrder {
     public void setMyTeamId(String myTeamId)
     {
         this.myTeamId = myTeamId;
+    }
+
+    public Float getOrderCount()
+    {
+        return orderCount;
+    }
+
+    public void setOrderCount(Float orderCount)
+    {
+        this.orderCount = orderCount;
     }
 }

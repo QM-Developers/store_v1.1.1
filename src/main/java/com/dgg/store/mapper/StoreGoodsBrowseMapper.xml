@@ -37,4 +37,115 @@
         <result column="standard_price" property="standardPrice" jdbcType="FLOAT"/>
         <result column="standard_count" property="standardCount" jdbcType="INTEGER"/>
     </resultMap>
+
+    <resultMap id="GoodsImgVO" type="com.dgg.store.util.vo.goods.GoodsImgVO">
+        <result column="image_id" property="imageId" jdbcType="VARCHAR"/>
+        <result column="image_path" property="imagePath" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <select id="findGoodsList" resultMap="GoodsVOMap" parameterType="com.dgg.store.util.vo.goods.GoodsTypeVO">
+        SELECT gd.goods_id,gd.goods_name,gd.goods_sales,
+        (SELECT MIN(gs.standard_price) FROM goods_standard gs WHERE gs.goods_id = gd.goods_id) goods_price
+        FROM goodsinfo gd
+        INNER JOIN qm_branch_goods qbg
+        ON qbg.goods_id = gd.goods_id
+        INNER JOIN qm_branch qb
+        ON qb.branch_id = qbg.branch_id
+        WHERE qb.department_id = (SELECT team_department_id FROM user WHERE user_id = #{type.userId})
+        <if test="childType != null">
+            AND gd.goods_type_id IN
+            <foreach collection="childType" item="typeId" separator="," open="(" close=")" index="i">
+                #{typeId}
+            </foreach>
+        </if>
+        <if test="type.keyword != null and type.keyword != ''">
+            AND gd.goods_name LIKE CONCAT('%', #{type.keyword}, '%')
+        </if>
+        <if test="type.orderBy != null and type.orderBy == 'goodsPrice'">
+            <choose>
+                <when test="type.sort != null and type.sort == 'desc'">
+                    ORDER BY goods_price DESC
+                </when>
+                <otherwise>
+                    ORDER BY goods_price ASC
+                </otherwise>
+            </choose>
+        </if>
+        <if test="type.orderBy != null and type.orderBy == 'goodsSales'">
+            <choose>
+                <when test="type.sort != null and type.sort == 'desc'">
+                    ORDER BY gd.goods_sales DESC
+                </when>
+                <otherwise>
+                    ORDER BY gd.goods_sales ASC
+                </otherwise>
+            </choose>
+        </if>
+        GROUP BY gd.goods_id
+        LIMIT #{pageNum},#{pageSize}
+    </select>
+
+    <select id="listGoodsImage" resultMap="GoodsImgVO">
+        SELECT ims.image_id,ims.image_path
+        FROM goods_image gi
+        INNER JOIN image_space  ims
+        ON ims.image_id = gi.image_id
+        WHERE gi.goods_id = #{goodsId}
+        AND gi.goods_img_type = 1
+    </select>
+
+    <select id="countGoodsByType" resultType="java.lang.Integer">
+        SELECT COUNT(0)
+        FROM goodsinfo gd
+        INNER JOIN qm_branch_goods qbg
+        ON qbg.goods_id = gd.goods_id
+        INNER JOIN qm_branch qb
+        ON qb.branch_id = qbg.branch_id
+        WHERE qb.department_id = (SELECT team_department_id FROM user WHERE user_id = #{type.userId})
+        <if test="childType != null">
+            AND gd.goods_type_id IN
+            <foreach collection="childType" item="typeId" separator="," open="(" close=")" index="i">
+                #{typeId}
+            </foreach>
+        </if>
+        <if test="type.keyword != null and type.keyword != ''">
+            AND gd.goods_name LIKE CONCAT('%', #{type.keyword}, '%')
+        </if>
+    </select>
+
+    <select id="findChildTypeId" resultType="java.lang.String">
+        SELECT gt.goods_type_id
+        FROM goods_typeinfo gt
+        WHERE gt.goods_type_pid = #{typeId}
+    </select>
+
+    <select id="findGoodsDetail" resultMap="GoodsDetailVOMap">
+        SELECT gd.goods_id,gd.goods_name, gd.goods_price,gd.goods_sales,gd.goods_attr,
+          gd.goods_count,img.image_path goods_images,
+          gs.standard_name,gs.standard_id,gs.standard_price,
+          gs.standard_count,gs.standard_weight
+        FROM goodsinfo gd
+        LEFT JOIN goods_standard gs
+        ON gs.goods_id = gd.goods_id
+        INNER JOIN qm_branch_goods qbg
+        ON qbg.standard_id = gs.standard_id
+        INNER JOIN goods_image gi
+        ON gi.goods_id = gd.goods_id
+        INNER JOIN image_space img
+        ON img.image_id = gi.image_id
+        WHERE gd.goods_id = #{goodsId}
+    </select>
+
+    <select id="findGoodsDescribe" resultType="java.lang.String">
+        SELECT gd.goods_describe
+        FROM goodsinfo gd
+        WHERE gd.goods_id = #{goodsId}
+    </select>
+
+    <select id="findGoodsDescribeImg" resultType="java.lang.String">
+        SELECT image_path
+        FROM image_space
+        WHERE image_id = #{id}
+    </select>
+
 </mapper>

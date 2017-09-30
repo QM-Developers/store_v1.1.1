@@ -5,6 +5,7 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.dgg.store.dao.common.MyOrderDao;
 import com.dgg.store.mapper.PushMessageMapper;
+import com.dgg.store.util.core.OrderUtil;
 import com.dgg.store.util.core.constant.*;
 import com.dgg.store.util.core.generator.IDGenerator;
 import com.dgg.store.util.core.page.PagingUtil;
@@ -152,6 +153,7 @@ public class MyOrderServiceImpl implements MyOrderService
 
         List<MyOrder> result = dao.selectByExample(example);
         result = getOrderList(result);
+        result = OrderUtil.getOrderCount(result);
 
         JSONObject json = (JSONObject) JSONObject.toJSON(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), result));
         json.put(KeyConstant.PAGE_COUNT, pageCount);
@@ -163,12 +165,13 @@ public class MyOrderServiceImpl implements MyOrderService
     public String getMyOrder(SessionVO sessionVO, MyOrder myOrder)
     {
         myOrder = dao.selectByPrimaryKey(myOrder.getOrderId());
-        List<MyOrderListVO> orderList = null;
+        List<MyOrderListVO> orderList;
 
         orderList = dao.listOrderList(myOrder.getOrderId());
         for (MyOrderListVO orderListVO : orderList)
             orderListVO.setGoodsImage(dao.getImage(orderListVO.getGoodsImage().split(SymbolConstant.REG_VERTICAL)[0]));
         myOrder.setOrderList(orderList);
+        myOrder = OrderUtil.getOrderCount(myOrder);
 
         return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), myOrder));
     }
@@ -333,6 +336,7 @@ public class MyOrderServiceImpl implements MyOrderService
         int pageCount = PagingUtil.getCount((int) dao.countByExample(example), pageVO.getPageSize());
         List<MyOrder> result = dao.selectByExample(example);
         result = getOrderList(result);
+        result = OrderUtil.getOrderCount(result);
 
         JSONObject json = (JSONObject) JSONObject.toJSON(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), result));
         json.put(KeyConstant.PAGE_COUNT, pageCount);
@@ -378,6 +382,7 @@ public class MyOrderServiceImpl implements MyOrderService
 
         List<MyOrder> result = dao.selectByExample(example);
         result = getOrderList(result);
+        result = OrderUtil.getOrderCount(result);
 
         JSONObject json = (JSONObject) JSONObject.toJSON(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), result));
 

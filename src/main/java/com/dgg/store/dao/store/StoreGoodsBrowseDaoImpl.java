@@ -2,6 +2,7 @@ package com.dgg.store.dao.store;
 
 import com.dgg.store.mapper.StoreGoodsBrowseMapper;
 import com.dgg.store.util.vo.goods.GoodsDetailVO;
+import com.dgg.store.util.vo.goods.GoodsImgVO;
 import com.dgg.store.util.vo.goods.GoodsInfoVO;
 import com.dgg.store.util.vo.goods.GoodsTypeVO;
 import org.springframework.stereotype.Repository;
@@ -20,9 +21,9 @@ public class StoreGoodsBrowseDaoImpl implements StoreGoodsBrowseDao
     }
 
     @Override
-    public int countGoodsByType(GoodsTypeVO goodsTypeVO)
+    public int countGoodsByType(GoodsTypeVO goodsTypeVO, Set<String> childType)
     {
-        return mapper.countGoodsByType(goodsTypeVO);
+        return mapper.countGoodsByType(goodsTypeVO,childType);
     }
 
     @Override
@@ -53,5 +54,11 @@ public class StoreGoodsBrowseDaoImpl implements StoreGoodsBrowseDao
     public String findGoodsDescribeImg(String id)
     {
         return mapper.findGoodsDescribeImg(id);
+    }
+
+    @Override
+    public List<GoodsImgVO> listGoodsImage(String goodsId)
+    {
+        return mapper.listGoodsImage(goodsId);
     }
 }

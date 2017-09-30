@@ -219,6 +219,7 @@ public class FollowerOrderServiceImpl implements FollowerOrderService
         int pageCount = PagingUtil.getCount(dao.countFollowerOrder(myOrder, sessionVO.getUserId()), pageVO.getPageSize());
         List<MyOrder> result = dao.listFollowerOrder(myOrder, sessionVO.getUserId(), pageNum, pageSize);
         result = OrderUtil.getOrderList(result, dao);
+        result = OrderUtil.getOrderCount(result);
 
         JSONObject json = (JSONObject) JSONObject.toJSON(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), result));
         json.put(KeyConstant.PAGE_COUNT, pageCount);

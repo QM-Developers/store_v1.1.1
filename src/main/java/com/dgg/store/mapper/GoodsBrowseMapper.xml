@@ -96,11 +96,14 @@
         FROM goodsinfo gd
         WHERE 1 = 1
         AND gd.my_team_id = #{type.myTeamId}
-        <if test="type.goodsTypeId != null and type.goodsTypeId != ''">
-            AND gd.goods_type_id = #{type.goodsTypeId}
-        </if>
         <if test="type.keyword != null and type.keyword != ''">
             AND gd.goods_name LIKE CONCAT('%', #{type.keyword}, '%')
+        </if>
+        <if test="childType != null">
+            AND gd.goods_type_id IN
+            <foreach collection="childType" item="typeId" separator="," open="(" close=")" index="i">
+                #{typeId}
+            </foreach>
         </if>
     </select>
 
@@ -148,4 +151,99 @@
         FROM goods_typeinfo gt
         WHERE gt.goods_type_pid = #{typeId}
     </select>
+
+    <select id="countGoodsByType2" resultType="java.lang.Integer" parameterType="com.dgg.store.util.vo.goods.GoodsTypeVO">
+        SELECT COUNT(0)
+        FROM goodsinfo gd
+        INNER JOIN qm_branch_goods qbg
+        ON qbg.goods_id = gd.goods_id
+        INNER JOIN qm_branch qb
+        ON qb.branch_id = qbg.branch_id
+        INNER JOIN user u
+        ON u.team_department_id = qb.department_id
+        INNER JOIN customer c
+        ON c.promoter_id = u.user_id
+        WHERE gd.my_team_id = #{type.myTeamId}
+        AND c.user_id = #{type.userId}
+        <if test="type.keyword != null and type.keyword != ''">
+            AND gd.goods_name LIKE CONCAT('%', #{type.keyword}, '%')
+        </if>
+        <if test="childType != null">
+            AND gd.goods_type_id IN
+            <foreach collection="childType" item="typeId" separator="," open="(" close=")" index="i">
+                #{typeId}
+            </foreach>
+        </if>
+    </select>
+
+    <select id="findGoodsList2" resultMap="GoodsVOMap" parameterType="com.dgg.store.util.vo.goods.GoodsTypeVO">
+        SELECT gd.goods_id,gd.goods_name,gd.goods_sales,
+        (SELECT MIN(gs.standard_price) FROM goods_standard gs WHERE gs.goods_id = gd.goods_id) goods_price
+        FROM goodsinfo gd
+        INNER JOIN qm_branch_goods qbg
+        ON qbg.goods_id = gd.goods_id
+        INNER JOIN qm_branch qb
+        ON qb.branch_id = qbg.branch_id
+        INNER JOIN user u
+        ON u.team_department_id = qb.department_id
+        INNER JOIN customer c
+        ON c.promoter_id = u.user_id
+        WHERE gd.my_team_id = #{type.myTeamId}
+        AND c.user_id = #{type.userId}
+        <if test="childType != null">
+            AND gd.goods_type_id IN
+            <foreach collection="childType" item="typeId" separator="," open="(" close=")" index="i">
+                #{typeId}
+            </foreach>
+        </if>
+        <if test="type.keyword != null and type.keyword != ''">
+            AND gd.goods_name LIKE CONCAT('%', #{type.keyword}, '%')
+        </if>
+        <if test="type.orderBy != null and type.orderBy == 'goodsPrice'">
+            <choose>
+                <when test="type.sort != null and type.sort == 'desc'">
+                    ORDER BY goods_price desc
+                </when>
+                <otherwise>
+                    ORDER BY goods_price asc
+                </otherwise>
+            </choose>
+        </if>
+        <if test="type.orderBy != null and type.orderBy == 'goodsSales'">
+            <choose>
+                <when test="type.sort != null and type.sort == 'desc'">
+                    ORDER BY gd.goods_sales desc
+                </when>
+                <otherwise>
+                    ORDER BY gd.goods_sales asc
+                </otherwise>
+            </choose>
+        </if>
+        LIMIT #{pageNum},#{pageSize}
+    </select>
+
+    <select id="findGoodsDetail_2" resultMap="GoodsDetailVOMap">
+        SELECT gd.goods_id,gd.goods_name, gd.goods_price,gd.goods_sales,gd.goods_attr,
+        gd.goods_count,img.image_path goods_images,
+        gs.standard_name,gs.standard_id,gs.standard_price,
+        gs.standard_count,gs.standard_weight
+        FROM goodsinfo gd
+        INNER JOIN goods_image gi
+        ON gi.goods_id = gd.goods_id
+        INNER JOIN image_space img
+        ON img.image_id = gi.image_id
+        LEFT JOIN goods_standard gs
+        ON gs.goods_id = gd.goods_id
+        INNER JOIN qm_branch_goods qbg
+        ON qbg.goods_id = gd.goods_id
+        INNER JOIN qm_branch qb
+        ON qb.branch_id = qbg.branch_id
+        INNER JOIN user u
+        ON u.team_department_id = qb.department_id
+        INNER JOIN customer c
+        ON c.promoter_id = u.user_id
+        WHERE gd.goods_id = #{goodsId}
+        AND c.user_id = #{userId}
+    </select>
+
 </mapper>

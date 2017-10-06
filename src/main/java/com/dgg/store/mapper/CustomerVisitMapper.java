@@ -15,11 +15,11 @@ public interface CustomerVisitMapper
 {
     List<DepartmentVO> listVisitDepartment(@Param("userId") String userId);
 
-    List<MemberVO> listVisitMember(@Param("departmentId") String departmentId);
+    List<MemberVO> listVisitMember(MemberVO memberVO);
 
     int countVisitCustomer(CustomerVO customerVO);
 
-    List<CustomerVO> listVisitCustomer(CustomerVO customerVO);
+    List<CustomerVO> listVisitCustomer(@Param("customerVO") CustomerVO customerVO,@Param("promoterList") List<String> promoterList);
 
     CustomerVO getVisitCustomer(CustomerVO customerVO);
 

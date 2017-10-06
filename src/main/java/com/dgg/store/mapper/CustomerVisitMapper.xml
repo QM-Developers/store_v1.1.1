@@ -33,15 +33,15 @@
     </resultMap>
 
     <resultMap id="UserPlace" type="com.dgg.store.util.pojo.UserPlace">
-        <id column="user_place_id" jdbcType="VARCHAR" property="userPlaceId" />
-        <result column="customer_id" jdbcType="VARCHAR" property="customerId" />
-        <result column="user_place_acreage" jdbcType="INTEGER" property="userPlaceAcreage" />
-        <result column="user_employee_num" jdbcType="INTEGER" property="userEmployeeNum" />
-        <result column="user_owner_num" jdbcType="INTEGER" property="userOwnerNum" />
-        <result column="user_already_use" jdbcType="INTEGER" property="userAlreadyUse" />
-        <result column="user_place_area" jdbcType="VARCHAR" property="userPlaceArea" />
-        <result column="user_place_type" jdbcType="VARCHAR" property="userPlaceType" />
-        <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+        <id column="user_place_id" jdbcType="VARCHAR" property="userPlaceId"/>
+        <result column="customer_id" jdbcType="VARCHAR" property="customerId"/>
+        <result column="user_place_acreage" jdbcType="INTEGER" property="userPlaceAcreage"/>
+        <result column="user_employee_num" jdbcType="INTEGER" property="userEmployeeNum"/>
+        <result column="user_owner_num" jdbcType="INTEGER" property="userOwnerNum"/>
+        <result column="user_already_use" jdbcType="INTEGER" property="userAlreadyUse"/>
+        <result column="user_place_area" jdbcType="VARCHAR" property="userPlaceArea"/>
+        <result column="user_place_type" jdbcType="VARCHAR" property="userPlaceType"/>
+        <result column="create_date" jdbcType="TIMESTAMP" property="createDate"/>
         <collection property="imageList" ofType="com.dgg.store.util.pojo.PlaceImage">
             <result column="img_id" property="imgId" jdbcType="VARCHAR"/>
             <result column="img_type" property="imgType" jdbcType="TINYINT"/>
@@ -50,39 +50,39 @@
     </resultMap>
 
     <resultMap id="UserBreed" type="com.dgg.store.util.pojo.UserBreed">
-        <id column="breed_id" jdbcType="VARCHAR" property="breedId" />
-        <result column="breed_category" jdbcType="VARCHAR" property="breedCategory" />
-        <result column="breed_variety" jdbcType="VARCHAR" property="breedVariety" />
-        <result column="breed_type" jdbcType="VARCHAR" property="breedType" />
-        <result column="male_num" jdbcType="INTEGER" property="maleNum" />
-        <result column="female_num" jdbcType="INTEGER" property="femaleNum" />
-        <result column="obstetric_table_num" jdbcType="INTEGER" property="obstetricTableNum" />
-        <result column="shed_num" jdbcType="INTEGER" property="shedNum" />
-        <result column="empty_shed_num" jdbcType="INTEGER" property="emptyShedNum" />
-        <result column="competitive_brand" jdbcType="VARCHAR" property="competitiveBrand" />
-        <result column="livestock_num" jdbcType="INTEGER" property="livestockNum" />
-        <result column="user_place_id" jdbcType="VARCHAR" property="userPlaceId" />
-        <result column="breed_age" jdbcType="INTEGER" property="breedAge" />
-        <result column="breed_scale" jdbcType="INTEGER" property="breedScale" />
-        <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
-        <result column="is_deleted" jdbcType="TINYINT" property="isDeleted" />
-        <result column="delete_date" jdbcType="TIMESTAMP" property="deleteDate" />
+        <id column="breed_id" jdbcType="VARCHAR" property="breedId"/>
+        <result column="breed_category" jdbcType="VARCHAR" property="breedCategory"/>
+        <result column="breed_variety" jdbcType="VARCHAR" property="breedVariety"/>
+        <result column="breed_type" jdbcType="VARCHAR" property="breedType"/>
+        <result column="male_num" jdbcType="INTEGER" property="maleNum"/>
+        <result column="female_num" jdbcType="INTEGER" property="femaleNum"/>
+        <result column="obstetric_table_num" jdbcType="INTEGER" property="obstetricTableNum"/>
+        <result column="shed_num" jdbcType="INTEGER" property="shedNum"/>
+        <result column="empty_shed_num" jdbcType="INTEGER" property="emptyShedNum"/>
+        <result column="competitive_brand" jdbcType="VARCHAR" property="competitiveBrand"/>
+        <result column="livestock_num" jdbcType="INTEGER" property="livestockNum"/>
+        <result column="user_place_id" jdbcType="VARCHAR" property="userPlaceId"/>
+        <result column="breed_age" jdbcType="INTEGER" property="breedAge"/>
+        <result column="breed_scale" jdbcType="INTEGER" property="breedScale"/>
+        <result column="create_date" jdbcType="TIMESTAMP" property="createDate"/>
+        <result column="is_deleted" jdbcType="TINYINT" property="isDeleted"/>
+        <result column="delete_date" jdbcType="TIMESTAMP" property="deleteDate"/>
     </resultMap>
 
     <resultMap id="Farmer" type="com.dgg.store.util.pojo.Farmer">
-        <id column="farmer_id" jdbcType="VARCHAR" property="farmerId" />
-        <result column="customer_id" jdbcType="VARCHAR" property="customerId" />
-        <result column="farmer_name" jdbcType="VARCHAR" property="farmerName" />
-        <result column="farmer_phone" jdbcType="VARCHAR" property="farmerPhone" />
+        <id column="farmer_id" jdbcType="VARCHAR" property="farmerId"/>
+        <result column="customer_id" jdbcType="VARCHAR" property="customerId"/>
+        <result column="farmer_name" jdbcType="VARCHAR" property="farmerName"/>
+        <result column="farmer_phone" jdbcType="VARCHAR" property="farmerPhone"/>
     </resultMap>
 
     <resultMap id="ManageUnit" type="com.dgg.store.util.pojo.ManageUnit">
-        <id column="manage_id" jdbcType="VARCHAR" property="manageId" />
-        <result column="customer_id" jdbcType="VARCHAR" property="customerId" />
-        <result column="manage_name" jdbcType="VARCHAR" property="manageName" />
-        <result column="manage_type" jdbcType="VARCHAR" property="manageType" />
-        <result column="manage_address" jdbcType="VARCHAR" property="manageAddress" />
-        <result column="manage_acreage" jdbcType="INTEGER" property="manageAcreage" />
+        <id column="manage_id" jdbcType="VARCHAR" property="manageId"/>
+        <result column="customer_id" jdbcType="VARCHAR" property="customerId"/>
+        <result column="manage_name" jdbcType="VARCHAR" property="manageName"/>
+        <result column="manage_type" jdbcType="VARCHAR" property="manageType"/>
+        <result column="manage_address" jdbcType="VARCHAR" property="manageAddress"/>
+        <result column="manage_acreage" jdbcType="INTEGER" property="manageAcreage"/>
     </resultMap>
 
     <select id="listVisitDepartment" resultMap="DepartmentVO">
@@ -91,13 +91,18 @@
         WHERE member_id = #{userId}
     </select>
 
-    <select id="listVisitMember" resultMap="MemberVO">
+    <select id="listVisitMember" resultMap="MemberVO" parameterType="com.dgg.store.util.vo.manage.MemberVO">
         SELECT u.user_id,u.user_name
         FROM user u
-        WHERE u.team_department_id = #{departmentId}
+        WHERE u.my_team_id = #{myTeamId}
+        AND team_department_id != ''
+        <if test="departmentId != null and departmentId != ''">
+            AND u.team_department_id = #{departmentId}
+        </if>
     </select>
 
-    <select id="countVisitCustomer" parameterType="com.dgg.store.util.vo.customer.CustomerVO" resultType="java.lang.Integer">
+    <select id="countVisitCustomer" parameterType="com.dgg.store.util.vo.customer.CustomerVO"
+            resultType="java.lang.Integer">
         SELECT COUNT(0)
         FROM customer c
         INNER JOIN user_view u
@@ -109,20 +114,20 @@
         </if>
     </select>
 
-    <select id="listVisitCustomer" parameterType="com.dgg.store.util.vo.customer.CustomerVO" resultMap="CustomerVO">
+    <select id="listVisitCustomer" resultMap="CustomerVO">
         SELECT c.customer_id,c.business_address,c.credit_rating,
-            c.customer_type,c.station,c.had_account,
-            u.user_name,u.user_phone,u.user_birthday,
-            u.user_address,u.user_sex
+        c.customer_type,c.station,c.had_account,
+        u.user_name,u.user_phone,u.user_birthday,
+        u.user_address,u.user_sex
         FROM customer c
         INNER JOIN user_view u
         ON u.user_id = c.user_id
-        WHERE c.my_team_id = #{myTeamId}
-        AND c.promoter_id = #{promoterId}
-        <if test="customerType != null and customerType != ''">
-            AND c.customer_type = #{customerType}
-        </if>
-        LIMIT #{pageNum},#{pageSize}
+        WHERE c.my_team_id = #{customerVO.myTeamId}
+        AND c.promoter_id IN
+        <foreach collection="promoterList" item="promoterId" separator="," open="(" close=")" index="i">
+            #{promoterId}
+        </foreach>
+        LIMIT #{customerVO.pageNum},#{customerVO.pageSize}
     </select>
 
     <select id="getVisitCustomer" parameterType="com.dgg.store.util.vo.customer.CustomerVO" resultMap="CustomerVO">

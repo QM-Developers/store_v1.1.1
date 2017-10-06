@@ -19,6 +19,8 @@ public class GoodsInfoVO
 
     private Integer goodsSales;
 
+    private String goodsCode;
+
     private String goodsDescribe;
 
     private String goodsAttr;
@@ -173,5 +175,15 @@ public class GoodsInfoVO
     public void setGoodsPrice(Float goodsPrice)
     {
         this.goodsPrice = goodsPrice;
+    }
+
+    public String getGoodsCode()
+    {
+        return goodsCode;
+    }
+
+    public void setGoodsCode(String goodsCode)
+    {
+        this.goodsCode = goodsCode;
     }
 }

@@ -6,6 +6,7 @@ import com.dgg.store.mapper.PushMessageMapper;
 import com.dgg.store.util.core.constant.*;
 import com.dgg.store.util.core.generator.IDGenerator;
 import com.dgg.store.util.core.page.PagingUtil;
+import com.dgg.store.util.core.parameter.ParameterUtil;
 import com.dgg.store.util.core.reflect.ReflectUtil;
 import com.dgg.store.util.core.string.StringUtil;
 import com.dgg.store.util.core.umeng.push.PushMessageFactory;
@@ -54,6 +55,10 @@ public class CustomerServiceImpl implements CustomerService
                     customerVO.setUserCardBack(Constant.EMPTY);
                     customerVO.setUserCardHand(Constant.EMPTY);
                     customerVO.setUserCreateDate(new Date());
+                    customerVO.setUserAddress(customerVO.getUserAddress() == null ? Constant.EMPTY : customerVO.getUserAddress());
+                    customerVO.setUserBirthday(ParameterUtil.getDefault(customerVO.getUserBirthday(),Constant.EMPTY));
+                    customerVO.setUserSex(ParameterUtil.getDefault(customerVO.getUserSex(),Constant.EMPTY));
+                    customerVO.setCreditRating(ParameterUtil.getDefault(customerVO.getCreditRating(),0));
                     result = dao.insertCustomerRecord(customerVO);
                     break;
                 case 1:

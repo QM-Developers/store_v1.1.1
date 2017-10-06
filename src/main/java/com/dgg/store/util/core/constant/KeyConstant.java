@@ -25,4 +25,5 @@ public class KeyConstant
     public static final String CONTENT_TYPE = "Content-type";
     public static final String MY_TEAM_ID = "myTeamId";
     public static final String USER_ID = "userId";
+    public static final String PROMOTER_ID = "promoterId";
 }

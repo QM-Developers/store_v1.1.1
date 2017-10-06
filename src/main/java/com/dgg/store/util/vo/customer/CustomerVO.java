@@ -8,6 +8,8 @@ public class CustomerVO
 
     private String customerId;
 
+    private String promoter;
+
     private String promoterId;
 
     private String merchandiserId;
@@ -338,5 +340,15 @@ public class CustomerVO
     public void setDepartmentId(String departmentId)
     {
         this.departmentId = departmentId;
+    }
+
+    public String getPromoter()
+    {
+        return promoter;
+    }
+
+    public void setPromoter(String promoter)
+    {
+        this.promoter = promoter;
     }
 }

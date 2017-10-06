@@ -14,11 +14,11 @@ public interface CustomerVisitDao
 {
     List<DepartmentVO> listVisitDepartment(String userId);
 
-    List<MemberVO> listVisitMember(String departmentId);
+    List<MemberVO> listVisitMember(MemberVO memberVO);
 
     int countVisitCustomer(CustomerVO customerVO);
 
-    List<CustomerVO> listVisitCustomer(CustomerVO customerVO);
+    List<CustomerVO> listVisitCustomer(CustomerVO customerVO, List<String> promoterList);
 
     CustomerVO getVisitCustomer(CustomerVO customerVO);
 

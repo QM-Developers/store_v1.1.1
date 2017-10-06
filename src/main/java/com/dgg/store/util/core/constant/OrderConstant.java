@@ -25,5 +25,4 @@ public class OrderConstant
     public static final byte PAYMENT_DESTINATION = 30;  // 到付
 
     public static final Integer REPERTORY_NOT_ENOUGH = 3;
-
 }

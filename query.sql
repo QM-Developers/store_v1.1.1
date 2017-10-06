@@ -1,2 +1,5 @@
-select * from my_order
+select * from customer
+;
+
+select * from user
 ;

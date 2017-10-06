@@ -8,7 +8,9 @@ import java.util.List;
 
 import com.dgg.store.util.vo.order.MyOrderListVO;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface MyOrderMapper
 {
     long countByExample(MyOrderExample example);

@@ -323,23 +323,25 @@ create table goods_typeinfo
 /*==============================================================*/
 /* 商品信息
 /*==============================================================*/
+drop table if exists goodsinfo;
 create table goodsinfo
 (
-   goods_id             varchar(35) not null,
-   goods_type_id        varchar(35) not null default '',
-   my_team_id           varchar(35) not null default '',
-   template_freight_id  varchar(35) not null default '',
-   goods_name           varchar(60) not null default '',
-   goods_price          float not null default 0,
-   goods_count          int not null default 0,
-   goods_attr           text,
-   goods_describe       text,
-   goods_standard       text,
-   goods_freight        int not null default 0,
-   goods_sales			int not null default 0,
-   goods_create_date    datetime not null default now(),
-   is_deleted           tinyint not null default 0,
-   delete_date          datetime,
+   goods_id             varchar(35) not null,	-- 商品Id
+   goods_type_id        varchar(35) not null default '',	-- 商品类目Id
+   my_team_id           varchar(35) not null default '',	-- 企业码
+   template_freight_id  varchar(35) not null default '',	-- 运费模板Id
+   goods_name           varchar(60) not null default '',	-- 商品名称
+   goods_code varchar(20) not null default '',	-- 商品编码
+   goods_price          float not null default 0,	-- 商品价格
+   goods_count          int not null default 0,	-- 商品总数
+   goods_attr           text,	-- 商品属性
+   goods_describe       text,	-- 商品描述
+   goods_standard       text,	-- 商品规格
+   goods_freight        int not null default 0,	-- 运费
+   goods_sales			int not null default 0,	-- 销量
+   goods_create_date    datetime not null default now(),	-- 发布时间
+   is_deleted           tinyint not null default 0,	-- 是否删除
+   delete_date          datetime,	-- 删除时间
    primary key (goods_id)
 );
 
@@ -413,6 +415,17 @@ create table my_order_list
     standard_name varchar(20) not null default '',	-- 规格名称
     buy_num int not null default 0,	-- 购买数量
     refund_num int not null default 0	-- 退货数量
+);
+
+/*==============================================================*/
+/* 订单凭证
+/*==============================================================*/
+drop table if exists my_order_proof;
+create table my_order_proof
+(
+	proof_id varchar(35) not null primary key,	-- 证明Id
+    proof_url varchar(255) not null,	-- 证明图片路径
+    order_id varchar(35) not null	-- 订单Id
 );
 
 /*==============================================================*/

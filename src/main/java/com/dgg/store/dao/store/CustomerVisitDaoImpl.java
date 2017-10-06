@@ -26,9 +26,9 @@ public class CustomerVisitDaoImpl implements CustomerVisitDao
     }
 
     @Override
-    public List<MemberVO> listVisitMember(String departmentId)
+    public List<MemberVO> listVisitMember(MemberVO memberVO)
     {
-        return mapper.listVisitMember(departmentId);
+        return mapper.listVisitMember(memberVO);
     }
 
     @Override
@@ -38,9 +38,9 @@ public class CustomerVisitDaoImpl implements CustomerVisitDao
     }
 
     @Override
-    public List<CustomerVO> listVisitCustomer(CustomerVO customerVO)
+    public List<CustomerVO> listVisitCustomer(CustomerVO customerVO, List<String> promoterList)
     {
-        return mapper.listVisitCustomer(customerVO);
+        return mapper.listVisitCustomer(customerVO, promoterList);
     }
 
     @Override

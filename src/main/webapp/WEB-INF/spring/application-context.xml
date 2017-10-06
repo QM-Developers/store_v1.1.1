@@ -66,7 +66,9 @@
             <tx:method name="find*" read-only="true"/>
             <tx:method name="update*"/>
             <tx:method name="delete*"/>
+            <tx:method name="remove*"/>
             <tx:method name="insert*"/>
+            <tx:method name="save*"/>
             <tx:method name="login*"/>
             <tx:method name="*" propagation="REQUIRED" read-only="true"/>
         </tx:attributes>

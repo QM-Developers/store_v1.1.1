@@ -1,5 +1,6 @@
 package com.dgg.store.service.store;
 
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.dgg.store.dao.store.CustomerFollowDao;
 import com.dgg.store.dao.store.CustomerVisitDao;
@@ -40,7 +41,8 @@ public class CustomerVisitServiceImpl implements CustomerVisitService
     @Override
     public String listVisitMember(SessionVO sessionVO, MemberVO memberVO)
     {
-        List<MemberVO> result = dao.listVisitMember(memberVO.getDepartmentId());
+        memberVO.setMyTeamId(sessionVO.getMyTeamId());
+        List<MemberVO> result = dao.listVisitMember(memberVO);
 
         return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), result));
     }
@@ -51,13 +53,23 @@ public class CustomerVisitServiceImpl implements CustomerVisitService
         customerVO.setPageNum(PagingUtil.getStart(pageVO.getPageNum(), pageVO.getPageSize()));
         customerVO.setPageSize(pageVO.getPageSize());
         customerVO.setMyTeamId(sessionVO.getMyTeamId());
+        customerVO.setUserId(sessionVO.getUserId());
+
+        JSONArray jArr = JSONArray.parseArray(customerVO.getPromoter());
+        JSONObject json;
+        List<String> promoterList = new ArrayList<>();
+        for (int i = 0; i < jArr.size(); i++)
+        {
+            json = JSONObject.parseObject(jArr.get(i).toString());
+            promoterList.add(json.getString(KeyConstant.PROMOTER_ID));
+        }
 
         int pageCount = dao.countVisitCustomer(customerVO);
         pageCount = PagingUtil.getCount(pageCount, pageVO.getPageSize());
 
-        List<CustomerVO> result = dao.listVisitCustomer(customerVO);
+        List<CustomerVO> result = dao.listVisitCustomer(customerVO, promoterList);
 
-        JSONObject json = (JSONObject) JSONObject.toJSON(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), result));
+        json = (JSONObject) JSONObject.toJSON(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), result));
         json.put(KeyConstant.PAGE_COUNT, pageCount);
 
         return json.toJSONString();

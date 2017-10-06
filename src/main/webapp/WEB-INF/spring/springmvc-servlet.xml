@@ -22,6 +22,7 @@
             <mvc:exclude-mapping path="/register*"/>
             <mvc:exclude-mapping path="/retrieve*"/>
             <mvc:exclude-mapping path="/login*"/>
+            <mvc:exclude-mapping path="/user_getProofImage.action"/>
             <mvc:exclude-mapping path="/user_register.action"/>
             <mvc:exclude-mapping path="/user_findGoodsDescribe.action"/>
             <bean class="com.dgg.store.interceptor.TokenInterceptor"/>

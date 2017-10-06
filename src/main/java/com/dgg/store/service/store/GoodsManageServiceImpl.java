@@ -41,7 +41,8 @@ public class GoodsManageServiceImpl implements GoodsManageService
         Integer result = 1;
         goodsinfo.setMyTeamId(sessionVO.getMyTeamId());
         goodsinfo.setGoodsId(IDGenerator.generator());
-        String[] images = goodsinfo.getGoodsImages().split("\\|");
+        goodsinfo.setGoodsCode(goodsinfo.getGoodsCode() == null ? Constant.EMPTY : goodsinfo.getGoodsCode());
+        String[] images = goodsinfo.getGoodsImages().split(SymbolConstant.REG_VERTICAL);
         GoodsImgVO imgVO = new GoodsImgVO(sessionVO.getUserId(), goodsinfo.getGoodsId());
         GoodsStandard standard = new GoodsStandard(goodsinfo.getGoodsId());
 

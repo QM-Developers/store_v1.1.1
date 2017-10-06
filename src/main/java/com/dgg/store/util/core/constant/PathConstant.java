@@ -20,7 +20,11 @@ public class PathConstant
 
     public static final String COMMON_APPLY_IMAGE;   // 通用审批图片路径
 
-    public static final String USER_ASSIST_PATH;
+    public static final String USER_ASSIST_PATH;    // 申请协助图片路径
+
+    public static final String ORDER_PROOF_PATH;    // 订单凭证路径
+
+
 
     static
     {
@@ -40,5 +44,6 @@ public class PathConstant
         USER_ID_CARD_PATH = uploadPath.getProperty("USER_ID_CARD_PATH");
         COMMON_APPLY_IMAGE = uploadPath.getProperty("COMMON_APPLY_IMAGE");
         USER_ASSIST_PATH = uploadPath.getProperty("USER_ASSIST_PATH");
+        ORDER_PROOF_PATH = uploadPath.getProperty("ORDER_PROOF_PATH");
     }
 }

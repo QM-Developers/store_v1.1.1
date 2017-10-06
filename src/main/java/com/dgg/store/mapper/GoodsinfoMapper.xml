@@ -5,6 +5,7 @@
         <id column="goods_id" jdbcType="VARCHAR" property="goodsId"/>
         <result column="goods_type_id" jdbcType="VARCHAR" property="goodsTypeId"/>
         <result column="goods_name" jdbcType="VARCHAR" property="goodsName"/>
+        <result column="goods_code" jdbcType="VARCHAR" property="goodsCode"/>
         <result column="goods_create_date" property="createDate" jdbcType="DATE"/>
         <result column="goods_attr" property="goodsAttr" jdbcType="VARCHAR"/>
         <result column="goods_describe" property="goodsDescribe" jdbcType="VARCHAR"/>
@@ -59,11 +60,11 @@
         INSERT INTO goodsinfo
         (goods_id, goods_type_id, goods_name,
           goods_describe,
-          my_team_id, goods_attr)
+          my_team_id, goods_attr,goods_code)
         VALUES
         (#{goodsId},#{goodsTypeId},#{goodsName},
           #{goodsDescribe},
-          #{myTeamId},#{goodsAttr})
+          #{myTeamId},#{goodsAttr},#{goodsCode})
     </insert>
 
     <select id="findTypeAndParent" resultMap="TypeVOMap">
@@ -152,6 +153,7 @@
     <select id="findGoodsInfo" resultMap="GoodsInfoVO" parameterType="com.dgg.store.util.vo.goods.GoodsInfoVO">
         SELECT gi.goods_id, gi.goods_type_id, gi.goods_name,
             gi.goods_attr, gi.goods_describe, gi.goods_standard,
+            gi.goods_code,
             gs.standard_id,gs.standard_name,gs.standard_price,
             gs.standard_count,gs.standard_weight
         FROM goodsinfo gi
@@ -201,6 +203,9 @@
             </if>
             <if test="goodsTypeId != null and goodsTypeId != ''">
                 goods_type_id = #{goodsTypeId},
+            </if>
+            <if test="goodsCode != null and goodsCode != ''">
+                goods_code = #{goodsCode}
             </if>
         </set>
         WHERE goods_id = #{goodsId}

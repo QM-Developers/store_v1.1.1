@@ -45,8 +45,7 @@ public class CustomerVisitController
     /**
      * 获取部门下的成员列表
      *
-     * @param request  用户参数
-     * @param memberVO 部门Id
+     * @param request 用户参数
      * @return 成员列表
      */
     @RequestMapping(value = "/s/listVisitMember", method = RequestMethod.POST, produces = {"application/json;charset=UTF-8"})

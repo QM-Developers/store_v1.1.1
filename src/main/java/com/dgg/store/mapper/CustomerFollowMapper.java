@@ -2,8 +2,9 @@ package com.dgg.store.mapper;
 
 import com.dgg.store.util.pojo.CustomerFollow;
 import com.dgg.store.util.pojo.CustomerFollowExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface CustomerFollowMapper {
     long countByExample(CustomerFollowExample example);
@@ -28,5 +29,5 @@ public interface CustomerFollowMapper {
 
     int updateByPrimaryKey(CustomerFollow record);
 
-    String getUserName(@Param("userId") String userId);
+    String getUserName(String userId);
 }

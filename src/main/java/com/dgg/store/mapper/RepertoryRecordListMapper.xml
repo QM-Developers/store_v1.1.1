@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dgg.store.mapper.RepertoryRecordListMapper">
+  <resultMap id="BaseResultMap" type="com.dgg.store.util.pojo.RepertoryRecordList">
+    <result column="record_id" jdbcType="VARCHAR" property="recordId" />
+    <result column="record_type" jdbcType="TINYINT" property="recordType" />
+    <result column="record_reason" jdbcType="VARCHAR" property="recordReason" />
+    <result column="goods_id" jdbcType="VARCHAR" property="goodsId" />
+    <result column="goods_name" jdbcType="VARCHAR" property="goodsName" />
+    <result column="standard_id" jdbcType="VARCHAR" property="standardId" />
+    <result column="standard_name" jdbcType="VARCHAR" property="standardName" />
+    <result column="standard_count" jdbcType="INTEGER" property="standardCount" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    record_id, record_type, record_reason, goods_id, goods_name, standard_id, standard_name, 
+    standard_count
+  </sql>
+  <select id="selectByExample" parameterType="com.dgg.store.util.pojo.RepertoryRecordListExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from repertory_record_list
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.dgg.store.util.pojo.RepertoryRecordListExample">
+    delete from repertory_record_list
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.dgg.store.util.pojo.RepertoryRecordList">
+    insert into repertory_record_list (record_id, record_type, record_reason, 
+      goods_id, goods_name, standard_id, 
+      standard_name, standard_count)
+    values (#{recordId,jdbcType=VARCHAR}, #{recordType,jdbcType=TINYINT}, #{recordReason,jdbcType=VARCHAR}, 
+      #{goodsId,jdbcType=VARCHAR}, #{goodsName,jdbcType=VARCHAR}, #{standardId,jdbcType=VARCHAR}, 
+      #{standardName,jdbcType=VARCHAR}, #{standardCount,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.dgg.store.util.pojo.RepertoryRecordList">
+    insert into repertory_record_list
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="recordId != null">
+        record_id,
+      </if>
+      <if test="recordType != null">
+        record_type,
+      </if>
+      <if test="recordReason != null">
+        record_reason,
+      </if>
+      <if test="goodsId != null">
+        goods_id,
+      </if>
+      <if test="goodsName != null">
+        goods_name,
+      </if>
+      <if test="standardId != null">
+        standard_id,
+      </if>
+      <if test="standardName != null">
+        standard_name,
+      </if>
+      <if test="standardCount != null">
+        standard_count,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="recordId != null">
+        #{recordId,jdbcType=VARCHAR},
+      </if>
+      <if test="recordType != null">
+        #{recordType,jdbcType=TINYINT},
+      </if>
+      <if test="recordReason != null">
+        #{recordReason,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsId != null">
+        #{goodsId,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsName != null">
+        #{goodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="standardId != null">
+        #{standardId,jdbcType=VARCHAR},
+      </if>
+      <if test="standardName != null">
+        #{standardName,jdbcType=VARCHAR},
+      </if>
+      <if test="standardCount != null">
+        #{standardCount,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.dgg.store.util.pojo.RepertoryRecordListExample" resultType="java.lang.Long">
+    select count(*) from repertory_record_list
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update repertory_record_list
+    <set>
+      <if test="record.recordId != null">
+        record_id = #{record.recordId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.recordType != null">
+        record_type = #{record.recordType,jdbcType=TINYINT},
+      </if>
+      <if test="record.recordReason != null">
+        record_reason = #{record.recordReason,jdbcType=VARCHAR},
+      </if>
+      <if test="record.goodsId != null">
+        goods_id = #{record.goodsId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.goodsName != null">
+        goods_name = #{record.goodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.standardId != null">
+        standard_id = #{record.standardId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.standardName != null">
+        standard_name = #{record.standardName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.standardCount != null">
+        standard_count = #{record.standardCount,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update repertory_record_list
+    set record_id = #{record.recordId,jdbcType=VARCHAR},
+      record_type = #{record.recordType,jdbcType=TINYINT},
+      record_reason = #{record.recordReason,jdbcType=VARCHAR},
+      goods_id = #{record.goodsId,jdbcType=VARCHAR},
+      goods_name = #{record.goodsName,jdbcType=VARCHAR},
+      standard_id = #{record.standardId,jdbcType=VARCHAR},
+      standard_name = #{record.standardName,jdbcType=VARCHAR},
+      standard_count = #{record.standardCount,jdbcType=INTEGER}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+</mapper>

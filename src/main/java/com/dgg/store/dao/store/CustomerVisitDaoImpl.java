@@ -102,4 +102,10 @@ public class CustomerVisitDaoImpl implements CustomerVisitDao
     {
         return mapper.listVisitManageUnit(unit);
     }
+
+    @Override
+    public UserBreed getVisitUserBreed(String breedId)
+    {
+        return mapper.getVisitUserBreed(breedId);
+    }
 }

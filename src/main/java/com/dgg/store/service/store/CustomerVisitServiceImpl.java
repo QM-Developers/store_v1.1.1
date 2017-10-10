@@ -210,4 +210,12 @@ public class CustomerVisitServiceImpl implements CustomerVisitService
 
         return JSONObject.toJSONString(new ResultVO(result == null ? Constant.REQUEST_FAILED : Constant.REQUEST_SUCCESS, sessionVO.getToken(), result));
     }
+
+    @Override
+    public String getVisitUserBreed(SessionVO sessionVO, UserBreed breed)
+    {
+        UserBreed result = dao.getVisitUserBreed(breed.getBreedId());
+
+        return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), result));
+    }
 }

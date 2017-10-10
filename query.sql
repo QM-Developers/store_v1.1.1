@@ -1,5 +1,5 @@
-select * from customer
+select * from repertory_record_list
 ;
 
-select * from user
+select * from qm_branch_goods
 ;

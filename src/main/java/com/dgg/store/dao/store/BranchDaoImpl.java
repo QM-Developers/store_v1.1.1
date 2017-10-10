@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Set;
 
 @Repository
 public class BranchDaoImpl implements BranchDao
@@ -83,9 +84,9 @@ public class BranchDaoImpl implements BranchDao
     }
 
     @Override
-    public List<GoodsDetailVO> listBranchGoods(BranchVO condition, int start, int end)
+    public List<GoodsDetailVO> listBranchGoods(BranchVO condition, Set<String> childType, int start, int end)
     {
-        return mapper.listBranchGoods(condition, start, end);
+        return mapper.listBranchGoods(condition, childType, start, end);
     }
 
     @Override
@@ -101,9 +102,9 @@ public class BranchDaoImpl implements BranchDao
     }
 
     @Override
-    public int countBranchGoods(BranchVO condition)
+    public int countBranchGoods(BranchVO condition, Set<String> childType)
     {
-        return mapper.countBranchGoods(condition);
+        return mapper.countBranchGoods(condition, childType);
     }
 
     @Override
@@ -121,6 +122,18 @@ public class BranchDaoImpl implements BranchDao
     @Override
     public int countBranchStandard(String standardId, String branchId)
     {
-        return mapper.countBranchStandard(standardId,branchId);
+        return mapper.countBranchStandard(standardId, branchId);
+    }
+
+    @Override
+    public String getCurrentBranchId(String userId)
+    {
+        return mapper.getCurrentBranchId(userId);
+    }
+
+    @Override
+    public String getFirstBranchId(String myTeamId, byte branchType)
+    {
+        return mapper.getFirstBranchId(myTeamId, branchType);
     }
 }

@@ -6,13 +6,15 @@ import com.dgg.store.util.vo.core.SessionVO;
 
 public interface RepertoryRecordService
 {
-    String updateRepertoryAddFirst(SessionVO sessionVO, RepertoryRecord repertoryRecord);
-
-    String updateRepertorySubFirst(SessionVO sessionVO, RepertoryRecord repertoryRecord);
-
-    String updateRepertoryAddSecond(SessionVO sessionVO, RepertoryRecord repertoryRecord);
-
-    String updateRepertorySubSecond(SessionVO sessionVO, RepertoryRecord repertoryRecord);
+//    String updateRepertoryAddFirst(SessionVO sessionVO, RepertoryRecord repertoryRecord);
+//
+//    String updateRepertorySubFirst(SessionVO sessionVO, RepertoryRecord repertoryRecord);
+//
+//    String updateRepertoryAddSecond(SessionVO sessionVO, RepertoryRecord repertoryRecord);
+//
+//    String updateRepertorySubSecond(SessionVO sessionVO, RepertoryRecord repertoryRecord);
 
     String listRepertoryRecord(SessionVO sessionVO, RepertoryRecord repertoryRecord, PageVO pageVO);
+
+    String updateRepertory(SessionVO sessionVO, RepertoryRecord repertoryRecord);
 }

@@ -857,4 +857,10 @@
     </if>
   </select>
 
+  <select id="countGoodsStandard" resultType="java.lang.Integer">
+    SELECT COUNT(0)
+    FROM goods_standard
+    WHERE standard_id = #{standardId}
+  </select>
+
 </mapper>

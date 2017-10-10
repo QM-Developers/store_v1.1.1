@@ -2,6 +2,7 @@ package com.dgg.store.mapper;
 
 import com.dgg.store.util.vo.core.LoginVO;
 import com.dgg.store.util.vo.manage.*;
+import com.dgg.store.util.vo.permission.QMPermissionVO;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -55,4 +56,6 @@ public interface ManageMapper
     Integer insertCustomerVisit(@Param("userId") String userId, @Param("departmentId") String departmentId);
 
     int cleanCustomerVisit(@Param("userId") String userId);
+
+    List<QMPermissionVO> listQmPermission();
 }

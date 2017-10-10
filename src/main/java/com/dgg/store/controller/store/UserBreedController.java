@@ -184,4 +184,20 @@ public class UserBreedController
         return service.listUserBreedJson(sessionVO, breed, pageVO);
     }
 
+    /**
+     * 获取养殖信息详情
+     *
+     * @param request 用户参数
+     * @param breed   养殖Id
+     * @return 养殖信息详情
+     */
+    @RequestMapping(value = "/s/getUserBreedJson", method = RequestMethod.POST, produces = {"application/json;charset=UTF-8"})
+    @ResponseBody
+    public String getUserBreedJson(HttpServletRequest request, UserBreed breed)
+    {
+        SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
+
+        return service.getUserBreedJson(sessionVO, breed);
+    }
+
 }

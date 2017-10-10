@@ -8,10 +8,12 @@ import com.dgg.store.util.core.generator.IDGenerator;
 import com.dgg.store.util.core.shiro.CryptographyUtil;
 import com.dgg.store.util.core.string.StringUtil;
 import com.dgg.store.util.core.upload.UploadFileUtil;
+import com.dgg.store.util.pojo.Permission;
 import com.dgg.store.util.vo.core.LoginVO;
 import com.dgg.store.util.vo.core.ResultVO;
 import com.dgg.store.util.vo.core.SessionVO;
 import com.dgg.store.util.vo.manage.*;
+import com.dgg.store.util.vo.permission.QMPermissionVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -402,6 +404,10 @@ public class ManageServiceImpl implements ManageService
         String permissionId;
         List<PerUserReVO> perUserReList = new ArrayList<>();
         jArray = JSONArray.parseArray(jsonString);
+
+        if (jArray.size() < 1)
+            return;
+
         int result;
         for (Object permission : jArray)
         {
@@ -449,6 +455,14 @@ public class ManageServiceImpl implements ManageService
         ResultVO resultVO = new ResultVO(result, sessionVO.getToken(), result);
 
         return resultVO;
+    }
+
+    @Override
+    public String listQmPermission(SessionVO sessionVO)
+    {
+        List<QMPermissionVO> result = dao.listQmPermission();
+
+        return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), result));
     }
 
     private String saveImage(MultipartFile file, String realPath)

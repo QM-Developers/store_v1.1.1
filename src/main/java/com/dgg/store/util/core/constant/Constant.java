@@ -14,6 +14,8 @@ public class Constant
 
     public static final String delimiterStr = "_#_";
 
+    public static final int PATH_LEVEL = 2;
+
     /**
      * 权限分类
      */

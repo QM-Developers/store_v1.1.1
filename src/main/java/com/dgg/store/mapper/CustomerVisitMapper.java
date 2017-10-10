@@ -40,4 +40,6 @@ public interface CustomerVisitMapper
     int countVisitManageUnit(ManageUnit unit);
 
     List<Farmer> listVisitManageUnit(ManageUnit unit);
+
+    UserBreed getVisitUserBreed(@Param("breedId") String breedId);
 }

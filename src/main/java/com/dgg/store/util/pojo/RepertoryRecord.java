@@ -8,8 +8,6 @@ public class RepertoryRecord {
 
     private String myTeamId;
 
-    private Byte recordType;
-
     private String branchId;
 
     private String branchName;
@@ -21,10 +19,8 @@ public class RepertoryRecord {
     private Date createDate;
 
     private String recordRemark;
-
-    private String goodsInfo;
-
     private List<RepertoryRecordList> recordList;
+    private String goodsInfo;
 
     public String getRecordId() {
         return recordId;
@@ -40,14 +36,6 @@ public class RepertoryRecord {
 
     public void setMyTeamId(String myTeamId) {
         this.myTeamId = myTeamId == null ? null : myTeamId.trim();
-    }
-
-    public Byte getRecordType() {
-        return recordType;
-    }
-
-    public void setRecordType(Byte recordType) {
-        this.recordType = recordType;
     }
 
     public String getBranchId() {
@@ -98,6 +86,16 @@ public class RepertoryRecord {
         this.recordRemark = recordRemark == null ? null : recordRemark.trim();
     }
 
+    public void setRecordList(List<RepertoryRecordList> recordList)
+    {
+        this.recordList = recordList;
+    }
+
+    public List<RepertoryRecordList> getRecordList()
+    {
+        return recordList;
+    }
+
     public String getGoodsInfo()
     {
         return goodsInfo;
@@ -106,15 +104,5 @@ public class RepertoryRecord {
     public void setGoodsInfo(String goodsInfo)
     {
         this.goodsInfo = goodsInfo;
-    }
-
-    public List<RepertoryRecordList> getRecordList()
-    {
-        return recordList;
-    }
-
-    public void setRecordList(List<RepertoryRecordList> recordList)
-    {
-        this.recordList = recordList;
     }
 }

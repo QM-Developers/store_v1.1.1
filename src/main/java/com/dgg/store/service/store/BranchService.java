@@ -23,4 +23,8 @@ public interface BranchService
     ResultVO updateBranchGoods(SessionVO sessionVO, BranchGoodsVO branchGoodsVO);
 
     String listBranchGoods(SessionVO sessionVO, BranchVO branchVO, PageVO pageVO);
+
+    String getRepertory(SessionVO sessionVO, BranchVO branchVO, PageVO pageVO);
+
+    String getFirstRepertory(SessionVO sessionVO, BranchVO branchVO, PageVO pageVO);
 }

@@ -42,20 +42,25 @@ public class MyOrderServiceImpl implements MyOrderService
         JSONArray goods = JSON.parseArray(myOrder.getGoods());
         JSONObject json;
 
-//        if (!hadEnoughRepertory(sessionVO, goods))
-//            return JSONObject.toJSONString(new ResultVO(OrderConstant.REPERTORY_NOT_ENOUGH, sessionVO.getToken()));
+        //  判断商品是否下架
+        if (!hadGoods(goods))
+            return JSONObject.toJSONString(new ResultVO(OrderConstant.GOODS_NOT_FIND, sessionVO.getToken()));
+
+        // 判断库存是否足够
+        if (!hadEnoughRepertory(sessionVO, goods))
+            return JSONObject.toJSONString(new ResultVO(OrderConstant.REPERTORY_NOT_ENOUGH, sessionVO.getToken()));
 
         // 生成订单号
         int index = 0;
         String orderNumber = String.format("%08d", new Random(index).nextInt(100000000));
-        while(dao.countOrderNumber(orderNumber,sessionVO.getMyTeamId()) > 0)
+        while (dao.countOrderNumber(orderNumber, sessionVO.getMyTeamId()) > 0)
             orderNumber = String.format("%08d", new Random(++index).nextInt(100000000));
 
         // 设置订单参数
         myOrder.setUserId(sessionVO.getUserId());
         myOrder.setOrderNumber(orderNumber);
         myOrder.setOrderId(IDGenerator.generator());
-        myOrder.setOrderStatus(OrderConstant.WAITING_CHECK);
+        myOrder.setOrderStatus(myOrder.getPaymentType() != OrderConstant.PAYMENT_TRANSFER ? OrderConstant.WAITING_SALESMAN_CHECK : OrderConstant.WAITING_FINANCE_CHECK_A);
         myOrder.setCreateDate(new Date());
         myOrder.setBuyerMessage(myOrder.getSellerMessage() == null ? Constant.EMPTY : myOrder.getSellerMessage());
         myOrder.setSellerMessage(Constant.EMPTY);
@@ -102,6 +107,18 @@ public class MyOrderServiceImpl implements MyOrderService
         }
 
         return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), myOrder.getOrderId()));
+    }
+
+    private boolean hadGoods(JSONArray goods)
+    {
+        JSONObject json;
+        for (Object good : goods)
+        {
+            json = JSONObject.parseObject(good.toString());
+            if (dao.countGoodsStandard(json.getString(KeyConstant.STANDARD_ID)) < 1)
+                return false;
+        }
+        return true;
     }
 
     private boolean hadEnoughRepertory(SessionVO sessionVO, JSONArray goods)
@@ -193,7 +210,7 @@ public class MyOrderServiceImpl implements MyOrderService
             record.setOrderStatus(OrderConstant.ORDER_SUCCESS);
             record.setFinishDate(new Date());
         } else
-            record.setOrderStatus(OrderConstant.ALREADY_SIGN);
+            record.setOrderStatus(OrderConstant.WAITING_FINANCE_CHECK_B);
 
         int result = dao.updateByPrimaryKeySelective(record);
 

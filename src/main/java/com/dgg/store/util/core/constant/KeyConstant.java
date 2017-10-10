@@ -26,4 +26,5 @@ public class KeyConstant
     public static final String MY_TEAM_ID = "myTeamId";
     public static final String USER_ID = "userId";
     public static final String PROMOTER_ID = "promoterId";
+    public static final String BRANCH_ID = "branchId";
 }

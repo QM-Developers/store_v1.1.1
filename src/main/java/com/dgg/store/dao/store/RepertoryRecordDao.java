@@ -30,17 +30,23 @@ public interface RepertoryRecordDao
 
     int updateByPrimaryKey(RepertoryRecord record);
 
-    String getUserNameById(String userId);
-
-    int insertRecordList(List<RepertoryRecordList> recordList, String recordId);
-
-    int updateGoodsCount(RepertoryRecordList repertoryRecordList);
+//    String getUserNameById(String userId);
 
     int getRepertory(String standardId);
 
-    int getSecondRepertory(String standardId);
-
-    int updateGoodsSecondCount(RepertoryRecordList repertoryRecordList);
+//    int getSecondRepertory(String standardId);
 
     List<RepertoryRecordList> getRepertoryRecordList(String recordId);
+
+    int getGoodsCount(String branchId, String standardId);
+
+    int updateGoodsCount(String branchId, String standardId, int count);
+
+    int insertRecordList(RepertoryRecordList recordList);
+
+    int branchGoodsExists(String branchId, String standardId);
+
+    int insertBranchGoods(RepertoryRecordList list, String branchId);
+
+    String getUserName(String userId);
 }

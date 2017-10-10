@@ -250,4 +250,10 @@ public class MyOrderDaoImpl implements MyOrderDao
         return mapper.listOrderSelectiveByManager(myOrder, userId, pageNum, pageSize);
     }
 
+    @Override
+    public int countGoodsStandard(String standardId)
+    {
+        return mapper.countGoodsStandard(standardId);
+    }
+
 }

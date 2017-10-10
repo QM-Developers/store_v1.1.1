@@ -140,4 +140,12 @@ public class UserBreedServiceImpl implements UserBreedService
 
         return json.toJSONString();
     }
+
+    @Override
+    public String getUserBreedJson(SessionVO sessionVO, UserBreed breed)
+    {
+        UserBreed result = dao.selectByPrimaryKey(breed.getBreedId());
+
+        return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), result));
+    }
 }

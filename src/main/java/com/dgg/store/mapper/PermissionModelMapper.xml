@@ -6,13 +6,19 @@
     </resultMap>
 
     <select id="listPermissionModel" resultMap="QMPermissionVO">
-        select qp.qm_permission_pid from qm_permission qp
-        inner join position_permission_re ppr
-        on qp.qm_permission_id = ppr.qm_permission_id
-        union
-        select qp.qm_permission_pid from qm_permission qp
-        inner join user_qm_permission_re uqpr
-        on uqpr.qm_permission_id = qp.qm_permission_id
+        SELECT qp.qm_permission_pid FROM qm_permission qp
+        INNER JOIN position_permission_re ppr
+        ON qp.qm_permission_id = ppr.qm_permission_id
+        INNER JOIN user u
+        ON u.position_id = ppr.position_id
+        WHERE u.user_id = #{userId}
+        UNION
+        SELECT qp.qm_permission_pid FROM qm_permission qp
+        INNER JOIN user_qm_permission_re uqpr
+        ON uqpr.qm_permission_id = qp.qm_permission_id
+        INNER JOIN user u
+        ON uqpr.user_id = u.user_id
+        WHERE u.user_id = #{userId}
     </select>
 
 </mapper>

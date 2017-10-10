@@ -5,15 +5,13 @@ import java.util.Date;
 import java.util.List;
 
 public class CustomerFollowExample {
-    private Integer pageNum;
-
-    private Integer pageSize;
-
     protected String orderByClause;
 
     protected boolean distinct;
 
     protected List<Criteria> oredCriteria;
+    private int pageNum;
+    private int pageSize;
 
     public CustomerFollowExample() {
         oredCriteria = new ArrayList<Criteria>();
@@ -66,6 +64,26 @@ public class CustomerFollowExample {
         oredCriteria.clear();
         orderByClause = null;
         distinct = false;
+    }
+
+    public void setPageNum(int pageNum)
+    {
+        this.pageNum = pageNum;
+    }
+
+    public int getPageNum()
+    {
+        return pageNum;
+    }
+
+    public void setPageSize(int pageSize)
+    {
+        this.pageSize = pageSize;
+    }
+
+    public int getPageSize()
+    {
+        return pageSize;
     }
 
     protected abstract static class GeneratedCriteria {
@@ -176,6 +194,76 @@ public class CustomerFollowExample {
 
         public Criteria andFollowIdNotBetween(String value1, String value2) {
             addCriterion("follow_id not between", value1, value2, "followId");
+            return (Criteria) this;
+        }
+
+        public Criteria andFollowTitleIsNull() {
+            addCriterion("follow_title is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andFollowTitleIsNotNull() {
+            addCriterion("follow_title is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andFollowTitleEqualTo(String value) {
+            addCriterion("follow_title =", value, "followTitle");
+            return (Criteria) this;
+        }
+
+        public Criteria andFollowTitleNotEqualTo(String value) {
+            addCriterion("follow_title <>", value, "followTitle");
+            return (Criteria) this;
+        }
+
+        public Criteria andFollowTitleGreaterThan(String value) {
+            addCriterion("follow_title >", value, "followTitle");
+            return (Criteria) this;
+        }
+
+        public Criteria andFollowTitleGreaterThanOrEqualTo(String value) {
+            addCriterion("follow_title >=", value, "followTitle");
+            return (Criteria) this;
+        }
+
+        public Criteria andFollowTitleLessThan(String value) {
+            addCriterion("follow_title <", value, "followTitle");
+            return (Criteria) this;
+        }
+
+        public Criteria andFollowTitleLessThanOrEqualTo(String value) {
+            addCriterion("follow_title <=", value, "followTitle");
+            return (Criteria) this;
+        }
+
+        public Criteria andFollowTitleLike(String value) {
+            addCriterion("follow_title like", value, "followTitle");
+            return (Criteria) this;
+        }
+
+        public Criteria andFollowTitleNotLike(String value) {
+            addCriterion("follow_title not like", value, "followTitle");
+            return (Criteria) this;
+        }
+
+        public Criteria andFollowTitleIn(List<String> values) {
+            addCriterion("follow_title in", values, "followTitle");
+            return (Criteria) this;
+        }
+
+        public Criteria andFollowTitleNotIn(List<String> values) {
+            addCriterion("follow_title not in", values, "followTitle");
+            return (Criteria) this;
+        }
+
+        public Criteria andFollowTitleBetween(String value1, String value2) {
+            addCriterion("follow_title between", value1, value2, "followTitle");
+            return (Criteria) this;
+        }
+
+        public Criteria andFollowTitleNotBetween(String value1, String value2) {
+            addCriterion("follow_title not between", value1, value2, "followTitle");
             return (Criteria) this;
         }
 
@@ -751,25 +839,5 @@ public class CustomerFollowExample {
         protected Criterion(String condition, Object value, Object secondValue) {
             this(condition, value, secondValue, null);
         }
-    }
-
-    public Integer getPageNum()
-    {
-        return pageNum;
-    }
-
-    public void setPageNum(Integer pageNum)
-    {
-        this.pageNum = pageNum;
-    }
-
-    public Integer getPageSize()
-    {
-        return pageSize;
-    }
-
-    public void setPageSize(Integer pageSize)
-    {
-        this.pageSize = pageSize;
     }
 }

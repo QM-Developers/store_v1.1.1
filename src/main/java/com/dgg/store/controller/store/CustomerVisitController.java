@@ -2,10 +2,7 @@ package com.dgg.store.controller.store;
 
 import com.dgg.store.service.store.CustomerVisitService;
 import com.dgg.store.util.core.constant.Constant;
-import com.dgg.store.util.pojo.CustomerFollow;
-import com.dgg.store.util.pojo.Farmer;
-import com.dgg.store.util.pojo.ManageUnit;
-import com.dgg.store.util.pojo.UserPlace;
+import com.dgg.store.util.pojo.*;
 import com.dgg.store.util.vo.core.PageVO;
 import com.dgg.store.util.vo.core.SessionVO;
 import com.dgg.store.util.vo.customer.CustomerVO;
@@ -138,6 +135,22 @@ public class CustomerVisitController
         SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
 
         return service.listVisitUserBreed(sessionVO, place, pageVO);
+    }
+
+    /**
+     * 获取养殖信息详情
+     *
+     * @param request 用户参数
+     * @param breed   养殖Id
+     * @return 养殖信息详情
+     */
+    @RequestMapping(value = "/s/getVisitUserBreed", method = RequestMethod.POST, produces = {"application/json;charset=UTF-8"})
+    @ResponseBody
+    public String getVisitUserBreed(HttpServletRequest request, UserBreed breed)
+    {
+        SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
+
+        return service.getVisitUserBreed(sessionVO, breed);
     }
 
     /**

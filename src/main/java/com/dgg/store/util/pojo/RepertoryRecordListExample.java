@@ -174,6 +174,136 @@ public class RepertoryRecordListExample {
             return (Criteria) this;
         }
 
+        public Criteria andRecordTypeIsNull() {
+            addCriterion("record_type is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andRecordTypeIsNotNull() {
+            addCriterion("record_type is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andRecordTypeEqualTo(Byte value) {
+            addCriterion("record_type =", value, "recordType");
+            return (Criteria) this;
+        }
+
+        public Criteria andRecordTypeNotEqualTo(Byte value) {
+            addCriterion("record_type <>", value, "recordType");
+            return (Criteria) this;
+        }
+
+        public Criteria andRecordTypeGreaterThan(Byte value) {
+            addCriterion("record_type >", value, "recordType");
+            return (Criteria) this;
+        }
+
+        public Criteria andRecordTypeGreaterThanOrEqualTo(Byte value) {
+            addCriterion("record_type >=", value, "recordType");
+            return (Criteria) this;
+        }
+
+        public Criteria andRecordTypeLessThan(Byte value) {
+            addCriterion("record_type <", value, "recordType");
+            return (Criteria) this;
+        }
+
+        public Criteria andRecordTypeLessThanOrEqualTo(Byte value) {
+            addCriterion("record_type <=", value, "recordType");
+            return (Criteria) this;
+        }
+
+        public Criteria andRecordTypeIn(List<Byte> values) {
+            addCriterion("record_type in", values, "recordType");
+            return (Criteria) this;
+        }
+
+        public Criteria andRecordTypeNotIn(List<Byte> values) {
+            addCriterion("record_type not in", values, "recordType");
+            return (Criteria) this;
+        }
+
+        public Criteria andRecordTypeBetween(Byte value1, Byte value2) {
+            addCriterion("record_type between", value1, value2, "recordType");
+            return (Criteria) this;
+        }
+
+        public Criteria andRecordTypeNotBetween(Byte value1, Byte value2) {
+            addCriterion("record_type not between", value1, value2, "recordType");
+            return (Criteria) this;
+        }
+
+        public Criteria andRecordReasonIsNull() {
+            addCriterion("record_reason is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andRecordReasonIsNotNull() {
+            addCriterion("record_reason is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andRecordReasonEqualTo(String value) {
+            addCriterion("record_reason =", value, "recordReason");
+            return (Criteria) this;
+        }
+
+        public Criteria andRecordReasonNotEqualTo(String value) {
+            addCriterion("record_reason <>", value, "recordReason");
+            return (Criteria) this;
+        }
+
+        public Criteria andRecordReasonGreaterThan(String value) {
+            addCriterion("record_reason >", value, "recordReason");
+            return (Criteria) this;
+        }
+
+        public Criteria andRecordReasonGreaterThanOrEqualTo(String value) {
+            addCriterion("record_reason >=", value, "recordReason");
+            return (Criteria) this;
+        }
+
+        public Criteria andRecordReasonLessThan(String value) {
+            addCriterion("record_reason <", value, "recordReason");
+            return (Criteria) this;
+        }
+
+        public Criteria andRecordReasonLessThanOrEqualTo(String value) {
+            addCriterion("record_reason <=", value, "recordReason");
+            return (Criteria) this;
+        }
+
+        public Criteria andRecordReasonLike(String value) {
+            addCriterion("record_reason like", value, "recordReason");
+            return (Criteria) this;
+        }
+
+        public Criteria andRecordReasonNotLike(String value) {
+            addCriterion("record_reason not like", value, "recordReason");
+            return (Criteria) this;
+        }
+
+        public Criteria andRecordReasonIn(List<String> values) {
+            addCriterion("record_reason in", values, "recordReason");
+            return (Criteria) this;
+        }
+
+        public Criteria andRecordReasonNotIn(List<String> values) {
+            addCriterion("record_reason not in", values, "recordReason");
+            return (Criteria) this;
+        }
+
+        public Criteria andRecordReasonBetween(String value1, String value2) {
+            addCriterion("record_reason between", value1, value2, "recordReason");
+            return (Criteria) this;
+        }
+
+        public Criteria andRecordReasonNotBetween(String value1, String value2) {
+            addCriterion("record_reason not between", value1, value2, "recordReason");
+            return (Criteria) this;
+        }
+
         public Criteria andGoodsIdIsNull() {
             addCriterion("goods_id is null");
             return (Criteria) this;

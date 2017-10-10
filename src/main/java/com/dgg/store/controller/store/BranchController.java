@@ -154,4 +154,39 @@ public class BranchController
 
         return service.listBranchGoods(sessionVO, branchVO, pageVO);
     }
+
+    /**
+     * 查看当前销售点库存
+     *
+     * @param request  用户参数
+     * @param branchVO 销售点Id
+     * @param pageVO   分页参数
+     * @return 商品列表
+     */
+    @RequestMapping(value = "/s/getRepertory", method = RequestMethod.POST, produces = {"application/json;charset=UTF-8"})
+    @ResponseBody
+    public String getRepertory(HttpServletRequest request, BranchVO branchVO, PageVO pageVO)
+    {
+        SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
+
+        return service.getRepertory(sessionVO, branchVO, pageVO);
+    }
+
+    /**
+     * 查看当前销售点库存
+     *
+     * @param request  用户参数
+     * @param branchVO 销售点Id
+     * @param pageVO   分页参数
+     * @return 商品列表
+     */
+    @RequestMapping(value = "/s/getFirstRepertory", method = RequestMethod.POST, produces = {"application/json;charset=UTF-8"})
+    @ResponseBody
+    public String getFirstRepertory(HttpServletRequest request, BranchVO branchVO, PageVO pageVO)
+    {
+        SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
+
+        return service.getFirstRepertory(sessionVO, branchVO, pageVO);
+    }
+
 }

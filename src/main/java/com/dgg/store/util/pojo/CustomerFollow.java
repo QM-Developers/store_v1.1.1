@@ -5,6 +5,8 @@ import java.util.Date;
 public class CustomerFollow {
     private String followId;
 
+    private String followTitle;
+
     private Date followDate;
 
     private String followContent;
@@ -25,6 +27,14 @@ public class CustomerFollow {
 
     public void setFollowId(String followId) {
         this.followId = followId == null ? null : followId.trim();
+    }
+
+    public String getFollowTitle() {
+        return followTitle;
+    }
+
+    public void setFollowTitle(String followTitle) {
+        this.followTitle = followTitle == null ? null : followTitle.trim();
     }
 
     public Date getFollowDate() {

@@ -96,4 +96,6 @@ public interface MyOrderMapper
     int countOrderSelectiveByManager(@Param("order") MyOrder myOrder, @Param("userId") String userId);
 
     List<MyOrder> listOrderSelectiveByManager(@Param("order") MyOrder myOrder, @Param("userId") String userId, @Param("pageNum") int pageNum, @Param("pageSize") int pageSize);
+
+    int countGoodsStandard(@Param("standardId") String standardId);
 }

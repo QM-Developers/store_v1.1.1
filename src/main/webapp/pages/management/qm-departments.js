@@ -40,13 +40,10 @@ var qm_department = {
             positions.push(JSON.stringify(position));
         }
 
-
         params["departmentId"] = departmentId;
-        params["departmentName"] = $("#department-id").val();
+        params["departmentName"] = $("#department-name").val();
         params["createDate"] = $("#create-date").val();
         params["position"] = JSON.stringify(positions);
-
-        console.log(JSON.stringify(params));
 
         myjs.ajax_post(url, params, function (data)
         {
@@ -81,21 +78,18 @@ var qm_department = {
 
     initPermission: function ()
     {
-        var url = path + "/s/findQMPermissionTree.action";
+        var url = path + "/s/listQmPermission.action";
         var params = {};
 
         myjs.ajax_post(url, params, function (data)
         {
-            console.log(data);
             data = data.result;
             var item = "";
             for (var i = 0; i < data.length; i++)
             {
-                var permission = data[i]["children"];
                 item += '<tr><td class="describe-td-1"><div class="describe">' + data[i]["name"] + '</div></td>';
-                for (var j = 0; j < permission.length; j++)
-                    item += '<td><div><input type="checkbox"  value="' + permission[j]["id"] + '"/><span>' + permission[j]["name"] + '</span></div></td>' +
-                        '<td><span class="duty-describe">' + permission[j]["url"] + '</span></td></tr>';
+                item += '<td><div><input type="checkbox"  value="' + data[i]["permissionId"] + '"/><span>' + data[i]["permissionName"] + '</span></div></td>' +
+                    '<td><span class="duty-describe">' + data[i]["permissionDescribe"] + '</span></td></tr>';
             }
             $("#worker-permission").empty();
             $("#worker-permission").append(item);

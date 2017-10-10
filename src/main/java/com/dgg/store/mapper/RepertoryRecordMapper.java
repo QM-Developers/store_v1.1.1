@@ -2,11 +2,14 @@ package com.dgg.store.mapper;
 
 import com.dgg.store.util.pojo.RepertoryRecord;
 import com.dgg.store.util.pojo.RepertoryRecordExample;
+
 import java.util.List;
+
 import com.dgg.store.util.pojo.RepertoryRecordList;
 import org.apache.ibatis.annotations.Param;
 
-public interface RepertoryRecordMapper {
+public interface RepertoryRecordMapper
+{
     long countByExample(RepertoryRecordExample example);
 
     int deleteByExample(RepertoryRecordExample example);
@@ -31,8 +34,6 @@ public interface RepertoryRecordMapper {
 
     String getUserNameById(@Param("userId") String userId);
 
-    int insertRecordList(@Param("list") List<RepertoryRecordList> recordList, @Param("recordId") String recordId);
-
     int updateGoodsCount(RepertoryRecordList repertoryRecordList);
 
     int getRepertory(@Param("standardId") String standardId);
@@ -42,4 +43,16 @@ public interface RepertoryRecordMapper {
     int updateGoodsSecondCount(RepertoryRecordList repertoryRecordList);
 
     List<RepertoryRecordList> getRepertoryRecordList(@Param("recordId") String recordId);
+
+    int getGoodsCount(@Param("branchId") String branchId, @Param("standardId") String standardId);
+
+    int updateGoodsCount(@Param("branchId") String branchId, @Param("standardId") String standardId, @Param("count") int count);
+
+    int insertRecordList(RepertoryRecordList recordList);
+
+    int branchGoodsExists(@Param("branchId") String branchId,@Param("standardId") String standardId);
+
+    int insertBranchGoods(@Param("goods") RepertoryRecordList list,@Param("branchId") String branchId);
+
+    String getUserName(String userId);
 }

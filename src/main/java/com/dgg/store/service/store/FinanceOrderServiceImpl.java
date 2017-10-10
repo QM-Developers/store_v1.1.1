@@ -51,9 +51,8 @@ public class FinanceOrderServiceImpl implements FinanceOrderService
     {
         myOrder = dao.selectByPrimaryKey(myOrder.getOrderId());
 
-        boolean flag = myOrder.getOrderStatus().equals(OrderConstant.WAITING_CHECK);
+        boolean flag = myOrder.getOrderStatus().equals(OrderConstant.WAITING_FINANCE_CHECK_A);
         flag |= myOrder.getOrderStatus().equals(OrderConstant.FINANCE_CHECK_FAIL_A);
-        flag &= myOrder.getPaymentStatus().equals(OrderConstant.NOT_PAY);
         flag &= myOrder.getPaymentType().equals(OrderConstant.PAYMENT_TRANSFER);
         if (!flag)
             return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_FAILED, sessionVO.getToken()));
@@ -76,9 +75,8 @@ public class FinanceOrderServiceImpl implements FinanceOrderService
     {
         myOrder = dao.selectByPrimaryKey(myOrder.getOrderId());
 
-        boolean flag = myOrder.getOrderStatus().equals(OrderConstant.WAITING_CHECK);
+        boolean flag = myOrder.getOrderStatus().equals(OrderConstant.WAITING_FINANCE_CHECK_A);
         flag |= myOrder.getOrderStatus().equals(OrderConstant.FINANCE_CHECK_FAIL_A);
-        flag &= myOrder.getPaymentStatus().equals(OrderConstant.NOT_PAY);
         flag &= myOrder.getPaymentType().equals(OrderConstant.PAYMENT_TRANSFER);
         if (!flag)
             return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_FAILED, sessionVO.getToken()));
@@ -100,7 +98,7 @@ public class FinanceOrderServiceImpl implements FinanceOrderService
     {
         myOrder = dao.selectByPrimaryKey(myOrder.getOrderId());
 
-        boolean flag = myOrder.getOrderStatus().equals(OrderConstant.ALREADY_SIGN);
+        boolean flag = myOrder.getOrderStatus().equals(OrderConstant.WAITING_FINANCE_CHECK_B);
         flag |= myOrder.getOrderStatus().equals(OrderConstant.FINANCE_CHECK_FAIL_B);
 
         if (!flag)
@@ -124,7 +122,7 @@ public class FinanceOrderServiceImpl implements FinanceOrderService
     {
         myOrder = dao.selectByPrimaryKey(myOrder.getOrderId());
 
-        boolean flag = myOrder.getOrderStatus().equals(OrderConstant.ALREADY_SIGN);
+        boolean flag = myOrder.getOrderStatus().equals(OrderConstant.WAITING_FINANCE_CHECK_B);
 
         if (!flag)
             return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_FAILED, sessionVO.getToken()));

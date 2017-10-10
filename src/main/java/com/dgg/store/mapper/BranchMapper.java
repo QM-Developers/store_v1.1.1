@@ -7,6 +7,7 @@ import com.dgg.store.util.vo.goods.GoodsDetailVO;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
+import java.util.Set;
 
 public interface BranchMapper
 {
@@ -32,11 +33,11 @@ public interface BranchMapper
 
     Integer getBranchInventory(BranchGoodsVO condition);
 
-    List<GoodsDetailVO> listBranchGoods(@Param("condition")BranchVO condition, @Param("start") int start, @Param("end") int end);
+    List<GoodsDetailVO> listBranchGoods(@Param("branchVO") BranchVO condition,@Param("childType") Set<String> childType, @Param("start") int start, @Param("end") int end);
 
     int countBranch(BranchVO condition);
 
-    int countBranchGoods(BranchVO condition);
+    int countBranchGoods(@Param("branchVO") BranchVO condition, @Param("childType") Set<String> childType);
 
     int countGoods(BranchVO condition);
 
@@ -45,4 +46,8 @@ public interface BranchMapper
     List<GoodsStandard> listBranchStandards(@Param("goodsId") String goodsId,@Param("branchId") String branchId);
 
     int countBranchStandard(@Param("standardId") String standardId,@Param("branchId") String branchId);
+
+    String getCurrentBranchId(String userId);
+
+    String getFirstBranchId(@Param("myTeamId") String myTeamId,@Param("branchType") byte branchType);
 }

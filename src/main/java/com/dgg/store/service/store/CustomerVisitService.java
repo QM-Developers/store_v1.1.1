@@ -1,9 +1,6 @@
 package com.dgg.store.service.store;
 
-import com.dgg.store.util.pojo.CustomerFollow;
-import com.dgg.store.util.pojo.Farmer;
-import com.dgg.store.util.pojo.ManageUnit;
-import com.dgg.store.util.pojo.UserPlace;
+import com.dgg.store.util.pojo.*;
 import com.dgg.store.util.vo.core.PageVO;
 import com.dgg.store.util.vo.core.SessionVO;
 import com.dgg.store.util.vo.customer.CustomerVO;
@@ -32,4 +29,6 @@ public interface CustomerVisitService
     String listVisitCustomerFollow(SessionVO sessionVO, CustomerFollow follow, PageVO pageVO);
 
     String getVisitCustomerFollow(SessionVO sessionVO, CustomerFollow follow);
+
+    String getVisitUserBreed(SessionVO sessionVO, UserBreed breed);
 }

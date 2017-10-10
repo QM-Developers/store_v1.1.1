@@ -32,4 +32,6 @@ public interface GoodsManageService
     ResultVO deleteGoods(SessionVO sessionVO, GoodsInfoVO goodsInfo);
 
     String findGoodsListByKeyword(SessionVO sessionVO, GoodsInfoVO goodsInfo, PageVO pageVO);
+
+    ResultVO findGoodsTypeByPid(SessionVO sessionVO, GoodsTypeinfo typeinfo);
 }

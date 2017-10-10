@@ -111,8 +111,7 @@ public class FollowerOrderServiceImpl implements FollowerOrderService
     {
         myOrder = dao.selectByPrimaryKey(myOrder.getOrderId());
 
-        boolean flag = myOrder.getOrderStatus().equals(OrderConstant.WAITING_CHECK);
-        flag |= myOrder.getOrderStatus().equals(OrderConstant.WAITING_SALESMAN_CHECK);
+        boolean flag = myOrder.getOrderStatus().equals(OrderConstant.WAITING_SALESMAN_CHECK);
 
         if (!flag)
             return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_FAILED, sessionVO.getToken()));

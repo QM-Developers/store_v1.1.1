@@ -29,6 +29,7 @@ drop table if exists customer_follow;
 create table customer_follow
 (
    follow_id	varchar(35) not null primary key,	-- 跟进Id
+   follow_title varchar(50) not null,	-- 跟进标题
    follow_date datetime not null,	-- 跟进时间
    follow_content text,	-- 跟进内容
    follow_result text,	-- 跟进结果
@@ -698,6 +699,7 @@ create table qm_branch
 (
 	branch_id varchar(35) not null primary key,
     branch_name varchar(20) not null default '',
+    branch_type tinyint not null,
     department_id varchar(35) not null default '',
     my_team_id varchar(35) not null default '',
     department_name varchar(20) not null default '',
@@ -716,7 +718,6 @@ create table repertory_record
 (
    record_id varchar(35) not null primary key,	-- 记录Id
    my_team_id varchar(35) not null,	-- 团队Id
-   record_type tinyint not null,	-- 修改类型
    branch_id varchar(35) not null,	-- 销售点Id
    branch_name varchar(35) not null,	-- 销售点名称
    operator_id varchar(35) not null,	-- 操作员Id
@@ -731,7 +732,9 @@ create table repertory_record
 drop table if exists repertory_record_list;
 create table repertory_record_list
 (
-   record_id varchar(35) not null,
+   record_id varchar(35) not null,	-- 记录Id
+   record_type tinyint not null,	-- 修改类型
+   record_reason varchar(20) not null,	-- 修改原因
    goods_id varchar(35) not null,	-- 商品Id
    goods_name varchar(60) not null,	-- 商品名称
    standard_id varchar(35) not null,	-- 规格Id
@@ -955,6 +958,7 @@ create table sys_customer(
     user_id varchar(35) not null,	-- 业务员Id
     had_account tinyint not null,	-- 是否建账
     role_id int not null,	-- 角色Id
+    branch_type tinyint not null,	-- 销售点类型
     lat_lng varchar(30) not null -- 经纬度
 );
 

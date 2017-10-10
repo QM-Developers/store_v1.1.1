@@ -21,6 +21,8 @@ public class GoodsDetailVO
 
     private String goodsType;
 
+    private String goodsCode;
+
     private List<String> goodsImages;
 
     private List<String> detailImages;
@@ -137,5 +139,15 @@ public class GoodsDetailVO
     public void setUserId(String userId)
     {
         this.userId = userId;
+    }
+
+    public String getGoodsCode()
+    {
+        return goodsCode;
+    }
+
+    public void setGoodsCode(String goodsCode)
+    {
+        this.goodsCode = goodsCode;
     }
 }

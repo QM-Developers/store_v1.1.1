@@ -94,7 +94,7 @@ public class MyOrderProofController
     @RequestMapping(value = "user_getProofImage", method = GET, produces = {RequestConstant.CONTENT_TYPE})
     public void getProofImage(HttpServletRequest request, HttpServletResponse response, MyOrderProof proof)
     {
-        String path = FilePathUtil.getPrevPath(request.getSession().getServletContext().getRealPath(SymbolConstant.SYSTEM_SLASH), 1) + proof.getProofUrl();
+        String path = FilePathUtil.getPrevPath(request.getSession().getServletContext().getRealPath(SymbolConstant.SYSTEM_SLASH), Constant.PATH_LEVEL) + proof.getProofUrl();
         ServletUtil.printImage(request, response, path);
     }
 }

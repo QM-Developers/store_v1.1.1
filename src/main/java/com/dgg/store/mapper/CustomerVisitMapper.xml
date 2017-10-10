@@ -65,6 +65,7 @@
         <result column="breed_age" jdbcType="INTEGER" property="breedAge"/>
         <result column="breed_scale" jdbcType="INTEGER" property="breedScale"/>
         <result column="create_date" jdbcType="TIMESTAMP" property="createDate"/>
+        <result column="json" jdbcType="VARCHAR" property="json"/>
         <result column="is_deleted" jdbcType="TINYINT" property="isDeleted"/>
         <result column="delete_date" jdbcType="TIMESTAMP" property="deleteDate"/>
     </resultMap>
@@ -183,7 +184,7 @@
     <select id="listVisitUserBreed" parameterType="com.dgg.store.util.pojo.UserPlace" resultMap="UserBreed">
         SELECT breed_id, breed_category, breed_variety, breed_type, male_num, female_num, obstetric_table_num,
             shed_num, empty_shed_num, competitive_brand, livestock_num, user_place_id, breed_age,
-            breed_scale, create_date
+            breed_scale, create_date,json
         FROM user_breed
         WHERE user_place_id = #{userPlaceId}
         LIMIT #{pageNum},#{pageSize}
@@ -215,5 +216,13 @@
         FROM manage_unit
         WHERE customer_id = #{customerId}
         LIMIT #{pageNum},#{pageSize}
+    </select>
+
+    <select id="getVisitUserBreed" resultMap="UserBreed">
+        SELECT breed_id, breed_category, breed_variety, breed_type, male_num, female_num, obstetric_table_num,
+            shed_num, empty_shed_num, competitive_brand, livestock_num, user_place_id, breed_age,
+            breed_scale, create_date,json
+        FROM user_breed
+        WHERE breed_id = #{breedId}
     </select>
 </mapper>

@@ -20,7 +20,11 @@ public class BranchVO
 
     private String managerPhone;
 
+    private String goodsTypeId;
+
     private String latLng;
+
+    private Byte branchType;
 
     public String getBranchId()
     {
@@ -120,5 +124,25 @@ public class BranchVO
     public void setMyTeamId(String myTeamId)
     {
         this.myTeamId = myTeamId;
+    }
+
+    public String getGoodsTypeId()
+    {
+        return goodsTypeId;
+    }
+
+    public void setGoodsTypeId(String goodsTypeId)
+    {
+        this.goodsTypeId = goodsTypeId;
+    }
+
+    public Byte getBranchType()
+    {
+        return branchType;
+    }
+
+    public void setBranchType(Byte branchType)
+    {
+        this.branchType = branchType;
     }
 }

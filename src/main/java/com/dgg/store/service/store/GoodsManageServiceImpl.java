@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.dgg.store.dao.store.GoodsManageDao;
+import com.dgg.store.dao.store.GoodsTypeDao;
 import com.dgg.store.util.core.constant.Constant;
 import com.dgg.store.util.core.constant.KeyConstant;
 import com.dgg.store.util.core.constant.PathConstant;
@@ -34,6 +35,9 @@ public class GoodsManageServiceImpl implements GoodsManageService
 {
     @Autowired
     private GoodsManageDao dao;
+
+    @Autowired
+    private GoodsTypeDao typeDao;
 
     @Override
     public ResultVO insertGoodsinfo(SessionVO sessionVO, GoodsInfoVO goodsinfo)
@@ -286,9 +290,7 @@ public class GoodsManageServiceImpl implements GoodsManageService
         else
             result = 1;
 
-        ResultVO resultVO = new ResultVO(result, sessionVO.getToken());
-
-        return resultVO;
+        return new ResultVO(result, sessionVO.getToken());
     }
 
     @Override
@@ -310,5 +312,13 @@ public class GoodsManageServiceImpl implements GoodsManageService
         json.put(KeyConstant.PAGE_COUNT, pageCount);
 
         return json.toJSONString();
+    }
+
+    @Override
+    public ResultVO findGoodsTypeByPid(SessionVO sessionVO, GoodsTypeinfo typeinfo)
+    {
+        List<GoodsTypeinfo> result = typeDao.findGoodsTypeByPid(typeinfo.getGoodsTypePid());
+
+        return new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), result);
     }
 }

@@ -3,6 +3,10 @@ package com.dgg.store.util.pojo;
 public class RepertoryRecordList {
     private String recordId;
 
+    private Byte recordType;
+
+    private String recordReason;
+
     private String goodsId;
 
     private String goodsName;
@@ -19,6 +23,22 @@ public class RepertoryRecordList {
 
     public void setRecordId(String recordId) {
         this.recordId = recordId == null ? null : recordId.trim();
+    }
+
+    public Byte getRecordType() {
+        return recordType;
+    }
+
+    public void setRecordType(Byte recordType) {
+        this.recordType = recordType;
+    }
+
+    public String getRecordReason() {
+        return recordReason;
+    }
+
+    public void setRecordReason(String recordReason) {
+        this.recordReason = recordReason == null ? null : recordReason.trim();
     }
 
     public String getGoodsId() {

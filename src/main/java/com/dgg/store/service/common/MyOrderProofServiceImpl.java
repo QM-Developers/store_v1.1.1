@@ -47,7 +47,7 @@ public class MyOrderProofServiceImpl implements MyOrderProofService
         try
         {
             path.append(PathConstant.ORDER_PROOF_PATH).append(sessionVO.getUserId()).append(SymbolConstant.FORWARD_SLASH);
-            realPath = FilePathUtil.getPrevPath(realPath, 1);
+            realPath = FilePathUtil.getPrevPath(realPath, Constant.PATH_LEVEL);
             fileName = UploadFileUtil.doUpload(file, path.toString(), realPath, IDGenerator.generator());
             proof.setProofUrl(fileName);
             result = mapper.insert(proof) > 0 ? Constant.REQUEST_SUCCESS : Constant.REQUEST_FAILED;

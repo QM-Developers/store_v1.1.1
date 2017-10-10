@@ -22,72 +22,88 @@ public class RepertoryRecordController
     @Autowired
     private RepertoryRecordService service;
 
+//    /**
+//     * 增加一级库存
+//     *
+//     * @param request         用户参数
+//     * @param repertoryRecord 商品参数
+//     * @return 操作记录Id
+//     */
+//    @RequestMapping(value = "/s/updateRepertoryAddFirst", method = RequestMethod.POST, produces = {"application/json;charset=UTF-8"})
+//    @ResponseBody
+//    public String updateRepertoryAddFirst(HttpServletRequest request, RepertoryRecord repertoryRecord)
+//    {
+//        SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
+//
+//        return service.updateRepertoryAddFirst(sessionVO, repertoryRecord);
+//    }
+//
+//    /**
+//     * 减少一级库存
+//     *
+//     * @param request         用户参数
+//     * @param repertoryRecord 商品参数
+//     * @return 操作记录Id
+//     */
+//    @RequestMapping(value = "/s/updateRepertorySubFirst", method = RequestMethod.POST, produces = {"application/json;charset=UTF-8"})
+//    @ResponseBody
+//    public String updateRepertorySubFirst(HttpServletRequest request, RepertoryRecord repertoryRecord)
+//    {
+//        SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
+//
+//        return service.updateRepertorySubFirst(sessionVO, repertoryRecord);
+//    }
+//
+//    /**
+//     * 增加二级库存
+//     *
+//     * @param request         用户参数
+//     * @param repertoryRecord 商品参数
+//     * @return 操作记录Id
+//     */
+//    @RequestMapping(value = "/s/updateRepertoryAddSecond", method = RequestMethod.POST, produces = {"application/json;charset=UTF-8"})
+//    @ResponseBody
+//    public String updateRepertoryAddSecond(HttpServletRequest request, RepertoryRecord repertoryRecord)
+//    {
+//        SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
+//
+//        return service.updateRepertoryAddSecond(sessionVO, repertoryRecord);
+//    }
+//
+//    /**
+//     * 减少二级库存
+//     *
+//     * @param request         用户参数
+//     * @param repertoryRecord 商品参数
+//     * @return 操作记录Id
+//     */
+//    @RequestMapping(value = "/s/updateRepertorySubSecond", method = RequestMethod.POST, produces = {"application/json;charset=UTF-8"})
+//    @ResponseBody
+//    public String updateRepertorySubSecond(HttpServletRequest request, RepertoryRecord repertoryRecord)
+//    {
+//        SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
+//
+//        return service.updateRepertorySubSecond(sessionVO, repertoryRecord);
+//    }
+
     /**
-     * 增加一级库存
+     * 盘点库存
      *
      * @param request         用户参数
      * @param repertoryRecord 商品参数
      * @return 操作记录Id
      */
-    @RequestMapping(value = "/s/updateRepertoryAddFirst", method = RequestMethod.POST, produces = {"application/json;charset=UTF-8"})
+    @RequestMapping(value = "/s/updateRepertory", method = RequestMethod.POST, produces = {"application/json;charset=UTF-8"})
     @ResponseBody
-    public String updateRepertoryAddFirst(HttpServletRequest request, RepertoryRecord repertoryRecord)
+    public String updateRepertory(HttpServletRequest request, RepertoryRecord repertoryRecord)
     {
         SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
 
-        return service.updateRepertoryAddFirst(sessionVO, repertoryRecord);
+        return service.updateRepertory(sessionVO, repertoryRecord);
     }
 
     /**
-     * 减少一级库存
-     *
-     * @param request         用户参数
-     * @param repertoryRecord 商品参数
-     * @return 操作记录Id
-     */
-    @RequestMapping(value = "/s/updateRepertorySubFirst", method = RequestMethod.POST, produces = {"application/json;charset=UTF-8"})
-    @ResponseBody
-    public String updateRepertorySubFirst(HttpServletRequest request, RepertoryRecord repertoryRecord)
-    {
-        SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
-
-        return service.updateRepertorySubFirst(sessionVO, repertoryRecord);
-    }
-
-    /**
-     * 增加二级库存
-     *
-     * @param request         用户参数
-     * @param repertoryRecord 商品参数
-     * @return 操作记录Id
-     */
-    @RequestMapping(value = "/s/updateRepertoryAddSecond", method = RequestMethod.POST, produces = {"application/json;charset=UTF-8"})
-    @ResponseBody
-    public String updateRepertoryAddSecond(HttpServletRequest request, RepertoryRecord repertoryRecord)
-    {
-        SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
-
-        return service.updateRepertoryAddSecond(sessionVO, repertoryRecord);
-    }
-
-    /**
-     * 减少二级库存
-     *
-     * @param request         用户参数
-     * @param repertoryRecord 商品参数
-     * @return 操作记录Id
-     */
-    @RequestMapping(value = "/s/updateRepertorySubSecond", method = RequestMethod.POST, produces = {"application/json;charset=UTF-8"})
-    @ResponseBody
-    public String updateRepertorySubSecond(HttpServletRequest request, RepertoryRecord repertoryRecord)
-    {
-        SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
-
-        return service.updateRepertorySubSecond(sessionVO, repertoryRecord);
-    }
-
-    /**
-     * 获取库存分配记录
+     * 获取库存盘点记录
      *
      * @param request         用户参数
      * @param repertoryRecord (暂时没用到)

@@ -81,23 +81,17 @@ public class RepertoryRecordDaoImpl implements RepertoryRecordDao
         return mapper.updateByPrimaryKey(record);
     }
 
-    @Override
-    public String getUserNameById(String userId)
-    {
-        return mapper.getUserNameById(userId);
-    }
+//    @Override
+//    public String getUserNameById(String userId)
+//    {
+//        return mapper.getUserNameById(userId);
+//    }
 
-    @Override
-    public int insertRecordList(List<RepertoryRecordList> recordList, String recordId)
-    {
-        return mapper.insertRecordList(recordList,recordId);
-    }
-
-    @Override
-    public int updateGoodsCount(RepertoryRecordList repertoryRecordList)
-    {
-        return mapper.updateGoodsCount(repertoryRecordList);
-    }
+//    @Override
+//    public int updateGoodsCount(RepertoryRecordList repertoryRecordList)
+//    {
+//        return mapper.updateGoodsCount(repertoryRecordList);
+//    }
 
     @Override
     public int getRepertory(String standardId)
@@ -105,17 +99,17 @@ public class RepertoryRecordDaoImpl implements RepertoryRecordDao
         return mapper.getRepertory(standardId);
     }
 
-    @Override
-    public int getSecondRepertory(String standardId)
-    {
-        return mapper.getSecondRepertory(standardId);
-    }
+//    @Override
+//    public int getSecondRepertory(String standardId)
+//    {
+//        return mapper.getSecondRepertory(standardId);
+//    }
 
-    @Override
-    public int updateGoodsSecondCount(RepertoryRecordList repertoryRecordList)
-    {
-        return mapper.updateGoodsSecondCount(repertoryRecordList);
-    }
+//    @Override
+//    public int updateGoodsSecondCount(RepertoryRecordList repertoryRecordList)
+//    {
+//        return mapper.updateGoodsSecondCount(repertoryRecordList);
+//    }
 
     @Override
     public List<RepertoryRecordList> getRepertoryRecordList(String recordId)
@@ -123,5 +117,39 @@ public class RepertoryRecordDaoImpl implements RepertoryRecordDao
         return mapper.getRepertoryRecordList(recordId);
     }
 
+    @Override
+    public int getGoodsCount(String branchId, String standardId)
+    {
+        return mapper.getGoodsCount(branchId, standardId);
+    }
 
+    @Override
+    public int updateGoodsCount(String branchId, String standardId, int count)
+    {
+        return mapper.updateGoodsCount(branchId, standardId, count);
+    }
+
+    @Override
+    public int insertRecordList(RepertoryRecordList recordList)
+    {
+        return mapper.insertRecordList(recordList);
+    }
+
+    @Override
+    public int branchGoodsExists(String branchId, String standardId)
+    {
+        return mapper.branchGoodsExists(branchId, standardId);
+    }
+
+    @Override
+    public int insertBranchGoods(RepertoryRecordList list, String branchId)
+    {
+        return mapper.insertBranchGoods(list, branchId);
+    }
+
+    @Override
+    public String getUserName(String userId)
+    {
+        return mapper.getUserName(userId);
+    }
 }

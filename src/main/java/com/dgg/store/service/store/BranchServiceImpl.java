@@ -1,12 +1,16 @@
 package com.dgg.store.service.store;
 
 import com.alibaba.fastjson.JSONObject;
+import com.dgg.store.dao.common.GoodsBrowseDao;
 import com.dgg.store.dao.store.BranchDao;
+import com.dgg.store.util.core.GoodsUtil;
+import com.dgg.store.util.core.constant.BranchConstant;
 import com.dgg.store.util.core.constant.Constant;
 import com.dgg.store.util.core.constant.KeyConstant;
 import com.dgg.store.util.core.constant.SymbolConstant;
 import com.dgg.store.util.core.generator.IDGenerator;
 import com.dgg.store.util.core.page.PagingUtil;
+import com.dgg.store.util.core.string.StringUtil;
 import com.dgg.store.util.pojo.GoodsStandard;
 import com.dgg.store.util.vo.branch.BranchGoodsVO;
 import com.dgg.store.util.vo.branch.BranchVO;
@@ -18,6 +22,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Set;
 
 @Service
 public class BranchServiceImpl implements BranchService
@@ -25,16 +30,18 @@ public class BranchServiceImpl implements BranchService
     @Autowired
     private BranchDao dao;
 
+    @Autowired
+    private GoodsBrowseDao browseDao;
+
     @Override
     public ResultVO insertBranch(SessionVO sessionVO, BranchVO branchVO)
     {
         branchVO.setBranchId(IDGenerator.generator());
         branchVO.setMyTeamId(sessionVO.getMyTeamId());
+        branchVO.setBranchType(BranchConstant.BRANCH_SECOND);
         int result = dao.insertBranch(branchVO);
 
-        ResultVO resultVO = new ResultVO(result == 0 ? 2 : 1, sessionVO.getToken(), branchVO.getBranchId());
-
-        return resultVO;
+        return new ResultVO(result == 0 ? 2 : 1, sessionVO.getToken(), branchVO.getBranchId());
     }
 
     @Override
@@ -42,6 +49,7 @@ public class BranchServiceImpl implements BranchService
     {
         BranchVO condition = new BranchVO();
         condition.setMyTeamId(sessionVO.getMyTeamId());
+        condition.setBranchType(BranchConstant.BRANCH_SECOND);
         int start = PagingUtil.getStart(pageVO.getPageNum(), pageVO.getPageSize());
         int end = pageVO.getPageSize();
         int pageCount = dao.countBranch(condition);
@@ -186,16 +194,43 @@ public class BranchServiceImpl implements BranchService
         condition.setBranchId(branchVO.getBranchId());
         int start = PagingUtil.getStart(pageVO.getPageNum(), pageVO.getPageSize());
         int end = pageVO.getPageSize();
-        int pageCount = dao.countBranchGoods(condition);
+
+        Set<String> childType = null;
+        if (!StringUtil.isEmpty(branchVO.getGoodsTypeId()))
+        {
+            childType = GoodsUtil.findChildTypeId(branchVO.getGoodsTypeId(), browseDao);
+            childType.add(branchVO.getGoodsTypeId());
+        }
+
+        condition.setMyTeamId(sessionVO.getMyTeamId());
+        int pageCount = dao.countBranchGoods(condition, childType);
+
         pageCount = PagingUtil.getCount(pageCount, pageVO.getPageSize());
-        List<GoodsDetailVO> result = dao.listBranchGoods(condition, start, end);
+        List<GoodsDetailVO> result = dao.listBranchGoods(condition, childType, start, end);
 
         for (GoodsDetailVO vo : result)
             vo.setStandards(dao.listBranchStandards(vo.getGoodsId(), condition.getBranchId()));
 
-        JSONObject json = (JSONObject) JSONObject.toJSON(new ResultVO(1, sessionVO.getToken(), result));
+        JSONObject json = (JSONObject) JSONObject.toJSON(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), result));
         json.put(KeyConstant.PAGE_COUNT, pageCount);
+        json.put(KeyConstant.BRANCH_ID, branchVO.getBranchId());
 
         return json.toJSONString();
+    }
+
+    @Override
+    public String getRepertory(SessionVO sessionVO, BranchVO branchVO, PageVO pageVO)
+    {
+        branchVO.setBranchId(dao.getCurrentBranchId(sessionVO.getUserId()));
+
+        return listBranchGoods(sessionVO, branchVO, pageVO);
+    }
+
+    @Override
+    public String getFirstRepertory(SessionVO sessionVO, BranchVO branchVO, PageVO pageVO)
+    {
+        branchVO.setBranchId(dao.getFirstBranchId(sessionVO.getMyTeamId(),BranchConstant.BRANCH_FIRST));
+
+        return listBranchGoods(sessionVO, branchVO, pageVO);
     }
 }

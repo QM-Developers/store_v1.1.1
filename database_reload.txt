@@ -1,0 +1,4 @@
+drop database store_v1_1_1;
+create database store_v1_1_1 charset='utf8';
+use store_v1_1_1;
+source /home/dgg_store-v1.1.1.sql;

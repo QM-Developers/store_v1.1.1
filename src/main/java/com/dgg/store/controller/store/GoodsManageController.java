@@ -43,6 +43,15 @@ public class GoodsManageController
         return service.findTypeAndParents(sessionVO, typeinfo);
     }
 
+    @RequestMapping(value = "/s/findGoodsTypeByPid", method = RequestMethod.POST)
+    @ResponseBody
+    public ResultVO findGoodsTypeByPid(HttpServletRequest request, GoodsTypeinfo typeinfo)
+    {
+        SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
+
+        return service.findGoodsTypeByPid(sessionVO, typeinfo);
+    }
+
 //    @RequestMapping(value = "/s/findTypeAttr")
 //    @ResponseBody
 //    public ResultVO findTypeAttr(HttpServletRequest request, GoodsTypeAttr typeAttr)

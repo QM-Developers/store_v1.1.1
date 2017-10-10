@@ -2,6 +2,7 @@ package com.dgg.store.dao.store;
 
 import com.dgg.store.util.vo.core.LoginVO;
 import com.dgg.store.util.vo.manage.*;
+import com.dgg.store.util.vo.permission.QMPermissionVO;
 
 import java.util.List;
 
@@ -54,4 +55,6 @@ public interface ManageDao
     Integer insertPosition(PositionVO positionVO);
 
     Integer insertPerPosRe(PerPosReVO perPosReVO);
+
+    List<QMPermissionVO> listQmPermission();
 }

@@ -2,7 +2,10 @@ package com.dgg.store.controller.store;
 
 import com.dgg.store.service.store.ManageService;
 import com.dgg.store.util.core.constant.Constant;
+import com.dgg.store.util.core.constant.RequestConstant;
+import com.dgg.store.util.pojo.MyOrderProof;
 import com.dgg.store.util.vo.core.LoginVO;
+import com.dgg.store.util.vo.core.PageVO;
 import com.dgg.store.util.vo.core.ResultVO;
 import com.dgg.store.util.vo.core.SessionVO;
 import com.dgg.store.util.vo.manage.DepartmentVO;
@@ -17,6 +20,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
+
+import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
 /**
  * 组织管理控制器
@@ -280,6 +285,21 @@ public class ManageController
         SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
 
         return service.insertCardBack(sessionVO, file, request.getSession().getServletContext().getRealPath("/"));
+    }
+
+    /**
+     * 获取可分配的角色列表
+     *
+     * @param request 用户参数
+     * @return 角色列表
+     */
+    @RequestMapping(value = "/s/listQmPermission", method = POST, produces = {RequestConstant.CONTENT_TYPE})
+    @ResponseBody
+    public String listQmPermission(HttpServletRequest request)
+    {
+        SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
+
+        return service.listQmPermission(sessionVO);
     }
 
     /**

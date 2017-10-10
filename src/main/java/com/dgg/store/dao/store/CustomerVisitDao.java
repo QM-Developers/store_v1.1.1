@@ -39,4 +39,6 @@ public interface CustomerVisitDao
     int countVisitManageUnit(ManageUnit unit);
 
     List<Farmer> listVisitManageUnit(ManageUnit unit);
+
+    UserBreed getVisitUserBreed(String breedId);
 }

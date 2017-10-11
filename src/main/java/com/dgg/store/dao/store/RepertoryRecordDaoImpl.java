@@ -111,11 +111,11 @@ public class RepertoryRecordDaoImpl implements RepertoryRecordDao
 //        return mapper.updateGoodsSecondCount(repertoryRecordList);
 //    }
 
-    @Override
-    public List<RepertoryRecordList> getRepertoryRecordList(String recordId)
-    {
-        return mapper.getRepertoryRecordList(recordId);
-    }
+//    @Override
+//    public List<RepertoryRecordList> getRepertoryRecordList(String recordId)
+//    {
+//        return mapper.getRepertoryRecordList(recordId);
+//    }
 
     @Override
     public int getGoodsCount(String branchId, String standardId)

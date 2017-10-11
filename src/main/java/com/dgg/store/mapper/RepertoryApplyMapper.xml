@@ -7,6 +7,7 @@
     <result column="my_team_id" jdbcType="VARCHAR" property="myTeamId" />
     <result column="branch_name" jdbcType="VARCHAR" property="branchName" />
     <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="accept_date" jdbcType="TIMESTAMP" property="acceptDate" />
     <result column="proposer_id" jdbcType="VARCHAR" property="proposerId" />
     <result column="proposer_name" jdbcType="VARCHAR" property="proposerName" />
     <result column="approver_id" jdbcType="VARCHAR" property="approverId" />
@@ -73,8 +74,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    apply_id, branch_id, my_team_id, branch_name, create_date, proposer_id, proposer_name, 
-    approver_id, approver_name, apply_status, apply_remark
+    apply_id, branch_id, my_team_id, branch_name, create_date, accept_date, proposer_id, 
+    proposer_name, approver_id, approver_name, apply_status, apply_remark
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
@@ -94,13 +95,15 @@
   </delete>
   <insert id="insert" parameterType="com.dgg.store.util.pojo.RepertoryApply">
     insert into repertory_apply (apply_id, branch_id, my_team_id, 
-      branch_name, create_date, proposer_id, 
-      proposer_name, approver_id, approver_name, 
-      apply_status, apply_remark)
+      branch_name, create_date, accept_date, 
+      proposer_id, proposer_name, approver_id, 
+      approver_name, apply_status, apply_remark
+      )
     values (#{applyId,jdbcType=VARCHAR}, #{branchId,jdbcType=VARCHAR}, #{myTeamId,jdbcType=VARCHAR}, 
-      #{branchName,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}, #{proposerId,jdbcType=VARCHAR}, 
-      #{proposerName,jdbcType=VARCHAR}, #{approverId,jdbcType=VARCHAR}, #{approverName,jdbcType=VARCHAR}, 
-      #{applyStatus,jdbcType=TINYINT}, #{applyRemark,jdbcType=VARCHAR})
+      #{branchName,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}, #{acceptDate,jdbcType=TIMESTAMP}, 
+      #{proposerId,jdbcType=VARCHAR}, #{proposerName,jdbcType=VARCHAR}, #{approverId,jdbcType=VARCHAR}, 
+      #{approverName,jdbcType=VARCHAR}, #{applyStatus,jdbcType=TINYINT}, #{applyRemark,jdbcType=VARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.dgg.store.util.pojo.RepertoryApply">
     insert into repertory_apply
@@ -119,6 +122,9 @@
       </if>
       <if test="createDate != null">
         create_date,
+      </if>
+      <if test="acceptDate != null">
+        accept_date,
       </if>
       <if test="proposerId != null">
         proposer_id,
@@ -154,6 +160,9 @@
       </if>
       <if test="createDate != null">
         #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="acceptDate != null">
+        #{acceptDate,jdbcType=TIMESTAMP},
       </if>
       <if test="proposerId != null">
         #{proposerId,jdbcType=VARCHAR},
@@ -199,6 +208,9 @@
       <if test="record.createDate != null">
         create_date = #{record.createDate,jdbcType=TIMESTAMP},
       </if>
+      <if test="record.acceptDate != null">
+        accept_date = #{record.acceptDate,jdbcType=TIMESTAMP},
+      </if>
       <if test="record.proposerId != null">
         proposer_id = #{record.proposerId,jdbcType=VARCHAR},
       </if>
@@ -229,6 +241,7 @@
       my_team_id = #{record.myTeamId,jdbcType=VARCHAR},
       branch_name = #{record.branchName,jdbcType=VARCHAR},
       create_date = #{record.createDate,jdbcType=TIMESTAMP},
+      accept_date = #{record.acceptDate,jdbcType=TIMESTAMP},
       proposer_id = #{record.proposerId,jdbcType=VARCHAR},
       proposer_name = #{record.proposerName,jdbcType=VARCHAR},
       approver_id = #{record.approverId,jdbcType=VARCHAR},
@@ -253,6 +266,9 @@
       </if>
       <if test="createDate != null">
         create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="acceptDate != null">
+        accept_date = #{acceptDate,jdbcType=TIMESTAMP},
       </if>
       <if test="proposerId != null">
         proposer_id = #{proposerId,jdbcType=VARCHAR},
@@ -281,6 +297,7 @@
       my_team_id = #{myTeamId,jdbcType=VARCHAR},
       branch_name = #{branchName,jdbcType=VARCHAR},
       create_date = #{createDate,jdbcType=TIMESTAMP},
+      accept_date = #{acceptDate,jdbcType=TIMESTAMP},
       proposer_id = #{proposerId,jdbcType=VARCHAR},
       proposer_name = #{proposerName,jdbcType=VARCHAR},
       approver_id = #{approverId,jdbcType=VARCHAR},
@@ -308,57 +325,24 @@
 
 
 
-
-  <resultMap id="RepertoryApplyList" type="com.dgg.store.util.pojo.RepertoryApplyList">
-    <result column="goods_id" property="goodsId" jdbcType="VARCHAR"/>
-    <result column="goods_name" property="goodsName" jdbcType="VARCHAR"/>
-    <result column="standard_id" property="standardId" jdbcType="VARCHAR"/>
-    <result column="standard_name" property="standardName" jdbcType="VARCHAR"/>
-    <result column="standard_count" property="standardCount" jdbcType="INTEGER"/>
-  </resultMap>
-
   <select id="listRepertoryChecker" resultMap="BaseResultMap">
     SELECT user_id approver_id,user_name approver_name
     FROM
-    (SELECT u.user_id,u.user_name
+    (SELECT u.user_id,u.user_name,u.my_team_id,qpr.permission_id
     FROM user u
-    INNER JOIN department_position dp
-    ON dp.team_department_id = u.team_department_id
     INNER JOIN position_permission_re ppr
-    ON ppr.position_id = dp.position_id
+    ON ppr.position_id = u.position_id
     INNER JOIN qm_permission_re qpr
     ON qpr.qm_permission_id = ppr.qm_permission_id
-    AND qpr.permission_id = #{permissionId}
-    AND u.my_team_id = #{myTeamId}
     UNION
-    SELECT u.user_id,u.user_name
+    SELECT u.user_id,u.user_name,u.my_team_id,qpr.permission_id
     FROM user u
     INNER JOIN user_qm_permission_re uqpr
     ON uqpr.user_id = u.user_id
     INNER JOIN qm_permission_re qpr
-    ON qpr.qm_permission_id = uqpr.qm_permission_id
-    AND qpr.permission_id = #{permissionId}
-    AND u.my_team_id = #{myTeamId}
-    ) t1
-    GROUP BY user_id
-  </select>
-
-  <insert id="insertApplyList">
-    INSERT INTO repertory_apply_list
-    (apply_id, goods_id, goods_name,
-    standard_id, standard_name, standard_count)
-    VALUES
-    <foreach collection="list" index="i" open="" close="" separator="," item="item">
-      (#{applyId},#{item.goodsId},#{item.goodsName},
-      #{item.standardId},#{item.standardName},#{item.standardCount})
-    </foreach>
-  </insert>
-
-  <select id="listApplyList" resultMap="RepertoryApplyList">
-    SELECT ral.goods_id,ral.goods_name,ral.standard_id,
-    ral.standard_name,ral.standard_count
-    FROM repertory_apply_list ral
-    WHERE ral.apply_id = #{applyId}
+    ON qpr.qm_permission_id = uqpr.qm_permission_id) t1
+    WHERE my_team_id = #{myTeamId}
+    AND permission_id = #{permissionId}
   </select>
 
   <select id="selectByExample" parameterType="com.dgg.store.util.pojo.RepertoryApplyExample" resultMap="BaseResultMap">
@@ -374,48 +358,46 @@
     <if test="orderByClause != null">
       order by ${orderByClause}
     </if>
-    LIMIT #{start},#{end}
+    <if test="pageNum != null and pageSize != null">
+      LIMIT #{pageNum},#{pageSize}
+    </if>
   </select>
 
-  <select id="getRepertory" resultType="java.lang.Integer">
-    SELECT standard_count
-    FROM goods_standard
-    WHERE standard_id = #{standardId}
-  </select>
-
-  <update id="updateGoodsCount">
-    UPDATE goods_standard
-    SET standard_count = #{count}
-    WHERE standard_id = #{standardId}
-  </update>
-
-  <select id="getSecondRepertory" resultType="java.lang.Integer">
-    SELECT IFNULL(MAX(standard_count),0)
+  <select id="countBranchGoodsExists" resultType="java.lang.Integer">
+    SELECT COUNT(0)
     FROM qm_branch_goods
-    WHERE standard_id = #{standardId}
-    AND branch_id = #{branchId}
+    WHERE branch_id = #{branchId}
+    AND standard_id = #{standardId}
   </select>
 
-  <delete id="deleteSecondStandard">
-    DELETE FROM qm_branch_goods
-    WHERE standard_id = #{standardId}
-    AND branch_id = #{branchId}
-  </delete>
-
-  <insert id="insertSecondRepertory">
+  <insert id="saveBranchGoods">
     INSERT INTO qm_branch_goods
-    (branch_id, goods_id, standard_id,
-    standard_count)
+    (branch_id, goods_id, standard_id, standard_count)
     VALUES
-    <foreach collection="list" item="item" separator="," close="" open="" index="index">
-      (#{branchId},#{item.goodsId},#{item.standardId},
-      #{item.standardCount})
-    </foreach>
+    (#{branchId},#{goods.goodsId},#{goods.standardId},#{goods.standardCount})
   </insert>
 
-  <select id="getDeviceToken" resultType="java.lang.String">
-    SELECT umeng_device_token
-    FROM user
-    WHERE user_id = #{userId}
+  <select id="countFirstBranchGoods" resultType="java.lang.Integer">
+    SELECT IFNULL(MAX(qbg.standard_count),0)
+    FROM qm_branch_goods qbg
+    INNER JOIN qm_branch qb
+    ON qb.branch_id = qbg.branch_id
+    WHERE branch_type = #{branchType}
+    AND qbg.standard_id = #{standardId}
   </select>
+
+  <update id="updateSubFirstBranchGoodsCount">
+    UPDATE qm_branch_goods
+    SET standard_count = standard_count - #{goods.standardCount}
+    WHERE standard_id = #{goods.standardId}
+    AND branch_id = (SELECT branch_id FROM qm_branch WHERE branch_type = #{branchType} AND my_team_id = #{myTeamId} LIMIT 1)
+  </update>
+
+  <update id="updateAddGoodsCount">
+    UPDATE qm_branch_goods
+    SET standard_count = standard_count + #{goods.standardCount}
+    WHERE standard_id = #{goods.standardId}
+    AND branch_id = #{branchId}
+  </update>
+
 </mapper>

@@ -1120,7 +1120,7 @@ CREATE TABLE `qm_branch` (
 
 LOCK TABLES `qm_branch` WRITE;
 /*!40000 ALTER TABLE `qm_branch` DISABLE KEYS */;
-INSERT INTO `qm_branch` VALUES ('9e8d946ef94b4795bd9218795354e631','总经办','9e8d946ef94b4795bd9218795354e631','10001','总经办','ed171aa03273455782765cc88c035d18','张三','13688888888','广东省江门市鹤山市楼冲村委会','22.770089,112.983026',1),('f9797f0b4ecc4808b1d93dca667ea175','江门销售点','4bc0ec2d68a444e7a584b9f8d03cbc44','10001','后勤部','5a27d0f892cd48a482622f8b76fd239c','王舞欣','13211113333','中国银行(江门美景路支行)','22.596167,113.095343',2);
+INSERT INTO `qm_branch` VALUES ('0f3965187f1d4bbf963453b7a2ae0b20','鹤山销售点','5a20e0ea32b948c08c928995b26af64e','10001','业务部','9f6bc79d769342f1b90ed0b532b870f2','李思思','13311113333','中国银行(江门美景路支行)','22.58945,113.094063',2),('9e8d946ef94b4795bd9218795354e631','总经办','9e8d946ef94b4795bd9218795354e631','10001','总经办','ed171aa03273455782765cc88c035d18','张三','13688888888','广东省江门市鹤山市楼冲村委会','22.770089,112.983026',1),('f9797f0b4ecc4808b1d93dca667ea175','江门销售点','4bc0ec2d68a444e7a584b9f8d03cbc44','10001','后勤部','5a27d0f892cd48a482622f8b76fd239c','王舞欣','13211113333','中国银行(江门美景路支行)','22.596167,113.095343',2);
 /*!40000 ALTER TABLE `qm_branch` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1145,7 +1145,7 @@ CREATE TABLE `qm_branch_goods` (
 
 LOCK TABLES `qm_branch_goods` WRITE;
 /*!40000 ALTER TABLE `qm_branch_goods` DISABLE KEYS */;
-INSERT INTO `qm_branch_goods` VALUES ('f9797f0b4ecc4808b1d93dca667ea175','f0c3df5bdb0a45aabf22464bb27dbb88','4e3007c4db5d483bb9245743fa5c08eb',100),('f9797f0b4ecc4808b1d93dca667ea175','f0c3df5bdb0a45aabf22464bb27dbb88','e0841a5ee98a410c9f1fe4a786a6d6f0',600);
+INSERT INTO `qm_branch_goods` VALUES ('9e8d946ef94b4795bd9218795354e631','f0c3df5bdb0a45aabf22464bb27dbb88','4e3007c4db5d483bb9245743fa5c08eb',5600),('9e8d946ef94b4795bd9218795354e631','f0c3df5bdb0a45aabf22464bb27dbb88','e0841a5ee98a410c9f1fe4a786a6d6f0',5400),('0f3965187f1d4bbf963453b7a2ae0b20','f0c3df5bdb0a45aabf22464bb27dbb88','4e3007c4db5d483bb9245743fa5c08eb',400),('0f3965187f1d4bbf963453b7a2ae0b20','f0c3df5bdb0a45aabf22464bb27dbb88','e0841a5ee98a410c9f1fe4a786a6d6f0',600);
 /*!40000 ALTER TABLE `qm_branch_goods` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1223,6 +1223,7 @@ CREATE TABLE `qm_permission_re` (
 
 LOCK TABLES `qm_permission_re` WRITE;
 /*!40000 ALTER TABLE `qm_permission_re` DISABLE KEYS */;
+INSERT INTO `qm_permission_re` VALUES ('4992632ef68d4fca88b118e5a5d5f943','e5fef6399c204309b2c8c51d5b2643fa'),('repertory_check','e5fef6399c204309b2c8c51d5b2643fa'),('cd7a6b8c1a7f4b5fade2073309a43ac2','e5fef6399c204309b2c8c51d5b2643fa');
 /*!40000 ALTER TABLE `qm_permission_re` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1277,6 +1278,7 @@ CREATE TABLE `repertory_apply` (
   `my_team_id` varchar(35) NOT NULL,
   `branch_name` varchar(35) NOT NULL,
   `create_date` datetime NOT NULL,
+  `accept_date` datetime DEFAULT NULL,
   `proposer_id` varchar(35) NOT NULL,
   `proposer_name` varchar(20) NOT NULL,
   `approver_id` varchar(35) DEFAULT NULL,
@@ -1293,7 +1295,7 @@ CREATE TABLE `repertory_apply` (
 
 LOCK TABLES `repertory_apply` WRITE;
 /*!40000 ALTER TABLE `repertory_apply` DISABLE KEYS */;
-INSERT INTO `repertory_apply` VALUES ('022564f8573f4a97a0840a976dae2e31','c1ac8fadcd8d4806a35518be39703393','10001','广州销售点','2017-08-26 15:11:00','89d9317fb3834353bcf2a507bee2eb83','李四','89d9317fb3834353bcf2a507bee2eb82','张三',12,'备注'),('470b578ffab04316a6ba78ab25c6d0f3','c1ac8fadcd8d4806a35518be39703393','10001','广州销售点','2017-08-26 15:09:33','1','1','1','1',10,'备注');
+INSERT INTO `repertory_apply` VALUES ('8097616c247b4cc2b0b3862f627e7445','0f3965187f1d4bbf963453b7a2ae0b20','10001','鹤山销售点','2017-10-11 15:35:30',NULL,'9f6bc79d769342f1b90ed0b532b870f2','李思思','5a27d0f892cd48a482622f8b76fd239c','王舞欣',12,'备注'),('9e1d7ab46f3c41a382413059ab615f4f','0f3965187f1d4bbf963453b7a2ae0b20','10001','鹤山销售点','2017-10-11 17:02:46','2017-10-11 17:02:59','9f6bc79d769342f1b90ed0b532b870f2','李思思','5a27d0f892cd48a482622f8b76fd239c','王舞欣',12,'备注');
 /*!40000 ALTER TABLE `repertory_apply` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1320,8 +1322,66 @@ CREATE TABLE `repertory_apply_list` (
 
 LOCK TABLES `repertory_apply_list` WRITE;
 /*!40000 ALTER TABLE `repertory_apply_list` DISABLE KEYS */;
-INSERT INTO `repertory_apply_list` VALUES ('470b578ffab04316a6ba78ab25c6d0f3','22a91981f71a43e7a8c34472bc7cc1c6','倍润828B,20%生长育肥猪浓缩饲料 使用阶段：60kg-出栏','1f9b286b836c4175ab09a9b02cacbb7d','小包',10),('470b578ffab04316a6ba78ab25c6d0f3','9c3ed28bb39e4b079f548e69a3681cba','【畅消】4%中猪预混料 长势快 后劲强 适用于30~60KG','9190f4574805419187a8029042803617','大包',5),('022564f8573f4a97a0840a976dae2e31','22a91981f71a43e7a8c34472bc7cc1c6','倍润828B,20%生长育肥猪浓缩饲料 使用阶段：60kg-出栏','1f9b286b836c4175ab09a9b02cacbb7d','小包',10),('022564f8573f4a97a0840a976dae2e31','9c3ed28bb39e4b079f548e69a3681cba','【畅消】4%中猪预混料 长势快 后劲强 适用于30~60KG','9190f4574805419187a8029042803617','大包',5);
+INSERT INTO `repertory_apply_list` VALUES ('8097616c247b4cc2b0b3862f627e7445','f0c3df5bdb0a45aabf22464bb27dbb88','【畅消】4%中猪预混料 长势快 后劲强 适用于30~60KG','4e3007c4db5d483bb9245743fa5c08eb','10kg/袋',200),('8097616c247b4cc2b0b3862f627e7445','f0c3df5bdb0a45aabf22464bb27dbb88','【畅消】4%中猪预混料 长势快 后劲强 适用于30~60KG','e0841a5ee98a410c9f1fe4a786a6d6f0','20kg/袋',300),('9e1d7ab46f3c41a382413059ab615f4f','f0c3df5bdb0a45aabf22464bb27dbb88','【畅消】4%中猪预混料 长势快 后劲强 适用于30~60KG','4e3007c4db5d483bb9245743fa5c08eb','10kg/袋',200),('9e1d7ab46f3c41a382413059ab615f4f','f0c3df5bdb0a45aabf22464bb27dbb88','【畅消】4%中猪预混料 长势快 后劲强 适用于30~60KG','e0841a5ee98a410c9f1fe4a786a6d6f0','20kg/袋',300);
 /*!40000 ALTER TABLE `repertory_apply_list` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `repertory_income`
+--
+
+DROP TABLE IF EXISTS `repertory_income`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `repertory_income` (
+  `record_id` varchar(35) NOT NULL,
+  `record_code` varchar(35) NOT NULL,
+  `my_team_id` varchar(35) NOT NULL,
+  `branch_id` varchar(35) NOT NULL,
+  `branch_name` varchar(35) NOT NULL,
+  `operator_id` varchar(35) NOT NULL,
+  `operator_name` varchar(20) NOT NULL,
+  `create_date` datetime NOT NULL,
+  `record_remark` varchar(255) NOT NULL,
+  PRIMARY KEY (`record_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `repertory_income`
+--
+
+LOCK TABLES `repertory_income` WRITE;
+/*!40000 ALTER TABLE `repertory_income` DISABLE KEYS */;
+INSERT INTO `repertory_income` VALUES ('7d5b4d1ec70e40858db750ee5eb9707c','201710117459','10001','9e8d946ef94b4795bd9218795354e631','总经办','5a27d0f892cd48a482622f8b76fd239c','王舞欣','2017-10-11 11:59:16',''),('95601e1a99d44f4cb80c28a6ce8c1d6d','201710114704','10001','1','1','5a27d0f892cd48a482622f8b76fd239c','王舞欣','2017-10-11 11:58:01',''),('a6fda78a514c4422b9c6cba43ef3177b','201710110259','10001','9e8d946ef94b4795bd9218795354e631','总经办','5a27d0f892cd48a482622f8b76fd239c','王舞欣','2017-10-11 11:59:22','');
+/*!40000 ALTER TABLE `repertory_income` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `repertory_income_list`
+--
+
+DROP TABLE IF EXISTS `repertory_income_list`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `repertory_income_list` (
+  `record_id` varchar(35) NOT NULL,
+  `goods_id` varchar(35) NOT NULL,
+  `goods_name` varchar(60) NOT NULL,
+  `standard_id` varchar(35) NOT NULL,
+  `standard_name` varchar(20) NOT NULL,
+  `standard_count` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `repertory_income_list`
+--
+
+LOCK TABLES `repertory_income_list` WRITE;
+/*!40000 ALTER TABLE `repertory_income_list` DISABLE KEYS */;
+INSERT INTO `repertory_income_list` VALUES ('95601e1a99d44f4cb80c28a6ce8c1d6d','f0c3df5bdb0a45aabf22464bb27dbb88','【畅消】4%中猪预混料 长势快 后劲强 适用于30~60KG','4e3007c4db5d483bb9245743fa5c08eb','10kg/袋',3000),('95601e1a99d44f4cb80c28a6ce8c1d6d','f0c3df5bdb0a45aabf22464bb27dbb88','【畅消】4%中猪预混料 长势快 后劲强 适用于30~60KG','e0841a5ee98a410c9f1fe4a786a6d6f0','20kg/袋',3000),('7d5b4d1ec70e40858db750ee5eb9707c','f0c3df5bdb0a45aabf22464bb27dbb88','【畅消】4%中猪预混料 长势快 后劲强 适用于30~60KG','4e3007c4db5d483bb9245743fa5c08eb','10kg/袋',3000),('7d5b4d1ec70e40858db750ee5eb9707c','f0c3df5bdb0a45aabf22464bb27dbb88','【畅消】4%中猪预混料 长势快 后劲强 适用于30~60KG','e0841a5ee98a410c9f1fe4a786a6d6f0','20kg/袋',3000),('a6fda78a514c4422b9c6cba43ef3177b','f0c3df5bdb0a45aabf22464bb27dbb88','【畅消】4%中猪预混料 长势快 后劲强 适用于30~60KG','4e3007c4db5d483bb9245743fa5c08eb','10kg/袋',3000),('a6fda78a514c4422b9c6cba43ef3177b','f0c3df5bdb0a45aabf22464bb27dbb88','【畅消】4%中猪预混料 长势快 后劲强 适用于30~60KG','e0841a5ee98a410c9f1fe4a786a6d6f0','20kg/袋',3000);
+/*!40000 ALTER TABLE `repertory_income_list` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -1333,6 +1393,7 @@ DROP TABLE IF EXISTS `repertory_record`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `repertory_record` (
   `record_id` varchar(35) NOT NULL,
+  `record_code` varchar(35) NOT NULL,
   `my_team_id` varchar(35) NOT NULL,
   `branch_id` varchar(35) NOT NULL,
   `branch_name` varchar(35) NOT NULL,
@@ -1350,7 +1411,7 @@ CREATE TABLE `repertory_record` (
 
 LOCK TABLES `repertory_record` WRITE;
 /*!40000 ALTER TABLE `repertory_record` DISABLE KEYS */;
-INSERT INTO `repertory_record` VALUES ('2ab7fde0b7984f1a83578a4bde08fd0f','10001','f9797f0b4ecc4808b1d93dca667ea175','江门销售点','89d9317fb3834353bcf2a507bee2eb82','张三','2017-10-10 18:30:37',''),('44b6befcb01c4a2692a7439283931c44','10001','f9797f0b4ecc4808b1d93dca667ea175','江门销售点','89d9317fb3834353bcf2a507bee2eb82','张三','2017-10-10 18:30:18',''),('6b4b8ea15f0d4f50bf47b10bd1741f17','10001','f9797f0b4ecc4808b1d93dca667ea175','江门销售点','89d9317fb3834353bcf2a507bee2eb82','张三','2017-10-10 18:28:36','');
+INSERT INTO `repertory_record` VALUES ('1044c4a90b5e4c76b59fe2770212a849','201710111915','10001','f9797f0b4ecc4808b1d93dca667ea175','江门销售点','89d9317fb3834353bcf2a507bee2eb82','张三','2017-10-11 08:59:03',''),('8cc618af34f24beaa2bcfd28a1862460','201710119708','10001','9e8d946ef94b4795bd9218795354e631','总经办','89d9317fb3834353bcf2a507bee2eb82','张三','2017-10-11 09:50:59','');
 /*!40000 ALTER TABLE `repertory_record` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1379,7 +1440,7 @@ CREATE TABLE `repertory_record_list` (
 
 LOCK TABLES `repertory_record_list` WRITE;
 /*!40000 ALTER TABLE `repertory_record_list` DISABLE KEYS */;
-INSERT INTO `repertory_record_list` VALUES ('6b4b8ea15f0d4f50bf47b10bd1741f17',1,'正常处理','f0c3df5bdb0a45aabf22464bb27dbb88','【畅消】4%中猪预混料 长势快 后劲强 适用于30~60KG','4e3007c4db5d483bb9245743fa5c08eb','10kg/袋',100),('6b4b8ea15f0d4f50bf47b10bd1741f17',1,'正常处理','f0c3df5bdb0a45aabf22464bb27dbb88','【畅消】4%中猪预混料 长势快 后劲强 适用于30~60KG','e0841a5ee98a410c9f1fe4a786a6d6f0','20kg/袋',200),('44b6befcb01c4a2692a7439283931c44',1,'正常处理','f0c3df5bdb0a45aabf22464bb27dbb88','【畅消】4%中猪预混料 长势快 后劲强 适用于30~60KG','4e3007c4db5d483bb9245743fa5c08eb','10kg/袋',100),('44b6befcb01c4a2692a7439283931c44',1,'正常处理','f0c3df5bdb0a45aabf22464bb27dbb88','【畅消】4%中猪预混料 长势快 后劲强 适用于30~60KG','e0841a5ee98a410c9f1fe4a786a6d6f0','20kg/袋',200),('2ab7fde0b7984f1a83578a4bde08fd0f',2,'正常处理','f0c3df5bdb0a45aabf22464bb27dbb88','【畅消】4%中猪预混料 长势快 后劲强 适用于30~60KG','4e3007c4db5d483bb9245743fa5c08eb','10kg/袋',100),('2ab7fde0b7984f1a83578a4bde08fd0f',1,'正常处理','f0c3df5bdb0a45aabf22464bb27dbb88','【畅消】4%中猪预混料 长势快 后劲强 适用于30~60KG','e0841a5ee98a410c9f1fe4a786a6d6f0','20kg/袋',200);
+INSERT INTO `repertory_record_list` VALUES ('6b4b8ea15f0d4f50bf47b10bd1741f17',1,'正常处理','f0c3df5bdb0a45aabf22464bb27dbb88','【畅消】4%中猪预混料 长势快 后劲强 适用于30~60KG','4e3007c4db5d483bb9245743fa5c08eb','10kg/袋',100),('6b4b8ea15f0d4f50bf47b10bd1741f17',1,'正常处理','f0c3df5bdb0a45aabf22464bb27dbb88','【畅消】4%中猪预混料 长势快 后劲强 适用于30~60KG','e0841a5ee98a410c9f1fe4a786a6d6f0','20kg/袋',200),('44b6befcb01c4a2692a7439283931c44',1,'正常处理','f0c3df5bdb0a45aabf22464bb27dbb88','【畅消】4%中猪预混料 长势快 后劲强 适用于30~60KG','4e3007c4db5d483bb9245743fa5c08eb','10kg/袋',100),('44b6befcb01c4a2692a7439283931c44',1,'正常处理','f0c3df5bdb0a45aabf22464bb27dbb88','【畅消】4%中猪预混料 长势快 后劲强 适用于30~60KG','e0841a5ee98a410c9f1fe4a786a6d6f0','20kg/袋',200),('2ab7fde0b7984f1a83578a4bde08fd0f',2,'正常处理','f0c3df5bdb0a45aabf22464bb27dbb88','【畅消】4%中猪预混料 长势快 后劲强 适用于30~60KG','4e3007c4db5d483bb9245743fa5c08eb','10kg/袋',100),('2ab7fde0b7984f1a83578a4bde08fd0f',1,'正常处理','f0c3df5bdb0a45aabf22464bb27dbb88','【畅消】4%中猪预混料 长势快 后劲强 适用于30~60KG','e0841a5ee98a410c9f1fe4a786a6d6f0','20kg/袋',200),('1044c4a90b5e4c76b59fe2770212a849',1,'正常处理','f0c3df5bdb0a45aabf22464bb27dbb88','【畅消】4%中猪预混料 长势快 后劲强 适用于30~60KG','4e3007c4db5d483bb9245743fa5c08eb','10kg/袋',100),('1044c4a90b5e4c76b59fe2770212a849',2,'正常处理','f0c3df5bdb0a45aabf22464bb27dbb88','【畅消】4%中猪预混料 长势快 后劲强 适用于30~60KG','e0841a5ee98a410c9f1fe4a786a6d6f0','20kg/袋',200),('8cc618af34f24beaa2bcfd28a1862460',1,'正常处理','f0c3df5bdb0a45aabf22464bb27dbb88','【畅消】4%中猪预混料 长势快 后劲强 适用于30~60KG','4e3007c4db5d483bb9245743fa5c08eb','10kg/袋',1000),('8cc618af34f24beaa2bcfd28a1862460',1,'正常处理','f0c3df5bdb0a45aabf22464bb27dbb88','【畅消】4%中猪预混料 长势快 后劲强 适用于30~60KG','e0841a5ee98a410c9f1fe4a786a6d6f0','20kg/袋',2000);
 /*!40000 ALTER TABLE `repertory_record_list` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1811,6 +1872,7 @@ CREATE TABLE `user` (
   `real_name` tinyint(4) NOT NULL DEFAULT '2',
   `umeng_device_token` varchar(50) NOT NULL DEFAULT '',
   PRIMARY KEY (`user_id`),
+  UNIQUE KEY `user_phone` (`user_phone`),
   KEY `FK_user_role_re` (`role_id`),
   KEY `FK_user_team_re` (`my_team_id`),
   KEY `FK_user_department_re` (`team_department_id`),
@@ -2303,4 +2365,4 @@ SET character_set_client = @saved_cs_client;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-10-10 18:31:20
+-- Dump completed on 2017-10-11 17:12:17

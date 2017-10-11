@@ -214,6 +214,7 @@ public class BranchServiceImpl implements BranchService
         JSONObject json = (JSONObject) JSONObject.toJSON(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), result));
         json.put(KeyConstant.PAGE_COUNT, pageCount);
         json.put(KeyConstant.BRANCH_ID, branchVO.getBranchId());
+        json.put(KeyConstant.BRANCH_NAME, dao.getBranchName(branchVO.getBranchId()));
 
         return json.toJSONString();
     }

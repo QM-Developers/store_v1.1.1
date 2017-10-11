@@ -25,6 +25,7 @@
 
     <resultMap id="SessionVOMap" type="com.dgg.store.util.vo.core.SessionVO">
         <result column="user_id" property="userId" jdbcType="VARCHAR"/>
+        <result column="user_name" property="userName" jdbcType="VARCHAR"/>
         <result column="role_id" property="roleId" jdbcType="INTEGER"/>
         <result column="token" property="token" jdbcType="VARCHAR"/>
     </resultMap>
@@ -135,7 +136,7 @@
     </delete>
 
     <select id="findUserSessionVOById" resultMap="SessionVOMap">
-        SELECT u.user_id,u.role_id,u.user_phone,u.user_password,u.token
+        SELECT u.user_id,u.user_name,u.role_id,u.user_phone,u.user_password,u.token
         FROM user u
         WHERE u.user_Id = #{userId}
     </select>

@@ -49,4 +49,6 @@ public interface BranchDao
     String getCurrentBranchId(String userId);
 
     String getFirstBranchId(String myTeamId, byte branchType);
+
+    String getBranchName(String branchId);
 }

@@ -2,20 +2,17 @@ package com.dgg.store.service.store;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.dgg.store.dao.store.RepertoryApplyDao;
-import com.dgg.store.mapper.PushMessageMapper;
+import com.dgg.store.mapper.RepertoryApplyListMapper;
+import com.dgg.store.mapper.RepertoryApplyMapper;
 import com.dgg.store.util.core.constant.*;
 import com.dgg.store.util.core.generator.IDGenerator;
 import com.dgg.store.util.core.page.PagingUtil;
 import com.dgg.store.util.core.umeng.push.PushMessageFactory;
 import com.dgg.store.util.core.umeng.push.UMengUtil;
-import com.dgg.store.util.pojo.RepertoryApply;
-import com.dgg.store.util.pojo.RepertoryApplyExample;
-import com.dgg.store.util.pojo.RepertoryApplyList;
+import com.dgg.store.util.pojo.*;
 import com.dgg.store.util.vo.core.PageVO;
 import com.dgg.store.util.vo.core.ResultVO;
 import com.dgg.store.util.vo.core.SessionVO;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -25,16 +22,19 @@ import java.util.List;
 @Service
 public class RepertoryApplyServiceImpl implements RepertoryApplyService
 {
-    @Autowired
-    private RepertoryApplyDao dao;
+    private final RepertoryApplyMapper mapper;
+    private final RepertoryApplyListMapper listMapper;
 
-    @Autowired
-    private PushMessageMapper mapper;
+    public RepertoryApplyServiceImpl(RepertoryApplyMapper mapper, RepertoryApplyListMapper listMapper)
+    {
+        this.mapper = mapper;
+        this.listMapper = listMapper;
+    }
 
     @Override
     public String listRepertoryChecker(SessionVO sessionVO)
     {
-        List<RepertoryApply> result = dao.listRepertoryChecker(QMPermissionConstant.REPERTORY_CHECK, sessionVO.getMyTeamId());
+        List<RepertoryApply> result = mapper.listRepertoryChecker(sessionVO.getMyTeamId(), QMPermissionConstant.REPERTORY_CHECK);
 
         return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), result));
     }
@@ -42,40 +42,23 @@ public class RepertoryApplyServiceImpl implements RepertoryApplyService
     @Override
     public String insertRepertoryApply(SessionVO sessionVO, RepertoryApply apply)
     {
-        int result = 1;
-        int index = 0;
-        int count = 2;
-        apply = initApply(sessionVO, apply);
+        apply.setApplyId(IDGenerator.generator());
+        apply.setApplyStatus(RepertoryConstant.STATUS_CHECK);
+        apply.setMyTeamId(sessionVO.getMyTeamId());
+        apply.setCreateDate(new Date());
 
-        List<RepertoryApplyList> applyList = new ArrayList<>();
-        JSONArray jsonArray = JSONArray.parseArray(apply.getGoodsInfo());
-
-        for (int i = 0; i < jsonArray.size(); i++)
-            applyList.add(JSONObject.parseObject(jsonArray.get(i).toString(), RepertoryApplyList.class));
-
-        while (result > 0)
+        JSONArray jArr = JSONArray.parseArray(apply.getGoodsInfo());
+        for (Object json : jArr)
         {
-            switch (index)
-            {
-                case 0:
-                    apply.setApplyStatus(RepertoryConstant.STATUS_CHECK);
-                    apply.setApplyId(IDGenerator.generator());
-                    result = dao.insert(apply);
-                    break;
-                case 1:
-                    result = dao.insertApplyList(applyList, apply.getApplyId());
-                    break;
-                default:
-                    result = 0;
-                    break;
-            }
-            index++;
+            RepertoryApplyList applyList = JSONObject.parseObject(json.toString(), RepertoryApplyList.class);
+            applyList.setApplyId(apply.getApplyId());
+
+            if (listMapper.insert(applyList) < 1)
+                throw new RuntimeException(Constant.STR_ADD_FAILED);
         }
 
-        if (index - 1 < count)
+        if (mapper.insert(apply) < 1)
             throw new RuntimeException(Constant.STR_ADD_FAILED);
-
-        UMengUtil.sendUnicast(dao.getDeviceToken(apply.getApproverId()), PushMessageFactory.getInstance(mapper).get(PushMessageConstant.REPERTORY_NEW));
 
         return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), apply.getApplyId()));
     }
@@ -86,15 +69,14 @@ public class RepertoryApplyServiceImpl implements RepertoryApplyService
         RepertoryApplyExample example = new RepertoryApplyExample();
         RepertoryApplyExample.Criteria criteria = example.createCriteria();
 
-        example.setStart(PagingUtil.getStart(pageVO.getPageNum(), pageVO.getPageSize()));
-        example.setEnd(pageVO.getPageSize());
         criteria.andProposerIdEqualTo(sessionVO.getUserId());
-        int pageCount = PagingUtil.getCount((int) dao.countByExample(example), pageVO.getPageSize());
 
-        List<RepertoryApply> result = dao.selectByExample(example);
-        for (RepertoryApply apply : result)
-            apply.setApplyList(dao.listApplyList(apply.getApplyId()));
+        example.setPageNum(PagingUtil.getStart(pageVO.getPageNum(), pageVO.getPageSize()));
+        example.setPageSize(pageVO.getPageSize());
+        List<RepertoryApply> result = mapper.selectByExample(example);
+        result = getApplyList(result);
 
+        int pageCount = PagingUtil.getCount((int) mapper.countByExample(example), pageVO.getPageSize());
         JSONObject json = (JSONObject) JSONObject.toJSON(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), result));
         json.put(KeyConstant.PAGE_COUNT, pageCount);
 
@@ -107,129 +89,111 @@ public class RepertoryApplyServiceImpl implements RepertoryApplyService
         RepertoryApplyExample example = new RepertoryApplyExample();
         RepertoryApplyExample.Criteria criteria = example.createCriteria();
 
-        example.setStart(PagingUtil.getStart(pageVO.getPageNum(), pageVO.getPageSize()));
-        example.setEnd(pageVO.getPageSize());
         criteria.andApproverIdEqualTo(sessionVO.getUserId());
-        int pageCount = PagingUtil.getCount((int) dao.countByExample(example), pageVO.getPageSize());
 
-        List<RepertoryApply> result = dao.selectByExample(example);
-        for (RepertoryApply apply : result)
-            apply.setApplyList(dao.listApplyList(apply.getApplyId()));
+        example.setPageNum(PagingUtil.getStart(pageVO.getPageNum(), pageVO.getPageSize()));
+        example.setPageSize(pageVO.getPageSize());
+        List<RepertoryApply> result = mapper.selectByExample(example);
+        result = getApplyList(result);
 
+        int pageCount = PagingUtil.getCount((int) mapper.countByExample(example), pageVO.getPageSize());
         JSONObject json = (JSONObject) JSONObject.toJSON(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), result));
         json.put(KeyConstant.PAGE_COUNT, pageCount);
 
         return json.toJSONString();
     }
 
+    private List<RepertoryApply> getApplyList(List<RepertoryApply> result)
+    {
+        for (RepertoryApply apply : result)
+        {
+            RepertoryApplyListExample listExample = new RepertoryApplyListExample();
+            RepertoryApplyListExample.Criteria listCriteria = listExample.createCriteria();
+            listCriteria.andApplyIdEqualTo(apply.getApplyId());
+            apply.setApplyList(listMapper.selectByExample(listExample));
+        }
+        return result;
+    }
+
     @Override
     public String updateRepertoryApplyAccept(SessionVO sessionVO, RepertoryApply apply)
     {
-        int result = 1;
-        int index = 0;
-        int count = 2;
-        int repertory;
+        RepertoryApplyExample example = new RepertoryApplyExample();
+        RepertoryApplyExample.Criteria criteria = example.createCriteria();
+        criteria.andApproverIdEqualTo(sessionVO.getUserId());
+        criteria.andApplyIdEqualTo(apply.getApplyId());
 
-        apply = dao.selectByPrimaryKey(apply.getApplyId());
+        List<RepertoryApply> result = mapper.selectByExample(example);
+
+        if (result.size() < 1)
+            return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_FAILED, sessionVO.getToken()));
+        else
+            apply = result.get(0);
+
         if (!apply.getApplyStatus().equals(RepertoryConstant.STATUS_CHECK))
             return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_FAILED, sessionVO.getToken()));
 
-        List<RepertoryApplyList> applyList = dao.listApplyList(apply.getApplyId());
+        RepertoryApplyListExample listExample = new RepertoryApplyListExample();
+        RepertoryApplyListExample.Criteria listCriteria = listExample.createCriteria();
+        listCriteria.andApplyIdEqualTo(apply.getApplyId());
 
-        while (result > 0)
-        {
-            switch (index)
-            {
-                case 0:
-                    for (RepertoryApplyList list : applyList)
-                    {
-                        repertory = dao.getRepertory(list.getStandardId());
-                        if (repertory < list.getStandardCount())
-                        {
-                            result = 0;
-                            break;
-                        }
-                        result = dao.updateGoodsCount(list.getStandardId(), repertory - list.getStandardCount());
-                        if (result < 1)
-                            break;
-                    }
-                    break;
-                case 1:
-                    RepertoryApply record = new RepertoryApply();
-                    record.setApplyId(apply.getApplyId());
-                    record.setApplyStatus(RepertoryConstant.STATUS_DELIVERED);
+        apply.setApplyList(listMapper.selectByExample(listExample));
 
-                    result = dao.updateByPrimaryKeySelective(record);
-                    break;
-                default:
-                    result = 0;
-                    break;
-            }
-            index++;
-        }
+        for (RepertoryApplyList list : apply.getApplyList())
+            if (mapper.countFirstBranchGoods(list.getStandardId(), BranchConstant.BRANCH_FIRST) < list.getStandardCount())
+                return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_FAILED, sessionVO.getToken()));
 
-        if (index - 1 < count)
-            throw new RuntimeException(Constant.STR_ADD_FAILED);
+        for (RepertoryApplyList list : apply.getApplyList())
+            if (mapper.updateSubFirstBranchGoodsCount(list, sessionVO.getMyTeamId(), BranchConstant.BRANCH_FIRST) < 1)
+                throw new RuntimeException(Constant.STR_ADD_FAILED);
 
-        UMengUtil.sendUnicast(dao.getDeviceToken(apply.getProposerId()), PushMessageFactory.getInstance(mapper).get(PushMessageConstant.REPERTORY_PASS));
+        apply.setApplyStatus(RepertoryConstant.STATUS_DELIVERED);
+        apply.setAcceptDate(new Date());
+        mapper.updateByPrimaryKeySelective(apply);
 
-        return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), apply.getApplyId()));
+        return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken()));
     }
 
     @Override
     public String updateRepertoryApplyFinish(SessionVO sessionVO, RepertoryApply apply)
     {
-        int result = 1;
-        int index = 0;
-        int count = 2;
-        int repertory;
+        RepertoryApplyExample example = new RepertoryApplyExample();
+        RepertoryApplyExample.Criteria criteria = example.createCriteria();
+        criteria.andProposerIdEqualTo(sessionVO.getUserId());
+        criteria.andApplyIdEqualTo(apply.getApplyId());
 
-        apply = dao.selectByPrimaryKey(apply.getApplyId());
+        List<RepertoryApply> result = mapper.selectByExample(example);
+
+        if (result.size() < 1)
+            return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_FAILED, sessionVO.getToken()));
+        else
+            apply = result.get(0);
+
         if (!apply.getApplyStatus().equals(RepertoryConstant.STATUS_DELIVERED))
             return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_FAILED, sessionVO.getToken()));
 
-        List<RepertoryApplyList> applyList = dao.listApplyList(apply.getApplyId());
+        RepertoryApplyListExample listExample = new RepertoryApplyListExample();
+        RepertoryApplyListExample.Criteria listCriteria = listExample.createCriteria();
+        listCriteria.andApplyIdEqualTo(apply.getApplyId());
 
-        while (result > 0)
+        apply.setApplyList(listMapper.selectByExample(listExample));
+
+        for (RepertoryApplyList list : apply.getApplyList())
         {
-            switch (index)
+            if (mapper.countBranchGoodsExists(list.getStandardId(), apply.getBranchId()) < 1)
             {
-                case 0:
-                    for (RepertoryApplyList list : applyList)
-                    {
-                        repertory = dao.getSecondRepertory(apply.getBranchId(),list.getStandardId());
-                        dao.deleteSecondStandard(apply.getBranchId(),list.getStandardId());
-                        list.setStandardCount(repertory + list.getStandardCount());
-                    }
-                    result = dao.insertSecondRepertory(applyList,apply.getBranchId());
-                    break;
-                case 1:
-                    RepertoryApply record = new RepertoryApply();
-                    record.setApplyId(apply.getApplyId());
-                    record.setApplyStatus(RepertoryConstant.STATUS_FINISH);
-
-                    result = dao.updateByPrimaryKeySelective(record);
-                    break;
-                default:
-                    result = 0;
-                    break;
+                if (mapper.saveBranchGoods(list, apply.getBranchId()) < 1)
+                    throw new RuntimeException(Constant.STR_ADD_FAILED);
+            } else
+            {
+                if (mapper.updateAddGoodsCount(list, apply.getBranchId()) < 1)
+                    throw new RuntimeException(Constant.STR_ADD_FAILED);
             }
-            index++;
         }
 
-        if (index - 1 < count)
-            throw new RuntimeException(Constant.STR_ADD_FAILED);
+        apply.setApplyStatus(RepertoryConstant.STATUS_FINISH);
+        mapper.updateByPrimaryKeySelective(apply);
 
-        return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), apply.getApplyId()));
-    }
-
-
-    private RepertoryApply initApply(SessionVO sessionVO, RepertoryApply apply)
-    {
-        apply.setApplyId(IDGenerator.generator());
-        apply.setCreateDate(new Date());
-        apply.setMyTeamId(sessionVO.getMyTeamId());
-
-        return apply;
+        return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken()));
     }
 }

@@ -5,15 +5,17 @@ import java.util.Date;
 import java.util.List;
 
 public class RepertoryApplyExample {
-    private int start;
+    private Integer pageNum;
 
-    private int end;
+    private Integer pageSize;
 
     protected String orderByClause;
 
     protected boolean distinct;
 
     protected List<Criteria> oredCriteria;
+    private int start;
+    private Integer end;
 
     public RepertoryApplyExample() {
         oredCriteria = new ArrayList<Criteria>();
@@ -66,6 +68,26 @@ public class RepertoryApplyExample {
         oredCriteria.clear();
         orderByClause = null;
         distinct = false;
+    }
+
+    public void setStart(int start)
+    {
+        this.start = start;
+    }
+
+    public int getStart()
+    {
+        return start;
+    }
+
+    public void setEnd(Integer end)
+    {
+        this.end = end;
+    }
+
+    public Integer getEnd()
+    {
+        return end;
     }
 
     protected abstract static class GeneratedCriteria {
@@ -446,6 +468,66 @@ public class RepertoryApplyExample {
 
         public Criteria andCreateDateNotBetween(Date value1, Date value2) {
             addCriterion("create_date not between", value1, value2, "createDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andAcceptDateIsNull() {
+            addCriterion("accept_date is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andAcceptDateIsNotNull() {
+            addCriterion("accept_date is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andAcceptDateEqualTo(Date value) {
+            addCriterion("accept_date =", value, "acceptDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andAcceptDateNotEqualTo(Date value) {
+            addCriterion("accept_date <>", value, "acceptDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andAcceptDateGreaterThan(Date value) {
+            addCriterion("accept_date >", value, "acceptDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andAcceptDateGreaterThanOrEqualTo(Date value) {
+            addCriterion("accept_date >=", value, "acceptDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andAcceptDateLessThan(Date value) {
+            addCriterion("accept_date <", value, "acceptDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andAcceptDateLessThanOrEqualTo(Date value) {
+            addCriterion("accept_date <=", value, "acceptDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andAcceptDateIn(List<Date> values) {
+            addCriterion("accept_date in", values, "acceptDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andAcceptDateNotIn(List<Date> values) {
+            addCriterion("accept_date not in", values, "acceptDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andAcceptDateBetween(Date value1, Date value2) {
+            addCriterion("accept_date between", value1, value2, "acceptDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andAcceptDateNotBetween(Date value1, Date value2) {
+            addCriterion("accept_date not between", value1, value2, "acceptDate");
             return (Criteria) this;
         }
 
@@ -953,23 +1035,23 @@ public class RepertoryApplyExample {
         }
     }
 
-    public int getStart()
+    public Integer getPageNum()
     {
-        return start;
+        return pageNum;
     }
 
-    public void setStart(int start)
+    public void setPageNum(Integer pageNum)
     {
-        this.start = start;
+        this.pageNum = pageNum;
     }
 
-    public int getEnd()
+    public Integer getPageSize()
     {
-        return end;
+        return pageSize;
     }
 
-    public void setEnd(int end)
+    public void setPageSize(Integer pageSize)
     {
-        this.end = end;
+        this.pageSize = pageSize;
     }
 }

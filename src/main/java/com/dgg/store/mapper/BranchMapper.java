@@ -50,4 +50,6 @@ public interface BranchMapper
     String getCurrentBranchId(String userId);
 
     String getFirstBranchId(@Param("myTeamId") String myTeamId,@Param("branchType") byte branchType);
+
+    String getBranchName(String branchId);
 }

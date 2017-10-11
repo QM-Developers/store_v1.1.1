@@ -1,5 +1,6 @@
 package com.dgg.store.mapper;
 
+
 import com.dgg.store.util.pojo.RepertoryApply;
 import com.dgg.store.util.pojo.RepertoryApplyExample;
 import com.dgg.store.util.pojo.RepertoryApplyList;
@@ -31,21 +32,15 @@ public interface RepertoryApplyMapper
 
     int updateByPrimaryKey(RepertoryApply record);
 
-    List<RepertoryApply> listRepertoryChecker(@Param("permissionId") String permissionId, @Param("myTeamId") String myTeamId);
+    List<RepertoryApply> listRepertoryChecker(@Param("myTeamId") String myTeamId, @Param("permissionId") String permissionId);
 
-    int insertApplyList(@Param("list") List<RepertoryApplyList> applyList, @Param("applyId") String applyId);
+    int countFirstBranchGoods(@Param("standardId") String standardId,@Param("branchType") byte branchFirst);
 
-    List<RepertoryApplyList> listApplyList(@Param("applyId") String applyId);
+    int updateSubFirstBranchGoodsCount(@Param("goods") RepertoryApplyList list, @Param("myTeamId") String myTeamId, @Param("branchType") byte branchFirst);
 
-    int getRepertory(@Param("standardId") String standardId);
+    int countBranchGoodsExists(@Param("standardId") String standardId, @Param("branchId") String branchId);
 
-    int updateGoodsCount(@Param("standardId") String standardId, @Param("count") int count);
+    int saveBranchGoods(@Param("goods") RepertoryApplyList list, @Param("branchId") String branchId);
 
-    int getSecondRepertory(@Param("branchId") String branchId, @Param("standardId") String standardId);
-
-    int deleteSecondStandard(@Param("branchId") String branchId, @Param("standardId") String standardId);
-
-    int insertSecondRepertory(@Param("list") List<RepertoryApplyList> applyList, @Param("branchId") String branchId);
-
-    String getDeviceToken(@Param("userId") String approverId);
+    int updateAddGoodsCount(@Param("goods") RepertoryApplyList list, @Param("branchId") String branchId);
 }

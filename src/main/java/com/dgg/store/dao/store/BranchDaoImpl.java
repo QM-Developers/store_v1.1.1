@@ -136,4 +136,10 @@ public class BranchDaoImpl implements BranchDao
     {
         return mapper.getFirstBranchId(myTeamId, branchType);
     }
+
+    @Override
+    public String getBranchName(String branchId)
+    {
+        return mapper.getBranchName(branchId);
+    }
 }

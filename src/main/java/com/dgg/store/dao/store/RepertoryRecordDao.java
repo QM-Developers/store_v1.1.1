@@ -36,7 +36,7 @@ public interface RepertoryRecordDao
 
 //    int getSecondRepertory(String standardId);
 
-    List<RepertoryRecordList> getRepertoryRecordList(String recordId);
+//    List<RepertoryRecordList> getRepertoryRecordList(String recordId);
 
     int getGoodsCount(String branchId, String standardId);
 

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.dgg.store.mapper.RepertoryRecordMapper">
-  <resultMap id="BaseResultMap" type="com.dgg.store.util.pojo.RepertoryRecord">
+<mapper namespace="com.dgg.store.mapper.RepertoryIncomeMapper">
+  <resultMap id="BaseResultMap" type="com.dgg.store.util.pojo.RepertoryIncome">
     <id column="record_id" jdbcType="VARCHAR" property="recordId" />
     <result column="record_code" jdbcType="VARCHAR" property="recordCode" />
     <result column="my_team_id" jdbcType="VARCHAR" property="myTeamId" />
@@ -71,37 +71,51 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    record_id, record_code, my_team_id, branch_id, branch_name, operator_id, operator_name,
+    record_id, record_code, my_team_id, branch_id, branch_name, operator_id, operator_name, 
     create_date, record_remark
   </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.dgg.store.util.pojo.RepertoryIncomeExample" resultMap="BaseResultMap">
     select
+    <if test="distinct">
+      distinct
+    </if>
     <include refid="Base_Column_List" />
-    from repertory_record
+    from repertory_income
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from repertory_income
     where record_id = #{recordId,jdbcType=VARCHAR}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
-    delete from repertory_record
+    delete from repertory_income
     where record_id = #{recordId,jdbcType=VARCHAR}
   </delete>
-  <delete id="deleteByExample" parameterType="com.dgg.store.util.pojo.RepertoryRecordExample">
-    delete from repertory_record
+  <delete id="deleteByExample" parameterType="com.dgg.store.util.pojo.RepertoryIncomeExample">
+    delete from repertory_income
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.dgg.store.util.pojo.RepertoryRecord">
-    insert into repertory_record (record_id, record_code, my_team_id,
-    branch_id, branch_name, operator_id,
-    operator_name, create_date, record_remark
-    )
-    values (#{recordId,jdbcType=VARCHAR}, #{recordCode,jdbcType=VARCHAR}, #{myTeamId,jdbcType=VARCHAR},
-    #{branchId,jdbcType=VARCHAR}, #{branchName,jdbcType=VARCHAR}, #{operatorId,jdbcType=VARCHAR},
-    #{operatorName,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}, #{recordRemark,jdbcType=VARCHAR}
-    )
+  <insert id="insert" parameterType="com.dgg.store.util.pojo.RepertoryIncome">
+    insert into repertory_income (record_id, record_code, my_team_id, 
+      branch_id, branch_name, operator_id, 
+      operator_name, create_date, record_remark
+      )
+    values (#{recordId,jdbcType=VARCHAR}, #{recordCode,jdbcType=VARCHAR}, #{myTeamId,jdbcType=VARCHAR}, 
+      #{branchId,jdbcType=VARCHAR}, #{branchName,jdbcType=VARCHAR}, #{operatorId,jdbcType=VARCHAR}, 
+      #{operatorName,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}, #{recordRemark,jdbcType=VARCHAR}
+      )
   </insert>
-  <insert id="insertSelective" parameterType="com.dgg.store.util.pojo.RepertoryRecord">
-    insert into repertory_record
+  <insert id="insertSelective" parameterType="com.dgg.store.util.pojo.RepertoryIncome">
+    insert into repertory_income
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="recordId != null">
         record_id,
@@ -161,14 +175,14 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.dgg.store.util.pojo.RepertoryRecordExample" resultType="java.lang.Long">
-    select count(*) from repertory_record
+  <select id="countByExample" parameterType="com.dgg.store.util.pojo.RepertoryIncomeExample" resultType="java.lang.Long">
+    select count(*) from repertory_income
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map">
-    update repertory_record
+    update repertory_income
     <set>
       <if test="record.recordId != null">
         record_id = #{record.recordId,jdbcType=VARCHAR},
@@ -203,22 +217,22 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map">
-    update repertory_record
+    update repertory_income
     set record_id = #{record.recordId,jdbcType=VARCHAR},
-    record_code = #{record.recordCode,jdbcType=VARCHAR},
-    my_team_id = #{record.myTeamId,jdbcType=VARCHAR},
-    branch_id = #{record.branchId,jdbcType=VARCHAR},
-    branch_name = #{record.branchName,jdbcType=VARCHAR},
-    operator_id = #{record.operatorId,jdbcType=VARCHAR},
-    operator_name = #{record.operatorName,jdbcType=VARCHAR},
-    create_date = #{record.createDate,jdbcType=TIMESTAMP},
-    record_remark = #{record.recordRemark,jdbcType=VARCHAR}
+      record_code = #{record.recordCode,jdbcType=VARCHAR},
+      my_team_id = #{record.myTeamId,jdbcType=VARCHAR},
+      branch_id = #{record.branchId,jdbcType=VARCHAR},
+      branch_name = #{record.branchName,jdbcType=VARCHAR},
+      operator_id = #{record.operatorId,jdbcType=VARCHAR},
+      operator_name = #{record.operatorName,jdbcType=VARCHAR},
+      create_date = #{record.createDate,jdbcType=TIMESTAMP},
+      record_remark = #{record.recordRemark,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.dgg.store.util.pojo.RepertoryRecord">
-    update repertory_record
+  <update id="updateByPrimaryKeySelective" parameterType="com.dgg.store.util.pojo.RepertoryIncome">
+    update repertory_income
     <set>
       <if test="recordCode != null">
         record_code = #{recordCode,jdbcType=VARCHAR},
@@ -247,8 +261,8 @@
     </set>
     where record_id = #{recordId,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.dgg.store.util.pojo.RepertoryRecord">
-    update repertory_record
+  <update id="updateByPrimaryKey" parameterType="com.dgg.store.util.pojo.RepertoryIncome">
+    update repertory_income
     set record_code = #{recordCode,jdbcType=VARCHAR},
       my_team_id = #{myTeamId,jdbcType=VARCHAR},
       branch_id = #{branchId,jdbcType=VARCHAR},
@@ -259,117 +273,44 @@
       record_remark = #{recordRemark,jdbcType=VARCHAR}
     where record_id = #{recordId,jdbcType=VARCHAR}
   </update>
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  <resultMap id="RepertoryRecordList" type="com.dgg.store.util.pojo.RepertoryRecordList">
-    <result column="goods_id" property="goodsId" jdbcType="VARCHAR"/>
-    <result column="goods_name" property="goodsName" jdbcType="VARCHAR"/>
-    <result column="standard_id" property="standardId" jdbcType="VARCHAR"/>
-    <result column="standard_name" property="standardName" jdbcType="VARCHAR"/>
-    <result column="standard_count" property="standardCount" jdbcType="INTEGER"/>
-  </resultMap>
 
-  <select id="getUserNameById" resultType="java.lang.String">
-    SELECT u.user_name
-    FROM user u
-    WHERE u.user_id = #{userId}
-  </select>
 
-  <insert id="insertRecordList" parameterType="com.dgg.store.util.pojo.RepertoryRecordList">
-    INSERT INTO repertory_record_list
-    (record_id, record_type, record_reason,
-    goods_id, goods_name, standard_id,
-    standard_name, standard_count)
-    VALUES
-    (#{recordId},#{recordType},#{recordReason},
-    #{goodsId},#{goodsName},#{standardId},
-    #{standardName},#{standardCount})
-  </insert>
 
-  <select id="getRepertory" resultType="java.lang.Integer">
-    SELECT standard_count
-    FROM goods_standard
-    WHERE standard_id = #{standardId}
-  </select>
 
-  <select id="getSecondRepertory" resultType="java.lang.Integer">
-    SELECT standard_count
-    FROM qm_branch_goods
-    WHERE standard_id = #{standardId}
-  </select>
 
-  <select id="getRepertoryRecordList" resultMap="RepertoryRecordList">
-    SELECT rrl.goods_id,rrl.goods_name,rrl.standard_id,
-    rrl.standard_name,rrl.standard_count
-    FROM repertory_record_list rrl
-    WHERE rrl.record_id = #{recordId}
-  </select>
 
-  <select id="selectByExample" parameterType="com.dgg.store.util.pojo.RepertoryRecordExample" resultMap="BaseResultMap">
-    select
-    <if test="distinct">
-      distinct
-    </if>
-    <include refid="Base_Column_List" />
-    from repertory_record
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-    <if test="orderByClause != null">
-      order by ${orderByClause}
-    </if>
-    LIMIT #{start},#{end}
-  </select>
 
-  <select id="getGoodsCount" resultType="java.lang.Integer">
-    SELECT IFNULL(MAX(qbg.standard_count),0)
-    FROM qm_branch_goods qbg
-    WHERE standard_id = #{standardId}
-    AND qbg.branch_id = #{branchId}
-  </select>
+
+
+
+
+
+
+
+
+
+
+
 
   <update id="updateGoodsCount">
     UPDATE qm_branch_goods
-    SET standard_count = #{count}
-    WHERE branch_id = #{branchId}
-    AND standard_id = #{standardId}
+    SET standard_count = standard_count + #{goods.standardCount}
+    WHERE standard_id = #{goods.standardId}
+    AND branch_id = #{branchId}
   </update>
 
-  <select id="branchGoodsExists" resultType="java.lang.Integer">
+  <select id="countBranchGoodsExists" resultType="java.lang.Integer">
     SELECT COUNT(0)
-    FROM qm_branch_goods qbg
-    WHERE qbg.standard_id = #{standardId}
-    AND qbg.branch_id = #{branchId}
+    FROM qm_branch_goods
+    WHERE branch_id = #{branchId}
+    AND standard_id = #{standardId}
   </select>
 
-  <insert id="insertBranchGoods" parameterType="com.dgg.store.util.pojo.RepertoryRecordList">
+  <insert id="saveBranchGoods">
     INSERT INTO qm_branch_goods
     (branch_id, goods_id, standard_id, standard_count)
     VALUES
     (#{branchId},#{goods.goodsId},#{goods.standardId},#{goods.standardCount})
   </insert>
 
-  <select id="getUserName" resultType="java.lang.String">
-    SELECT user_name
-    FROM user
-    WHERE user_id = #{userId}
-  </select>
 </mapper>

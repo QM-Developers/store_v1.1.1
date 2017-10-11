@@ -3,7 +3,7 @@ package com.dgg.store.service.store;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.dgg.store.dao.store.RepertoryRecordDao;
-import com.dgg.store.util.core.constant.BranchConstant;
+import com.dgg.store.mapper.RepertoryRecordListMapper;
 import com.dgg.store.util.core.constant.Constant;
 import com.dgg.store.util.core.constant.KeyConstant;
 import com.dgg.store.util.core.constant.RepertoryConstant;
@@ -12,10 +12,10 @@ import com.dgg.store.util.core.page.PagingUtil;
 import com.dgg.store.util.pojo.RepertoryRecord;
 import com.dgg.store.util.pojo.RepertoryRecordExample;
 import com.dgg.store.util.pojo.RepertoryRecordList;
+import com.dgg.store.util.pojo.RepertoryRecordListExample;
 import com.dgg.store.util.vo.core.PageVO;
 import com.dgg.store.util.vo.core.ResultVO;
 import com.dgg.store.util.vo.core.SessionVO;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -25,8 +25,14 @@ import java.util.List;
 @Service
 public class RepertoryRecordServiceImpl implements RepertoryRecordService
 {
-    @Autowired
-    private RepertoryRecordDao dao;
+    private final RepertoryRecordDao dao;
+    private final RepertoryRecordListMapper mapper;
+
+    public RepertoryRecordServiceImpl(RepertoryRecordDao dao, RepertoryRecordListMapper mapper)
+    {
+        this.dao = dao;
+        this.mapper = mapper;
+    }
 
 //    @Override
 //    public String updateRepertoryAddFirst(SessionVO sessionVO, RepertoryRecord repertoryRecord)
@@ -268,7 +274,12 @@ public class RepertoryRecordServiceImpl implements RepertoryRecordService
         List<RepertoryRecord> result = dao.selectByExample(example);
 
         for (RepertoryRecord record : result)
-            record.setRecordList(dao.getRepertoryRecordList(record.getRecordId()));
+        {
+            RepertoryRecordListExample listExample = new RepertoryRecordListExample();
+            RepertoryRecordListExample.Criteria listCriteria = listExample.createCriteria();
+            listCriteria.andRecordIdEqualTo(record.getRecordId());
+            record.setRecordList(mapper.selectByExample(listExample));
+        }
 
         JSONObject json = (JSONObject) JSONObject.toJSON(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), result));
         json.put(KeyConstant.PAGE_COUNT, pageCount);
@@ -279,6 +290,10 @@ public class RepertoryRecordServiceImpl implements RepertoryRecordService
     @Override
     public String updateRepertory(SessionVO sessionVO, RepertoryRecord repertoryRecord)
     {
+        repertoryRecord.setRecordCode(getRecordCode(0,repertoryRecord.getBranchId()));
+        if (repertoryRecord.getRecordCode() == null)
+            return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_FAILED, sessionVO.getToken()));
+
         repertoryRecord.setOperatorId(sessionVO.getUserId());
         repertoryRecord.setOperatorName(dao.getUserName(sessionVO.getUserId()));
         repertoryRecord.setRecordId(IDGenerator.generator());
@@ -304,7 +319,7 @@ public class RepertoryRecordServiceImpl implements RepertoryRecordService
 
             if (dao.branchGoodsExists(repertoryRecord.getBranchId(), list.getStandardId()) < 1)
             {
-                if (dao.insertBranchGoods(list,repertoryRecord.getBranchId()) < 1)
+                if (dao.insertBranchGoods(list, repertoryRecord.getBranchId()) < 1)
                     throw new RuntimeException(Constant.STR_ADD_FAILED);
             } else
             {
@@ -315,7 +330,25 @@ public class RepertoryRecordServiceImpl implements RepertoryRecordService
         if (dao.insert(repertoryRecord) < 1)
             throw new RuntimeException(Constant.STR_ADD_FAILED);
 
-        return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_SUCCESS,sessionVO.getToken(),repertoryRecord.getRecordId()));
+        return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), repertoryRecord.getRecordId()));
+    }
+
+    private String getRecordCode(int i, String branchId)
+    {
+        String recordCode = IDGenerator.getNow() + String.format("%04d", (int) (Math.random() * 10000));
+        RepertoryRecordExample example = new RepertoryRecordExample();
+        RepertoryRecordExample.Criteria criteria = example.createCriteria();
+
+        criteria.andRecordCodeEqualTo(recordCode);
+        criteria.andBranchIdEqualTo(branchId);
+
+        if (i > 10)
+            return null;
+
+        if (dao.countByExample(example) > 0)
+            getRecordCode(i++,branchId);
+
+        return recordCode;
     }
 
 //    private RepertoryRecord initRecord(SessionVO sessionVO, RepertoryRecord repertoryRecord)
@@ -328,4 +361,5 @@ public class RepertoryRecordServiceImpl implements RepertoryRecordService
 //
 //        return repertoryRecord;
 //    }
+
 }

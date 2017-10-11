@@ -244,4 +244,9 @@
         AND qb.my_team_id = #{myTeamId}
     </select>
 
+    <select id="getBranchName" resultType="java.lang.String">
+        SELECT branch_name
+        FROM qm_branch
+        WHERE branch_id = #{branchId}
+    </select>
 </mapper>

@@ -3,7 +3,7 @@ package com.dgg.store.util.pojo;
 import java.util.Date;
 import java.util.List;
 
-public class RepertoryRecord {
+public class RepertoryIncome {
     private String recordId;
 
     private String recordCode;
@@ -21,8 +21,10 @@ public class RepertoryRecord {
     private Date createDate;
 
     private String recordRemark;
+
     private String goodsInfo;
-    private List<RepertoryRecordList> recordList;
+
+    List<RepertoryIncomeList> incomeList;
 
     public String getRecordId() {
         return recordId;
@@ -106,13 +108,13 @@ public class RepertoryRecord {
         this.goodsInfo = goodsInfo;
     }
 
-    public void setRecordList(List<RepertoryRecordList> recordList)
+    public List<RepertoryIncomeList> getIncomeList()
     {
-        this.recordList = recordList;
+        return incomeList;
     }
 
-    public List<RepertoryRecordList> getRecordList()
+    public void setIncomeList(List<RepertoryIncomeList> incomeList)
     {
-        return recordList;
+        this.incomeList = incomeList;
     }
 }

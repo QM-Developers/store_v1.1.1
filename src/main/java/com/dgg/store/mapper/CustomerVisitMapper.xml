@@ -87,16 +87,16 @@
     </resultMap>
 
     <select id="listVisitDepartment" resultMap="DepartmentVO">
-        SELECT department_id,department_name
-        FROM customer_visit
-        WHERE member_id = #{userId}
+        SELECT team_department_id department_id,team_department_name department_name
+        FROM team_department
+        WHERE my_team_id = #{myTeamId}
     </select>
 
     <select id="listVisitMember" resultMap="MemberVO" parameterType="com.dgg.store.util.vo.manage.MemberVO">
         SELECT u.user_id,u.user_name
         FROM user u
         WHERE u.my_team_id = #{myTeamId}
-        AND team_department_id != ''
+        AND u.role_id > #{roleId}
         <if test="departmentId != null and departmentId != ''">
             AND u.team_department_id = #{departmentId}
         </if>

@@ -1,5 +1,6 @@
-select * from repertory_record_list
+SELECT * FROM qm_branch_goods
 ;
 
-select * from qm_branch_goods
+select * from qm_branch
 ;
+

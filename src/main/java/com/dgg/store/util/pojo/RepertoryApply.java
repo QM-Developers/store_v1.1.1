@@ -14,6 +14,8 @@ public class RepertoryApply {
 
     private Date createDate;
 
+    private Date acceptDate;
+
     private String proposerId;
 
     private String proposerName;
@@ -25,10 +27,8 @@ public class RepertoryApply {
     private Byte applyStatus;
 
     private String applyRemark;
-
     private String goodsInfo;
-
-    List<RepertoryApplyList> applyList;
+    private List<RepertoryApplyList> applyList;
 
     public String getApplyId() {
         return applyId;
@@ -68,6 +68,14 @@ public class RepertoryApply {
 
     public void setCreateDate(Date createDate) {
         this.createDate = createDate;
+    }
+
+    public Date getAcceptDate() {
+        return acceptDate;
+    }
+
+    public void setAcceptDate(Date acceptDate) {
+        this.acceptDate = acceptDate;
     }
 
     public String getProposerId() {
@@ -128,13 +136,13 @@ public class RepertoryApply {
         this.goodsInfo = goodsInfo;
     }
 
-    public List<RepertoryApplyList> getApplyList()
-    {
-        return applyList;
-    }
-
     public void setApplyList(List<RepertoryApplyList> applyList)
     {
         this.applyList = applyList;
+    }
+
+    public List<RepertoryApplyList> getApplyList()
+    {
+        return applyList;
     }
 }

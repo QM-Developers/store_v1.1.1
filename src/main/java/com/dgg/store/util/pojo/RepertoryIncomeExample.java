@@ -4,16 +4,18 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class RepertoryRecordExample {
+public class RepertoryIncomeExample {
+    private Integer pageNum;
+
+    private Integer pageSize;
+
     protected String orderByClause;
 
     protected boolean distinct;
 
     protected List<Criteria> oredCriteria;
-    private int end;
-    private int start;
 
-    public RepertoryRecordExample() {
+    public RepertoryIncomeExample() {
         oredCriteria = new ArrayList<Criteria>();
     }
 
@@ -64,26 +66,6 @@ public class RepertoryRecordExample {
         oredCriteria.clear();
         orderByClause = null;
         distinct = false;
-    }
-
-    public void setEnd(int end)
-    {
-        this.end = end;
-    }
-
-    public int getEnd()
-    {
-        return end;
-    }
-
-    public void setStart(int start)
-    {
-        this.start = start;
-    }
-
-    public int getStart()
-    {
-        return start;
     }
 
     protected abstract static class GeneratedCriteria {
@@ -839,5 +821,25 @@ public class RepertoryRecordExample {
         protected Criterion(String condition, Object value, Object secondValue) {
             this(condition, value, secondValue, null);
         }
+    }
+
+    public Integer getPageNum()
+    {
+        return pageNum;
+    }
+
+    public void setPageNum(Integer pageNum)
+    {
+        this.pageNum = pageNum;
+    }
+
+    public Integer getPageSize()
+    {
+        return pageSize;
+    }
+
+    public void setPageSize(Integer pageSize)
+    {
+        this.pageSize = pageSize;
     }
 }

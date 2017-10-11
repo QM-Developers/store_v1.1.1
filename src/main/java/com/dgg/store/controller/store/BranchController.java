@@ -173,7 +173,7 @@ public class BranchController
     }
 
     /**
-     * 查看当前销售点库存
+     * 查看总部销售点库存
      *
      * @param request  用户参数
      * @param branchVO 销售点Id

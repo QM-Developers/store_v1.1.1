@@ -12,7 +12,7 @@ import java.util.List;
 
 public interface CustomerVisitDao
 {
-    List<DepartmentVO> listVisitDepartment(String userId);
+    List<DepartmentVO> listVisitDepartment(String myTeamId);
 
     List<MemberVO> listVisitMember(MemberVO memberVO);
 

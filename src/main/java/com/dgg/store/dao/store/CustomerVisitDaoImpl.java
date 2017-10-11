@@ -20,9 +20,9 @@ public class CustomerVisitDaoImpl implements CustomerVisitDao
     private CustomerVisitMapper mapper;
 
     @Override
-    public List<DepartmentVO> listVisitDepartment(String userId)
+    public List<DepartmentVO> listVisitDepartment(String myTeamId)
     {
-        return mapper.listVisitDepartment(userId);
+        return mapper.listVisitDepartment(myTeamId);
     }
 
     @Override

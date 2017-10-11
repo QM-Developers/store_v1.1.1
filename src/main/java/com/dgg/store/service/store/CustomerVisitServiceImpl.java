@@ -7,6 +7,7 @@ import com.dgg.store.dao.store.CustomerVisitDao;
 import com.dgg.store.util.core.constant.Constant;
 import com.dgg.store.util.core.constant.KeyConstant;
 import com.dgg.store.util.core.constant.PlaceConstant;
+import com.dgg.store.util.core.constant.RoleConstant;
 import com.dgg.store.util.core.page.PagingUtil;
 import com.dgg.store.util.pojo.*;
 import com.dgg.store.util.vo.core.PageVO;
@@ -33,7 +34,7 @@ public class CustomerVisitServiceImpl implements CustomerVisitService
     @Override
     public String listVisitDepartment(SessionVO sessionVO)
     {
-        List<DepartmentVO> result = dao.listVisitDepartment(sessionVO.getUserId());
+        List<DepartmentVO> result = dao.listVisitDepartment(sessionVO.getMyTeamId());
 
         return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), result));
     }
@@ -42,6 +43,7 @@ public class CustomerVisitServiceImpl implements CustomerVisitService
     public String listVisitMember(SessionVO sessionVO, MemberVO memberVO)
     {
         memberVO.setMyTeamId(sessionVO.getMyTeamId());
+        memberVO.setRoleId(RoleConstant.USER);
         List<MemberVO> result = dao.listVisitMember(memberVO);
 
         return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), result));

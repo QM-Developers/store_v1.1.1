@@ -13,7 +13,7 @@ import java.util.List;
 
 public interface CustomerVisitMapper
 {
-    List<DepartmentVO> listVisitDepartment(@Param("userId") String userId);
+    List<DepartmentVO> listVisitDepartment(@Param("myTeamId") String myTeamId);
 
     List<MemberVO> listVisitMember(MemberVO memberVO);
 

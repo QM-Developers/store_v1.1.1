@@ -16,7 +16,7 @@ public interface CustomerVisitDao
 
     List<MemberVO> listVisitMember(MemberVO memberVO);
 
-    int countVisitCustomer(CustomerVO customerVO);
+    int countVisitCustomer(CustomerVO customerVO, List<String> promoterList);
 
     List<CustomerVO> listVisitCustomer(CustomerVO customerVO, List<String> promoterList);
 

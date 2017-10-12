@@ -11,6 +11,8 @@ public class RepertoryApplyList {
 
     private String standardName;
 
+    private String goodsImage;
+
     private Integer standardCount;
 
     public String getApplyId() {
@@ -59,5 +61,15 @@ public class RepertoryApplyList {
 
     public void setStandardCount(Integer standardCount) {
         this.standardCount = standardCount;
+    }
+
+    public String getGoodsImage()
+    {
+        return goodsImage;
+    }
+
+    public void setGoodsImage(String goodsImage)
+    {
+        this.goodsImage = goodsImage;
     }
 }

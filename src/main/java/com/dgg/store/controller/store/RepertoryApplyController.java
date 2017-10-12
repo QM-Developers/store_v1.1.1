@@ -73,16 +73,17 @@ public class RepertoryApplyController
      * 审批人获取库存审批列表
      *
      * @param request 用户参数
+     * @param apply   筛选条件
      * @param pageVO  分页参数
      * @return 库存申请列表
      */
     @RequestMapping(value = "/s/listRepertoryApplyByApprover", method = RequestMethod.POST, produces = {"application/json;charset=UTF-8"})
     @ResponseBody
-    public String listRepertoryApplyByApprover(HttpServletRequest request, PageVO pageVO)
+    public String listRepertoryApplyByApprover(HttpServletRequest request, RepertoryApply apply, PageVO pageVO)
     {
         SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
 
-        return service.listRepertoryApplyByApprover(sessionVO, pageVO);
+        return service.listRepertoryApplyByApprover(sessionVO, apply, pageVO);
     }
 
     /**

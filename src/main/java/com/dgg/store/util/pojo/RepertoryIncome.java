@@ -20,6 +20,8 @@ public class RepertoryIncome {
 
     private Date createDate;
 
+    private Date finishDate;
+
     private String recordRemark;
 
     private String goodsInfo;
@@ -116,5 +118,15 @@ public class RepertoryIncome {
     public void setIncomeList(List<RepertoryIncomeList> incomeList)
     {
         this.incomeList = incomeList;
+    }
+
+    public Date getFinishDate()
+    {
+        return finishDate;
+    }
+
+    public void setFinishDate(Date finishDate)
+    {
+        this.finishDate = finishDate;
     }
 }

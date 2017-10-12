@@ -13,7 +13,7 @@ public interface BranchMapper
 {
     int insertBranch(BranchVO branchVO);
 
-    List<BranchVO> listBranch(@Param("condition")BranchVO branchVO, @Param("start") int start, @Param("end") int end);
+    List<BranchVO> listBranch(@Param("condition") BranchVO branchVO, @Param("start") int start, @Param("end") int end);
 
     int deleteBranch(BranchVO condition);
 
@@ -33,7 +33,7 @@ public interface BranchMapper
 
     Integer getBranchInventory(BranchGoodsVO condition);
 
-    List<GoodsDetailVO> listBranchGoods(@Param("branchVO") BranchVO condition,@Param("childType") Set<String> childType, @Param("start") int start, @Param("end") int end);
+    List<GoodsDetailVO> listBranchGoods(@Param("branchVO") BranchVO condition, @Param("childType") Set<String> childType, @Param("start") int start, @Param("end") int end);
 
     int countBranch(BranchVO condition);
 
@@ -43,13 +43,19 @@ public interface BranchMapper
 
     List<GoodsStandard> listStandards(GoodsDetailVO vo);
 
-    List<GoodsStandard> listBranchStandards(@Param("goodsId") String goodsId,@Param("branchId") String branchId);
+    List<GoodsStandard> listBranchStandards(@Param("goodsId") String goodsId, @Param("branchId") String branchId);
 
-    int countBranchStandard(@Param("standardId") String standardId,@Param("branchId") String branchId);
+    int countBranchStandard(@Param("standardId") String standardId, @Param("branchId") String branchId);
 
     String getCurrentBranchId(String userId);
 
-    String getFirstBranchId(@Param("myTeamId") String myTeamId,@Param("branchType") byte branchType);
+    String getFirstBranchId(@Param("myTeamId") String myTeamId, @Param("branchType") byte branchType);
 
     String getBranchName(String branchId);
+
+    String getGoodsImage(String goodsId);
+
+    int countGoodsByKeyword(BranchVO branchVO);
+
+    List<GoodsDetailVO> listGoodsByKeyword(@Param("branchVO") BranchVO branchVO, @Param("pageNum") int pageNum, @Param("pageSize") int pageSize);
 }

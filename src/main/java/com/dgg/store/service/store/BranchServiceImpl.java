@@ -209,7 +209,10 @@ public class BranchServiceImpl implements BranchService
         List<GoodsDetailVO> result = dao.listBranchGoods(condition, childType, start, end);
 
         for (GoodsDetailVO vo : result)
+        {
+            vo.setGoodsImage(dao.getGoodsImage(vo.getGoodsId()));
             vo.setStandards(dao.listBranchStandards(vo.getGoodsId(), condition.getBranchId()));
+        }
 
         JSONObject json = (JSONObject) JSONObject.toJSON(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), result));
         json.put(KeyConstant.PAGE_COUNT, pageCount);
@@ -230,8 +233,34 @@ public class BranchServiceImpl implements BranchService
     @Override
     public String getFirstRepertory(SessionVO sessionVO, BranchVO branchVO, PageVO pageVO)
     {
-        branchVO.setBranchId(dao.getFirstBranchId(sessionVO.getMyTeamId(),BranchConstant.BRANCH_FIRST));
+        branchVO.setBranchId(dao.getFirstBranchId(sessionVO.getMyTeamId(), BranchConstant.BRANCH_FIRST));
 
         return listBranchGoods(sessionVO, branchVO, pageVO);
+    }
+
+    @Override
+    public String listRepertoryByKeyword(SessionVO sessionVO, BranchVO branchVO, PageVO pageVO)
+    {
+        if (StringUtil.isEmpty(branchVO.getBranchId()) || StringUtil.isEmpty(branchVO.getKeyword()))
+            return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken()));
+
+        branchVO.setMyTeamId(sessionVO.getMyTeamId());
+        int pageNum = PagingUtil.getStart(pageVO.getPageNum(), pageVO.getPageSize());
+        int pageSize = pageVO.getPageSize();
+
+        int pageCount = PagingUtil.getCount(dao.countGoodsByKeyword(branchVO), pageSize);
+
+        List<GoodsDetailVO> result = dao.listGoodsByKeyword(branchVO, pageNum, pageSize);
+
+        for (GoodsDetailVO vo : result)
+        {
+            vo.setGoodsImage(dao.getGoodsImage(vo.getGoodsId()));
+            vo.setStandards(dao.listBranchStandards(vo.getGoodsId(), branchVO.getBranchId()));
+        }
+
+        JSONObject json = (JSONObject) JSONObject.toJSON(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), result));
+        json.put(KeyConstant.PAGE_COUNT, pageCount);
+
+        return json.toJSONString();
     }
 }

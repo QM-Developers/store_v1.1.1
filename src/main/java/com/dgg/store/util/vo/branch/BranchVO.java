@@ -26,6 +26,8 @@ public class BranchVO
 
     private Byte branchType;
 
+    private String keyword;
+
     public String getBranchId()
     {
         return branchId;
@@ -144,5 +146,15 @@ public class BranchVO
     public void setBranchType(Byte branchType)
     {
         this.branchType = branchType;
+    }
+
+    public String getKeyword()
+    {
+        return keyword;
+    }
+
+    public void setKeyword(String keyword)
+    {
+        this.keyword = keyword;
     }
 }

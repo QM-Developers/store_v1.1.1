@@ -23,6 +23,8 @@ public class GoodsDetailVO
 
     private String goodsCode;
 
+    private String goodsImage;
+
     private List<String> goodsImages;
 
     private List<String> detailImages;
@@ -149,5 +151,15 @@ public class GoodsDetailVO
     public void setGoodsCode(String goodsCode)
     {
         this.goodsCode = goodsCode;
+    }
+
+    public String getGoodsImage()
+    {
+        return goodsImage;
+    }
+
+    public void setGoodsImage(String goodsImage)
+    {
+        this.goodsImage = goodsImage;
     }
 }

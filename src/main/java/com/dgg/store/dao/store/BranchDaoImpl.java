@@ -142,4 +142,22 @@ public class BranchDaoImpl implements BranchDao
     {
         return mapper.getBranchName(branchId);
     }
+
+    @Override
+    public String getGoodsImage(String goodsId)
+    {
+        return mapper.getGoodsImage(goodsId);
+    }
+
+    @Override
+    public int countGoodsByKeyword(BranchVO branchVO)
+    {
+        return mapper.countGoodsByKeyword(branchVO);
+    }
+
+    @Override
+    public List<GoodsDetailVO> listGoodsByKeyword(BranchVO branchVO, int pageNum, int pageSize)
+    {
+        return mapper.listGoodsByKeyword(branchVO, pageNum, pageSize);
+    }
 }

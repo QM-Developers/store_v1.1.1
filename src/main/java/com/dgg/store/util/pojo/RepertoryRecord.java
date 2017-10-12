@@ -20,6 +20,8 @@ public class RepertoryRecord {
 
     private Date createDate;
 
+    private Date finishDate;
+
     private String recordRemark;
     private String goodsInfo;
     private List<RepertoryRecordList> recordList;
@@ -114,5 +116,15 @@ public class RepertoryRecord {
     public List<RepertoryRecordList> getRecordList()
     {
         return recordList;
+    }
+
+    public Date getFinishDate()
+    {
+        return finishDate;
+    }
+
+    public void setFinishDate(Date finishDate)
+    {
+        this.finishDate = finishDate;
     }
 }

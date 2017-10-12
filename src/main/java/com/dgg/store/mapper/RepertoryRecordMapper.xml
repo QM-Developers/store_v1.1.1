@@ -372,4 +372,15 @@
     FROM user
     WHERE user_id = #{userId}
   </select>
+
+  <select id="getGoodsImage" resultType="java.lang.String">
+    SELECT im.image_path
+    FROM image_space im
+    INNER JOIN goods_image gi
+    ON gi.image_id = im.image_id
+    WHERE gi.goods_img_type = 1
+    AND gi.goods_id = #{goodsId}
+    LIMIT 1
+  </select>
+
 </mapper>

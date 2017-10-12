@@ -32,9 +32,9 @@ public class CustomerVisitDaoImpl implements CustomerVisitDao
     }
 
     @Override
-    public int countVisitCustomer(CustomerVO customerVO)
+    public int countVisitCustomer(CustomerVO customerVO, List<String> promoterList)
     {
-        return mapper.countVisitCustomer(customerVO);
+        return mapper.countVisitCustomer(customerVO,promoterList);
     }
 
     @Override

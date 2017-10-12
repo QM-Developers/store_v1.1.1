@@ -27,4 +27,6 @@ public interface BranchService
     String getRepertory(SessionVO sessionVO, BranchVO branchVO, PageVO pageVO);
 
     String getFirstRepertory(SessionVO sessionVO, BranchVO branchVO, PageVO pageVO);
+
+    String listRepertoryByKeyword(SessionVO sessionVO, BranchVO branchVO, PageVO pageVO);
 }

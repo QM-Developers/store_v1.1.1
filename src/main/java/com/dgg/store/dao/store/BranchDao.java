@@ -51,4 +51,10 @@ public interface BranchDao
     String getFirstBranchId(String myTeamId, byte branchType);
 
     String getBranchName(String branchId);
+
+    String getGoodsImage(String goodsId);
+
+    int countGoodsByKeyword(BranchVO branchVO);
+
+    List<GoodsDetailVO> listGoodsByKeyword(BranchVO branchVO, int pageNum, int pageSize);
 }

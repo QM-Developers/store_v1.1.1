@@ -189,4 +189,20 @@ public class BranchController
         return service.getFirstRepertory(sessionVO, branchVO, pageVO);
     }
 
+    /**
+     * 搜索销售点库存
+     *
+     * @param request  用户参数
+     * @param branchVO 销售点Id
+     * @param pageVO   分页参数
+     * @return 商品列表
+     */
+    @RequestMapping(value = "/s/listRepertoryByKeyword", method = RequestMethod.POST, produces = {"application/json;charset=UTF-8"})
+    @ResponseBody
+    public String listRepertoryByKeyword(HttpServletRequest request, BranchVO branchVO, PageVO pageVO)
+    {
+        SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
+
+        return service.listRepertoryByKeyword(sessionVO, branchVO, pageVO);
+    }
 }

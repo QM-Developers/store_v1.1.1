@@ -14,6 +14,8 @@ public class RepertoryApply {
 
     private Date createDate;
 
+    private Date finishDate;
+
     private Date acceptDate;
 
     private String proposerId;
@@ -144,5 +146,15 @@ public class RepertoryApply {
     public List<RepertoryApplyList> getApplyList()
     {
         return applyList;
+    }
+
+    public Date getFinishDate()
+    {
+        return finishDate;
+    }
+
+    public void setFinishDate(Date finishDate)
+    {
+        this.finishDate = finishDate;
     }
 }

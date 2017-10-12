@@ -249,4 +249,37 @@
         FROM qm_branch
         WHERE branch_id = #{branchId}
     </select>
+
+    <select id="getGoodsImage" resultType="java.lang.String">
+        SELECT im.image_path
+        FROM image_space im
+        INNER JOIN goods_image gi
+        ON gi.image_id = im.image_id
+        WHERE gi.goods_img_type = 1
+        AND gi.goods_id = #{goodsId}
+        LIMIT 1
+    </select>
+
+    <select id="countGoodsByKeyword" resultType="java.lang.Integer" parameterType="com.dgg.store.util.vo.branch.BranchVO">
+        SELECT COUNT(0)
+        FROM goodsinfo gi
+        LEFT JOIN goods_typeinfo gt
+        ON gt.goods_type_id = gi.goods_type_id
+        WHERE 1 = 1
+        AND gi.my_team_id = #{myTeamId}
+        AND (gi.goods_name LIKE CONCAT('%',#{keyword},'%') OR gi.goods_code = #{keyword})
+    </select>
+
+    <select id="listGoodsByKeyword" resultMap="GoodsDetailVO">
+        SELECT gi.goods_id,gi.goods_name,gi.goods_create_date,
+          gi.goods_code,
+          gt.goods_type_name goods_type
+        FROM goodsinfo gi
+        LEFT JOIN goods_typeinfo gt
+        ON gt.goods_type_id = gi.goods_type_id
+        WHERE 1 = 1
+        AND gi.my_team_id = #{branchVO.myTeamId}
+        AND (gi.goods_name LIKE CONCAT('%',#{branchVO.keyword},'%') OR gi.goods_code = #{branchVO.keyword})
+        LIMIT #{pageNum},#{pageSize}
+    </select>
 </mapper>

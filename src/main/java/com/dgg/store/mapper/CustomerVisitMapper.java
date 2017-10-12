@@ -17,9 +17,9 @@ public interface CustomerVisitMapper
 
     List<MemberVO> listVisitMember(MemberVO memberVO);
 
-    int countVisitCustomer(CustomerVO customerVO);
+    int countVisitCustomer(@Param("customerVO") CustomerVO customerVO, @Param("promoterList") List<String> promoterList);
 
-    List<CustomerVO> listVisitCustomer(@Param("customerVO") CustomerVO customerVO,@Param("promoterList") List<String> promoterList);
+    List<CustomerVO> listVisitCustomer(@Param("customerVO") CustomerVO customerVO, @Param("promoterList") List<String> promoterList);
 
     CustomerVO getVisitCustomer(CustomerVO customerVO);
 
@@ -27,7 +27,7 @@ public interface CustomerVisitMapper
 
     List<UserPlace> listVisitUserPlace(UserPlace place);
 
-    UserPlace getUserPlaceById(@Param("placeId")String userPlaceId);
+    UserPlace getUserPlaceById(@Param("placeId") String userPlaceId);
 
     int countVisitUserBreed(UserPlace place);
 

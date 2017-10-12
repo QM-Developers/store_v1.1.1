@@ -17,6 +17,8 @@ public class RepertoryRecordList {
 
     private Integer standardCount;
 
+    private String goodsImage;
+
     public String getRecordId() {
         return recordId;
     }
@@ -79,5 +81,15 @@ public class RepertoryRecordList {
 
     public void setStandardCount(Integer standardCount) {
         this.standardCount = standardCount;
+    }
+
+    public String getGoodsImage()
+    {
+        return goodsImage;
+    }
+
+    public void setGoodsImage(String goodsImage)
+    {
+        this.goodsImage = goodsImage;
     }
 }

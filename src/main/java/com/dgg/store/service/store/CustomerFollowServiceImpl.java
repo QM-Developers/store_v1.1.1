@@ -6,6 +6,7 @@ import com.dgg.store.util.core.constant.Constant;
 import com.dgg.store.util.core.constant.KeyConstant;
 import com.dgg.store.util.core.generator.IDGenerator;
 import com.dgg.store.util.core.page.PagingUtil;
+import com.dgg.store.util.core.parameter.ParameterUtil;
 import com.dgg.store.util.pojo.CustomerFollow;
 import com.dgg.store.util.pojo.CustomerFollowExample;
 import com.dgg.store.util.vo.core.PageVO;
@@ -28,6 +29,7 @@ public class CustomerFollowServiceImpl implements CustomerFollowService
         follow.setFollowId(IDGenerator.generator());
         follow.setPromoterId(sessionVO.getUserId());
         follow.setPromoterName(dao.getUserName(sessionVO.getUserId()));
+        follow.setFollowTitle(ParameterUtil.getDefault(follow.getFollowTitle(), Constant.EMPTY));
 
         int result = dao.insertSelective(follow);
 

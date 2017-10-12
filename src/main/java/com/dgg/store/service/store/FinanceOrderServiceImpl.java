@@ -54,6 +54,7 @@ public class FinanceOrderServiceImpl implements FinanceOrderService
         boolean flag = myOrder.getOrderStatus().equals(OrderConstant.WAITING_FINANCE_CHECK_A);
         flag |= myOrder.getOrderStatus().equals(OrderConstant.FINANCE_CHECK_FAIL_A);
         flag &= myOrder.getPaymentType().equals(OrderConstant.PAYMENT_TRANSFER);
+
         if (!flag)
             return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_FAILED, sessionVO.getToken()));
 

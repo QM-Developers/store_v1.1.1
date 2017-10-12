@@ -17,4 +17,6 @@ public interface RepertoryRecordService
     String listRepertoryRecord(SessionVO sessionVO, RepertoryRecord repertoryRecord, PageVO pageVO);
 
     String updateRepertory(SessionVO sessionVO, RepertoryRecord repertoryRecord);
+
+    String getRepertoryRecord(SessionVO sessionVO, RepertoryRecord repertoryRecord);
 }

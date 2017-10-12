@@ -43,6 +43,7 @@ public class FarmerServiceImpl implements FarmerService
         criteria.andCustomerIdEqualTo(farmer.getCustomerId());
 
         example.setPageNum(PagingUtil.getStart(pageVO.getPageNum(),pageVO.getPageSize()));
+        example.setPageSize(pageVO.getPageSize());
         int pageCount = PagingUtil.getCount((int) dao.countByExample(example),pageVO.getPageSize());
 
         List<Farmer> result = dao.selectByExample(example);

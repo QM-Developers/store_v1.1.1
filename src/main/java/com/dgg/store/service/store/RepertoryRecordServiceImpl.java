@@ -269,6 +269,8 @@ public class RepertoryRecordServiceImpl implements RepertoryRecordService
         example.setEnd(pageVO.getPageSize());
         int pageCount = PagingUtil.getCount((int) dao.countByExample(example), pageVO.getPageSize());
 
+        if (repertoryRecord.getCreateDate() != null && repertoryRecord.getFinishDate() != null)
+            criteria.andCreateDateBetween(repertoryRecord.getCreateDate(), repertoryRecord.getFinishDate());
         criteria.andMyTeamIdEqualTo(sessionVO.getMyTeamId());
 
         List<RepertoryRecord> result = dao.selectByExample(example);
@@ -278,7 +280,12 @@ public class RepertoryRecordServiceImpl implements RepertoryRecordService
             RepertoryRecordListExample listExample = new RepertoryRecordListExample();
             RepertoryRecordListExample.Criteria listCriteria = listExample.createCriteria();
             listCriteria.andRecordIdEqualTo(record.getRecordId());
-            record.setRecordList(mapper.selectByExample(listExample));
+            List<RepertoryRecordList> recordLists = mapper.selectByExample(listExample);
+
+            for (RepertoryRecordList recordList : recordLists)
+                recordList.setGoodsImage(mapper.getGoodsImage(recordList.getGoodsId()));
+
+            record.setRecordList(recordLists);
         }
 
         JSONObject json = (JSONObject) JSONObject.toJSON(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), result));
@@ -290,7 +297,7 @@ public class RepertoryRecordServiceImpl implements RepertoryRecordService
     @Override
     public String updateRepertory(SessionVO sessionVO, RepertoryRecord repertoryRecord)
     {
-        repertoryRecord.setRecordCode(getRecordCode(0,repertoryRecord.getBranchId()));
+        repertoryRecord.setRecordCode(getRecordCode(0, repertoryRecord.getBranchId()));
         if (repertoryRecord.getRecordCode() == null)
             return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_FAILED, sessionVO.getToken()));
 
@@ -333,6 +340,24 @@ public class RepertoryRecordServiceImpl implements RepertoryRecordService
         return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), repertoryRecord.getRecordId()));
     }
 
+    @Override
+    public String getRepertoryRecord(SessionVO sessionVO, RepertoryRecord repertoryRecord)
+    {
+        RepertoryRecord result = dao.selectByPrimaryKey(repertoryRecord.getRecordId());
+
+        RepertoryRecordListExample listExample = new RepertoryRecordListExample();
+        RepertoryRecordListExample.Criteria listCriteria = listExample.createCriteria();
+
+        listCriteria.andRecordIdEqualTo(result.getRecordId());
+
+        List<RepertoryRecordList> recordLists = mapper.selectByExample(listExample);
+
+        for (RepertoryRecordList recordList : recordLists)
+            recordList.setGoodsImage(mapper.getGoodsImage(recordList.getGoodsId()));
+
+        return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), result));
+    }
+
     private String getRecordCode(int i, String branchId)
     {
         String recordCode = IDGenerator.getNow() + String.format("%04d", (int) (Math.random() * 10000));
@@ -346,7 +371,7 @@ public class RepertoryRecordServiceImpl implements RepertoryRecordService
             return null;
 
         if (dao.countByExample(example) > 0)
-            getRecordCode(i++,branchId);
+            getRecordCode(i++, branchId);
 
         return recordCode;
     }

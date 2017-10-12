@@ -7,15 +7,13 @@ import com.dgg.store.mapper.RepertoryApplyMapper;
 import com.dgg.store.util.core.constant.*;
 import com.dgg.store.util.core.generator.IDGenerator;
 import com.dgg.store.util.core.page.PagingUtil;
-import com.dgg.store.util.core.umeng.push.PushMessageFactory;
-import com.dgg.store.util.core.umeng.push.UMengUtil;
+import com.dgg.store.util.core.string.StringUtil;
 import com.dgg.store.util.pojo.*;
 import com.dgg.store.util.vo.core.PageVO;
 import com.dgg.store.util.vo.core.ResultVO;
 import com.dgg.store.util.vo.core.SessionVO;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -84,12 +82,18 @@ public class RepertoryApplyServiceImpl implements RepertoryApplyService
     }
 
     @Override
-    public String listRepertoryApplyByApprover(SessionVO sessionVO, PageVO pageVO)
+    public String listRepertoryApplyByApprover(SessionVO sessionVO, RepertoryApply apply, PageVO pageVO)
     {
         RepertoryApplyExample example = new RepertoryApplyExample();
         RepertoryApplyExample.Criteria criteria = example.createCriteria();
 
         criteria.andApproverIdEqualTo(sessionVO.getUserId());
+        if (apply.getCreateDate() != null && apply.getFinishDate() != null)
+            criteria.andCreateDateBetween(apply.getCreateDate(), apply.getFinishDate());
+        if (!StringUtil.isEmpty(apply.getBranchId()))
+            criteria.andBranchIdEqualTo(apply.getBranchId());
+        if (apply.getApplyStatus() != null)
+            criteria.andApplyStatusEqualTo(apply.getApplyStatus());
 
         example.setPageNum(PagingUtil.getStart(pageVO.getPageNum(), pageVO.getPageSize()));
         example.setPageSize(pageVO.getPageSize());
@@ -110,7 +114,12 @@ public class RepertoryApplyServiceImpl implements RepertoryApplyService
             RepertoryApplyListExample listExample = new RepertoryApplyListExample();
             RepertoryApplyListExample.Criteria listCriteria = listExample.createCriteria();
             listCriteria.andApplyIdEqualTo(apply.getApplyId());
-            apply.setApplyList(listMapper.selectByExample(listExample));
+            List<RepertoryApplyList> applyLists = listMapper.selectByExample(listExample);
+
+            for (RepertoryApplyList applyList: applyLists)
+                applyList.setGoodsImage(mapper.getGoodsImage(applyList.getGoodsId()));
+
+            apply.setApplyList(applyLists);
         }
         return result;
     }

@@ -37,4 +37,6 @@ public interface RepertoryIncomeMapper {
     int countBranchGoodsExists(@Param("branchId") String branchId,@Param("standardId") String standardId);
 
     int saveBranchGoods(@Param("goods") RepertoryIncomeList incomeList,@Param("branchId") String branchId);
+
+    String getGoodsImage(String goodsId);
 }

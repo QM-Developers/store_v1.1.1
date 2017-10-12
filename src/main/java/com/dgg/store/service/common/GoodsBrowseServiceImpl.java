@@ -2,10 +2,7 @@ package com.dgg.store.service.common;
 
 import com.alibaba.fastjson.JSONObject;
 import com.dgg.store.dao.common.GoodsBrowseDao;
-import com.dgg.store.util.core.constant.Constant;
-import com.dgg.store.util.core.constant.CustomerConstant;
-import com.dgg.store.util.core.constant.KeyConstant;
-import com.dgg.store.util.core.constant.SymbolConstant;
+import com.dgg.store.util.core.constant.*;
 import com.dgg.store.util.core.page.PagingUtil;
 import com.dgg.store.util.core.string.StringUtil;
 import com.dgg.store.util.vo.core.PageVO;
@@ -70,8 +67,9 @@ public class GoodsBrowseServiceImpl implements GoodsBrowseService
     public String findGoodsList(SessionVO sessionVO, GoodsTypeVO goodsTypeVO, PageVO pageVO)
     {
         int repertoryLevel = dao.getRepertoryLevel(sessionVO.getUserId(), sessionVO.getMyTeamId());
+        pageVO.setPageNum(PagingUtil.getStart(pageVO.getPageNum(), pageVO.getPageSize()));
 
-        if (CustomerConstant.REPERTORY_LEVEL1 == repertoryLevel)
+        if (CustomerConstant.REPERTORY_LEVEL2 != repertoryLevel)
             return listGoods1(sessionVO, goodsTypeVO, pageVO);
         else
             return listGoods2(sessionVO, goodsTypeVO, pageVO);
@@ -98,6 +96,33 @@ public class GoodsBrowseServiceImpl implements GoodsBrowseService
 
         return json.toJSONString();
     }
+
+
+
+//    private String listGoods1(SessionVO sessionVO, GoodsTypeVO goodsTypeVO, PageVO pageVO)
+//    {
+//        goodsTypeVO.setMyTeamId(sessionVO.getMyTeamId());
+//        Set<String> childType = null;
+//        if (!StringUtil.isEmpty(goodsTypeVO.getGoodsTypeId()))
+//        {
+//            childType = findChildTypeId(goodsTypeVO.getGoodsTypeId());
+//            childType.add(goodsTypeVO.getGoodsTypeId());
+//        }
+//
+//        String branchId = dao.getFirstBranchId(sessionVO.getMyTeamId(), BranchConstant.BRANCH_FIRST);
+//        int pageCount = PagingUtil.getCount(dao.countFirstBranchGoods(goodsTypeVO, childType, branchId), pageVO.getPageSize());
+//        List<GoodsInfoVO> result = dao.listFirstBranchGoods(goodsTypeVO, childType, pageVO);
+//        for (GoodsInfoVO info : result)
+//        {
+//            info.setGoodsImages(dao.getGoodsImage(info.getGoodsId()));
+//            info.setGoodsPrice(dao.getGoodsPrice(info.getGoodsId(), branchId));
+//        }
+//
+//        JSONObject json = (JSONObject) JSONObject.toJSON(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), result));
+//        json.put(KeyConstant.PAGE_COUNT, pageCount);
+//
+//        return json.toJSONString();
+//    }
 
     private String listGoods1(SessionVO sessionVO, GoodsTypeVO goodsTypeVO, PageVO pageVO)
     {
@@ -140,7 +165,7 @@ public class GoodsBrowseServiceImpl implements GoodsBrowseService
         if (CustomerConstant.REPERTORY_LEVEL1 == repertoryLevel)
             result = dao.findGoodsDetail(goodsDetailVO.getGoodsId());
         else
-            result = dao.findGoodsDetail_2(goodsDetailVO.getGoodsId(),sessionVO.getUserId());
+            result = dao.findGoodsDetail_2(goodsDetailVO.getGoodsId(), sessionVO.getUserId());
 
         String images = dao.findGoodsDescribe(goodsDetailVO.getGoodsId());
         if (result != null)

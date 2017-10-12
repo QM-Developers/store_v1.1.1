@@ -77,6 +77,9 @@ public class RepertoryIncomeServiceImpl implements RepertoryIncomeService
         RepertoryIncomeExample example = new RepertoryIncomeExample();
         RepertoryIncomeExample.Criteria criteria = example.createCriteria();
 
+        if (income.getCreateDate() != null && income.getFinishDate() != null)
+            criteria.andCreateDateBetween(income.getCreateDate(), income.getFinishDate());
+
         example.setPageNum(PagingUtil.getStart(pageVO.getPageNum(), pageVO.getPageSize()));
         example.setPageSize(pageVO.getPageSize());
         criteria.andBranchIdEqualTo(income.getBranchId());
@@ -91,13 +94,23 @@ public class RepertoryIncomeServiceImpl implements RepertoryIncomeService
 
             listCriteria.andRecordIdEqualTo(r.getRecordId());
 
-            r.setIncomeList(listMapper.selectByExample(listExample));
+            List<RepertoryIncomeList> incomeLists = getGoodsImage(listMapper.selectByExample(listExample));
+
+            r.setIncomeList(incomeLists);
         }
 
         JSONObject json = (JSONObject) JSONObject.toJSON(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), result));
         json.put(KeyConstant.PAGE_COUNT, pageCount);
 
         return json.toJSONString();
+    }
+
+    private List<RepertoryIncomeList> getGoodsImage(List<RepertoryIncomeList> repertoryIncomeLists)
+    {
+        for (RepertoryIncomeList incomeList : repertoryIncomeLists)
+            incomeList.setGoodsImage(mapper.getGoodsImage(incomeList.getGoodsId()));
+
+        return repertoryIncomeLists;
     }
 
     @Override
@@ -110,7 +123,9 @@ public class RepertoryIncomeServiceImpl implements RepertoryIncomeService
 
         listCriteria.andRecordIdEqualTo(result.getRecordId());
 
-        result.setIncomeList(listMapper.selectByExample(listExample));
+        List<RepertoryIncomeList> incomeLists = getGoodsImage(listMapper.selectByExample(listExample));
+
+        result.setIncomeList(incomeLists);
 
         return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), result));
     }

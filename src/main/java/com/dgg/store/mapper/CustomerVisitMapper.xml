@@ -19,6 +19,7 @@
         <result column="user_sex" property="userSex" jdbcType="VARCHAR"/>
         <result column="user_birthday" property="userBirthday" jdbcType="VARCHAR"/>
         <result column="user_address" property="userAddress" jdbcType="VARCHAR"/>
+        <result column="user_img" property="userImg" jdbcType="VARCHAR"/>
         <result column="credit_rating" property="creditRating" jdbcType="INTEGER"/>
         <result column="business_address" property="businessAddress" jdbcType="VARCHAR"/>
         <result column="station" property="station" jdbcType="VARCHAR"/>
@@ -102,28 +103,39 @@
         </if>
     </select>
 
-    <select id="countVisitCustomer" parameterType="com.dgg.store.util.vo.customer.CustomerVO"
-            resultType="java.lang.Integer">
+    <select id="countVisitCustomer" parameterType="com.dgg.store.util.vo.customer.CustomerVO" resultType="java.lang.Integer">
         SELECT COUNT(0)
         FROM customer c
         INNER JOIN user_view u
         ON u.user_id = c.user_id
-        WHERE c.my_team_id = #{myTeamId}
-        AND c.promoter_id = #{promoterId}
-        <if test="customerType != null and customerType != ''">
-            AND c.customer_type = #{customerType}
+        WHERE c.my_team_id = #{customerVO.myTeamId}
+        <if test="customerVO.customerType != null">
+            AND customer_type = #{customerVO.customerType}
         </if>
+        <if test="customerVO.hadAccount != null">
+            AND customer_type = #{customerVO.hadAccount}
+        </if>
+        AND c.promoter_id IN
+        <foreach collection="promoterList" item="promoterId" separator="," open="(" close=")" index="i">
+            #{promoterId}
+        </foreach>
     </select>
 
     <select id="listVisitCustomer" resultMap="CustomerVO">
         SELECT c.customer_id,c.business_address,c.credit_rating,
         c.customer_type,c.station,c.had_account,
         u.user_name,u.user_phone,u.user_birthday,
-        u.user_address,u.user_sex
+        u.user_address,u.user_sex,u.user_img
         FROM customer c
         INNER JOIN user_view u
         ON u.user_id = c.user_id
         WHERE c.my_team_id = #{customerVO.myTeamId}
+        <if test="customerVO.customerType != null">
+            AND customer_type = #{customerVO.customerType}
+        </if>
+        <if test="customerVO.hadAccount != null">
+            AND customer_type = #{customerVO.hadAccount}
+        </if>
         AND c.promoter_id IN
         <foreach collection="promoterList" item="promoterId" separator="," open="(" close=")" index="i">
             #{promoterId}
@@ -137,7 +149,8 @@
             c.update_count,c.update_date,
             u.user_name,u.user_phone,u.user_birthday,
             u.user_address,u.user_sex,u.user_create_date,
-            u.user_card_front,u.user_card_back,u.user_card_hand
+            u.user_card_front,u.user_card_back,u.user_card_hand,
+            u.user_img
         FROM customer c
         INNER JOIN user_view u
         ON u.user_id = c.user_id

@@ -58,15 +58,18 @@ public class CustomerVisitServiceImpl implements CustomerVisitService
         customerVO.setUserId(sessionVO.getUserId());
 
         JSONArray jArr = JSONArray.parseArray(customerVO.getPromoter());
+        if (jArr == null)
+            return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_FAILED, sessionVO.getToken()));
+
         JSONObject json;
         List<String> promoterList = new ArrayList<>();
-        for (int i = 0; i < jArr.size(); i++)
+        for (Object aJArr : jArr)
         {
-            json = JSONObject.parseObject(jArr.get(i).toString());
+            json = JSONObject.parseObject(aJArr.toString());
             promoterList.add(json.getString(KeyConstant.PROMOTER_ID));
         }
 
-        int pageCount = dao.countVisitCustomer(customerVO);
+        int pageCount = dao.countVisitCustomer(customerVO,promoterList);
         pageCount = PagingUtil.getCount(pageCount, pageVO.getPageSize());
 
         List<CustomerVO> result = dao.listVisitCustomer(customerVO, promoterList);

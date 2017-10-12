@@ -1,6 +1,6 @@
-SELECT * FROM qm_branch_goods
+SELECT branch_id
+FROM qm_branch
+WHERE my_team_id = '10001'
+AND branch_type = 1
+LIMIT 1
 ;
-
-select * from qm_branch
-;
-

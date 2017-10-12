@@ -12,7 +12,7 @@ public interface RepertoryApplyService
 
     String listRepertoryApplyByProposer(SessionVO sessionVO, PageVO pageVO);
 
-    String listRepertoryApplyByApprover(SessionVO sessionVO, PageVO pageVO);
+    String listRepertoryApplyByApprover(SessionVO sessionVO, RepertoryApply apply, PageVO pageVO);
 
     String updateRepertoryApplyAccept(SessionVO sessionVO, RepertoryApply apply);
 

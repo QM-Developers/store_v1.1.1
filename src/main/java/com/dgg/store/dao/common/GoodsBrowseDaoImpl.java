@@ -2,6 +2,7 @@ package com.dgg.store.dao.common;
 
 import com.dgg.store.mapper.GoodsBrowseMapper;
 import com.dgg.store.util.pojo.GoodsStandard;
+import com.dgg.store.util.vo.core.PageVO;
 import com.dgg.store.util.vo.goods.GoodsDetailVO;
 import com.dgg.store.util.vo.goods.GoodsInfoVO;
 import com.dgg.store.util.vo.goods.GoodsTypeVO;
@@ -92,7 +93,55 @@ public class GoodsBrowseDaoImpl implements GoodsBrowseDao
     @Override
     public GoodsDetailVO findGoodsDetail_2(String goodsId, String id)
     {
-        return mapper.findGoodsDetail_2(goodsId,id);
+        return mapper.findGoodsDetail_2(goodsId, id);
+    }
+
+    @Override
+    public String getFirstBranchId(String myTeamId, byte branchType)
+    {
+        return mapper.getFirstBranchId(myTeamId, branchType);
+    }
+
+    @Override
+    public int countBranchGoods(GoodsTypeVO goodsTypeVO, Set<String> childType, String branchId)
+    {
+        return mapper.countBranchGoods(goodsTypeVO, childType, branchId);
+    }
+
+    @Override
+    public List<GoodsInfoVO> listBranchGoods(GoodsTypeVO goodsTypeVO, Set<String> childType, PageVO pageVO, String branchId)
+    {
+        return mapper.listBranchGoods(goodsTypeVO, childType, pageVO, branchId);
+    }
+
+    @Override
+    public String getGoodsImage(String goodsId)
+    {
+        return mapper.getGoodsImage(goodsId);
+    }
+
+    @Override
+    public String getCurrentBranchId(String userId)
+    {
+        return mapper.getCurrentBranchId(userId);
+    }
+
+    @Override
+    public GoodsDetailVO getGoodsInfo(String goodsId)
+    {
+        return mapper.getGoodsInfo(goodsId);
+    }
+
+    @Override
+    public List<GoodsStandard> listGoodsStandard(String goodsId, String branchId)
+    {
+        return mapper.listGoodsStandard(goodsId,branchId);
+    }
+
+    @Override
+    public List<String> listGoodsImage(String goodsId)
+    {
+        return mapper.listGoodsImage(goodsId);
     }
 
 }

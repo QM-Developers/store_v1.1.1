@@ -1,11 +1,15 @@
 package com.dgg.store.util.pojo;
 
+import java.util.List;
+
 public class RepertoryIncomeList {
     private String recordId;
 
     private String goodsId;
 
     private String goodsName;
+
+    private String goodsCode;
 
     private String standardId;
 
@@ -14,6 +18,8 @@ public class RepertoryIncomeList {
     private Integer standardCount;
 
     private String goodsImage;
+
+    private List<GoodsStandard> standardList;
 
     public String getRecordId() {
         return recordId;
@@ -71,5 +77,25 @@ public class RepertoryIncomeList {
     public void setGoodsImage(String goodsImage)
     {
         this.goodsImage = goodsImage;
+    }
+
+    public List<GoodsStandard> getStandardList()
+    {
+        return standardList;
+    }
+
+    public void setStandardList(List<GoodsStandard> standardList)
+    {
+        this.standardList = standardList;
+    }
+
+    public String getGoodsCode()
+    {
+        return goodsCode;
+    }
+
+    public void setGoodsCode(String goodsCode)
+    {
+        this.goodsCode = goodsCode;
     }
 }

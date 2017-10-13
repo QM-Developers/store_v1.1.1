@@ -9,15 +9,13 @@ import com.dgg.store.util.core.constant.KeyConstant;
 import com.dgg.store.util.core.generator.IDGenerator;
 import com.dgg.store.util.core.page.PagingUtil;
 import com.dgg.store.util.core.parameter.ParameterUtil;
-import com.dgg.store.util.pojo.RepertoryIncome;
-import com.dgg.store.util.pojo.RepertoryIncomeExample;
-import com.dgg.store.util.pojo.RepertoryIncomeList;
-import com.dgg.store.util.pojo.RepertoryIncomeListExample;
+import com.dgg.store.util.pojo.*;
 import com.dgg.store.util.vo.core.PageVO;
 import com.dgg.store.util.vo.core.ResultVO;
 import com.dgg.store.util.vo.core.SessionVO;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -95,6 +93,9 @@ public class RepertoryIncomeServiceImpl implements RepertoryIncomeService
             listCriteria.andRecordIdEqualTo(r.getRecordId());
 
             List<RepertoryIncomeList> incomeLists = getGoodsImage(listMapper.selectByExample(listExample));
+            for (RepertoryIncomeList list : incomeLists)
+                list.setGoodsCode(mapper.getGoodsCode(list.getGoodsId()));
+//            incomeLists = dataTransform(incomeLists);
 
             r.setIncomeList(incomeLists);
         }
@@ -103,6 +104,46 @@ public class RepertoryIncomeServiceImpl implements RepertoryIncomeService
         json.put(KeyConstant.PAGE_COUNT, pageCount);
 
         return json.toJSONString();
+    }
+
+    private List<RepertoryIncomeList> dataTransform(List<RepertoryIncomeList> incomeLists)
+    {
+        List<RepertoryIncomeList> resultLists = new ArrayList<>();
+        resultLists.addAll(incomeLists);
+
+        for (RepertoryIncomeList resultList : resultLists)
+        {
+            List<GoodsStandard> standardList = new ArrayList<>();
+            for (int j = 0; j < incomeLists.size(); j++)
+            {
+                if (resultList.getGoodsId().equals(incomeLists.get(j).getGoodsId()))
+                {
+                    RepertoryIncomeList item = incomeLists.remove(j);
+                    GoodsStandard standard = new GoodsStandard();
+                    standard.setStandardId(item.getStandardId());
+                    standard.setStandardName(item.getStandardName());
+                    standard.setStandardCount(item.getStandardCount());
+                    standardList.add(standard);
+                    j--;
+                }
+            }
+            resultList.setStandardList(standardList);
+        }
+
+        for (int i = 0; i < resultLists.size(); i++)
+        {
+            if (resultLists.get(i).getStandardList().size() < 1)
+            {
+                resultLists.remove(i);
+                i--;
+            } else
+            {
+                resultLists.get(i).setStandardId(null);
+                resultLists.get(i).setStandardName(null);
+                resultLists.get(i).setStandardCount(null);
+            }
+        }
+        return resultLists;
     }
 
     private List<RepertoryIncomeList> getGoodsImage(List<RepertoryIncomeList> repertoryIncomeLists)
@@ -124,6 +165,8 @@ public class RepertoryIncomeServiceImpl implements RepertoryIncomeService
         listCriteria.andRecordIdEqualTo(result.getRecordId());
 
         List<RepertoryIncomeList> incomeLists = getGoodsImage(listMapper.selectByExample(listExample));
+        for (RepertoryIncomeList list : incomeLists)
+            list.setGoodsCode(mapper.getGoodsCode(list.getGoodsId()));
 
         result.setIncomeList(incomeLists);
 

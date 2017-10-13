@@ -1,6 +1,7 @@
 package com.dgg.store.mapper;
 
 import com.dgg.store.util.pojo.GoodsStandard;
+import com.dgg.store.util.vo.core.PageVO;
 import com.dgg.store.util.vo.goods.GoodsDetailVO;
 import com.dgg.store.util.vo.goods.GoodsInfoVO;
 import com.dgg.store.util.vo.goods.GoodsTypeVO;
@@ -34,4 +35,20 @@ public interface GoodsBrowseMapper
     List<GoodsInfoVO> findGoodsList2(@Param("type") GoodsTypeVO goodsTypeId, @Param("pageNum") int pageNum, @Param("pageSize") int pageSize, @Param("childType") Set<String> childType);
 
     GoodsDetailVO findGoodsDetail_2(@Param("goodsId") String goodsId, @Param("userId") String id);
+
+    String getFirstBranchId(@Param("myTeamId") String myTeamId, @Param("branchType") byte branchType);
+
+    int countBranchGoods(@Param("type") GoodsTypeVO goodsTypeVO, @Param("childType") Set<String> childType, @Param("branchId") String branchId);
+
+    List<GoodsInfoVO> listBranchGoods(@Param("type") GoodsTypeVO goodsTypeVO, @Param("childType") Set<String> childType, @Param("pageVO") PageVO pageVO, @Param("branchId") String branchId);
+
+    String getGoodsImage(String goodsId);
+
+    String getCurrentBranchId(String userId);
+
+    GoodsDetailVO getGoodsInfo(String goodsId);
+
+    List<GoodsStandard> listGoodsStandard(@Param("goodsId") String goodsId,@Param("branchId") String branchId);
+
+    List<String> listGoodsImage(String goodsId);
 }

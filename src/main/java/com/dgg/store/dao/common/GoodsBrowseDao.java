@@ -1,6 +1,7 @@
 package com.dgg.store.dao.common;
 
 import com.dgg.store.util.pojo.GoodsStandard;
+import com.dgg.store.util.vo.core.PageVO;
 import com.dgg.store.util.vo.goods.GoodsDetailVO;
 import com.dgg.store.util.vo.goods.GoodsInfoVO;
 import com.dgg.store.util.vo.goods.GoodsTypeVO;
@@ -35,4 +36,20 @@ public interface GoodsBrowseDao
     List<GoodsInfoVO> findGoodsList2(GoodsTypeVO goodsTypeVO, int start, int end, Set<String> childType);
 
     GoodsDetailVO findGoodsDetail_2(String goodsId, String id);
+
+    String getFirstBranchId( String myTeamId, byte branchType);
+
+    int countBranchGoods(GoodsTypeVO goodsTypeVO, Set<String> childType, String branchId);
+
+    List<GoodsInfoVO> listBranchGoods(GoodsTypeVO goodsTypeVO, Set<String> childType, PageVO pageVO, String branchId);
+
+    String getGoodsImage(String goodsId);
+
+    String getCurrentBranchId(String userId);
+
+    GoodsDetailVO getGoodsInfo(String goodsId);
+
+    List<GoodsStandard> listGoodsStandard(String goodsId, String branchId);
+
+    List<String> listGoodsImage(String goodsId);
 }

@@ -205,4 +205,19 @@ public class BranchController
 
         return service.listRepertoryByKeyword(sessionVO, branchVO, pageVO);
     }
+
+    /**
+     * 获取总部销售点Id
+     *
+     * @param request 用户参数
+     * @return 总部销售点Id
+     */
+    @RequestMapping(value = "/s/getFirstBranchId", method = RequestMethod.POST, produces = {"application/json;charset=UTF-8"})
+    @ResponseBody
+    public String getFirstBranchId(HttpServletRequest request)
+    {
+        SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
+
+        return service.getFirstBranchId(sessionVO);
+    }
 }

@@ -13,6 +13,8 @@ public class RepertoryApplyList {
 
     private String goodsImage;
 
+    private String goodsCode;
+
     private Integer standardCount;
 
     public String getApplyId() {
@@ -71,5 +73,15 @@ public class RepertoryApplyList {
     public void setGoodsImage(String goodsImage)
     {
         this.goodsImage = goodsImage;
+    }
+
+    public String getGoodsCode()
+    {
+        return goodsCode;
+    }
+
+    public void setGoodsCode(String goodsCode)
+    {
+        this.goodsCode = goodsCode;
     }
 }

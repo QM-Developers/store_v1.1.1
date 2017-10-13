@@ -22,4 +22,6 @@ public interface RepertoryRecordListMapper {
     int updateByExample(@Param("record") RepertoryRecordList record, @Param("example") RepertoryRecordListExample example);
 
     String getGoodsImage(String goodsId);
+
+    String getGoodsCode(String goodsId);
 }

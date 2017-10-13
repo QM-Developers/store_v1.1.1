@@ -83,6 +83,7 @@ var qm_department = {
 
         myjs.ajax_post(url, params, function (data)
         {
+            console.log(data);
             data = data.result;
             var item = "";
             for (var i = 0; i < data.length; i++)

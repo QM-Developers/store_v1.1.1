@@ -59,7 +59,8 @@ public class GoodsManageServiceImpl implements GoodsManageService
             standard.setStandardId(IDGenerator.generator());
             standard.setStandardPrice(Float.parseFloat(jsonArray.getJSONObject(i).get("standardPrice").toString()));
             standard.setStandardWeight(Float.parseFloat(jsonArray.getJSONObject(i).get("standardWeight").toString()));
-            standard.setStandardCount(Integer.parseInt(jsonArray.getJSONObject(i).get("standardCount").toString()));
+//            standard.setStandardCount(Integer.parseInt(jsonArray.getJSONObject(i).get("standardCount").toString()));
+            standard.setStandardCount(0);
             standard.setStandardName(jsonArray.getJSONObject(i).get("standardName").toString());
             if (result > 0)
                 result = dao.insertStandardToGoods(standard);

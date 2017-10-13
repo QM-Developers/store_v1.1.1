@@ -14,6 +14,7 @@
     <result column="approver_name" jdbcType="VARCHAR" property="approverName" />
     <result column="apply_status" jdbcType="TINYINT" property="applyStatus" />
     <result column="apply_remark" jdbcType="VARCHAR" property="applyRemark" />
+    <result column="apply_code" jdbcType="VARCHAR" property="applyCode" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -74,11 +75,11 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    apply_id, branch_id, my_team_id, branch_name, create_date, accept_date, proposer_id, 
-    proposer_name, approver_id, approver_name, apply_status, apply_remark
+    apply_id, branch_id, my_team_id, branch_name, create_date, accept_date, proposer_id,
+    proposer_name, approver_id, approver_name, apply_status, apply_remark, apply_code
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
-    select 
+    select
     <include refid="Base_Column_List" />
     from repertory_apply
     where apply_id = #{applyId,jdbcType=VARCHAR}
@@ -94,16 +95,16 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.dgg.store.util.pojo.RepertoryApply">
-    insert into repertory_apply (apply_id, branch_id, my_team_id, 
-      branch_name, create_date, accept_date, 
-      proposer_id, proposer_name, approver_id, 
-      approver_name, apply_status, apply_remark
-      )
-    values (#{applyId,jdbcType=VARCHAR}, #{branchId,jdbcType=VARCHAR}, #{myTeamId,jdbcType=VARCHAR}, 
-      #{branchName,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}, #{acceptDate,jdbcType=TIMESTAMP}, 
-      #{proposerId,jdbcType=VARCHAR}, #{proposerName,jdbcType=VARCHAR}, #{approverId,jdbcType=VARCHAR}, 
-      #{approverName,jdbcType=VARCHAR}, #{applyStatus,jdbcType=TINYINT}, #{applyRemark,jdbcType=VARCHAR}
-      )
+    insert into repertory_apply (apply_id, branch_id, my_team_id,
+    branch_name, create_date, accept_date,
+    proposer_id, proposer_name, approver_id,
+    approver_name, apply_status, apply_remark,
+    apply_code)
+    values (#{applyId,jdbcType=VARCHAR}, #{branchId,jdbcType=VARCHAR}, #{myTeamId,jdbcType=VARCHAR},
+    #{branchName,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}, #{acceptDate,jdbcType=TIMESTAMP},
+    #{proposerId,jdbcType=VARCHAR}, #{proposerName,jdbcType=VARCHAR}, #{approverId,jdbcType=VARCHAR},
+    #{approverName,jdbcType=VARCHAR}, #{applyStatus,jdbcType=TINYINT}, #{applyRemark,jdbcType=VARCHAR},
+    #{applyCode,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.dgg.store.util.pojo.RepertoryApply">
     insert into repertory_apply
@@ -144,6 +145,9 @@
       <if test="applyRemark != null">
         apply_remark,
       </if>
+      <if test="applyCode != null">
+        apply_code,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="applyId != null">
@@ -181,6 +185,9 @@
       </if>
       <if test="applyRemark != null">
         #{applyRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="applyCode != null">
+        #{applyCode,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -229,6 +236,9 @@
       <if test="record.applyRemark != null">
         apply_remark = #{record.applyRemark,jdbcType=VARCHAR},
       </if>
+      <if test="record.applyCode != null">
+        apply_code = #{record.applyCode,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -237,17 +247,18 @@
   <update id="updateByExample" parameterType="map">
     update repertory_apply
     set apply_id = #{record.applyId,jdbcType=VARCHAR},
-      branch_id = #{record.branchId,jdbcType=VARCHAR},
-      my_team_id = #{record.myTeamId,jdbcType=VARCHAR},
-      branch_name = #{record.branchName,jdbcType=VARCHAR},
-      create_date = #{record.createDate,jdbcType=TIMESTAMP},
-      accept_date = #{record.acceptDate,jdbcType=TIMESTAMP},
-      proposer_id = #{record.proposerId,jdbcType=VARCHAR},
-      proposer_name = #{record.proposerName,jdbcType=VARCHAR},
-      approver_id = #{record.approverId,jdbcType=VARCHAR},
-      approver_name = #{record.approverName,jdbcType=VARCHAR},
-      apply_status = #{record.applyStatus,jdbcType=TINYINT},
-      apply_remark = #{record.applyRemark,jdbcType=VARCHAR}
+    branch_id = #{record.branchId,jdbcType=VARCHAR},
+    my_team_id = #{record.myTeamId,jdbcType=VARCHAR},
+    branch_name = #{record.branchName,jdbcType=VARCHAR},
+    create_date = #{record.createDate,jdbcType=TIMESTAMP},
+    accept_date = #{record.acceptDate,jdbcType=TIMESTAMP},
+    proposer_id = #{record.proposerId,jdbcType=VARCHAR},
+    proposer_name = #{record.proposerName,jdbcType=VARCHAR},
+    approver_id = #{record.approverId,jdbcType=VARCHAR},
+    approver_name = #{record.approverName,jdbcType=VARCHAR},
+    apply_status = #{record.applyStatus,jdbcType=TINYINT},
+    apply_remark = #{record.applyRemark,jdbcType=VARCHAR},
+    apply_code = #{record.applyCode,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -288,6 +299,9 @@
       <if test="applyRemark != null">
         apply_remark = #{applyRemark,jdbcType=VARCHAR},
       </if>
+      <if test="applyCode != null">
+        apply_code = #{applyCode,jdbcType=VARCHAR},
+      </if>
     </set>
     where apply_id = #{applyId,jdbcType=VARCHAR}
   </update>
@@ -303,10 +317,15 @@
       approver_id = #{approverId,jdbcType=VARCHAR},
       approver_name = #{approverName,jdbcType=VARCHAR},
       apply_status = #{applyStatus,jdbcType=TINYINT},
-      apply_remark = #{applyRemark,jdbcType=VARCHAR}
+      apply_remark = #{applyRemark,jdbcType=VARCHAR},
+      apply_code = #{applyCode,jdbcType=VARCHAR}
     where apply_id = #{applyId,jdbcType=VARCHAR}
   </update>
-
+  
+  
+  
+  
+  
 
 
 
@@ -408,5 +427,11 @@
     WHERE gi.goods_img_type = 1
     AND gi.goods_id = #{goodsId}
     LIMIT 1
+  </select>
+
+  <select id="getGoodsCode" resultType="java.lang.String">
+    SELECT gi.goods_code
+    FROM goodsinfo gi
+    WHERE gi.goods_id = #{goodsId}
   </select>
 </mapper>

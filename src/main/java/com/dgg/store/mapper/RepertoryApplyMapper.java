@@ -45,4 +45,6 @@ public interface RepertoryApplyMapper
     int updateAddGoodsCount(@Param("goods") RepertoryApplyList list, @Param("branchId") String branchId);
 
     String getGoodsImage(String goodsId);
+
+    String getGoodsCode(String goodsId);
 }

@@ -40,6 +40,7 @@ public class RepertoryApplyServiceImpl implements RepertoryApplyService
     @Override
     public String insertRepertoryApply(SessionVO sessionVO, RepertoryApply apply)
     {
+        apply.setApplyCode(getRecordCode(0,apply.getBranchId()));
         apply.setApplyId(IDGenerator.generator());
         apply.setApplyStatus(RepertoryConstant.STATUS_CHECK);
         apply.setMyTeamId(sessionVO.getMyTeamId());
@@ -117,7 +118,10 @@ public class RepertoryApplyServiceImpl implements RepertoryApplyService
             List<RepertoryApplyList> applyLists = listMapper.selectByExample(listExample);
 
             for (RepertoryApplyList applyList: applyLists)
+            {
                 applyList.setGoodsImage(mapper.getGoodsImage(applyList.getGoodsId()));
+                applyList.setGoodsCode(mapper.getGoodsCode(applyList.getGoodsId()));
+            }
 
             apply.setApplyList(applyLists);
         }
@@ -204,5 +208,23 @@ public class RepertoryApplyServiceImpl implements RepertoryApplyService
         mapper.updateByPrimaryKeySelective(apply);
 
         return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken()));
+    }
+
+    private String getRecordCode(int i, String branchId)
+    {
+        String recordCode = IDGenerator.getNow() + String.format("%04d", (int) (Math.random() * 10000));
+        RepertoryApplyExample example = new RepertoryApplyExample();
+        RepertoryApplyExample.Criteria criteria = example.createCriteria();
+
+        criteria.andApplyCodeEqualTo(recordCode);
+        criteria.andBranchIdEqualTo(branchId);
+
+        if (i > 10)
+            return null;
+
+        if (mapper.countByExample(example) > 0)
+            getRecordCode(i++, branchId);
+
+        return recordCode;
     }
 }

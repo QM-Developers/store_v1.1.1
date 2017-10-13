@@ -5,17 +5,13 @@ import java.util.Date;
 import java.util.List;
 
 public class RepertoryApplyExample {
-    private Integer pageNum;
-
-    private Integer pageSize;
-
     protected String orderByClause;
 
     protected boolean distinct;
 
     protected List<Criteria> oredCriteria;
-    private int start;
-    private Integer end;
+    private Integer pageSize;
+    private int pageNum;
 
     public RepertoryApplyExample() {
         oredCriteria = new ArrayList<Criteria>();
@@ -70,24 +66,24 @@ public class RepertoryApplyExample {
         distinct = false;
     }
 
-    public void setStart(int start)
+    public void setPageSize(Integer pageSize)
     {
-        this.start = start;
+        this.pageSize = pageSize;
     }
 
-    public int getStart()
+    public Integer getPageSize()
     {
-        return start;
+        return pageSize;
     }
 
-    public void setEnd(Integer end)
+    public void setPageNum(int pageNum)
     {
-        this.end = end;
+        this.pageNum = pageNum;
     }
 
-    public Integer getEnd()
+    public int getPageNum()
     {
-        return end;
+        return pageNum;
     }
 
     protected abstract static class GeneratedCriteria {
@@ -940,6 +936,76 @@ public class RepertoryApplyExample {
             addCriterion("apply_remark not between", value1, value2, "applyRemark");
             return (Criteria) this;
         }
+
+        public Criteria andApplyCodeIsNull() {
+            addCriterion("apply_code is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andApplyCodeIsNotNull() {
+            addCriterion("apply_code is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andApplyCodeEqualTo(String value) {
+            addCriterion("apply_code =", value, "applyCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andApplyCodeNotEqualTo(String value) {
+            addCriterion("apply_code <>", value, "applyCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andApplyCodeGreaterThan(String value) {
+            addCriterion("apply_code >", value, "applyCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andApplyCodeGreaterThanOrEqualTo(String value) {
+            addCriterion("apply_code >=", value, "applyCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andApplyCodeLessThan(String value) {
+            addCriterion("apply_code <", value, "applyCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andApplyCodeLessThanOrEqualTo(String value) {
+            addCriterion("apply_code <=", value, "applyCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andApplyCodeLike(String value) {
+            addCriterion("apply_code like", value, "applyCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andApplyCodeNotLike(String value) {
+            addCriterion("apply_code not like", value, "applyCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andApplyCodeIn(List<String> values) {
+            addCriterion("apply_code in", values, "applyCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andApplyCodeNotIn(List<String> values) {
+            addCriterion("apply_code not in", values, "applyCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andApplyCodeBetween(String value1, String value2) {
+            addCriterion("apply_code between", value1, value2, "applyCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andApplyCodeNotBetween(String value1, String value2) {
+            addCriterion("apply_code not between", value1, value2, "applyCode");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {
@@ -1033,25 +1099,5 @@ public class RepertoryApplyExample {
         protected Criterion(String condition, Object value, Object secondValue) {
             this(condition, value, secondValue, null);
         }
-    }
-
-    public Integer getPageNum()
-    {
-        return pageNum;
-    }
-
-    public void setPageNum(Integer pageNum)
-    {
-        this.pageNum = pageNum;
-    }
-
-    public Integer getPageSize()
-    {
-        return pageSize;
-    }
-
-    public void setPageSize(Integer pageSize)
-    {
-        this.pageSize = pageSize;
     }
 }

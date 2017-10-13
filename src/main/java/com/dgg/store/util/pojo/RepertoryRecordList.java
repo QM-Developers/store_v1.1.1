@@ -19,6 +19,8 @@ public class RepertoryRecordList {
 
     private String goodsImage;
 
+    private String goodsCode;
+
     public String getRecordId() {
         return recordId;
     }
@@ -91,5 +93,15 @@ public class RepertoryRecordList {
     public void setGoodsImage(String goodsImage)
     {
         this.goodsImage = goodsImage;
+    }
+
+    public String getGoodsCode()
+    {
+        return goodsCode;
+    }
+
+    public void setGoodsCode(String goodsCode)
+    {
+        this.goodsCode = goodsCode;
     }
 }

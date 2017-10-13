@@ -4,6 +4,7 @@
     <resultMap id="GoodsVOMap" type="com.dgg.store.util.vo.goods.GoodsInfoVO">
         <id column="goods_id" property="goodsId" jdbcType="VARCHAR"/>
         <result column="goods_name" property="goodsName" jdbcType="VARCHAR"/>
+        <result column="goods_attr" property="goodsAttr" jdbcType="VARCHAR"/>
         <result column="goods_price" property="goodsPrice" jdbcType="FLOAT"/>
         <result column="image_path" property="goodsImages" jdbcType="VARCHAR"/>
         <result column="goods_sales" property="goodsSales" jdbcType="INTEGER"/>
@@ -12,7 +13,6 @@
     <resultMap id="GoodsDetailVOMap" type="com.dgg.store.util.vo.goods.GoodsDetailVO">
         <id column="goods_id" property="goodsId" jdbcType="VARCHAR"/>
         <result column="goods_name" property="goodsName" jdbcType="VARCHAR"/>
-        <result column="goods_attr" property="goodsAttr" jdbcType="VARCHAR"/>
         <result column="goods_freight" property="goodsFreight" jdbcType="INTEGER"/>
         <result column="goods_sales" property="goodsSales" jdbcType="INTEGER"/>
         <collection property="goodsImages" ofType="java.lang.String">
@@ -27,6 +27,14 @@
         </collection>
     </resultMap>
 
+    <resultMap id="GoodsDetailVO" type="com.dgg.store.util.vo.goods.GoodsDetailVO">
+        <id column="goods_id" property="goodsId" jdbcType="VARCHAR"/>
+        <result column="goods_name" property="goodsName" jdbcType="VARCHAR"/>
+        <result column="goods_attr" property="goodsAttr" jdbcType="VARCHAR"/>
+        <result column="goods_freight" property="goodsFreight" jdbcType="INTEGER"/>
+        <result column="goods_sales" property="goodsSales" jdbcType="INTEGER"/>
+    </resultMap>
+
     <resultMap id="TypeVOMap" type="com.dgg.store.util.vo.goods.GoodsTypeVO">
         <id column="goods_type_id" property="goodsTypeId" jdbcType="VARCHAR"/>
         <result column="goods_type_name" property="goodsTypeName" jdbcType="VARCHAR"/>
@@ -36,6 +44,10 @@
     <resultMap id="StandardMap" type="com.dgg.store.util.pojo.GoodsStandard">
         <result column="standard_price" property="standardPrice" jdbcType="FLOAT"/>
         <result column="standard_count" property="standardCount" jdbcType="INTEGER"/>
+        <result column="standard_name" property="standardName" jdbcType="VARCHAR"/>
+        <result column="standard_weight" property="standardWeight" jdbcType="INTEGER"/>
+        <result column="standard_id" property="standardId" jdbcType="VARCHAR"/>
+        <result column="goods_id" property="goodsId" jdbcType="VARCHAR"/>
     </resultMap>
 
     <select id="findGoodsType" resultMap="TypeVOMap">
@@ -244,6 +256,125 @@
         ON c.promoter_id = u.user_id
         WHERE gd.goods_id = #{goodsId}
         AND c.user_id = #{userId}
+    </select>
+
+    <select id="getFirstBranchId" resultType="java.lang.String">
+        SELECT branch_id
+        FROM qm_branch
+        WHERE my_team_id = #{myTeamId}
+        AND branch_type = #{branchType}
+        LIMIT 1
+    </select>
+
+    <select id="countBranchGoods" resultType="java.lang.Integer">
+        SELECT COUNT(0) FROM
+        (SELECT gi.goods_id,gi.goods_name,gi.goods_sales,
+           MIN(gs.standard_price)
+        FROM goodsinfo gi
+        INNER JOIN qm_branch_goods qbg
+        ON qbg.goods_id = gi.goods_id
+        INNER JOIN goods_standard gs
+        ON gs.standard_id = qbg.standard_id
+        WHERE qbg.branch_id = #{branchId}
+        <if test="type.keyword != null and type.keyword != ''">
+            AND gi.goods_name LIKE CONCAT('%', #{type.keyword}, '%')
+        </if>
+        <if test="childType != null">
+            AND gi.goods_type_id IN
+            <foreach collection="childType" item="typeId" separator="," open="(" close=")" index="i">
+                #{typeId}
+            </foreach>
+        </if>
+        GROUP BY gi.goods_id) t1
+    </select>
+
+    <select id="listBranchGoods" resultMap="GoodsVOMap">
+        SELECT gi.goods_id,gi.goods_name,gi.goods_sales,
+          MIN(gs.standard_price) goods_price
+        FROM goodsinfo gi
+        INNER JOIN qm_branch_goods qbg
+        ON qbg.goods_id = gi.goods_id
+        INNER JOIN goods_standard gs
+        ON gs.standard_id = qbg.standard_id
+        WHERE qbg.branch_id = #{branchId}
+        <if test="type.keyword != null and type.keyword != ''">
+            AND gi.goods_name LIKE CONCAT('%', #{type.keyword}, '%')
+        </if>
+        <if test="childType != null">
+            AND gi.goods_type_id IN
+            <foreach collection="childType" item="typeId" separator="," open="(" close=")" index="i">
+                #{typeId}
+            </foreach>
+        </if>
+        GROUP BY gi.goods_id
+        <if test="type.orderBy != null and type.orderBy == 'goodsPrice'">
+            <choose>
+                <when test="type.sort != null and type.sort == 'desc'">
+                    ORDER BY gs.goods_price DESC
+                </when>
+                <otherwise>
+                    ORDER BY gs.standard_price ASC
+                </otherwise>
+            </choose>
+        </if>
+        <if test="type.orderBy != null and type.orderBy == 'goodsSales'">
+            <choose>
+                <when test="type.sort != null and type.sort == 'desc'">
+                    ORDER BY gi.goods_sales desc
+                </when>
+                <otherwise>
+                    ORDER BY gi.goods_sales asc
+                </otherwise>
+            </choose>
+        </if>
+        LIMIT #{pageVO.pageNum},#{pageVO.pageSize}
+    </select>
+
+    <select id="getGoodsImage" resultType="java.lang.String">
+        SELECT im.image_path
+        FROM image_space im
+        INNER JOIN goods_image gi
+        ON gi.image_id = im.image_id
+        WHERE gi.goods_img_type = 1
+        AND gi.goods_id = #{goodsId}
+        LIMIT 1
+    </select>
+
+    <select id="getCurrentBranchId" resultType="java.lang.Integer">
+        SELECT branch_id
+        FROM qm_branch qb
+        INNER JOIN user u
+        ON u.team_department_id = qb.department_id
+        INNER JOIN customer c
+        ON c.promoter_id = u.user_id
+        WHERE c.user_id = #{userId}
+    </select>
+
+    <select id="listGoodsStandard" resultMap="StandardMap">
+        SELECT gs.standard_id,gs.standard_name,gs.standard_price,
+          gs.standard_weight,
+          qbg.standard_count
+        FROM goods_standard gs
+        INNER JOIN qm_branch_goods qbg
+        ON qbg.standard_id = gs.standard_id
+        WHERE gs.goods_id = #{goodsId}
+        AND qbg.branch_id = #{branchId}
+    </select>
+
+    <select id="getGoodsInfo" resultMap="GoodsDetailVO">
+        SELECT gi.goods_id,gi.goods_name,gi.goods_attr,
+          gi.goods_sales
+        FROM goodsinfo gi
+        WHERE gi.goods_id = #{goodsId}
+    </select>
+
+    <select id="listGoodsImage" resultType="java.lang.String">
+        SELECT img.image_path
+        FROM image_space img
+        INNER JOIN goods_image gimg
+        ON gimg.image_id = img.image_id
+        WHERE gimg.goods_id = #{goodsId}
+        ORDER BY gimg.sort
     </select>
 
 </mapper>

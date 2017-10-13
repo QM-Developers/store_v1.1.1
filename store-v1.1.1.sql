@@ -750,6 +750,7 @@ drop table if exists repertory_apply;
 create table repertory_apply
 (
    apply_id varchar(35) not null primary key,   -- 记录Id
+   apply_code varchar(35) not null,   -- 记录编号
    branch_id varchar(35) not null,   -- 销售点Id
    my_team_id varchar(35) not null,   -- 团队Id
    branch_name varchar(35) not null,   -- 销售点名称

@@ -20,7 +20,7 @@ public class CustomerVO
 
     private String userSex;
 
-    private String userBirthday;
+    private Date userBirthday;
 
     private String userStatus;
 
@@ -120,16 +120,6 @@ public class CustomerVO
     public void setUserSex(String userSex)
     {
         this.userSex = userSex;
-    }
-
-    public String getUserBirthday()
-    {
-        return userBirthday;
-    }
-
-    public void setUserBirthday(String userBirthday)
-    {
-        this.userBirthday = userBirthday;
     }
 
     public String getUserStatus()
@@ -350,5 +340,15 @@ public class CustomerVO
     public void setPromoter(String promoter)
     {
         this.promoter = promoter;
+    }
+
+    public Date getUserBirthday()
+    {
+        return userBirthday;
+    }
+
+    public void setUserBirthday(Date userBirthday)
+    {
+        this.userBirthday = userBirthday;
     }
 }

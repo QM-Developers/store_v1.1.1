@@ -29,4 +29,6 @@ public interface BranchService
     String getFirstRepertory(SessionVO sessionVO, BranchVO branchVO, PageVO pageVO);
 
     String listRepertoryByKeyword(SessionVO sessionVO, BranchVO branchVO, PageVO pageVO);
+
+    String getFirstBranchId(SessionVO sessionVO);
 }

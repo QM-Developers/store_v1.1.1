@@ -10,24 +10,28 @@
 
     <select id="countPersonalPermission" resultType="java.lang.Integer">
         SELECT COUNT(0)
-        FROM user_qm_permission_re uqpr
-        INNER JOIN qm_permission_re qp
-        ON qp.qm_permission_id = uqpr.qm_permission_id
-        INNER JOIN permission p
-        ON p.permission_id = qp.permission_id
-        WHERE user_id = #{userId}
-        AND CONCAT(p.permission_url,'.action') = #{url}
+        FROM permission p
+        INNER JOIN qm_permission_re qpr
+        ON p.permission_id = qpr.permission_id
+        INNER JOIN user_qm_permission_re uqpr
+        ON uqpr.qm_permission_id = qpr.qm_permission_id
+        INNER JOIN user u
+        ON u.user_id = uqpr.user_id
+        WHERE u.user_id = #{userId}
+        AND p.permission_url = #{url}
     </select>
 
     <select id="countWorkerPermission" resultType="java.lang.Integer">
         SELECT COUNT(0)
-        FROM position_permission_re ppr
+        FROM permission p
         INNER JOIN qm_permission_re qpr
-        ON qpr.qm_permission_id = ppr.qm_permission_id
-        INNER JOIN permission p
         ON p.permission_id = qpr.permission_id
-        WHERE ppr.position_id = #{positionId}
-        AND CONCAT(p.permission_url,'.action') = #{url}
+        INNER JOIN position_permission_re ppr
+        ON ppr.qm_permission_id = qpr.qm_permission_id
+        INNER JOIN user u
+        ON u.position_id = ppr.position_id
+        WHERE u.user_id = #{userId}
+        AND p.permission_url = #{url}
     </select>
 
     <select id="getRoleId" resultType="java.lang.String">

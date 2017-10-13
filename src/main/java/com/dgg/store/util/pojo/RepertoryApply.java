@@ -14,8 +14,6 @@ public class RepertoryApply {
 
     private Date createDate;
 
-    private Date finishDate;
-
     private Date acceptDate;
 
     private String proposerId;
@@ -29,8 +27,11 @@ public class RepertoryApply {
     private Byte applyStatus;
 
     private String applyRemark;
+
+    private String applyCode;
     private String goodsInfo;
     private List<RepertoryApplyList> applyList;
+    private Date finishDate;
 
     public String getApplyId() {
         return applyId;
@@ -126,6 +127,14 @@ public class RepertoryApply {
 
     public void setApplyRemark(String applyRemark) {
         this.applyRemark = applyRemark == null ? null : applyRemark.trim();
+    }
+
+    public String getApplyCode() {
+        return applyCode;
+    }
+
+    public void setApplyCode(String applyCode) {
+        this.applyCode = applyCode == null ? null : applyCode.trim();
     }
 
     public String getGoodsInfo()

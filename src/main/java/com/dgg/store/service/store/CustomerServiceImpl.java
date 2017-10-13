@@ -56,8 +56,8 @@ public class CustomerServiceImpl implements CustomerService
                     customerVO.setUserCardHand(Constant.EMPTY);
                     customerVO.setUserCreateDate(new Date());
                     customerVO.setUserAddress(customerVO.getUserAddress() == null ? Constant.EMPTY : customerVO.getUserAddress());
-                    customerVO.setUserSex(ParameterUtil.getDefault(customerVO.getUserSex(),Constant.EMPTY));
-                    customerVO.setCreditRating(ParameterUtil.getDefault(customerVO.getCreditRating(),0));
+                    customerVO.setUserSex(ParameterUtil.getDefault(customerVO.getUserSex(), Constant.EMPTY));
+                    customerVO.setCreditRating(ParameterUtil.getDefault(customerVO.getCreditRating(), 0));
                     result = dao.insertCustomerRecord(customerVO);
                     break;
                 case 1:

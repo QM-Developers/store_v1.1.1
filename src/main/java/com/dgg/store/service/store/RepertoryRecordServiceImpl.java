@@ -283,7 +283,10 @@ public class RepertoryRecordServiceImpl implements RepertoryRecordService
             List<RepertoryRecordList> recordLists = mapper.selectByExample(listExample);
 
             for (RepertoryRecordList recordList : recordLists)
+            {
                 recordList.setGoodsImage(mapper.getGoodsImage(recordList.getGoodsId()));
+                recordList.setGoodsCode(mapper.getGoodsCode(recordList.getGoodsId()));
+            }
 
             record.setRecordList(recordLists);
         }
@@ -353,7 +356,10 @@ public class RepertoryRecordServiceImpl implements RepertoryRecordService
         List<RepertoryRecordList> recordLists = mapper.selectByExample(listExample);
 
         for (RepertoryRecordList recordList : recordLists)
+        {
             recordList.setGoodsImage(mapper.getGoodsImage(recordList.getGoodsId()));
+            recordList.setGoodsCode(mapper.getGoodsCode(recordList.getGoodsId()));
+        }
 
         return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), result));
     }

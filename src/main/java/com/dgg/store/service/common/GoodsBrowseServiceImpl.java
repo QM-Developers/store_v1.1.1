@@ -68,18 +68,6 @@ public class GoodsBrowseServiceImpl implements GoodsBrowseService
     {
         int repertoryLevel = dao.getRepertoryLevel(sessionVO.getUserId(), sessionVO.getMyTeamId());
         pageVO.setPageNum(PagingUtil.getStart(pageVO.getPageNum(), pageVO.getPageSize()));
-
-        if (CustomerConstant.REPERTORY_LEVEL2 != repertoryLevel)
-            return listGoods1(sessionVO, goodsTypeVO, pageVO);
-        else
-            return listGoods2(sessionVO, goodsTypeVO, pageVO);
-    }
-
-    private String listGoods2(SessionVO sessionVO, GoodsTypeVO goodsTypeVO, PageVO pageVO)
-    {
-        int start = PagingUtil.getStart(pageVO.getPageNum(), pageVO.getPageSize());
-        int end = pageVO.getPageSize();
-
         goodsTypeVO.setMyTeamId(sessionVO.getMyTeamId());
         Set<String> childType = null;
         if (!StringUtil.isEmpty(goodsTypeVO.getGoodsTypeId()))
@@ -88,19 +76,34 @@ public class GoodsBrowseServiceImpl implements GoodsBrowseService
             childType.add(goodsTypeVO.getGoodsTypeId());
         }
 
-        int pageCount = dao.countGoodsByType2(goodsTypeVO, childType);
-        List<GoodsInfoVO> result = dao.findGoodsList2(goodsTypeVO, start, end, childType);
+        if (CustomerConstant.REPERTORY_LEVEL2 != repertoryLevel)
+//            return listGoods1(sessionVO, goodsTypeVO, pageVO);
+            return listGoods1(sessionVO, goodsTypeVO, childType, pageVO);
+        else
+            return listGoods2(sessionVO, goodsTypeVO, childType, pageVO);
+    }
+
+    private String listGoods2(SessionVO sessionVO, GoodsTypeVO goodsTypeVO, Set<String> childType, PageVO pageVO)
+    {
+        String branchId = dao.getCurrentBranchId(sessionVO.getUserId());
+        int pageCount = PagingUtil.getCount(dao.countBranchGoods(goodsTypeVO, childType, branchId), pageVO.getPageSize());
+
+        List<GoodsInfoVO> result = dao.listBranchGoods(goodsTypeVO, childType, pageVO, branchId);
+
+        for (GoodsInfoVO info : result)
+            info.setGoodsImages(dao.getGoodsImage(info.getGoodsId()));
 
         JSONObject json = (JSONObject) JSONObject.toJSON(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), result));
-        json.put(KeyConstant.PAGE_COUNT, PagingUtil.getCount(pageCount, end));
+        json.put(KeyConstant.PAGE_COUNT, pageCount);
 
         return json.toJSONString();
     }
 
-
-
-//    private String listGoods1(SessionVO sessionVO, GoodsTypeVO goodsTypeVO, PageVO pageVO)
+//    private String listGoods2(SessionVO sessionVO, GoodsTypeVO goodsTypeVO, PageVO pageVO)
 //    {
+//        int start = PagingUtil.getStart(pageVO.getPageNum(), pageVO.getPageSize());
+//        int end = pageVO.getPageSize();
+//
 //        goodsTypeVO.setMyTeamId(sessionVO.getMyTeamId());
 //        Set<String> childType = null;
 //        if (!StringUtil.isEmpty(goodsTypeVO.getGoodsTypeId()))
@@ -109,42 +112,53 @@ public class GoodsBrowseServiceImpl implements GoodsBrowseService
 //            childType.add(goodsTypeVO.getGoodsTypeId());
 //        }
 //
-//        String branchId = dao.getFirstBranchId(sessionVO.getMyTeamId(), BranchConstant.BRANCH_FIRST);
-//        int pageCount = PagingUtil.getCount(dao.countFirstBranchGoods(goodsTypeVO, childType, branchId), pageVO.getPageSize());
-//        List<GoodsInfoVO> result = dao.listFirstBranchGoods(goodsTypeVO, childType, pageVO);
-//        for (GoodsInfoVO info : result)
-//        {
-//            info.setGoodsImages(dao.getGoodsImage(info.getGoodsId()));
-//            info.setGoodsPrice(dao.getGoodsPrice(info.getGoodsId(), branchId));
-//        }
+//        int pageCount = dao.countGoodsByType2(goodsTypeVO, childType);
+//        List<GoodsInfoVO> result = dao.findGoodsList2(goodsTypeVO, start, end, childType);
 //
 //        JSONObject json = (JSONObject) JSONObject.toJSON(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), result));
-//        json.put(KeyConstant.PAGE_COUNT, pageCount);
+//        json.put(KeyConstant.PAGE_COUNT, PagingUtil.getCount(pageCount, end));
 //
 //        return json.toJSONString();
 //    }
 
-    private String listGoods1(SessionVO sessionVO, GoodsTypeVO goodsTypeVO, PageVO pageVO)
+
+    private String listGoods1(SessionVO sessionVO, GoodsTypeVO goodsTypeVO, Set<String> childType, PageVO pageVO)
     {
-        int start = PagingUtil.getStart(pageVO.getPageNum(), pageVO.getPageSize());
-        int end = pageVO.getPageSize();
+        String branchId = dao.getFirstBranchId(sessionVO.getMyTeamId(), BranchConstant.BRANCH_FIRST);
+        int pageCount = PagingUtil.getCount(dao.countBranchGoods(goodsTypeVO, childType, branchId), pageVO.getPageSize());
 
-        goodsTypeVO.setMyTeamId(sessionVO.getMyTeamId());
-        Set<String> childType = null;
-        if (!StringUtil.isEmpty(goodsTypeVO.getGoodsTypeId()))
-        {
-            childType = findChildTypeId(goodsTypeVO.getGoodsTypeId());
-            childType.add(goodsTypeVO.getGoodsTypeId());
-        }
+        List<GoodsInfoVO> result = dao.listBranchGoods(goodsTypeVO, childType, pageVO, branchId);
 
-        int pageCount = dao.countGoodsByType(goodsTypeVO, childType);
-        List<GoodsInfoVO> result = dao.findGoodsList(goodsTypeVO, start, end, childType);
+        for (GoodsInfoVO info : result)
+            info.setGoodsImages(dao.getGoodsImage(info.getGoodsId()));
 
         JSONObject json = (JSONObject) JSONObject.toJSON(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), result));
-        json.put(KeyConstant.PAGE_COUNT, PagingUtil.getCount(pageCount, end));
+        json.put(KeyConstant.PAGE_COUNT, pageCount);
 
         return json.toJSONString();
     }
+
+//    private String listGoods1(SessionVO sessionVO, GoodsTypeVO goodsTypeVO, PageVO pageVO)
+//    {
+//        int start = PagingUtil.getStart(pageVO.getPageNum(), pageVO.getPageSize());
+//        int end = pageVO.getPageSize();
+//
+//        goodsTypeVO.setMyTeamId(sessionVO.getMyTeamId());
+//        Set<String> childType = null;
+//        if (!StringUtil.isEmpty(goodsTypeVO.getGoodsTypeId()))
+//        {
+//            childType = findChildTypeId(goodsTypeVO.getGoodsTypeId());
+//            childType.add(goodsTypeVO.getGoodsTypeId());
+//        }
+//
+//        int pageCount = dao.countGoodsByType(goodsTypeVO, childType);
+//        List<GoodsInfoVO> result = dao.findGoodsList(goodsTypeVO, start, end, childType);
+//
+//        JSONObject json = (JSONObject) JSONObject.toJSON(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), result));
+//        json.put(KeyConstant.PAGE_COUNT, PagingUtil.getCount(pageCount, end));
+//
+//        return json.toJSONString();
+//    }
 
     private Set<String> findChildTypeId(String typeId)
     {
@@ -161,28 +175,60 @@ public class GoodsBrowseServiceImpl implements GoodsBrowseService
     {
         int repertoryLevel = dao.getRepertoryLevel(sessionVO.getUserId(), sessionVO.getMyTeamId());
         GoodsDetailVO result;
+        String branchId;
 
-        if (CustomerConstant.REPERTORY_LEVEL1 == repertoryLevel)
-            result = dao.findGoodsDetail(goodsDetailVO.getGoodsId());
+        if (CustomerConstant.REPERTORY_LEVEL2 != repertoryLevel)
+            branchId = dao.getFirstBranchId(sessionVO.getMyTeamId(), BranchConstant.BRANCH_FIRST);
         else
-            result = dao.findGoodsDetail_2(goodsDetailVO.getGoodsId(), sessionVO.getUserId());
+            branchId = dao.getCurrentBranchId(sessionVO.getUserId());
+
+        result = dao.getGoodsInfo(goodsDetailVO.getGoodsId());
+        if (result == null)
+            return new ResultVO(Constant.REQUEST_FAILED, sessionVO.getToken());
+
+        result.setStandards(dao.listGoodsStandard(result.getGoodsId(), branchId));
+        result.setGoodsImages(dao.listGoodsImage(result.getGoodsId()));
 
         String images = dao.findGoodsDescribe(goodsDetailVO.getGoodsId());
-        if (result != null)
-        {
-            String[] ids = images.split("\\|");
-            List<String> resultList = new ArrayList<>();
+        String[] ids = images.split(SymbolConstant.REG_VERTICAL);
+        List<String> resultList = new ArrayList<>();
 
-            for (String id : ids)
-                resultList.add(dao.findGoodsDescribeImg(id));
-            result.setDetailImages(resultList);
-        }
+        for (String id : ids)
+            resultList.add(dao.findGoodsDescribeImg(id));
+        result.setDetailImages(resultList);
 
-        result.setGoodsAttr(StringUtil.isEmpty(result.getGoodsAttr()) ? "" : result.getGoodsAttr().split(SymbolConstant.QUESTION)[1]);
-        ResultVO resultVO = new ResultVO(result == null ? 0 : 1, sessionVO.getToken(), result);
+        result.setGoodsAttr(StringUtil.isEmpty(result.getGoodsAttr()) ? Constant.EMPTY : result.getGoodsAttr().split(SymbolConstant.QUESTION)[1]);
 
-        return resultVO;
+        return new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), result);
     }
+
+//    @Override
+//    public ResultVO findGoodsDetail(SessionVO sessionVO, GoodsDetailVO goodsDetailVO)
+//    {
+//        int repertoryLevel = dao.getRepertoryLevel(sessionVO.getUserId(), sessionVO.getMyTeamId());
+//        GoodsDetailVO result;
+//
+//        if (CustomerConstant.REPERTORY_LEVEL2 != repertoryLevel)
+//            result = dao.findGoodsDetail(goodsDetailVO.getGoodsId());
+//        else
+//            result = dao.findGoodsDetail_2(goodsDetailVO.getGoodsId(), sessionVO.getUserId());
+//
+//        String images = dao.findGoodsDescribe(goodsDetailVO.getGoodsId());
+//        if (result != null)
+//        {
+//            String[] ids = images.split("\\|");
+//            List<String> resultList = new ArrayList<>();
+//
+//            for (String id : ids)
+//                resultList.add(dao.findGoodsDescribeImg(id));
+//            result.setDetailImages(resultList);
+//        }
+//
+//        result.setGoodsAttr(StringUtil.isEmpty(result.getGoodsAttr()) ? "" : result.getGoodsAttr().split(SymbolConstant.QUESTION)[1]);
+//        ResultVO resultVO = new ResultVO(result == null ? 0 : 1, sessionVO.getToken(), result);
+//
+//        return resultVO;
+//    }
 
     @Override
     public Object findGoodsDescribe(String goodsId)

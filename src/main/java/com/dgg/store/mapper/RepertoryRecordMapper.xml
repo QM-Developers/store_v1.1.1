@@ -383,4 +383,10 @@
     LIMIT 1
   </select>
 
+  <select id="getGoodsCode" resultType="java.lang.String">
+    SELECT gi.goods_code
+    FROM goodsinfo gi
+    WHERE gi.goods_id = #{goodsId}
+  </select>
+
 </mapper>

@@ -783,6 +783,142 @@ INSERT INTO `image_space` VALUES ('35aa7507390f4ead9d64dc55cc2aa768','10001','/u
 UNLOCK TABLES;
 
 --
+-- Table structure for table `interface_info`
+--
+
+DROP TABLE IF EXISTS `interface_info`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `interface_info` (
+  `info_id` varchar(35) NOT NULL,
+  `info_name` varchar(20) NOT NULL,
+  `info_path` varchar(255) NOT NULL,
+  `info_method` varchar(10) NOT NULL,
+  `into_format` varchar(10) NOT NULL,
+  `info_remark` varchar(255) NOT NULL,
+  `request_example` text,
+  `response_example` text,
+  `type_id` varchar(35) NOT NULL,
+  PRIMARY KEY (`info_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `interface_info`
+--
+
+LOCK TABLES `interface_info` WRITE;
+/*!40000 ALTER TABLE `interface_info` DISABLE KEYS */;
+/*!40000 ALTER TABLE `interface_info` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `interface_request`
+--
+
+DROP TABLE IF EXISTS `interface_request`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `interface_request` (
+  `request_id` varchar(35) NOT NULL,
+  `request_name` varchar(35) NOT NULL,
+  `request_type` varchar(10) NOT NULL,
+  `request_must` varchar(2) NOT NULL,
+  `request_text` varchar(255) NOT NULL,
+  `sort` int(11) DEFAULT NULL,
+  `info_id` varchar(35) NOT NULL,
+  PRIMARY KEY (`request_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `interface_request`
+--
+
+LOCK TABLES `interface_request` WRITE;
+/*!40000 ALTER TABLE `interface_request` DISABLE KEYS */;
+/*!40000 ALTER TABLE `interface_request` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `interface_response`
+--
+
+DROP TABLE IF EXISTS `interface_response`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `interface_response` (
+  `response_id` varchar(35) NOT NULL,
+  `response_name` varchar(35) NOT NULL,
+  `response_type` varchar(10) NOT NULL,
+  `response_text` varchar(255) NOT NULL,
+  `sort` int(11) DEFAULT NULL,
+  `info_id` varchar(35) NOT NULL,
+  PRIMARY KEY (`response_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `interface_response`
+--
+
+LOCK TABLES `interface_response` WRITE;
+/*!40000 ALTER TABLE `interface_response` DISABLE KEYS */;
+/*!40000 ALTER TABLE `interface_response` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `interface_type`
+--
+
+DROP TABLE IF EXISTS `interface_type`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `interface_type` (
+  `type_id` varchar(35) NOT NULL,
+  `type_name` varchar(20) NOT NULL,
+  `type_pid` varchar(35) NOT NULL,
+  PRIMARY KEY (`type_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `interface_type`
+--
+
+LOCK TABLES `interface_type` WRITE;
+/*!40000 ALTER TABLE `interface_type` DISABLE KEYS */;
+INSERT INTO `interface_type` VALUES ('22b63e5b360a4a4ba2cb85cb22b924b1','订单接口','0'),('782c6d1e436a4d829f437c30b81853f9','业务订单(业务管理)','22b63e5b360a4a4ba2cb85cb22b924b1'),('d999883c279a4b2bb71daf4b9d617776','业务订单(业务)','22b63e5b360a4a4ba2cb85cb22b924b1');
+/*!40000 ALTER TABLE `interface_type` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `interface_update`
+--
+
+DROP TABLE IF EXISTS `interface_update`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `interface_update` (
+  `update_id` varchar(35) NOT NULL,
+  `update_date` datetime NOT NULL,
+  `update_text` varchar(255) NOT NULL,
+  `info_id` varchar(35) NOT NULL,
+  `info_name` varchar(20) NOT NULL,
+  PRIMARY KEY (`update_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `interface_update`
+--
+
+LOCK TABLES `interface_update` WRITE;
+/*!40000 ALTER TABLE `interface_update` DISABLE KEYS */;
+/*!40000 ALTER TABLE `interface_update` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `manage_unit`
 --
 
@@ -1701,7 +1837,7 @@ CREATE TABLE `sys_permission` (
 
 LOCK TABLES `sys_permission` WRITE;
 /*!40000 ALTER TABLE `sys_permission` DISABLE KEYS */;
-INSERT INTO `sys_permission` VALUES ('04524cd9bb014ad2a5ac2488df842f26','获取用户列表','/user/list.action','获取管理系统用户列表'),('04bb46e5de5e4bd1b7e46650b3fd3c4a','修改用户','/user/update.action','修改管理系统用户'),('09dba6832eda4dca9a07952f0891a834','添加类目信息','/breed/info/save.action','添加类目信息'),('0b4bb4ec8d1f4d23b4cb2b286966b667','修改青麦权限','/qm/permission/update.action','修改青麦权限'),('0ede55e3b2d148e186b09f5419efe0e8','添加权限','/permission/save.action','添加权限'),('0f22a5546a794b998d42b1e994c92101','添加商品类目','/goods/type/save.action','添加商品类目'),('10bcdfb847fa4592a36766400c0e059c','获取类目选项详情','/breed/select/get.action','获取类目选项详情'),('13de6d6db252417f8270467485c535f8','获取角色详情','/role/get.action','获取角色详情'),('151c37db08994e17aeba2a4352de7331','添加类目选项','/breed/select/save.action','添加类目选项'),('1eddcf39eb1d40d6a5d15e768aba15bb','获取青麦权限列表(树形结构)','/qm/permission/tree.action','获取青麦权限列表(树形结构)'),('2136a7b67d4444b8b971af61c3f8dbb7','拒绝建账申请','/customer/account/updateRefuse.action','拒绝建账申请'),('21d758848934417098f06712f4576962','分配用户角色','/user/updateRole.action','为管理系统用户分配角色'),('277bac6e1e694749a0de6f94cda592ee','获取商品类目列表','/goods/type/list.action','获取商品类目列表'),('278d36a20f86418f83ff10ecb936c842','获取青麦权限详情','/qm/permission/get.action','获取青麦权限详情'),('2bd2494fa32d4e13a354999caf95b7c9','获取商品类目详情','/goods/type/get.action','获取商品类目详情'),('2ea5d11f82fb4acc93984c03c43771ac','获取青麦角色详情','/qm/role/get.action','获取青麦角色详情'),('3545d403b9fa49eeb96daddaf6893d53','获取用户详情','/user/get.action','获取管理系统用户详情'),('36134642493444f2b0e9688d77120957','添加养殖类目','/breed/save.action','添加养殖类目'),('3c7d7535d81544cf90daf2e04a625330','修改角色','/role/update.action','修改角色'),('3cd516b590f44486afa0548a711a3eff','修改客户','/customer/update.action','修改客户'),('3d6857b2144d48ebaf2f9da9983502f1','获取养殖类目列表','/breed/list.action','获取养殖类目列表'),('41a347632e6040ea9e63fc403356d1b9','修改养殖类目','/breed/update.action','修改养殖类目'),('44c9a70bf90048368f6c3488f5e9328f','删除客户','/customer/remove.action','删除客户'),('47f1899e2b1c43b3873e2db979491467','添加青麦角色','/qm/role/save.action','添加青麦角色'),('540fece018e04e23ad9963f5e8a23aa8','修改权限','/permission/update.action','修改权限'),('5e88a0848713449fa3997081ba814093','获取类目选项列表','/breed/select/list.action','获取类目选项列表'),('6a1336ac0c5b48e7b1076b931935d774','添加客户','/customer/save.action','添加客户'),('6c5715c8d8e94ee2a295147e92c91b54','修改密码','/password/update.action','修改当前用户密码'),('715ecfda0de74adf941b58f58eaf832f','删除用户','/user/remove.action','删除管理系统用户'),('7506f51b41f84328919da28fb0fa4a4f','获取类目信息列表','/breed/info/list.action','获取类目信息列表'),('7642bccc89104053acec00b62d4bb096','修改类目选项','/breed/select/update.action','修改类目选项'),('798a71a5729841f4a5b40b8187868df3','添加青麦权限','/qm/permission/save.action','添加青麦权限'),('803249bf57924ae6b784b1a758e5c765','获取客户详情','/customer/get.action','获取客户详情'),('886c3a890fd94afd87fd9b690100a5be','添加用户','/user/save.action','添加管理系统用户'),('90452e97a07e4ed6a6a2d8df9505efd1','获取客户列表','/customer/list.action','获取客户列表'),('9b05e2cac7bd495ebd578e43b1b384c9','同意建账申请','/customer/account/updateAccept.action','同意建账申请'),('9e90f2deb652440ca2ec4333bdcc004a','获取青麦角色列表','/qm/role/list.action','获取青麦角色列表'),('a565948333dd43fabb115496a43b9c63','删除青麦角色','/qm/role/remove.action','删除青麦角色'),('a5749f039cdd4476aab367d5bd596db3','删除类目选项','/breed/select/remove.action','删除类目选项'),('a6898173858242e18b339c08ad992a3e','发起建账申请','/customer/account/save.action','发起建账申请'),('aab8329b4413492aa886323b16dbff9d','申请人获取建账申请列表','/customer/account/listByProposer.action','申请人获取建账申请列表'),('ab4b5469c96c4175a84be1820dfc6810','为角色分配权限','/role/updatePermission.action','为角色分配权限'),('aea0e457dba5454d8329a2e74d95f9cd','删除商品类目','/goods/type/remove.action','删除商品类目'),('b428a4563f234a5fbb1e546b16e481c8','获取角色列表','/role/list.action','获取角色列表'),('bc7c10d04e6b405cb20b1cdd8329f012','修改商品类目','/goods/type/update.action','修改商品类目'),('bcf583cf00354675ac746bb3d7f7941e','审批人获取建账申请列表','/customer/account/listByApprove.action','审批人获取建账申请列表'),('c144e6c34274474ab6cd220b46ef57a5','删除角色','/role/remove.action','删除角色'),('d4ed8ffd0194493cb3e1c49068e1eb0f','为青麦角色分配权限','/qm/role/updatePermission.action','为青麦角色分配权限'),('dd746f116bf14d578ae316b191c10155','删除权限','/permission/remove.action','删除权限'),('df66c381adc948b18d4a17776917585a','获取养殖类目详情','/breed/get.action','获取养殖类目详情'),('e68e8531cc5f4c8fb6d2fb2e5df01d16','获取类目信息详情','/breed/info/get.action','获取类目信息详情'),('eaa70bbc95464dc2b58217989559bf6c','删除养殖类目','/breed/remove.action','删除养殖类目'),('eb6d52bebc0340f6aa3812b3179a0b52','删除青麦权限','/qm/permission/remove.action','删除青麦权限'),('ebfad1d662f34157bdae30bfa2ba711a','获取商品类目列表(树形结构)','/goods/type/tree.action','获取商品类目列表(树形结构)'),('ec7fd292e2184537b93982d09fc60f95','获取权限详情','/permission/get.action','获取权限详情'),('f0141be7c4ab49cb89cd36476b67e59c','获取权限列表','/permission/list.action','获取权限列表'),('f52f610ab0ea42979d891822b47cf9a5','修改青麦角色','/qm/role/update.action','修改青麦角色'),('f5d8cc6501124f5db96430de86a9bf58','修改类目信息','/breed/info/update.action','修改类目信息'),('f620697b12354014a0de6014be601381','添加角色','/role/save.action','添加角色'),('f6a0e211c2184a088995ec1a6c0be9f4','获取青麦权限列表','/qm/permission/list.action','获取青麦权限列表'),('f8fb9d12ba8d4b3c974fd468c8b293f1','删除类目信息','/breed/info/remove.action','删除类目信息');
+INSERT INTO `sys_permission` VALUES ('044bad83cb2f46ed8f0ee8d4cbb974a8','获取接口分类列表(树形结构)','/interface/type/tree.action','获取接口分类列表(树形结构)'),('04524cd9bb014ad2a5ac2488df842f26','获取用户列表','/user/list.action','获取管理系统用户列表'),('04bb46e5de5e4bd1b7e46650b3fd3c4a','修改用户','/user/update.action','修改管理系统用户'),('09dba6832eda4dca9a07952f0891a834','添加类目信息','/breed/info/save.action','添加类目信息'),('0b4bb4ec8d1f4d23b4cb2b286966b667','修改青麦权限','/qm/permission/update.action','修改青麦权限'),('0ede55e3b2d148e186b09f5419efe0e8','添加权限','/permission/save.action','添加权限'),('0f22a5546a794b998d42b1e994c92101','添加商品类目','/goods/type/save.action','添加商品类目'),('0ff252aca946493d817259a0af9f81e2','删除接口分类','/interface/type/remove.action','删除接口分类'),('10bcdfb847fa4592a36766400c0e059c','获取类目选项详情','/breed/select/get.action','获取类目选项详情'),('13de6d6db252417f8270467485c535f8','获取角色详情','/role/get.action','获取角色详情'),('151c37db08994e17aeba2a4352de7331','添加类目选项','/breed/select/save.action','添加类目选项'),('1eddcf39eb1d40d6a5d15e768aba15bb','获取青麦权限列表(树形结构)','/qm/permission/tree.action','获取青麦权限列表(树形结构)'),('2136a7b67d4444b8b971af61c3f8dbb7','拒绝建账申请','/customer/account/updateRefuse.action','拒绝建账申请'),('21d758848934417098f06712f4576962','分配用户角色','/user/updateRole.action','为管理系统用户分配角色'),('277bac6e1e694749a0de6f94cda592ee','获取商品类目列表','/goods/type/list.action','获取商品类目列表'),('278d36a20f86418f83ff10ecb936c842','获取青麦权限详情','/qm/permission/get.action','获取青麦权限详情'),('2bd2494fa32d4e13a354999caf95b7c9','获取商品类目详情','/goods/type/get.action','获取商品类目详情'),('2d31649e17534dbd8137a9816dfee898','添加接口','/interface/save.action','添加接口'),('2ea5d11f82fb4acc93984c03c43771ac','获取青麦角色详情','/qm/role/get.action','获取青麦角色详情'),('3545d403b9fa49eeb96daddaf6893d53','获取用户详情','/user/get.action','获取管理系统用户详情'),('36134642493444f2b0e9688d77120957','添加养殖类目','/breed/save.action','添加养殖类目'),('3c7d7535d81544cf90daf2e04a625330','修改角色','/role/update.action','修改角色'),('3cd516b590f44486afa0548a711a3eff','修改客户','/customer/update.action','修改客户'),('3d6857b2144d48ebaf2f9da9983502f1','获取养殖类目列表','/breed/list.action','获取养殖类目列表'),('403a0055ac324b8cafe6dc163c4d3562','获取接口列表(树形结构)','/interface/tree.action','获取接口列表(树形结构)'),('41a347632e6040ea9e63fc403356d1b9','修改养殖类目','/breed/update.action','修改养殖类目'),('44c9a70bf90048368f6c3488f5e9328f','删除客户','/customer/remove.action','删除客户'),('47f1899e2b1c43b3873e2db979491467','添加青麦角色','/qm/role/save.action','添加青麦角色'),('540fece018e04e23ad9963f5e8a23aa8','修改权限','/permission/update.action','修改权限'),('5e88a0848713449fa3997081ba814093','获取类目选项列表','/breed/select/list.action','获取类目选项列表'),('6a1336ac0c5b48e7b1076b931935d774','添加客户','/customer/save.action','添加客户'),('6c5715c8d8e94ee2a295147e92c91b54','修改密码','/password/update.action','修改当前用户密码'),('715ecfda0de74adf941b58f58eaf832f','删除用户','/user/remove.action','删除管理系统用户'),('7506f51b41f84328919da28fb0fa4a4f','获取类目信息列表','/breed/info/list.action','获取类目信息列表'),('7642bccc89104053acec00b62d4bb096','修改类目选项','/breed/select/update.action','修改类目选项'),('798a71a5729841f4a5b40b8187868df3','添加青麦权限','/qm/permission/save.action','添加青麦权限'),('803249bf57924ae6b784b1a758e5c765','获取客户详情','/customer/get.action','获取客户详情'),('886c3a890fd94afd87fd9b690100a5be','添加用户','/user/save.action','添加管理系统用户'),('90452e97a07e4ed6a6a2d8df9505efd1','获取客户列表','/customer/list.action','获取客户列表'),('9b05e2cac7bd495ebd578e43b1b384c9','同意建账申请','/customer/account/updateAccept.action','同意建账申请'),('9e90f2deb652440ca2ec4333bdcc004a','获取青麦角色列表','/qm/role/list.action','获取青麦角色列表'),('a565948333dd43fabb115496a43b9c63','删除青麦角色','/qm/role/remove.action','删除青麦角色'),('a5749f039cdd4476aab367d5bd596db3','删除类目选项','/breed/select/remove.action','删除类目选项'),('a64499ca1a5c4504acb5bc46e39ef4c4','修改接口分类','/interface/type/update.action','修改接口分类'),('a6898173858242e18b339c08ad992a3e','发起建账申请','/customer/account/save.action','发起建账申请'),('aab8329b4413492aa886323b16dbff9d','申请人获取建账申请列表','/customer/account/listByProposer.action','申请人获取建账申请列表'),('ab4b5469c96c4175a84be1820dfc6810','为角色分配权限','/role/updatePermission.action','为角色分配权限'),('aea0e457dba5454d8329a2e74d95f9cd','删除商品类目','/goods/type/remove.action','删除商品类目'),('b428a4563f234a5fbb1e546b16e481c8','获取角色列表','/role/list.action','获取角色列表'),('bc7c10d04e6b405cb20b1cdd8329f012','修改商品类目','/goods/type/update.action','修改商品类目'),('bcf583cf00354675ac746bb3d7f7941e','审批人获取建账申请列表','/customer/account/listByApprove.action','审批人获取建账申请列表'),('c144e6c34274474ab6cd220b46ef57a5','删除角色','/role/remove.action','删除角色'),('d4ed8ffd0194493cb3e1c49068e1eb0f','为青麦角色分配权限','/qm/role/updatePermission.action','为青麦角色分配权限'),('d61edaa550b44f3b87a4951d1b27c571','添加接口分类','/interface/type/save.action','添加接口分类'),('dd746f116bf14d578ae316b191c10155','删除权限','/permission/remove.action','删除权限'),('df66c381adc948b18d4a17776917585a','获取养殖类目详情','/breed/get.action','获取养殖类目详情'),('e68e8531cc5f4c8fb6d2fb2e5df01d16','获取类目信息详情','/breed/info/get.action','获取类目信息详情'),('eaa70bbc95464dc2b58217989559bf6c','删除养殖类目','/breed/remove.action','删除养殖类目'),('eb6d52bebc0340f6aa3812b3179a0b52','删除青麦权限','/qm/permission/remove.action','删除青麦权限'),('ebfad1d662f34157bdae30bfa2ba711a','获取商品类目列表(树形结构)','/goods/type/tree.action','获取商品类目列表(树形结构)'),('ec7fd292e2184537b93982d09fc60f95','获取权限详情','/permission/get.action','获取权限详情'),('f0141be7c4ab49cb89cd36476b67e59c','获取权限列表','/permission/list.action','获取权限列表'),('f52f610ab0ea42979d891822b47cf9a5','修改青麦角色','/qm/role/update.action','修改青麦角色'),('f5d8cc6501124f5db96430de86a9bf58','修改类目信息','/breed/info/update.action','修改类目信息'),('f620697b12354014a0de6014be601381','添加角色','/role/save.action','添加角色'),('f6a0e211c2184a088995ec1a6c0be9f4','获取青麦权限列表','/qm/permission/list.action','获取青麦权限列表'),('f8fb9d12ba8d4b3c974fd468c8b293f1','删除类目信息','/breed/info/remove.action','删除类目信息');
 /*!40000 ALTER TABLE `sys_permission` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1749,7 +1885,7 @@ CREATE TABLE `sys_role_permission_re` (
 
 LOCK TABLES `sys_role_permission_re` WRITE;
 /*!40000 ALTER TABLE `sys_role_permission_re` DISABLE KEYS */;
-INSERT INTO `sys_role_permission_re` VALUES ('b03407084ffe4f05b04d80992e5a7362','8821044b28b040e5972167e53704da9e'),('super','df66c381adc948b18d4a17776917585a'),('super','e68e8531cc5f4c8fb6d2fb2e5df01d16'),('super','7506f51b41f84328919da28fb0fa4a4f'),('super','f8fb9d12ba8d4b3c974fd468c8b293f1'),('super','09dba6832eda4dca9a07952f0891a834'),('super','f5d8cc6501124f5db96430de86a9bf58'),('super','3d6857b2144d48ebaf2f9da9983502f1'),('super','eaa70bbc95464dc2b58217989559bf6c'),('super','36134642493444f2b0e9688d77120957'),('super','10bcdfb847fa4592a36766400c0e059c'),('super','5e88a0848713449fa3997081ba814093'),('super','a5749f039cdd4476aab367d5bd596db3'),('super','151c37db08994e17aeba2a4352de7331'),('super','7642bccc89104053acec00b62d4bb096'),('super','41a347632e6040ea9e63fc403356d1b9'),('super','bcf583cf00354675ac746bb3d7f7941e'),('super','aab8329b4413492aa886323b16dbff9d'),('super','a6898173858242e18b339c08ad992a3e'),('super','9b05e2cac7bd495ebd578e43b1b384c9'),('super','2136a7b67d4444b8b971af61c3f8dbb7'),('super','803249bf57924ae6b784b1a758e5c765'),('super','90452e97a07e4ed6a6a2d8df9505efd1'),('super','44c9a70bf90048368f6c3488f5e9328f'),('super','6a1336ac0c5b48e7b1076b931935d774'),('super','3cd516b590f44486afa0548a711a3eff'),('super','2bd2494fa32d4e13a354999caf95b7c9'),('super','277bac6e1e694749a0de6f94cda592ee'),('super','aea0e457dba5454d8329a2e74d95f9cd'),('super','0f22a5546a794b998d42b1e994c92101'),('super','ebfad1d662f34157bdae30bfa2ba711a'),('super','bc7c10d04e6b405cb20b1cdd8329f012'),('super','6c5715c8d8e94ee2a295147e92c91b54'),('super','ec7fd292e2184537b93982d09fc60f95'),('super','f0141be7c4ab49cb89cd36476b67e59c'),('super','dd746f116bf14d578ae316b191c10155'),('super','0ede55e3b2d148e186b09f5419efe0e8'),('super','540fece018e04e23ad9963f5e8a23aa8'),('super','278d36a20f86418f83ff10ecb936c842'),('super','f6a0e211c2184a088995ec1a6c0be9f4'),('super','eb6d52bebc0340f6aa3812b3179a0b52'),('super','798a71a5729841f4a5b40b8187868df3'),('super','1eddcf39eb1d40d6a5d15e768aba15bb'),('super','0b4bb4ec8d1f4d23b4cb2b286966b667'),('super','2ea5d11f82fb4acc93984c03c43771ac'),('super','9e90f2deb652440ca2ec4333bdcc004a'),('super','a565948333dd43fabb115496a43b9c63'),('super','47f1899e2b1c43b3873e2db979491467'),('super','f52f610ab0ea42979d891822b47cf9a5'),('super','d4ed8ffd0194493cb3e1c49068e1eb0f'),('super','13de6d6db252417f8270467485c535f8'),('super','b428a4563f234a5fbb1e546b16e481c8'),('super','c144e6c34274474ab6cd220b46ef57a5'),('super','f620697b12354014a0de6014be601381'),('super','3c7d7535d81544cf90daf2e04a625330'),('super','ab4b5469c96c4175a84be1820dfc6810'),('super','3545d403b9fa49eeb96daddaf6893d53'),('super','04524cd9bb014ad2a5ac2488df842f26'),('super','715ecfda0de74adf941b58f58eaf832f'),('super','886c3a890fd94afd87fd9b690100a5be'),('super','04bb46e5de5e4bd1b7e46650b3fd3c4a'),('super','21d758848934417098f06712f4576962');
+INSERT INTO `sys_role_permission_re` VALUES ('b03407084ffe4f05b04d80992e5a7362','8821044b28b040e5972167e53704da9e'),('super','df66c381adc948b18d4a17776917585a'),('super','e68e8531cc5f4c8fb6d2fb2e5df01d16'),('super','7506f51b41f84328919da28fb0fa4a4f'),('super','f8fb9d12ba8d4b3c974fd468c8b293f1'),('super','09dba6832eda4dca9a07952f0891a834'),('super','f5d8cc6501124f5db96430de86a9bf58'),('super','3d6857b2144d48ebaf2f9da9983502f1'),('super','eaa70bbc95464dc2b58217989559bf6c'),('super','36134642493444f2b0e9688d77120957'),('super','10bcdfb847fa4592a36766400c0e059c'),('super','5e88a0848713449fa3997081ba814093'),('super','a5749f039cdd4476aab367d5bd596db3'),('super','151c37db08994e17aeba2a4352de7331'),('super','7642bccc89104053acec00b62d4bb096'),('super','41a347632e6040ea9e63fc403356d1b9'),('super','bcf583cf00354675ac746bb3d7f7941e'),('super','aab8329b4413492aa886323b16dbff9d'),('super','a6898173858242e18b339c08ad992a3e'),('super','9b05e2cac7bd495ebd578e43b1b384c9'),('super','2136a7b67d4444b8b971af61c3f8dbb7'),('super','803249bf57924ae6b784b1a758e5c765'),('super','90452e97a07e4ed6a6a2d8df9505efd1'),('super','44c9a70bf90048368f6c3488f5e9328f'),('super','6a1336ac0c5b48e7b1076b931935d774'),('super','3cd516b590f44486afa0548a711a3eff'),('super','2bd2494fa32d4e13a354999caf95b7c9'),('super','277bac6e1e694749a0de6f94cda592ee'),('super','aea0e457dba5454d8329a2e74d95f9cd'),('super','0f22a5546a794b998d42b1e994c92101'),('super','ebfad1d662f34157bdae30bfa2ba711a'),('super','bc7c10d04e6b405cb20b1cdd8329f012'),('super','2d31649e17534dbd8137a9816dfee898'),('super','403a0055ac324b8cafe6dc163c4d3562'),('super','0ff252aca946493d817259a0af9f81e2'),('super','d61edaa550b44f3b87a4951d1b27c571'),('super','044bad83cb2f46ed8f0ee8d4cbb974a8'),('super','a64499ca1a5c4504acb5bc46e39ef4c4'),('super','6c5715c8d8e94ee2a295147e92c91b54'),('super','ec7fd292e2184537b93982d09fc60f95'),('super','f0141be7c4ab49cb89cd36476b67e59c'),('super','dd746f116bf14d578ae316b191c10155'),('super','0ede55e3b2d148e186b09f5419efe0e8'),('super','540fece018e04e23ad9963f5e8a23aa8'),('super','278d36a20f86418f83ff10ecb936c842'),('super','f6a0e211c2184a088995ec1a6c0be9f4'),('super','eb6d52bebc0340f6aa3812b3179a0b52'),('super','798a71a5729841f4a5b40b8187868df3'),('super','1eddcf39eb1d40d6a5d15e768aba15bb'),('super','0b4bb4ec8d1f4d23b4cb2b286966b667'),('super','2ea5d11f82fb4acc93984c03c43771ac'),('super','9e90f2deb652440ca2ec4333bdcc004a'),('super','a565948333dd43fabb115496a43b9c63'),('super','47f1899e2b1c43b3873e2db979491467'),('super','f52f610ab0ea42979d891822b47cf9a5'),('super','d4ed8ffd0194493cb3e1c49068e1eb0f'),('super','13de6d6db252417f8270467485c535f8'),('super','b428a4563f234a5fbb1e546b16e481c8'),('super','c144e6c34274474ab6cd220b46ef57a5'),('super','f620697b12354014a0de6014be601381'),('super','3c7d7535d81544cf90daf2e04a625330'),('super','ab4b5469c96c4175a84be1820dfc6810'),('super','3545d403b9fa49eeb96daddaf6893d53'),('super','04524cd9bb014ad2a5ac2488df842f26'),('super','715ecfda0de74adf941b58f58eaf832f'),('super','886c3a890fd94afd87fd9b690100a5be'),('super','04bb46e5de5e4bd1b7e46650b3fd3c4a'),('super','21d758848934417098f06712f4576962');
 /*!40000 ALTER TABLE `sys_role_permission_re` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2369,4 +2505,4 @@ SET character_set_client = @saved_cs_client;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-10-13 18:39:13
+-- Dump completed on 2017-10-14 18:35:13

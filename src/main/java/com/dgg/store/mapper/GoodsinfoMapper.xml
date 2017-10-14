@@ -110,6 +110,7 @@
 
     <select id="findGoodsList" resultMap="GoodsInfoVO">
         SELECT gi.goods_id,gi.goods_name,gi.goods_create_date,
+        gi.goods_code,
         gt.goods_type_name
         FROM goodsinfo gi
         INNER JOIN goods_typeinfo gt
@@ -128,7 +129,8 @@
     </select>
 
     <select id="listStandards" resultMap="GoodsStandard">
-        SELECT gs.standard_name,gs.standard_price,gs.standard_count
+        SELECT gs.standard_id, gs.standard_name,gs.standard_price,
+           gs.standard_count
         FROM goods_standard gs
         WHERE gs.goods_id = #{goodsId}
     </select>

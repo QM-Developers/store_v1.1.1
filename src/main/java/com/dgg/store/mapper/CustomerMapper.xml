@@ -46,7 +46,7 @@
         user_card_front,user_card_back,user_card_hand)
         VALUES
         (#{userId},#{myTeamId},#{userName},#{userPhone},
-        #{userBirthday},#{userAddress},#{userSex},
+        #{userBirthday2},#{userAddress},#{userSex},
         #{userStatus},#{roleId},#{userCreateDate},
         #{userCardFront},#{userCardBack},#{userCardHand})
     </insert>
@@ -64,9 +64,10 @@
     <select id="listCustomer" resultMap="CustomerVO">
         SELECT c.customer_id,c.business_address,c.credit_rating,
         c.customer_type,c.station,c.had_account,
-        u.user_name,u.user_phone,u.user_birthday,
+        u.user_name,u.user_phone,
         u.user_address,u.user_sex,u.user_img,
-        u.user_id
+        u.user_id,
+        IFNULL(u.user_birthday,"") user_birthday
         FROM customer c
         INNER JOIN user_view u
         ON u.user_id = c.user_id
@@ -104,7 +105,7 @@
                 user_sex = #{userSex},
             </if>
             <if test="userBirthday != null">
-                user_birthday = #{userBirthday},
+                user_birthday = #{userBirthday2},
             </if>
             <if test="userAddress != null">
                 user_address = #{userAddress},
@@ -130,7 +131,7 @@
                 user_sex = #{userSex},
             </if>
             <if test="userBirthday != null">
-                user_birthday = #{userBirthday},
+                user_birthday = #{userBirthday2},
             </if>
             <if test="userAddress != null">
                 user_address = #{userAddress},
@@ -170,10 +171,11 @@
         SELECT c.customer_id,c.customer_type,c.had_account,
             c.credit_rating,c.business_address,c.station,
             c.update_count,c.update_date,
-            u.user_name,u.user_phone,u.user_birthday,
+            u.user_name,u.user_phone,
             u.user_address,u.user_sex,u.user_create_date,
             u.user_card_front,u.user_card_back,u.user_card_hand,
-            u.user_img
+            u.user_img,
+            IFNULL(u.user_birthday,"") user_birthday
         FROM customer c
         INNER JOIN user_view u
         ON u.user_id = c.user_id
@@ -223,7 +225,8 @@
         AND cr.customer_type = #{customerType}
     </select>
 
-    <select id="countRepertoryLevel" resultType="java.lang.Integer" parameterType="com.dgg.store.util.vo.customer.CustomerRepertoryVO">
+    <select id="countRepertoryLevel" resultType="java.lang.Integer"
+            parameterType="com.dgg.store.util.vo.customer.CustomerRepertoryVO">
         SELECT COUNT(0)
         FROM customer_repertory cr
         WHERE cr.my_team_id = #{myTeamId}
@@ -238,16 +241,20 @@
     </insert>
 
     <select id="listMerchandiserFirst" parameterType="com.dgg.store.util.vo.customer.CustomerVO" resultMap="CustomerVO">
-        SELECT t1.user_id ,t1.user_name
+        SELECT t1.user_id ,t1.user_name,t1.user_img
         FROM
-        (SELECT u.user_id,u.user_name,u.my_team_id,qpr.permission_id,u.team_department_id
+        (SELECT u.user_id,u.user_name,u.my_team_id,
+            u.team_department_id,u.user_img,
+            qpr.permission_id
         FROM user u
         INNER JOIN position_permission_re ppr
         ON ppr.position_id = u.position_id
         INNER JOIN qm_permission_re qpr
         ON qpr.qm_permission_id = ppr.qm_permission_id
         UNION
-        SELECT u.user_id,u.user_name,u.my_team_id,qpr.permission_id,u.team_department_id
+        SELECT u.user_id,u.user_name,u.my_team_id,
+            u.team_department_id,u.user_img,
+            qpr.permission_id
         FROM user u
         INNER JOIN user_qm_permission_re uqpr
         ON uqpr.user_id = u.user_id
@@ -263,16 +270,20 @@
     </select>
 
     <select id="listMerchandiserSecond" parameterType="com.dgg.store.util.vo.customer.CustomerVO" resultMap="CustomerVO">
-        SELECT t1.user_id ,t1.user_name
+        SELECT t1.user_id ,t1.user_name,t1.user_img
         FROM
-        (SELECT u.user_id,u.user_name,u.my_team_id,qpr.permission_id,u.team_department_id
+        (SELECT u.user_id,u.user_name,u.my_team_id,
+            u.team_department_id,u.user_img,
+            qpr.permission_id
         FROM user u
         INNER JOIN position_permission_re ppr
         ON ppr.position_id = u.position_id
         INNER JOIN qm_permission_re qpr
         ON qpr.qm_permission_id = ppr.qm_permission_id
         UNION
-        SELECT u.user_id,u.user_name,u.my_team_id,qpr.permission_id,u.team_department_id
+        SELECT u.user_id,u.user_name,u.my_team_id,
+            u.team_department_id,u.user_img,
+            qpr.permission_id
         FROM user u
         INNER JOIN user_qm_permission_re uqpr
         ON uqpr.user_id = u.user_id
@@ -286,16 +297,20 @@
     </select>
 
     <select id="listAccountChecker" resultMap="CustomerVO">
-        SELECT t1.user_id ,t1.user_name
+        SELECT t1.user_id ,t1.user_name,t1.user_img
         FROM
-        (SELECT u.user_id,u.user_name,u.my_team_id,qpr.permission_id,u.team_department_id
+        (SELECT u.user_id,u.user_name,u.my_team_id,
+            u.team_department_id,u.user_img,
+            qpr.permission_id
         FROM user u
         INNER JOIN position_permission_re ppr
         ON ppr.position_id = u.position_id
         INNER JOIN qm_permission_re qpr
         ON qpr.qm_permission_id = ppr.qm_permission_id
         UNION
-        SELECT u.user_id,u.user_name,u.my_team_id,qpr.permission_id,u.team_department_id
+        SELECT u.user_id,u.user_name,u.my_team_id,
+            u.team_department_id,u.user_img,
+            qpr.permission_id
         FROM user u
         INNER JOIN user_qm_permission_re uqpr
         ON uqpr.user_id = u.user_id
@@ -386,4 +401,26 @@
         DELETE FROM user
         WHERE user_id = (SELECT user_id FROM customer WHERE customer_id = #{customerId})
     </delete>
+
+    <select id="countCustomerAccount" resultType="java.lang.Integer">
+        SELECT COUNT(0)
+        FROM user
+        WHERE user_phone =
+        (SELECT user_phone
+        FROM user_view uv
+        INNER JOIN customer c
+        ON c.user_id = uv.user_id
+        WHERE c.customer_id = #{customerId})
+        AND my_team_id = #{myTeamId}
+    </select>
+
+    <select id="getCustomerExist" resultType="java.lang.Integer">
+        SELECT COUNT(0)
+        FROM customer c
+        INNER JOIN user_view u
+        ON u.user_id = c.user_id
+        WHERE c.promoter_id = #{userId}
+        AND u.user_phone = #{userPhone}
+        AND c.my_team_id = #{myTeamId}
+    </select>
 </mapper>

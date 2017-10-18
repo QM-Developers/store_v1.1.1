@@ -389,4 +389,23 @@
     WHERE gi.goods_id = #{goodsId}
   </select>
 
+  <select id="getStandardCount" resultType="java.lang.Integer">
+    SELECT IFNULL(MAX(qbg.standard_count),0)
+    FROM qm_branch_goods qbg
+    WHERE qbg.branch_id =
+    (SELECT branch_id
+    FROM qm_branch
+    WHERE my_team_id = #{myTeamId}
+    AND branch_type = #{branchType}
+    LIMIT 1)
+    AND qbg.standard_id = #{standardId}
+  </select>
+
+  <select id="getCurrentBranchId" resultType="java.lang.String">
+    SELECT qb.branch_id
+    FROM qm_branch qb
+    INNER JOIN user u
+    ON u.team_department_id = qb.department_id
+    WHERE u.user_id = #{userId}
+  </select>
 </mapper>

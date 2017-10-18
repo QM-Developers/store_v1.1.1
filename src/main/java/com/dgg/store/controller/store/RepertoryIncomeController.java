@@ -51,4 +51,13 @@ public class RepertoryIncomeController
         return service.getRepertoryIncome(sessionVO, income);
     }
 
+    @RequestMapping(value = "/s/listCurrentRepertoryIncome", method = POST, produces = {RequestConstant.CONTENT_TYPE})
+    @ResponseBody
+    public String listCurrentRepertoryIncome(HttpServletRequest request, RepertoryIncome income, PageVO pageVO)
+    {
+        SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
+
+        return service.listCurrentRepertoryIncome(sessionVO, income,pageVO);
+    }
+
 }

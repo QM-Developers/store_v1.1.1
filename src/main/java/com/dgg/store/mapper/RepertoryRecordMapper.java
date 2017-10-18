@@ -46,4 +46,8 @@ public interface RepertoryRecordMapper
     int insertBranchGoods(@Param("goods") RepertoryRecordList list,@Param("branchId") String branchId);
 
     int branchGoodsExists(@Param("branchId") String branchId,@Param("standardId") String standardId);
+
+    int getStandardCount(@Param("standardId") String standardId,@Param("myTeamId") String myTeamId,@Param("branchType") byte branchFirst);
+
+    String getCurrentBranchId(String userId);
 }

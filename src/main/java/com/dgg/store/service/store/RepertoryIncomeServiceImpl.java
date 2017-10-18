@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.dgg.store.mapper.RepertoryIncomeListMapper;
 import com.dgg.store.mapper.RepertoryIncomeMapper;
+import com.dgg.store.util.core.constant.BranchConstant;
 import com.dgg.store.util.core.constant.Constant;
 import com.dgg.store.util.core.constant.KeyConstant;
 import com.dgg.store.util.core.generator.IDGenerator;
@@ -85,20 +86,7 @@ public class RepertoryIncomeServiceImpl implements RepertoryIncomeService
         int pageCount = PagingUtil.getCount((int) mapper.countByExample(example), pageVO.getPageSize());
 
         List<RepertoryIncome> result = mapper.selectByExample(example);
-        for (RepertoryIncome r : result)
-        {
-            RepertoryIncomeListExample listExample = new RepertoryIncomeListExample();
-            RepertoryIncomeListExample.Criteria listCriteria = listExample.createCriteria();
-
-            listCriteria.andRecordIdEqualTo(r.getRecordId());
-
-            List<RepertoryIncomeList> incomeLists = getGoodsImage(listMapper.selectByExample(listExample));
-            for (RepertoryIncomeList list : incomeLists)
-                list.setGoodsCode(mapper.getGoodsCode(list.getGoodsId()));
-//            incomeLists = dataTransform(incomeLists);
-
-            r.setIncomeList(incomeLists);
-        }
+        result = getIncome(sessionVO,result);
 
         JSONObject json = (JSONObject) JSONObject.toJSON(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), result));
         json.put(KeyConstant.PAGE_COUNT, pageCount);
@@ -166,11 +154,70 @@ public class RepertoryIncomeServiceImpl implements RepertoryIncomeService
 
         List<RepertoryIncomeList> incomeLists = getGoodsImage(listMapper.selectByExample(listExample));
         for (RepertoryIncomeList list : incomeLists)
+        {
             list.setGoodsCode(mapper.getGoodsCode(list.getGoodsId()));
+            list.setCurrentCount(mapper.getStandardCount(list.getStandardId(), sessionVO.getMyTeamId(), BranchConstant.BRANCH_FIRST));
+            list.setGoodsType(mapper.getGoodsType(list.getGoodsId()));
+        }
 
         result.setIncomeList(incomeLists);
 
         return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), result));
+    }
+
+    @Override
+    public String listCurrentRepertoryIncome(SessionVO sessionVO, RepertoryIncome income, PageVO pageVO)
+    {
+        if (ParameterUtil.objectIsNull(pageVO))
+            return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_FAILED, sessionVO.getToken()));
+
+        String branchId = mapper.getCurrentBranchId(sessionVO.getUserId());
+        if (branchId == null)
+            return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_FAILED, sessionVO.getToken()));
+
+        income.setBranchId(branchId);
+        RepertoryIncomeExample example = new RepertoryIncomeExample();
+        RepertoryIncomeExample.Criteria criteria = example.createCriteria();
+
+        if (income.getCreateDate() != null && income.getFinishDate() != null)
+            criteria.andCreateDateBetween(income.getCreateDate(), income.getFinishDate());
+
+        example.setPageNum(PagingUtil.getStart(pageVO.getPageNum(), pageVO.getPageSize()));
+        example.setPageSize(pageVO.getPageSize());
+        criteria.andBranchIdEqualTo(income.getBranchId());
+
+        int pageCount = PagingUtil.getCount((int) mapper.countByExample(example), pageVO.getPageSize());
+
+        List<RepertoryIncome> result = mapper.selectByExample(example);
+        result = getIncome(sessionVO,result);
+
+        JSONObject json = (JSONObject) JSONObject.toJSON(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), result));
+        json.put(KeyConstant.PAGE_COUNT, pageCount);
+
+        return json.toJSONString();
+    }
+
+    private List<RepertoryIncome> getIncome(SessionVO sessionVO, List<RepertoryIncome> result)
+    {
+        for (RepertoryIncome r : result)
+        {
+            RepertoryIncomeListExample listExample = new RepertoryIncomeListExample();
+            RepertoryIncomeListExample.Criteria listCriteria = listExample.createCriteria();
+
+            listCriteria.andRecordIdEqualTo(r.getRecordId());
+
+            List<RepertoryIncomeList> incomeLists = getGoodsImage(listMapper.selectByExample(listExample));
+            for (RepertoryIncomeList list : incomeLists)
+            {
+                list.setGoodsCode(mapper.getGoodsCode(list.getGoodsId()));
+                list.setCurrentCount(mapper.getStandardCount(list.getStandardId(), sessionVO.getMyTeamId(), BranchConstant.BRANCH_FIRST));
+                list.setGoodsType(mapper.getGoodsType(list.getGoodsId()));
+            }
+//            incomeLists = dataTransform(incomeLists);
+
+            r.setIncomeList(incomeLists);
+        }
+        return result;
     }
 
     private String getRecordCode(int i, String branchId)

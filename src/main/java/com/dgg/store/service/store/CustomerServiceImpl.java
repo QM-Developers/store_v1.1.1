@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.dgg.store.dao.store.CustomerDao;
 import com.dgg.store.mapper.PushMessageMapper;
 import com.dgg.store.util.core.constant.*;
+import com.dgg.store.util.core.date.DateUtil;
 import com.dgg.store.util.core.generator.IDGenerator;
 import com.dgg.store.util.core.page.PagingUtil;
 import com.dgg.store.util.core.parameter.ParameterUtil;
@@ -33,11 +34,14 @@ public class CustomerServiceImpl implements CustomerService
     private CustomerDao dao;
 
     @Autowired
-    private PushMessageMapper mapper;
+    private PushMessageMapper pushMapper;
 
     @Override
     public String insertCustomerRecord(CustomerVO customerVO, SessionVO sessionVO)
     {
+        if (dao.getCustomerExist(customerVO.getUserPhone(), sessionVO.getMyTeamId(), sessionVO.getUserId()) > 0)
+            return JSONObject.toJSONString(new ResultVO(3, sessionVO.getToken()));
+
         Integer result = 1;
         int i = 0;
         int count = 2;
@@ -58,6 +62,8 @@ public class CustomerServiceImpl implements CustomerService
                     customerVO.setUserAddress(customerVO.getUserAddress() == null ? Constant.EMPTY : customerVO.getUserAddress());
                     customerVO.setUserSex(ParameterUtil.getDefault(customerVO.getUserSex(), Constant.EMPTY));
                     customerVO.setCreditRating(ParameterUtil.getDefault(customerVO.getCreditRating(), 0));
+                    if (!StringUtil.isEmpty(customerVO.getUserBirthday()))
+                        customerVO.setUserBirthday2(DateUtil.strToDate(customerVO.getUserBirthday()));
                     result = dao.insertCustomerRecord(customerVO);
                     break;
                 case 1:
@@ -109,6 +115,9 @@ public class CustomerServiceImpl implements CustomerService
         Integer result = 1;
         int i = 0;
         int count = 2;
+
+        if (!StringUtil.isEmpty(customerVO.getUserBirthday()))
+            customerVO.setUserBirthday2(DateUtil.strToDate(customerVO.getUserBirthday()));
 
         while (result > 0)
         {
@@ -259,6 +268,9 @@ public class CustomerServiceImpl implements CustomerService
     @Override
     public String insertCustomerAccount(SessionVO sessionVO, CustomerAccountRequest accountRequest)
     {
+        if (dao.countCustomerAccount(accountRequest.getCustomerId(), sessionVO.getMyTeamId()) > 0)
+            return JSONObject.toJSONString(new ResultVO(3, sessionVO.getToken()));
+
         accountRequest.setProposerId(sessionVO.getUserId());
         accountRequest.setRequestId(IDGenerator.generator());
         accountRequest.setRequestStatus(CustomerConstant.ACCOUNT_STATUS_REQUEST);
@@ -270,7 +282,7 @@ public class CustomerServiceImpl implements CustomerService
 
         int result = dao.insertCustomerAccount(accountRequest);
 
-        UMengUtil.sendUnicast(dao.getDeviceToken(accountRequest.getMerchandiserId()), PushMessageFactory.getInstance(mapper).get(PushMessageConstant.CUSTOMER_NEW));
+        UMengUtil.sendUnicast(dao.getDeviceToken(accountRequest.getMerchandiserId()), PushMessageFactory.getInstance(pushMapper).get(PushMessageConstant.CUSTOMER_NEW));
 
         return JSONObject.toJSONString(new ResultVO(result < 1 ? Constant.REQUEST_FAILED : Constant.REQUEST_SUCCESS, sessionVO.getToken(), accountRequest.getRequestId()));
     }
@@ -314,7 +326,7 @@ public class CustomerServiceImpl implements CustomerService
         if (index < 4)
             throw new RuntimeException(Constant.STR_ADD_FAILED);
 
-        UMengUtil.sendUnicast(dao.getDeviceToken(accountRequest.getProposerId()), PushMessageFactory.getInstance(mapper).get(PushMessageConstant.CUSTOMER_PASS));
+        UMengUtil.sendUnicast(dao.getDeviceToken(accountRequest.getProposerId()), PushMessageFactory.getInstance(pushMapper).get(PushMessageConstant.CUSTOMER_PASS));
 
         return JSONObject.toJSONString(new ResultVO(result, sessionVO.getToken()));
     }
@@ -338,7 +350,7 @@ public class CustomerServiceImpl implements CustomerService
         accountRequest.setRequestStatus(CustomerConstant.ACCOUNT_STATUS_REFUSE);
         int result = dao.updateCustomerAccountById(accountRequest);
 
-        UMengUtil.sendUnicast(dao.getDeviceToken(accountRequest.getProposerId()), PushMessageFactory.getInstance(mapper).get(PushMessageConstant.CUSTOMER_REFUSE));
+        UMengUtil.sendUnicast(dao.getDeviceToken(accountRequest.getProposerId()), PushMessageFactory.getInstance(pushMapper).get(PushMessageConstant.CUSTOMER_REFUSE));
 
         return JSONObject.toJSONString(new ResultVO(result < 1 ? Constant.REQUEST_FAILED : Constant.REQUEST_SUCCESS, sessionVO.getToken()));
     }

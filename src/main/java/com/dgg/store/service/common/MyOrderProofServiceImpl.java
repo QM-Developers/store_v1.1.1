@@ -3,10 +3,7 @@ package com.dgg.store.service.common;
 import com.alibaba.fastjson.JSONObject;
 import com.dgg.store.mapper.MyOrderProofMapper;
 import com.dgg.store.util.core.FilePathUtil;
-import com.dgg.store.util.core.constant.Constant;
-import com.dgg.store.util.core.constant.KeyConstant;
-import com.dgg.store.util.core.constant.PathConstant;
-import com.dgg.store.util.core.constant.SymbolConstant;
+import com.dgg.store.util.core.constant.*;
 import com.dgg.store.util.core.generator.IDGenerator;
 import com.dgg.store.util.core.page.PagingUtil;
 import com.dgg.store.util.core.parameter.ParameterUtil;
@@ -50,13 +47,32 @@ public class MyOrderProofServiceImpl implements MyOrderProofService
             realPath = FilePathUtil.getPrevPath(realPath, Constant.PATH_LEVEL);
             fileName = UploadFileUtil.doUpload(file, path.toString(), realPath, IDGenerator.generator());
             proof.setProofUrl(fileName);
-            result = mapper.insert(proof) > 0 ? Constant.REQUEST_SUCCESS : Constant.REQUEST_FAILED;
         } catch (IOException e)
         {
             e.printStackTrace();
         }
+        updateOrderStatus(proof);
+        result = mapper.insert(proof) > 0 ? Constant.REQUEST_SUCCESS : Constant.REQUEST_FAILED;
 
         return JSONObject.toJSONString(new ResultVO(result, sessionVO.getToken(), proof.getProofUrl()));
+    }
+
+    private void updateOrderStatus(MyOrderProof proof)
+    {
+        int status = mapper.getOrderStatus(proof.getOrderId());
+        switch (status)
+        {
+            case OrderConstant.FINANCE_CHECK_FAIL_A:
+                if (mapper.updateOrderStatus(proof.getOrderId(), OrderConstant.WAITING_FINANCE_CHECK_A) < 1)
+                    throw new RuntimeException(Constant.STR_ADD_FAILED);
+                break;
+            case OrderConstant.FINANCE_CHECK_FAIL_B:
+                if (mapper.updateOrderStatus(proof.getOrderId(), OrderConstant.WAITING_FINANCE_CHECK_A) < 1)
+                    throw new RuntimeException(Constant.STR_ADD_FAILED);
+                break;
+            default:
+                break;
+        }
     }
 
     @Override

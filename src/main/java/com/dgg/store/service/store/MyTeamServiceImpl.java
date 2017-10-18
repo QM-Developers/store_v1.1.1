@@ -84,4 +84,12 @@ public class MyTeamServiceImpl implements MyTeamService
         return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), result));
     }
 
+    @Override
+    public String listAllMember(SessionVO sessionVO)
+    {
+        List<MemberVO> result = dao.listAllMember(sessionVO.getMyTeamId());
+
+        return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), result));
+    }
+
 }

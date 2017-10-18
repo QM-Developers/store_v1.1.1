@@ -38,4 +38,10 @@ public class MyTeamDaoImpl implements MyTeamDao
     {
         return mapper.listTeamDepartment(myTeamId);
     }
+
+    @Override
+    public List<MemberVO> listAllMember(String myTeamId)
+    {
+        return mapper.listAllMember(myTeamId);
+    }
 }

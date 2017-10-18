@@ -13,7 +13,7 @@ public interface GoodsBrowseService
 
     String findGoodsList(SessionVO sessionVO, GoodsTypeVO goodsTypeVO, PageVO pageVO);
 
-    ResultVO findGoodsDetail(SessionVO sessionVO, GoodsDetailVO goodsDetailVO);
+    String findGoodsDetail(SessionVO sessionVO, GoodsDetailVO goodsDetailVO);
 
     Object findGoodsDescribe(String goodsId);
 }

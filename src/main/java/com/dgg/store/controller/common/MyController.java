@@ -2,6 +2,7 @@ package com.dgg.store.controller.common;
 
 import com.dgg.store.service.common.MyService;
 import com.dgg.store.util.core.constant.Constant;
+import com.dgg.store.util.core.constant.RequestConstant;
 import com.dgg.store.util.vo.MyAddressVO;
 import com.dgg.store.util.vo.core.ResultVO;
 import com.dgg.store.util.vo.core.SessionVO;
@@ -41,9 +42,9 @@ public class MyController
      * @param request 用户参数
      * @return 个人信息
      */
-    @RequestMapping(value = "user_findMyInfo", method = RequestMethod.POST)
+    @RequestMapping(value = "user_findMyInfo", method = RequestMethod.POST, produces = {RequestConstant.CONTENT_TYPE})
     @ResponseBody
-    public ResultVO findMyInfo(HttpServletRequest request)
+    public String findMyInfo(HttpServletRequest request)
     {
         SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
 

@@ -7,6 +7,10 @@
         <result column="user_address" property="userAddress" jdbcType="VARCHAR"/>
         <result column="user_area" property="userArea" jdbcType="VARCHAR"/>
         <result column="user_img" property="userImg" jdbcType="VARCHAR"/>
+        <result column="my_team_id" property="myTeamId" jdbcType="VARCHAR"/>
+        <result column="user_identity" property="userIdentity" jdbcType="VARCHAR"/>
+        <result column="team_department_id" property="teamDepartmentId" jdbcType="VARCHAR"/>
+        <result column="position_id" property="positionId" jdbcType="VARCHAR"/>
     </resultMap>
 
     <resultMap id="MyAddressVO" type="com.dgg.store.util.vo.MyAddressVO">
@@ -19,7 +23,9 @@
     </resultMap>
 
     <select id="findMyInfo" resultMap="MyInfoVOMap">
-        SELECT u.user_name,u.user_phone,u.user_address,u.user_area,u.user_img
+        SELECT u.user_name,u.user_phone,u.user_address,
+          u.user_area,u.user_img,u.user_identity,u.team_department_id,
+          u.position_id,u.my_team_id
         FROM user u
         WHERE u.user_id = #{userId}
     </select>
@@ -97,5 +103,23 @@
         FROM shopping_address sa
         WHERE sa.user_id = #{userId}
         AND sa.user_address_default = 1
+    </select>
+
+    <select id="getMyTeamName" resultType="java.lang.String">
+        SELECT my_team_name
+        FROM my_team
+        WHERE my_team_id = #{myTeamId}
+    </select>
+
+    <select id="getPositionName" resultType="java.lang.String">
+        SELECT position_name
+        FROM department_position
+        WHERE position_id = #{positionId}
+    </select>
+
+    <select id="getDepartmentName" resultType="java.lang.String">
+        SELECT team_department_name
+        FROM team_department
+        WHERE team_department_id = #{teamDepartmentName}
     </select>
 </mapper>

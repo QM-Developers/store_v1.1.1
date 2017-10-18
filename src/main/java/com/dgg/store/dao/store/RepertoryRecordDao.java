@@ -49,4 +49,6 @@ public interface RepertoryRecordDao
     int insertBranchGoods(RepertoryRecordList list, String branchId);
 
     String getUserName(String userId);
+
+    String getCurrentBranchId(String userId);
 }

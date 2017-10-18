@@ -26,4 +26,10 @@ public interface MyDao
     Integer updateAddressToDefault(String userId);
 
     MyAddressVO findMyDefaultAddress(String userId);
+
+    String getMyTeamName(String myTeamId);
+
+    String getPositionName(String positionId);
+
+    String getDepartmentName(String teamDepartmentId);
 }

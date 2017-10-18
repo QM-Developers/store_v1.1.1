@@ -47,4 +47,8 @@ public interface RepertoryApplyMapper
     String getGoodsImage(String goodsId);
 
     String getGoodsCode(String goodsId);
+
+    int getStandardCount(@Param("standardId") String standardId,@Param("myTeamId") String myTeamId,@Param("branchType") byte branchFirst);
+
+    String getGoodsType(String goodsId);
 }

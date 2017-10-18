@@ -27,4 +27,10 @@ public interface MyMapper
     Integer updateAddressToDefault(@Param("userId") String userId);
 
     MyAddressVO findMyDefaultAddress(@Param("userId") String userId);
+
+    String getMyTeamName(String myTeamId);
+
+    String getPositionName(String positionId);
+
+    String getDepartmentName(String teamDepartmentName);
 }

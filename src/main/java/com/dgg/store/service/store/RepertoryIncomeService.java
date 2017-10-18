@@ -11,4 +11,6 @@ public interface RepertoryIncomeService
     String listRepertoryIncome(SessionVO sessionVO, RepertoryIncome income, PageVO pageVO);
 
     String getRepertoryIncome(SessionVO sessionVO, RepertoryIncome income);
+
+    String listCurrentRepertoryIncome(SessionVO sessionVO, RepertoryIncome income, PageVO pageVO);
 }

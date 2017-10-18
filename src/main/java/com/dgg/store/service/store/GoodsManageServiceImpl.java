@@ -5,10 +5,7 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.dgg.store.dao.store.GoodsManageDao;
 import com.dgg.store.dao.store.GoodsTypeDao;
-import com.dgg.store.util.core.constant.Constant;
-import com.dgg.store.util.core.constant.KeyConstant;
-import com.dgg.store.util.core.constant.PathConstant;
-import com.dgg.store.util.core.constant.SymbolConstant;
+import com.dgg.store.util.core.constant.*;
 import com.dgg.store.util.core.generator.IDGenerator;
 import com.dgg.store.util.core.page.PagingUtil;
 import com.dgg.store.util.core.string.StringUtil;
@@ -162,8 +159,12 @@ public class GoodsManageServiceImpl implements GoodsManageService
 
         List<GoodsInfoVO> result = dao.findGoodsList(condition, start, end);
 
+        String branchId = dao.getCurrentBranchId(sessionVO.getUserId());
+        if (StringUtil.isEmpty(branchId))
+            branchId = dao.getFirstBranchId(sessionVO.getMyTeamId(), BranchConstant.BRANCH_FIRST);
+
         for (GoodsInfoVO vo : result)
-            vo.setStandardList(dao.listStandards(vo.getGoodsId()));
+            vo.setStandardList(dao.listStandards(vo.getGoodsId(), branchId));
 
         JSONObject json = (JSONObject) JSONObject.toJSON(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), result));
         json.put(KeyConstant.PAGE_COUNT, pageCount);
@@ -305,9 +306,13 @@ public class GoodsManageServiceImpl implements GoodsManageService
         int end = pageVO.getPageSize();
         int pageCount = PagingUtil.getCount(dao.countGoods(condition), pageVO.getPageSize());
 
+        String branchId = dao.getCurrentBranchId(sessionVO.getUserId());
+        if (StringUtil.isEmpty(branchId))
+            branchId = dao.getFirstBranchId(sessionVO.getUserId(), BranchConstant.BRANCH_FIRST);
+
         List<GoodsInfoVO> result = dao.findGoodsList(condition, start, end);
         for (GoodsInfoVO vo : result)
-            vo.setStandardList(dao.listStandards(vo.getGoodsId()));
+            vo.setStandardList(dao.listStandards(vo.getGoodsId(), branchId));
 
         JSONObject json = (JSONObject) JSONObject.toJSON(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), result));
         json.put(KeyConstant.PAGE_COUNT, pageCount);

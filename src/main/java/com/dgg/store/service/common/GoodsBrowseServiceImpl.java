@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -171,7 +172,7 @@ public class GoodsBrowseServiceImpl implements GoodsBrowseService
     }
 
     @Override
-    public ResultVO findGoodsDetail(SessionVO sessionVO, GoodsDetailVO goodsDetailVO)
+    public String findGoodsDetail(SessionVO sessionVO, GoodsDetailVO goodsDetailVO)
     {
         int repertoryLevel = dao.getRepertoryLevel(sessionVO.getUserId(), sessionVO.getMyTeamId());
         GoodsDetailVO result;
@@ -184,7 +185,7 @@ public class GoodsBrowseServiceImpl implements GoodsBrowseService
 
         result = dao.getGoodsInfo(goodsDetailVO.getGoodsId());
         if (result == null)
-            return new ResultVO(Constant.REQUEST_FAILED, sessionVO.getToken());
+            return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_FAILED, sessionVO.getToken()));
 
         result.setStandards(dao.listGoodsStandard(result.getGoodsId(), branchId));
         result.setGoodsImages(dao.listGoodsImage(result.getGoodsId()));
@@ -194,12 +195,17 @@ public class GoodsBrowseServiceImpl implements GoodsBrowseService
         List<String> resultList = new ArrayList<>();
 
         for (String id : ids)
-            resultList.add(dao.findGoodsDescribeImg(id));
+        {
+            String img = dao.findGoodsDescribeImg(id);
+            if (!StringUtil.isEmpty(img))
+                resultList.add(img);
+        }
+
         result.setDetailImages(resultList);
 
         result.setGoodsAttr(StringUtil.isEmpty(result.getGoodsAttr()) ? Constant.EMPTY : result.getGoodsAttr().split(SymbolConstant.QUESTION)[1]);
 
-        return new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), result);
+        return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), result));
     }
 
 //    @Override

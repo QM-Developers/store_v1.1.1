@@ -66,4 +66,7 @@ public interface CustomerDao
 
     int deleteUser(String customerId);
 
+    int countCustomerAccount(String customerId, String myTeamId);
+
+    int getCustomerExist(String userPhone, String myTeamId, String userId);
 }

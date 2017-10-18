@@ -134,4 +134,22 @@ public class RepertoryRecordController
 
         return service.getRepertoryRecord(sessionVO, repertoryRecord);
     }
+
+    /**
+     * 获取库存盘点记录
+     *
+     * @param request         用户参数
+     * @param repertoryRecord 筛选条件
+     * @param pageVO          分页参数
+     * @return
+     */
+    @RequestMapping(value = "/s/listCurrentRepertoryRecord", method = RequestMethod.POST, produces = {"application/json;charset=UTF-8"})
+    @ResponseBody
+    public String listCurrentRepertoryRecord(HttpServletRequest request, RepertoryRecord repertoryRecord, PageVO pageVO)
+    {
+        SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
+
+        return service.listCurrentRepertoryRecord(sessionVO, repertoryRecord, pageVO);
+    }
+
 }

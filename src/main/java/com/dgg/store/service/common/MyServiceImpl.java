@@ -25,13 +25,17 @@ public class MyServiceImpl implements MyService
     private MyDao dao;
 
     @Override
-    public ResultVO findMyInfo(SessionVO sessionVO)
+    public String findMyInfo(SessionVO sessionVO)
     {
         MyInfoVO result = dao.findMyInfo(sessionVO.getUserId());
+        if (result == null)
+            return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_FAILED, sessionVO.getToken()));
+        result.setMyTeamName(dao.getMyTeamName(sessionVO.getMyTeamId()));
+        result.setPositionName(dao.getPositionName(result.getPositionId()));
+        result.setTeamDepartmentName(dao.getDepartmentName(result.getTeamDepartmentId()));
 
-        ResultVO resultVO = new ResultVO(result == null ? 0 : 1, sessionVO.getToken(), result);
 
-        return resultVO;
+        return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), result));
     }
 
     @Override

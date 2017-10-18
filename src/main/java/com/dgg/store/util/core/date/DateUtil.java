@@ -1,5 +1,9 @@
 package com.dgg.store.util.core.date;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class DateUtil
 {
     private static final int hour = 24;
@@ -47,4 +51,16 @@ public class DateUtil
         return now + millisecond * second;
     }
 
+    public static Date strToDate(String stringDate)
+    {
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        try
+        {
+            return simpleDateFormat.parse(stringDate);
+        } catch (ParseException e)
+        {
+            e.printStackTrace();
+        }
+        return null;
+    }
 }

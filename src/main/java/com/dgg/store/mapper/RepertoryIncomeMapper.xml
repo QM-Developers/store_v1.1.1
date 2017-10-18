@@ -74,20 +74,6 @@
     record_id, record_code, my_team_id, branch_id, branch_name, operator_id, operator_name, 
     create_date, record_remark
   </sql>
-  <select id="selectByExample" parameterType="com.dgg.store.util.pojo.RepertoryIncomeExample" resultMap="BaseResultMap">
-    select
-    <if test="distinct">
-      distinct
-    </if>
-    <include refid="Base_Column_List" />
-    from repertory_income
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-    <if test="orderByClause != null">
-      order by ${orderByClause}
-    </if>
-  </select>
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
@@ -327,6 +313,52 @@
     SELECT gi.goods_code
     FROM goodsinfo gi
     WHERE gi.goods_id = #{goodsId}
+  </select>
+
+  <select id="getStandardCount" resultType="java.lang.Integer">
+    SELECT IFNULL(MAX(qbg.standard_count),0)
+    FROM qm_branch_goods qbg
+    WHERE qbg.branch_id =
+    (SELECT branch_id
+    FROM qm_branch
+    WHERE my_team_id = #{myTeamId}
+    AND branch_type = #{branchType}
+    LIMIT 1)
+    AND qbg.standard_id = #{standardId}
+  </select>
+
+  <select id="selectByExample" parameterType="com.dgg.store.util.pojo.RepertoryIncomeExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from repertory_income
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+    <if test="pageNum != null and pageSize != null">
+      LIMIT #{pageNum},#{pageSize}
+    </if>
+  </select>
+
+  <select id="getGoodsType" resultType="java.lang.String">
+    SELECT gt.goods_type_name
+    FROM goods_typeinfo gt
+    INNER JOIN goodsinfo gi
+    ON gt.goods_type_id = gi.goods_type_id
+    WHERE gi.goods_id = #{goodsId}
+  </select>
+
+  <select id="getCurrentBranchId" resultType="java.lang.String">
+    SELECT qb.branch_id
+    FROM qm_branch qb
+    INNER JOIN user u
+    ON u.team_department_id = qb.department_id
+    WHERE u.user_id = #{userId}
   </select>
 
 </mapper>

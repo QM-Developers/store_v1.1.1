@@ -50,7 +50,7 @@ public class LoginServiceImpl implements LoginService
 
         session.setAttribute(Constant.LOGININFO, sessionVO);
 
-        return JSONObject.toJSONString(new ResultVO(LoginConstant.SUCCESS));
+        return JSONObject.toJSONString(new ResultVO(LoginConstant.SUCCESS,sessionVO.getToken(),result));
     }
 
     @Override
@@ -70,17 +70,15 @@ public class LoginServiceImpl implements LoginService
             return JSONObject.toJSONString(new ResultVO(LoginConstant.NO_ACCESS));
 
 //        deviceToken = dao.getDeviceToken(result.getUserId());
-//        if (!deviceToken.equals(loginVO.getDeviceToken()))
+//        if (!StringUtil.isEmpty(loginVO.getDeviceToken()) && !deviceToken.equals(loginVO.getDeviceToken()))
 //        {
 //            PushMessage msg = new PushMessage();
 //            msg.setField(PushMessageConstant.LOGOUT);
 //            UMengUtil.sendMessage(deviceToken, msg);
 //        }
 
-        result.setUserPhone(null);
         if (dao.updateLoginInfo(result.getUserId(), loginVO.getDeviceToken() == null ? Constant.EMPTY : loginVO.getDeviceToken()) < 1)
             throw new RuntimeException(Constant.STR_ADD_FAILED);
-
 
         ResultVO resultVO = new ResultVO(Constant.REQUEST_SUCCESS, TokenUtil.getToken());
         RongCloud cloud = RongCloud.getInstance(RCloudConstant.APP_KEY, RCloudConstant.APP_SECRET);

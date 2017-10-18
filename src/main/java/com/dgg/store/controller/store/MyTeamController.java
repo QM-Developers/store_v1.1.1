@@ -2,6 +2,7 @@ package com.dgg.store.controller.store;
 
 import com.dgg.store.service.store.MyTeamService;
 import com.dgg.store.util.core.constant.Constant;
+import com.dgg.store.util.core.constant.RequestConstant;
 import com.dgg.store.util.vo.core.ResultVO;
 import com.dgg.store.util.vo.core.SessionVO;
 import com.dgg.store.util.vo.team.MemberVO;
@@ -68,6 +69,21 @@ public class MyTeamController
         SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
 
         return service.findDepartmentMember(sessionVO, member);
+    }
+
+    /**
+     * 获取所有团队内成员
+     *
+     * @param request 用户参数
+     * @return 成员列表
+     */
+    @RequestMapping(value = "/s/listAllMember", method = RequestMethod.POST, produces = {RequestConstant.CONTENT_TYPE})
+    @ResponseBody
+    public String listAllMember(HttpServletRequest request)
+    {
+        SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
+
+        return service.listAllMember(sessionVO);
     }
 
     /**

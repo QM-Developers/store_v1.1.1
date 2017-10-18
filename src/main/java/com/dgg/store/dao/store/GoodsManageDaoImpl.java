@@ -4,7 +4,6 @@ import com.dgg.store.mapper.GoodsinfoMapper;
 import com.dgg.store.util.pojo.GoodsStandard;
 import com.dgg.store.util.pojo.GoodsTypeAttr;
 import com.dgg.store.util.pojo.ImageSpace;
-import com.dgg.store.util.vo.core.PageVO;
 import com.dgg.store.util.vo.goods.GoodsImgVO;
 import com.dgg.store.util.vo.goods.GoodsInfoVO;
 import com.dgg.store.util.vo.goods.GoodsTypeVO;
@@ -116,14 +115,26 @@ public class GoodsManageDaoImpl implements GoodsManageDao
     }
 
     @Override
-    public List<GoodsStandard> listStandards(String goodsId)
+    public List<GoodsStandard> listStandards(String goodsId, String branchId)
     {
-        return mapper.listStandards(goodsId);
+        return mapper.listStandards(goodsId,branchId);
     }
 
     @Override
     public List<GoodsImgVO> listImage(String goodsId)
     {
         return mapper.listImage(goodsId);
+    }
+
+    @Override
+    public String getCurrentBranchId(String userId)
+    {
+        return mapper.getCurrentBranchId(userId);
+    }
+
+    @Override
+    public String getFirstBranchId(String myTeamId, byte branchType)
+    {
+        return mapper.getFirstBranchId(myTeamId,branchType);
     }
 }

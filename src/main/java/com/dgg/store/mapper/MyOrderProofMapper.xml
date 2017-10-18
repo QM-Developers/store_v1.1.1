@@ -205,5 +205,10 @@
     LIMIT #{pageNum},#{pageSize}
   </select>
 
+  <update id="updateOrderStatus">
+    UPDATE my_order
+    SET order_status = #{status}
+    WHERE order_id = #{orderId}
+  </update>
 
 </mapper>

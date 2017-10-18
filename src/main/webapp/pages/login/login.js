@@ -46,6 +46,7 @@ var login = {
 
     test: function ()
     {
+        window.location.href = path + "/pages/friend/qm-friend.jsp";
     }
 
 };

@@ -25,11 +25,11 @@ public interface CustomerMapper
 
     CustomerVO getCustomer(CustomerVO customerVO);
 
-    int insertFrontImage(@Param("fileName") String fileName,@Param("customerId") String customerId);
+    int insertFrontImage(@Param("fileName") String fileName, @Param("customerId") String customerId);
 
-    int insertBackImage(@Param("fileName") String fileName,@Param("customerId") String customerId);
+    int insertBackImage(@Param("fileName") String fileName, @Param("customerId") String customerId);
 
-    int insertHandImage(@Param("fileName") String fileName,@Param("customerId") String customerId);
+    int insertHandImage(@Param("fileName") String fileName, @Param("customerId") String customerId);
 
     int getRepertoryLevel(@Param("customerType") String customerType, @Param("myTeamId") String myTeamId);
 
@@ -41,7 +41,7 @@ public interface CustomerMapper
 
     List<CustomerVO> listMerchandiserSecond(CustomerVO customerVO);
 
-    List<CustomerVO> listAccountChecker(@Param("myTeamId") String myTeamId,@Param("permissionId") String accountCheck);
+    List<CustomerVO> listAccountChecker(@Param("myTeamId") String myTeamId, @Param("permissionId") String accountCheck);
 
     int insertCustomerAccount(CustomerAccountRequest accountRequest);
 
@@ -55,15 +55,19 @@ public interface CustomerMapper
 
     List<CustomerAccountRequest> listCustomerAccount(CustomerAccountRequest accountRequest);
 
-    int insertHandImageRecord(@Param("fileName") String fileName,@Param("customerId") String customerId);
+    int insertHandImageRecord(@Param("fileName") String fileName, @Param("customerId") String customerId);
 
-    int insertFrontImageRecord(@Param("fileName") String fileName,@Param("customerId") String customerId);
+    int insertFrontImageRecord(@Param("fileName") String fileName, @Param("customerId") String customerId);
 
-    int insertBackImageRecord(@Param("fileName") String fileName,@Param("customerId") String customerId);
+    int insertBackImageRecord(@Param("fileName") String fileName, @Param("customerId") String customerId);
 
     String getDeviceToken(@Param("userId") String merchandiserId);
 
     int insertRecordByUser(@Param("customerId") String customerId);
 
     int deleteUser(@Param("customerId") String customerId);
+
+    int countCustomerAccount(@Param("customerId") String customerId, @Param("myTeamId") String myTeamId);
+
+    int getCustomerExist(@Param("userPhone") String userPhone, @Param("myTeamId") String myTeamId, @Param("userId") String userId);
 }

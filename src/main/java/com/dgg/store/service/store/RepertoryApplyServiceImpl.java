@@ -40,7 +40,7 @@ public class RepertoryApplyServiceImpl implements RepertoryApplyService
     @Override
     public String insertRepertoryApply(SessionVO sessionVO, RepertoryApply apply)
     {
-        apply.setApplyCode(getRecordCode(0,apply.getBranchId()));
+        apply.setApplyCode(getRecordCode(0, apply.getBranchId()));
         apply.setApplyId(IDGenerator.generator());
         apply.setApplyStatus(RepertoryConstant.STATUS_CHECK);
         apply.setMyTeamId(sessionVO.getMyTeamId());
@@ -73,7 +73,7 @@ public class RepertoryApplyServiceImpl implements RepertoryApplyService
         example.setPageNum(PagingUtil.getStart(pageVO.getPageNum(), pageVO.getPageSize()));
         example.setPageSize(pageVO.getPageSize());
         List<RepertoryApply> result = mapper.selectByExample(example);
-        result = getApplyList(result);
+        result = getApplyList(result, sessionVO);
 
         int pageCount = PagingUtil.getCount((int) mapper.countByExample(example), pageVO.getPageSize());
         JSONObject json = (JSONObject) JSONObject.toJSON(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), result));
@@ -99,7 +99,7 @@ public class RepertoryApplyServiceImpl implements RepertoryApplyService
         example.setPageNum(PagingUtil.getStart(pageVO.getPageNum(), pageVO.getPageSize()));
         example.setPageSize(pageVO.getPageSize());
         List<RepertoryApply> result = mapper.selectByExample(example);
-        result = getApplyList(result);
+        result = getApplyList(result, sessionVO);
 
         int pageCount = PagingUtil.getCount((int) mapper.countByExample(example), pageVO.getPageSize());
         JSONObject json = (JSONObject) JSONObject.toJSON(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), result));
@@ -108,7 +108,7 @@ public class RepertoryApplyServiceImpl implements RepertoryApplyService
         return json.toJSONString();
     }
 
-    private List<RepertoryApply> getApplyList(List<RepertoryApply> result)
+    private List<RepertoryApply> getApplyList(List<RepertoryApply> result, SessionVO sessionVO)
     {
         for (RepertoryApply apply : result)
         {
@@ -117,10 +117,12 @@ public class RepertoryApplyServiceImpl implements RepertoryApplyService
             listCriteria.andApplyIdEqualTo(apply.getApplyId());
             List<RepertoryApplyList> applyLists = listMapper.selectByExample(listExample);
 
-            for (RepertoryApplyList applyList: applyLists)
+            for (RepertoryApplyList applyList : applyLists)
             {
                 applyList.setGoodsImage(mapper.getGoodsImage(applyList.getGoodsId()));
                 applyList.setGoodsCode(mapper.getGoodsCode(applyList.getGoodsId()));
+                applyList.setCurrentCount(mapper.getStandardCount(applyList.getStandardId(), sessionVO.getMyTeamId(), BranchConstant.BRANCH_FIRST));
+                applyList.setGoodsType(mapper.getGoodsType(applyList.getGoodsId()));
             }
 
             apply.setApplyList(applyLists);

@@ -39,7 +39,7 @@ public class LoginController
      * @param loginVO 账号信息
      * @return 登陆结果
      */
-    @RequestMapping(value = "/login_on_browser", method = RequestMethod.POST)
+    @RequestMapping(value = "/login_on_browser", method = RequestMethod.POST, produces = {"application/json;charset=UTF-8"})
     @ResponseBody
     public String storeLogin(HttpSession session, LoginVO loginVO)
     {

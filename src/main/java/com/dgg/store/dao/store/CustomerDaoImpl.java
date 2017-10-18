@@ -30,7 +30,7 @@ public class CustomerDaoImpl implements CustomerDao
     @Override
     public List<CustomerVO> listCustomer(CustomerVO condition, int start, int end)
     {
-        return mapper.listCustomer(condition,start,end);
+        return mapper.listCustomer(condition, start, end);
     }
 
     @Override
@@ -66,25 +66,25 @@ public class CustomerDaoImpl implements CustomerDao
     @Override
     public int insertFrontImage(String fileName, String customerId)
     {
-        return mapper.insertFrontImage(fileName,customerId);
+        return mapper.insertFrontImage(fileName, customerId);
     }
 
     @Override
     public int insertBackImage(String fileName, String customerId)
     {
-        return mapper.insertBackImage(fileName,customerId);
+        return mapper.insertBackImage(fileName, customerId);
     }
 
     @Override
     public int insertHandImage(String fileName, String customerId)
     {
-        return mapper.insertHandImage(fileName,customerId);
+        return mapper.insertHandImage(fileName, customerId);
     }
 
     @Override
     public int getRepertoryLevel(String customerType, String myTeamId)
     {
-        return mapper.getRepertoryLevel(customerType,myTeamId);
+        return mapper.getRepertoryLevel(customerType, myTeamId);
     }
 
     @Override
@@ -114,7 +114,7 @@ public class CustomerDaoImpl implements CustomerDao
     @Override
     public List<CustomerVO> listAccountChecker(String myTeamId, String accountCheck)
     {
-        return mapper.listAccountChecker(myTeamId,accountCheck);
+        return mapper.listAccountChecker(myTeamId, accountCheck);
     }
 
     @Override
@@ -156,19 +156,19 @@ public class CustomerDaoImpl implements CustomerDao
     @Override
     public int insertHandImageRecord(String fileName, String customerId)
     {
-        return mapper.insertHandImageRecord(fileName,customerId);
+        return mapper.insertHandImageRecord(fileName, customerId);
     }
 
     @Override
     public int insertFrontImageRecord(String fileName, String customerId)
     {
-        return mapper.insertFrontImageRecord(fileName,customerId);
+        return mapper.insertFrontImageRecord(fileName, customerId);
     }
 
     @Override
     public int insertBackImageRecord(String fileName, String customerId)
     {
-        return mapper.insertBackImageRecord(fileName,customerId);
+        return mapper.insertBackImageRecord(fileName, customerId);
     }
 
     @Override
@@ -187,6 +187,18 @@ public class CustomerDaoImpl implements CustomerDao
     public int deleteUser(String customerId)
     {
         return mapper.deleteUser(customerId);
+    }
+
+    @Override
+    public int countCustomerAccount(String customerId, String myTeamId)
+    {
+        return mapper.countCustomerAccount(customerId, myTeamId);
+    }
+
+    @Override
+    public int getCustomerExist(String userPhone, String myTeamId, String userId)
+    {
+        return mapper.getCustomerExist(userPhone, myTeamId, userId);
     }
 
 }

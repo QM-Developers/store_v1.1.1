@@ -21,6 +21,9 @@ public class RepertoryRecordList {
 
     private String goodsCode;
 
+    private Integer currentCount;
+    private String goodsType;
+
     public String getRecordId() {
         return recordId;
     }
@@ -103,5 +106,25 @@ public class RepertoryRecordList {
     public void setGoodsCode(String goodsCode)
     {
         this.goodsCode = goodsCode;
+    }
+
+    public Integer getCurrentCount()
+    {
+        return currentCount;
+    }
+
+    public void setCurrentCount(Integer currentCount)
+    {
+        this.currentCount = currentCount;
+    }
+
+    public void setGoodsType(String goodsType)
+    {
+        this.goodsType = goodsType;
+    }
+
+    public String getGoodsType()
+    {
+        return goodsType;
     }
 }

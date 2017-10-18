@@ -58,5 +58,6 @@
         <if test="myTeamId != null and myTeamId != ''">
             AND u.my_team_id = #{myTeamId}
         </if>
+        GROUP BY u.user_id
     </select>
 </mapper>

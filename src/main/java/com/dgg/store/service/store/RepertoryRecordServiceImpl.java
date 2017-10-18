@@ -4,11 +4,14 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.dgg.store.dao.store.RepertoryRecordDao;
 import com.dgg.store.mapper.RepertoryRecordListMapper;
+import com.dgg.store.util.core.constant.BranchConstant;
 import com.dgg.store.util.core.constant.Constant;
 import com.dgg.store.util.core.constant.KeyConstant;
 import com.dgg.store.util.core.constant.RepertoryConstant;
 import com.dgg.store.util.core.generator.IDGenerator;
 import com.dgg.store.util.core.page.PagingUtil;
+import com.dgg.store.util.core.parameter.ParameterUtil;
+import com.dgg.store.util.core.string.StringUtil;
 import com.dgg.store.util.pojo.RepertoryRecord;
 import com.dgg.store.util.pojo.RepertoryRecordExample;
 import com.dgg.store.util.pojo.RepertoryRecordList;
@@ -265,6 +268,8 @@ public class RepertoryRecordServiceImpl implements RepertoryRecordService
         RepertoryRecordExample example = new RepertoryRecordExample();
         RepertoryRecordExample.Criteria criteria = example.createCriteria();
 
+//        repertoryRecord.setBranchId(StringUtil.isEmpty(repertoryRecord.getBranchId()) ? null : repertoryRecord.getRecordId());
+
         example.setStart(PagingUtil.getStart(pageVO.getPageNum(), pageVO.getPageSize()));
         example.setEnd(pageVO.getPageSize());
         int pageCount = PagingUtil.getCount((int) dao.countByExample(example), pageVO.getPageSize());
@@ -274,27 +279,41 @@ public class RepertoryRecordServiceImpl implements RepertoryRecordService
         criteria.andMyTeamIdEqualTo(sessionVO.getMyTeamId());
 
         List<RepertoryRecord> result = dao.selectByExample(example);
+        result = getRecord(result, sessionVO);
 
+
+        JSONObject json = (JSONObject) JSONObject.toJSON(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), result));
+        json.put(KeyConstant.PAGE_COUNT, pageCount);
+
+        return json.toJSONString();
+    }
+
+    private List<RepertoryRecord> getRecord(List<RepertoryRecord> result, SessionVO sessionVO)
+    {
         for (RepertoryRecord record : result)
         {
             RepertoryRecordListExample listExample = new RepertoryRecordListExample();
             RepertoryRecordListExample.Criteria listCriteria = listExample.createCriteria();
             listCriteria.andRecordIdEqualTo(record.getRecordId());
             List<RepertoryRecordList> recordLists = mapper.selectByExample(listExample);
-
-            for (RepertoryRecordList recordList : recordLists)
-            {
-                recordList.setGoodsImage(mapper.getGoodsImage(recordList.getGoodsId()));
-                recordList.setGoodsCode(mapper.getGoodsCode(recordList.getGoodsId()));
-            }
+            recordLists = getRecordList(recordLists, sessionVO);
 
             record.setRecordList(recordLists);
         }
 
-        JSONObject json = (JSONObject) JSONObject.toJSON(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), result));
-        json.put(KeyConstant.PAGE_COUNT, pageCount);
+        return result;
+    }
 
-        return json.toJSONString();
+    private List<RepertoryRecordList> getRecordList(List<RepertoryRecordList> recordLists, SessionVO sessionVO)
+    {
+        for (RepertoryRecordList recordList : recordLists)
+        {
+            recordList.setGoodsImage(mapper.getGoodsImage(recordList.getGoodsId()));
+            recordList.setGoodsCode(mapper.getGoodsCode(recordList.getGoodsId()));
+            recordList.setCurrentCount(mapper.getStandardCount(recordList.getStandardId(), sessionVO.getMyTeamId(), BranchConstant.BRANCH_FIRST));
+            recordList.setGoodsType(mapper.getGoodsType(recordList.getGoodsId()));
+        }
+        return recordLists;
     }
 
     @Override
@@ -304,6 +323,7 @@ public class RepertoryRecordServiceImpl implements RepertoryRecordService
         if (repertoryRecord.getRecordCode() == null)
             return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_FAILED, sessionVO.getToken()));
 
+        repertoryRecord.setMyTeamId(sessionVO.getMyTeamId());
         repertoryRecord.setOperatorId(sessionVO.getUserId());
         repertoryRecord.setOperatorName(dao.getUserName(sessionVO.getUserId()));
         repertoryRecord.setRecordId(IDGenerator.generator());
@@ -354,14 +374,39 @@ public class RepertoryRecordServiceImpl implements RepertoryRecordService
         listCriteria.andRecordIdEqualTo(result.getRecordId());
 
         List<RepertoryRecordList> recordLists = mapper.selectByExample(listExample);
+        recordLists = getRecordList(recordLists, sessionVO);
 
-        for (RepertoryRecordList recordList : recordLists)
-        {
-            recordList.setGoodsImage(mapper.getGoodsImage(recordList.getGoodsId()));
-            recordList.setGoodsCode(mapper.getGoodsCode(recordList.getGoodsId()));
-        }
+        result.setRecordList(recordLists);
 
         return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), result));
+    }
+
+    @Override
+    public String listCurrentRepertoryRecord(SessionVO sessionVO, RepertoryRecord repertoryRecord, PageVO pageVO)
+    {
+        if (ParameterUtil.objectIsNull(pageVO))
+            return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_FAILED, sessionVO.getToken()));
+
+        String branchId = dao.getCurrentBranchId(sessionVO.getUserId());
+        repertoryRecord.setBranchId(branchId);
+        RepertoryRecordExample example = new RepertoryRecordExample();
+        RepertoryRecordExample.Criteria criteria = example.createCriteria();
+
+        example.setStart(PagingUtil.getStart(pageVO.getPageNum(), pageVO.getPageSize()));
+        example.setEnd(pageVO.getPageSize());
+        int pageCount = PagingUtil.getCount((int) dao.countByExample(example), pageVO.getPageSize());
+
+        if (repertoryRecord.getCreateDate() != null && repertoryRecord.getFinishDate() != null)
+            criteria.andCreateDateBetween(repertoryRecord.getCreateDate(), repertoryRecord.getFinishDate());
+        criteria.andMyTeamIdEqualTo(sessionVO.getMyTeamId());
+
+        List<RepertoryRecord> result = dao.selectByExample(example);
+        result = getRecord(result, sessionVO);
+
+        JSONObject json = (JSONObject) JSONObject.toJSON(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), result));
+        json.put(KeyConstant.PAGE_COUNT, pageCount);
+
+        return json.toJSONString();
     }
 
     private String getRecordCode(int i, String branchId)

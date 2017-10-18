@@ -15,4 +15,6 @@ public interface MyTeamMapper
     List<MemberVO> findMemberByNameOrPhone(MemberVO member);
 
     List<TeamDepartmentVO> listTeamDepartment(@Param("myTeamId") String myTeamId);
+
+    List<MemberVO> listAllMember(String myTeamId);
 }

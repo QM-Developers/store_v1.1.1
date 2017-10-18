@@ -152,4 +152,10 @@ public class RepertoryRecordDaoImpl implements RepertoryRecordDao
     {
         return mapper.getUserName(userId);
     }
+
+    @Override
+    public String getCurrentBranchId(String userId)
+    {
+        return mapper.getCurrentBranchId(userId);
+    }
 }

@@ -2,6 +2,7 @@ package com.dgg.store.controller.common;
 
 import com.dgg.store.service.common.RegisterService;
 import com.dgg.store.util.core.constant.Constant;
+import com.dgg.store.util.core.constant.RequestConstant;
 import com.dgg.store.util.vo.core.ResultVO;
 import com.dgg.store.util.vo.core.SessionVO;
 import com.dgg.store.util.vo.register.RegisterVO;
@@ -105,9 +106,9 @@ public class RegisterController
      * @param registerVO 用户信息
      * @return 用户详细信息
      */
-    @RequestMapping(value = "register", method = RequestMethod.POST)
+    @RequestMapping(value = "register", method = RequestMethod.POST, produces = {RequestConstant.CONTENT_TYPE})
     @ResponseBody
-    public ResultVO register(HttpServletRequest request, RegisterVO registerVO)
+    public String register(HttpServletRequest request, RegisterVO registerVO)
     {
         SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
 

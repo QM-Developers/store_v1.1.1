@@ -1,5 +1,6 @@
 package com.dgg.store.service.common;
 
+import com.alibaba.fastjson.JSONObject;
 import com.dgg.store.dao.common.RegisterDao;
 import com.dgg.store.netease.CloudMessageUtil;
 import com.dgg.store.util.core.constant.Constant;
@@ -83,7 +84,7 @@ public class RegisterServiceImpl implements RegisterService
     }
 
     @Override
-    public ResultVO updateRegisterUser(SessionVO sessionVO, RegisterVO registerVO)
+    public String updateRegisterUser(SessionVO sessionVO, RegisterVO registerVO)
     {
         int result = 1;
         int i = 0;
@@ -118,9 +119,11 @@ public class RegisterServiceImpl implements RegisterService
         else
             result = 1;
 
-        ResultVO resultVO = new ResultVO(result, Constant.EMPTY, loginRepVO);
+        JSONObject repVO = (JSONObject) JSONObject.toJSON(loginRepVO);
+        repVO.put("realName", "2");
+        JSONObject json = (JSONObject) JSONObject.toJSON(new ResultVO(result, Constant.EMPTY, repVO));
 
-        return resultVO;
+        return json.toJSONString();
     }
 
     @Override

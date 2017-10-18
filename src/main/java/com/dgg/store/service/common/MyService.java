@@ -7,7 +7,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 public interface MyService
 {
-    ResultVO findMyInfo(SessionVO sessionVO);
+    String findMyInfo(SessionVO sessionVO);
 
     ResultVO insertMyAddress(SessionVO sessionVO, MyAddressVO addressVO);
 

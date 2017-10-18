@@ -15,4 +15,6 @@ public interface MyTeamDao
     List<MemberVO> findMemberByNameOrPhone(MemberVO member);
 
     List<TeamDepartmentVO> listTeamDepartment(String myTeamId);
+
+    List<MemberVO> listAllMember(String myTeamId);
 }

@@ -73,4 +73,22 @@ public class MyDaoImpl implements MyDao
     {
         return mapper.findMyDefaultAddress(userId);
     }
+
+    @Override
+    public String getMyTeamName(String myTeamId)
+    {
+        return mapper.getMyTeamName(myTeamId);
+    }
+
+    @Override
+    public String getPositionName(String positionId)
+    {
+        return mapper.getPositionName(positionId);
+    }
+
+    @Override
+    public String getDepartmentName(String teamDepartmentId)
+    {
+        return mapper.getDepartmentName(teamDepartmentId);
+    }
 }

@@ -116,9 +116,7 @@
         INNER JOIN goods_typeinfo gt
         ON gt.goods_type_id = gi.goods_type_id
         WHERE 1 = 1
-        <if test="condition.myTeamId != null and condition.myTeamId != ''">
-            AND gi.my_team_id = #{condition.myTeamId}
-        </if>
+        AND gi.my_team_id = #{condition.myTeamId}
         <if test="condition.goodsId != null and condition.goodsId != ''">
             AND gi.goods_id = #{condition.goodsId}
         </if>
@@ -130,7 +128,10 @@
 
     <select id="listStandards" resultMap="GoodsStandard">
         SELECT gs.standard_id, gs.standard_name,gs.standard_price,
-           gs.standard_count
+        IFNULL((SELECT standard_count
+        FROM qm_branch_goods
+        WHERE standard_id = gs.standard_id
+        AND branch_id = #{branchId}),0) standard_count
         FROM goods_standard gs
         WHERE gs.goods_id = #{goodsId}
     </select>
@@ -217,4 +218,21 @@
         DELETE FROM goodsinfo
         WHERE goods_id = #{goodsId}
     </delete>
+
+    <select id="getCurrentBranchId" resultType="java.lang.String">
+        SELECT qb.branch_id
+        FROM qm_branch qb
+        INNER JOIN user u
+        ON u.team_department_id = qb.department_id
+        WHERE u.user_id = #{userId}
+    </select>
+
+    <select id="getFirstBranchId" resultType="java.lang.String">
+        SELECT qb.branch_id
+        FROM qm_branch qb
+        WHERE qb.my_team_id = #{myTeamId}
+        AND qb.branch_type = #{branchType}
+        LIMIT 1
+    </select>
+
 </mapper>

@@ -2,6 +2,7 @@ package com.dgg.store.controller.common;
 
 import com.dgg.store.service.common.GoodsBrowseService;
 import com.dgg.store.util.core.constant.Constant;
+import com.dgg.store.util.core.constant.RequestConstant;
 import com.dgg.store.util.vo.core.PageVO;
 import com.dgg.store.util.vo.core.ResultVO;
 import com.dgg.store.util.vo.core.SessionVO;
@@ -68,9 +69,9 @@ public class GoodsBrowseController
      * @param goodsDetailVO 商品Id
      * @return 商品详细信息
      */
-    @RequestMapping(value = "user_findGoodsDetail", method = RequestMethod.POST)
+    @RequestMapping(value = "user_findGoodsDetail", method = RequestMethod.POST, produces = {RequestConstant.CONTENT_TYPE})
     @ResponseBody
-    public ResultVO findGoodsDetail(HttpServletRequest request, GoodsDetailVO goodsDetailVO)
+    public String findGoodsDetail(HttpServletRequest request, GoodsDetailVO goodsDetailVO)
     {
         SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
 

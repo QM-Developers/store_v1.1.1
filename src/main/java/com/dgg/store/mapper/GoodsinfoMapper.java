@@ -45,7 +45,11 @@ public interface GoodsinfoMapper
 
     int countGoods(GoodsInfoVO condition);
 
-    List<GoodsStandard> listStandards(@Param("goodsId") String goodsId);
+    List<GoodsStandard> listStandards(@Param("goodsId") String goodsId,@Param("branchId") String branchId);
 
     List<GoodsImgVO> listImage(@Param("goodsId") String goodsId);
+
+    String getCurrentBranchId(String userId);
+
+    String getFirstBranchId(@Param("myTeamId") String myTeamId,@Param("branchType") byte branchType);
 }

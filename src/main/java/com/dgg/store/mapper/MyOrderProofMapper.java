@@ -28,4 +28,8 @@ public interface MyOrderProofMapper {
     int updateByPrimaryKeySelective(MyOrderProof record);
 
     int updateByPrimaryKey(MyOrderProof record);
+
+    int getOrderStatus(String orderId);
+
+    int updateOrderStatus(@Param("orderId") String orderId,@Param("status") byte status);
 }

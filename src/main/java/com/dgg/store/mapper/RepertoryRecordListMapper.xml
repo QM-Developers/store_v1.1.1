@@ -208,4 +208,65 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <select id="getStandardCount" resultType="java.lang.Integer">
+    SELECT IFNULL(MAX(qbg.standard_count),0)
+    FROM qm_branch_goods qbg
+    WHERE qbg.branch_id =
+    (SELECT branch_id
+    FROM qm_branch
+    WHERE my_team_id = #{myTeamId}
+    AND branch_type = #{branchType}
+    LIMIT 1)
+    AND qbg.standard_id = #{standardId}
+  </select>
+
+  <select id="getGoodsImage" resultType="java.lang.String">
+    SELECT im.image_path
+    FROM image_space im
+    INNER JOIN goods_image gi
+    ON gi.image_id = im.image_id
+    WHERE gi.goods_img_type = 1
+    AND gi.goods_id = #{goodsId}
+    LIMIT 1
+  </select>
+
+  <select id="getGoodsCode" resultType="java.lang.String">
+    SELECT gi.goods_code
+    FROM goodsinfo gi
+    WHERE gi.goods_id = #{goodsId}
+  </select>
+
+  <select id="getGoodsType" resultType="java.lang.String">
+    SELECT gt.goods_type_name
+    FROM goods_typeinfo gt
+    INNER JOIN goodsinfo gi
+    ON gt.goods_type_id = gi.goods_type_id
+    WHERE gi.goods_id = #{goodsId}
+  </select>
+
 </mapper>

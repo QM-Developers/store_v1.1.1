@@ -69,4 +69,6 @@ public interface CustomerDao
     int countCustomerAccount(String customerId, String myTeamId);
 
     int getCustomerExist(String userPhone, String myTeamId, String userId);
+
+    List<CustomerVO> listPromoter(String myTeamId, String pid);
 }

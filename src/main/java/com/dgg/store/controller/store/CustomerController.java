@@ -86,6 +86,21 @@ public class CustomerController
     }
 
     /**
+     * 获取业务员列表
+     *
+     * @param request 用户参数
+     * @return 业务员列表
+     */
+    @RequestMapping(value = "/s/listPromoter", method = POST, produces = {"application/json;charset=UTF-8"})
+    @ResponseBody
+    public String listPromoter(HttpServletRequest request)
+    {
+        SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
+
+        return service.listPromoter(sessionVO);
+    }
+
+    /**
      * 获取审批人列表
      *
      * @param request 用户参数
@@ -345,7 +360,8 @@ public class CustomerController
 
     /**
      * 解冻客户账号
-     * @param request 用户参数
+     *
+     * @param request    用户参数
      * @param customerVO 客户Id
      * @return 操作的结果
      */

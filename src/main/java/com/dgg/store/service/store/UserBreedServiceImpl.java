@@ -6,6 +6,7 @@ import com.dgg.store.util.core.constant.Constant;
 import com.dgg.store.util.core.constant.KeyConstant;
 import com.dgg.store.util.core.generator.IDGenerator;
 import com.dgg.store.util.core.page.PagingUtil;
+import com.dgg.store.util.core.parameter.ParameterUtil;
 import com.dgg.store.util.pojo.*;
 import com.dgg.store.util.vo.core.PageVO;
 import com.dgg.store.util.vo.core.ResultVO;
@@ -124,6 +125,9 @@ public class UserBreedServiceImpl implements UserBreedService
     @Override
     public String listUserBreedJson(SessionVO sessionVO, UserBreed breed, PageVO pageVO)
     {
+        if (ParameterUtil.objectIsNull(pageVO))
+            return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_FAILED, sessionVO.getToken()));
+
         UserBreedExample example = new UserBreedExample();
         UserBreedExample.Criteria criteria = example.createCriteria();
 

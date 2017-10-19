@@ -250,7 +250,7 @@ public class CustomerServiceImpl implements CustomerService
         repertory.setMyTeamId(sessionVO.getMyTeamId());
         int result = dao.countRepertoryLevel(repertory);
         if (result > 0)
-            return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_FAILED, sessionVO.getToken()));
+            return JSONObject.toJSONString(new ResultVO(3, sessionVO.getToken()));
 
         result = dao.insertRepertoryLevel(repertory);
 
@@ -294,7 +294,7 @@ public class CustomerServiceImpl implements CustomerService
         int index = 0;
 
         accountRequest = dao.getCustomerAccount(accountRequest.getRequestId());
-        if (!accountRequest.getRequestStatus().equals(CustomerConstant.ACCOUNT_STATUS_REQUEST))
+        if (accountRequest == null || !accountRequest.getRequestStatus().equals(CustomerConstant.ACCOUNT_STATUS_REQUEST))
             return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_FAILED, sessionVO.getToken()));
 
         while (result > 0)
@@ -325,6 +325,8 @@ public class CustomerServiceImpl implements CustomerService
 
         if (index < 4)
             throw new RuntimeException(Constant.STR_ADD_FAILED);
+        else
+            result = 1;
 
         UMengUtil.sendUnicast(dao.getDeviceToken(accountRequest.getProposerId()), PushMessageFactory.getInstance(pushMapper).get(PushMessageConstant.CUSTOMER_PASS));
 
@@ -344,7 +346,7 @@ public class CustomerServiceImpl implements CustomerService
     {
         accountRequest = dao.getCustomerAccount(accountRequest.getRequestId());
 
-        if (!accountRequest.getRequestStatus().equals(CustomerConstant.ACCOUNT_STATUS_REQUEST))
+        if (accountRequest == null || !accountRequest.getRequestStatus().equals(CustomerConstant.ACCOUNT_STATUS_REQUEST))
             return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_FAILED, sessionVO.getToken()));
 
         accountRequest.setRequestStatus(CustomerConstant.ACCOUNT_STATUS_REFUSE);
@@ -408,6 +410,9 @@ public class CustomerServiceImpl implements CustomerService
         CustomerVO condition = new CustomerVO();
         condition.setCustomerId(customerVO.getCustomerId());
         condition = dao.getCustomer(condition);
+        if (condition == null)
+            return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_FAILED, sessionVO.getToken()));
+
         int result = 1;
         int index = 0;
 
@@ -478,6 +483,14 @@ public class CustomerServiceImpl implements CustomerService
             throw new RuntimeException(Constant.STR_ADD_FAILED);
 
         return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken()));
+    }
+
+    @Override
+    public String listPromoter(SessionVO sessionVO)
+    {
+        List<CustomerVO> result = dao.listPromoter(sessionVO.getMyTeamId(), QMPermissionConstant.CREATE_RECORD);
+
+        return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), result));
     }
 
 }

@@ -70,4 +70,6 @@ public interface CustomerMapper
     int countCustomerAccount(@Param("customerId") String customerId, @Param("myTeamId") String myTeamId);
 
     int getCustomerExist(@Param("userPhone") String userPhone, @Param("myTeamId") String myTeamId, @Param("userId") String userId);
+
+    List<CustomerVO> listPromoter(@Param("myTeamId") String myTeamId, @Param("permissionId") String accountCheck);
 }

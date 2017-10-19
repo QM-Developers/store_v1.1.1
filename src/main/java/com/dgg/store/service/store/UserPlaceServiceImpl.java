@@ -169,9 +169,21 @@ public class UserPlaceServiceImpl implements UserPlaceService
 
         criteria.andUserPlaceIdEqualTo(place.getUserPlaceId());
 
-        int result = dao.updateByExampleSelective(place, example);
+        if(dao.updateByExampleSelective(place, example) < 1)
+            throw new RuntimeException(Constant.STR_ADD_FAILED);
 
-        JSONObject json = (JSONObject) JSONObject.toJSON(new ResultVO(result < 1 ? 2 : 1, sessionVO.getToken()));
+        List<String> images = new ArrayList<>();
+
+        if (!StringUtil.isEmpty(place.getCertificate()))
+            images.addAll(Arrays.asList(place.getCertificate().split(SymbolConstant.COMMA)));
+        if (!StringUtil.isEmpty(place.getEnvironment()))
+            images.addAll(Arrays.asList(place.getEnvironment().split(SymbolConstant.COMMA)));
+
+        if (images.size() > 0)
+            if (dao.updatePlaceImage(images, place.getUserPlaceId()) < 1)
+                throw new RuntimeException(Constant.STR_ADD_FAILED);
+
+        JSONObject json = (JSONObject) JSONObject.toJSON(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken()));
 
         return json.toJSONString();
     }

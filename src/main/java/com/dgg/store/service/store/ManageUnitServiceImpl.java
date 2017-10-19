@@ -26,7 +26,7 @@ public class ManageUnitServiceImpl implements ManageUnitService
     public String insertManageUnit(SessionVO sessionVO, ManageUnit unit)
     {
         unit.setManageId(IDGenerator.generator());
-        int result = dao.insert(unit);
+        int result = dao.insertSelective(unit);
 
         JSONObject json = (JSONObject) JSONObject.toJSON(new ResultVO(result < 1 ? 2 : 1, sessionVO.getToken(), unit.getManageId()));
 

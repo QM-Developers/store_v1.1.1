@@ -33,7 +33,7 @@ public class CustomerFollowServiceImpl implements CustomerFollowService
 
         int result = dao.insertSelective(follow);
 
-        return JSONObject.toJSONString(new ResultVO(result < 1 ? Constant.REQUEST_FAILED : Constant.REQUEST_SUCCESS, sessionVO.getToken(), result));
+        return JSONObject.toJSONString(new ResultVO(result < 1 ? Constant.REQUEST_FAILED : Constant.REQUEST_SUCCESS, sessionVO.getToken(), follow.getFollowId()));
     }
 
     @Override

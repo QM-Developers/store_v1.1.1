@@ -31,7 +31,7 @@ public class ManageUnitController
      */
     @RequestMapping(value = "/s/saveManageUnit", method = RequestMethod.POST, produces = {"application/json;charset=UTF-8"})
     @ResponseBody
-    public String saveUserBreed(HttpServletRequest request, ManageUnit unit)
+    public String saveManageUnit(HttpServletRequest request, ManageUnit unit)
     {
         SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
 

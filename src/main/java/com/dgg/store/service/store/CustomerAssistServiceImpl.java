@@ -130,7 +130,9 @@ public class CustomerAssistServiceImpl implements CustomerAssistService
             image.setImageId(imageId);
             image.setImagePath(fileName);
             if (assist != null)
-                image.setAssistId(assist.getAssistId());
+                image.setAssistId(StringUtil.isEmpty(assist.getAssistId()) ? Constant.EMPTY : assist.getAssistId());
+            else
+                image.setAssistId(Constant.EMPTY);
             result = imageDao.insertSelective(image);
         } catch (IOException e)
         {
@@ -151,7 +153,7 @@ public class CustomerAssistServiceImpl implements CustomerAssistService
 
         criteria.andUserIdEqualTo(sessionVO.getUserId());
 
-        int pageCount = (int) assistDao.countByExample(example);
+        int pageCount = PagingUtil.getCount((int) assistDao.countByExample(example), pageVO.getPageSize());
         List<CustomerAssist> result = assistDao.selectByExample(example);
 
         JSONObject json = (JSONObject) JSONObject.toJSON(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), result));

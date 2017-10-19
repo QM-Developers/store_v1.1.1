@@ -201,4 +201,10 @@ public class CustomerDaoImpl implements CustomerDao
         return mapper.getCustomerExist(userPhone, myTeamId, userId);
     }
 
+    @Override
+    public List<CustomerVO> listPromoter(String myTeamId, String pid)
+    {
+        return mapper.listPromoter(myTeamId,pid);
+    }
+
 }

@@ -48,4 +48,6 @@ public interface CustomerService
     String updateCustomerFreeze(SessionVO sessionVO, CustomerVO customerVO);
 
     String updateCustomerUnfreeze(SessionVO sessionVO, CustomerVO customerVO);
+
+    String listPromoter(SessionVO sessionVO);
 }

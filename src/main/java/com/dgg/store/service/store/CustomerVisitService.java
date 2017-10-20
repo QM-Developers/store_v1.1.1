@@ -31,4 +31,8 @@ public interface CustomerVisitService
     String getVisitCustomerFollow(SessionVO sessionVO, CustomerFollow follow);
 
     String getVisitUserBreed(SessionVO sessionVO, UserBreed breed);
+
+    String listVisitCurrentMember(SessionVO sessionVO, PageVO pageVO);
+
+    String listVisitCurrentCustomer(SessionVO sessionVO, PageVO pageVO);
 }

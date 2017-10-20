@@ -134,7 +134,7 @@
             AND customer_type = #{customerVO.customerType}
         </if>
         <if test="customerVO.hadAccount != null">
-            AND customer_type = #{customerVO.hadAccount}
+            AND had_account = #{customerVO.hadAccount}
         </if>
         AND c.promoter_id IN
         <foreach collection="promoterList" item="promoterId" separator="," open="(" close=")" index="i">
@@ -237,5 +237,18 @@
             breed_scale, create_date,json
         FROM user_breed
         WHERE breed_id = #{breedId}
+    </select>
+
+    <select id="getCurrentDepartmentId" resultType="java.lang.String">
+        SELECT team_department_id
+        FROM user
+        WHERE user_id = #{userId}
+    </select>
+
+    <select id="listPromoter" resultType="java.lang.String">
+        SELECT u.user_id
+        FROM user u
+        WHERE u.role_id > #{roleId}
+        AND u.team_department_id = #{departmentId}
     </select>
 </mapper>

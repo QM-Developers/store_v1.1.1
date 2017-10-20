@@ -272,7 +272,9 @@ public class RepertoryRecordServiceImpl implements RepertoryRecordService
 
         example.setStart(PagingUtil.getStart(pageVO.getPageNum(), pageVO.getPageSize()));
         example.setEnd(pageVO.getPageSize());
-        int pageCount = PagingUtil.getCount((int) dao.countByExample(example), pageVO.getPageSize());
+
+        if (!StringUtil.isEmpty(repertoryRecord.getBranchId()))
+            criteria.andBranchIdEqualTo(repertoryRecord.getBranchId());
 
         if (repertoryRecord.getCreateDate() != null && repertoryRecord.getFinishDate() != null)
             criteria.andCreateDateBetween(repertoryRecord.getCreateDate(), repertoryRecord.getFinishDate());
@@ -281,6 +283,7 @@ public class RepertoryRecordServiceImpl implements RepertoryRecordService
         List<RepertoryRecord> result = dao.selectByExample(example);
         result = getRecord(result, sessionVO);
 
+        int pageCount = PagingUtil.getCount((int) dao.countByExample(example), pageVO.getPageSize());
 
         JSONObject json = (JSONObject) JSONObject.toJSON(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), result));
         json.put(KeyConstant.PAGE_COUNT, pageCount);
@@ -388,17 +391,20 @@ public class RepertoryRecordServiceImpl implements RepertoryRecordService
             return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_FAILED, sessionVO.getToken()));
 
         String branchId = dao.getCurrentBranchId(sessionVO.getUserId());
+
         repertoryRecord.setBranchId(branchId);
         RepertoryRecordExample example = new RepertoryRecordExample();
         RepertoryRecordExample.Criteria criteria = example.createCriteria();
 
         example.setStart(PagingUtil.getStart(pageVO.getPageNum(), pageVO.getPageSize()));
         example.setEnd(pageVO.getPageSize());
-        int pageCount = PagingUtil.getCount((int) dao.countByExample(example), pageVO.getPageSize());
+        criteria.andBranchIdEqualTo(branchId);
+        criteria.andMyTeamIdEqualTo(sessionVO.getMyTeamId());
 
         if (repertoryRecord.getCreateDate() != null && repertoryRecord.getFinishDate() != null)
             criteria.andCreateDateBetween(repertoryRecord.getCreateDate(), repertoryRecord.getFinishDate());
-        criteria.andMyTeamIdEqualTo(sessionVO.getMyTeamId());
+
+        int pageCount = PagingUtil.getCount((int) dao.countByExample(example), pageVO.getPageSize());
 
         List<RepertoryRecord> result = dao.selectByExample(example);
         result = getRecord(result, sessionVO);

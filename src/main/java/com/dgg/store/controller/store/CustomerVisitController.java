@@ -55,6 +55,38 @@ public class CustomerVisitController
     }
 
     /**
+     * 获取当前部门下的成员列表
+     *
+     * @param request 用户参数
+     * @param pageVO  分页参数
+     * @return 成员列表
+     */
+    @RequestMapping(value = "/s/listVisitCurrentMember", method = RequestMethod.POST, produces = {"application/json;charset=UTF-8"})
+    @ResponseBody
+    public String listVisitCurrentMember(HttpServletRequest request, PageVO pageVO)
+    {
+        SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
+
+        return service.listVisitCurrentMember(sessionVO, pageVO);
+    }
+
+    /**
+     * 获取当前部门下的客户列表
+     *
+     * @param request 用户参数
+     * @param pageVO  分页参数
+     * @return 客户列表
+     */
+    @RequestMapping(value = "/s/listVisitCurrentCustomer", method = RequestMethod.POST, produces = {"application/json;charset=UTF-8"})
+    @ResponseBody
+    public String listVisitCurrentCustomer(HttpServletRequest request, PageVO pageVO)
+    {
+        SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
+
+        return service.listVisitCurrentCustomer(sessionVO, pageVO);
+    }
+
+    /**
      * 获取成员的客户列表
      *
      * @param request    用户参数

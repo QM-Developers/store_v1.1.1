@@ -57,4 +57,6 @@ public interface BranchDao
     int countGoodsByKeyword(BranchVO branchVO);
 
     List<GoodsDetailVO> listGoodsByKeyword(BranchVO branchVO, int pageNum, int pageSize);
+
+    Set<String> findChildTypeId(String typeId);
 }

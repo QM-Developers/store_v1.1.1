@@ -17,4 +17,6 @@ public interface RepertoryApplyService
     String updateRepertoryApplyAccept(SessionVO sessionVO, RepertoryApply apply);
 
     String updateRepertoryApplyFinish(SessionVO sessionVO, RepertoryApply apply);
+
+    String getRepertoryApply(SessionVO sessionVO, RepertoryApply apply);
 }

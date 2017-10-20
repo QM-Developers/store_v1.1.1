@@ -1,5 +1,6 @@
-select * from user
+select * from customer c
+
 ;
 
-select * from customer_assist_user
+select * from user
 ;

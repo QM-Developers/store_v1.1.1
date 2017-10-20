@@ -256,4 +256,10 @@ public class MyOrderDaoImpl implements MyOrderDao
         return mapper.countGoodsStandard(standardId);
     }
 
+    @Override
+    public String getUserRole(String userId)
+    {
+        return mapper.getUserRole(userId);
+    }
+
 }

@@ -108,4 +108,17 @@ public class CustomerVisitDaoImpl implements CustomerVisitDao
     {
         return mapper.getVisitUserBreed(breedId);
     }
+
+    @Override
+    public String getCurrentDepartmentId(String userId)
+    {
+        return mapper.getCurrentDepartmentId(userId);
+    }
+
+    @Override
+    public List<String> listPromoter(String roleId, String departmentId)
+    {
+        return mapper.listPromoter(roleId,departmentId);
+    }
+
 }

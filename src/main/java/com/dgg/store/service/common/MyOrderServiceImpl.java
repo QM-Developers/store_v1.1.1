@@ -44,6 +44,9 @@ public class MyOrderServiceImpl implements MyOrderService
         JSONArray goods = JSON.parseArray(myOrder.getGoods());
         JSONObject json;
 
+        if (!isCustomer(sessionVO))
+            return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_FAILED, sessionVO.getToken()));
+
         //  判断商品是否下架
         if (!hadGoods(goods))
             return JSONObject.toJSONString(new ResultVO(OrderConstant.GOODS_NOT_FIND, sessionVO.getToken()));
@@ -109,6 +112,11 @@ public class MyOrderServiceImpl implements MyOrderService
         }
 
         return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), myOrder.getOrderId()));
+    }
+
+    private boolean isCustomer(SessionVO sessionVO)
+    {
+        return dao.getUserRole(sessionVO.getUserId()) == RoleConstant.USER;
     }
 
     private boolean hadGoods(JSONArray goods)

@@ -60,6 +60,7 @@ public class CustomerAssistServiceImpl implements CustomerAssistService
                     assist.setCreateDate(new Date());
                     assist.setUserId(sessionVO.getUserId());
                     assist.setUserName(assistDao.getUserName(sessionVO.getUserId()));
+                    assist.setAssistTitle(Constant.EMPTY);
                     result = assistDao.insert(assist);
                     break;
                 case 1:

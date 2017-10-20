@@ -9,6 +9,7 @@
         <result column="my_team_id" property="myTeamId" jdbcType="VARCHAR"/>
         <result column="user_id" property="managerId" jdbcType="VARCHAR"/>
         <result column="user_name" property="managerName" jdbcType="VARCHAR"/>
+        <result column="user_name" property="managerName" jdbcType="VARCHAR"/>
         <result column="user_phone" property="managerPhone" jdbcType="VARCHAR"/>
         <result column="branch_area" property="branchArea" jdbcType="VARCHAR"/>
         <result column="lat_lng" property="latLng" jdbcType="VARCHAR"/>
@@ -281,5 +282,11 @@
         AND gi.my_team_id = #{branchVO.myTeamId}
         AND (gi.goods_name LIKE CONCAT('%',#{branchVO.keyword},'%') OR gi.goods_code = #{branchVO.keyword})
         LIMIT #{pageNum},#{pageSize}
+    </select>
+
+    <select id="findChildTypeId" resultType="java.lang.String">
+        SELECT gt.goods_type_id
+        FROM goods_typeinfo gt
+        WHERE gt.goods_type_pid = #{typeId}
     </select>
 </mapper>

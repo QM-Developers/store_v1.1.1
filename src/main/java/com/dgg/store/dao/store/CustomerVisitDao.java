@@ -41,4 +41,8 @@ public interface CustomerVisitDao
     List<Farmer> listVisitManageUnit(ManageUnit unit);
 
     UserBreed getVisitUserBreed(String breedId);
+
+    String getCurrentDepartmentId(String userId);
+
+    List<String> listPromoter(String roleId, String currentDepartmentId);
 }

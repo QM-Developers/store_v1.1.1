@@ -117,4 +117,22 @@ public class RepertoryApplyController
 
         return service.updateRepertoryApplyFinish(sessionVO, apply);
     }
+
+    /**
+     * 获取库存审批详情
+     *
+     * @param request 用户参数
+     * @param apply   申请的Id
+     * @return 库存审批详情
+     */
+    @RequestMapping(value = "/s/getRepertoryApply", method = RequestMethod.POST, produces = {"application/json;charset=UTF-8"})
+    @ResponseBody
+    public String getRepertoryApply(HttpServletRequest request, RepertoryApply apply)
+    {
+        SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
+
+        return service.getRepertoryApply(sessionVO, apply);
+    }
+
+
 }

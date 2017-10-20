@@ -160,4 +160,10 @@ public class BranchDaoImpl implements BranchDao
     {
         return mapper.listGoodsByKeyword(branchVO, pageNum, pageSize);
     }
+
+    @Override
+    public Set<String> findChildTypeId(String typeId)
+    {
+        return mapper.findChildTypeId(typeId);
+    }
 }

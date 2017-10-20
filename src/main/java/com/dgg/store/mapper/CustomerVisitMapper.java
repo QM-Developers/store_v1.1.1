@@ -42,4 +42,8 @@ public interface CustomerVisitMapper
     List<Farmer> listVisitManageUnit(ManageUnit unit);
 
     UserBreed getVisitUserBreed(@Param("breedId") String breedId);
+
+    String getCurrentDepartmentId(String userId);
+
+    List<String> listPromoter(@Param("roleId") String roleId, @Param("departmentId") String departmentId);
 }

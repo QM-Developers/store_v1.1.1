@@ -88,4 +88,6 @@ public interface MyOrderDao
     List<MyOrder> listOrderSelectiveByManager(MyOrder myOrder, String userId, int pageNum, int pageSize);
 
     int countGoodsStandard(String string);
+
+    String getUserRole(String userId);
 }

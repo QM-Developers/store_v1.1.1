@@ -212,6 +212,14 @@ public class RepertoryApplyServiceImpl implements RepertoryApplyService
         return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken()));
     }
 
+    @Override
+    public String getRepertoryApply(SessionVO sessionVO, RepertoryApply apply)
+    {
+        RepertoryApply result = mapper.selectByPrimaryKey(apply.getApplyId());
+
+        return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), result));
+    }
+
     private String getRecordCode(int i, String branchId)
     {
         String recordCode = IDGenerator.getNow() + String.format("%04d", (int) (Math.random() * 10000));

@@ -58,4 +58,6 @@ public interface BranchMapper
     int countGoodsByKeyword(BranchVO branchVO);
 
     List<GoodsDetailVO> listGoodsByKeyword(@Param("branchVO") BranchVO branchVO, @Param("pageNum") int pageNum, @Param("pageSize") int pageSize);
+
+    Set<String> findChildTypeId(String typeId);
 }

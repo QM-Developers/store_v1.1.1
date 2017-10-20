@@ -863,4 +863,9 @@
     WHERE standard_id = #{standardId}
   </select>
 
+  <select id="getUserRole" resultType="java.lang.String">
+    SELECT u.role_id
+    FROM user u
+    WHERE u.user_id = #{userId}
+  </select>
 </mapper>

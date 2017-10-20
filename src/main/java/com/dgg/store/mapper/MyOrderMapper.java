@@ -98,4 +98,6 @@ public interface MyOrderMapper
     List<MyOrder> listOrderSelectiveByManager(@Param("order") MyOrder myOrder, @Param("userId") String userId, @Param("pageNum") int pageNum, @Param("pageSize") int pageSize);
 
     int countGoodsStandard(@Param("standardId") String standardId);
+
+    String getUserRole(String userId);
 }

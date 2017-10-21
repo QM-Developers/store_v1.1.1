@@ -70,9 +70,9 @@ public class ManageController
      * @param memberVO 部门Id
      * @return 成员列表
      */
-    @RequestMapping(value = "/s/findMemberList", method = RequestMethod.POST)
+    @RequestMapping(value = "/s/findMemberList", method = RequestMethod.POST,produces = RequestConstant.CONTENT_TYPE)
     @ResponseBody
-    public ResultVO findMemberList(HttpServletRequest request, MemberVO memberVO)
+    public String findMemberList(HttpServletRequest request, MemberVO memberVO)
     {
         SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
 
@@ -86,9 +86,9 @@ public class ManageController
      * @param department (暂时没用到)
      * @return 部门列表
      */
-    @RequestMapping(value = "/s/findDepartmentList", method = RequestMethod.POST)
+    @RequestMapping(value = "/s/findDepartmentList", method = RequestMethod.POST, produces = RequestConstant.CONTENT_TYPE)
     @ResponseBody
-    public ResultVO findDepartmentList(HttpServletRequest request, DepartmentVO department)
+    public String findDepartmentList(HttpServletRequest request, DepartmentVO department)
     {
         SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
 

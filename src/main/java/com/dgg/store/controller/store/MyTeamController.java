@@ -109,9 +109,9 @@ public class MyTeamController
      * @param member  搜索关键字
      * @return 成员列表
      */
-    @RequestMapping(value = "/s/findMemberByNameOrPhone", method = RequestMethod.POST)
+    @RequestMapping(value = "/s/findMemberByNameOrPhone", method = RequestMethod.POST, produces = {"application/json;charset=UTF-8"})
     @ResponseBody
-    public ResultVO findMemberByNameOrPhone(HttpServletRequest request, MemberVO member)
+    public String findMemberByNameOrPhone(HttpServletRequest request, MemberVO member)
     {
         SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
 

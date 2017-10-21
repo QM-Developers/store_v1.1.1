@@ -41,14 +41,12 @@ public class MyTeamServiceImpl implements MyTeamService
     }
 
     @Override
-    public ResultVO findMemberByNameOrPhone(SessionVO sessionVO, MemberVO member)
+    public String findMemberByNameOrPhone(SessionVO sessionVO, MemberVO member)
     {
         member.setMyTeamId(sessionVO.getMyTeamId());
         List<MemberVO> result = dao.findMemberByNameOrPhone(member);
 
-        ResultVO resultVO = new ResultVO(1, sessionVO.getToken(), result);
-
-        return resultVO;
+        return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), result));
     }
 
     @Override

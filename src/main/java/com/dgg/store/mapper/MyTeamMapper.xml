@@ -23,7 +23,8 @@
         <result column="position_name" property="positionName" jdbcType="VARCHAR"/>
     </resultMap>
 
-    <select id="findDepartmentDetail" resultMap="TeamDepartmentVO" parameterType="com.dgg.store.util.vo.team.TeamDepartmentVO">
+    <select id="findDepartmentDetail" resultMap="TeamDepartmentVO"
+            parameterType="com.dgg.store.util.vo.team.TeamDepartmentVO">
         SELECT td.team_department_id,td.team_department_name,td.create_date,
         mt.my_team_name,
         (SELECT COUNT(1) FROM user u WHERE u.team_department_id = td.team_department_id) count
@@ -41,10 +42,10 @@
 
     <select id="findDepartmentMember" resultMap="MemberVO" parameterType="com.dgg.store.util.vo.team.MemberVO">
         SELECT u.user_id,u.user_name,u.user_sex,
-            u.user_phone,u.user_identity,u.user_img,
-            mt.my_team_name,
-            td.team_department_name,
-            dp.position_name
+        u.user_phone,u.user_identity,u.user_img,
+        mt.my_team_name,
+        td.team_department_name,
+        dp.position_name
         FROM user u
         INNER JOIN my_team mt
         ON mt.my_team_id = u.my_team_id
@@ -64,14 +65,17 @@
 
     <select id="findMemberByNameOrPhone" resultMap="MemberVO" parameterType="com.dgg.store.util.vo.team.MemberVO">
         SELECT u.user_id,u.user_name,u.user_sex,
-            u.user_phone,
-            td.team_department_name,
-            dp.position_name
+        u.user_phone,u.user_img,
+        td.team_department_name,
+        dp.position_name,
+        mt.my_team_name
         FROM user u
         INNER JOIN team_department td
         ON td.team_department_id = u.team_department_id
         INNER JOIN department_position dp
         ON dp.position_id = u.position_id
+        INNER JOIN my_team mt
+        ON mt.my_team_id = u.my_team_id
         WHERE u.my_team_id = #{myTeamId}
         <if test="teamDepartmentId != null and teamDepartmentId != ''">
             AND u.team_department_id = #{teamDepartmentId}

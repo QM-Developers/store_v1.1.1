@@ -10,6 +10,7 @@ import com.dgg.store.util.core.constant.KeyConstant;
 import com.dgg.store.util.core.constant.SymbolConstant;
 import com.dgg.store.util.core.generator.IDGenerator;
 import com.dgg.store.util.core.page.PagingUtil;
+import com.dgg.store.util.core.parameter.ParameterUtil;
 import com.dgg.store.util.core.string.StringUtil;
 import com.dgg.store.util.pojo.GoodsStandard;
 import com.dgg.store.util.vo.branch.BranchGoodsVO;
@@ -47,6 +48,9 @@ public class BranchServiceImpl implements BranchService
     @Override
     public String listBranch(SessionVO sessionVO, BranchVO branchVO, PageVO pageVO)
     {
+        if (ParameterUtil.objectIsNull(pageVO))
+            return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_FAILED, sessionVO.getToken()));
+
         BranchVO condition = new BranchVO();
         condition.setMyTeamId(sessionVO.getMyTeamId());
         condition.setBranchType(BranchConstant.BRANCH_SECOND);
@@ -98,6 +102,9 @@ public class BranchServiceImpl implements BranchService
     @Override
     public String listGoods(SessionVO sessionVO, BranchVO branchVO, PageVO pageVO)
     {
+        if (ParameterUtil.objectIsNull(pageVO))
+            return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_FAILED, sessionVO.getToken()));
+
         BranchVO condition = new BranchVO();
         condition.setMyTeamId(sessionVO.getMyTeamId());
         int start = PagingUtil.getStart(pageVO.getPageNum(), pageVO.getPageSize());
@@ -190,6 +197,9 @@ public class BranchServiceImpl implements BranchService
     @Override
     public String listBranchGoods(SessionVO sessionVO, BranchVO branchVO, PageVO pageVO)
     {
+        if (ParameterUtil.objectIsNull(pageVO))
+            return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_FAILED, sessionVO.getToken()));
+
         BranchVO condition = new BranchVO();
         condition.setBranchId(branchVO.getBranchId());
         int start = PagingUtil.getStart(pageVO.getPageNum(), pageVO.getPageSize());
@@ -225,6 +235,9 @@ public class BranchServiceImpl implements BranchService
     @Override
     public String getRepertory(SessionVO sessionVO, BranchVO branchVO, PageVO pageVO)
     {
+        if (ParameterUtil.objectIsNull(pageVO))
+            return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_FAILED, sessionVO.getToken()));
+
         branchVO.setBranchId(dao.getCurrentBranchId(sessionVO.getUserId()));
 
         return listBranchGoods(sessionVO, branchVO, pageVO);
@@ -233,6 +246,9 @@ public class BranchServiceImpl implements BranchService
     @Override
     public String getFirstRepertory(SessionVO sessionVO, BranchVO branchVO, PageVO pageVO)
     {
+        if (ParameterUtil.objectIsNull(pageVO))
+            return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_FAILED, sessionVO.getToken()));
+
         branchVO.setBranchId(dao.getFirstBranchId(sessionVO.getMyTeamId(), BranchConstant.BRANCH_FIRST));
 
         return listBranchGoods(sessionVO, branchVO, pageVO);

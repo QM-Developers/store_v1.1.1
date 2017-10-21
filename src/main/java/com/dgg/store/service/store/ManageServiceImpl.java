@@ -53,14 +53,12 @@ public class ManageServiceImpl implements ManageService
     }
 
     @Override
-    public ResultVO findMemberList(SessionVO sessionVO, MemberVO memberVO)
+    public String findMemberList(SessionVO sessionVO, MemberVO memberVO)
     {
         memberVO.setMyTeamId(sessionVO.getMyTeamId());
         List<MemberVO> result = dao.findMemberList(memberVO);
 
-        ResultVO resultVO = new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), result);
-
-        return resultVO;
+        return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), result));
     }
 
     @Override
@@ -239,13 +237,11 @@ public class ManageServiceImpl implements ManageService
     }
 
     @Override
-    public ResultVO findDepartmentList(SessionVO sessionVO, DepartmentVO department)
+    public String findDepartmentList(SessionVO sessionVO, DepartmentVO department)
     {
         List<DepartmentVO> result = dao.findDepartmentList(sessionVO.getMyTeamId());
 
-        ResultVO resultVO = new ResultVO(1, sessionVO.getToken(), result);
-
-        return resultVO;
+        return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), result));
     }
 
     @Override

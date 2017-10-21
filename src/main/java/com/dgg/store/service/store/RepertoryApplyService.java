@@ -19,4 +19,8 @@ public interface RepertoryApplyService
     String updateRepertoryApplyFinish(SessionVO sessionVO, RepertoryApply apply);
 
     String getRepertoryApply(SessionVO sessionVO, RepertoryApply apply);
+
+    String listRepertoryApply(SessionVO sessionVO, RepertoryApply apply, PageVO pageVO);
+
+    String listCurrentRepertoryApply(SessionVO sessionVO, RepertoryApply apply, PageVO pageVO);
 }

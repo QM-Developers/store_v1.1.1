@@ -265,6 +265,9 @@ public class RepertoryRecordServiceImpl implements RepertoryRecordService
     @Override
     public String listRepertoryRecord(SessionVO sessionVO, RepertoryRecord repertoryRecord, PageVO pageVO)
     {
+        if (ParameterUtil.objectIsNull(pageVO))
+            return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_FAILED, sessionVO.getToken()));
+
         RepertoryRecordExample example = new RepertoryRecordExample();
         RepertoryRecordExample.Criteria criteria = example.createCriteria();
 

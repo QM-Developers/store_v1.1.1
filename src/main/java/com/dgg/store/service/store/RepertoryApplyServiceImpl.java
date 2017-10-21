@@ -7,6 +7,7 @@ import com.dgg.store.mapper.RepertoryApplyMapper;
 import com.dgg.store.util.core.constant.*;
 import com.dgg.store.util.core.generator.IDGenerator;
 import com.dgg.store.util.core.page.PagingUtil;
+import com.dgg.store.util.core.parameter.ParameterUtil;
 import com.dgg.store.util.core.string.StringUtil;
 import com.dgg.store.util.pojo.*;
 import com.dgg.store.util.vo.core.PageVO;
@@ -14,6 +15,7 @@ import com.dgg.store.util.vo.core.ResultVO;
 import com.dgg.store.util.vo.core.SessionVO;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -65,6 +67,9 @@ public class RepertoryApplyServiceImpl implements RepertoryApplyService
     @Override
     public String listRepertoryApplyByProposer(SessionVO sessionVO, PageVO pageVO)
     {
+        if (ParameterUtil.objectIsNull(pageVO))
+            return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_FAILED, sessionVO.getToken()));
+
         RepertoryApplyExample example = new RepertoryApplyExample();
         RepertoryApplyExample.Criteria criteria = example.createCriteria();
 
@@ -85,6 +90,9 @@ public class RepertoryApplyServiceImpl implements RepertoryApplyService
     @Override
     public String listRepertoryApplyByApprover(SessionVO sessionVO, RepertoryApply apply, PageVO pageVO)
     {
+        if (ParameterUtil.objectIsNull(pageVO))
+            return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_FAILED, sessionVO.getToken()));
+
         RepertoryApplyExample example = new RepertoryApplyExample();
         RepertoryApplyExample.Criteria criteria = example.createCriteria();
 
@@ -215,9 +223,75 @@ public class RepertoryApplyServiceImpl implements RepertoryApplyService
     @Override
     public String getRepertoryApply(SessionVO sessionVO, RepertoryApply apply)
     {
-        RepertoryApply result = mapper.selectByPrimaryKey(apply.getApplyId());
+        apply = mapper.selectByPrimaryKey(apply.getApplyId());
+        List<RepertoryApply> result = new ArrayList<>();
+        result.add(apply);
+        getApplyList(result, sessionVO);
 
-        return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), result));
+        return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), result.get(0)));
+    }
+
+    @Override
+    public String listRepertoryApply(SessionVO sessionVO, RepertoryApply apply, PageVO pageVO)
+    {
+        if (ParameterUtil.objectIsNull(pageVO))
+            return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_FAILED, sessionVO.getToken()));
+
+        RepertoryApplyExample example = new RepertoryApplyExample();
+        RepertoryApplyExample.Criteria criteria = example.createCriteria();
+
+        criteria.andMyTeamIdEqualTo(sessionVO.getMyTeamId());
+        if (apply.getCreateDate() != null && apply.getFinishDate() != null)
+            criteria.andCreateDateBetween(apply.getCreateDate(), apply.getFinishDate());
+        if (!StringUtil.isEmpty(apply.getBranchId()))
+            criteria.andBranchIdEqualTo(apply.getBranchId());
+        if (apply.getApplyStatus() != null)
+            criteria.andApplyStatusEqualTo(apply.getApplyStatus());
+
+        example.setPageNum(PagingUtil.getStart(pageVO.getPageNum(), pageVO.getPageSize()));
+        example.setPageSize(pageVO.getPageSize());
+        List<RepertoryApply> result = mapper.selectByExample(example);
+        result = getApplyList(result, sessionVO);
+
+        int pageCount = PagingUtil.getCount((int) mapper.countByExample(example), pageVO.getPageSize());
+        JSONObject json = (JSONObject) JSONObject.toJSON(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), result));
+        json.put(KeyConstant.PAGE_COUNT, pageCount);
+
+        return json.toJSONString();
+    }
+
+    @Override
+    public String listCurrentRepertoryApply(SessionVO sessionVO, RepertoryApply apply, PageVO pageVO)
+    {
+        if (ParameterUtil.objectIsNull(pageVO))
+            return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_FAILED, sessionVO.getToken()));
+
+        String branchId = mapper.getCurrentBranchId(sessionVO.getUserId());
+        if (StringUtil.isEmpty(branchId))
+            return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_FAILED, sessionVO.getToken()));
+
+        RepertoryApplyExample example = new RepertoryApplyExample();
+        RepertoryApplyExample.Criteria criteria = example.createCriteria();
+
+
+        criteria.andBranchIdEqualTo(branchId);
+        if (apply.getCreateDate() != null && apply.getFinishDate() != null)
+            criteria.andCreateDateBetween(apply.getCreateDate(), apply.getFinishDate());
+        if (!StringUtil.isEmpty(apply.getBranchId()))
+            criteria.andBranchIdEqualTo(apply.getBranchId());
+        if (apply.getApplyStatus() != null)
+            criteria.andApplyStatusEqualTo(apply.getApplyStatus());
+
+        example.setPageNum(PagingUtil.getStart(pageVO.getPageNum(), pageVO.getPageSize()));
+        example.setPageSize(pageVO.getPageSize());
+        List<RepertoryApply> result = mapper.selectByExample(example);
+        result = getApplyList(result, sessionVO);
+
+        int pageCount = PagingUtil.getCount((int) mapper.countByExample(example), pageVO.getPageSize());
+        JSONObject json = (JSONObject) JSONObject.toJSON(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), result));
+        json.put(KeyConstant.PAGE_COUNT, pageCount);
+
+        return json.toJSONString();
     }
 
     private String getRecordCode(int i, String branchId)

@@ -455,4 +455,11 @@
     WHERE gi.goods_id = #{goodsId}
   </select>
 
+  <select id="getCurrentBranchId" resultType="java.lang.String">
+    SELECT qb.branch_id
+    FROM qm_branch qb
+    INNER JOIN user u
+    ON u.team_department_id = qb.department_id
+    WHERE u.user_id = #{userId}
+  </select>
 </mapper>

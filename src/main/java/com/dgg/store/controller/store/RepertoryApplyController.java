@@ -87,6 +87,23 @@ public class RepertoryApplyController
     }
 
     /**
+     * 获取库存审批列表
+     *
+     * @param request 用户参数
+     * @param apply   筛选条件
+     * @param pageVO  分页参数
+     * @return 库存申请列表
+     */
+    @RequestMapping(value = "/s/listRepertoryApply", method = RequestMethod.POST, produces = {"application/json;charset=UTF-8"})
+    @ResponseBody
+    public String listRepertoryApply(HttpServletRequest request, RepertoryApply apply, PageVO pageVO)
+    {
+        SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
+
+        return service.listRepertoryApply(sessionVO, apply, pageVO);
+    }
+
+    /**
      * 同意申请
      *
      * @param request 用户参数
@@ -134,5 +151,20 @@ public class RepertoryApplyController
         return service.getRepertoryApply(sessionVO, apply);
     }
 
+    /**
+     * 获取当前销售点库存申请列表
+     *
+     * @param request 用户参数
+     * @param apply   筛选条件
+     * @param pageVO  分页参数
+     * @return 库存申请列表
+     */
+    @RequestMapping(value = "/s/listCurrentRepertoryApply", method = RequestMethod.POST, produces = {"application/json;charset=UTF-8"})
+    @ResponseBody
+    public String listCurrentRepertoryApply(HttpServletRequest request, RepertoryApply apply, PageVO pageVO)
+    {
+        SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
 
+        return service.listCurrentRepertoryApply(sessionVO, apply, pageVO);
+    }
 }

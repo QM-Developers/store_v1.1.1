@@ -51,4 +51,6 @@ public interface RepertoryApplyMapper
     int getStandardCount(@Param("standardId") String standardId,@Param("myTeamId") String myTeamId,@Param("branchType") byte branchFirst);
 
     String getGoodsType(String goodsId);
+
+    String getCurrentBranchId(String userId);
 }

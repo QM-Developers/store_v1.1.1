@@ -8,6 +8,7 @@ import com.dgg.store.dao.store.GoodsTypeDao;
 import com.dgg.store.util.core.constant.*;
 import com.dgg.store.util.core.generator.IDGenerator;
 import com.dgg.store.util.core.page.PagingUtil;
+import com.dgg.store.util.core.parameter.ParameterUtil;
 import com.dgg.store.util.core.string.StringUtil;
 import com.dgg.store.util.core.upload.UploadFileUtil;
 import com.dgg.store.util.pojo.GoodsStandard;
@@ -37,7 +38,7 @@ public class GoodsManageServiceImpl implements GoodsManageService
     private GoodsTypeDao typeDao;
 
     @Override
-    public ResultVO insertGoodsinfo(SessionVO sessionVO, GoodsInfoVO goodsinfo)
+    public String insertGoodsinfo(SessionVO sessionVO, GoodsInfoVO goodsinfo)
     {
         Integer result = 1;
         goodsinfo.setMyTeamId(sessionVO.getMyTeamId());
@@ -76,9 +77,7 @@ public class GoodsManageServiceImpl implements GoodsManageService
                 throw new RuntimeException("添加失败");
         }
 
-        ResultVO resultVO = new ResultVO(result, sessionVO.getToken());
-
-        return resultVO;
+        return JSONObject.toJSONString(new ResultVO(result, sessionVO.getToken(), goodsinfo.getGoodsId()));
     }
 
     private GoodsTypeVO findTypeParent(GoodsTypeVO typeVO)
@@ -92,16 +91,14 @@ public class GoodsManageServiceImpl implements GoodsManageService
     }
 
     @Override
-    public ResultVO findTypeAndParents(SessionVO sessionVO, GoodsTypeinfo typeinfo)
+    public String findTypeAndParents(SessionVO sessionVO, GoodsTypeinfo typeinfo)
     {
         GoodsTypeVO result = dao.findGoodsType(typeinfo.getGoodsTypeId());
 
         if (result != null)
             result = findTypeParent(result);
 
-        ResultVO resultVO = new ResultVO(result == null ? 0 : 1, sessionVO.getToken(), result);
-
-        return resultVO;
+        return JSONObject.toJSONString(new ResultVO(result == null ? 0 : 1, sessionVO.getToken(), result));
     }
 
     @Override
@@ -117,7 +114,6 @@ public class GoodsManageServiceImpl implements GoodsManageService
     @Override
     public ResultVO insertImgToSpace(SessionVO sessionVO, MultipartFile file, String basePath)
     {
-        int result = 0;
         StringBuffer path = new StringBuffer();
         String fileName = null;
         String imageId = IDGenerator.generator();
@@ -132,24 +128,23 @@ public class GoodsManageServiceImpl implements GoodsManageService
             e.printStackTrace();
         }
 
-        ResultVO resultVO = new ResultVO(result, sessionVO.getToken(), imageId);
-
-        return resultVO;
+        return new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), imageId);
     }
 
     @Override
-    public ResultVO findImages(SessionVO sessionVO)
+    public String findImages(SessionVO sessionVO)
     {
         List<ImageSpace> result = dao.findImages(sessionVO.getMyTeamId());
 
-        ResultVO resultVO = new ResultVO(result.size() < 1 ? 0 : 1, sessionVO.getToken(), result);
-
-        return resultVO;
+        return JSONObject.toJSONString(new ResultVO(result.size() < 1 ? 0 : 1, sessionVO.getToken(), result));
     }
 
     @Override
     public String findGoodsList(SessionVO sessionVO, PageVO pageVO)
     {
+        if (ParameterUtil.objectIsNull(pageVO))
+            return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_FAILED, sessionVO.getToken()));
+
         GoodsInfoVO condition = new GoodsInfoVO();
         condition.setMyTeamId(sessionVO.getMyTeamId());
 
@@ -173,36 +168,35 @@ public class GoodsManageServiceImpl implements GoodsManageService
     }
 
     @Override
-    public ResultVO findGoodsInfo(SessionVO sessionVO, GoodsInfoVO infoVO)
+    public String findGoodsInfo(SessionVO sessionVO, GoodsInfoVO infoVO)
     {
         GoodsInfoVO result = dao.findGoodsInfo(infoVO);
 
         result.setImgList(dao.listImage(result.getGoodsId()));
 
-        ResultVO resultVO = new ResultVO(result == null ? 2 : 1, sessionVO.getToken(), result);
-
-        return resultVO;
+        return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), result));
     }
 
     @Override
-    public ResultVO findGoodsDescribe(SessionVO sessionVO, GoodsInfoVO infoVO)
+    public String findGoodsDescribe(SessionVO sessionVO, GoodsInfoVO infoVO)
     {
         String[] ids = infoVO.getGoodsDescribe().split(SymbolConstant.REG_VERTICAL);
         List<GoodsImgVO> result = dao.findGoodsDescribe(ids);
 
-        ResultVO resultVO = new ResultVO(1, sessionVO.getToken(), result);
-
-        return resultVO;
+        return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), result));
     }
 
     @Override
-    public ResultVO updateGoods(SessionVO sessionVO, GoodsInfoVO goodsInfo)
+    public String updateGoods(SessionVO sessionVO, GoodsInfoVO goodsInfo)
     {
         Integer result = 1;
         int i = 0;
         int count = 3;
 
-        String[] images = goodsInfo.getGoodsImages().split(SymbolConstant.REG_VERTICAL);
+        String[] images = null;
+        if (!StringUtil.isEmpty(goodsInfo.getGoodsImages()))
+            images = goodsInfo.getGoodsImages().split(SymbolConstant.REG_VERTICAL);
+
         GoodsImgVO imgVO = new GoodsImgVO(sessionVO.getUserId(), goodsInfo.getGoodsId());
 
         while (result > 0)
@@ -219,7 +213,7 @@ public class GoodsManageServiceImpl implements GoodsManageService
                         standard.setStandardId(StringUtil.isEmpty(standardId) ? IDGenerator.generator() : standardId);
                         standard.setStandardPrice(Float.parseFloat(jsonArray.getJSONObject(j).get("standardPrice").toString()));
                         standard.setStandardWeight(Float.parseFloat(jsonArray.getJSONObject(j).get("standardWeight").toString()));
-                        standard.setStandardCount(Integer.parseInt(jsonArray.getJSONObject(j).get("standardCount").toString()));
+                        standard.setStandardCount(0);
                         standard.setStandardName(jsonArray.getJSONObject(j).get("standardName").toString());
                         result = dao.insertStandardToGoods(standard);
                         if (result < 1)
@@ -228,14 +222,17 @@ public class GoodsManageServiceImpl implements GoodsManageService
                     break;
                 case 1:
                     dao.deleteAllImg(goodsInfo.getGoodsId());
-                    for (int j = 0; j < images.length; j++)
+                    if (images != null)
                     {
-                        imgVO.setImageId(images[j]);
-                        imgVO.setGoodsImgType((byte) (j == 0 ? 1 : 2));
-                        imgVO.setSort(j);
-                        result = dao.insertImgToGoods(imgVO);
-                        if (result < 1)
-                            break;
+                        for (int j = 0; j < images.length; j++)
+                        {
+                            imgVO.setImageId(images[j]);
+                            imgVO.setGoodsImgType((byte) (j == 0 ? 1 : 2));
+                            imgVO.setSort(j);
+                            result = dao.insertImgToGoods(imgVO);
+                            if (result < 1)
+                                break;
+                        }
                     }
                     break;
                 case 2:
@@ -253,9 +250,7 @@ public class GoodsManageServiceImpl implements GoodsManageService
         else
             result = 1;
 
-        ResultVO resultVO = new ResultVO(result, sessionVO.getToken());
-
-        return resultVO;
+        return JSONObject.toJSONString(new ResultVO(result, sessionVO.getToken()));
     }
 
     @Override
@@ -321,10 +316,10 @@ public class GoodsManageServiceImpl implements GoodsManageService
     }
 
     @Override
-    public ResultVO findGoodsTypeByPid(SessionVO sessionVO, GoodsTypeinfo typeinfo)
+    public String findGoodsTypeByPid(SessionVO sessionVO, GoodsTypeinfo typeinfo)
     {
         List<GoodsTypeinfo> result = typeDao.findGoodsTypeByPid(typeinfo.getGoodsTypePid());
 
-        return new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), result);
+        return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), result));
     }
 }

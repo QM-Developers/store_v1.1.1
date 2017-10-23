@@ -181,11 +181,13 @@ public class CommonApplyServiceImpl implements CommonApplyService
         condition.setApproveId(sessionVO.getUserId());
         condition.setApproveSequence(approve.getApproveSequence());
 
+        String advice = approve.getApproveAdvice();
         approve = dao.getApplyApprove(condition);
 
         if (approve == null)
             return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_FAILED, sessionVO.getToken()));
 
+        approve.setApproveAdvice(advice);
         condition.setApproveId(null);
         condition.setApproveSequence((byte) (approve.getApproveSequence() - 1));
         CommonApplyApprove approvePrev = dao.getApplyApprove(condition);
@@ -211,9 +213,9 @@ public class CommonApplyServiceImpl implements CommonApplyService
             result = dao.updateByPrimaryKeySelective(applySelective);
             if (result < 1)
                 throw new RuntimeException(Constant.STR_ADD_FAILED);
-            UMengUtil.sendUnicast(dao.getDeviceToken(apply.getProposerId()),PushMessageFactory.getInstance(mapper).get(PushMessageConstant.APPLY_PASS));
-        }else
-            UMengUtil.sendUnicast(dao.getDeviceToken(approveNext.getApproveId()),PushMessageFactory.getInstance(mapper).get(PushMessageConstant.APPLY_NEW));
+            UMengUtil.sendUnicast(dao.getDeviceToken(apply.getProposerId()), PushMessageFactory.getInstance(mapper).get(PushMessageConstant.APPLY_PASS));
+        } else
+            UMengUtil.sendUnicast(dao.getDeviceToken(approveNext.getApproveId()), PushMessageFactory.getInstance(mapper).get(PushMessageConstant.APPLY_NEW));
 
         return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken()));
     }
@@ -232,11 +234,13 @@ public class CommonApplyServiceImpl implements CommonApplyService
         condition.setApproveId(sessionVO.getUserId());
         condition.setApproveSequence(approve.getApproveSequence());
 
+        String advice = approve.getApproveAdvice();
         approve = dao.getApplyApprove(condition);
 
         if (approve == null)
             return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_FAILED, sessionVO.getToken()));
 
+        approve.setApproveAdvice(advice);
         condition.setApproveId(null);
         condition.setApproveSequence((byte) (approve.getApproveSequence() - 1));
         CommonApplyApprove approvePrev = dao.getApplyApprove(condition);
@@ -258,7 +262,7 @@ public class CommonApplyServiceImpl implements CommonApplyService
         if (result < 1)
             throw new RuntimeException(Constant.STR_ADD_FAILED);
 
-        UMengUtil.sendUnicast(dao.getDeviceToken(apply.getProposerId()),PushMessageFactory.getInstance(mapper).get(PushMessageConstant.APPLY_REFUSE));
+        UMengUtil.sendUnicast(dao.getDeviceToken(apply.getProposerId()), PushMessageFactory.getInstance(mapper).get(PushMessageConstant.APPLY_REFUSE));
 
         return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken()));
     }

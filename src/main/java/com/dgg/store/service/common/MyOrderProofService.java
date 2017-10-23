@@ -9,7 +9,7 @@ public interface MyOrderProofService
 {
     String save(SessionVO sessionVO, String realPath, MyOrderProof proof, MultipartFile file);
 
-    String list(SessionVO sessionVO, MyOrderProof proof, PageVO pageVO);
+    String list(SessionVO sessionVO, MyOrderProof proof);
 
     String remove(SessionVO sessionVO, MyOrderProof proof);
 }

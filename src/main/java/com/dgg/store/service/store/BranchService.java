@@ -8,15 +8,15 @@ import com.dgg.store.util.vo.core.SessionVO;
 
 public interface BranchService
 {
-    ResultVO insertBranch(SessionVO sessionVO, BranchVO branchVO);
+    String insertBranch(SessionVO sessionVO, BranchVO branchVO);
 
     String listBranch(SessionVO sessionVO, BranchVO branchVO, PageVO pageVO);
 
     ResultVO deleteBranch(SessionVO sessionVO, BranchVO branchVO);
 
-    ResultVO getBranch(SessionVO sessionVO, BranchVO branchVO);
+    String getBranch(SessionVO sessionVO, BranchVO branchVO);
 
-    ResultVO updateBranch(SessionVO sessionVO, BranchVO branchVO);
+    String updateBranch(SessionVO sessionVO, BranchVO branchVO);
 
     String listGoods(SessionVO sessionVO, BranchVO branchVO, PageVO pageVO);
 

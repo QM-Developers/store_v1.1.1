@@ -9,6 +9,7 @@ import com.dgg.store.util.core.OrderUtil;
 import com.dgg.store.util.core.constant.*;
 import com.dgg.store.util.core.generator.IDGenerator;
 import com.dgg.store.util.core.page.PagingUtil;
+import com.dgg.store.util.core.parameter.ParameterUtil;
 import com.dgg.store.util.core.umeng.push.PushMessageFactory;
 import com.dgg.store.util.core.umeng.push.UMengUtil;
 import com.dgg.store.util.pojo.FreightTemp;
@@ -23,6 +24,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 import java.util.Random;
 
 @Service
@@ -63,6 +65,7 @@ public class MyOrderServiceImpl implements MyOrderService
 
         // 设置订单参数
         myOrder.setUserId(sessionVO.getUserId());
+        myOrder.setShoppingAddress(ParameterUtil.getDefault(myOrder.getShoppingAddress(), Constant.EMPTY));
         myOrder.setOrderNumber(orderNumber);
         myOrder.setOrderId(IDGenerator.generator());
         myOrder.setOrderStatus(myOrder.getPaymentType() != OrderConstant.PAYMENT_TRANSFER ? OrderConstant.WAITING_SALESMAN_CHECK : OrderConstant.WAITING_FINANCE_CHECK_A);
@@ -116,7 +119,7 @@ public class MyOrderServiceImpl implements MyOrderService
 
     private boolean isCustomer(SessionVO sessionVO)
     {
-        return dao.getUserRole(sessionVO.getUserId()) == RoleConstant.USER;
+        return dao.getUserRole(sessionVO.getUserId()).equals(RoleConstant.USER);
     }
 
     private boolean hadGoods(JSONArray goods)
@@ -133,7 +136,6 @@ public class MyOrderServiceImpl implements MyOrderService
 
     private boolean hadEnoughRepertory(SessionVO sessionVO, JSONArray goods)
     {
-
         String customerType = dao.getCustomerType(sessionVO.getUserId(), sessionVO.getMyTeamId());
         int repositoryLevel = dao.getCustomerRepertory(customerType, sessionVO.getMyTeamId());
         int repertory;
@@ -146,7 +148,7 @@ public class MyOrderServiceImpl implements MyOrderService
                 {
                     json = (JSONObject) goods.get(i);
                     repertory = dao.getGoodsRepertoryFirst(json.getString(KeyConstant.STANDARD_ID));
-                    if (repertory < json.getInteger(KeyConstant.GOODS_NUM))
+                    if (json.getInteger(KeyConstant.GOODS_NUM) == null && repertory < json.getInteger(KeyConstant.GOODS_NUM))
                         return false;
                 }
                 break;

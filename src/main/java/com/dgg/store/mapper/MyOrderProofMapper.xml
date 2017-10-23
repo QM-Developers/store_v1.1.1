@@ -202,7 +202,6 @@
     <if test="orderByClause != null">
       order by ${orderByClause}
     </if>
-    LIMIT #{pageNum},#{pageSize}
   </select>
 
   <update id="updateOrderStatus">
@@ -211,4 +210,9 @@
     WHERE order_id = #{orderId}
   </update>
 
+  <select id="getOrderStatus" resultType="java.lang.Integer">
+    SELECT order_status
+    FROM my_order
+    WHERE order_id = #{orderId}
+  </select>
 </mapper>

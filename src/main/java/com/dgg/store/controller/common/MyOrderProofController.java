@@ -57,16 +57,15 @@ public class MyOrderProofController
      *
      * @param request 当前用户信息
      * @param proof   订单Id
-     * @param pageVO  分页参数
      * @return 订单凭证列表
      */
     @RequestMapping(value = "user_listOrderProof", method = POST, produces = {RequestConstant.CONTENT_TYPE})
     @ResponseBody
-    public String list(HttpServletRequest request, MyOrderProof proof, PageVO pageVO)
+    public String list(HttpServletRequest request, MyOrderProof proof)
     {
         SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
 
-        return service.list(sessionVO, proof, pageVO);
+        return service.list(sessionVO, proof);
     }
 
     /**

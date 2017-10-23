@@ -76,21 +76,15 @@ public class MyOrderProofServiceImpl implements MyOrderProofService
     }
 
     @Override
-    public String list(SessionVO sessionVO, MyOrderProof proof, PageVO pageVO)
+    public String list(SessionVO sessionVO, MyOrderProof proof)
     {
         MyOrderProofExample example = new MyOrderProofExample();
         MyOrderProofExample.Criteria criteria = example.createCriteria();
 
-        example.setPageNum(PagingUtil.getStart(pageVO.getPageNum(), pageVO.getPageSize()));
-        example.setPageSize(pageVO.getPageSize());
         criteria.andOrderIdEqualTo(proof.getOrderId());
         List<MyOrderProof> result = mapper.selectByExample(example);
-        int pageCount = PagingUtil.getCount((int) mapper.countByExample(example), pageVO.getPageSize());
 
-        JSONObject json = (JSONObject) JSONObject.toJSON(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), result));
-        json.put(KeyConstant.PAGE_COUNT, pageCount);
-
-        return json.toJSONString();
+        return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), result));
     }
 
     @Override

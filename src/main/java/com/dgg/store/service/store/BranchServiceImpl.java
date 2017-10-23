@@ -35,14 +35,19 @@ public class BranchServiceImpl implements BranchService
     private GoodsBrowseDao browseDao;
 
     @Override
-    public ResultVO insertBranch(SessionVO sessionVO, BranchVO branchVO)
+    public String insertBranch(SessionVO sessionVO, BranchVO branchVO)
     {
+        BranchVO condition = new BranchVO();
+        condition.setDepartmentId(branchVO.getDepartmentId());
+        if (dao.countBranch(condition) > 0)
+            return JSONObject.toJSONString(new ResultVO(3, sessionVO.getToken()));
+
         branchVO.setBranchId(IDGenerator.generator());
         branchVO.setMyTeamId(sessionVO.getMyTeamId());
         branchVO.setBranchType(BranchConstant.BRANCH_SECOND);
         int result = dao.insertBranch(branchVO);
 
-        return new ResultVO(result == 0 ? 2 : 1, sessionVO.getToken(), branchVO.getBranchId());
+        return JSONObject.toJSONString(new ResultVO(result == 0 ? 2 : 1, sessionVO.getToken(), branchVO.getBranchId()));
     }
 
     @Override
@@ -80,23 +85,19 @@ public class BranchServiceImpl implements BranchService
     }
 
     @Override
-    public ResultVO getBranch(SessionVO sessionVO, BranchVO branchVO)
+    public String getBranch(SessionVO sessionVO, BranchVO branchVO)
     {
         BranchVO result = dao.getBranch(branchVO.getBranchId());
 
-        ResultVO resultVO = new ResultVO(result == null ? 2 : 1, sessionVO.getToken(), result);
-
-        return resultVO;
+        return JSONObject.toJSONString(new ResultVO(result == null ? 2 : 1, sessionVO.getToken(), result));
     }
 
     @Override
-    public ResultVO updateBranch(SessionVO sessionVO, BranchVO branchVO)
+    public String updateBranch(SessionVO sessionVO, BranchVO branchVO)
     {
         int result = dao.updateBranch(branchVO);
 
-        ResultVO resultVO = new ResultVO(result == 0 ? 2 : 1, sessionVO.getToken(), result);
-
-        return resultVO;
+        return JSONObject.toJSONString(new ResultVO(result == 0 ? 2 : 1, sessionVO.getToken(), result));
     }
 
     @Override

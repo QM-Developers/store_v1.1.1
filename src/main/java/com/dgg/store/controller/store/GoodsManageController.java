@@ -2,12 +2,12 @@ package com.dgg.store.controller.store;
 
 import com.dgg.store.service.store.GoodsManageService;
 import com.dgg.store.util.core.constant.Constant;
-import com.dgg.store.util.pojo.GoodsTypeAttr;
+import com.dgg.store.util.core.constant.RequestConstant;
 import com.dgg.store.util.pojo.GoodsTypeinfo;
 import com.dgg.store.util.vo.core.PageVO;
-import com.dgg.store.util.vo.goods.GoodsInfoVO;
 import com.dgg.store.util.vo.core.ResultVO;
 import com.dgg.store.util.vo.core.SessionVO;
+import com.dgg.store.util.vo.goods.GoodsInfoVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -34,18 +34,18 @@ public class GoodsManageController
      * @param typeinfo 类目Id
      * @return 商品类目
      */
-    @RequestMapping(value = "/s/findTypeAndParents", method = RequestMethod.POST)
+    @RequestMapping(value = "/s/findTypeAndParents", method = RequestMethod.POST, produces = RequestConstant.CONTENT_TYPE)
     @ResponseBody
-    public ResultVO findTypeAndParents(HttpServletRequest request, GoodsTypeinfo typeinfo)
+    public String findTypeAndParents(HttpServletRequest request, GoodsTypeinfo typeinfo)
     {
         SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
 
         return service.findTypeAndParents(sessionVO, typeinfo);
     }
 
-    @RequestMapping(value = "/s/findGoodsTypeByPid", method = RequestMethod.POST)
+    @RequestMapping(value = "/s/findGoodsTypeByPid", method = RequestMethod.POST, produces = RequestConstant.CONTENT_TYPE)
     @ResponseBody
-    public ResultVO findGoodsTypeByPid(HttpServletRequest request, GoodsTypeinfo typeinfo)
+    public String findGoodsTypeByPid(HttpServletRequest request, GoodsTypeinfo typeinfo)
     {
         SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
 
@@ -84,9 +84,9 @@ public class GoodsManageController
      * @param goodsinfo 商品信息
      * @return 操作的结果
      */
-    @RequestMapping(value = "/s/goodsRelease", method = RequestMethod.POST)
+    @RequestMapping(value = "/s/goodsRelease", method = RequestMethod.POST,produces = RequestConstant.CONTENT_TYPE)
     @ResponseBody
-    public ResultVO goodsRelease(HttpServletRequest request, GoodsInfoVO goodsinfo)
+    public String goodsRelease(HttpServletRequest request, GoodsInfoVO goodsinfo)
     {
         SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
 
@@ -102,7 +102,7 @@ public class GoodsManageController
      */
     @RequestMapping(value = "/s/updateGoods", method = RequestMethod.POST)
     @ResponseBody
-    public ResultVO updateGoods(HttpServletRequest request, GoodsInfoVO goodsInfo)
+    public String updateGoods(HttpServletRequest request, GoodsInfoVO goodsInfo)
     {
         SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
 
@@ -140,9 +140,9 @@ public class GoodsManageController
      * @param request 用户参数
      * @return 图片列表
      */
-    @RequestMapping(value = "/s/findImages", method = RequestMethod.POST)
+    @RequestMapping(value = "/s/findImages", method = RequestMethod.POST,produces = RequestConstant.CONTENT_TYPE)
     @ResponseBody
-    public ResultVO findImages(HttpServletRequest request)
+    public String findImages(HttpServletRequest request)
     {
         SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
 
@@ -189,9 +189,9 @@ public class GoodsManageController
      * @param infoVO  商品Id
      * @return 商品详情
      */
-    @RequestMapping(value = "/s/findGoodsInfo", method = RequestMethod.POST)
+    @RequestMapping(value = "/s/findGoodsInfo", method = RequestMethod.POST, produces = RequestConstant.CONTENT_TYPE)
     @ResponseBody
-    public ResultVO findGoodsInfo(HttpServletRequest request, GoodsInfoVO infoVO)
+    public String findGoodsInfo(HttpServletRequest request, GoodsInfoVO infoVO)
     {
         SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
 
@@ -205,9 +205,9 @@ public class GoodsManageController
      * @param infoVO  商品描述图片Id
      * @return 图片列表
      */
-    @RequestMapping(value = "/s/findGoodsDescribe", method = RequestMethod.POST)
+    @RequestMapping(value = "/s/findGoodsDescribe", method = RequestMethod.POST, produces = RequestConstant.CONTENT_TYPE)
     @ResponseBody
-    public ResultVO findGoodsDescribe(HttpServletRequest request, GoodsInfoVO infoVO)
+    public String findGoodsDescribe(HttpServletRequest request, GoodsInfoVO infoVO)
     {
         SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
 

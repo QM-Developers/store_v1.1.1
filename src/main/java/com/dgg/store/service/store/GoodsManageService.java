@@ -11,27 +11,27 @@ import org.springframework.web.multipart.MultipartFile;
 
 public interface GoodsManageService
 {
-    ResultVO insertGoodsinfo(SessionVO sessionVO, GoodsInfoVO goodsinfo);
+    String insertGoodsinfo(SessionVO sessionVO, GoodsInfoVO goodsinfo);
 
-    ResultVO findTypeAndParents(SessionVO sessionVO, GoodsTypeinfo typeinfo);
+    String findTypeAndParents(SessionVO sessionVO, GoodsTypeinfo typeinfo);
 
     ResultVO findTypeAttr(SessionVO sessionVO, GoodsTypeAttr typeAttr);
 
     ResultVO insertImgToSpace(SessionVO sessionVO, MultipartFile file, String realPath);
 
-    ResultVO findImages(SessionVO sessionVO);
+    String findImages(SessionVO sessionVO);
 
     String findGoodsList(SessionVO sessionVO, PageVO pageVO);
 
-    ResultVO findGoodsInfo(SessionVO sessionVO, GoodsInfoVO infoVO);
+    String findGoodsInfo(SessionVO sessionVO, GoodsInfoVO infoVO);
 
-    ResultVO findGoodsDescribe(SessionVO sessionVO, GoodsInfoVO infoVO);
+    String findGoodsDescribe(SessionVO sessionVO, GoodsInfoVO infoVO);
 
-    ResultVO updateGoods(SessionVO sessionVO, GoodsInfoVO goodsInfo);
+    String updateGoods(SessionVO sessionVO, GoodsInfoVO goodsInfo);
 
     ResultVO deleteGoods(SessionVO sessionVO, GoodsInfoVO goodsInfo);
 
     String findGoodsListByKeyword(SessionVO sessionVO, GoodsInfoVO goodsInfo, PageVO pageVO);
 
-    ResultVO findGoodsTypeByPid(SessionVO sessionVO, GoodsTypeinfo typeinfo);
+    String findGoodsTypeByPid(SessionVO sessionVO, GoodsTypeinfo typeinfo);
 }

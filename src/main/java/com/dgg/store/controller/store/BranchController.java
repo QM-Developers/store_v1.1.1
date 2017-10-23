@@ -2,6 +2,7 @@ package com.dgg.store.controller.store;
 
 import com.dgg.store.service.store.BranchService;
 import com.dgg.store.util.core.constant.Constant;
+import com.dgg.store.util.core.constant.RequestConstant;
 import com.dgg.store.util.vo.branch.BranchGoodsVO;
 import com.dgg.store.util.vo.branch.BranchVO;
 import com.dgg.store.util.vo.core.PageVO;
@@ -33,7 +34,7 @@ public class BranchController
      */
     @RequestMapping(value = "/s/addBranch", method = RequestMethod.POST)
     @ResponseBody
-    public ResultVO addBranch(HttpServletRequest request, BranchVO branchVO)
+    public String addBranch(HttpServletRequest request, BranchVO branchVO)
     {
         SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
 
@@ -80,9 +81,9 @@ public class BranchController
      * @param branchVO 销售点Id
      * @return 销售点详情
      */
-    @RequestMapping(value = "/s/getBranch", method = RequestMethod.POST)
+    @RequestMapping(value = "/s/getBranch", method = RequestMethod.POST, produces = RequestConstant.CONTENT_TYPE)
     @ResponseBody
-    public ResultVO getBranch(HttpServletRequest request, BranchVO branchVO)
+    public String getBranch(HttpServletRequest request, BranchVO branchVO)
     {
         SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
 
@@ -96,9 +97,9 @@ public class BranchController
      * @param branchVO 销售点参数
      * @return 操作的结果
      */
-    @RequestMapping(value = "/s/updateBranch", method = RequestMethod.POST)
+    @RequestMapping(value = "/s/updateBranch", method = RequestMethod.POST, produces = RequestConstant.CONTENT_TYPE)
     @ResponseBody
-    public ResultVO updateBranch(HttpServletRequest request, BranchVO branchVO)
+    public String updateBranch(HttpServletRequest request, BranchVO branchVO)
     {
         SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
 

@@ -152,21 +152,21 @@ public class MyOrderController
         return service.updateRefundCancel(sessionVO, myOrder);
     }
 
-    /**
-     * 退还商品
-     *
-     * @param request 用户参数
-     * @param myOrder 订单的Id
-     * @return 操作的结果
-     */
-    @RequestMapping(value = "user_updateRefundGoods", method = RequestMethod.POST, produces = {"application/json;charset=UTF-8"})
-    @ResponseBody
-    public String updateRefundGoods(HttpServletRequest request, MyOrder myOrder)
-    {
-        SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
-
-        return service.updateRefundGoods(sessionVO, myOrder);
-    }
+//    /**
+//     * 退还商品
+//     *
+//     * @param request 用户参数
+//     * @param myOrder 订单的Id
+//     * @return 操作的结果
+//     */
+//    @RequestMapping(value = "user_updateRefundGoods", method = RequestMethod.POST, produces = {"application/json;charset=UTF-8"})
+//    @ResponseBody
+//    public String updateRefundGoods(HttpServletRequest request, MyOrder myOrder)
+//    {
+//        SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
+//
+//        return service.updateRefundGoods(sessionVO, myOrder);
+//    }
 
     /**
      * 获取运费模板列表

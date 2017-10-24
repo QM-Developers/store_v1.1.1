@@ -258,6 +258,14 @@
     INNER JOIN customer_assist_user cau
     ON cau.assist_id = ca.assist_id
     WHERE cau.user_id = #{userId}
+    <choose>
+      <when test="status != null and status == 1">
+        AND cau.assist_result IS NOT NULL AND cau.assist_result != ''
+      </when>
+      <otherwise>
+        AND (cau.assist_result IS NULL OR cau.assist_result = '')
+      </otherwise>
+    </choose>
   </select>
 
   <select id="listCustomerAssistByHelper" resultMap="BaseResultMap">
@@ -267,6 +275,14 @@
     INNER JOIN customer_assist_user cau
     ON cau.assist_id = ca.assist_id
     WHERE cau.user_id = #{userId}
+    <choose>
+      <when test="status != null and status == 1">
+        AND cau.assist_result IS NOT NULL AND cau.assist_result != ''
+      </when>
+      <otherwise>
+        AND (cau.assist_result IS NULL OR cau.assist_result = '')
+      </otherwise>
+    </choose>
     LIMIT #{pageNum},#{pageSize}
   </select>
 </mapper>

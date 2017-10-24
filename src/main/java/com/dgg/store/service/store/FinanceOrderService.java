@@ -17,4 +17,8 @@ public interface FinanceOrderService
     String updateFinanceFailB(SessionVO sessionVO, MyOrder myOrder);
 
     String updateRefundMoney(SessionVO sessionVO, MyOrder myOrder);
+
+    String updateFinancePass(SessionVO sessionVO, MyOrder myOrder);
+
+    String updateFinanceFail(SessionVO sessionVO, MyOrder myOrder);
 }

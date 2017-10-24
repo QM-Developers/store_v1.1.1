@@ -63,16 +63,17 @@ public class CustomerAssistController
      * 协助者获取协助列表
      *
      * @param request 用户参数
+     * @param assist  筛选条件
      * @param pageVO  分页参数
      * @return 申请协助列表
      */
     @RequestMapping(value = "/s/listCustomerAssistByHelper", method = POST, produces = {"application/json;charset=UTF-8"})
     @ResponseBody
-    public String listCustomerAssistByHelper(HttpServletRequest request, PageVO pageVO)
+    public String listCustomerAssistByHelper(HttpServletRequest request, CustomerAssist assist, PageVO pageVO)
     {
         SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
 
-        return service.listCustomerAssistByHelper(sessionVO, pageVO);
+        return service.listCustomerAssistByHelper(sessionVO, assist, pageVO);
     }
 
     /**

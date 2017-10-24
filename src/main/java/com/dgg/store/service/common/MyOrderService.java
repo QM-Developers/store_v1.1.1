@@ -18,7 +18,7 @@ public interface MyOrderService
 
     String updateRefundCancel(SessionVO sessionVO, MyOrder myOrder);
 
-    String updateRefundGoods(SessionVO sessionVO, MyOrder myOrder);
+//    String updateRefundGoods(SessionVO sessionVO, MyOrder myOrder);
 
     String listMyOrderSelective(SessionVO sessionVO, MyOrder myOrder, PageVO pageVO);
 

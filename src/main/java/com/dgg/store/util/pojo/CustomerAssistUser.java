@@ -11,6 +11,8 @@ public class CustomerAssistUser {
 
     private String departmentName;
 
+    private Byte status;
+
     public String getAssistId() {
         return assistId;
     }
@@ -49,5 +51,15 @@ public class CustomerAssistUser {
 
     public void setDepartmentName(String departmentName) {
         this.departmentName = departmentName == null ? null : departmentName.trim();
+    }
+
+    public Byte getStatus()
+    {
+        return status;
+    }
+
+    public void setStatus(Byte status)
+    {
+        this.status = status;
     }
 }

@@ -87,15 +87,15 @@ public class CustomerAssistDaoImpl implements CustomerAssistDao
     }
 
     @Override
-    public List<CustomerAssist> listCustomerAssistByHelper(String userId, int pageNum, int pageSize)
+    public List<CustomerAssist> listCustomerAssistByHelper(String userId, Integer status, int pageNum, int pageSize)
     {
-        return mapper.listCustomerAssistByHelper(userId, pageNum, pageSize);
+        return mapper.listCustomerAssistByHelper(userId, status, pageNum, pageSize);
     }
 
     @Override
-    public int countCustomerAssistByHelper(String userId)
+    public int countCustomerAssistByHelper(String userId, Integer status)
     {
-        return mapper.countCustomerAssistByHelper(userId);
+        return mapper.countCustomerAssistByHelper(userId, status);
     }
 
 }

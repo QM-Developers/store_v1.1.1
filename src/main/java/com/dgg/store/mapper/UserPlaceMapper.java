@@ -40,4 +40,6 @@ public interface UserPlaceMapper {
     int countUserPlace(UserPlace place);
 
     UserPlace getUserPlaceById(@Param("placeId") String userPlaceId);
+
+    List<PlaceImage> getImageList(@Param("placeId") String userPlaceId);
 }

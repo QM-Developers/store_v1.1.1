@@ -1,15 +1,18 @@
 package com.dgg.store.util.core;
 
 import com.dgg.store.dao.common.MyOrderDao;
+import com.dgg.store.mapper.MyOrderMapper;
+import com.dgg.store.util.core.constant.OrderConstant;
 import com.dgg.store.util.core.constant.SymbolConstant;
 import com.dgg.store.util.pojo.MyOrder;
 import com.dgg.store.util.vo.order.MyOrderListVO;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class OrderUtil
 {
-    public static List<MyOrder> getOrderList(List<MyOrder> data, MyOrderDao dao)
+    public static List<MyOrder> getOrderList(List<MyOrder> data, MyOrderMapper dao)
     {
         List<MyOrderListVO> orderList = null;
         for (int i = 0; i < data.size(); i++)
@@ -37,5 +40,26 @@ public class OrderUtil
         for (MyOrderListVO list : myOrder.getOrderList())
             myOrder.setOrderCount(list.getBuyNum() * list.getGoodsPrice());
         return myOrder;
+    }
+
+    public static List<Byte> getOrderStatus(Byte orderStatus)
+    {
+        List<Byte> statusList = new ArrayList<>();
+
+        if (orderStatus == null)
+            return statusList;
+
+        switch (orderStatus)
+        {
+            case OrderConstant.WAITING_FINANCE_CHECK_A:
+                statusList.add(OrderConstant.WAITING_FINANCE_CHECK_A);
+                statusList.add(OrderConstant.WAITING_FINANCE_CHECK_B);
+                break;
+            default:
+                statusList.add(orderStatus);
+                break;
+        }
+
+        return statusList;
     }
 }

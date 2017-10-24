@@ -116,4 +116,10 @@ public class UserPlaceDaoImpl implements UserPlaceDao
     {
         return mapper.getUserPlaceById(userPlaceId);
     }
+
+    @Override
+    public List<PlaceImage> getImageList(String userPlaceId)
+    {
+        return mapper.getImageList(userPlaceId);
+    }
 }

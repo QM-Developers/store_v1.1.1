@@ -357,11 +357,13 @@
     <result column="user_place_area" jdbcType="VARCHAR" property="userPlaceArea" />
     <result column="user_place_type" jdbcType="VARCHAR" property="userPlaceType" />
     <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
-    <collection property="imageList" ofType="com.dgg.store.util.pojo.PlaceImage">
-      <result column="img_id" property="imgId" jdbcType="VARCHAR"/>
-      <result column="img_type" property="imgType" jdbcType="TINYINT"/>
-      <result column="img_url" property="imgUrl" jdbcType="VARCHAR"/>
-    </collection>
+  </resultMap>
+
+  <resultMap id="PlaceImage" type="com.dgg.store.util.pojo.PlaceImage">
+    <result column="img_id" jdbcType="VARCHAR" property="imgId"/>
+    <result column="img_type" jdbcType="INTEGER" property="imgType"/>
+    <result column="user_place_id" jdbcType="VARCHAR" property="userPlaceId"/>
+    <result column="img_url" jdbcType="VARCHAR" property="imgUrl"/>
   </resultMap>
 
   <insert id="insertPlaceImage" parameterType="com.dgg.store.util.pojo.PlaceImage">
@@ -386,11 +388,8 @@
   <select id="listUserPlace" parameterType="com.dgg.store.util.pojo.UserPlace" resultMap="UserPlace">
     SELECT up.user_place_id, up.customer_id,
           up.user_place_acreage, up.user_employee_num, up.user_owner_num,
-          up.user_already_use, up.user_place_area, up.user_place_type,
-          pi.img_id,pi.img_url,pi.img_type
+          up.user_already_use, up.user_place_area, up.user_place_type
     FROM user_place up
-    LEFT JOIN place_image pi
-    ON pi.user_place_id = up.user_place_id
     WHERE up.customer_id = #{customerId}
     LIMIT #{pageNum},#{pageSize}
   </select>
@@ -417,11 +416,14 @@
   <select id="getUserPlaceById" resultMap="UserPlace">
     SELECT up.user_place_id, up.customer_id,
           up.user_place_acreage, up.user_employee_num, up.user_owner_num,
-          up.user_already_use, up.user_place_area, up.user_place_type,
-          pi.img_id,pi.img_url,pi.img_type
+          up.user_already_use, up.user_place_area, up.user_place_type
     FROM user_place up
-    LEFT JOIN place_image pi
-    ON pi.user_place_id = up.user_place_id
     WHERE up.user_place_id = #{placeId}
+  </select>
+
+  <select id="getImageList" resultMap="PlaceImage">
+    SELECT img_id, img_type, img_url, user_place_id
+    FROM place_image
+    WHERE user_place_id = #{placeId}
   </select>
 </mapper>

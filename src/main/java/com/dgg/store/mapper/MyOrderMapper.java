@@ -63,7 +63,7 @@ public interface MyOrderMapper
 
     String getLatLng2(@Param("userId") String userId, @Param("myTeamId") String myTeamId);
 
-    int getGoodsRepertoryFirst(@Param("standardId") String standardId);
+    int getGoodsRepertoryFirst(@Param("standardId") String standardId, @Param("myTeamId") String myTeamId, @Param("branchType") byte branchType);
 
     int getGoodsRepertorySecond(@Param("standardId") String id, @Param("userId") String userId, @Param("myTeamId") String standardId);
 
@@ -87,7 +87,7 @@ public interface MyOrderMapper
 
     int countOrderNumber(@Param("orderNumber") String orderNumber, @Param("myTeamId") String myTeamId);
 
-    List<MyOrder> listFollowerOrder(@Param("order") MyOrder myOrder, @Param("myTeamId") String myTeamId, @Param("pageNum") int pageNum, @Param("pageSize") int pageSize);
+    List<MyOrder> listFollowerOrder(@Param("order") MyOrder myOrder, @Param("userId") String userId, @Param("pageNum") int pageNum, @Param("pageSize") int pageSize);
 
     List<MyOrder> listSales(@Param("userId") String userId);
 
@@ -100,4 +100,14 @@ public interface MyOrderMapper
     int countGoodsStandard(@Param("standardId") String standardId);
 
     String getUserRole(String userId);
+
+    String getFirstBranchId(@Param("myTeamId") String myTeamId, @Param("branchType") byte branchType);
+
+    String getCurrentBranchId(String userId);
+
+    int getBranchRepertory(@Param("branchId") String branchId, @Param("standardId") String standardId);
+
+    int updateBranchRepertory(@Param("branchId") String branchId, @Param("standardId") String standardId, @Param("count") int repertory);
+
+    String getCurrentBranchIdByCustomer(String userId);
 }

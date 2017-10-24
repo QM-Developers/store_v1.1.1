@@ -14,7 +14,7 @@ public interface CustomerAssistService
 
     String listCustomerAssistByProposer(SessionVO sessionVO, PageVO pageVO);
 
-    String listCustomerAssistByHelper(SessionVO sessionVO,PageVO pageVO);
+    String listCustomerAssistByHelper(SessionVO sessionVO, CustomerAssist assist, PageVO pageVO);
 
     String getCustomerAssist(SessionVO sessionVO, CustomerAssist assist);
 

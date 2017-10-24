@@ -124,4 +124,36 @@ public class FinanceOrderController
 
         return service.updateRefundMoney(sessionVO, myOrder);
     }
+
+    /**
+     * 财务审核通过
+     *
+     * @param request 用户参数
+     * @param myOrder 订单Id
+     * @return 操作的结果
+     */
+    @RequestMapping(value = "/s/updateFinancePass", method = RequestMethod.POST, produces = {"application/json;charset=UTF-8"})
+    @ResponseBody
+    public String updateFinancePass(HttpServletRequest request, MyOrder myOrder)
+    {
+        SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
+
+        return service.updateFinancePass(sessionVO, myOrder);
+    }
+
+    /**
+     * 财务审核不通过
+     *
+     * @param request 用户参数
+     * @param myOrder 订单Id
+     * @return 操作的结果
+     */
+    @RequestMapping(value = "/s/updateFinanceFail", method = RequestMethod.POST, produces = {"application/json;charset=UTF-8"})
+    @ResponseBody
+    public String updateFinanceFail(HttpServletRequest request, MyOrder myOrder)
+    {
+        SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
+
+        return service.updateFinanceFail(sessionVO, myOrder);
+    }
 }

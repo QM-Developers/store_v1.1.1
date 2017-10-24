@@ -48,7 +48,13 @@ public class MyOrder {
 
     private List<MyOrderListVO> orderList;
 
+    private List<Byte> statusList;
+
     private String goods;
+
+    private String merchandiserId;
+
+    private String merchandiserName;
 
     public String getOrderId() {
         return orderId;
@@ -234,5 +240,35 @@ public class MyOrder {
     public void setOrderCount(Float orderCount)
     {
         this.orderCount = orderCount;
+    }
+
+    public List<Byte> getStatusList()
+    {
+        return statusList;
+    }
+
+    public void setStatusList(List<Byte> statusList)
+    {
+        this.statusList = statusList;
+    }
+
+    public String getMerchandiserId()
+    {
+        return merchandiserId;
+    }
+
+    public void setMerchandiserId(String merchandiserId)
+    {
+        this.merchandiserId = merchandiserId;
+    }
+
+    public String getMerchandiserName()
+    {
+        return merchandiserName;
+    }
+
+    public void setMerchandiserName(String merchandiserName)
+    {
+        this.merchandiserName = merchandiserName;
     }
 }

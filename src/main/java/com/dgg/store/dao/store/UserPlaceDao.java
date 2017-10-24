@@ -42,4 +42,6 @@ public interface UserPlaceDao
     int countUserPlace(UserPlace place);
 
     UserPlace getUserPlaceById(String userPlaceId);
+
+    List<PlaceImage> getImageList(String userPlaceId);
 }

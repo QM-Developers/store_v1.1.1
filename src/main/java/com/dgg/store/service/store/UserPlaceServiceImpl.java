@@ -169,7 +169,7 @@ public class UserPlaceServiceImpl implements UserPlaceService
 
         criteria.andUserPlaceIdEqualTo(place.getUserPlaceId());
 
-        if(dao.updateByExampleSelective(place, example) < 1)
+        if (dao.updateByExampleSelective(place, example) < 1)
             throw new RuntimeException(Constant.STR_ADD_FAILED);
 
         List<String> images = new ArrayList<>();
@@ -198,6 +198,8 @@ public class UserPlaceServiceImpl implements UserPlaceService
 
         for (UserPlace up : result)
         {
+            up.setImageList(dao.getImageList(up.getUserPlaceId()));
+
             List<PlaceImage> certificateList = new ArrayList<>();
             List<PlaceImage> environmentList = new ArrayList<>();
             List<PlaceImage> imageList = up.getImageList();
@@ -231,6 +233,7 @@ public class UserPlaceServiceImpl implements UserPlaceService
     public String getUserPlace(SessionVO sessionVO, UserPlace place)
     {
         UserPlace result = dao.getUserPlaceById(place.getUserPlaceId());
+        result.setImageList(dao.getImageList(place.getUserPlaceId()));
 
         List<PlaceImage> certificateList = new ArrayList<>();
         List<PlaceImage> environmentList = new ArrayList<>();

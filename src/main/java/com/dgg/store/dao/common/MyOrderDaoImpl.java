@@ -149,9 +149,9 @@ public class MyOrderDaoImpl implements MyOrderDao
     }
 
     @Override
-    public int getGoodsRepertoryFirst(String standardId)
+    public int getGoodsRepertoryFirst(String standardId, String myTeamId, byte branchType)
     {
-        return mapper.getGoodsRepertoryFirst(standardId);
+        return mapper.getGoodsRepertoryFirst(standardId,myTeamId,branchType);
     }
 
     @Override
@@ -260,6 +260,30 @@ public class MyOrderDaoImpl implements MyOrderDao
     public String getUserRole(String userId)
     {
         return mapper.getUserRole(userId);
+    }
+
+    @Override
+    public String getFirstBranchId(String myTeamId, byte branchFirst)
+    {
+        return null;
+    }
+
+    @Override
+    public String getCurrentBranchId(String userId)
+    {
+        return null;
+    }
+
+    @Override
+    public int getBranchRepertory(String branchId)
+    {
+        return 0;
+    }
+
+    @Override
+    public int updateBranchRepertory(String branchId, int repertory)
+    {
+        return 0;
     }
 
 }

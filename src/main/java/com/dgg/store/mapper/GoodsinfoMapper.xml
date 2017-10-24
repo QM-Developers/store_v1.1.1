@@ -121,7 +121,7 @@
             AND gi.goods_id = #{condition.goodsId}
         </if>
         <if test="condition.goodsName != null and condition.goodsName != ''">
-            AND gi.goods_name LIKE CONCAT('%',#{condition.goodsName},'%')
+            AND (gi.goods_name LIKE CONCAT('%',#{condition.goodsName},'%') OR gi.goods_name = #{condition.goodsName})
         </if>
         LIMIT #{start},#{end}
     </select>
@@ -149,7 +149,7 @@
             AND gi.goods_id = #{goodsId}
         </if>
         <if test="goodsName != null and goodsName != ''">
-            AND gi.goods_name LIKE CONCAT('%',#{goodsName},'%')
+            AND (gi.goods_name LIKE CONCAT('%',#{goodsName},'%') OR gi.goods_name = #{goodsName})
         </if>
     </select>
 

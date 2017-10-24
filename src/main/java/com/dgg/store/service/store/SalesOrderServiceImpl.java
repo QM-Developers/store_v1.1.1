@@ -2,6 +2,7 @@ package com.dgg.store.service.store;
 
 import com.alibaba.fastjson.JSONObject;
 import com.dgg.store.dao.common.MyOrderDao;
+import com.dgg.store.mapper.MyOrderMapper;
 import com.dgg.store.util.core.OrderUtil;
 import com.dgg.store.util.core.constant.Constant;
 import com.dgg.store.util.core.constant.KeyConstant;
@@ -17,11 +18,11 @@ import java.util.List;
 @Service
 public class SalesOrderServiceImpl implements SalesOrderService
 {
-    private final MyOrderDao dao;
+    private final MyOrderMapper orderMapper;
 
-    public SalesOrderServiceImpl(MyOrderDao dao)
+    public SalesOrderServiceImpl(MyOrderMapper orderMapper)
     {
-        this.dao = dao;
+        this.orderMapper = orderMapper;
     }
 
 
@@ -31,9 +32,9 @@ public class SalesOrderServiceImpl implements SalesOrderService
         int pageNum = PagingUtil.getStart(pageVO.getPageNum(), pageVO.getPageSize());
         int pageSize = pageVO.getPageSize();
 
-        int pageCount = PagingUtil.getCount(dao.countSalesOrder(myOrder, sessionVO.getUserId()), pageVO.getPageSize());
-        List<MyOrder> result = dao.listSalesOrder(myOrder, sessionVO.getUserId(), pageNum, pageSize);
-        result = OrderUtil.getOrderList(result, dao);
+        int pageCount = PagingUtil.getCount(orderMapper.countSalesOrder(myOrder, sessionVO.getUserId()), pageVO.getPageSize());
+        List<MyOrder> result = orderMapper.listSalesOrder(myOrder, sessionVO.getUserId(), pageNum, pageSize);
+        result = OrderUtil.getOrderList(result, orderMapper);
         result = OrderUtil.getOrderCount(result);
 
         JSONObject json = (JSONObject) JSONObject.toJSON(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), result));
@@ -45,7 +46,7 @@ public class SalesOrderServiceImpl implements SalesOrderService
     @Override
     public String listSales(SessionVO sessionVO)
     {
-        List<MyOrder> result = dao.listSales(sessionVO.getUserId());
+        List<MyOrder> result = orderMapper.listSales(sessionVO.getUserId());
 
         return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), result));
     }
@@ -56,9 +57,9 @@ public class SalesOrderServiceImpl implements SalesOrderService
         int pageNum = PagingUtil.getStart(pageVO.getPageNum(), pageVO.getPageSize());
         int pageSize = pageVO.getPageSize();
 
-        int pageCount = PagingUtil.getCount(dao.countOrderSelectiveByManager(myOrder, sessionVO.getUserId()), pageVO.getPageSize());
-        List<MyOrder> result = dao.listOrderSelectiveByManager(myOrder, sessionVO.getUserId(), pageNum, pageSize);
-        result = OrderUtil.getOrderList(result, dao);
+        int pageCount = PagingUtil.getCount(orderMapper.countOrderSelectiveByManager(myOrder, sessionVO.getUserId()), pageVO.getPageSize());
+        List<MyOrder> result = orderMapper.listOrderSelectiveByManager(myOrder, sessionVO.getUserId(), pageNum, pageSize);
+        result = OrderUtil.getOrderList(result, orderMapper);
         result = OrderUtil.getOrderCount(result);
 
         JSONObject json = (JSONObject) JSONObject.toJSON(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), result));

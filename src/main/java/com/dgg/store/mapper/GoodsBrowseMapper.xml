@@ -78,7 +78,7 @@
             </foreach>
         </if>
         <if test="type.keyword != null and type.keyword != ''">
-            AND gd.goods_name LIKE CONCAT('%', #{type.keyword}, '%')
+            AND (gd.goods_name LIKE CONCAT('%', #{type.keyword}, '%') OR gd.goods_name = #{type.keyword})
         </if>
         <if test="type.orderBy != null and type.orderBy == 'goodsPrice'">
             <choose>
@@ -109,7 +109,7 @@
         WHERE 1 = 1
         AND gd.my_team_id = #{type.myTeamId}
         <if test="type.keyword != null and type.keyword != ''">
-            AND gd.goods_name LIKE CONCAT('%', #{type.keyword}, '%')
+            AND (gd.goods_name LIKE CONCAT('%', #{type.keyword}, '%') OR gd.goods_name = #{type.keyword})
         </if>
         <if test="childType != null">
             AND gd.goods_type_id IN
@@ -178,7 +178,7 @@
         WHERE gd.my_team_id = #{type.myTeamId}
         AND c.user_id = #{type.userId}
         <if test="type.keyword != null and type.keyword != ''">
-            AND gd.goods_name LIKE CONCAT('%', #{type.keyword}, '%')
+            AND (gd.goods_name LIKE CONCAT('%', #{type.keyword}, '%') OR gd.goods_name = #{type.keyword})
         </if>
         <if test="childType != null">
             AND gd.goods_type_id IN
@@ -209,7 +209,7 @@
             </foreach>
         </if>
         <if test="type.keyword != null and type.keyword != ''">
-            AND gd.goods_name LIKE CONCAT('%', #{type.keyword}, '%')
+            AND (gd.goods_name LIKE CONCAT('%', #{type.keyword}, '%') OR gd.goods_name = #{type.keyword})
         </if>
         <if test="type.orderBy != null and type.orderBy == 'goodsPrice'">
             <choose>
@@ -277,7 +277,7 @@
         ON gs.standard_id = qbg.standard_id
         WHERE qbg.branch_id = #{branchId}
         <if test="type.keyword != null and type.keyword != ''">
-            AND gi.goods_name LIKE CONCAT('%', #{type.keyword}, '%')
+            AND (gi.goods_name LIKE CONCAT('%', #{type.keyword}, '%') OR gi.goods_name = #{type.keyword})
         </if>
         <if test="childType != null">
             AND gi.goods_type_id IN
@@ -298,7 +298,7 @@
         ON gs.standard_id = qbg.standard_id
         WHERE qbg.branch_id = #{branchId}
         <if test="type.keyword != null and type.keyword != ''">
-            AND gi.goods_name LIKE CONCAT('%', #{type.keyword}, '%')
+            AND (gi.goods_name LIKE CONCAT('%', #{type.keyword}, '%') OR gi.goods_name = #{type.keyword})
         </if>
         <if test="childType != null">
             AND gi.goods_type_id IN

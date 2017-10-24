@@ -32,7 +32,7 @@ public interface CustomerAssistDao
 
     String getUserName(String userId);
 
-    List<CustomerAssist> listCustomerAssistByHelper(String userId, int pageNum, int pageSize);
+    List<CustomerAssist> listCustomerAssistByHelper(String userId, Integer status, int pageNum, int pageSize);
 
-    int countCustomerAssistByHelper(String userId);
+    int countCustomerAssistByHelper(String userId, Integer status);
 }

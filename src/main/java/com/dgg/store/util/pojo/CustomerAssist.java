@@ -22,6 +22,8 @@ public class CustomerAssist {
 
     private String image;
 
+    private Integer status;
+
     private List<CustomerAssistCustomer> customerList;
 
     private List<CustomerAssistUser> userList;
@@ -134,5 +136,15 @@ public class CustomerAssist {
     public void setImageList(List<CustomerAssistImage> imageList)
     {
         this.imageList = imageList;
+    }
+
+    public Integer getStatus()
+    {
+        return status;
+    }
+
+    public void setStatus(Integer status)
+    {
+        this.status = status;
     }
 }

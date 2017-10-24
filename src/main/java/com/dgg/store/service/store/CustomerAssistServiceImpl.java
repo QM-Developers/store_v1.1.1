@@ -6,12 +6,14 @@ import com.dgg.store.dao.store.CustomerAssistCustomerDao;
 import com.dgg.store.dao.store.CustomerAssistDao;
 import com.dgg.store.dao.store.CustomerAssistImageDao;
 import com.dgg.store.dao.store.CustomerAssistUserDao;
-import com.dgg.store.util.core.constant.*;
+import com.dgg.store.util.core.constant.Constant;
+import com.dgg.store.util.core.constant.KeyConstant;
+import com.dgg.store.util.core.constant.PathConstant;
+import com.dgg.store.util.core.constant.SymbolConstant;
 import com.dgg.store.util.core.generator.IDGenerator;
 import com.dgg.store.util.core.page.PagingUtil;
+import com.dgg.store.util.core.parameter.ParameterUtil;
 import com.dgg.store.util.core.string.StringUtil;
-import com.dgg.store.util.core.umeng.push.PushMessageFactory;
-import com.dgg.store.util.core.umeng.push.UMengUtil;
 import com.dgg.store.util.core.upload.UploadFileUtil;
 import com.dgg.store.util.pojo.*;
 import com.dgg.store.util.vo.core.PageVO;
@@ -164,13 +166,16 @@ public class CustomerAssistServiceImpl implements CustomerAssistService
     }
 
     @Override
-    public String listCustomerAssistByHelper(SessionVO sessionVO, PageVO pageVO)
+    public String listCustomerAssistByHelper(SessionVO sessionVO, CustomerAssist assist, PageVO pageVO)
     {
         int pageNum = PagingUtil.getStart(pageVO.getPageNum(), pageVO.getPageSize());
         int pageSize = pageVO.getPageSize();
 
-        int pageCount = assistDao.countCustomerAssistByHelper(sessionVO.getUserId());
-        List<CustomerAssist> result = assistDao.listCustomerAssistByHelper(sessionVO.getUserId(), pageNum, pageSize);
+        int pageCount = assistDao.countCustomerAssistByHelper(sessionVO.getUserId(), assist.getStatus());
+        List<CustomerAssist> result = assistDao.listCustomerAssistByHelper(sessionVO.getUserId(), assist.getStatus(), pageNum, pageSize);
+
+        for (CustomerAssist a : result)
+            a.setStatus(ParameterUtil.getDefault(assist.getStatus(), 0));
 
         JSONObject json = (JSONObject) JSONObject.toJSON(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), result));
         json.put(KeyConstant.PAGE_COUNT, pageCount);
@@ -198,7 +203,15 @@ public class CustomerAssistServiceImpl implements CustomerAssistService
         customerCriteria.andAssistIdEqualTo(assist.getAssistId());
 
         result.setImageList(imageDao.selectByExample(imageExample));
-        result.setUserList(userDao.selectByExample(userExample));
+
+        List<CustomerAssistUser> userList = userDao.selectByExample(userExample);
+        for (CustomerAssistUser u : userList)
+            if (StringUtil.isEmpty(u.getAssistResult()))
+                u.setStatus((byte) 0);
+            else
+                u.setStatus((byte) 1);
+        result.setUserList(userList);
+
         result.setCustomerList(customerDao.selectByExample(customerExample));
 
         return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), result));

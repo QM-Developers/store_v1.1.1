@@ -3,7 +3,7 @@ package com.dgg.store.service.common;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.dgg.store.dao.common.MyOrderDao;
+import com.dgg.store.mapper.MyOrderMapper;
 import com.dgg.store.mapper.PushMessageMapper;
 import com.dgg.store.util.core.OrderUtil;
 import com.dgg.store.util.core.constant.*;
@@ -22,16 +22,13 @@ import com.dgg.store.util.vo.order.MyOrderListVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
-import java.util.List;
-import java.util.Objects;
-import java.util.Random;
+import java.util.*;
 
 @Service
 public class MyOrderServiceImpl implements MyOrderService
 {
     @Autowired
-    private MyOrderDao dao;
+    private MyOrderMapper orderMapper;
 
     @Autowired
     private PushMessageMapper mapper;
@@ -60,7 +57,7 @@ public class MyOrderServiceImpl implements MyOrderService
         // 生成订单号
         int index = 0;
         String orderNumber = String.format("%08d", new Random(index).nextInt(100000000));
-        while (dao.countOrderNumber(orderNumber, sessionVO.getMyTeamId()) > 0)
+        while (orderMapper.countOrderNumber(orderNumber, sessionVO.getMyTeamId()) > 0)
             orderNumber = String.format("%08d", new Random(++index).nextInt(100000000));
 
         // 设置订单参数
@@ -76,26 +73,26 @@ public class MyOrderServiceImpl implements MyOrderService
         myOrder.setLogisticsStatus(Constant.EMPTY);
         myOrder.setMemberId(sessionVO.getMyTeamId());
 
-        int result = dao.insert(myOrder);
+        int result = orderMapper.insert(myOrder);
         if (result < 1)
             throw new RuntimeException(Constant.STR_ADD_FAILED);
 
         for (int i = 0; i < goods.size(); i++)
         {
             json = (JSONObject) goods.get(i);
-            imageList = dao.listImage(json.get(KeyConstant.GOODS_ID).toString());
+            imageList = orderMapper.listImage(json.get(KeyConstant.GOODS_ID).toString());
             standardId = json.get(KeyConstant.STANDARD_ID).toString();
 
             for (String s : imageList)
                 image.append(s).append(SymbolConstant.VERTICAL);
 
-            orderList = dao.getOrderList(standardId);
+            orderList = orderMapper.getOrderList(standardId);
             orderList.setStandardId(standardId);
             orderList.setOrderId(myOrder.getOrderId());
             orderList.setGoodsImage(image.toString());
             orderList.setBuyNum(Integer.parseInt(json.get(KeyConstant.GOODS_NUM).toString()));
             orderList.setRefundNum(Constant.ZERO);
-            result = dao.insertOrderList(orderList);
+            result = orderMapper.insertOrderList(orderList);
 
             if (result < 1)
                 throw new RuntimeException(Constant.STR_ADD_FAILED);
@@ -104,13 +101,13 @@ public class MyOrderServiceImpl implements MyOrderService
         switch (myOrder.getPaymentType())
         {
             case OrderConstant.PAYMENT_TRANSFER:
-                UMengUtil.sendUnicast(dao.getFinanceDeviceToken(sessionVO.getMyTeamId(), QMPermissionConstant.FINANCE_CHECK), PushMessageFactory.getInstance(mapper).get(PushMessageConstant.ORDER_FINANCE_NEW));
+                UMengUtil.sendUnicast(orderMapper.getFinanceDeviceToken(sessionVO.getMyTeamId(), QMPermissionConstant.FINANCE_CHECK), PushMessageFactory.getInstance(mapper).get(PushMessageConstant.ORDER_FINANCE_NEW));
                 break;
             case OrderConstant.PAYMENT_MONTHLY:
-                UMengUtil.sendUnicast(dao.getSalesDeviceToken(sessionVO.getUserId(), sessionVO.getMyTeamId()), PushMessageFactory.getInstance(mapper).get(PushMessageConstant.ORDER_SALES_NEW));
+                UMengUtil.sendUnicast(orderMapper.getSalesDeviceToken(sessionVO.getUserId(), sessionVO.getMyTeamId()), PushMessageFactory.getInstance(mapper).get(PushMessageConstant.ORDER_SALES_NEW));
                 break;
             case OrderConstant.PAYMENT_DESTINATION:
-                UMengUtil.sendUnicast(dao.getSalesDeviceToken(sessionVO.getUserId(), sessionVO.getMyTeamId()), PushMessageFactory.getInstance(mapper).get(PushMessageConstant.ORDER_SALES_NEW));
+                UMengUtil.sendUnicast(orderMapper.getSalesDeviceToken(sessionVO.getUserId(), sessionVO.getMyTeamId()), PushMessageFactory.getInstance(mapper).get(PushMessageConstant.ORDER_SALES_NEW));
                 break;
         }
 
@@ -119,7 +116,7 @@ public class MyOrderServiceImpl implements MyOrderService
 
     private boolean isCustomer(SessionVO sessionVO)
     {
-        return dao.getUserRole(sessionVO.getUserId()).equals(RoleConstant.USER);
+        return orderMapper.getUserRole(sessionVO.getUserId()).equals(RoleConstant.USER);
     }
 
     private boolean hadGoods(JSONArray goods)
@@ -128,7 +125,7 @@ public class MyOrderServiceImpl implements MyOrderService
         for (Object good : goods)
         {
             json = JSONObject.parseObject(good.toString());
-            if (dao.countGoodsStandard(json.getString(KeyConstant.STANDARD_ID)) < 1)
+            if (orderMapper.countGoodsStandard(json.getString(KeyConstant.STANDARD_ID)) < 1)
                 return false;
         }
         return true;
@@ -136,35 +133,24 @@ public class MyOrderServiceImpl implements MyOrderService
 
     private boolean hadEnoughRepertory(SessionVO sessionVO, JSONArray goods)
     {
-        String customerType = dao.getCustomerType(sessionVO.getUserId(), sessionVO.getMyTeamId());
-        int repositoryLevel = dao.getCustomerRepertory(customerType, sessionVO.getMyTeamId());
+        String customerType = orderMapper.getCustomerType(sessionVO.getUserId(), sessionVO.getMyTeamId());
+        int repositoryLevel = orderMapper.getCustomerRepertory(customerType, sessionVO.getMyTeamId());
         int repertory;
+        String branchId;
+        if (repositoryLevel == CustomerConstant.REPERTORY_LEVEL1)
+            branchId = orderMapper.getFirstBranchId(sessionVO.getMyTeamId(), BranchConstant.BRANCH_FIRST);
+        else
+            branchId = orderMapper.getCurrentBranchIdByCustomer(sessionVO.getUserId());
+
         JSONObject json;
 
-        switch (repositoryLevel)
+        for (int i = 0; i < goods.size(); i++)
         {
-            case CustomerConstant.REPERTORY_LEVEL1:
-                for (int i = 0; i < goods.size(); i++)
-                {
-                    json = (JSONObject) goods.get(i);
-                    repertory = dao.getGoodsRepertoryFirst(json.getString(KeyConstant.STANDARD_ID));
-                    if (json.getInteger(KeyConstant.GOODS_NUM) == null && repertory < json.getInteger(KeyConstant.GOODS_NUM))
-                        return false;
-                }
-                break;
-            case CustomerConstant.REPERTORY_LEVEL2:
-                for (int i = 0; i < goods.size(); i++)
-                {
-                    json = (JSONObject) goods.get(i);
-                    repertory = dao.getGoodsRepertorySecond(json.getString(KeyConstant.STANDARD_ID), sessionVO.getUserId(), sessionVO.getMyTeamId());
-                    if (repertory < json.getInteger(KeyConstant.GOODS_NUM))
-                        return false;
-                }
-                break;
-            default:
-                break;
+            json = (JSONObject) goods.get(i);
+            repertory = orderMapper.getBranchRepertory(branchId, json.getString(KeyConstant.STANDARD_ID));
+            if (json.getInteger(KeyConstant.GOODS_NUM) == null && repertory < json.getInteger(KeyConstant.GOODS_NUM))
+                return false;
         }
-
         return true;
     }
 
@@ -178,9 +164,9 @@ public class MyOrderServiceImpl implements MyOrderService
 
         example.setPageNum(PagingUtil.getStart(pageVO.getPageNum(), pageVO.getPageSize()));
         example.setPageSize(pageVO.getPageSize());
-        int pageCount = PagingUtil.getCount((int) dao.countByExample(example), pageVO.getPageSize());
+        int pageCount = PagingUtil.getCount((int) orderMapper.countByExample(example), pageVO.getPageSize());
 
-        List<MyOrder> result = dao.selectByExample(example);
+        List<MyOrder> result = orderMapper.selectByExample(example);
         result = getOrderList(result);
         result = OrderUtil.getOrderCount(result);
 
@@ -193,12 +179,12 @@ public class MyOrderServiceImpl implements MyOrderService
     @Override
     public String getMyOrder(SessionVO sessionVO, MyOrder myOrder)
     {
-        myOrder = dao.selectByPrimaryKey(myOrder.getOrderId());
+        myOrder = orderMapper.selectByPrimaryKey(myOrder.getOrderId());
         List<MyOrderListVO> orderList;
 
-        orderList = dao.listOrderList(myOrder.getOrderId());
+        orderList = orderMapper.listOrderList(myOrder.getOrderId());
         for (MyOrderListVO orderListVO : orderList)
-            orderListVO.setGoodsImage(dao.getImage(orderListVO.getGoodsImage().split(SymbolConstant.REG_VERTICAL)[0]));
+            orderListVO.setGoodsImage(orderMapper.getImage(orderListVO.getGoodsImage().split(SymbolConstant.REG_VERTICAL)[0]));
         myOrder.setOrderList(orderList);
         myOrder = OrderUtil.getOrderCount(myOrder);
 
@@ -208,7 +194,7 @@ public class MyOrderServiceImpl implements MyOrderService
     @Override
     public String updateSign(SessionVO sessionVO, MyOrder myOrder)
     {
-        myOrder = dao.selectByPrimaryKey(myOrder.getOrderId());
+        myOrder = orderMapper.selectByPrimaryKey(myOrder.getOrderId());
 
         boolean flag = myOrder.getOrderStatus().equals(OrderConstant.ALREADY_DELIVERED);
 
@@ -224,7 +210,7 @@ public class MyOrderServiceImpl implements MyOrderService
         } else
             record.setOrderStatus(OrderConstant.WAITING_FINANCE_CHECK_B);
 
-        int result = dao.updateByPrimaryKeySelective(record);
+        int result = orderMapper.updateByPrimaryKeySelective(record);
 
         return JSONObject.toJSONString(new ResultVO(result < 1 ? 2 : 1, sessionVO.getToken()));
     }
@@ -238,7 +224,7 @@ public class MyOrderServiceImpl implements MyOrderService
 
         JSONArray jArray = JSONArray.parseArray(myOrder.getGoods());
         String message = myOrder.getRefundMessage();
-        myOrder = dao.selectByPrimaryKey(myOrder.getOrderId());
+        myOrder = orderMapper.selectByPrimaryKey(myOrder.getOrderId());
         JSONObject json = null;
 
         while (result > 0)
@@ -248,7 +234,7 @@ public class MyOrderServiceImpl implements MyOrderService
                 case 0:
                     String standardId;
                     int refundNum;
-                    List<MyOrderListVO> orderList = dao.listOrderList(myOrder.getOrderId());
+                    List<MyOrderListVO> orderList = orderMapper.listOrderList(myOrder.getOrderId());
                     for (int i = 0; i < jArray.size(); i++)
                     {
                         json = (JSONObject) jArray.get(i);
@@ -268,7 +254,7 @@ public class MyOrderServiceImpl implements MyOrderService
                     record.setOrderStatusBefore(myOrder.getOrderStatus());
                     record.setRefundMessage(message);
 
-                    result = dao.updateByPrimaryKeySelective(record);
+                    result = orderMapper.updateByPrimaryKeySelective(record);
                     break;
                 case 2:
                     MyOrderListVO myOrderList = new MyOrderListVO();
@@ -281,7 +267,7 @@ public class MyOrderServiceImpl implements MyOrderService
                         myOrderList.setRefundNum(json.getInteger(KeyConstant.GOODS_NUM));
                         if (result < 1)
                             break;
-                        result = dao.updateListByPrimaryKeySelective(myOrderList);
+                        result = orderMapper.updateListByPrimaryKeySelective(myOrderList);
                     }
                     break;
                 default:
@@ -296,7 +282,7 @@ public class MyOrderServiceImpl implements MyOrderService
         else
             result = 1;
 
-        UMengUtil.sendUnicast(dao.getSalesDeviceToken(sessionVO.getUserId(), sessionVO.getMyTeamId()), PushMessageFactory.getInstance(mapper).get(PushMessageConstant.REFUSE_SALES_NEW));
+        UMengUtil.sendUnicast(orderMapper.getSalesDeviceToken(sessionVO.getUserId(), sessionVO.getMyTeamId()), PushMessageFactory.getInstance(mapper).get(PushMessageConstant.REFUSE_SALES_NEW));
 
         return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken()));
     }
@@ -304,7 +290,7 @@ public class MyOrderServiceImpl implements MyOrderService
     @Override
     public String updateRefundCancel(SessionVO sessionVO, MyOrder myOrder)
     {
-        myOrder = dao.selectByPrimaryKey(myOrder.getOrderId());
+        myOrder = orderMapper.selectByPrimaryKey(myOrder.getOrderId());
 
         boolean flag = myOrder.getOrderStatus().equals(OrderConstant.REFUND_WAITING);
 
@@ -314,7 +300,7 @@ public class MyOrderServiceImpl implements MyOrderService
         MyOrder record = new MyOrder();
         record.setOrderId(myOrder.getOrderId());
         record.setOrderStatus(myOrder.getOrderStatusBefore());
-        int result = dao.updateByPrimaryKeySelective(record);
+        int result = orderMapper.updateByPrimaryKeySelective(record);
 
         if (result < 1)
             throw new RuntimeException(Constant.STR_ADD_FAILED);
@@ -322,26 +308,26 @@ public class MyOrderServiceImpl implements MyOrderService
         return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken()));
     }
 
-    @Override
-    public String updateRefundGoods(SessionVO sessionVO, MyOrder myOrder)
-    {
-        myOrder = dao.selectByPrimaryKey(myOrder.getOrderId());
-
-        boolean flag = myOrder.getOrderStatus().equals(OrderConstant.REFUND_PASS);
-
-        if (!flag)
-            return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_FAILED, sessionVO.getToken()));
-
-        MyOrder record = new MyOrder();
-        record.setOrderId(myOrder.getOrderId());
-        record.setOrderStatus(OrderConstant.REFUND_GOODS);
-        int result = dao.updateByPrimaryKeySelective(record);
-
-        if (result < 1)
-            throw new RuntimeException(Constant.STR_ADD_FAILED);
-
-        return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken()));
-    }
+//    @Override
+//    public String updateRefundGoods(SessionVO sessionVO, MyOrder myOrder)
+//    {
+//        myOrder = orderMapper.selectByPrimaryKey(myOrder.getOrderId());
+//
+//        boolean flag = myOrder.getOrderStatus().equals(OrderConstant.REFUND_PASS);
+//
+//        if (!flag)
+//            return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_FAILED, sessionVO.getToken()));
+//
+//        MyOrder record = new MyOrder();
+//        record.setOrderId(myOrder.getOrderId());
+//        record.setOrderStatus(OrderConstant.REFUND_GOODS);
+//        int result = orderMapper.updateByPrimaryKeySelective(record);
+//
+//        if (result < 1)
+//            throw new RuntimeException(Constant.STR_ADD_FAILED);
+//
+//        return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken()));
+//    }
 
     @Override
     public String listMyOrderSelective(SessionVO sessionVO, MyOrder myOrder, PageVO pageVO)
@@ -354,7 +340,7 @@ public class MyOrderServiceImpl implements MyOrderService
 
         criteria.andUserIdEqualTo(sessionVO.getUserId());
         if (myOrder.getOrderStatus() != null)
-            criteria.andOrderStatusEqualTo(myOrder.getOrderStatus());
+            criteria = getStatusCriteria(criteria, myOrder.getOrderStatus());
         if (myOrder.getCreateDate() != null && myOrder.getFinishDate() != null)
             criteria.andCreateDateBetween(myOrder.getCreateDate(), myOrder.getFinishDate());
         if (myOrder.getPaymentType() != null)
@@ -362,8 +348,8 @@ public class MyOrderServiceImpl implements MyOrderService
         if (myOrder.getPaymentStatus() != null)
             criteria.andPaymentStatusEqualTo(myOrder.getPaymentStatus());
 
-        int pageCount = PagingUtil.getCount((int) dao.countByExample(example), pageVO.getPageSize());
-        List<MyOrder> result = dao.selectByExample(example);
+        int pageCount = PagingUtil.getCount((int) orderMapper.countByExample(example), pageVO.getPageSize());
+        List<MyOrder> result = orderMapper.selectByExample(example);
         result = getOrderList(result);
         result = OrderUtil.getOrderCount(result);
 
@@ -373,22 +359,54 @@ public class MyOrderServiceImpl implements MyOrderService
         return json.toJSONString();
     }
 
+    private MyOrderExample.Criteria getStatusCriteria(MyOrderExample.Criteria criteria, Byte orderStatus)
+    {
+        List<Byte> status = new ArrayList<>();
+
+        switch (orderStatus)
+        {
+            case OrderConstant.STATUS_CHECKING:
+                status.add(OrderConstant.WAITING_SALESMAN_CHECK);
+                break;
+            case OrderConstant.STATUS_SEND:
+                status.add(OrderConstant.WAITING_DELIVER);
+                break;
+            case OrderConstant.STATUS_RECEIVE:
+                status.add(OrderConstant.ALREADY_DELIVERED);
+                break;
+            case OrderConstant.STATUS_PAY:
+                status.add(OrderConstant.FINANCE_CHECK_FAIL_A);
+                status.add(OrderConstant.FINANCE_CHECK_FAIL_B);
+                status.add(OrderConstant.WAITING_FINANCE_CHECK_A);
+                status.add(OrderConstant.WAITING_FINANCE_CHECK_B);
+                break;
+            default:
+                criteria.andOrderStatusEqualTo(orderStatus);
+                break;
+        }
+
+        if (status.size() > 0)
+            criteria.andOrderStatusIn(status);
+
+        return criteria;
+    }
+
     @Override
     public String listFreightTemp(SessionVO sessionVO)
     {
         String latLng = null;
-        List<FreightTemp> result = dao.listFreightTemp(sessionVO.getMyTeamId());
+        List<FreightTemp> result = orderMapper.listFreightTemp(sessionVO.getMyTeamId());
 
-        String customerType = dao.getCustomerType(sessionVO.getUserId(), sessionVO.getMyTeamId());
-        int repertoryType = dao.getCustomerRepertory(customerType, sessionVO.getMyTeamId());
+        String customerType = orderMapper.getCustomerType(sessionVO.getUserId(), sessionVO.getMyTeamId());
+        int repertoryType = orderMapper.getCustomerRepertory(customerType, sessionVO.getMyTeamId());
 
         switch (repertoryType)
         {
             case CustomerConstant.REPERTORY_LEVEL1:
-                latLng = dao.getLatLng1(sessionVO.getMyTeamId());
+                latLng = orderMapper.getLatLng1(sessionVO.getMyTeamId());
                 break;
             case CustomerConstant.REPERTORY_LEVEL2:
-                latLng = dao.getLatLng2(sessionVO.getUserId(), sessionVO.getMyTeamId());
+                latLng = orderMapper.getLatLng2(sessionVO.getUserId(), sessionVO.getMyTeamId());
                 break;
             default:
                 break;
@@ -409,7 +427,7 @@ public class MyOrderServiceImpl implements MyOrderService
         criteria.andUserIdEqualTo(sessionVO.getUserId());
         criteria.andOrderNumberEqualTo(myOrder.getOrderNumber());
 
-        List<MyOrder> result = dao.selectByExample(example);
+        List<MyOrder> result = orderMapper.selectByExample(example);
         result = getOrderList(result);
         result = OrderUtil.getOrderCount(result);
 
@@ -423,9 +441,9 @@ public class MyOrderServiceImpl implements MyOrderService
         List<MyOrderListVO> orderList = null;
         for (MyOrder order : data)
         {
-            orderList = dao.listOrderList(order.getOrderId());
+            orderList = orderMapper.listOrderList(order.getOrderId());
             for (MyOrderListVO orderListVO : orderList)
-                orderListVO.setGoodsImage(dao.getImage(orderListVO.getGoodsImage().split(SymbolConstant.REG_VERTICAL)[0]));
+                orderListVO.setGoodsImage(orderMapper.getImage(orderListVO.getGoodsImage().split(SymbolConstant.REG_VERTICAL)[0]));
             order.setOrderList(orderList);
         }
 

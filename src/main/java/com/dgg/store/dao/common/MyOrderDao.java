@@ -53,7 +53,7 @@ public interface MyOrderDao
 
     String getLatLng2(String userId, String myTeamId);
 
-    int getGoodsRepertoryFirst(String standardId);
+    int getGoodsRepertoryFirst(String standardId, String myTeamId, byte branchType);
 
     int getGoodsRepertorySecond(String standardId, String userId, String myTeamId);
 
@@ -90,4 +90,12 @@ public interface MyOrderDao
     int countGoodsStandard(String string);
 
     String getUserRole(String userId);
+
+    String getFirstBranchId(String myTeamId, byte branchFirst);
+
+    String getCurrentBranchId(String userId);
+
+    int getBranchRepertory(String branchId);
+
+    int updateBranchRepertory(String branchId, int repertory);
 }

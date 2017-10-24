@@ -20,6 +20,8 @@
     <result column="finish_date" jdbcType="TIMESTAMP" property="finishDate" />
     <result column="order_number" jdbcType="VARCHAR" property="orderNumber" />
     <result column="my_team_id" jdbcType="VARCHAR" property="myTeamId" />
+    <result column="merchandiser_id" jdbcType="VARCHAR" property="merchandiserId" />
+    <result column="merchandiser_name" jdbcType="VARCHAR" property="merchandiserName" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -403,6 +405,18 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
   <resultMap id="MyOrderListVO" type="com.dgg.store.util.vo.order.MyOrderListVO">
     <result column="standard_id" property="standardId" jdbcType="VARCHAR"/>
     <result column="goods_name" property="goodsName" jdbcType="VARCHAR"/>
@@ -534,9 +548,13 @@
   </select>
 
   <select id="getGoodsRepertoryFirst" resultType="java.lang.Integer">
-    SELECT gs.standard_count
-    FROM goods_standard gs
-    WHERE gs.standard_id = #{standardId}
+    SELECT IFNULL(MAX(qbg.standard_count),0)
+    FROM qm_branch_goods qbg
+    INNER JOIN qm_branch qb
+    ON qb.branch_id = qbg.branch_id
+    WHERE qb.my_team_id = #{myTeamId}
+    AND qb.branch_type = #{branchType}
+    AND qbg.standard_id = #{standardId}
   </select>
 
   <select id="getGoodsRepertorySecond" resultType="java.lang.Integer">
@@ -577,9 +595,9 @@
     SELECT COUNT(0)
     FROM my_order mo
     WHERE 1 = 1
-    <if test="order.orderStatus != null">
-      AND mo.order_status = #{order.orderStatus}
-    </if>
+    <foreach collection="order.statusList" index="i" close=")" open=" AND mo.order_status IN (" separator="," item="status">
+      #{status}
+    </foreach>
     <if test="order.createDate != null and order.finishDate != null">
       AND mo.create_date BETWEEN #{order.createDate} AND #{order.finishDate}
     </if>
@@ -601,9 +619,9 @@
     SELECT COUNT(0)
     FROM my_order mo
     WHERE 1 = 1
-    <if test="order.orderStatus != null">
-      AND mo.order_status = #{order.orderStatus}
-    </if>
+    <foreach collection="order.statusList" index="i" close=")" open=" AND mo.order_status IN (" separator="," item="status">
+      #{status}
+    </foreach>
     <if test="order.createDate != null and order.finishDate != null">
       AND mo.create_date BETWEEN #{order.createDate} AND #{order.finishDate}
     </if>
@@ -630,9 +648,9 @@
     mo.order_number
     FROM my_order mo
     WHERE 1 = 1
-    <if test="order.orderStatus != null">
-      AND mo.order_status = #{order.orderStatus}
-    </if>
+    <foreach collection="order.statusList" index="i" close=")" open=" AND mo.order_status IN (" separator="," item="status">
+      #{status}
+    </foreach>
     <if test="order.createDate != null and order.finishDate != null">
       AND mo.create_date BETWEEN #{order.createDate} AND #{order.finishDate}
     </if>
@@ -659,9 +677,9 @@
     mo.order_number
     FROM my_order mo
     WHERE 1 = 1
-    <if test="order.orderStatus != null">
-      AND mo.order_status = #{order.orderStatus}
-    </if>
+    <foreach collection="order.statusList" index="i" close=")" open=" AND mo.order_status IN (" separator="," item="status">
+      #{status}
+    </foreach>
     <if test="order.createDate != null and order.finishDate != null">
       AND mo.create_date BETWEEN #{order.createDate} AND #{order.finishDate}
     </if>
@@ -705,9 +723,9 @@
     INNER JOIN user u
     ON u.user_id = c.merchandiser_id
     WHERE c.my_team_id = #{myTeamId}
-    <if test="order.orderStatus != null">
-      AND mo.order_status = #{order.orderStatus}
-    </if>
+    <foreach collection="order.statusList" index="i" close=")" open=" AND mo.order_status IN (" separator="," item="status">
+      #{status}
+    </foreach>
     <if test="order.createDate != null and order.finishDate != null">
       AND mo.create_date BETWEEN #{order.createDate} AND #{order.finishDate}
     </if>
@@ -732,9 +750,9 @@
     INNER JOIN user u
     ON u.user_id = c.merchandiser_id
     WHERE c.my_team_id = #{myTeamId}
-    <if test="order.orderStatus != null">
-      AND mo.order_status = #{order.orderStatus}
-    </if>
+    <foreach collection="order.statusList" index="i" close=")" open=" AND mo.order_status IN (" separator="," item="status">
+      #{status}
+    </foreach>
     <if test="order.createDate != null and order.finishDate != null">
       AND mo.create_date BETWEEN #{order.createDate} AND #{order.finishDate}
     </if>
@@ -744,6 +762,7 @@
     <if test="order.paymentStatus != null">
       AND mo.payment_status = #{order.paymentStatus}
     </if>
+    ORDER BY mo.create_date DESC
   </select>
 
   <select id="getFinanceDeviceToken" resultType="java.lang.String">
@@ -867,5 +886,45 @@
     SELECT u.role_id
     FROM user u
     WHERE u.user_id = #{userId}
+  </select>
+
+  <select id="getFirstBranchId" resultType="java.lang.String">
+    SELECT branch_id
+    FROM qm_branch
+    WHERE my_team_id = #{myTeamId}
+    AND branch_type = #{branchType}
+  </select>
+
+  <select id="getCurrentBranchId" resultType="java.lang.String">
+    SELECT branch_id
+    FROM qm_branch
+    WHERE department_id =
+    (SELECT team_department_id
+    FROM user
+    WHERE user_id = #{userId})
+  </select>
+
+  <select id="getBranchRepertory" resultType="java.lang.Integer">
+    SELECT standard_count
+    FROM qm_branch_goods
+    WHERE branch_id = #{branchId}
+    AND standard_id = #{standardId}
+  </select>
+
+  <update id="updateBranchRepertory">
+    UPDATE qm_branch_goods
+    SET standard_count = #{count}
+    WHERE branch_id = #{branchId}
+    AND standard_id = #{standardId}
+  </update>
+
+  <select id="getCurrentBranchIdByCustomer" resultType="java.lang.String">
+    SELECT qb.branch_id
+    FROM qm_branch qb
+    INNER JOIN user u
+    ON u.team_department_id = qb.department_id
+    INNER JOIN customer c
+    ON c.promoter_id = u.user_id
+    WHERE c.user_id = #{userId}
   </select>
 </mapper>

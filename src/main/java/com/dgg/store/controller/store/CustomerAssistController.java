@@ -1,8 +1,11 @@
 package com.dgg.store.controller.store;
 
 import com.dgg.store.service.store.CustomerAssistService;
+import com.dgg.store.util.core.FilePathUtil;
 import com.dgg.store.util.core.constant.Constant;
+import com.dgg.store.util.core.constant.RequestConstant;
 import com.dgg.store.util.core.constant.SymbolConstant;
+import com.dgg.store.util.core.servlet.ServletUtil;
 import com.dgg.store.util.pojo.CustomerAssist;
 import com.dgg.store.util.pojo.CustomerAssistUser;
 import com.dgg.store.util.vo.core.PageVO;
@@ -15,7 +18,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
+import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
 /**

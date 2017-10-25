@@ -179,13 +179,23 @@ public class MyOrderServiceImpl implements MyOrderService
     @Override
     public String getMyOrder(SessionVO sessionVO, MyOrder myOrder)
     {
-        myOrder = orderMapper.selectByPrimaryKey(myOrder.getOrderId());
-        List<MyOrderListVO> orderList;
+        MyOrderExample example = new MyOrderExample();
+        MyOrderExample.Criteria criteria = example.createCriteria();
 
-        orderList = orderMapper.listOrderList(myOrder.getOrderId());
-        for (MyOrderListVO orderListVO : orderList)
-            orderListVO.setGoodsImage(orderMapper.getImage(orderListVO.getGoodsImage().split(SymbolConstant.REG_VERTICAL)[0]));
-        myOrder.setOrderList(orderList);
+        criteria.andUserIdEqualTo(sessionVO.getUserId());
+        criteria.andOrderIdEqualTo(myOrder.getOrderId());
+
+        List<MyOrder> orderList = orderMapper.selectByExample(example);
+        if (orderList == null || orderList.size() < 1)
+            return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_FAILED, sessionVO.getToken()));
+
+        myOrder = orderList.get(0);
+        List<MyOrderListVO> orderListVO;
+
+        orderListVO = orderMapper.listOrderList(myOrder.getOrderId());
+        for (MyOrderListVO listVO : orderListVO)
+            listVO.setGoodsImage(orderMapper.getImage(listVO.getGoodsImage().split(SymbolConstant.REG_VERTICAL)[0]));
+        myOrder.setOrderList(orderListVO);
         myOrder = OrderUtil.getOrderCount(myOrder);
 
         return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), myOrder));
@@ -194,7 +204,13 @@ public class MyOrderServiceImpl implements MyOrderService
     @Override
     public String updateSign(SessionVO sessionVO, MyOrder myOrder)
     {
-        myOrder = orderMapper.selectByPrimaryKey(myOrder.getOrderId());
+        MyOrderExample example = new MyOrderExample();
+        List<MyOrder> orderList = orderMapper.selectByExample(example);
+
+        if (orderList == null || orderList.size() < 1)
+            return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_FAILED, sessionVO.getToken()));
+
+        myOrder = orderList.get(0);
 
         boolean flag = myOrder.getOrderStatus().equals(OrderConstant.ALREADY_DELIVERED);
 
@@ -218,26 +234,39 @@ public class MyOrderServiceImpl implements MyOrderService
     @Override
     public String updateRefund(SessionVO sessionVO, MyOrder myOrder)
     {
+        MyOrderExample example = new MyOrderExample();
+        MyOrderExample.Criteria criteria = example.createCriteria();
+
+        criteria.andUserIdEqualTo(sessionVO.getUserId());
+        criteria.andOrderIdEqualTo(myOrder.getOrderId());
+
+        List<MyOrder> orderLists = orderMapper.selectByExample(example);
+        if (orderLists == null || orderLists.size() < 1)
+            return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_FAILED, sessionVO.getToken()));
+
         int result = 1;
         int count = 3;
         int index = 0;
 
         JSONArray jArray = JSONArray.parseArray(myOrder.getGoods());
         String message = myOrder.getRefundMessage();
-        myOrder = orderMapper.selectByPrimaryKey(myOrder.getOrderId());
+        myOrder = orderLists.get(0);
         JSONObject json = null;
+
+        if (!canRefund(myOrder.getOrderStatus()))
+            return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_FAILED, sessionVO.getToken()));
 
         while (result > 0)
         {
             switch (index)
             {
-                case 0:
+                case 0: // 退货数量判断
                     String standardId;
                     int refundNum;
                     List<MyOrderListVO> orderList = orderMapper.listOrderList(myOrder.getOrderId());
-                    for (int i = 0; i < jArray.size(); i++)
+                    for (Object aJArray : jArray)
                     {
-                        json = (JSONObject) jArray.get(i);
+                        json = (JSONObject) aJArray;
                         refundNum = json.getInteger(KeyConstant.GOODS_NUM);
                         standardId = json.getString(KeyConstant.STANDARD_ID);
                         for (MyOrderListVO vo : orderList)
@@ -246,7 +275,7 @@ public class MyOrderServiceImpl implements MyOrderService
                                     return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_FAILED, sessionVO.getToken()));
                     }
                     break;
-                case 1:
+                case 1: // 更新订单状态
                     MyOrder record = new MyOrder();
 
                     record.setOrderId(myOrder.getOrderId());
@@ -256,13 +285,13 @@ public class MyOrderServiceImpl implements MyOrderService
 
                     result = orderMapper.updateByPrimaryKeySelective(record);
                     break;
-                case 2:
+                case 2: // 更新订单商品列表
                     MyOrderListVO myOrderList = new MyOrderListVO();
 
                     myOrderList.setOrderId(myOrder.getOrderId());
-                    for (int i = 0; i < jArray.size(); i++)
+                    for (Object aJArray : jArray)
                     {
-                        json = (JSONObject) jArray.get(i);
+                        json = (JSONObject) aJArray;
                         myOrderList.setStandardId(json.getString(KeyConstant.STANDARD_ID));
                         myOrderList.setRefundNum(json.getInteger(KeyConstant.GOODS_NUM));
                         if (result < 1)
@@ -279,18 +308,41 @@ public class MyOrderServiceImpl implements MyOrderService
 
         if (index - 1 < count)
             throw new RuntimeException(Constant.STR_ADD_FAILED);
-        else
-            result = 1;
 
         UMengUtil.sendUnicast(orderMapper.getSalesDeviceToken(sessionVO.getUserId(), sessionVO.getMyTeamId()), PushMessageFactory.getInstance(mapper).get(PushMessageConstant.REFUSE_SALES_NEW));
 
         return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken()));
     }
 
+    private boolean canRefund(Byte orderStatus)
+    {
+        List<Byte> statusList = new ArrayList<>();
+        statusList.add(OrderConstant.ORDER_CLOSE);
+        statusList.add(OrderConstant.REFUND_WAITING);
+        statusList.add(OrderConstant.REFUND_GOODS);
+        statusList.add(OrderConstant.REFUND_RECEIVE);
+
+        for (Byte s : statusList)
+            if (s.equals(orderStatus))
+                return false;
+
+        return true;
+    }
+
     @Override
     public String updateRefundCancel(SessionVO sessionVO, MyOrder myOrder)
     {
-        myOrder = orderMapper.selectByPrimaryKey(myOrder.getOrderId());
+        MyOrderExample example = new MyOrderExample();
+        MyOrderExample.Criteria criteria = example.createCriteria();
+
+        criteria.andUserIdEqualTo(sessionVO.getUserId());
+        criteria.andOrderIdEqualTo(myOrder.getOrderId());
+
+        List<MyOrder> orderLists = orderMapper.selectByExample(example);
+        if (orderLists == null || orderLists.size() < 1)
+            return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_FAILED, sessionVO.getToken()));
+
+        myOrder = orderLists.get(0);
 
         boolean flag = myOrder.getOrderStatus().equals(OrderConstant.REFUND_WAITING);
 
@@ -392,25 +444,26 @@ public class MyOrderServiceImpl implements MyOrderService
     }
 
     @Override
-    public String listFreightTemp(SessionVO sessionVO)
+    public String listFreightTemp(SessionVO sessionVO, PageVO pageVO)
     {
-        String latLng = null;
-        List<FreightTemp> result = orderMapper.listFreightTemp(sessionVO.getMyTeamId());
+        if (ParameterUtil.objectIsNull(pageVO))
+            return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_FAILED, sessionVO.getToken()));
+
+        int pageNum = PagingUtil.getStart(pageVO.getPageNum(), pageVO.getPageSize());
+        int pageSize = pageVO.getPageSize();
+
+        List<FreightTemp> result = orderMapper.listFreightTemp(sessionVO.getMyTeamId(), pageNum, pageSize);
 
         String customerType = orderMapper.getCustomerType(sessionVO.getUserId(), sessionVO.getMyTeamId());
         int repertoryType = orderMapper.getCustomerRepertory(customerType, sessionVO.getMyTeamId());
 
-        switch (repertoryType)
-        {
-            case CustomerConstant.REPERTORY_LEVEL1:
-                latLng = orderMapper.getLatLng1(sessionVO.getMyTeamId());
-                break;
-            case CustomerConstant.REPERTORY_LEVEL2:
-                latLng = orderMapper.getLatLng2(sessionVO.getUserId(), sessionVO.getMyTeamId());
-                break;
-            default:
-                break;
-        }
+        String branchId;
+        if (repertoryType == CustomerConstant.REPERTORY_LEVEL1)
+            branchId = orderMapper.getFirstBranchId(sessionVO.getMyTeamId(), BranchConstant.BRANCH_FIRST);
+        else
+            branchId = orderMapper.getCurrentBranchIdByCustomer(sessionVO.getUserId());
+
+        String latLng = orderMapper.getBranchLatLng(branchId);
 
         for (FreightTemp temp : result)
             temp.setLatLng(latLng);

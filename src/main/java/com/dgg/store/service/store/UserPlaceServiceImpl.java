@@ -2,6 +2,7 @@ package com.dgg.store.service.store;
 
 import com.alibaba.fastjson.JSONObject;
 import com.dgg.store.dao.store.UserPlaceDao;
+import com.dgg.store.util.core.FilePathUtil;
 import com.dgg.store.util.core.constant.*;
 import com.dgg.store.util.core.generator.IDGenerator;
 import com.dgg.store.util.core.page.PagingUtil;
@@ -39,6 +40,7 @@ public class UserPlaceServiceImpl implements UserPlaceService
         try
         {
             path.append(PathConstant.USER_PLACE_IMG_PATH).append(SymbolConstant.SYSTEM_SLASH);
+            realPath = FilePathUtil.getPrevPath(realPath, Constant.PATH_LEVEL);
             fileName = UploadFileUtil.doUpload(file, path.toString(), realPath, IDGenerator.generator());
             PlaceImage placeImage = new PlaceImage();
             placeImage.setImgId(imageId);
@@ -67,6 +69,7 @@ public class UserPlaceServiceImpl implements UserPlaceService
         try
         {
             path.append(PathConstant.USER_PLACE_IMG_PATH).append(SymbolConstant.SYSTEM_SLASH);
+            realPath = FilePathUtil.getPrevPath(realPath, Constant.PATH_LEVEL);
             fileName = UploadFileUtil.doUpload(file, path.toString(), realPath, IDGenerator.generator());
             PlaceImage placeImage = new PlaceImage();
             placeImage.setImgId(imageId);

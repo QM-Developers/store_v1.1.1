@@ -215,6 +215,21 @@ public class CustomerController
     }
 
     /**
+     * 分配库存等级
+     *
+     * @param request   用户参数
+     * @return 操作的结果
+     */
+    @RequestMapping(value = "/s/listRepertoryLevel", method = POST, produces = {"application/json;charset=UTF-8"})
+    @ResponseBody
+    public String listRepertoryLevel(HttpServletRequest request)
+    {
+        SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
+
+        return service.listRepertoryLevel(sessionVO);
+    }
+
+    /**
      * 申请客户建账
      *
      * @param request        用户参数

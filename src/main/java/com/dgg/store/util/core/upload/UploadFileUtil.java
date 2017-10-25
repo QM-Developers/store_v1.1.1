@@ -10,7 +10,7 @@ public class UploadFileUtil
 {
 
 //    public static final String doUpload(MultipartFile file, String path,String appName) throws IOException
-    public static final String doUpload(MultipartFile file, String path,String basePath,String uuid) throws IOException
+    public static String doUpload(MultipartFile file, String path,String basePath,String uuid) throws IOException
     {
         //文件名
         String fileName = file.getOriginalFilename();

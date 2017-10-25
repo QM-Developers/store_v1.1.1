@@ -207,4 +207,10 @@ public class CustomerDaoImpl implements CustomerDao
         return mapper.listPromoter(myTeamId,pid);
     }
 
+    @Override
+    public List<CustomerRepertoryVO> listRepertoryLevel(String myTeamId)
+    {
+        return mapper.listRepertoryLevel(myTeamId);
+    }
+
 }

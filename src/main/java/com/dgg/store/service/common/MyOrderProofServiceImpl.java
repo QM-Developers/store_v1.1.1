@@ -1,16 +1,15 @@
 package com.dgg.store.service.common;
 
 import com.alibaba.fastjson.JSONObject;
+import com.dgg.store.mapper.MyOrderMapper;
 import com.dgg.store.mapper.MyOrderProofMapper;
 import com.dgg.store.util.core.FilePathUtil;
 import com.dgg.store.util.core.constant.*;
 import com.dgg.store.util.core.generator.IDGenerator;
-import com.dgg.store.util.core.page.PagingUtil;
 import com.dgg.store.util.core.parameter.ParameterUtil;
 import com.dgg.store.util.core.upload.UploadFileUtil;
 import com.dgg.store.util.pojo.MyOrderProof;
 import com.dgg.store.util.pojo.MyOrderProofExample;
-import com.dgg.store.util.vo.core.PageVO;
 import com.dgg.store.util.vo.core.ResultVO;
 import com.dgg.store.util.vo.core.SessionVO;
 import org.springframework.stereotype.Service;
@@ -23,15 +22,20 @@ import java.util.List;
 public class MyOrderProofServiceImpl implements MyOrderProofService
 {
     private final MyOrderProofMapper mapper;
+    private final MyOrderMapper orderMapper;
 
-    public MyOrderProofServiceImpl(MyOrderProofMapper mapper)
+    public MyOrderProofServiceImpl(MyOrderProofMapper mapper, MyOrderMapper orderMapper)
     {
         this.mapper = mapper;
+        this.orderMapper = orderMapper;
     }
 
     @Override
     public String save(SessionVO sessionVO, String realPath, MyOrderProof proof, MultipartFile file)
     {
+        if (orderMapper.selectByPrimaryKey(proof.getOrderId()) == null)
+            return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_FAILED, sessionVO.getToken()));
+
         int result = 0;
         StringBuilder path = new StringBuilder();
         String fileName;

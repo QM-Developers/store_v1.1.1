@@ -5,6 +5,7 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.dgg.store.dao.store.GoodsManageDao;
 import com.dgg.store.dao.store.GoodsTypeDao;
+import com.dgg.store.util.core.FilePathUtil;
 import com.dgg.store.util.core.constant.*;
 import com.dgg.store.util.core.generator.IDGenerator;
 import com.dgg.store.util.core.page.PagingUtil;
@@ -112,7 +113,7 @@ public class GoodsManageServiceImpl implements GoodsManageService
     }
 
     @Override
-    public ResultVO insertImgToSpace(SessionVO sessionVO, MultipartFile file, String basePath)
+    public ResultVO insertImgToSpace(SessionVO sessionVO, MultipartFile file, String realPath)
     {
         StringBuffer path = new StringBuffer();
         String fileName = null;
@@ -121,7 +122,8 @@ public class GoodsManageServiceImpl implements GoodsManageService
         try
         {
             path.append(PathConstant.USER_IMAGE_SPACE_PATH).append(sessionVO.getUserId()).append("/");
-            fileName = UploadFileUtil.doUpload(file, path.toString(), basePath, IDGenerator.generator());
+            realPath = FilePathUtil.getPrevPath(realPath, Constant.PATH_LEVEL);
+            fileName = UploadFileUtil.doUpload(file, path.toString(), realPath, IDGenerator.generator());
             dao.insertImgToSpace(imageId, fileName, sessionVO.getMyTeamId());
         } catch (IOException e)
         {

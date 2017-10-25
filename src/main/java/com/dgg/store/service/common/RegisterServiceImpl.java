@@ -3,6 +3,7 @@ package com.dgg.store.service.common;
 import com.alibaba.fastjson.JSONObject;
 import com.dgg.store.dao.common.RegisterDao;
 import com.dgg.store.netease.CloudMessageUtil;
+import com.dgg.store.util.core.FilePathUtil;
 import com.dgg.store.util.core.constant.Constant;
 import com.dgg.store.util.core.constant.PathConstant;
 import com.dgg.store.util.core.constant.RegisterConstant;
@@ -181,6 +182,7 @@ public class RegisterServiceImpl implements RegisterService
         try
         {
             path.append(PathConstant.USER_ID_CARD_PATH);
+            realPath = FilePathUtil.getPrevPath(realPath, Constant.PATH_LEVEL);
             fileName = UploadFileUtil.doUpload(file, path.toString(), realPath, uuid);
         } catch (IOException e)
         {

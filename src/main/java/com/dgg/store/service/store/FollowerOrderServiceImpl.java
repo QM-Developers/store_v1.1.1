@@ -16,6 +16,7 @@ import com.dgg.store.util.vo.core.SessionVO;
 import com.dgg.store.util.vo.order.MyOrderListVO;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -47,33 +48,25 @@ public class FollowerOrderServiceImpl implements FollowerOrderService
 
         int repertory;
         int result;
-        switch (repositoryLevel)
+        String branchId;
+
+        if (repositoryLevel == CustomerConstant.REPERTORY_LEVEL1)
+            branchId = orderMapper.getFirstBranchId(sessionVO.getMyTeamId(), BranchConstant.BRANCH_FIRST);
+        else
+            branchId = orderMapper.getCurrentBranchId(sessionVO.getUserId());
+
+        for (MyOrderListVO vo : orderList)
         {
-            case CustomerConstant.REPERTORY_LEVEL1:
-                for (MyOrderListVO vo : orderList)
-                {
-                    repertory = vo.getRepertory() + vo.getRefundNum();
-                    result = orderMapper.updateRepertoryFirst(vo.getStandardId(), repertory);
-                    if (result < 1)
-                        throw new RuntimeException(Constant.STR_ADD_FAILED);
-                }
-                break;
-            case CustomerConstant.REPERTORY_LEVEL2:
-                for (MyOrderListVO vo : orderList)
-                {
-                    repertory = vo.getRepertory() + vo.getRefundNum();
-                    result = orderMapper.updateRepertorySecond(sessionVO.getUserId(), vo.getStandardId(), repertory);
-                    if (result < 1)
-                        throw new RuntimeException(Constant.STR_ADD_FAILED);
-                }
-                break;
-            default:
-                break;
+            repertory = vo.getRepertory() + vo.getRefundNum();
+            result = orderMapper.updateBranchRepertory(branchId, vo.getStandardId(), repertory);
+            if (result < 1)
+                throw new RuntimeException(Constant.STR_ADD_FAILED);
         }
+
 
         MyOrder record = new MyOrder();
         record.setOrderId(myOrder.getOrderId());
-        record.setOrderStatus(OrderConstant.REFUND_RECEIVE);
+        record.setOrderStatus(myOrder.getPaymentStatus() == OrderConstant.ALREADY_PAY ? OrderConstant.REFUND_RECEIVE : OrderConstant.ORDER_CLOSE);
         result = orderMapper.updateByPrimaryKeySelective(record);
 
         if (result < 1)
@@ -100,10 +93,28 @@ public class FollowerOrderServiceImpl implements FollowerOrderService
         if (result < 1)
             throw new RuntimeException(Constant.STR_ADD_FAILED);
 
+        if (isDeliver(myOrder.getOrderStatusBefore()))
+            return updateRefundReceive(sessionVO,myOrder);
+
         UMengUtil.sendUnicast(orderMapper.getDeviceToken(myOrder.getUserId()), PushMessageFactory.getInstance(pushMapper).get(PushMessageConstant.REFUSE_SALES_PASS));
         UMengUtil.sendUnicast(orderMapper.getFinanceDeviceToken(sessionVO.getMyTeamId(), QMPermissionConstant.FINANCE_CHECK), PushMessageFactory.getInstance(pushMapper).get(PushMessageConstant.REFUSE_FINANCE_NEW));
 
         return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken()));
+    }
+
+    private boolean isDeliver(Byte status)
+    {
+        List<Byte> statusList = new ArrayList<>();
+        statusList.add(OrderConstant.ALREADY_DELIVERED);
+        statusList.add(OrderConstant.FINANCE_CHECK_FAIL_B);
+        statusList.add(OrderConstant.ORDER_SUCCESS);
+        statusList.add(OrderConstant.WAITING_FINANCE_CHECK_B);
+
+        for (Byte s : statusList)
+            if (s.equals(status))
+                return true;
+
+        return false;
     }
 
 

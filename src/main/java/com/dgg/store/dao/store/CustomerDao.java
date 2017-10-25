@@ -71,4 +71,6 @@ public interface CustomerDao
     int getCustomerExist(String userPhone, String myTeamId, String userId);
 
     List<CustomerVO> listPromoter(String myTeamId, String pid);
+
+    List<CustomerRepertoryVO> listRepertoryLevel(String myTeamId);
 }

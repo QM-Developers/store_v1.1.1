@@ -2,8 +2,10 @@ package com.dgg.store.service.common;
 
 import com.alibaba.fastjson.JSONObject;
 import com.dgg.store.dao.common.MyDao;
+import com.dgg.store.util.core.FilePathUtil;
 import com.dgg.store.util.core.constant.Constant;
 import com.dgg.store.util.core.constant.PathConstant;
+import com.dgg.store.util.core.constant.SymbolConstant;
 import com.dgg.store.util.core.generator.IDGenerator;
 import com.dgg.store.util.core.upload.UploadFileUtil;
 import com.dgg.store.util.vo.MyAddressVO;
@@ -14,7 +16,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
@@ -90,7 +91,7 @@ public class MyServiceImpl implements MyService
     }
 
     @Override
-    public ResultVO updateUserImg(SessionVO sessionVO, MultipartFile file, String basePath)
+    public ResultVO updateUserImg(SessionVO sessionVO, MultipartFile file, String realPath)
     {
         int result = 0;
         StringBuilder path = new StringBuilder();
@@ -101,8 +102,9 @@ public class MyServiceImpl implements MyService
 
         try
         {
-            path.append(PathConstant.USER_HEAD_PORTRAIT_IMG_PATH).append(sessionVO.getUserId()).append("/");
-            fileName = UploadFileUtil.doUpload(file, path.toString(), basePath, IDGenerator.generator());
+            path.append(PathConstant.USER_HEAD_PORTRAIT_IMG_PATH).append(sessionVO.getUserId()).append(SymbolConstant.FORWARD_SLASH);
+            realPath = FilePathUtil.getPrevPath(realPath, Constant.PATH_LEVEL);
+            fileName = UploadFileUtil.doUpload(file, path.toString(), realPath, IDGenerator.generator());
             result = dao.updateUserImg(sessionVO.getUserId(), fileName);
         } catch (IOException e)
         {

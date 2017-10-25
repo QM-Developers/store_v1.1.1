@@ -1,8 +1,12 @@
 package com.dgg.store.controller.common;
 
 import com.dgg.store.service.common.MyService;
+import com.dgg.store.util.core.FilePathUtil;
 import com.dgg.store.util.core.constant.Constant;
 import com.dgg.store.util.core.constant.RequestConstant;
+import com.dgg.store.util.core.constant.SymbolConstant;
+import com.dgg.store.util.core.servlet.ServletUtil;
+import com.dgg.store.util.pojo.MyOrderProof;
 import com.dgg.store.util.vo.MyAddressVO;
 import com.dgg.store.util.vo.core.ResultVO;
 import com.dgg.store.util.vo.core.SessionVO;
@@ -26,6 +30,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Hashtable;
+
+import static org.springframework.web.bind.annotation.RequestMethod.GET;
 
 /**
  * 个人信息控制器
@@ -143,7 +149,20 @@ public class MyController
     {
         SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
 
-        return service.updateUserImg(sessionVO, file, request.getSession().getServletContext().getRealPath("/"));
+        return service.updateUserImg(sessionVO, file, request.getSession().getServletContext().getRealPath(SymbolConstant.SYSTEM_SLASH));
+    }
+
+    /**
+     * 获取头像
+     *
+     * @param request 当前用户信息
+     * @param path    图片路径
+     */
+    @RequestMapping(value = "user_getHeadPortrait", method = GET, produces = {RequestConstant.CONTENT_TYPE})
+    public void getHeadPortrait(HttpServletRequest request, HttpServletResponse response, String path)
+    {
+        path = FilePathUtil.getPrevPath(request.getSession().getServletContext().getRealPath(SymbolConstant.SYSTEM_SLASH), Constant.PATH_LEVEL) + path;
+        ServletUtil.printImage(request, response, path);
     }
 
     /**

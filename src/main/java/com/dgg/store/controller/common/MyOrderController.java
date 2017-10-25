@@ -176,10 +176,10 @@ public class MyOrderController
      */
     @RequestMapping(value = "user_listFreightTemp", method = RequestMethod.POST, produces = {"application/json;charset=UTF-8"})
     @ResponseBody
-    public String listFreightTemp(HttpServletRequest request)
+    public String listFreightTemp(HttpServletRequest request, PageVO pageVO)
     {
         SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
 
-        return service.listFreightTemp(sessionVO);
+        return service.listFreightTemp(sessionVO, pageVO);
     }
 }

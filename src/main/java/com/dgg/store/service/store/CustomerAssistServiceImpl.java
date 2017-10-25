@@ -6,6 +6,7 @@ import com.dgg.store.dao.store.CustomerAssistCustomerDao;
 import com.dgg.store.dao.store.CustomerAssistDao;
 import com.dgg.store.dao.store.CustomerAssistImageDao;
 import com.dgg.store.dao.store.CustomerAssistUserDao;
+import com.dgg.store.util.core.FilePathUtil;
 import com.dgg.store.util.core.constant.Constant;
 import com.dgg.store.util.core.constant.KeyConstant;
 import com.dgg.store.util.core.constant.PathConstant;
@@ -128,6 +129,7 @@ public class CustomerAssistServiceImpl implements CustomerAssistService
         try
         {
             path.append(PathConstant.USER_ASSIST_PATH).append(sessionVO.getUserId()).append(SymbolConstant.FORWARD_SLASH);
+            realPath = FilePathUtil.getPrevPath(realPath, Constant.PATH_LEVEL);
             fileName = UploadFileUtil.doUpload(file, path.toString(), realPath, imageId);
             CustomerAssistImage image = new CustomerAssistImage();
             image.setImageId(imageId);

@@ -22,7 +22,7 @@ public interface MyOrderService
 
     String listMyOrderSelective(SessionVO sessionVO, MyOrder myOrder, PageVO pageVO);
 
-    String listFreightTemp(SessionVO sessionVO);
+    String listFreightTemp(SessionVO sessionVO, PageVO pageVO);
 
     String listMyOrderByOrderNumber(SessionVO sessionVO, MyOrder myOrder, PageVO pageVO);
 }

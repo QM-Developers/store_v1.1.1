@@ -72,4 +72,6 @@ public interface CustomerMapper
     int getCustomerExist(@Param("userPhone") String userPhone, @Param("myTeamId") String myTeamId, @Param("userId") String userId);
 
     List<CustomerVO> listPromoter(@Param("myTeamId") String myTeamId, @Param("permissionId") String accountCheck);
+
+    List<CustomerRepertoryVO> listRepertoryLevel(String myTeamId);
 }

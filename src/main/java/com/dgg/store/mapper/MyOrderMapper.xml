@@ -514,6 +514,7 @@
     start_price, increase_range,increase_price
     FROM freight_temp
     WHERE my_team_id = #{myTeamId}
+    LIMIT #{pageNum},#{pageSize}
   </select>
 
   <select id="getCustomerRepertory" resultType="java.lang.Integer">
@@ -828,10 +829,10 @@
     ON c.user_id = mo.user_id
     INNER JOIN user u
     ON u.user_id = c.promoter_id
-    WHERE u.team_department_id = WHERE u.team_department_id = (SELECT team_department_id FROM user WHERE user_id = #{userId})
-    <if test="order.orderStatus != null">
-      AND mo.order_status = #{order.orderStatus}
-    </if>
+    WHERE u.team_department_id = (SELECT team_department_id FROM user WHERE user_id = #{userId})
+    <foreach collection="order.statusList" index="i" close=")" open=" AND mo.order_status IN (" separator="," item="status">
+      #{status}
+    </foreach>
     <if test="order.createDate != null and order.finishDate != null">
       AND mo.create_date BETWEEN #{order.createDate} AND #{order.finishDate}
     </if>
@@ -858,10 +859,10 @@
     ON c.user_id = mo.user_id
     INNER JOIN user u
     ON u.user_id = c.promoter_id
-    WHERE u.team_department_id = WHERE u.team_department_id = (SELECT team_department_id FROM user WHERE user_id = #{userId})
-    <if test="order.orderStatus != null">
-      AND mo.order_status = #{order.orderStatus}
-    </if>
+    WHERE u.team_department_id = (SELECT team_department_id FROM user WHERE user_id = #{userId})
+    <foreach collection="order.statusList" index="i" close=")" open=" AND mo.order_status IN (" separator="," item="status">
+      #{status}
+    </foreach>
     <if test="order.createDate != null and order.finishDate != null">
       AND mo.create_date BETWEEN #{order.createDate} AND #{order.finishDate}
     </if>
@@ -909,6 +910,12 @@
     FROM qm_branch_goods
     WHERE branch_id = #{branchId}
     AND standard_id = #{standardId}
+  </select>
+
+  <select id="getBranchLatLng" resultType="java.lang.String">
+    SELECT lat_lng
+    FROM qm_branch
+    WHERE branch_id = #{branchId}
   </select>
 
   <update id="updateBranchRepertory">

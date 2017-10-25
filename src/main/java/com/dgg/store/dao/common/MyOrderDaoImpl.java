@@ -121,7 +121,8 @@ public class MyOrderDaoImpl implements MyOrderDao
     @Override
     public List<FreightTemp> listFreightTemp(String myTeamId)
     {
-        return mapper.listFreightTemp(myTeamId);
+        return null;
+//        return mapper.listFreightTemp(myTeamId, pageNum, pageSize);
     }
 
     @Override

@@ -3,6 +3,7 @@ package com.dgg.store.service.store;
 import com.alibaba.fastjson.JSONObject;
 import com.dgg.store.dao.store.CustomerDao;
 import com.dgg.store.mapper.PushMessageMapper;
+import com.dgg.store.util.core.FilePathUtil;
 import com.dgg.store.util.core.constant.*;
 import com.dgg.store.util.core.date.DateUtil;
 import com.dgg.store.util.core.generator.IDGenerator;
@@ -158,6 +159,7 @@ public class CustomerServiceImpl implements CustomerService
         try
         {
             path.append(PathConstant.USER_ID_CARD_PATH).append(sessionVO.getUserId()).append(SymbolConstant.FORWARD_SLASH);
+            realPath = FilePathUtil.getPrevPath(realPath, Constant.PATH_LEVEL);
             fileName = UploadFileUtil.doUpload(file, path.toString(), realPath, IDGenerator.generator());
             customerVO = dao.getCustomer(customerVO);
             if (customerVO.getHadAccount().equals(CustomerConstant.HAD_ACCOUNT))
@@ -182,6 +184,7 @@ public class CustomerServiceImpl implements CustomerService
         try
         {
             path.append(PathConstant.USER_ID_CARD_PATH).append(sessionVO.getUserId()).append(SymbolConstant.FORWARD_SLASH);
+            realPath = FilePathUtil.getPrevPath(realPath, Constant.PATH_LEVEL);
             fileName = UploadFileUtil.doUpload(file, path.toString(), realPath, IDGenerator.generator());
             customerVO = dao.getCustomer(customerVO);
             if (customerVO.getHadAccount().equals(CustomerConstant.HAD_ACCOUNT))
@@ -214,6 +217,7 @@ public class CustomerServiceImpl implements CustomerService
         try
         {
             path.append(PathConstant.USER_ID_CARD_PATH).append(sessionVO.getUserId()).append(SymbolConstant.FORWARD_SLASH);
+            realPath = FilePathUtil.getPrevPath(realPath, Constant.PATH_LEVEL);
             fileName = UploadFileUtil.doUpload(file, path.toString(), realPath, IDGenerator.generator());
             customerVO = dao.getCustomer(customerVO);
             if (customerVO.getHadAccount().equals(CustomerConstant.HAD_ACCOUNT))
@@ -489,6 +493,14 @@ public class CustomerServiceImpl implements CustomerService
     public String listPromoter(SessionVO sessionVO)
     {
         List<CustomerVO> result = dao.listPromoter(sessionVO.getMyTeamId(), QMPermissionConstant.CREATE_RECORD);
+
+        return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), result));
+    }
+
+    @Override
+    public String listRepertoryLevel(SessionVO sessionVO)
+    {
+        List<CustomerRepertoryVO> result = dao.listRepertoryLevel(sessionVO.getMyTeamId());
 
         return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), result));
     }

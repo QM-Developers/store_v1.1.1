@@ -38,6 +38,12 @@
         <result column="request_reason" property="requestReason" jdbcType="VARCHAR"/>
     </resultMap>
 
+    <resultMap id="CustomerRepertoryVO" type="com.dgg.store.util.vo.customer.CustomerRepertoryVO">
+        <result column="customer_type" property="customerType" jdbcType="VARCHAR"/>
+        <result column="my_team_id" property="myTeamId" jdbcType="VARCHAR"/>
+        <result column="repertory_type" property="repertoryType" jdbcType="INTEGER"/>
+    </resultMap>
+
     <insert id="insertCustomerRecord" parameterType="com.dgg.store.util.vo.customer.CustomerVO">
         INSERT INTO user_record
         (user_id,my_team_id,user_name,user_phone,
@@ -75,6 +81,9 @@
         AND c.promoter_id = #{customer.userId}
         <if test="customer.customerType != null and customer.customerType != ''">
             AND c.customer_type = #{customer.customerType}
+        </if>
+        <if test="customer.hadAccount != null">
+            AND c.had_account = #{customer.hadAccount}
         </if>
         LIMIT #{start},#{end}
     </select>
@@ -448,5 +457,11 @@
         ON qb.department_id = t1.team_department_id
         WHERE t1.my_team_id = #{myTeamId}
         AND t1.permission_id = #{permissionId}
+    </select>
+
+    <select id="listRepertoryLevel" resultMap="CustomerRepertoryVO">
+        SELECT *
+        FROM customer_repertory
+        WHERE my_team_id = #{myTeamId}
     </select>
 </mapper>

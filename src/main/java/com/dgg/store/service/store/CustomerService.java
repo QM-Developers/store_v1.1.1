@@ -50,4 +50,6 @@ public interface CustomerService
     String updateCustomerUnfreeze(SessionVO sessionVO, CustomerVO customerVO);
 
     String listPromoter(SessionVO sessionVO);
+
+    String listRepertoryLevel(SessionVO sessionVO);
 }

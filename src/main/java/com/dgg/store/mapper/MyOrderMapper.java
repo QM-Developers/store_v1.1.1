@@ -53,7 +53,7 @@ public interface MyOrderMapper
 
     int updateListByPrimaryKeySelective(MyOrderListVO myOrderList);
 
-    List<FreightTemp> listFreightTemp(@Param("myTeamId") String myTeamId);
+    List<FreightTemp> listFreightTemp(@Param("myTeamId") String myTeamId,@Param("pageNum") int pageNum,@Param("pageSize") int pageSize);
 
     int getCustomerRepertory(@Param("customerType") String customerType, @Param("myTeamId") String myTeamId);
 
@@ -110,4 +110,6 @@ public interface MyOrderMapper
     int updateBranchRepertory(@Param("branchId") String branchId, @Param("standardId") String standardId, @Param("count") int repertory);
 
     String getCurrentBranchIdByCustomer(String userId);
+
+    String getBranchLatLng(String branchId);
 }

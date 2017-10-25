@@ -1,12 +1,12 @@
 package com.dgg.store.service.store;
 
 import com.alibaba.fastjson.JSONObject;
-import com.dgg.store.dao.common.MyOrderDao;
 import com.dgg.store.mapper.MyOrderMapper;
 import com.dgg.store.util.core.OrderUtil;
 import com.dgg.store.util.core.constant.Constant;
 import com.dgg.store.util.core.constant.KeyConstant;
 import com.dgg.store.util.core.page.PagingUtil;
+import com.dgg.store.util.core.parameter.ParameterUtil;
 import com.dgg.store.util.pojo.MyOrder;
 import com.dgg.store.util.vo.core.PageVO;
 import com.dgg.store.util.vo.core.ResultVO;
@@ -29,8 +29,13 @@ public class SalesOrderServiceImpl implements SalesOrderService
     @Override
     public String listOrderSelective(SessionVO sessionVO, MyOrder myOrder, PageVO pageVO)
     {
+        if (ParameterUtil.objectIsNull(pageVO))
+            return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_FAILED, sessionVO.getToken()));
+
         int pageNum = PagingUtil.getStart(pageVO.getPageNum(), pageVO.getPageSize());
         int pageSize = pageVO.getPageSize();
+
+        myOrder.setStatusList(OrderUtil.getOrderStatus(myOrder.getOrderStatus()));
 
         int pageCount = PagingUtil.getCount(orderMapper.countSalesOrder(myOrder, sessionVO.getUserId()), pageVO.getPageSize());
         List<MyOrder> result = orderMapper.listSalesOrder(myOrder, sessionVO.getUserId(), pageNum, pageSize);
@@ -54,8 +59,13 @@ public class SalesOrderServiceImpl implements SalesOrderService
     @Override
     public String listOrderSelectiveByManager(SessionVO sessionVO, MyOrder myOrder, PageVO pageVO)
     {
+        if (ParameterUtil.objectIsNull(pageVO))
+            return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_FAILED, sessionVO.getToken()));
+
         int pageNum = PagingUtil.getStart(pageVO.getPageNum(), pageVO.getPageSize());
         int pageSize = pageVO.getPageSize();
+
+        myOrder.setStatusList(OrderUtil.getOrderStatus(myOrder.getOrderStatus()));
 
         int pageCount = PagingUtil.getCount(orderMapper.countOrderSelectiveByManager(myOrder, sessionVO.getUserId()), pageVO.getPageSize());
         List<MyOrder> result = orderMapper.listOrderSelectiveByManager(myOrder, sessionVO.getUserId(), pageNum, pageSize);

@@ -12,13 +12,13 @@ public interface ManageService
 {
     ResultVO findLoginUser(SessionVO sessionVO, LoginVO loginVO);
 
-    ResultVO findTeamAndMemberCount(SessionVO sessionVO);
+    String findTeamAndMemberCount(SessionVO sessionVO);
 
     String findMemberList(SessionVO sessionVO, MemberVO memberVO);
 
     ResultVO insertDepartment(SessionVO sessionVO, DepartmentVO department);
 
-    ResultVO findDepartmentInfo(SessionVO sessionVO, DepartmentVO department);
+    String findDepartmentInfo(SessionVO sessionVO, DepartmentVO department);
 
     ResultVO updateDepartment(SessionVO sessionVO, DepartmentVO department);
 

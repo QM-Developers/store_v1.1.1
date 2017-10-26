@@ -98,6 +98,9 @@
         <if test="customerType != null and customerType != ''">
             AND c.customer_type = #{customerType}
         </if>
+        <if test="hadAccount != null">
+            AND c.had_account = #{hadAccount}
+        </if>
     </select>
 
     <update id="updateCustomerUserRecord" parameterType="com.dgg.store.util.vo.customer.CustomerVO">

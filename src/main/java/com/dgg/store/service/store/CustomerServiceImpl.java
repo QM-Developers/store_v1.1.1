@@ -104,7 +104,7 @@ public class CustomerServiceImpl implements CustomerService
         pageCount = PagingUtil.getCount(pageCount, pageVO.getPageSize());
         List<CustomerVO> result = dao.listCustomer(customerVO, start, end);
 
-        JSONObject json = (JSONObject) JSONObject.toJSON(new ResultVO(1, sessionVO.getToken(), result));
+        JSONObject json = (JSONObject) JSONObject.toJSON(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), result));
         json.put(KeyConstant.PAGE_COUNT, pageCount);
 
         return json.toJSONString();

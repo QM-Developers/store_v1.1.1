@@ -7,15 +7,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="886cbd15-c3a0-40c9-bb8e-62f10811888a" name="Default" comment="框架搭建">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/需求分析/接口文档/客户/权限角色接口.xlsx" afterPath="$PROJECT_DIR$/需求分析/接口文档/客户/权限角色接口.xlsx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/需求分析/接口文档/客户/客户接口 v1.0.0.xls" afterPath="$PROJECT_DIR$/需求分析/接口文档/客户/客户接口 v1.0.0.xls" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/需求分析/接口文档/客户/组织管理接口.xlsx" afterPath="$PROJECT_DIR$/需求分析/接口文档/客户/组织管理接口.xlsx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/需求分析/接口文档/客户/订单接口.xlsx" afterPath="$PROJECT_DIR$/需求分析/接口文档/客户/订单接口.xlsx" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/query.sql" afterPath="$PROJECT_DIR$/query.sql" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/dgg/store/controller/store/ManageController.java" afterPath="$PROJECT_DIR$/src/main/java/com/dgg/store/controller/store/ManageController.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/dgg/store/mapper/CustomerMapper.xml" afterPath="$PROJECT_DIR$/src/main/java/com/dgg/store/mapper/CustomerMapper.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/dgg/store/service/store/CustomerServiceImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/dgg/store/service/store/CustomerServiceImpl.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/dgg/store/service/store/ManageService.java" afterPath="$PROJECT_DIR$/src/main/java/com/dgg/store/service/store/ManageService.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/dgg/store/service/store/ManageServiceImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/dgg/store/service/store/ManageServiceImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/pages/management/qm-enterpriselistt.js" afterPath="$PROJECT_DIR$/src/main/webapp/pages/management/qm-enterpriselistt.js" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -47,41 +48,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="ManageController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/dgg/store/controller/store/ManageController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="585">
-              <caret line="174" column="37" lean-forward="false" selection-start-line="174" selection-start-column="37" selection-end-line="174" selection-end-column="37" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ManageService.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/dgg/store/service/store/ManageService.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="290">
-              <caret line="20" column="10" lean-forward="false" selection-start-line="20" selection-start-column="10" selection-end-line="20" selection-end-column="10" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ManageServiceImpl.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/dgg/store/service/store/ManageServiceImpl.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="338">
-              <caret line="113" column="65" lean-forward="false" selection-start-line="113" selection-start-column="65" selection-end-line="113" selection-end-column="65" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="CustomerController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/dgg/store/controller/store/CustomerController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="245">
-              <caret line="68" column="30" lean-forward="false" selection-start-line="68" selection-start-column="30" selection-end-line="68" selection-end-column="30" />
+            <state relative-caret-position="454">
+              <caret line="84" column="32" lean-forward="false" selection-start-line="84" selection-start-column="32" selection-end-line="84" selection-end-column="32" />
               <folding />
             </state>
           </provider>
@@ -90,8 +61,8 @@
       <file leaf-file-name="CustomerService.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/dgg/store/service/store/CustomerService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="129">
-              <caret line="13" column="0" lean-forward="false" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
+            <state relative-caret-position="290">
+              <caret line="25" column="11" lean-forward="false" selection-start-line="25" selection-start-column="11" selection-end-line="25" selection-end-column="11" />
               <folding />
             </state>
           </provider>
@@ -100,8 +71,8 @@
       <file leaf-file-name="CustomerServiceImpl.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/dgg/store/service/store/CustomerServiceImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="121">
-              <caret line="102" column="0" lean-forward="false" selection-start-line="102" selection-start-column="0" selection-end-line="102" selection-end-column="0" />
+            <state relative-caret-position="530">
+              <caret line="245" column="47" lean-forward="false" selection-start-line="245" selection-start-column="25" selection-end-line="245" selection-end-column="47" />
               <folding />
             </state>
           </provider>
@@ -110,58 +81,68 @@
       <file leaf-file-name="CustomerMapper.xml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/dgg/store/mapper/CustomerMapper.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="269">
-              <caret line="100" column="38" lean-forward="true" selection-start-line="100" selection-start-column="38" selection-end-line="100" selection-end-column="38" />
+            <state relative-caret-position="102">
+              <caret line="254" column="90" lean-forward="false" selection-start-line="254" selection-start-column="90" selection-end-line="254" selection-end-column="90" />
               <folding>
-                <marker date="1508980857403" expanded="true" signature="3426:3878" ph="INSERT INTO user_record... " />
-                <marker date="1508980857403" expanded="true" signature="3993:4288" ph="INSERT INTO customer... " />
-                <marker date="1508980857403" expanded="true" signature="4366:5106" ph="SELECT c.cus... customer" />
-                <marker date="1508980857403" expanded="true" signature="5785:6577" ph="UPDATE user_... " />
-                <marker date="1508980857403" expanded="true" signature="6696:7375" ph="UPDATE user " />
-                <marker date="1508980857403" expanded="true" signature="7490:8313" ph="UPDATE custo... " />
-                <marker date="1508980857403" expanded="true" signature="8390:8911" ph="SELECT c.cus... customer" />
-                <marker date="1508980857403" expanded="true" signature="8970:9118" ph="UPDATE user " />
-                <marker date="1508980857403" expanded="true" signature="9183:9341" ph="UPDATE user_... " />
-                <marker date="1508980857403" expanded="true" signature="9399:9546" ph="UPDATE user " />
-                <marker date="1508980857403" expanded="true" signature="9610:9767" ph="UPDATE user_... " />
-                <marker date="1508980857403" expanded="true" signature="9825:9972" ph="UPDATE user " />
-                <marker date="1508980857403" expanded="true" signature="10036:10193" ph="UPDATE user_... " />
-                <marker date="1508980857403" expanded="true" signature="10284:10431" ph="SELECT reper... customer_repertory" />
-                <marker date="1508980857403" expanded="true" signature="10603:10742" ph="SELECT COUNT... customer_repertory" />
-                <marker date="1508980857403" expanded="true" signature="10872:11024" ph="INSERT INTO customer_repertory... " />
-                <marker date="1508980857403" expanded="true" signature="11169:12148" ph="SELECT t1.us... user_id" />
-                <marker date="1508980857403" expanded="true" signature="11235:11556" ph="SELECT u.use... user" />
-                <marker date="1508980857403" expanded="true" signature="11579:11894" ph="SELECT u.use... user" />
-                <marker date="1508980857403" expanded="true" signature="12037:12147" ph="SELECT depar... qm_branch" />
-                <marker date="1508980857403" expanded="true" signature="12294:13224" ph="SELECT t1.us... user_id" />
-                <marker date="1508980857403" expanded="true" signature="12360:12681" ph="SELECT u.use... user" />
-                <marker date="1508980857403" expanded="true" signature="12704:13019" ph="SELECT u.use... user" />
-                <marker date="1508980857403" expanded="true" signature="13308:14209" ph="SELECT t1.us... user_id" />
-                <marker date="1508980857403" expanded="true" signature="13374:13695" ph="SELECT u.use... user" />
-                <marker date="1508980857403" expanded="true" signature="13718:14033" ph="SELECT u.use... user" />
-                <marker date="1508980857403" expanded="true" signature="14336:14868" ph="INSERT INTO customer_account_request" />
-                <marker date="1508980857403" expanded="true" signature="14793:14849" ph="SELECT user_... user" />
-                <marker date="1508980857403" expanded="true" signature="14999:15146" ph="UPDATE custo... " />
-                <marker date="1508980857403" expanded="true" signature="15210:15349" ph="INSERT INTO user... " />
-                <marker date="1508980857403" expanded="true" signature="15235:15349" ph="SELECT * FRO... user_record" />
-                <marker date="1508980857403" expanded="true" signature="15286:15348" ph="SELECT user_... customer" />
-                <marker date="1508980857403" expanded="true" signature="15404:15516" ph="DELETE FROM " />
-                <marker date="1508980857403" expanded="true" signature="15453:15515" ph="SELECT user_... customer" />
-                <marker date="1508980857403" expanded="true" signature="15612:15877" ph="SELECT reque... customer_account_request" />
-                <marker date="1508980857403" expanded="true" signature="16718:16795" ph="SELECT umeng... user" />
-                <marker date="1508980857403" expanded="true" signature="16856:16995" ph="INSERT INTO user_record... " />
-                <marker date="1508980857403" expanded="true" signature="16888:16995" ph="SELECT * FRO... user" />
-                <marker date="1508980857403" expanded="true" signature="16932:16994" ph="SELECT user_... customer" />
-                <marker date="1508980857403" expanded="true" signature="17048:17153" ph="DELETE FROM " />
-                <marker date="1508980857403" expanded="true" signature="17090:17152" ph="SELECT user_... customer" />
-                <marker date="1508980857403" expanded="true" signature="17247:17506" ph="SELECT COUNT... user" />
-                <marker date="1508980857403" expanded="true" signature="17317:17468" ph="SELECT user_... user_view" />
-                <marker date="1508980857403" expanded="true" signature="17596:17818" ph="SELECT COUNT... customer" />
-                <marker date="1508980857403" expanded="true" signature="17896:18797" ph="SELECT t1.us... user_id" />
-                <marker date="1508980857403" expanded="true" signature="17962:18283" ph="SELECT u.use... user" />
-                <marker date="1508980857403" expanded="true" signature="18306:18621" ph="SELECT u.use... user" />
-                <marker date="1508980857403" expanded="true" signature="18890:18969" ph="SELECT * FRO... customer_repertory" />
+                <marker date="1509009236596" expanded="true" signature="3426:3878" ph="INSERT INTO user_record... " />
+                <marker date="1509009236596" expanded="true" signature="3993:4288" ph="INSERT INTO customer... " />
+                <marker date="1509009236596" expanded="true" signature="4366:5106" ph="SELECT c.cus... customer" />
+                <marker date="1509009236596" expanded="true" signature="5785:6577" ph="UPDATE user_... " />
+                <marker date="1509009236596" expanded="true" signature="6696:7375" ph="UPDATE user " />
+                <marker date="1509009236596" expanded="true" signature="7490:8313" ph="UPDATE custo... " />
+                <marker date="1509009236596" expanded="true" signature="8390:8911" ph="SELECT c.cus... customer" />
+                <marker date="1509009236596" expanded="true" signature="8970:9118" ph="UPDATE user " />
+                <marker date="1509009236596" expanded="true" signature="9183:9341" ph="UPDATE user_... " />
+                <marker date="1509009236596" expanded="true" signature="9399:9546" ph="UPDATE user " />
+                <marker date="1509009236596" expanded="true" signature="9610:9767" ph="UPDATE user_... " />
+                <marker date="1509009236596" expanded="true" signature="9825:9972" ph="UPDATE user " />
+                <marker date="1509009236596" expanded="true" signature="10036:10193" ph="UPDATE user_... " />
+                <marker date="1509009236596" expanded="true" signature="10284:10431" ph="SELECT reper... customer_repertory" />
+                <marker date="1509009236596" expanded="true" signature="10603:10742" ph="SELECT COUNT... customer_repertory" />
+                <marker date="1509009236596" expanded="true" signature="10872:11024" ph="INSERT INTO customer_repertory... " />
+                <marker date="1509009236596" expanded="true" signature="11169:12282" ph="SELECT t1.us... user_id" />
+                <marker date="1509009236596" expanded="true" signature="11235:11556" ph="SELECT u.use... user" />
+                <marker date="1509009236596" expanded="true" signature="11579:11894" ph="SELECT u.use... user" />
+                <marker date="1509009236596" expanded="true" signature="12037:12281" ph="SELECT depar... qm_branch" />
+                <marker date="1509009236596" expanded="true" signature="12428:13492" ph="SELECT t1.us... user_id" />
+                <marker date="1509009236596" expanded="true" signature="12494:12815" ph="SELECT u.use... user" />
+                <marker date="1509009236596" expanded="true" signature="12838:13153" ph="SELECT u.use... user" />
+                <marker date="1509009236596" expanded="true" signature="13576:14477" ph="SELECT t1.us... user_id" />
+                <marker date="1509009236596" expanded="true" signature="13642:13963" ph="SELECT u.use... user" />
+                <marker date="1509009236596" expanded="true" signature="13986:14301" ph="SELECT u.use... user" />
+                <marker date="1509009236596" expanded="true" signature="14604:15136" ph="INSERT INTO customer_account_request" />
+                <marker date="1509009236596" expanded="true" signature="15061:15117" ph="SELECT user_... user" />
+                <marker date="1509009236596" expanded="true" signature="15267:15414" ph="UPDATE custo... " />
+                <marker date="1509009236596" expanded="true" signature="15478:15617" ph="INSERT INTO user... " />
+                <marker date="1509009236596" expanded="true" signature="15503:15617" ph="SELECT * FRO... user_record" />
+                <marker date="1509009236596" expanded="true" signature="15554:15616" ph="SELECT user_... customer" />
+                <marker date="1509009236596" expanded="true" signature="15672:15784" ph="DELETE FROM " />
+                <marker date="1509009236596" expanded="true" signature="15721:15783" ph="SELECT user_... customer" />
+                <marker date="1509009236596" expanded="true" signature="15880:16145" ph="SELECT reque... customer_account_request" />
+                <marker date="1509009236596" expanded="true" signature="16986:17063" ph="SELECT umeng... user" />
+                <marker date="1509009236596" expanded="true" signature="17124:17263" ph="INSERT INTO user_record... " />
+                <marker date="1509009236596" expanded="true" signature="17156:17263" ph="SELECT * FRO... user" />
+                <marker date="1509009236596" expanded="true" signature="17200:17262" ph="SELECT user_... customer" />
+                <marker date="1509009236596" expanded="true" signature="17316:17421" ph="DELETE FROM " />
+                <marker date="1509009236596" expanded="true" signature="17358:17420" ph="SELECT user_... customer" />
+                <marker date="1509009236596" expanded="true" signature="17515:17774" ph="SELECT COUNT... user" />
+                <marker date="1509009236596" expanded="true" signature="17585:17736" ph="SELECT user_... user_view" />
+                <marker date="1509009236596" expanded="true" signature="17864:18086" ph="SELECT COUNT... customer" />
+                <marker date="1509009236596" expanded="true" signature="18164:19065" ph="SELECT t1.us... user_id" />
+                <marker date="1509009236596" expanded="true" signature="18230:18551" ph="SELECT u.use... user" />
+                <marker date="1509009236596" expanded="true" signature="18574:18889" ph="SELECT u.use... user" />
+                <marker date="1509009236596" expanded="true" signature="19158:19237" ph="SELECT * FRO... customer_repertory" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CustomerVO.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/dgg/store/util/vo/customer/CustomerVO.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="168">
+              <caret line="64" column="32" lean-forward="true" selection-start-line="64" selection-start-column="32" selection-end-line="64" selection-end-column="32" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -182,8 +163,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>listFinanceOrder</find>
-      <find>BaseResultMap</find>
       <find>merchandiserId</find>
       <find>merchandiser_id</find>
       <find>listSalesOrderSelective</find>
@@ -212,6 +191,8 @@
       <find>countOrderSelectiveByManager</find>
       <find>&lt;foreach</find>
       <find>countCustomer</find>
+      <find>listMerchandiser</find>
+      <find>listMerchandiserSecond</find>
     </findStrings>
     <replaceStrings>
       <replace>UserBreed</replace>
@@ -257,7 +238,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/com/dgg/store/service/common/MyOrderProofService.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/dgg/store/mapper/CustomerAssistMapper.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/dgg/store/util/pojo/CustomerAssist.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/dgg/store/dao/store/CustomerAssistDao.java" />
@@ -303,11 +283,12 @@
         <option value="$PROJECT_DIR$/src/main/java/com/dgg/store/mapper/MyOrderMapper.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/dgg/store/service/store/SalesOrderServiceImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/dgg/store/service/common/MyOrderProofServiceImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/dgg/store/service/store/CustomerServiceImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/dgg/store/mapper/CustomerMapper.xml" />
+        <option value="$PROJECT_DIR$/src/main/webapp/pages/management/qm-enterpriselistt.js" />
         <option value="$PROJECT_DIR$/src/main/java/com/dgg/store/controller/store/ManageController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/dgg/store/service/store/ManageService.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/dgg/store/service/store/ManageServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/dgg/store/service/store/CustomerServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/dgg/store/mapper/CustomerMapper.xml" />
       </list>
     </option>
   </component>
@@ -338,8 +319,8 @@
     </treeState>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="45" />
-    <option name="y" value="51" />
+    <option name="x" value="-17" />
+    <option name="y" value="55" />
     <option name="width" value="1545" />
     <option name="height" value="937" />
   </component>
@@ -411,6 +392,16 @@
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="store" type="462c0819:PsiDirectoryNode" />
               <item name="controller" type="462c0819:PsiDirectoryNode" />
+              <item name="common" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="store_v1.1.1" type="b2602c69:ProjectViewProjectNode" />
+              <item name="store_v1.1.1" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="store" type="462c0819:PsiDirectoryNode" />
+              <item name="controller" type="462c0819:PsiDirectoryNode" />
               <item name="store" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -420,14 +411,22 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="store" type="462c0819:PsiDirectoryNode" />
-              <item name="dao" type="462c0819:PsiDirectoryNode" />
+              <item name="mapper" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="store_v1.1.1" type="b2602c69:ProjectViewProjectNode" />
               <item name="store_v1.1.1" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="webapp" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="store_v1.1.1" type="b2602c69:ProjectViewProjectNode" />
+              <item name="store_v1.1.1" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="webapp" type="462c0819:PsiDirectoryNode" />
+              <item name="pages" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -1327,7 +1326,7 @@
       <workItem from="1508756243014" duration="251000" />
       <workItem from="1508805837603" duration="27078000" />
       <workItem from="1508891886505" duration="22486000" />
-      <workItem from="1508978347382" duration="3548000" />
+      <workItem from="1508978347382" duration="9718000" />
     </task>
     <servers />
   </component>
@@ -1364,7 +1363,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="3393565000" />
+    <option name="totallyTimeSpent" value="3399735000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1475,7 +1474,7 @@
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="1057" />
+      <option name="time" value="1059" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1484,13 +1483,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/dgg/store/dao/common/MyOrderDao.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2160">
-          <caret line="95" column="11" lean-forward="false" selection-start-line="95" selection-start-column="11" selection-end-line="95" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/dgg/store/util/core/OrderUtil.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-72">
@@ -1503,6 +1495,20 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="534">
           <caret line="278" column="22" lean-forward="false" selection-start-line="278" selection-start-column="22" selection-end-line="278" selection-end-column="22" />
+          <folding>
+            <marker date="1508809616611" expanded="true" signature="3263:3387" ph="select from customer_assist" />
+            <marker date="1508809616611" expanded="true" signature="3472:3550" ph="delete from " />
+            <marker date="1508809616611" expanded="true" signature="3661:3688" ph="delete from " />
+            <marker date="1508809616611" expanded="true" signature="3875:4205" ph="insert into customer_assist... " />
+            <marker date="1508809616611" expanded="true" signature="5547:5583" ph="select count... customer_assist" />
+            <marker date="1508809616611" expanded="true" signature="6656:7025" ph="update custo... " />
+            <marker date="1508809616611" expanded="true" signature="7243:7845" ph="update custo... " />
+            <marker date="1508809616611" expanded="true" signature="7952:8282" ph="update custo... " />
+            <marker date="1508809616611" expanded="true" signature="8376:8436" ph="SELECT user_... user" />
+            <marker date="1508809616611" expanded="true" signature="8574:8901" ph="select disti... customer_assist" />
+            <marker date="1508809616611" expanded="true" signature="8994:9147" ph="SELECT COUNT... customer_assist" />
+            <marker date="1508809616611" expanded="true" signature="9499:10037" ph="SELECT ca.as... customer_assist" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1524,6 +1530,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="390">
           <caret line="63" column="26" lean-forward="false" selection-start-line="63" selection-start-column="26" selection-end-line="63" selection-end-column="26" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1627,6 +1634,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="394">
           <caret line="34" column="0" lean-forward="true" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1634,13 +1642,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="240">
           <caret line="14" column="21" lean-forward="false" selection-start-line="14" selection-start-column="21" selection-end-line="14" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/dgg/store/util/vo/customer/CustomerVO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="382">
-          <caret line="51" column="0" lean-forward="true" selection-start-line="51" selection-start-column="0" selection-end-line="51" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1868,107 +1870,123 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/dgg/store/controller/store/CustomerController.java">
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/pages/management/qm-enterpriselistt.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="245">
-          <caret line="68" column="30" lean-forward="false" selection-start-line="68" selection-start-column="30" selection-end-line="68" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/dgg/store/service/store/CustomerService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="129">
-          <caret line="13" column="0" lean-forward="false" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/dgg/store/service/store/CustomerServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="121">
-          <caret line="102" column="0" lean-forward="false" selection-start-line="102" selection-start-column="0" selection-end-line="102" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/dgg/store/mapper/CustomerMapper.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="269">
-          <caret line="100" column="38" lean-forward="true" selection-start-line="100" selection-start-column="38" selection-end-line="100" selection-end-column="38" />
-          <folding>
-            <marker date="1508980857403" expanded="true" signature="3426:3878" ph="INSERT INTO user_record... " />
-            <marker date="1508980857403" expanded="true" signature="3993:4288" ph="INSERT INTO customer... " />
-            <marker date="1508980857403" expanded="true" signature="4366:5106" ph="SELECT c.cus... customer" />
-            <marker date="1508980857403" expanded="true" signature="5785:6577" ph="UPDATE user_... " />
-            <marker date="1508980857403" expanded="true" signature="6696:7375" ph="UPDATE user " />
-            <marker date="1508980857403" expanded="true" signature="7490:8313" ph="UPDATE custo... " />
-            <marker date="1508980857403" expanded="true" signature="8390:8911" ph="SELECT c.cus... customer" />
-            <marker date="1508980857403" expanded="true" signature="8970:9118" ph="UPDATE user " />
-            <marker date="1508980857403" expanded="true" signature="9183:9341" ph="UPDATE user_... " />
-            <marker date="1508980857403" expanded="true" signature="9399:9546" ph="UPDATE user " />
-            <marker date="1508980857403" expanded="true" signature="9610:9767" ph="UPDATE user_... " />
-            <marker date="1508980857403" expanded="true" signature="9825:9972" ph="UPDATE user " />
-            <marker date="1508980857403" expanded="true" signature="10036:10193" ph="UPDATE user_... " />
-            <marker date="1508980857403" expanded="true" signature="10284:10431" ph="SELECT reper... customer_repertory" />
-            <marker date="1508980857403" expanded="true" signature="10603:10742" ph="SELECT COUNT... customer_repertory" />
-            <marker date="1508980857403" expanded="true" signature="10872:11024" ph="INSERT INTO customer_repertory... " />
-            <marker date="1508980857403" expanded="true" signature="11169:12148" ph="SELECT t1.us... user_id" />
-            <marker date="1508980857403" expanded="true" signature="11235:11556" ph="SELECT u.use... user" />
-            <marker date="1508980857403" expanded="true" signature="11579:11894" ph="SELECT u.use... user" />
-            <marker date="1508980857403" expanded="true" signature="12037:12147" ph="SELECT depar... qm_branch" />
-            <marker date="1508980857403" expanded="true" signature="12294:13224" ph="SELECT t1.us... user_id" />
-            <marker date="1508980857403" expanded="true" signature="12360:12681" ph="SELECT u.use... user" />
-            <marker date="1508980857403" expanded="true" signature="12704:13019" ph="SELECT u.use... user" />
-            <marker date="1508980857403" expanded="true" signature="13308:14209" ph="SELECT t1.us... user_id" />
-            <marker date="1508980857403" expanded="true" signature="13374:13695" ph="SELECT u.use... user" />
-            <marker date="1508980857403" expanded="true" signature="13718:14033" ph="SELECT u.use... user" />
-            <marker date="1508980857403" expanded="true" signature="14336:14868" ph="INSERT INTO customer_account_request" />
-            <marker date="1508980857403" expanded="true" signature="14793:14849" ph="SELECT user_... user" />
-            <marker date="1508980857403" expanded="true" signature="14999:15146" ph="UPDATE custo... " />
-            <marker date="1508980857403" expanded="true" signature="15210:15349" ph="INSERT INTO user... " />
-            <marker date="1508980857403" expanded="true" signature="15235:15349" ph="SELECT * FRO... user_record" />
-            <marker date="1508980857403" expanded="true" signature="15286:15348" ph="SELECT user_... customer" />
-            <marker date="1508980857403" expanded="true" signature="15404:15516" ph="DELETE FROM " />
-            <marker date="1508980857403" expanded="true" signature="15453:15515" ph="SELECT user_... customer" />
-            <marker date="1508980857403" expanded="true" signature="15612:15877" ph="SELECT reque... customer_account_request" />
-            <marker date="1508980857403" expanded="true" signature="16718:16795" ph="SELECT umeng... user" />
-            <marker date="1508980857403" expanded="true" signature="16856:16995" ph="INSERT INTO user_record... " />
-            <marker date="1508980857403" expanded="true" signature="16888:16995" ph="SELECT * FRO... user" />
-            <marker date="1508980857403" expanded="true" signature="16932:16994" ph="SELECT user_... customer" />
-            <marker date="1508980857403" expanded="true" signature="17048:17153" ph="DELETE FROM " />
-            <marker date="1508980857403" expanded="true" signature="17090:17152" ph="SELECT user_... customer" />
-            <marker date="1508980857403" expanded="true" signature="17247:17506" ph="SELECT COUNT... user" />
-            <marker date="1508980857403" expanded="true" signature="17317:17468" ph="SELECT user_... user_view" />
-            <marker date="1508980857403" expanded="true" signature="17596:17818" ph="SELECT COUNT... customer" />
-            <marker date="1508980857403" expanded="true" signature="17896:18797" ph="SELECT t1.us... user_id" />
-            <marker date="1508980857403" expanded="true" signature="17962:18283" ph="SELECT u.use... user" />
-            <marker date="1508980857403" expanded="true" signature="18306:18621" ph="SELECT u.use... user" />
-            <marker date="1508980857403" expanded="true" signature="18890:18969" ph="SELECT * FRO... customer_repertory" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/dgg/store/controller/store/ManageController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="585">
-          <caret line="174" column="37" lean-forward="false" selection-start-line="174" selection-start-column="37" selection-end-line="174" selection-end-column="37" />
+        <state relative-caret-position="840">
+          <caret line="35" column="5" lean-forward="true" selection-start-line="35" selection-start-column="5" selection-end-line="35" selection-end-column="5" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/dgg/store/service/store/ManageService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="290">
-          <caret line="20" column="10" lean-forward="false" selection-start-line="20" selection-start-column="10" selection-end-line="20" selection-end-column="10" />
+        <state relative-caret-position="288">
+          <caret line="18" column="10" lean-forward="false" selection-start-line="18" selection-start-column="10" selection-end-line="18" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/dgg/store/controller/store/ManageController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="705">
+          <caret line="110" column="36" lean-forward="false" selection-start-line="110" selection-start-column="36" selection-end-line="110" selection-end-column="36" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/dgg/store/service/store/ManageServiceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="338">
-          <caret line="113" column="65" lean-forward="false" selection-start-line="113" selection-start-column="65" selection-end-line="113" selection-end-column="65" />
+        <state relative-caret-position="2">
+          <caret line="69" column="28" lean-forward="true" selection-start-line="69" selection-start-column="28" selection-end-line="69" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/dgg/store/controller/store/CustomerController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="454">
+          <caret line="84" column="32" lean-forward="false" selection-start-line="84" selection-start-column="32" selection-end-line="84" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/dgg/store/service/store/CustomerService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="290">
+          <caret line="25" column="11" lean-forward="false" selection-start-line="25" selection-start-column="11" selection-end-line="25" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/dgg/store/service/store/CustomerServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="530">
+          <caret line="245" column="47" lean-forward="false" selection-start-line="245" selection-start-column="25" selection-end-line="245" selection-end-column="47" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/dgg/store/mapper/CustomerMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="254" column="90" lean-forward="false" selection-start-line="254" selection-start-column="90" selection-end-line="254" selection-end-column="90" />
+          <folding>
+            <marker date="1509009236596" expanded="true" signature="3426:3878" ph="INSERT INTO user_record... " />
+            <marker date="1509009236596" expanded="true" signature="3993:4288" ph="INSERT INTO customer... " />
+            <marker date="1509009236596" expanded="true" signature="4366:5106" ph="SELECT c.cus... customer" />
+            <marker date="1509009236596" expanded="true" signature="5785:6577" ph="UPDATE user_... " />
+            <marker date="1509009236596" expanded="true" signature="6696:7375" ph="UPDATE user " />
+            <marker date="1509009236596" expanded="true" signature="7490:8313" ph="UPDATE custo... " />
+            <marker date="1509009236596" expanded="true" signature="8390:8911" ph="SELECT c.cus... customer" />
+            <marker date="1509009236596" expanded="true" signature="8970:9118" ph="UPDATE user " />
+            <marker date="1509009236596" expanded="true" signature="9183:9341" ph="UPDATE user_... " />
+            <marker date="1509009236596" expanded="true" signature="9399:9546" ph="UPDATE user " />
+            <marker date="1509009236596" expanded="true" signature="9610:9767" ph="UPDATE user_... " />
+            <marker date="1509009236596" expanded="true" signature="9825:9972" ph="UPDATE user " />
+            <marker date="1509009236596" expanded="true" signature="10036:10193" ph="UPDATE user_... " />
+            <marker date="1509009236596" expanded="true" signature="10284:10431" ph="SELECT reper... customer_repertory" />
+            <marker date="1509009236596" expanded="true" signature="10603:10742" ph="SELECT COUNT... customer_repertory" />
+            <marker date="1509009236596" expanded="true" signature="10872:11024" ph="INSERT INTO customer_repertory... " />
+            <marker date="1509009236596" expanded="true" signature="11169:12282" ph="SELECT t1.us... user_id" />
+            <marker date="1509009236596" expanded="true" signature="11235:11556" ph="SELECT u.use... user" />
+            <marker date="1509009236596" expanded="true" signature="11579:11894" ph="SELECT u.use... user" />
+            <marker date="1509009236596" expanded="true" signature="12037:12281" ph="SELECT depar... qm_branch" />
+            <marker date="1509009236596" expanded="true" signature="12428:13492" ph="SELECT t1.us... user_id" />
+            <marker date="1509009236596" expanded="true" signature="12494:12815" ph="SELECT u.use... user" />
+            <marker date="1509009236596" expanded="true" signature="12838:13153" ph="SELECT u.use... user" />
+            <marker date="1509009236596" expanded="true" signature="13576:14477" ph="SELECT t1.us... user_id" />
+            <marker date="1509009236596" expanded="true" signature="13642:13963" ph="SELECT u.use... user" />
+            <marker date="1509009236596" expanded="true" signature="13986:14301" ph="SELECT u.use... user" />
+            <marker date="1509009236596" expanded="true" signature="14604:15136" ph="INSERT INTO customer_account_request" />
+            <marker date="1509009236596" expanded="true" signature="15061:15117" ph="SELECT user_... user" />
+            <marker date="1509009236596" expanded="true" signature="15267:15414" ph="UPDATE custo... " />
+            <marker date="1509009236596" expanded="true" signature="15478:15617" ph="INSERT INTO user... " />
+            <marker date="1509009236596" expanded="true" signature="15503:15617" ph="SELECT * FRO... user_record" />
+            <marker date="1509009236596" expanded="true" signature="15554:15616" ph="SELECT user_... customer" />
+            <marker date="1509009236596" expanded="true" signature="15672:15784" ph="DELETE FROM " />
+            <marker date="1509009236596" expanded="true" signature="15721:15783" ph="SELECT user_... customer" />
+            <marker date="1509009236596" expanded="true" signature="15880:16145" ph="SELECT reque... customer_account_request" />
+            <marker date="1509009236596" expanded="true" signature="16986:17063" ph="SELECT umeng... user" />
+            <marker date="1509009236596" expanded="true" signature="17124:17263" ph="INSERT INTO user_record... " />
+            <marker date="1509009236596" expanded="true" signature="17156:17263" ph="SELECT * FRO... user" />
+            <marker date="1509009236596" expanded="true" signature="17200:17262" ph="SELECT user_... customer" />
+            <marker date="1509009236596" expanded="true" signature="17316:17421" ph="DELETE FROM " />
+            <marker date="1509009236596" expanded="true" signature="17358:17420" ph="SELECT user_... customer" />
+            <marker date="1509009236596" expanded="true" signature="17515:17774" ph="SELECT COUNT... user" />
+            <marker date="1509009236596" expanded="true" signature="17585:17736" ph="SELECT user_... user_view" />
+            <marker date="1509009236596" expanded="true" signature="17864:18086" ph="SELECT COUNT... customer" />
+            <marker date="1509009236596" expanded="true" signature="18164:19065" ph="SELECT t1.us... user_id" />
+            <marker date="1509009236596" expanded="true" signature="18230:18551" ph="SELECT u.use... user" />
+            <marker date="1509009236596" expanded="true" signature="18574:18889" ph="SELECT u.use... user" />
+            <marker date="1509009236596" expanded="true" signature="19158:19237" ph="SELECT * FRO... customer_repertory" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/dgg/store/util/vo/customer/CustomerVO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="168">
+          <caret line="64" column="32" lean-forward="true" selection-start-line="64" selection-start-column="32" selection-end-line="64" selection-end-column="32" />
           <folding />
         </state>
       </provider>

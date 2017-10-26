@@ -18,7 +18,7 @@ var qm_memberList = {
         var url = path + "/s/findMemberList.action";
         var params = {};
 
-        params["departmentId"] = departmentId;
+        params[""] = departmentId;
 
         myjs.ajax_post(url, params, function (data)
         {

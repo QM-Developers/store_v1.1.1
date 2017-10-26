@@ -16,7 +16,7 @@ public interface ManageService
 
     String findMemberList(SessionVO sessionVO, MemberVO memberVO);
 
-    ResultVO insertDepartment(SessionVO sessionVO, DepartmentVO department);
+    String insertDepartment(SessionVO sessionVO, DepartmentVO department);
 
     String findDepartmentInfo(SessionVO sessionVO, DepartmentVO department);
 
@@ -36,7 +36,7 @@ public interface ManageService
 
     ResultVO countPositionMember(SessionVO sessionVO, PositionVO position);
 
-    ResultVO findMemberInfo(SessionVO sessionVO, MemberVO member);
+    String findMemberInfo(SessionVO sessionVO, MemberVO member);
 
     ResultVO updateMember(SessionVO sessionVO, MemberVO member);
 

@@ -102,9 +102,9 @@ public class ManageController
      * @param department 部门参数
      * @return 操作的结果
      */
-    @RequestMapping(value = "/s/addDepartment", method = RequestMethod.POST)
+    @RequestMapping(value = "/s/addDepartment", method = RequestMethod.POST,produces = RequestConstant.CONTENT_TYPE)
     @ResponseBody
-    public ResultVO addDepartment(HttpServletRequest request, DepartmentVO department)
+    public String addDepartment(HttpServletRequest request, DepartmentVO department)
     {
         SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
 
@@ -230,9 +230,9 @@ public class ManageController
      * @param member  成员的用户Id
      * @return 成员详细信息
      */
-    @RequestMapping(value = "/s/findMemberInfo", method = RequestMethod.POST)
+    @RequestMapping(value = "/s/findMemberInfo", method = RequestMethod.POST,produces = RequestConstant.CONTENT_TYPE)
     @ResponseBody
-    public ResultVO findMemberInfo(HttpServletRequest request, MemberVO member)
+    public String findMemberInfo(HttpServletRequest request, MemberVO member)
     {
         SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
 

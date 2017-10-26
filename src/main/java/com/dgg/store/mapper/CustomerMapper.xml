@@ -278,6 +278,9 @@
         SELECT department_id
         FROM qm_branch
         WHERE my_team_id = #{myTeamId}
+        <if test="departmentId != null and departmentId != ''">
+            AND t1.team_department_id = #{departmentId}
+        </if>
         AND branch_type = 2)
     </select>
 
@@ -305,6 +308,9 @@
         ON qb.department_id = t1.team_department_id
         WHERE t1.my_team_id = #{myTeamId}
         AND t1.permission_id = #{promoterId}
+        <if test="departmentId != null and departmentId != ''">
+            AND t1.team_department_id = #{departmentId}
+        </if>
         AND qb.branch_type = 2
     </select>
 

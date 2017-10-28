@@ -46,11 +46,13 @@ public interface CommonApplyDao
 
     int countCommonApplyByApprove(String userId);
 
-    List<CommonApply> listCommonApplyByApprove(String userId, int pageNum, int pageSize);
+    List<CommonApply> listCommonApplyByApprove(String userId, Byte status, int pageNum, int pageSize);
 
     CommonApplyApprove getApplyApprove(CommonApplyApprove condition);
 
     int updateCommonApproveResult(CommonApplyApprove approve);
 
     String getDeviceToken(String approveId);
+
+    String getUserImage(String proposerId);
 }

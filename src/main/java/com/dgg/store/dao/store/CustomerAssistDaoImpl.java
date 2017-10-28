@@ -98,4 +98,10 @@ public class CustomerAssistDaoImpl implements CustomerAssistDao
         return mapper.countCustomerAssistByHelper(userId, status);
     }
 
+    @Override
+    public String getUserImage(String userId)
+    {
+        return mapper.getUserImage(userId);
+    }
+
 }

@@ -244,7 +244,7 @@ CREATE TABLE `customer_assist` (
 
 LOCK TABLES `customer_assist` WRITE;
 /*!40000 ALTER TABLE `customer_assist` DISABLE KEYS */;
-INSERT INTO `customer_assist` VALUES ('20a0d03c621b4ffcbd06b25f970e4e8e','搞不定','太难搞','89d9317fb3834353bcf2a507bee2eb82','张三','2017-09-11 16:22:19'),('2d0ac0adfe674fa39a1573ac2da70530','','10001','89d9317fb3834353bcf2a507bee2eb82','张三','2017-10-24 09:42:18'),('ec763147d35c4ab285fbcba67ca57a30','10001','10001','89d9317fb3834353bcf2a507bee2eb82','张三','2017-10-19 18:20:27');
+INSERT INTO `customer_assist` VALUES ('20a0d03c621b4ffcbd06b25f970e4e8e','搞不定','太难搞','89d9317fb3834353bcf2a507bee2eb82','张三','2017-09-11 16:22:19'),('2d0ac0adfe674fa39a1573ac2da70530','','10001','89d9317fb3834353bcf2a507bee2eb82','张三','2017-10-24 09:42:18'),('5ae0eae2f16c476a85656721ad238e77','','10001','89d9317fb3834353bcf2a507bee2eb82','张三','2017-10-28 10:47:45'),('8268fd29b0d04b7b9bc9bae329ab7e53','','10001','89d9317fb3834353bcf2a507bee2eb82','张三','2017-10-28 10:47:21'),('ec763147d35c4ab285fbcba67ca57a30','10001','10001','89d9317fb3834353bcf2a507bee2eb82','张三','2017-10-19 18:20:27');
 /*!40000 ALTER TABLE `customer_assist` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -268,7 +268,7 @@ CREATE TABLE `customer_assist_customer` (
 
 LOCK TABLES `customer_assist_customer` WRITE;
 /*!40000 ALTER TABLE `customer_assist_customer` DISABLE KEYS */;
-INSERT INTO `customer_assist_customer` VALUES ('20a0d03c621b4ffcbd06b25f970e4e8e','1ddd3d18c22a4c129c2517d50e69a400','三三'),('ec763147d35c4ab285fbcba67ca57a30','9f6bc79d769342f1b90ed0b532b870f2','alisa'),('2d0ac0adfe674fa39a1573ac2da70530','94a397ea0eae4632994108c02fe3b762','alisa');
+INSERT INTO `customer_assist_customer` VALUES ('20a0d03c621b4ffcbd06b25f970e4e8e','1ddd3d18c22a4c129c2517d50e69a400','三三'),('ec763147d35c4ab285fbcba67ca57a30','9f6bc79d769342f1b90ed0b532b870f2','alisa'),('2d0ac0adfe674fa39a1573ac2da70530','94a397ea0eae4632994108c02fe3b762','alisa'),('8268fd29b0d04b7b9bc9bae329ab7e53','94a397ea0eae4632994108c02fe3b762','alisa'),('5ae0eae2f16c476a85656721ad238e77','94a397ea0eae4632994108c02fe3b762','alisa');
 /*!40000 ALTER TABLE `customer_assist_customer` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -293,7 +293,7 @@ CREATE TABLE `customer_assist_image` (
 
 LOCK TABLES `customer_assist_image` WRITE;
 /*!40000 ALTER TABLE `customer_assist_image` DISABLE KEYS */;
-INSERT INTO `customer_assist_image` VALUES ('698a60e791324ea8bfce26029108b110','/upload/img/user/assist/89d9317fb3834353bcf2a507bee2eb82/698a60e791324ea8bfce26029108b110.jpg','20a0d03c621b4ffcbd06b25f970e4e8e'),('85bec1897c8e4abcb7faed0e1e3c88d9','/upload/img/user/assist/9f6bc79d769342f1b90ed0b532b870f2/85bec1897c8e4abcb7faed0e1e3c88d9.jpg','2d0ac0adfe674fa39a1573ac2da70530');
+INSERT INTO `customer_assist_image` VALUES ('698a60e791324ea8bfce26029108b110','/upload/img/user/assist/89d9317fb3834353bcf2a507bee2eb82/698a60e791324ea8bfce26029108b110.jpg','20a0d03c621b4ffcbd06b25f970e4e8e'),('85bec1897c8e4abcb7faed0e1e3c88d9','/upload/img/user/assist/9f6bc79d769342f1b90ed0b532b870f2/85bec1897c8e4abcb7faed0e1e3c88d9.jpg','5ae0eae2f16c476a85656721ad238e77');
 /*!40000 ALTER TABLE `customer_assist_image` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -319,7 +319,7 @@ CREATE TABLE `customer_assist_user` (
 
 LOCK TABLES `customer_assist_user` WRITE;
 /*!40000 ALTER TABLE `customer_assist_user` DISABLE KEYS */;
-INSERT INTO `customer_assist_user` VALUES ('20a0d03c621b4ffcbd06b25f970e4e8e','自己解决','89d9317fb3834353bcf2a507bee2eb83','李四','财务部'),('ec763147d35c4ab285fbcba67ca57a30','122130','0420cb22c06b43a488c39967779eecec','王五','departmentName'),('2d0ac0adfe674fa39a1573ac2da70530','','0420cb22c06b43a488c39967779eecec','王五','departmentName');
+INSERT INTO `customer_assist_user` VALUES ('20a0d03c621b4ffcbd06b25f970e4e8e','自己解决','89d9317fb3834353bcf2a507bee2eb83','李四','财务部'),('ec763147d35c4ab285fbcba67ca57a30','122130','0420cb22c06b43a488c39967779eecec','王五','departmentName'),('2d0ac0adfe674fa39a1573ac2da70530','','0420cb22c06b43a488c39967779eecec','王五','departmentName'),('8268fd29b0d04b7b9bc9bae329ab7e53','','0420cb22c06b43a488c39967779eecec','王五','departmentName'),('5ae0eae2f16c476a85656721ad238e77','','0420cb22c06b43a488c39967779eecec','王五','departmentName');
 /*!40000 ALTER TABLE `customer_assist_user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2516,4 +2516,4 @@ SET character_set_client = @saved_cs_client;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-10-27 18:06:00
+-- Dump completed on 2017-10-28 18:12:12

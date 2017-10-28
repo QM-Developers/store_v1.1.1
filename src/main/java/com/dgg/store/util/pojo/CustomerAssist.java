@@ -14,6 +14,8 @@ public class CustomerAssist {
 
     private String userName;
 
+    private String userImage;
+
     private Date createDate;
 
     private String customer;
@@ -146,5 +148,15 @@ public class CustomerAssist {
     public void setStatus(Integer status)
     {
         this.status = status;
+    }
+
+    public String getUserImage()
+    {
+        return userImage;
+    }
+
+    public void setUserImage(String userImage)
+    {
+        this.userImage = userImage;
     }
 }

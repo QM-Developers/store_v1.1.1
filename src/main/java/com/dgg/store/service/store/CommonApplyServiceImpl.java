@@ -99,9 +99,9 @@ public class CommonApplyServiceImpl implements CommonApplyService
                     jArray = JSONArray.parseArray(apply.getCommonApplyImage());
                     if (jArray == null)
                         break;
-                    for (int i = 0; i < jArray.size(); i++)
+                    for (Object aJArray : jArray)
                     {
-                        image = JSONObject.parseObject(jArray.get(i).toString(), CommonApplyImage.class);
+                        image = JSONObject.parseObject(aJArray.toString(), CommonApplyImage.class);
                         image.setApplyId(apply.getApplyId());
                         result = dao.updateImage(image);
                         if (result < 1)
@@ -124,23 +124,22 @@ public class CommonApplyServiceImpl implements CommonApplyService
     }
 
     @Override
-    public String listCommonApplyByProposer(SessionVO sessionVO, PageVO pageVO)
+    public String listCommonApplyByProposer(SessionVO sessionVO, CommonApply apply, PageVO pageVO)
     {
         CommonApplyExample example = new CommonApplyExample();
         CommonApplyExample.Criteria criteria = example.createCriteria();
 
         example.setPageNum(PagingUtil.getStart(pageVO.getPageNum(), pageVO.getPageSize()));
         example.setPageSize(pageVO.getPageSize());
+        example.setOrderByClause("create_date DESC");
         criteria.andProposerIdEqualTo(sessionVO.getUserId());
+        if (apply.getApplyResult() != null)
+            criteria.andApplyResultEqualTo(apply.getApplyResult());
         int pageCount = PagingUtil.getCount((int) dao.countByExample(example), pageVO.getPageSize());
 
         List<CommonApply> result = dao.selectByExample(example);
 
-        for (CommonApply a : result)
-        {
-            a.setApproveList(dao.listApprove(a.getApplyId()));
-            a.setImageList(dao.listImage(a.getApplyId()));
-        }
+        result = listParams(result);
 
         JSONObject json = (JSONObject) JSONObject.toJSON(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), result));
         json.put(KeyConstant.PAGE_COUNT, pageCount);
@@ -148,20 +147,27 @@ public class CommonApplyServiceImpl implements CommonApplyService
         return json.toJSONString();
     }
 
+    private List<CommonApply> listParams(List<CommonApply> result)
+    {
+        for (CommonApply a : result)
+        {
+            a.setUserImage(dao.getUserImage(a.getProposerId()));
+            a.setApproveList(dao.listApprove(a.getApplyId()));
+            a.setImageList(dao.listImage(a.getApplyId()));
+        }
+        return result;
+    }
+
     @Override
-    public String listCommonApplyByApprove(SessionVO sessionVO, PageVO pageVO)
+    public String listCommonApplyByApprove(SessionVO sessionVO, CommonApply apply, PageVO pageVO)
     {
         int pageNum = PagingUtil.getStart(pageVO.getPageNum(), pageVO.getPageSize());
         int pageSize = pageVO.getPageSize();
         int pageCount = PagingUtil.getCount(dao.countCommonApplyByApprove(sessionVO.getUserId()), pageVO.getPageSize());
 
-        List<CommonApply> result = dao.listCommonApplyByApprove(sessionVO.getUserId(), pageNum, pageSize);
+        List<CommonApply> result = dao.listCommonApplyByApprove(sessionVO.getUserId(), apply.getApplyResult(), pageNum, pageSize);
 
-        for (CommonApply a : result)
-        {
-            a.setApproveList(dao.listApprove(a.getApplyId()));
-            a.setImageList(dao.listImage(a.getApplyId()));
-        }
+        result = listParams(result);
 
         JSONObject json = (JSONObject) JSONObject.toJSON(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), result));
         json.put(KeyConstant.PAGE_COUNT, pageCount);
@@ -267,6 +273,18 @@ public class CommonApplyServiceImpl implements CommonApplyService
         UMengUtil.sendUnicast(dao.getDeviceToken(apply.getProposerId()), PushMessageFactory.getInstance(mapper).get(PushMessageConstant.APPLY_REFUSE));
 
         return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken()));
+    }
+
+    @Override
+    public String getCommonApply(SessionVO sessionVO, CommonApply apply)
+    {
+        CommonApply result = dao.selectByPrimaryKey(apply.getApplyId());
+
+        result.setUserImage(dao.getUserImage(result.getProposerId()));
+        result.setApproveList(dao.listApprove(result.getApplyId()));
+        result.setImageList(dao.listImage(result.getApplyId()));
+
+        return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), result));
     }
 
 }

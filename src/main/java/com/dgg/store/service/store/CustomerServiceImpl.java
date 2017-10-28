@@ -25,6 +25,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -362,18 +363,57 @@ public class CustomerServiceImpl implements CustomerService
     }
 
     @Override
-    public String listCustomerAccountByProposer(SessionVO sessionVO, CustomerAccountRequest accountRequest)
+    public String listCustomerAccountByProposer(SessionVO sessionVO, CustomerAccountRequest accountRequest, PageVO pageVO)
     {
+        if (ParameterUtil.objectIsNull(pageVO))
+            return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_FAILED, sessionVO.getToken()));
+
+        int pageNum = PagingUtil.getStart(pageVO.getPageNum(), pageVO.getPageSize());
+        int pageSize = pageVO.getPageSize();
+
         accountRequest.setProposerId(sessionVO.getUserId());
-        List<CustomerAccountRequest> result = dao.listCustomerAccount(accountRequest);
+        accountRequest.setStatusList(getStatus(accountRequest.getRequestStatus()));
+        List<CustomerAccountRequest> result = dao.listCustomerAccount(accountRequest, pageNum, pageSize);
+
+        for (CustomerAccountRequest re : result)
+            re.setUserImage(dao.getUserImage(re.getProposerId()));
 
         return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), result));
     }
 
-    @Override
-    public String listCustomerAccountByChecker(SessionVO sessionVO, CustomerAccountRequest accountRequest)
+    private List<Byte> getStatus(Byte requestStatus)
     {
-        List<CustomerAccountRequest> result = dao.listCustomerAccount(accountRequest);
+        List<Byte> statusList = new ArrayList<>();
+
+        switch (requestStatus)
+        {
+            case CustomerConstant.ACCOUNT_PROCESSED:
+                statusList.add(CustomerConstant.ACCOUNT_STATUS_REFUSE);
+                statusList.add(CustomerConstant.ACCOUNT_STATUS_ACCEPT);
+                break;
+            default:
+                statusList.add(requestStatus);
+                break;
+        }
+
+        return statusList;
+    }
+
+    @Override
+    public String listCustomerAccountByChecker(SessionVO sessionVO, CustomerAccountRequest accountRequest, PageVO pageVO)
+    {
+        if (ParameterUtil.objectIsNull(pageVO))
+            return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_FAILED, sessionVO.getToken()));
+
+        int pageNum = PagingUtil.getStart(pageVO.getPageNum(), pageVO.getPageSize());
+        int pageSize = pageVO.getPageSize();
+
+        accountRequest.setCheckerId(sessionVO.getUserId());
+        accountRequest.setStatusList(getStatus(accountRequest.getRequestStatus()));
+        List<CustomerAccountRequest> result = dao.listCustomerAccount(accountRequest, pageNum, pageSize);
+
+        for (CustomerAccountRequest re : result)
+            re.setUserImage(dao.getUserImage(re.getProposerId()));
 
         return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), result));
     }

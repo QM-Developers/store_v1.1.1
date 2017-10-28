@@ -285,4 +285,10 @@
     </choose>
     LIMIT #{pageNum},#{pageSize}
   </select>
+
+  <select id="getUserImage" resultType="java.lang.String">
+    SELECT user_img
+    FROM user
+    WHERE user_id = #{userId}
+  </select>
 </mapper>

@@ -36,4 +36,6 @@ public interface CustomerAssistMapper
     int countCustomerAssistByHelper(@Param("userId") String userId,@Param("status") Integer status);
 
     List<CustomerAssist> listCustomerAssistByHelper(@Param("userId") String userId,@Param("status") Integer status, @Param("pageNum") int pageNum, @Param("pageSize") int pageSize);
+
+    String getUserImage(String userId);
 }

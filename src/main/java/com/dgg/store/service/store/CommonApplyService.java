@@ -12,11 +12,13 @@ public interface CommonApplyService
 
     String insertCommonApply(SessionVO sessionVO, CommonApply apply);
 
-    String listCommonApplyByProposer(SessionVO sessionVO, PageVO pageVO);
+    String listCommonApplyByProposer(SessionVO sessionVO, CommonApply apply, PageVO pageVO);
 
-    String listCommonApplyByApprove(SessionVO sessionVO, PageVO pageVO);
+    String listCommonApplyByApprove(SessionVO sessionVO, CommonApply apply, PageVO pageVO);
 
     String updateCommonApplyAccept(SessionVO sessionVO, CommonApplyApprove approve);
 
     String updateCommonApplyRefuse(SessionVO sessionVO, CommonApplyApprove approve);
+
+    String getCommonApply(SessionVO sessionVO, CommonApply apply);
 }

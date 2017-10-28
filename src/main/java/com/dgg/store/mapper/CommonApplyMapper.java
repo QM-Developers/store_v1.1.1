@@ -44,11 +44,13 @@ public interface CommonApplyMapper {
 
     int countCommonApplyByApprove(@Param("userId") String userId);
 
-    List<CommonApply> listCommonApplyByApprove(@Param("userId") String userId,@Param("pageNum") int pageNum,@Param("pageSize") int pageSize);
+    List<CommonApply> listCommonApplyByApprove(@Param("userId") String userId,@Param("status") Byte status, @Param("pageNum") int pageNum, @Param("pageSize") int pageSize);
 
     int updateCommonApproveResult(CommonApplyApprove approve);
 
     CommonApplyApprove getApplyApprove(CommonApplyApprove approve);
 
     String getDeviceToken(@Param("userId") String approveId);
+
+    String getUserImage(String userId);
 }

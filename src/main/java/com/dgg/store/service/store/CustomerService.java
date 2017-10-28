@@ -37,9 +37,9 @@ public interface CustomerService
 
     String updateCustomerAccountRefuse(SessionVO sessionVO, CustomerAccountRequest accountRequest);
 
-    String listCustomerAccountByProposer(SessionVO sessionVO, CustomerAccountRequest accountRequest);
+    String listCustomerAccountByProposer(SessionVO sessionVO, CustomerAccountRequest accountRequest, PageVO pageVO);
 
-    String listCustomerAccountByChecker(SessionVO sessionVO, CustomerAccountRequest accountRequest);
+    String listCustomerAccountByChecker(SessionVO sessionVO, CustomerAccountRequest accountRequest, PageVO pageVO);
 
     String updateCustomerToPromoter(SessionVO sessionVO, CustomerVO customerVO);
 

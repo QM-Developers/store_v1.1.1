@@ -389,18 +389,21 @@
         proposer_id,proposer_name,request_reason
         FROM customer_account_request
         WHERE 1 = 1
-        <if test="customerId != null">
-            AND customer_id = #{customerId}
+        <if test="request.customerId != null">
+            AND customer_id = #{request.customerId}
         </if>
-        <if test="checkerId != null">
-            AND checker_id = #{checkerId}
+        <if test="request.checkerId != null">
+            AND checker_id = #{request.checkerId}
         </if>
-        <if test="merchandiserId != null">
-            AND merchandiser_id = #{merchandiserId}
+        <if test="request.merchandiserId != null">
+            AND merchandiser_id = #{request.merchandiserId}
         </if>
-        <if test="proposerId != null">
-            AND proposer_id = #{proposerId}
+        <if test="request.proposerId != null">
+            AND proposer_id = #{request.proposerId}
         </if>
+        <foreach collection="request.statusList" index="i" close=")" open=" AND request_status IN (" separator="," item="status">
+            #{status}
+        </foreach>
     </select>
 
     <select id="getDeviceToken" resultType="java.lang.String">
@@ -472,5 +475,11 @@
         SELECT *
         FROM customer_repertory
         WHERE my_team_id = #{myTeamId}
+    </select>
+
+    <select id="getUserImage" resultType="java.lang.String">
+        SELECT user_img
+        FROM user
+        WHERE user_id = #{userId}
     </select>
 </mapper>

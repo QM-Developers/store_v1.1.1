@@ -1,6 +1,7 @@
 package com.dgg.store.util.pojo;
 
 import java.util.Date;
+import java.util.List;
 
 public class CustomerAccountRequest {
     private String requestId;
@@ -26,6 +27,10 @@ public class CustomerAccountRequest {
     private Date createDate;
 
     private String requestReason;
+
+    private String userImage;
+
+    private List<Byte> statusList;
 
     public String getRequestId() {
         return requestId;
@@ -123,5 +128,25 @@ public class CustomerAccountRequest {
     public void setRequestReason(String requestReason)
     {
         this.requestReason = requestReason;
+    }
+
+    public String getUserImage()
+    {
+        return userImage;
+    }
+
+    public void setUserImage(String userImage)
+    {
+        this.userImage = userImage;
+    }
+
+    public List<Byte> getStatusList()
+    {
+        return statusList;
+    }
+
+    public void setStatusList(List<Byte> statusList)
+    {
+        this.statusList = statusList;
     }
 }

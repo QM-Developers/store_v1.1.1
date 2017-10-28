@@ -148,9 +148,9 @@ public class CustomerDaoImpl implements CustomerDao
     }
 
     @Override
-    public List<CustomerAccountRequest> listCustomerAccount(CustomerAccountRequest accountRequest)
+    public List<CustomerAccountRequest> listCustomerAccount(CustomerAccountRequest accountRequest, int pageNum, int pageSize)
     {
-        return mapper.listCustomerAccount(accountRequest);
+        return mapper.listCustomerAccount(accountRequest, pageNum, pageSize);
     }
 
     @Override
@@ -204,13 +204,19 @@ public class CustomerDaoImpl implements CustomerDao
     @Override
     public List<CustomerVO> listPromoter(String myTeamId, String pid)
     {
-        return mapper.listPromoter(myTeamId,pid);
+        return mapper.listPromoter(myTeamId, pid);
     }
 
     @Override
     public List<CustomerRepertoryVO> listRepertoryLevel(String myTeamId)
     {
         return mapper.listRepertoryLevel(myTeamId);
+    }
+
+    @Override
+    public String getUserImage(String userId)
+    {
+        return mapper.getUserImage(userId);
     }
 
 }

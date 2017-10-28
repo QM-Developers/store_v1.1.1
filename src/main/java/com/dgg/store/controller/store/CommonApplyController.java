@@ -2,6 +2,7 @@ package com.dgg.store.controller.store;
 
 import com.dgg.store.service.store.CommonApplyService;
 import com.dgg.store.util.core.constant.Constant;
+import com.dgg.store.util.core.constant.RequestConstant;
 import com.dgg.store.util.core.constant.SymbolConstant;
 import com.dgg.store.util.pojo.CommonApply;
 import com.dgg.store.util.pojo.CommonApplyApprove;
@@ -63,32 +64,50 @@ public class CommonApplyController
      * 发起人获取申请列表
      *
      * @param request 用户参数
+     * @param apply   筛选条件
      * @param pageVO  分页参数
      * @return 申请列表
      */
     @RequestMapping(value = "/s/listCommonApplyByProposer", method = POST, produces = {"application/json;charset=UTF-8"})
     @ResponseBody
-    public String listCommonApplyByProposer(HttpServletRequest request, PageVO pageVO)
+    public String listCommonApplyByProposer(HttpServletRequest request, CommonApply apply, PageVO pageVO)
     {
         SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
 
-        return service.listCommonApplyByProposer(sessionVO, pageVO);
+        return service.listCommonApplyByProposer(sessionVO, apply, pageVO);
     }
 
     /**
      * 审批人获取申请列表
      *
      * @param request 用户参数
+     * @param apply   筛选条件
      * @param pageVO  分页参数
      * @return 申请列表
      */
     @RequestMapping(value = "/s/listCommonApplyByApprove", method = POST, produces = {"application/json;charset=UTF-8"})
     @ResponseBody
-    public String listCommonApplyByApprove(HttpServletRequest request, PageVO pageVO)
+    public String listCommonApplyByApprove(HttpServletRequest request, CommonApply apply, PageVO pageVO)
     {
         SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
 
-        return service.listCommonApplyByApprove(sessionVO, pageVO);
+        return service.listCommonApplyByApprove(sessionVO, apply, pageVO);
+    }
+
+    /**
+     * 获取申请详情
+     *
+     * @param request 用户参数
+     * @param apply   申请Id
+     * @return 申请详情
+     */
+    @RequestMapping(value = "/s/getCommonApply", method = POST, produces = RequestConstant.CONTENT_TYPE)
+    @ResponseBody
+    public String getCommonApply(HttpServletRequest request, CommonApply apply)
+    {
+        SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
+
+        return service.getCommonApply(sessionVO, apply);
     }
 
     /**

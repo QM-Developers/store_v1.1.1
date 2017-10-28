@@ -374,6 +374,10 @@
     INNER JOIN common_apply_approve caa
     ON caa.apply_id = ca.apply_id
     WHERE caa.approve_id = #{userId}
+    <if test="status != null">
+      AND ca.apply_result = #{status}
+    </if>
+    ORDER BY ca.create_date DESC
     LIMIT #{pageNum},#{pageSize}
   </select>
 
@@ -406,6 +410,12 @@
 
   <select id="getDeviceToken" resultType="java.lang.String">
     SELECT umeng_device_token
+    FROM user
+    WHERE user_id = #{userId}
+  </select>
+
+  <select id="getUserImage" resultType="java.lang.String">
+    SELECT user_img
     FROM user
     WHERE user_id = #{userId}
   </select>

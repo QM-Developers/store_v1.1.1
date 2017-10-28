@@ -35,4 +35,6 @@ public interface CustomerAssistDao
     List<CustomerAssist> listCustomerAssistByHelper(String userId, Integer status, int pageNum, int pageSize);
 
     int countCustomerAssistByHelper(String userId, Integer status);
+
+    String getUserImage(String userId);
 }

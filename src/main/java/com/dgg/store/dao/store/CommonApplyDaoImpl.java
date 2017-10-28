@@ -91,7 +91,7 @@ public class CommonApplyDaoImpl implements CommonApplyDao
     @Override
     public int insertCommonApplyImage(String imageId, String fileName)
     {
-        return mapper.insertCommonApplyImage(imageId,fileName);
+        return mapper.insertCommonApplyImage(imageId, fileName);
     }
 
     @Override
@@ -125,9 +125,9 @@ public class CommonApplyDaoImpl implements CommonApplyDao
     }
 
     @Override
-    public List<CommonApply> listCommonApplyByApprove(String userId, int pageNum, int pageSize)
+    public List<CommonApply> listCommonApplyByApprove(String userId, Byte status, int pageNum, int pageSize)
     {
-        return mapper.listCommonApplyByApprove(userId,pageNum,pageSize);
+        return mapper.listCommonApplyByApprove(userId, status, pageNum, pageSize);
     }
 
     @Override
@@ -140,6 +140,12 @@ public class CommonApplyDaoImpl implements CommonApplyDao
     public String getDeviceToken(String approveId)
     {
         return mapper.getDeviceToken(approveId);
+    }
+
+    @Override
+    public String getUserImage(String userId)
+    {
+        return mapper.getUserImage(userId);
     }
 
     @Override

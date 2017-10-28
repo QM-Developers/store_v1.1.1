@@ -161,6 +161,9 @@ public class CustomerAssistServiceImpl implements CustomerAssistService
         int pageCount = PagingUtil.getCount((int) assistDao.countByExample(example), pageVO.getPageSize());
         List<CustomerAssist> result = assistDao.selectByExample(example);
 
+        for (CustomerAssist c : result)
+            c.setUserImage(assistDao.getUserImage(c.getUserId()));
+
         JSONObject json = (JSONObject) JSONObject.toJSON(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), result));
         json.put(KeyConstant.PAGE_COUNT, pageCount);
 
@@ -177,7 +180,10 @@ public class CustomerAssistServiceImpl implements CustomerAssistService
         List<CustomerAssist> result = assistDao.listCustomerAssistByHelper(sessionVO.getUserId(), assist.getStatus(), pageNum, pageSize);
 
         for (CustomerAssist a : result)
+        {
             a.setStatus(ParameterUtil.getDefault(assist.getStatus(), 0));
+            a.setUserImage(assistDao.getUserImage(a.getUserId()));
+        }
 
         JSONObject json = (JSONObject) JSONObject.toJSON(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), result));
         json.put(KeyConstant.PAGE_COUNT, pageCount);

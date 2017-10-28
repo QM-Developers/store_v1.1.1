@@ -217,7 +217,7 @@ public class CustomerController
     /**
      * 分配库存等级
      *
-     * @param request   用户参数
+     * @param request 用户参数
      * @return 操作的结果
      */
     @RequestMapping(value = "/s/listRepertoryLevel", method = POST, produces = {"application/json;charset=UTF-8"})
@@ -297,16 +297,17 @@ public class CustomerController
      * 申请人获取建账申请列表
      *
      * @param request        用户参数
-     * @param accountRequest (暂时没用到)
+     * @param accountRequest 筛选条件
+     * @param pageVO         分页参数
      * @return 建账申请列表
      */
     @RequestMapping(value = "/s/listCustomerAccountByProposer", method = POST, produces = {"application/json;charset=UTF-8"})
     @ResponseBody
-    public String listCustomerAccountByProposer(HttpServletRequest request, CustomerAccountRequest accountRequest)
+    public String listCustomerAccountByProposer(HttpServletRequest request, CustomerAccountRequest accountRequest, PageVO pageVO)
     {
         SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
 
-        return service.listCustomerAccountByProposer(sessionVO, accountRequest);
+        return service.listCustomerAccountByProposer(sessionVO, accountRequest, pageVO);
     }
 
     /**
@@ -318,11 +319,11 @@ public class CustomerController
      */
     @RequestMapping(value = "/s/listCustomerAccountByChecker", method = POST, produces = {"application/json;charset=UTF-8"})
     @ResponseBody
-    public String listCustomerAccountByChecker(HttpServletRequest request, CustomerAccountRequest accountRequest)
+    public String listCustomerAccountByChecker(HttpServletRequest request, CustomerAccountRequest accountRequest, PageVO pageVO)
     {
         SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
 
-        return service.listCustomerAccountByChecker(sessionVO, accountRequest);
+        return service.listCustomerAccountByChecker(sessionVO, accountRequest, pageVO);
     }
 
     /**

@@ -52,7 +52,7 @@ public interface CustomerDao
 
     CustomerAccountRequest getCustomerAccount(String requestId);
 
-    List<CustomerAccountRequest> listCustomerAccount(CustomerAccountRequest accountRequest);
+    List<CustomerAccountRequest> listCustomerAccount(CustomerAccountRequest accountRequest, int pageNum, int pageSize);
 
     int insertHandImageRecord(String fileName, String customerId);
 
@@ -73,4 +73,6 @@ public interface CustomerDao
     List<CustomerVO> listPromoter(String myTeamId, String pid);
 
     List<CustomerRepertoryVO> listRepertoryLevel(String myTeamId);
+
+    String getUserImage(String userId);
 }

@@ -30,6 +30,8 @@ public class CommonApply {
 
     private List<CommonApplyImage> imageList;
 
+    private String userImage;
+
     public String getApplyId() {
         return applyId;
     }
@@ -140,5 +142,15 @@ public class CommonApply {
     public void setImageList(List<CommonApplyImage> imageList)
     {
         this.imageList = imageList;
+    }
+
+    public String getUserImage()
+    {
+        return userImage;
+    }
+
+    public void setUserImage(String userImage)
+    {
+        this.userImage = userImage;
     }
 }

@@ -53,7 +53,7 @@ public interface CustomerMapper
 
     CustomerAccountRequest getCustomerAccount(@Param("requestId") String requestId);
 
-    List<CustomerAccountRequest> listCustomerAccount(CustomerAccountRequest accountRequest);
+    List<CustomerAccountRequest> listCustomerAccount(@Param("request") CustomerAccountRequest accountRequest,@Param("pageNum") int pageNum,@Param("pageSize") int pageSize);
 
     int insertHandImageRecord(@Param("fileName") String fileName, @Param("customerId") String customerId);
 
@@ -74,4 +74,6 @@ public interface CustomerMapper
     List<CustomerVO> listPromoter(@Param("myTeamId") String myTeamId, @Param("permissionId") String accountCheck);
 
     List<CustomerRepertoryVO> listRepertoryLevel(String myTeamId);
+
+    String getUserImage(String userId);
 }

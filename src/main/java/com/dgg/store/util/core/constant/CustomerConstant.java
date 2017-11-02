@@ -20,7 +20,7 @@ public class CustomerConstant
 
     public static final byte ACCOUNT_STATUS_REFUSE = 3; // 未通过建账状态
 
-    public static final byte ACCOUNT_PROCESSED = 4; // 未通过建账状态
+    public static final byte ACCOUNT_PROCESSED = 4; // 已审批
 
     public static final int HAD_ACCOUNT = 1;   // 已建账
     public static final int HAD_ACCOUNT_FREEZE = 2; // 账号冻结

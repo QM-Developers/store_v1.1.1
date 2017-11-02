@@ -17,7 +17,7 @@ public interface GoodsManageService
 
     ResultVO findTypeAttr(SessionVO sessionVO, GoodsTypeAttr typeAttr);
 
-    ResultVO insertImgToSpace(SessionVO sessionVO, MultipartFile file, String realPath);
+    ResultVO insertImgToSpace(SessionVO sessionVO, MultipartFile file);
 
     String findImages(SessionVO sessionVO);
 

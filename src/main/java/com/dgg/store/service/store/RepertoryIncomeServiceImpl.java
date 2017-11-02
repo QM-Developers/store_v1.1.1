@@ -36,6 +36,7 @@ public class RepertoryIncomeServiceImpl implements RepertoryIncomeService
     @Override
     public String saveRepertoryIncome(SessionVO sessionVO, RepertoryIncome income)
     {
+        income.setBranchId(mapper.getFirstBranchId(sessionVO.getMyTeamId(), BranchConstant.BRANCH_FIRST));
         income.setRecordId(IDGenerator.generator());
         income.setCreateDate(new Date());
         income.setRecordCode(getRecordCode(0, income.getBranchId()));
@@ -90,7 +91,7 @@ public class RepertoryIncomeServiceImpl implements RepertoryIncomeService
         int pageCount = PagingUtil.getCount((int) mapper.countByExample(example), pageVO.getPageSize());
 
         List<RepertoryIncome> result = mapper.selectByExample(example);
-        result = getIncome(sessionVO,result);
+        result = getIncome(sessionVO, result);
 
         JSONObject json = (JSONObject) JSONObject.toJSON(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), result));
         json.put(KeyConstant.PAGE_COUNT, pageCount);
@@ -175,7 +176,8 @@ public class RepertoryIncomeServiceImpl implements RepertoryIncomeService
         if (ParameterUtil.objectIsNull(pageVO))
             return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_FAILED, sessionVO.getToken()));
 
-        String branchId = mapper.getCurrentBranchId(sessionVO.getUserId());
+//        String branchId = mapper.getCurrentBranchId(sessionVO.getUserId());
+        String branchId = mapper.getFirstBranchId(sessionVO.getMyTeamId(), BranchConstant.BRANCH_FIRST);
         if (branchId == null)
             return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_FAILED, sessionVO.getToken()));
 
@@ -193,7 +195,7 @@ public class RepertoryIncomeServiceImpl implements RepertoryIncomeService
         int pageCount = PagingUtil.getCount((int) mapper.countByExample(example), pageVO.getPageSize());
 
         List<RepertoryIncome> result = mapper.selectByExample(example);
-        result = getIncome(sessionVO,result);
+        result = getIncome(sessionVO, result);
 
         JSONObject json = (JSONObject) JSONObject.toJSON(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), result));
         json.put(KeyConstant.PAGE_COUNT, pageCount);

@@ -9,7 +9,8 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface RepertoryIncomeMapper {
+public interface RepertoryIncomeMapper
+{
     long countByExample(RepertoryIncomeExample example);
 
     int deleteByExample(RepertoryIncomeExample example);
@@ -32,19 +33,21 @@ public interface RepertoryIncomeMapper {
 
     int updateByPrimaryKey(RepertoryIncome record);
 
-    int updateGoodsCount(@Param("goods") RepertoryIncomeList incomeList,@Param("branchId") String branchId);
+    int updateGoodsCount(@Param("goods") RepertoryIncomeList incomeList, @Param("branchId") String branchId);
 
-    int countBranchGoodsExists(@Param("branchId") String branchId,@Param("standardId") String standardId);
+    int countBranchGoodsExists(@Param("branchId") String branchId, @Param("standardId") String standardId);
 
-    int saveBranchGoods(@Param("goods") RepertoryIncomeList incomeList,@Param("branchId") String branchId);
+    int saveBranchGoods(@Param("goods") RepertoryIncomeList incomeList, @Param("branchId") String branchId);
 
     String getGoodsImage(String goodsId);
 
     String getGoodsCode(String goodsId);
 
-    int getStandardCount(@Param("standardId") String standardId,@Param("myTeamId") String myTeamId,@Param("branchType") byte branchFirst);
+    int getStandardCount(@Param("standardId") String standardId, @Param("myTeamId") String myTeamId, @Param("branchType") byte branchFirst);
 
     String getGoodsType(String goodsId);
 
     String getCurrentBranchId(String userId);
+
+    String getFirstBranchId(@Param("myTeamId") String myTeamId, @Param("branchType") byte branchType);
 }

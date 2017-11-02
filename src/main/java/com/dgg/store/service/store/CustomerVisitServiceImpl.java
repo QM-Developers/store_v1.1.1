@@ -273,4 +273,30 @@ public class CustomerVisitServiceImpl implements CustomerVisitService
 
         return json.toJSONString();
     }
+
+    @Override
+    public String listVisitCustomerByKeyword(SessionVO sessionVO, PageVO pageVO, String keyword)
+    {
+        if (ParameterUtil.objectIsNull(pageVO))
+            return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_FAILED, sessionVO.getToken()));
+
+        CustomerVO customerVO = new CustomerVO();
+        customerVO.setPageNum(PagingUtil.getStart(pageVO.getPageNum(), pageVO.getPageSize()));
+        customerVO.setPageSize(pageVO.getPageSize());
+        customerVO.setMyTeamId(sessionVO.getMyTeamId());
+        customerVO.setUserId(sessionVO.getUserId());
+        customerVO.setUserName(keyword);
+
+        List<String> promoterList = dao.listPromoter(RoleConstant.USER, dao.getCurrentDepartmentId(sessionVO.getUserId()));
+
+        int pageCount = dao.countVisitCustomer(customerVO, promoterList);
+        pageCount = PagingUtil.getCount(pageCount, pageVO.getPageSize());
+
+        List<CustomerVO> result = dao.listVisitCustomer(customerVO, promoterList);
+
+        JSONObject json = (JSONObject) JSONObject.toJSON(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), result));
+        json.put(KeyConstant.PAGE_COUNT, pageCount);
+
+        return json.toJSONString();
+    }
 }

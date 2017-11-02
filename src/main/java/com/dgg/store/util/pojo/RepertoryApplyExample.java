@@ -10,8 +10,8 @@ public class RepertoryApplyExample {
     protected boolean distinct;
 
     protected List<Criteria> oredCriteria;
-    private Integer pageSize;
     private int pageNum;
+    private Integer pageSize;
 
     public RepertoryApplyExample() {
         oredCriteria = new ArrayList<Criteria>();
@@ -66,16 +66,6 @@ public class RepertoryApplyExample {
         distinct = false;
     }
 
-    public void setPageSize(Integer pageSize)
-    {
-        this.pageSize = pageSize;
-    }
-
-    public Integer getPageSize()
-    {
-        return pageSize;
-    }
-
     public void setPageNum(int pageNum)
     {
         this.pageNum = pageNum;
@@ -84,6 +74,16 @@ public class RepertoryApplyExample {
     public int getPageNum()
     {
         return pageNum;
+    }
+
+    public void setPageSize(Integer pageSize)
+    {
+        this.pageSize = pageSize;
+    }
+
+    public Integer getPageSize()
+    {
+        return pageSize;
     }
 
     protected abstract static class GeneratedCriteria {
@@ -1004,6 +1004,66 @@ public class RepertoryApplyExample {
 
         public Criteria andApplyCodeNotBetween(String value1, String value2) {
             addCriterion("apply_code not between", value1, value2, "applyCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andReceiveDateIsNull() {
+            addCriterion("receive_date is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andReceiveDateIsNotNull() {
+            addCriterion("receive_date is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andReceiveDateEqualTo(Date value) {
+            addCriterion("receive_date =", value, "receiveDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andReceiveDateNotEqualTo(Date value) {
+            addCriterion("receive_date <>", value, "receiveDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andReceiveDateGreaterThan(Date value) {
+            addCriterion("receive_date >", value, "receiveDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andReceiveDateGreaterThanOrEqualTo(Date value) {
+            addCriterion("receive_date >=", value, "receiveDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andReceiveDateLessThan(Date value) {
+            addCriterion("receive_date <", value, "receiveDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andReceiveDateLessThanOrEqualTo(Date value) {
+            addCriterion("receive_date <=", value, "receiveDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andReceiveDateIn(List<Date> values) {
+            addCriterion("receive_date in", values, "receiveDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andReceiveDateNotIn(List<Date> values) {
+            addCriterion("receive_date not in", values, "receiveDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andReceiveDateBetween(Date value1, Date value2) {
+            addCriterion("receive_date between", value1, value2, "receiveDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andReceiveDateNotBetween(Date value1, Date value2) {
+            addCriterion("receive_date not between", value1, value2, "receiveDate");
             return (Criteria) this;
         }
     }

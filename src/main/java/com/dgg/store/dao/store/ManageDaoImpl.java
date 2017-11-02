@@ -165,4 +165,10 @@ public class ManageDaoImpl implements ManageDao
         return mapper.listQmPermission();
     }
 
+    @Override
+    public int countMember(MemberVO memberVO)
+    {
+        return mapper.countMember(memberVO);
+    }
+
 }

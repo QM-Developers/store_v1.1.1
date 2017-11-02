@@ -54,7 +54,7 @@ public class ManageController
      * @param request 用户参数
      * @return 部门列表
      */
-    @RequestMapping(value = "/s/findTeamAndMemberCount", method = RequestMethod.POST,produces = RequestConstant.CONTENT_TYPE)
+    @RequestMapping(value = "/s/findTeamAndMemberCount", method = RequestMethod.POST, produces = RequestConstant.CONTENT_TYPE)
     @ResponseBody
     public String findTeamAndMemberCount(HttpServletRequest request)
     {
@@ -68,15 +68,34 @@ public class ManageController
      *
      * @param request  用户参数
      * @param memberVO 部门Id
+     * @param pageVO   分页参数
      * @return 成员列表
      */
-    @RequestMapping(value = "/s/findMemberList", method = RequestMethod.POST,produces = RequestConstant.CONTENT_TYPE)
+    @RequestMapping(value = "/s/findMemberList", method = RequestMethod.POST, produces = RequestConstant.CONTENT_TYPE)
     @ResponseBody
-    public String findMemberList(HttpServletRequest request, MemberVO memberVO)
+    public String findMemberList(HttpServletRequest request, MemberVO memberVO, PageVO pageVO)
     {
         SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
 
-        return service.findMemberList(sessionVO, memberVO);
+        return service.findMemberList(sessionVO, memberVO, pageVO);
+    }
+
+    /**
+     * 搜索部门下成员
+     *
+     * @param request  用户参数
+     * @param memberVO 筛选条件
+     * @param keyword  关键字
+     * @param pageVO   分页参数
+     * @return 成员列表
+     */
+    @RequestMapping(value = "/s/listMemberByKeyword", method = RequestMethod.POST, produces = RequestConstant.CONTENT_TYPE)
+    @ResponseBody
+    public String listMemberByKeyword(HttpServletRequest request, MemberVO memberVO, String keyword, PageVO pageVO)
+    {
+        SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
+
+        return service.listMemberByKeyword(sessionVO, memberVO, keyword, pageVO);
     }
 
     /**
@@ -102,7 +121,7 @@ public class ManageController
      * @param department 部门参数
      * @return 操作的结果
      */
-    @RequestMapping(value = "/s/addDepartment", method = RequestMethod.POST,produces = RequestConstant.CONTENT_TYPE)
+    @RequestMapping(value = "/s/addDepartment", method = RequestMethod.POST, produces = RequestConstant.CONTENT_TYPE)
     @ResponseBody
     public String addDepartment(HttpServletRequest request, DepartmentVO department)
     {
@@ -166,7 +185,7 @@ public class ManageController
      * @param department 部门Id
      * @return 操作的结果
      */
-    @RequestMapping(value = "/s/findDepartmentInfo", method = RequestMethod.POST,produces = RequestConstant.CONTENT_TYPE)
+    @RequestMapping(value = "/s/findDepartmentInfo", method = RequestMethod.POST, produces = RequestConstant.CONTENT_TYPE)
     @ResponseBody
     public String findDepartmentInfo(HttpServletRequest request, DepartmentVO department)
     {
@@ -230,7 +249,7 @@ public class ManageController
      * @param member  成员的用户Id
      * @return 成员详细信息
      */
-    @RequestMapping(value = "/s/findMemberInfo", method = RequestMethod.POST,produces = RequestConstant.CONTENT_TYPE)
+    @RequestMapping(value = "/s/findMemberInfo", method = RequestMethod.POST, produces = RequestConstant.CONTENT_TYPE)
     @ResponseBody
     public String findMemberInfo(HttpServletRequest request, MemberVO member)
     {
@@ -300,6 +319,38 @@ public class ManageController
         SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
 
         return service.listQmPermission(sessionVO);
+    }
+
+    /**
+     * 冻结成员
+     *
+     * @param request 用户参数
+     * @param member  成员Id
+     * @return 操作结果
+     */
+    @RequestMapping(value = "/s/updateMemberFreeze", method = POST, produces = {RequestConstant.CONTENT_TYPE})
+    @ResponseBody
+    public String updateMemberFreeze(HttpServletRequest request, MemberVO member)
+    {
+        SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
+
+        return service.updateMemberFreeze(sessionVO, member);
+    }
+
+    /**
+     * 解冻成员
+     *
+     * @param request 用户参数
+     * @param member  成员Id
+     * @return 操作结果
+     */
+    @RequestMapping(value = "/s/updateMemberUnfreeze", method = POST, produces = {RequestConstant.CONTENT_TYPE})
+    @ResponseBody
+    public String updateMemberUnfreeze(HttpServletRequest request, MemberVO member)
+    {
+        SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
+
+        return service.updateMemberUnfreeze(sessionVO, member);
     }
 
     /**

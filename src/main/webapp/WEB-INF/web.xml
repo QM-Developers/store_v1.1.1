@@ -61,5 +61,5 @@
     <listener>
         <listener-class>com.dgg.store.listener.WebInitListener</listener-class>
     </listener>
-
+    
 </web-app>

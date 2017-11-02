@@ -219,4 +219,10 @@ public class CustomerDaoImpl implements CustomerDao
         return mapper.getUserImage(userId);
     }
 
+    @Override
+    public String getDepartmentName(String userId)
+    {
+        return mapper.getDepartmentName(userId);
+    }
+
 }

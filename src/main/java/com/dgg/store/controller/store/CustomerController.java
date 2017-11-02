@@ -2,6 +2,7 @@ package com.dgg.store.controller.store;
 
 import com.dgg.store.service.store.CustomerService;
 import com.dgg.store.util.core.constant.Constant;
+import com.dgg.store.util.core.constant.RequestConstant;
 import com.dgg.store.util.core.constant.SymbolConstant;
 import com.dgg.store.util.pojo.CustomerAccountRequest;
 import com.dgg.store.util.vo.core.PageVO;
@@ -33,8 +34,13 @@ import static org.springframework.web.bind.annotation.RequestMethod.POST;
 @Controller
 public class CustomerController
 {
+    private final CustomerService service;
+
     @Autowired
-    private CustomerService service;
+    public CustomerController(CustomerService service)
+    {
+        this.service = service;
+    }
 
     /**
      * 客户建档
@@ -67,6 +73,23 @@ public class CustomerController
         SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
 
         return service.listCustomer(sessionVO, pageVO, customerVO);
+    }
+
+    /**
+     * 搜索客户
+     *
+     * @param request 用户参数
+     * @param keyword 关键字
+     * @param pageVO  分页参数
+     * @return 客户列表
+     */
+    @RequestMapping(value = "/s/listCustomerByKeyword", method = POST, produces = RequestConstant.CONTENT_TYPE)
+    @ResponseBody
+    public String listCustomerByKeyword(HttpServletRequest request, String keyword, PageVO pageVO)
+    {
+        SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
+
+        return service.listCustomerByKeyword(sessionVO, keyword, pageVO);
     }
 
     /**
@@ -215,10 +238,10 @@ public class CustomerController
     }
 
     /**
-     * 分配库存等级
+     * 获取库存等级
      *
      * @param request 用户参数
-     * @return 操作的结果
+     * @return 库存等级
      */
     @RequestMapping(value = "/s/listRepertoryLevel", method = POST, produces = {"application/json;charset=UTF-8"})
     @ResponseBody

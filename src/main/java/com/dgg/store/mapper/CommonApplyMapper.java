@@ -3,11 +3,14 @@ package com.dgg.store.mapper;
 import com.dgg.store.util.pojo.CommonApply;
 import com.dgg.store.util.pojo.CommonApplyApprove;
 import com.dgg.store.util.pojo.CommonApplyExample;
+
 import java.util.List;
+
 import com.dgg.store.util.pojo.CommonApplyImage;
 import org.apache.ibatis.annotations.Param;
 
-public interface CommonApplyMapper {
+public interface CommonApplyMapper
+{
     long countByExample(CommonApplyExample example);
 
     int deleteByExample(CommonApplyExample example);
@@ -32,7 +35,7 @@ public interface CommonApplyMapper {
 
     String getUserNameById(@Param("userId") String userId);
 
-    int insertCommonApplyImage(@Param("imageId") String imageId,@Param("imagePath") String fileName);
+    int insertCommonApplyImage(@Param("imageId") String imageId, @Param("imagePath") String fileName);
 
     int insertApprove(CommonApplyApprove approve);
 
@@ -44,7 +47,7 @@ public interface CommonApplyMapper {
 
     int countCommonApplyByApprove(@Param("userId") String userId);
 
-    List<CommonApply> listCommonApplyByApprove(@Param("userId") String userId,@Param("status") Byte status, @Param("pageNum") int pageNum, @Param("pageSize") int pageSize);
+    List<CommonApply> listCommonApplyByApprove(@Param("userId") String userId, @Param("statusList") List<Byte> statusList, @Param("pageNum") int pageNum, @Param("pageSize") int pageSize);
 
     int updateCommonApproveResult(CommonApplyApprove approve);
 
@@ -53,4 +56,6 @@ public interface CommonApplyMapper {
     String getDeviceToken(@Param("userId") String approveId);
 
     String getUserImage(String userId);
+
+    String getDepartmentName(String userId);
 }

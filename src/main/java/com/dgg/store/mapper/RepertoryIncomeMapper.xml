@@ -361,4 +361,11 @@
     WHERE u.user_id = #{userId}
   </select>
 
+  <select id="getFirstBranchId" resultType="java.lang.String">
+    SELECT qb.branch_id
+    FROM qm_branch qb
+    WHERE qb.my_team_id = #{myTeamId}
+    AND qb.branch_type = #{branchType}
+    LIMIT 1
+  </select>
 </mapper>

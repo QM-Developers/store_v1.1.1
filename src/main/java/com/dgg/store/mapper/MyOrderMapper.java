@@ -112,4 +112,8 @@ public interface MyOrderMapper
     String getCurrentBranchIdByCustomer(String userId);
 
     String getBranchLatLng(String branchId);
+
+    String getMerchandiserId(String userId);
+
+    String getUserName(String userId);
 }

@@ -41,7 +41,7 @@ public class CommonApplyController
     {
         SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
 
-        return service.insertCommonApplyImage(sessionVO, file, request.getSession().getServletContext().getRealPath(SymbolConstant.SYSTEM_SLASH));
+        return service.insertCommonApplyImage(sessionVO, file);
     }
 
     /**

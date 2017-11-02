@@ -5,15 +5,13 @@ import java.util.Date;
 import java.util.List;
 
 public class MyOrderExample {
-    private Integer pageNum;
-
-    private Integer pageSize;
-
     protected String orderByClause;
 
     protected boolean distinct;
 
     protected List<Criteria> oredCriteria;
+    private Integer pageSize;
+    private int pageNum;
 
     public MyOrderExample() {
         oredCriteria = new ArrayList<Criteria>();
@@ -66,6 +64,26 @@ public class MyOrderExample {
         oredCriteria.clear();
         orderByClause = null;
         distinct = false;
+    }
+
+    public void setPageSize(Integer pageSize)
+    {
+        this.pageSize = pageSize;
+    }
+
+    public Integer getPageSize()
+    {
+        return pageSize;
+    }
+
+    public void setPageNum(int pageNum)
+    {
+        this.pageNum = pageNum;
+    }
+
+    public int getPageNum()
+    {
+        return pageNum;
     }
 
     protected abstract static class GeneratedCriteria {
@@ -1288,6 +1306,66 @@ public class MyOrderExample {
             addCriterion("my_team_id not between", value1, value2, "myTeamId");
             return (Criteria) this;
         }
+
+        public Criteria andRefundAcceptDateIsNull() {
+            addCriterion("refund_accept_date is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andRefundAcceptDateIsNotNull() {
+            addCriterion("refund_accept_date is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andRefundAcceptDateEqualTo(Date value) {
+            addCriterion("refund_accept_date =", value, "refundAcceptDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andRefundAcceptDateNotEqualTo(Date value) {
+            addCriterion("refund_accept_date <>", value, "refundAcceptDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andRefundAcceptDateGreaterThan(Date value) {
+            addCriterion("refund_accept_date >", value, "refundAcceptDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andRefundAcceptDateGreaterThanOrEqualTo(Date value) {
+            addCriterion("refund_accept_date >=", value, "refundAcceptDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andRefundAcceptDateLessThan(Date value) {
+            addCriterion("refund_accept_date <", value, "refundAcceptDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andRefundAcceptDateLessThanOrEqualTo(Date value) {
+            addCriterion("refund_accept_date <=", value, "refundAcceptDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andRefundAcceptDateIn(List<Date> values) {
+            addCriterion("refund_accept_date in", values, "refundAcceptDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andRefundAcceptDateNotIn(List<Date> values) {
+            addCriterion("refund_accept_date not in", values, "refundAcceptDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andRefundAcceptDateBetween(Date value1, Date value2) {
+            addCriterion("refund_accept_date between", value1, value2, "refundAcceptDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andRefundAcceptDateNotBetween(Date value1, Date value2) {
+            addCriterion("refund_accept_date not between", value1, value2, "refundAcceptDate");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {
@@ -1381,25 +1459,5 @@ public class MyOrderExample {
         protected Criterion(String condition, Object value, Object secondValue) {
             this(condition, value, secondValue, null);
         }
-    }
-
-    public Integer getPageNum()
-    {
-        return pageNum;
-    }
-
-    public void setPageNum(Integer pageNum)
-    {
-        this.pageNum = pageNum;
-    }
-
-    public Integer getPageSize()
-    {
-        return pageSize;
-    }
-
-    public void setPageSize(Integer pageSize)
-    {
-        this.pageSize = pageSize;
     }
 }

@@ -336,7 +336,7 @@
 
   <select id="listApprove" resultMap="CommonApplyApprove">
     SELECT approve_name, approve_sequence,approve_result,
-      approve_advice
+      approve_advice,approve_id
     FROM common_apply_approve
     WHERE apply_id = #{applyId}
     ORDER BY approve_sequence
@@ -374,9 +374,9 @@
     INNER JOIN common_apply_approve caa
     ON caa.apply_id = ca.apply_id
     WHERE caa.approve_id = #{userId}
-    <if test="status != null">
-      AND ca.apply_result = #{status}
-    </if>
+    <foreach collection="statusList" index="i" close=")" open=" AND ca.apply_result IN (" separator="," item="status">
+      #{status}
+    </foreach>
     ORDER BY ca.create_date DESC
     LIMIT #{pageNum},#{pageSize}
   </select>
@@ -419,4 +419,13 @@
     FROM user
     WHERE user_id = #{userId}
   </select>
+
+  <select id="getDepartmentName" resultType="java.lang.String">
+    SELECT td.team_department_name
+    FROM team_department td
+    INNER JOIN user u
+    ON u.team_department_id = td.team_department_id
+    WHERE u.user_id = #{userId}
+  </select>
+
 </mapper>

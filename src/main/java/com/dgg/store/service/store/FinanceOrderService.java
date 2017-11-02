@@ -21,4 +21,8 @@ public interface FinanceOrderService
     String updateFinancePass(SessionVO sessionVO, MyOrder myOrder);
 
     String updateFinanceFail(SessionVO sessionVO, MyOrder myOrder);
+
+    String listFinanceOrderByKeyword(SessionVO sessionVO, String keyword, PageVO pageVO);
+
+    String getFinanceOrder(SessionVO sessionVO, MyOrder myOrder);
 }

@@ -1,15 +1,23 @@
 package com.dgg.store.service.store;
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.dgg.store.mapper.RepertoryApplyListMapper;
 import com.dgg.store.mapper.RepertoryApplyMapper;
-import com.dgg.store.util.core.constant.*;
+import com.dgg.store.util.core.constant.BranchConstant;
+import com.dgg.store.util.core.constant.Constant;
+import com.dgg.store.util.core.constant.QMPermissionConstant;
+import com.dgg.store.util.core.constant.RepertoryConstant;
 import com.dgg.store.util.core.generator.IDGenerator;
 import com.dgg.store.util.core.page.PagingUtil;
 import com.dgg.store.util.core.parameter.ParameterUtil;
 import com.dgg.store.util.core.string.StringUtil;
-import com.dgg.store.util.pojo.*;
+import com.dgg.store.util.pojo.RepertoryApply;
+import com.dgg.store.util.pojo.RepertoryApplyExample;
+import com.dgg.store.util.pojo.RepertoryApplyList;
+import com.dgg.store.util.pojo.RepertoryApplyListExample;
 import com.dgg.store.util.vo.core.PageVO;
 import com.dgg.store.util.vo.core.ResultVO;
 import com.dgg.store.util.vo.core.SessionVO;
@@ -81,10 +89,10 @@ public class RepertoryApplyServiceImpl implements RepertoryApplyService
         result = getApplyList(result, sessionVO);
 
         int pageCount = PagingUtil.getCount((int) mapper.countByExample(example), pageVO.getPageSize());
-        JSONObject json = (JSONObject) JSONObject.toJSON(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), result));
-        json.put(KeyConstant.PAGE_COUNT, pageCount);
+        ResultVO resultVO = new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), result);
+        resultVO.setPageCount(pageCount);
 
-        return json.toJSONString();
+        return JSON.toJSONString(resultVO, SerializerFeature.WriteNullStringAsEmpty);
     }
 
     @Override
@@ -110,10 +118,10 @@ public class RepertoryApplyServiceImpl implements RepertoryApplyService
         result = getApplyList(result, sessionVO);
 
         int pageCount = PagingUtil.getCount((int) mapper.countByExample(example), pageVO.getPageSize());
-        JSONObject json = (JSONObject) JSONObject.toJSON(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), result));
-        json.put(KeyConstant.PAGE_COUNT, pageCount);
+        ResultVO resultVO = new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), result);
+        resultVO.setPageCount(pageCount);
 
-        return json.toJSONString();
+        return JSON.toJSONString(resultVO, SerializerFeature.WriteNullStringAsEmpty);
     }
 
     private List<RepertoryApply> getApplyList(List<RepertoryApply> result, SessionVO sessionVO)
@@ -215,6 +223,7 @@ public class RepertoryApplyServiceImpl implements RepertoryApplyService
         }
 
         apply.setApplyStatus(RepertoryConstant.STATUS_FINISH);
+        apply.setReceiveDate(new Date());
         mapper.updateByPrimaryKeySelective(apply);
 
         return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken()));
@@ -254,10 +263,10 @@ public class RepertoryApplyServiceImpl implements RepertoryApplyService
         result = getApplyList(result, sessionVO);
 
         int pageCount = PagingUtil.getCount((int) mapper.countByExample(example), pageVO.getPageSize());
-        JSONObject json = (JSONObject) JSONObject.toJSON(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), result));
-        json.put(KeyConstant.PAGE_COUNT, pageCount);
+        ResultVO resultVO = new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), result);
+        resultVO.setPageCount(pageCount);
 
-        return json.toJSONString();
+        return JSON.toJSONString(resultVO, SerializerFeature.WriteNullStringAsEmpty);
     }
 
     @Override
@@ -288,10 +297,10 @@ public class RepertoryApplyServiceImpl implements RepertoryApplyService
         result = getApplyList(result, sessionVO);
 
         int pageCount = PagingUtil.getCount((int) mapper.countByExample(example), pageVO.getPageSize());
-        JSONObject json = (JSONObject) JSONObject.toJSON(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), result));
-        json.put(KeyConstant.PAGE_COUNT, pageCount);
+        ResultVO resultVO = new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), result);
+        resultVO.setPageCount(pageCount);
 
-        return json.toJSONString();
+        return JSON.toJSONString(resultVO, SerializerFeature.WriteNullStringAsEmpty);
     }
 
     private String getRecordCode(int i, String branchId)

@@ -1,6 +1,5 @@
 package com.dgg.store.util.core;
 
-import com.dgg.store.dao.common.MyOrderDao;
 import com.dgg.store.mapper.MyOrderMapper;
 import com.dgg.store.util.core.constant.OrderConstant;
 import com.dgg.store.util.core.constant.SymbolConstant;

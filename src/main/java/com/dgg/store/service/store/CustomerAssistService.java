@@ -10,7 +10,7 @@ public interface CustomerAssistService
 {
     String insertCustomerAssist(SessionVO sessionVO, CustomerAssist assist);
 
-    String insertAssistImage(SessionVO sessionVO, MultipartFile file, String realPath, CustomerAssist assist);
+    String insertAssistImage(SessionVO sessionVO, MultipartFile file, CustomerAssist assist);
 
     String listCustomerAssistByProposer(SessionVO sessionVO, PageVO pageVO);
 

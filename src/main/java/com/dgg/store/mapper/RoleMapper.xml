@@ -28,9 +28,7 @@
         ON p.permission_id = qpr.permission_id
         INNER JOIN position_permission_re ppr
         ON ppr.qm_permission_id = qpr.qm_permission_id
-        INNER JOIN user u
-        ON u.position_id = ppr.position_id
-        WHERE u.user_id = #{userId}
+        WHERE ppr.position_id = #{positionId}
         AND p.permission_url = #{url}
     </select>
 

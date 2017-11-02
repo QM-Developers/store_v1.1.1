@@ -57,4 +57,6 @@ public interface ManageDao
     Integer insertPerPosRe(PerPosReVO perPosReVO);
 
     List<QMPermissionVO> listQmPermission();
+
+    int countMember(MemberVO memberVO);
 }

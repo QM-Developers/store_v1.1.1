@@ -18,9 +18,13 @@ public class CustomerAccountRequest {
 
     private String merchandiserName;
 
+    private String merchandiserDepartment;
+
     private String checkerId;
 
     private String checkerName;
+
+    private String checkerDepartment;
 
     private Byte requestStatus;
 
@@ -148,5 +152,25 @@ public class CustomerAccountRequest {
     public void setStatusList(List<Byte> statusList)
     {
         this.statusList = statusList;
+    }
+
+    public String getMerchandiserDepartment()
+    {
+        return merchandiserDepartment;
+    }
+
+    public void setMerchandiserDepartment(String merchandiserDepartment)
+    {
+        this.merchandiserDepartment = merchandiserDepartment;
+    }
+
+    public String getCheckerDepartment()
+    {
+        return checkerDepartment;
+    }
+
+    public void setCheckerDepartment(String checkerDepartment)
+    {
+        this.checkerDepartment = checkerDepartment;
     }
 }

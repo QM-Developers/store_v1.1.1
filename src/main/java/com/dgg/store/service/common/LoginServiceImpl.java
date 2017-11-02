@@ -50,7 +50,7 @@ public class LoginServiceImpl implements LoginService
 
         session.setAttribute(Constant.LOGININFO, sessionVO);
 
-        return JSONObject.toJSONString(new ResultVO(LoginConstant.SUCCESS,sessionVO.getToken(),result));
+        return JSONObject.toJSONString(new ResultVO(LoginConstant.SUCCESS, sessionVO.getToken(), result));
     }
 
     @Override

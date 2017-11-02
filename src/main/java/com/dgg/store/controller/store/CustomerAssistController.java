@@ -127,7 +127,7 @@ public class CustomerAssistController
     {
         SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
 
-        return service.insertAssistImage(sessionVO, file, request.getSession().getServletContext().getRealPath(SymbolConstant.SYSTEM_SLASH), assist);
+        return service.insertAssistImage(sessionVO, file, assist);
     }
 
 }

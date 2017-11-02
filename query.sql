@@ -1,2 +1,1 @@
-select * from user
-;
+alter table my_order add refund_accept_date datetime;

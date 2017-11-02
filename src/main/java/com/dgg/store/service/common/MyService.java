@@ -17,7 +17,7 @@ public interface MyService
 
     ResultVO deleteMyAddress(SessionVO sessionVO, MyAddressVO addressVO);
 
-    ResultVO updateUserImg(SessionVO sessionVO, MultipartFile file, String realPath);
+    ResultVO updateUserImg(SessionVO sessionVO, MultipartFile file);
 
     String findMyDefaultAddress(SessionVO sessionVO);
 

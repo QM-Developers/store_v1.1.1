@@ -12,6 +12,8 @@ public class MyInfoVO
 
     private String userImg;
 
+    private String userSex;
+
     private String myTeamId;
 
     private String myTeamName;
@@ -144,5 +146,15 @@ public class MyInfoVO
     public void setPositionName(String positionName)
     {
         this.positionName = positionName;
+    }
+
+    public String getUserSex()
+    {
+        return userSex;
+    }
+
+    public void setUserSex(String userSex)
+    {
+        this.userSex = userSex;
     }
 }

@@ -182,7 +182,7 @@
 
     <select id="findMemberList" resultMap="MemberVO" parameterType="com.dgg.store.util.vo.manage.MemberVO">
         SELECT u.user_id,u.user_name,u.user_sex,
-        u.user_phone,
+        u.user_phone,u.user_status,
         td.team_department_name,
         dp.position_name
         FROM user u
@@ -194,7 +194,10 @@
         <if test="departmentId != null and departmentId != ''">
             AND u.team_department_id = #{departmentId}
         </if>
-
+        <if test="userName != null">
+            AND (u.user_name LIKE CONCAT("%",#{userName},"%") OR u.user_phone = #{userName})
+        </if>
+        LIMIT #{pageNum},#{pageSize}
     </select>
 
     <select id="countPositionMember" resultType="java.lang.Integer">
@@ -206,7 +209,7 @@
     <select id="findMemberInfo" resultMap="MemberVO">
         SELECT u.user_name,u.user_sex,u.user_phone,
             u.user_identity,u.team_department_id,u.position_id,
-            u.user_card_front,u.user_card_back,
+            u.user_card_front,u.user_card_back,u.user_status,
             uqpr.qm_permission_id
         FROM user u
         LEFT JOIN user_qm_permission_re uqpr
@@ -241,6 +244,9 @@
             <if test="userCardBack != null">
                 user_card_back = #{userCardBack},
             </if>
+            <if test="userStatus != null and userStatus != ''">
+                user_status = #{userStatus}
+            </if>
         </set>
         WHERE user_id = #{memberId}
     </update>
@@ -270,6 +276,23 @@
         SELECT qm_permission_id, qm_permission_name, qm_permission_describe,
           qm_permission_pid
         FROM qm_permission
+        WHERE qm_permission_pid != 'super'
         ORDER BY qm_permission_name
+    </select>
+
+    <select id="countMember" parameterType="com.dgg.store.util.vo.manage.MemberVO" resultType="java.lang.Integer">
+        SELECT COUNT(0)
+        FROM user u
+        INNER JOIN team_department td
+        ON td.team_department_id = u.team_department_id
+        INNER JOIN department_position dp
+        ON dp.position_id = u.position_id
+        WHERE u.my_team_id = #{myTeamId}
+        <if test="departmentId != null and departmentId != ''">
+            AND u.team_department_id = #{departmentId}
+        </if>
+        <if test="userName != null">
+            AND (u.user_name LIKE CONCAT("%",#{userName},"%") OR u.user_phone = #{userName})
+        </if>
     </select>
 </mapper>

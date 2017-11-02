@@ -3,6 +3,7 @@ package com.dgg.store.controller.common;
 import com.dgg.store.service.common.MyService;
 import com.dgg.store.util.core.FilePathUtil;
 import com.dgg.store.util.core.constant.Constant;
+import com.dgg.store.util.core.constant.PathConstant;
 import com.dgg.store.util.core.constant.RequestConstant;
 import com.dgg.store.util.core.constant.SymbolConstant;
 import com.dgg.store.util.core.servlet.ServletUtil;
@@ -136,6 +137,22 @@ public class MyController
         return service.deleteMyAddress(sessionVO, addressVO);
     }
 
+//    /**
+//     * 头像上传
+//     *
+//     * @param file    头像文件
+//     * @param request 用户参数
+//     * @return 头像的物理地址
+//     */
+//    @RequestMapping(value = "user_uploadHeadPortrait", method = RequestMethod.POST)
+//    @ResponseBody
+//    public ResultVO uploadHeadPortrait(@RequestParam(value = "img", required = false) MultipartFile file, HttpServletRequest request)
+//    {
+//        SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
+//
+//        return service.updateUserImg(sessionVO, file, request.getSession().getServletContext().getRealPath(SymbolConstant.SYSTEM_SLASH));
+//    }
+
     /**
      * 头像上传
      *
@@ -149,7 +166,7 @@ public class MyController
     {
         SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
 
-        return service.updateUserImg(sessionVO, file, request.getSession().getServletContext().getRealPath(SymbolConstant.SYSTEM_SLASH));
+        return service.updateUserImg(sessionVO, file);
     }
 
     /**

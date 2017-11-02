@@ -11,6 +11,8 @@ public class CustomerAssistUser {
 
     private String departmentName;
 
+    private String userImage;
+
     private Byte status;
 
     public String getAssistId() {
@@ -61,5 +63,15 @@ public class CustomerAssistUser {
     public void setStatus(Byte status)
     {
         this.status = status;
+    }
+
+    public String getUserImage()
+    {
+        return userImage;
+    }
+
+    public void setUserImage(String userImage)
+    {
+        this.userImage = userImage;
     }
 }

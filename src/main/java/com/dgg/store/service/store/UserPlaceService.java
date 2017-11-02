@@ -8,10 +8,9 @@ import org.springframework.web.multipart.MultipartFile;
 
 public interface UserPlaceService
 {
+    String insertPlaceCertificate(SessionVO sessionVO, MultipartFile file , String parameter);
 
-    String insertPlaceCertificate(SessionVO sessionVO, MultipartFile file, String realPath, String parameter);
-
-    String insertPlaceEnvironment(SessionVO sessionVO, MultipartFile file, String realPath, String parameter);
+    String insertPlaceEnvironment(SessionVO sessionVO, MultipartFile file, String parameter);
 
     String insertUserPlace(SessionVO sessionVO, UserPlace place);
 

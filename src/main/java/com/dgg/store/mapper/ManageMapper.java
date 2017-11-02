@@ -58,4 +58,6 @@ public interface ManageMapper
     int cleanCustomerVisit(@Param("userId") String userId);
 
     List<QMPermissionVO> listQmPermission();
+
+    int countMember(MemberVO memberVO);
 }

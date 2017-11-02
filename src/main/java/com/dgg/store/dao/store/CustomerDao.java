@@ -75,4 +75,6 @@ public interface CustomerDao
     List<CustomerRepertoryVO> listRepertoryLevel(String myTeamId);
 
     String getUserImage(String userId);
+
+    String getDepartmentName(String userId);
 }

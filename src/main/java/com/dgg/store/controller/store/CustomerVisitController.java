@@ -71,6 +71,23 @@ public class CustomerVisitController
     }
 
     /**
+     * 搜索当前部门下的成员
+     *
+     * @param request 用户参数
+     * @param pageVO  分页参数
+     * @param keyword 关键字
+     * @return 成员列表
+     */
+    @RequestMapping(value = "/s/listVisitCustomerByKeyword", method = RequestMethod.POST, produces = {"application/json;charset=UTF-8"})
+    @ResponseBody
+    public String listVisitCustomerByKeyword(HttpServletRequest request, PageVO pageVO, String keyword)
+    {
+        SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
+
+        return service.listVisitCustomerByKeyword(sessionVO, pageVO, keyword);
+    }
+
+    /**
      * 获取当前部门下的客户列表
      *
      * @param request 用户参数

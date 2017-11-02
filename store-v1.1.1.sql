@@ -398,6 +398,7 @@ create table my_order
    logistics_status text,   -- 物流状态
    create_date datetime not null default now(),   -- 创建时间
    refund_date datetime,   -- 退款时间
+   refund_accept_date datetime,   -- 同意退款时间
    finish_date datetime   -- 完成时间
 );
 
@@ -755,6 +756,7 @@ create table repertory_apply
    my_team_id varchar(35) not null,   -- 团队Id
    branch_name varchar(35) not null,   -- 销售点名称
    create_date datetime not null,   -- 申请时间
+   receive_date datetime,   -- 签收时间
    accept_date datetime,   -- 同意时间
    proposer_id varchar(35) not null,   -- 申请人
    proposer_name varchar(20) not null,   -- 申请人姓名

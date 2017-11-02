@@ -6,17 +6,11 @@ import java.util.Date;
 import java.util.List;
 
 public class MyOrder {
-    private String myTeamId;
-
-    private String memberId;
-
     private String orderId;
 
     private Byte orderStatus;
 
     private Byte orderStatusBefore;
-
-    private Float orderCount;
 
     private String userId;
 
@@ -46,15 +40,18 @@ public class MyOrder {
 
     private String orderNumber;
 
-    private List<MyOrderListVO> orderList;
+    private String myTeamId;
 
+    private Date refundAcceptDate;
     private List<Byte> statusList;
-
-    private String goods;
-
+    private List<MyOrderListVO> orderList;
+    private float orderCount;
+    private String keyword;
+    private String memberId;
     private String merchandiserId;
-
     private String merchandiserName;
+    private String goods;
+    private String departmentId;
 
     public String getOrderId() {
         return orderId;
@@ -192,6 +189,32 @@ public class MyOrder {
         this.orderNumber = orderNumber == null ? null : orderNumber.trim();
     }
 
+    public String getMyTeamId() {
+        return myTeamId;
+    }
+
+    public void setMyTeamId(String myTeamId) {
+        this.myTeamId = myTeamId == null ? null : myTeamId.trim();
+    }
+
+    public Date getRefundAcceptDate() {
+        return refundAcceptDate;
+    }
+
+    public void setRefundAcceptDate(Date refundAcceptDate) {
+        this.refundAcceptDate = refundAcceptDate;
+    }
+
+    public void setStatusList(List<Byte> statusList)
+    {
+        this.statusList = statusList;
+    }
+
+    public List<Byte> getStatusList()
+    {
+        return statusList;
+    }
+
     public void setOrderList(List<MyOrderListVO> orderList)
     {
         this.orderList = orderList;
@@ -202,14 +225,24 @@ public class MyOrder {
         return orderList;
     }
 
-    public String getGoods()
+    public void setOrderCount(float orderCount)
     {
-        return goods;
+        this.orderCount = orderCount;
     }
 
-    public void setGoods(String goods)
+    public float getOrderCount()
     {
-        this.goods = goods;
+        return orderCount;
+    }
+
+    public void setKeyword(String keyword)
+    {
+        this.keyword = keyword;
+    }
+
+    public String getKeyword()
+    {
+        return keyword;
     }
 
     public String getMemberId()
@@ -222,36 +255,6 @@ public class MyOrder {
         this.memberId = memberId;
     }
 
-    public String getMyTeamId()
-    {
-        return myTeamId;
-    }
-
-    public void setMyTeamId(String myTeamId)
-    {
-        this.myTeamId = myTeamId;
-    }
-
-    public Float getOrderCount()
-    {
-        return orderCount;
-    }
-
-    public void setOrderCount(Float orderCount)
-    {
-        this.orderCount = orderCount;
-    }
-
-    public List<Byte> getStatusList()
-    {
-        return statusList;
-    }
-
-    public void setStatusList(List<Byte> statusList)
-    {
-        this.statusList = statusList;
-    }
-
     public String getMerchandiserId()
     {
         return merchandiserId;
@@ -262,13 +265,33 @@ public class MyOrder {
         this.merchandiserId = merchandiserId;
     }
 
+    public void setMerchandiserName(String merchandiserName)
+    {
+        this.merchandiserName = merchandiserName;
+    }
+
     public String getMerchandiserName()
     {
         return merchandiserName;
     }
 
-    public void setMerchandiserName(String merchandiserName)
+    public String getGoods()
     {
-        this.merchandiserName = merchandiserName;
+        return goods;
+    }
+
+    public void setGoods(String goods)
+    {
+        this.goods = goods;
+    }
+
+    public String getDepartmentId()
+    {
+        return departmentId;
+    }
+
+    public void setDepartmentId(String departmentId)
+    {
+        this.departmentId = departmentId;
     }
 }

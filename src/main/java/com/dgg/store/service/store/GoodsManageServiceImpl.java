@@ -113,7 +113,7 @@ public class GoodsManageServiceImpl implements GoodsManageService
     }
 
     @Override
-    public ResultVO insertImgToSpace(SessionVO sessionVO, MultipartFile file, String realPath)
+    public ResultVO insertImgToSpace(SessionVO sessionVO, MultipartFile file)
     {
         StringBuffer path = new StringBuffer();
         String fileName = null;
@@ -121,9 +121,8 @@ public class GoodsManageServiceImpl implements GoodsManageService
 
         try
         {
-            path.append(PathConstant.USER_IMAGE_SPACE_PATH).append(sessionVO.getUserId()).append("/");
-            realPath = FilePathUtil.getPrevPath(realPath, Constant.PATH_LEVEL);
-            fileName = UploadFileUtil.doUpload(file, path.toString(), realPath, IDGenerator.generator());
+            path.append(PathConstant.USER_IMAGE_SPACE_PATH).append(sessionVO.getMyTeamId()).append("/");
+            fileName = PathConstant.IMAGE_SERVER_NAME + UploadFileUtil.doUpload(file, path.toString(), PathConstant.UPLOAD_BASE_PATH, IDGenerator.generator());
             dao.insertImgToSpace(imageId, fileName, sessionVO.getMyTeamId());
         } catch (IOException e)
         {

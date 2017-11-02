@@ -119,7 +119,7 @@ public class CustomerAssistServiceImpl implements CustomerAssistService
     }
 
     @Override
-    public String insertAssistImage(SessionVO sessionVO, MultipartFile file, String realPath, CustomerAssist assist)
+    public String insertAssistImage(SessionVO sessionVO, MultipartFile file, CustomerAssist assist)
     {
         int result = 0;
         StringBuilder path = new StringBuilder();
@@ -129,8 +129,7 @@ public class CustomerAssistServiceImpl implements CustomerAssistService
         try
         {
             path.append(PathConstant.USER_ASSIST_PATH).append(sessionVO.getUserId()).append(SymbolConstant.FORWARD_SLASH);
-            realPath = FilePathUtil.getPrevPath(realPath, Constant.PATH_LEVEL);
-            fileName = UploadFileUtil.doUpload(file, path.toString(), realPath, imageId);
+            fileName = PathConstant.IMAGE_SERVER_NAME + UploadFileUtil.doUpload(file, path.toString(), PathConstant.UPLOAD_BASE_PATH, imageId);
             CustomerAssistImage image = new CustomerAssistImage();
             image.setImageId(imageId);
             image.setImagePath(fileName);
@@ -211,13 +210,17 @@ public class CustomerAssistServiceImpl implements CustomerAssistService
         customerCriteria.andAssistIdEqualTo(assist.getAssistId());
 
         result.setImageList(imageDao.selectByExample(imageExample));
+        result.setUserImage(assistDao.getUserImage(result.getUserId()));
 
         List<CustomerAssistUser> userList = userDao.selectByExample(userExample);
         for (CustomerAssistUser u : userList)
+        {
+            u.setUserImage(assistDao.getUserImage(u.getUserId()));
             if (StringUtil.isEmpty(u.getAssistResult()))
                 u.setStatus((byte) 0);
             else
                 u.setStatus((byte) 1);
+        }
         result.setUserList(userList);
 
         result.setCustomerList(customerDao.selectByExample(customerExample));

@@ -32,6 +32,8 @@ public class CommonApply {
 
     private String userImage;
 
+    private Byte approve;
+
     public String getApplyId() {
         return applyId;
     }
@@ -152,5 +154,15 @@ public class CommonApply {
     public void setUserImage(String userImage)
     {
         this.userImage = userImage;
+    }
+
+    public Byte getApprove()
+    {
+        return approve;
+    }
+
+    public void setApprove(Byte approve)
+    {
+        this.approve = approve;
     }
 }

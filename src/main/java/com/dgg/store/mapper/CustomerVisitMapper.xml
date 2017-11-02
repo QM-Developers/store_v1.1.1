@@ -115,6 +115,9 @@
         <if test="customerVO.hadAccount != null">
             AND customer_type = #{customerVO.hadAccount}
         </if>
+        <if test="customerVO.userName != null">
+            AND (u.user_name LIKE CONCAT("%",#{customerVO.userName},"%") OR u.user_phone = #{customerVO.userName})
+        </if>
         AND c.promoter_id IN
         <foreach collection="promoterList" item="promoterId" separator="," open="(" close=")" index="i">
             #{promoterId}
@@ -136,6 +139,9 @@
         </if>
         <if test="customerVO.hadAccount != null">
             AND had_account = #{customerVO.hadAccount}
+        </if>
+        <if test="customerVO.userName != null">
+            AND (u.user_name LIKE CONCAT("%",#{customerVO.userName},"%") OR u.user_phone = #{customerVO.userName})
         </if>
         AND c.promoter_id IN
         <foreach collection="promoterList" item="promoterId" separator="," open="(" close=")" index="i">

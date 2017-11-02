@@ -40,6 +40,10 @@ public class MemberVO
 
     private String department;
 
+    private Integer pageNum;
+
+    private Integer pageSize;
+
     public String getUserId()
     {
         return userId;
@@ -218,5 +222,25 @@ public class MemberVO
     public void setDepartment(String department)
     {
         this.department = department;
+    }
+
+    public Integer getPageNum()
+    {
+        return pageNum;
+    }
+
+    public void setPageNum(Integer pageNum)
+    {
+        this.pageNum = pageNum;
+    }
+
+    public Integer getPageSize()
+    {
+        return pageSize;
+    }
+
+    public void setPageSize(Integer pageSize)
+    {
+        this.pageSize = pageSize;
     }
 }

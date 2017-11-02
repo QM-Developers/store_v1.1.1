@@ -65,6 +65,7 @@ public class Constant
     public static final String USER_STATE_0 = "u_st_0"; // 用户刚建档状态
     public static final String USER_STATE_1 = "u_st_1"; // 用户刚建账状态
     public static final String USER_STATE_2 = "u_st_2"; // 用户已注册状态
+    public static final String USER_STATE_3 = "u_st_3"; // 用户已冻结状态
 
     /**
      * 好友申请状态

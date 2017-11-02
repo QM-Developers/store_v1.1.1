@@ -17,6 +17,7 @@ import com.dgg.store.util.vo.order.MyOrderListVO;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -87,6 +88,7 @@ public class FollowerOrderServiceImpl implements FollowerOrderService
 
         MyOrder record = new MyOrder();
         record.setOrderId(myOrder.getOrderId());
+        record.setRefundAcceptDate(new Date());
         record.setOrderStatus(OrderConstant.REFUND_GOODS);
         int result = orderMapper.updateByPrimaryKeySelective(record);
 
@@ -94,7 +96,7 @@ public class FollowerOrderServiceImpl implements FollowerOrderService
             throw new RuntimeException(Constant.STR_ADD_FAILED);
 
         if (isDeliver(myOrder.getOrderStatusBefore()))
-            return updateRefundReceive(sessionVO,myOrder);
+            return updateRefundReceive(sessionVO, myOrder);
 
         UMengUtil.sendUnicast(orderMapper.getDeviceToken(myOrder.getUserId()), PushMessageFactory.getInstance(pushMapper).get(PushMessageConstant.REFUSE_SALES_PASS));
         UMengUtil.sendUnicast(orderMapper.getFinanceDeviceToken(sessionVO.getMyTeamId(), QMPermissionConstant.FINANCE_CHECK), PushMessageFactory.getInstance(pushMapper).get(PushMessageConstant.REFUSE_FINANCE_NEW));

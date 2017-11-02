@@ -30,18 +30,15 @@ public class UserPlaceServiceImpl implements UserPlaceService
     private UserPlaceDao dao;
 
     @Override
-    public String insertPlaceCertificate(SessionVO sessionVO, MultipartFile file, String realPath, String placeId)
+    public String insertPlaceCertificate(SessionVO sessionVO, MultipartFile file, String placeId)
     {
         int result = 0;
-        StringBuffer path = new StringBuffer();
         String fileName = null;
         String imageId = IDGenerator.generator();
 
         try
         {
-            path.append(PathConstant.USER_PLACE_IMG_PATH).append(SymbolConstant.SYSTEM_SLASH);
-            realPath = FilePathUtil.getPrevPath(realPath, Constant.PATH_LEVEL);
-            fileName = UploadFileUtil.doUpload(file, path.toString(), realPath, IDGenerator.generator());
+            fileName = PathConstant.IMAGE_SERVER_NAME + UploadFileUtil.doUpload(file, PathConstant.USER_PLACE_IMG_PATH, PathConstant.UPLOAD_BASE_PATH, IDGenerator.generator());
             PlaceImage placeImage = new PlaceImage();
             placeImage.setImgId(imageId);
             placeImage.setImgUrl(fileName);
@@ -59,22 +56,19 @@ public class UserPlaceServiceImpl implements UserPlaceService
     }
 
     @Override
-    public String insertPlaceEnvironment(SessionVO sessionVO, MultipartFile file, String realPath, String placeId)
+    public String insertPlaceEnvironment(SessionVO sessionVO, MultipartFile file, String placeId)
     {
         int result = 0;
-        StringBuffer path = new StringBuffer();
         String fileName = null;
         String imageId = IDGenerator.generator();
 
         try
         {
-            path.append(PathConstant.USER_PLACE_IMG_PATH).append(SymbolConstant.SYSTEM_SLASH);
-            realPath = FilePathUtil.getPrevPath(realPath, Constant.PATH_LEVEL);
-            fileName = UploadFileUtil.doUpload(file, path.toString(), realPath, IDGenerator.generator());
+            fileName = PathConstant.IMAGE_SERVER_NAME + UploadFileUtil.doUpload(file, PathConstant.USER_PLACE_IMG_PATH, PathConstant.UPLOAD_BASE_PATH, IDGenerator.generator());
             PlaceImage placeImage = new PlaceImage();
             placeImage.setImgId(imageId);
             placeImage.setImgUrl(fileName);
-            placeImage.setUserPlaceId(StringUtil.isEmpty(placeId) ? "" : placeId);
+            placeImage.setUserPlaceId(StringUtil.isEmpty(placeId) ? Constant.EMPTY : placeId);
             placeImage.setImgType(PlaceConstant.ENVIRONMENT);
             result = dao.insertPlaceImage(placeImage);
         } catch (IOException e)
@@ -236,6 +230,10 @@ public class UserPlaceServiceImpl implements UserPlaceService
     public String getUserPlace(SessionVO sessionVO, UserPlace place)
     {
         UserPlace result = dao.getUserPlaceById(place.getUserPlaceId());
+
+        if (result == null)
+            return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_FAILED, sessionVO.getToken()));
+
         result.setImageList(dao.getImageList(place.getUserPlaceId()));
 
         List<PlaceImage> certificateList = new ArrayList<>();

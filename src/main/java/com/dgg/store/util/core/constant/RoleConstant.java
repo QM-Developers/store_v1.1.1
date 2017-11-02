@@ -7,4 +7,6 @@ public class RoleConstant
     public static final String MANAGER = "1002";   // 超级管理员
 
     public static final String BUSINESS = "1003"; // 普通员工
+
+    public static final String SUPER = "super";
 }

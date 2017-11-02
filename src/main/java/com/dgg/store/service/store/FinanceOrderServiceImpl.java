@@ -10,11 +10,15 @@ import com.dgg.store.util.core.page.PagingUtil;
 import com.dgg.store.util.core.umeng.push.PushMessageFactory;
 import com.dgg.store.util.core.umeng.push.UMengUtil;
 import com.dgg.store.util.pojo.MyOrder;
+import com.dgg.store.util.pojo.MyOrderExample;
 import com.dgg.store.util.vo.core.PageVO;
 import com.dgg.store.util.vo.core.ResultVO;
 import com.dgg.store.util.vo.core.SessionVO;
+import com.dgg.store.util.vo.manage.MemberVO;
+import com.dgg.store.util.vo.order.MyOrderListVO;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -202,5 +206,48 @@ public class FinanceOrderServiceImpl implements FinanceOrderService
             return updateFinanceFailB(sessionVO, myOrder);
 
         return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_FAILED, sessionVO.getToken()));
+    }
+
+    @Override
+    public String listFinanceOrderByKeyword(SessionVO sessionVO, String keyword, PageVO pageVO)
+    {
+        int pageNum = PagingUtil.getStart(pageVO.getPageNum(), pageVO.getPageSize());
+        int pageSize = pageVO.getPageSize();
+
+        MyOrder myOrder = new MyOrder();
+        myOrder.setStatusList(new ArrayList<>());
+        myOrder.setKeyword(keyword);
+
+        int pageCount = PagingUtil.getCount(orderMapper.countFinanceOrder(myOrder, sessionVO.getMyTeamId()), pageVO.getPageSize());
+        List<MyOrder> result = orderMapper.listFinanceOrder(myOrder, sessionVO.getMyTeamId(), pageNum, pageSize);
+        result = OrderUtil.getOrderList(result, orderMapper);
+        result = OrderUtil.getOrderCount(result);
+
+        JSONObject json = (JSONObject) JSONObject.toJSON(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), result));
+        json.put(KeyConstant.PAGE_COUNT, pageCount);
+
+        return json.toJSONString();
+    }
+
+    @Override
+    public String getFinanceOrder(SessionVO sessionVO, MyOrder myOrder)
+    {
+        MyOrderExample example = new MyOrderExample();
+        MyOrderExample.Criteria criteria = example.createCriteria();
+
+        criteria.andUserIdEqualTo(myOrder.getMemberId());
+        criteria.andOrderIdEqualTo(myOrder.getOrderId());
+
+        List<MyOrder> orderList = orderMapper.selectByExample(example);
+        if (orderList == null || orderList.size() < 1)
+            return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_FAILED, sessionVO.getToken()));
+
+        orderList = OrderUtil.getOrderList(orderList, orderMapper);
+        myOrder = orderList.get(0);
+        myOrder = OrderUtil.getOrderCount(myOrder);
+        myOrder.setMerchandiserId(orderMapper.getMerchandiserId(myOrder.getUserId()));
+        myOrder.setMerchandiserName(orderMapper.getUserName(myOrder.getMerchandiserId()));
+
+        return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), myOrder));
     }
 }

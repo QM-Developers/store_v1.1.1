@@ -5,6 +5,7 @@
         <result column="user_name" property="userName" jdbcType="VARCHAR"/>
         <result column="user_phone" property="userPhone" jdbcType="VARCHAR"/>
         <result column="user_address" property="userAddress" jdbcType="VARCHAR"/>
+        <result column="user_sex" property="userSex" jdbcType="VARCHAR"/>
         <result column="user_area" property="userArea" jdbcType="VARCHAR"/>
         <result column="user_img" property="userImg" jdbcType="VARCHAR"/>
         <result column="my_team_id" property="myTeamId" jdbcType="VARCHAR"/>
@@ -25,7 +26,7 @@
     <select id="findMyInfo" resultMap="MyInfoVOMap">
         SELECT u.user_name,u.user_phone,u.user_address,
           u.user_area,u.user_img,u.user_identity,u.team_department_id,
-          u.position_id,u.my_team_id
+          u.position_id,u.my_team_id,u.user_sex
         FROM user u
         WHERE u.user_id = #{userId}
     </select>

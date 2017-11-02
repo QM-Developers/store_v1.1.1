@@ -104,9 +104,8 @@ public class UserPlaceController
     public String uploadPlaceCertificate(@RequestParam(value = "img", required = false) MultipartFile file, HttpServletRequest request)
     {
         SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
-        String path = request.getSession().getServletContext().getRealPath(SymbolConstant.SYSTEM_SLASH);
 
-        return service.insertPlaceCertificate(sessionVO, file, path, request.getParameter(KeyConstant.USER_PLACE_ID));
+        return service.insertPlaceCertificate(sessionVO, file, request.getParameter(KeyConstant.USER_PLACE_ID));
     }
 
     /**
@@ -121,9 +120,8 @@ public class UserPlaceController
     public String uploadPlaceEnvironment(@RequestParam(value = "img", required = false) MultipartFile file, HttpServletRequest request)
     {
         SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
-        String path = request.getSession().getServletContext().getRealPath(SymbolConstant.SYSTEM_SLASH);
 
-        return service.insertPlaceEnvironment(sessionVO, file, path, request.getParameter(KeyConstant.USER_PLACE_ID));
+        return service.insertPlaceEnvironment(sessionVO, file, request.getParameter(KeyConstant.USER_PLACE_ID));
     }
 
     /**

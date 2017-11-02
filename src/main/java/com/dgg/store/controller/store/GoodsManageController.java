@@ -74,7 +74,7 @@ public class GoodsManageController
     {
         SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
 
-        return service.insertImgToSpace(sessionVO, file, request.getSession().getServletContext().getRealPath("/"));
+        return service.insertImgToSpace(sessionVO, file);
     }
 
     /**

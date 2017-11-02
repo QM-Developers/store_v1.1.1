@@ -8,7 +8,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 public interface CommonApplyService
 {
-    String insertCommonApplyImage(SessionVO sessionVO, MultipartFile file, String realPath);
+    String insertCommonApplyImage(SessionVO sessionVO, MultipartFile file);
 
     String insertCommonApply(SessionVO sessionVO, CommonApply apply);
 

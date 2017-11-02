@@ -76,4 +76,6 @@ public interface CustomerMapper
     List<CustomerRepertoryVO> listRepertoryLevel(String myTeamId);
 
     String getUserImage(String userId);
+
+    String getDepartmentName(String userId);
 }

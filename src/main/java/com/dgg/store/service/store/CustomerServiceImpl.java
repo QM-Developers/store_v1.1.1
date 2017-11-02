@@ -1,6 +1,7 @@
 package com.dgg.store.service.store;
 
 import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.dgg.store.dao.store.CustomerDao;
 import com.dgg.store.mapper.PushMessageMapper;
 import com.dgg.store.util.core.FilePathUtil;
@@ -95,6 +96,9 @@ public class CustomerServiceImpl implements CustomerService
     @Override
     public String listCustomer(SessionVO sessionVO, PageVO pageVO, CustomerVO customerVO)
     {
+        if (ParameterUtil.objectIsNull(pageVO))
+            return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_FAILED, sessionVO.getToken()));
+
         int start = PagingUtil.getStart(pageVO.getPageNum(), pageVO.getPageSize());
         int end = pageVO.getPageSize();
 
@@ -342,8 +346,11 @@ public class CustomerServiceImpl implements CustomerService
     public String getCustomerAccount(SessionVO sessionVO, CustomerAccountRequest accountRequest)
     {
         CustomerAccountRequest result = dao.getCustomerAccount(accountRequest.getRequestId());
+        result.setUserImage(dao.getUserImage(result.getProposerId()));
+        result.setCheckerDepartment(dao.getDepartmentName(result.getCheckerId()));
+        result.setMerchandiserDepartment(dao.getDepartmentName(result.getMerchandiserId()));
 
-        return JSONObject.toJSONString(new ResultVO(result == null ? Constant.REQUEST_FAILED : Constant.REQUEST_SUCCESS, sessionVO.getToken(), result));
+        return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), result), SerializerFeature.WriteNullStringAsEmpty);
     }
 
     @Override
@@ -375,15 +382,25 @@ public class CustomerServiceImpl implements CustomerService
         accountRequest.setStatusList(getStatus(accountRequest.getRequestStatus()));
         List<CustomerAccountRequest> result = dao.listCustomerAccount(accountRequest, pageNum, pageSize);
 
+        result = getResultParams(result);
+
+        return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), result));
+    }
+
+    private List<CustomerAccountRequest> getResultParams(List<CustomerAccountRequest> result)
+    {
         for (CustomerAccountRequest re : result)
             re.setUserImage(dao.getUserImage(re.getProposerId()));
 
-        return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), result));
+        return result;
     }
 
     private List<Byte> getStatus(Byte requestStatus)
     {
         List<Byte> statusList = new ArrayList<>();
+
+        if (requestStatus == null)
+            return statusList;
 
         switch (requestStatus)
         {
@@ -412,8 +429,7 @@ public class CustomerServiceImpl implements CustomerService
         accountRequest.setStatusList(getStatus(accountRequest.getRequestStatus()));
         List<CustomerAccountRequest> result = dao.listCustomerAccount(accountRequest, pageNum, pageSize);
 
-        for (CustomerAccountRequest re : result)
-            re.setUserImage(dao.getUserImage(re.getProposerId()));
+        result = getResultParams(result);
 
         return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), result));
     }
@@ -543,6 +559,30 @@ public class CustomerServiceImpl implements CustomerService
         List<CustomerRepertoryVO> result = dao.listRepertoryLevel(sessionVO.getMyTeamId());
 
         return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), result));
+    }
+
+    @Override
+    public String listCustomerByKeyword(SessionVO sessionVO, String keyword, PageVO pageVO)
+    {
+        if (ParameterUtil.objectIsNull(pageVO))
+            return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_FAILED, sessionVO.getToken()));
+
+        int start = PagingUtil.getStart(pageVO.getPageNum(), pageVO.getPageSize());
+        int end = pageVO.getPageSize();
+
+        CustomerVO customerVO = new CustomerVO();
+        customerVO.setMyTeamId(sessionVO.getMyTeamId());
+        customerVO.setUserId(sessionVO.getUserId());
+        customerVO.setUserName(keyword);
+
+        int pageCount = dao.countCustomer(customerVO);
+        pageCount = PagingUtil.getCount(pageCount, pageVO.getPageSize());
+        List<CustomerVO> result = dao.listCustomer(customerVO, start, end);
+
+        JSONObject json = (JSONObject) JSONObject.toJSON(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), result));
+        json.put(KeyConstant.PAGE_COUNT, pageCount);
+
+        return json.toJSONString();
     }
 
 }

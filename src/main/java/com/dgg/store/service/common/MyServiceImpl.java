@@ -91,20 +91,19 @@ public class MyServiceImpl implements MyService
     }
 
     @Override
-    public ResultVO updateUserImg(SessionVO sessionVO, MultipartFile file, String realPath)
+    public ResultVO updateUserImg(SessionVO sessionVO, MultipartFile file)
     {
         int result = 0;
         StringBuilder path = new StringBuilder();
         String fileName = null;
 
         if (file == null)
-            return new ResultVO(0, sessionVO.getToken());
+            return new ResultVO(Constant.REQUEST_FAILED, sessionVO.getToken());
 
         try
         {
-            path.append(PathConstant.USER_HEAD_PORTRAIT_IMG_PATH).append(sessionVO.getUserId()).append(SymbolConstant.FORWARD_SLASH);
-            realPath = FilePathUtil.getPrevPath(realPath, Constant.PATH_LEVEL);
-            fileName = UploadFileUtil.doUpload(file, path.toString(), realPath, IDGenerator.generator());
+            path.append(PathConstant.USER_HEAD_PORTRAIT_IMG_PATH);
+            fileName = PathConstant.IMAGE_SERVER_NAME + UploadFileUtil.doUpload(file, path.toString(), PathConstant.UPLOAD_BASE_PATH, IDGenerator.generator());
             result = dao.updateUserImg(sessionVO.getUserId(), fileName);
         } catch (IOException e)
         {

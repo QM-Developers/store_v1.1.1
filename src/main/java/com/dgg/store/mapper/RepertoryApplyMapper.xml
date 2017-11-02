@@ -15,6 +15,7 @@
     <result column="apply_status" jdbcType="TINYINT" property="applyStatus" />
     <result column="apply_remark" jdbcType="VARCHAR" property="applyRemark" />
     <result column="apply_code" jdbcType="VARCHAR" property="applyCode" />
+    <result column="receive_date" jdbcType="TIMESTAMP" property="receiveDate" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -76,7 +77,8 @@
   </sql>
   <sql id="Base_Column_List">
     apply_id, branch_id, my_team_id, branch_name, create_date, accept_date, proposer_id,
-    proposer_name, approver_id, approver_name, apply_status, apply_remark, apply_code
+    proposer_name, approver_id, approver_name, apply_status, apply_remark, apply_code,
+    receive_date
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select
@@ -99,12 +101,12 @@
     branch_name, create_date, accept_date,
     proposer_id, proposer_name, approver_id,
     approver_name, apply_status, apply_remark,
-    apply_code)
+    apply_code, receive_date)
     values (#{applyId,jdbcType=VARCHAR}, #{branchId,jdbcType=VARCHAR}, #{myTeamId,jdbcType=VARCHAR},
     #{branchName,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}, #{acceptDate,jdbcType=TIMESTAMP},
     #{proposerId,jdbcType=VARCHAR}, #{proposerName,jdbcType=VARCHAR}, #{approverId,jdbcType=VARCHAR},
     #{approverName,jdbcType=VARCHAR}, #{applyStatus,jdbcType=TINYINT}, #{applyRemark,jdbcType=VARCHAR},
-    #{applyCode,jdbcType=VARCHAR})
+    #{applyCode,jdbcType=VARCHAR}, #{receiveDate,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.dgg.store.util.pojo.RepertoryApply">
     insert into repertory_apply
@@ -148,6 +150,9 @@
       <if test="applyCode != null">
         apply_code,
       </if>
+      <if test="receiveDate != null">
+        receive_date,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="applyId != null">
@@ -188,6 +193,9 @@
       </if>
       <if test="applyCode != null">
         #{applyCode,jdbcType=VARCHAR},
+      </if>
+      <if test="receiveDate != null">
+        #{receiveDate,jdbcType=TIMESTAMP},
       </if>
     </trim>
   </insert>
@@ -239,6 +247,9 @@
       <if test="record.applyCode != null">
         apply_code = #{record.applyCode,jdbcType=VARCHAR},
       </if>
+      <if test="record.receiveDate != null">
+        receive_date = #{record.receiveDate,jdbcType=TIMESTAMP},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -258,7 +269,8 @@
     approver_name = #{record.approverName,jdbcType=VARCHAR},
     apply_status = #{record.applyStatus,jdbcType=TINYINT},
     apply_remark = #{record.applyRemark,jdbcType=VARCHAR},
-    apply_code = #{record.applyCode,jdbcType=VARCHAR}
+    apply_code = #{record.applyCode,jdbcType=VARCHAR},
+    receive_date = #{record.receiveDate,jdbcType=TIMESTAMP}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -302,6 +314,9 @@
       <if test="applyCode != null">
         apply_code = #{applyCode,jdbcType=VARCHAR},
       </if>
+      <if test="receiveDate != null">
+        receive_date = #{receiveDate,jdbcType=TIMESTAMP},
+      </if>
     </set>
     where apply_id = #{applyId,jdbcType=VARCHAR}
   </update>
@@ -318,14 +333,15 @@
       approver_name = #{approverName,jdbcType=VARCHAR},
       apply_status = #{applyStatus,jdbcType=TINYINT},
       apply_remark = #{applyRemark,jdbcType=VARCHAR},
-      apply_code = #{applyCode,jdbcType=VARCHAR}
+      apply_code = #{applyCode,jdbcType=VARCHAR},
+      receive_date = #{receiveDate,jdbcType=TIMESTAMP}
     where apply_id = #{applyId,jdbcType=VARCHAR}
   </update>
-  
-  
-  
-  
-  
+
+
+
+
+
 
 
 

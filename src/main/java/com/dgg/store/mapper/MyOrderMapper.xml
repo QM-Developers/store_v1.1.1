@@ -20,8 +20,7 @@
     <result column="finish_date" jdbcType="TIMESTAMP" property="finishDate" />
     <result column="order_number" jdbcType="VARCHAR" property="orderNumber" />
     <result column="my_team_id" jdbcType="VARCHAR" property="myTeamId" />
-    <result column="merchandiser_id" jdbcType="VARCHAR" property="merchandiserId" />
-    <result column="merchandiser_name" jdbcType="VARCHAR" property="merchandiserName" />
+    <result column="refund_accept_date" jdbcType="TIMESTAMP" property="refundAcceptDate" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -84,7 +83,8 @@
   <sql id="Base_Column_List">
     order_id, order_status, order_status_before, user_id, user_name, seller_message,
     buyer_message, refund_message, freight, payment_type, payment_status, shopping_address,
-    logistics_status, create_date, refund_date, finish_date, order_number, my_team_id
+    logistics_status, create_date, refund_date, finish_date, order_number, my_team_id,
+    refund_accept_date
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select
@@ -159,6 +159,9 @@
       <if test="myTeamId != null">
         my_team_id,
       </if>
+      <if test="refundAcceptDate != null">
+        refund_accept_date,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="orderId != null">
@@ -214,6 +217,9 @@
       </if>
       <if test="myTeamId != null">
         #{myTeamId,jdbcType=VARCHAR},
+      </if>
+      <if test="refundAcceptDate != null">
+        #{refundAcceptDate,jdbcType=TIMESTAMP},
       </if>
     </trim>
   </insert>
@@ -280,6 +286,9 @@
       <if test="record.myTeamId != null">
         my_team_id = #{record.myTeamId,jdbcType=VARCHAR},
       </if>
+      <if test="record.refundAcceptDate != null">
+        refund_accept_date = #{record.refundAcceptDate,jdbcType=TIMESTAMP},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -304,7 +313,8 @@
     refund_date = #{record.refundDate,jdbcType=TIMESTAMP},
     finish_date = #{record.finishDate,jdbcType=TIMESTAMP},
     order_number = #{record.orderNumber,jdbcType=VARCHAR},
-    my_team_id = #{record.myTeamId,jdbcType=VARCHAR}
+    my_team_id = #{record.myTeamId,jdbcType=VARCHAR},
+    refund_accept_date = #{record.refundAcceptDate,jdbcType=TIMESTAMP}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -363,6 +373,9 @@
       <if test="myTeamId != null">
         my_team_id = #{myTeamId,jdbcType=VARCHAR},
       </if>
+      <if test="refundAcceptDate != null">
+        refund_accept_date = #{refundAcceptDate,jdbcType=TIMESTAMP},
+      </if>
     </set>
     where order_id = #{orderId,jdbcType=VARCHAR}
   </update>
@@ -384,7 +397,8 @@
       refund_date = #{refundDate,jdbcType=TIMESTAMP},
       finish_date = #{finishDate,jdbcType=TIMESTAMP},
       order_number = #{orderNumber,jdbcType=VARCHAR},
-      my_team_id = #{myTeamId,jdbcType=VARCHAR}
+      my_team_id = #{myTeamId,jdbcType=VARCHAR},
+      refund_accept_date = #{refundAcceptDate,jdbcType=TIMESTAMP}
     where order_id = #{orderId,jdbcType=VARCHAR}
   </update>
 
@@ -704,7 +718,8 @@
     buyer_message, refund_message, freight,
     payment_type, payment_status, shopping_address,
     create_date, refund_date, finish_date,
-    logistics_status,order_number,my_team_id)
+    logistics_status,order_number,my_team_id,
+    refund_accept_date)
     values (#{orderId,jdbcType=VARCHAR}, #{orderStatus,jdbcType=TINYINT}, #{orderStatusBefore,jdbcType=TINYINT},
     #{userId,jdbcType=VARCHAR},
     (SELECT user_name FROM (SELECT user_name FROM user WHERE user_id = #{userId}) t)
@@ -712,7 +727,8 @@
     #{buyerMessage,jdbcType=VARCHAR}, #{refundMessage,jdbcType=VARCHAR}, #{freight,jdbcType=REAL},
     #{paymentType,jdbcType=TINYINT}, #{paymentStatus,jdbcType=TINYINT}, #{shoppingAddress,jdbcType=VARCHAR},
     #{createDate,jdbcType=TIMESTAMP}, #{refundDate,jdbcType=TIMESTAMP}, #{finishDate,jdbcType=TIMESTAMP},
-    #{logisticsStatus,jdbcType=LONGVARCHAR},#{orderNumber},#{myTeamId})
+    #{logisticsStatus,jdbcType=LONGVARCHAR},#{orderNumber},#{myTeamId},
+    #{refundAcceptDate,jdbcType=TIMESTAMP})
   </insert>
 
 
@@ -744,6 +760,7 @@
     mo.buyer_message,mo.refund_message, mo.freight,
     mo.payment_type, mo.payment_status, mo.shopping_address,
     mo.create_date, mo.refund_date, mo.finish_date,
+    mo.order_number,
     u.user_id merchandiser_id,u.user_name merchandiser_name
     FROM my_order mo
     INNER JOIN customer c
@@ -762,6 +779,12 @@
     </if>
     <if test="order.paymentStatus != null">
       AND mo.payment_status = #{order.paymentStatus}
+    </if>
+    <if test="order.keyword != null">
+      AND mo.order_number = #{order.keyword}
+    </if>
+    <if test="order.departmentId != null and order.departmentId != ''">
+      AND u.team_department_id = #{order.departmentId}
     </if>
     ORDER BY mo.create_date DESC
   </select>
@@ -853,6 +876,7 @@
     mo.buyer_message,mo.refund_message, mo.freight,
     mo.payment_type, mo.payment_status, mo.shopping_address,
     mo.create_date, mo.refund_date, mo.finish_date,
+    mo.order_number,
     u.user_id merchandiser_id,u.user_name merchandiser_name
     FROM my_order mo
     INNER JOIN customer c
@@ -933,5 +957,17 @@
     INNER JOIN customer c
     ON c.promoter_id = u.user_id
     WHERE c.user_id = #{userId}
+  </select>
+
+  <select id="getMerchandiserId" resultType="java.lang.String">
+    SELECT c.merchandiser_id
+    FROM customer c
+    WHERE c.user_id = #{userId}
+  </select>
+
+  <select id="getUserName" resultType="java.lang.String">
+    SELECT u.user_name
+    FROM user u
+    WHERE u.user_id = #{userId}
   </select>
 </mapper>

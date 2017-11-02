@@ -6,11 +6,13 @@ import com.dgg.store.dao.store.ManageDao;
 import com.dgg.store.util.core.FilePathUtil;
 import com.dgg.store.util.core.constant.*;
 import com.dgg.store.util.core.generator.IDGenerator;
+import com.dgg.store.util.core.page.PagingUtil;
+import com.dgg.store.util.core.parameter.ParameterUtil;
 import com.dgg.store.util.core.shiro.CryptographyUtil;
 import com.dgg.store.util.core.string.StringUtil;
 import com.dgg.store.util.core.upload.UploadFileUtil;
-import com.dgg.store.util.pojo.Permission;
 import com.dgg.store.util.vo.core.LoginVO;
+import com.dgg.store.util.vo.core.PageVO;
 import com.dgg.store.util.vo.core.ResultVO;
 import com.dgg.store.util.vo.core.SessionVO;
 import com.dgg.store.util.vo.manage.*;
@@ -20,7 +22,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
-import java.security.Key;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,9 +37,7 @@ public class ManageServiceImpl implements ManageService
         loginVO.setUserPassword(CryptographyUtil.md5(loginVO.getUserPassword(), Constant.SALT));
         int result = dao.findLoginUser(loginVO);
 
-        ResultVO resultVO = new ResultVO(result, sessionVO.getToken(), result);
-
-        return resultVO;
+        return new ResultVO(result, sessionVO.getToken(), result);
     }
 
     @Override
@@ -52,12 +51,21 @@ public class ManageServiceImpl implements ManageService
     }
 
     @Override
-    public String findMemberList(SessionVO sessionVO, MemberVO memberVO)
+    public String findMemberList(SessionVO sessionVO, MemberVO memberVO, PageVO pageVO)
     {
-        memberVO.setMyTeamId(sessionVO.getMyTeamId());
-        List<MemberVO> result = dao.findMemberList(memberVO);
+        if (ParameterUtil.objectIsNull(pageVO))
+            return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_FAILED, sessionVO.getToken()));
 
-        return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), result));
+        memberVO.setPageNum(PagingUtil.getStart(pageVO.getPageNum(), pageVO.getPageSize()));
+        memberVO.setPageSize(pageVO.getPageSize());
+        memberVO.setMyTeamId(sessionVO.getMyTeamId());
+
+        int pageCount = PagingUtil.getCount(dao.countMember(memberVO), pageVO.getPageSize());
+        List<MemberVO> result = dao.findMemberList(memberVO);
+        JSONObject json = (JSONObject) JSONObject.toJSON(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), result));
+        json.put(KeyConstant.PAGE_COUNT, pageCount);
+
+        return json.toJSONString();
     }
 
     @Override
@@ -167,9 +175,7 @@ public class ManageServiceImpl implements ManageService
         else
             result = 1;
 
-        ResultVO resultVO = new ResultVO(result, sessionVO.getToken());
-
-        return resultVO;
+        return new ResultVO(result, sessionVO.getToken());
     }
 
     private void insertPositionPermission(String positionId, String jsonString, String departmentId)
@@ -202,7 +208,7 @@ public class ManageServiceImpl implements ManageService
 
         Integer memberCount = dao.findDepartmentMemberCount(department.getDepartmentId());
         if (memberCount > 0)
-            return new ResultVO(2, sessionVO.getToken());
+            return new ResultVO(Constant.REQUEST_FAILED, sessionVO.getToken());
 
         while (result > 0)
         {
@@ -228,9 +234,7 @@ public class ManageServiceImpl implements ManageService
         else
             result = 1;
 
-        ResultVO resultVO = new ResultVO(result, sessionVO.getToken());
-
-        return resultVO;
+        return new ResultVO(result, sessionVO.getToken());
     }
 
     @Override
@@ -246,9 +250,7 @@ public class ManageServiceImpl implements ManageService
     {
         List<MemberVO> result = dao.findPositionList(department.getDepartmentId());
 
-        ResultVO resultVO = new ResultVO(1, sessionVO.getToken(), result);
-
-        return resultVO;
+        return new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), result);
     }
 
     @Override
@@ -257,9 +259,7 @@ public class ManageServiceImpl implements ManageService
         String fileName = saveImage(file, realPath);
         int result = Constant.STR_ADD_FAILED.equals(fileName) ? 0 : 1;
 
-        ResultVO resultVO = new ResultVO(result, sessionVO.getToken(), fileName);
-
-        return resultVO;
+        return new ResultVO(result, sessionVO.getToken(), fileName);
     }
 
     @Override
@@ -268,9 +268,7 @@ public class ManageServiceImpl implements ManageService
         String fileName = saveImage(file, realPath);
         int result = Constant.STR_ADD_FAILED.equals(fileName) ? 0 : 1;
 
-        ResultVO resultVO = new ResultVO(result, sessionVO.getToken(), fileName);
-
-        return resultVO;
+        return new ResultVO(result, sessionVO.getToken(), fileName);
     }
 
     @Override
@@ -338,9 +336,7 @@ public class ManageServiceImpl implements ManageService
     {
         Integer result = dao.countPositionMember(position.getPositionId());
 
-        ResultVO resultVO = new ResultVO(1, sessionVO.getToken(), result);
-
-        return resultVO;
+        return new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), result);
     }
 
     @Override
@@ -383,9 +379,7 @@ public class ManageServiceImpl implements ManageService
         else
             result = 1;
 
-        ResultVO resultVO = new ResultVO(result, sessionVO.getToken(), result);
-
-        return resultVO;
+        return new ResultVO(result, sessionVO.getToken(), result);
     }
 
     private void insertMemberPermission(String memberId, String jsonString, String jsonDepartment)
@@ -443,9 +437,7 @@ public class ManageServiceImpl implements ManageService
         else
             result = 1;
 
-        ResultVO resultVO = new ResultVO(result, sessionVO.getToken(), result);
-
-        return resultVO;
+        return new ResultVO(result, sessionVO.getToken(), result);
     }
 
     @Override
@@ -454,6 +446,51 @@ public class ManageServiceImpl implements ManageService
         List<QMPermissionVO> result = dao.listQmPermission();
 
         return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), result));
+    }
+
+    @Override
+    public String updateMemberFreeze(SessionVO sessionVO, MemberVO member)
+    {
+        MemberVO condition = new MemberVO();
+        condition.setMemberId(member.getMemberId());
+        condition.setUserStatus(Constant.USER_STATE_3);
+
+        if (dao.updateMember(condition) < 1)
+            throw new RuntimeException(Constant.STR_ADD_FAILED);
+
+        return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken()));
+    }
+
+    @Override
+    public String updateMemberUnfreeze(SessionVO sessionVO, MemberVO member)
+    {
+        MemberVO condition = new MemberVO();
+        condition.setMemberId(member.getMemberId());
+        condition.setUserStatus(Constant.USER_STATE_2);
+
+        if (dao.updateMember(condition) < 1)
+            throw new RuntimeException(Constant.STR_ADD_FAILED);
+
+        return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken()));
+    }
+
+    @Override
+    public String listMemberByKeyword(SessionVO sessionVO, MemberVO memberVO, String keyword, PageVO pageVO)
+    {
+        if (ParameterUtil.objectIsNull(pageVO))
+            return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_FAILED, sessionVO.getToken()));
+
+        memberVO.setPageNum(PagingUtil.getStart(pageVO.getPageNum(), pageVO.getPageSize()));
+        memberVO.setPageSize(pageVO.getPageSize());
+        memberVO.setMyTeamId(sessionVO.getMyTeamId());
+        memberVO.setUserName(keyword);
+
+        int pageCount = PagingUtil.getCount(dao.countMember(memberVO), pageVO.getPageSize());
+        List<MemberVO> result = dao.findMemberList(memberVO);
+        JSONObject json = (JSONObject) JSONObject.toJSON(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), result));
+        json.put(KeyConstant.PAGE_COUNT, pageCount);
+
+        return json.toJSONString();
     }
 
     private String saveImage(MultipartFile file, String realPath)

@@ -52,4 +52,6 @@ public interface CustomerService
     String listPromoter(SessionVO sessionVO);
 
     String listRepertoryLevel(SessionVO sessionVO);
+
+    String listCustomerByKeyword(SessionVO sessionVO, String keyword, PageVO pageVO);
 }

@@ -29,9 +29,11 @@ public class RepertoryApply {
     private String applyRemark;
 
     private String applyCode;
+
+    private Date receiveDate;
     private String goodsInfo;
-    private List<RepertoryApplyList> applyList;
     private Date finishDate;
+    private List<RepertoryApplyList> applyList;
 
     public String getApplyId() {
         return applyId;
@@ -137,6 +139,14 @@ public class RepertoryApply {
         this.applyCode = applyCode == null ? null : applyCode.trim();
     }
 
+    public Date getReceiveDate() {
+        return receiveDate;
+    }
+
+    public void setReceiveDate(Date receiveDate) {
+        this.receiveDate = receiveDate;
+    }
+
     public String getGoodsInfo()
     {
         return goodsInfo;
@@ -147,16 +157,6 @@ public class RepertoryApply {
         this.goodsInfo = goodsInfo;
     }
 
-    public void setApplyList(List<RepertoryApplyList> applyList)
-    {
-        this.applyList = applyList;
-    }
-
-    public List<RepertoryApplyList> getApplyList()
-    {
-        return applyList;
-    }
-
     public Date getFinishDate()
     {
         return finishDate;
@@ -165,5 +165,15 @@ public class RepertoryApply {
     public void setFinishDate(Date finishDate)
     {
         this.finishDate = finishDate;
+    }
+
+    public void setApplyList(List<RepertoryApplyList> applyList)
+    {
+        this.applyList = applyList;
+    }
+
+    public List<RepertoryApplyList> getApplyList()
+    {
+        return applyList;
     }
 }

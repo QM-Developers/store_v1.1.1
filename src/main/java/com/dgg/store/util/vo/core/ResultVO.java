@@ -3,6 +3,7 @@ package com.dgg.store.util.vo.core;
 public class ResultVO
 {
     private Integer state;
+    private Integer pageCount;
     private String token;
     private Object result;
 
@@ -20,6 +21,14 @@ public class ResultVO
         this.state = state;
         this.token = token;
         this.result = result;
+    }
+
+    public ResultVO(Integer state, String token, Object result, Integer pageCount)
+    {
+        this.state = state;
+        this.token = token;
+        this.result = result;
+        this.pageCount = pageCount;
     }
 
     public ResultVO(Integer state, String token)
@@ -58,4 +67,13 @@ public class ResultVO
         this.result = result;
     }
 
+    public Integer getPageCount()
+    {
+        return pageCount;
+    }
+
+    public void setPageCount(Integer pageCount)
+    {
+        this.pageCount = pageCount;
+    }
 }

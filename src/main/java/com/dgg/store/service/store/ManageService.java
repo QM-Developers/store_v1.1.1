@@ -1,6 +1,7 @@
 package com.dgg.store.service.store;
 
 import com.dgg.store.util.vo.core.LoginVO;
+import com.dgg.store.util.vo.core.PageVO;
 import com.dgg.store.util.vo.core.ResultVO;
 import com.dgg.store.util.vo.core.SessionVO;
 import com.dgg.store.util.vo.manage.DepartmentVO;
@@ -14,7 +15,7 @@ public interface ManageService
 
     String findTeamAndMemberCount(SessionVO sessionVO);
 
-    String findMemberList(SessionVO sessionVO, MemberVO memberVO);
+    String findMemberList(SessionVO sessionVO, MemberVO memberVO, PageVO pageVO);
 
     String insertDepartment(SessionVO sessionVO, DepartmentVO department);
 
@@ -43,4 +44,10 @@ public interface ManageService
     ResultVO deleteMember(SessionVO sessionVO, MemberVO member);
 
     String listQmPermission(SessionVO sessionVO);
+
+    String updateMemberFreeze(SessionVO sessionVO, MemberVO member);
+
+    String updateMemberUnfreeze(SessionVO sessionVO, MemberVO member);
+
+    String listMemberByKeyword(SessionVO sessionVO, MemberVO memberVO, String keyword, PageVO pageVO);
 }

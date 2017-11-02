@@ -125,9 +125,9 @@ public class CommonApplyDaoImpl implements CommonApplyDao
     }
 
     @Override
-    public List<CommonApply> listCommonApplyByApprove(String userId, Byte status, int pageNum, int pageSize)
+    public List<CommonApply> listCommonApplyByApprove(String userId, List<Byte> statusList, int pageNum, int pageSize)
     {
-        return mapper.listCommonApplyByApprove(userId, status, pageNum, pageSize);
+        return mapper.listCommonApplyByApprove(userId, statusList, pageNum, pageSize);
     }
 
     @Override
@@ -146,6 +146,12 @@ public class CommonApplyDaoImpl implements CommonApplyDao
     public String getUserImage(String userId)
     {
         return mapper.getUserImage(userId);
+    }
+
+    @Override
+    public String getDepartmentName(String userId)
+    {
+        return mapper.getDepartmentName(userId);
     }
 
     @Override

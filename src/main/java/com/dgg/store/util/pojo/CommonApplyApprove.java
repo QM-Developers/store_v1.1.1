@@ -13,6 +13,12 @@ public class CommonApplyApprove {
 
     private String approveAdvice;
 
+    private String userImage;
+
+    private String departmentName;
+
+    private Byte approve;
+
     public String getApplyId() {
         return applyId;
     }
@@ -59,5 +65,35 @@ public class CommonApplyApprove {
 
     public void setApproveAdvice(String approveAdvice) {
         this.approveAdvice = approveAdvice == null ? null : approveAdvice.trim();
+    }
+
+    public String getUserImage()
+    {
+        return userImage;
+    }
+
+    public void setUserImage(String userImage)
+    {
+        this.userImage = userImage;
+    }
+
+    public String getDepartmentName()
+    {
+        return departmentName;
+    }
+
+    public void setDepartmentName(String departmentName)
+    {
+        this.departmentName = departmentName;
+    }
+
+    public Byte getApprove()
+    {
+        return approve;
+    }
+
+    public void setApprove(Byte approve)
+    {
+        this.approve = approve;
     }
 }

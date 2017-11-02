@@ -35,4 +35,6 @@ public interface CustomerVisitService
     String listVisitCurrentMember(SessionVO sessionVO, PageVO pageVO);
 
     String listVisitCurrentCustomer(SessionVO sessionVO, PageVO pageVO);
+
+    String listVisitCustomerByKeyword(SessionVO sessionVO, PageVO pageVO, String keyword);
 }

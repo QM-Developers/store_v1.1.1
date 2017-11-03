@@ -102,4 +102,37 @@ public class FollowerOrderController
 
         return service.listFollowerOrderSelective(sessionVO, myOrder, pageVO);
     }
+
+    /**
+     * 跟单搜索订单
+     *
+     * @param request 用户参数
+     * @param keyword 关键字
+     * @param pageVO  分页参数
+     * @return 订单列表
+     */
+    @RequestMapping(value = "/s/listSalesOrderByKeyword", method = RequestMethod.POST, produces = {"application/json;charset=UTF-8"})
+    @ResponseBody
+    public String listSalesOrderByKeyword(HttpServletRequest request, String keyword, PageVO pageVO)
+    {
+        SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
+
+        return service.listSalesOrderByKeyword(sessionVO, keyword, pageVO);
+    }
+
+    /**
+     * 获取订单详情
+     *
+     * @param request 用户参数
+     * @param myOrder 订单Id+客户Id
+     * @return 订单详情
+     */
+    @RequestMapping(value = "/s/getSalesOrder", method = RequestMethod.POST, produces = {"application/json;charset=UTF-8"})
+    @ResponseBody
+    public String getSalesOrder(HttpServletRequest request, MyOrder myOrder)
+    {
+        SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
+
+        return service.getSalesOrder(sessionVO, myOrder);
+    }
 }

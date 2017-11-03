@@ -43,6 +43,39 @@ public class SalesOrderController
     }
 
     /**
+     * 业务筛选订单
+     *
+     * @param request 用户参数
+     * @param keyword 关键字
+     * @param pageVO  分页参数
+     * @return 订单列表
+     */
+    @RequestMapping(value = "/s/sales/listOrderByKeyword", method = RequestMethod.POST, produces = {"application/json;charset=UTF-8"})
+    @ResponseBody
+    public String listOrderByKeyword(HttpServletRequest request, String keyword, PageVO pageVO)
+    {
+        SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
+
+        return service.listOrderByKeyword(sessionVO, keyword, pageVO);
+    }
+
+    /**
+     * 获取订单详情
+     *
+     * @param request 用户参数
+     * @param myOrder 订单Id+客户Id
+     * @return 订单详情
+     */
+    @RequestMapping(value = "/s/sales/getOrder", method = RequestMethod.POST, produces = {"application/json;charset=UTF-8"})
+    @ResponseBody
+    public String getOrder(HttpServletRequest request, MyOrder myOrder)
+    {
+        SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
+
+        return service.getOrder(sessionVO, myOrder);
+    }
+
+    /**
      * 获取业务员列表
      *
      * @param request 用户参数
@@ -50,6 +83,7 @@ public class SalesOrderController
      */
     @RequestMapping(value = "/s/sales/listSales", method = RequestMethod.POST, produces = {"application/json;charset=UTF-8"})
     @ResponseBody
+
     public String listSales(HttpServletRequest request)
     {
         SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);

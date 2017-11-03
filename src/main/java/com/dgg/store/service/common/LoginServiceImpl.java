@@ -99,4 +99,12 @@ public class LoginServiceImpl implements LoginService
         return json.toJSONString();
     }
 
+    @Override
+    public String logoutOnBrowser(SessionVO sessionVO, HttpSession session)
+    {
+        session.removeAttribute(Constant.LOGININFO);
+
+        return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_SUCCESS));
+    }
+
 }

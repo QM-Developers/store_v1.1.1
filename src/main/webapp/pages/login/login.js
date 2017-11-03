@@ -46,7 +46,11 @@ var login = {
 
     test: function ()
     {
-        window.location.href = path + "/pages/friend/qm-friend.jsp";
+        var url = path + "/logoutOnBrowser.action";
+        myjs.ajax_post(url,{},function (data)
+        {
+            console.log(data);
+        })
     }
 
 };

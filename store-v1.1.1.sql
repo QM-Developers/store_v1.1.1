@@ -394,7 +394,7 @@ create table my_order
    freight float not null default 0,   -- 运费
    payment_type tinyint not null default 0,   -- 支付方式
    payment_status tinyint not null default 0,   -- 付款状态
-   shopping_address varchar(150) not null default '',   -- 收货地址
+   shopping_address text,   -- 收货地址
    logistics_status text,   -- 物流状态
    create_date datetime not null default now(),   -- 创建时间
    refund_date datetime,   -- 退款时间

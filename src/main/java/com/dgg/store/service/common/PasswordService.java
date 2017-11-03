@@ -11,4 +11,6 @@ public interface PasswordService
     ResultVO passwordVerify(PasswordVO passwordVO);
 
     ResultVO updatePassword(SessionVO sessionVO, PasswordVO passwordVO);
+
+    String verifyPassword(SessionVO sessionVO, PasswordVO passwordVO);
 }

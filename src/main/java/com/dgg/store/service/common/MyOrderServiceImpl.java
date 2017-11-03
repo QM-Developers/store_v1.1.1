@@ -167,7 +167,7 @@ public class MyOrderServiceImpl implements MyOrderService
         int pageCount = PagingUtil.getCount((int) orderMapper.countByExample(example), pageVO.getPageSize());
 
         List<MyOrder> result = orderMapper.selectByExample(example);
-        result = getOrderList(result);
+        result = OrderUtil.getOrderList(result, orderMapper);
         result = OrderUtil.getOrderCount(result);
 
         JSONObject json = (JSONObject) JSONObject.toJSON(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), result));

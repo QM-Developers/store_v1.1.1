@@ -609,7 +609,7 @@
   <select id="countFollowerOrder" resultType="java.lang.Integer">
     SELECT COUNT(0)
     FROM my_order mo
-    WHERE 1 = 1
+    WHERE mo.my_team_id = #{order.myTeamId}
     <foreach collection="order.statusList" index="i" close=")" open=" AND mo.order_status IN (" separator="," item="status">
       #{status}
     </foreach>
@@ -621,6 +621,9 @@
     </if>
     <if test="order.paymentStatus != null">
       AND mo.payment_status = #{order.paymentStatus}
+    </if>
+    <if test="order.keyword != null">
+      AND mo.order_number = #{order.keyword}
     </if>
     AND mo.user_id IN
     (
@@ -633,7 +636,7 @@
   <select id="countSalesOrder" resultType="java.lang.Integer">
     SELECT COUNT(0)
     FROM my_order mo
-    WHERE 1 = 1
+    WHERE mo.my_team_id = #{order.myTeamId}
     <foreach collection="order.statusList" index="i" close=")" open=" AND mo.order_status IN (" separator="," item="status">
       #{status}
     </foreach>
@@ -645,6 +648,9 @@
     </if>
     <if test="order.paymentStatus != null">
       AND mo.payment_status = #{order.paymentStatus}
+    </if>
+    <if test="order.keyword != null">
+      AND mo.order_number = #{order.keyword}
     </if>
     AND mo.user_id IN
     (
@@ -660,9 +666,9 @@
     mo.buyer_message,mo.refund_message, mo.freight,
     mo.payment_type, mo.payment_status, mo.shopping_address,
     mo.create_date, mo.refund_date, mo.finish_date,
-    mo.order_number
+    mo.order_number,mo.refund_accept_date
     FROM my_order mo
-    WHERE 1 = 1
+    WHERE mo.my_team_id = #{order.myTeamId}
     <foreach collection="order.statusList" index="i" close=")" open=" AND mo.order_status IN (" separator="," item="status">
       #{status}
     </foreach>
@@ -674,6 +680,9 @@
     </if>
     <if test="order.paymentStatus != null">
       AND mo.payment_status = #{order.paymentStatus}
+    </if>
+    <if test="order.keyword != null">
+      AND mo.order_number = #{order.keyword}
     </if>
     AND mo.user_id IN
     (
@@ -689,9 +698,9 @@
     mo.buyer_message,mo.refund_message, mo.freight,
     mo.payment_type, mo.payment_status, mo.shopping_address,
     mo.create_date, mo.refund_date, mo.finish_date,
-    mo.order_number
+    mo.order_number,mo.refund_accept_date
     FROM my_order mo
-    WHERE 1 = 1
+    WHERE mo.my_team_id = #{order.myTeamId}
     <foreach collection="order.statusList" index="i" close=")" open=" AND mo.order_status IN (" separator="," item="status">
       #{status}
     </foreach>
@@ -703,6 +712,9 @@
     </if>
     <if test="order.paymentStatus != null">
       AND mo.payment_status = #{order.paymentStatus}
+    </if>
+    <if test="order.keyword != null">
+      AND mo.order_number = #{order.keyword}
     </if>
     AND mo.user_id IN
     (
@@ -760,7 +772,7 @@
     mo.buyer_message,mo.refund_message, mo.freight,
     mo.payment_type, mo.payment_status, mo.shopping_address,
     mo.create_date, mo.refund_date, mo.finish_date,
-    mo.order_number,
+    mo.order_number,mo.refund_accept_date
     u.user_id merchandiser_id,u.user_name merchandiser_name
     FROM my_order mo
     INNER JOIN customer c
@@ -961,6 +973,12 @@
 
   <select id="getMerchandiserId" resultType="java.lang.String">
     SELECT c.merchandiser_id
+    FROM customer c
+    WHERE c.user_id = #{userId}
+  </select>
+
+  <select id="getPromoterId" resultType="java.lang.String">
+    SELECT c.promoter_id
     FROM customer c
     WHERE c.user_id = #{userId}
   </select>

@@ -116,4 +116,6 @@ public interface MyOrderMapper
     String getMerchandiserId(String userId);
 
     String getUserName(String userId);
+
+    String getPromoterId(String userId);
 }

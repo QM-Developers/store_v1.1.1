@@ -2,6 +2,7 @@ package com.dgg.store.controller.common;
 
 import com.dgg.store.service.common.LoginService;
 import com.dgg.store.util.vo.core.LoginVO;
+import com.dgg.store.util.vo.core.SessionVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -44,6 +45,20 @@ public class LoginController
     public String storeLogin(HttpSession session, LoginVO loginVO)
     {
         return service.findUserByLogin(session, loginVO);
+    }
+
+    /**
+     * 用户登出
+     *
+     * @param session 保存登陆状态session
+     * @param sessionVO 账号信息
+     * @return 登出结果
+     */
+    @RequestMapping(value = "/logoutOnBrowser", method = RequestMethod.POST, produces = {"application/json;charset=UTF-8"})
+    @ResponseBody
+    public String logoutOnBrowser(SessionVO sessionVO, HttpSession session)
+    {
+        return service.logoutOnBrowser(sessionVO, session);
     }
 
 }

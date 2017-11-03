@@ -1,5 +1,6 @@
 package com.dgg.store.service.common;
 
+import com.alibaba.fastjson.JSONObject;
 import com.dgg.store.dao.common.PasswordDao;
 import com.dgg.store.netease.CloudMessageUtil;
 import com.dgg.store.util.core.constant.Constant;
@@ -17,8 +18,13 @@ import java.io.IOException;
 @Service
 public class PasswordServiceImpl implements PasswordService
 {
+    private final PasswordDao dao;
+
     @Autowired
-    private PasswordDao dao;
+    public PasswordServiceImpl(PasswordDao dao)
+    {
+        this.dao = dao;
+    }
 
     @Override
     public ResultVO getPasswordVerify(PasswordVO passwordVO)
@@ -27,7 +33,6 @@ public class PasswordServiceImpl implements PasswordService
         condition.setUserPhone(passwordVO.getUserPhone());
         condition.setMyTeamId(passwordVO.getMyTeamId());
         LoginRepVO result = dao.findLoginRepVO(condition);
-        boolean flag = false;
 
         if (result == null)
             return new ResultVO(PasswordConstant.USER_NOT_FIND);
@@ -36,13 +41,13 @@ public class PasswordServiceImpl implements PasswordService
 
         try
         {
-            flag = CloudMessageUtil.sendCode(result.getUserPhone());
+            CloudMessageUtil.sendCode(result.getUserPhone());
         } catch (IOException e)
         {
             e.printStackTrace();
         }
 
-        return new ResultVO(flag == false ? Constant.REQUEST_FAILED : Constant.REQUEST_SUCCESS, null, result);
+        return new ResultVO(Constant.REQUEST_SUCCESS, null, result);
     }
 
     @Override
@@ -67,7 +72,7 @@ public class PasswordServiceImpl implements PasswordService
         if (result == null)
             return new ResultVO(PasswordConstant.USER_NOT_FIND);
 
-        return new ResultVO(flag == false ? Constant.REQUEST_FAILED : Constant.REQUEST_SUCCESS, null, result);
+        return new ResultVO(Constant.REQUEST_SUCCESS, null, result);
     }
 
     @Override
@@ -75,14 +80,23 @@ public class PasswordServiceImpl implements PasswordService
     {
         PasswordVO condition = new PasswordVO();
         condition.setMyTeamId(sessionVO.getMyTeamId());
-        condition.setUserId(passwordVO.getUserId());
+        condition.setUserId(sessionVO.getUserId());
         condition.setUserPassword(CryptographyUtil.md5(passwordVO.getUserPassword(), Constant.SALT));
 
         int result = dao.updatePassword(condition);
 
-        ResultVO resultVO = new ResultVO(result != 1 ? Constant.REQUEST_FAILED : Constant.REQUEST_SUCCESS);
+        return new ResultVO(result != 1 ? Constant.REQUEST_FAILED : Constant.REQUEST_SUCCESS);
+    }
 
-        return resultVO;
+    @Override
+    public String verifyPassword(SessionVO sessionVO, PasswordVO passwordVO)
+    {
+        PasswordVO condition = new PasswordVO();
+        condition.setUserId(sessionVO.getUserId());
+        condition.setUserPassword(CryptographyUtil.md5(passwordVO.getUserPassword(), Constant.SALT));
+        LoginRepVO result = dao.findLoginRepVO(condition);
+
+        return JSONObject.toJSONString(new ResultVO(result == null ? Constant.REQUEST_FAILED : Constant.REQUEST_SUCCESS, sessionVO.getToken()));
     }
 
 

@@ -15,4 +15,8 @@ public interface FollowerOrderService
     String updateDelivered(SessionVO sessionVO, MyOrder myOrder);
 
     String listFollowerOrderSelective(SessionVO sessionVO, MyOrder myOrder, PageVO pageVO);
+
+    String listSalesOrderByKeyword(SessionVO sessionVO, String keyword, PageVO pageVO);
+
+    String getSalesOrder(SessionVO sessionVO, MyOrder myOrder);
 }

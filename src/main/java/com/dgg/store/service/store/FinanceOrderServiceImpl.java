@@ -1,6 +1,7 @@
 package com.dgg.store.service.store;
 
 import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.dgg.store.dao.common.MyOrderDao;
 import com.dgg.store.mapper.MyOrderMapper;
 import com.dgg.store.mapper.PushMessageMapper;
@@ -248,6 +249,6 @@ public class FinanceOrderServiceImpl implements FinanceOrderService
         myOrder.setMerchandiserId(orderMapper.getMerchandiserId(myOrder.getUserId()));
         myOrder.setMerchandiserName(orderMapper.getUserName(myOrder.getMerchandiserId()));
 
-        return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), myOrder));
+        return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), myOrder), SerializerFeature.WriteNullStringAsEmpty);
     }
 }

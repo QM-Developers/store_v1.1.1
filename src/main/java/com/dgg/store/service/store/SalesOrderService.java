@@ -11,4 +11,8 @@ public interface SalesOrderService
     String listSales(SessionVO sessionVO);
 
     String listOrderSelectiveByManager(SessionVO sessionVO, MyOrder myOrder, PageVO pageVO);
+
+    String listOrderByKeyword(SessionVO sessionVO, String keyword, PageVO pageVO);
+
+    String getOrder(SessionVO sessionVO, MyOrder myOrder);
 }

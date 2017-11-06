@@ -453,6 +453,7 @@ public class MyOrderServiceImpl implements MyOrderService
         int pageSize = pageVO.getPageSize();
 
         List<FreightTemp> result = orderMapper.listFreightTemp(sessionVO.getMyTeamId(), pageNum, pageSize);
+        int pageCount = PagingUtil.getCount(orderMapper.countFreightTemp(sessionVO.getMyTeamId()), pageSize);
 
         String customerType = orderMapper.getCustomerType(sessionVO.getUserId(), sessionVO.getMyTeamId());
         int repertoryType = orderMapper.getCustomerRepertory(customerType, sessionVO.getMyTeamId());
@@ -468,7 +469,7 @@ public class MyOrderServiceImpl implements MyOrderService
         for (FreightTemp temp : result)
             temp.setLatLng(latLng);
 
-        return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), result));
+        return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), result, pageCount));
     }
 
     @Override

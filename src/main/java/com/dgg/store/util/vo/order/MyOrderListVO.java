@@ -22,6 +22,10 @@ public class MyOrderListVO
 
     private Integer repertory;
 
+    private String goodsType;
+
+    private String goodsCode;
+
     public String getOrderId()
     {
         return orderId;
@@ -120,5 +124,25 @@ public class MyOrderListVO
     public void setRepertory(Integer repertory)
     {
         this.repertory = repertory;
+    }
+
+    public String getGoodsType()
+    {
+        return goodsType;
+    }
+
+    public void setGoodsType(String goodsType)
+    {
+        this.goodsType = goodsType;
+    }
+
+    public String getGoodsCode()
+    {
+        return goodsCode;
+    }
+
+    public void setGoodsCode(String goodsCode)
+    {
+        this.goodsCode = goodsCode;
     }
 }

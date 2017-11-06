@@ -220,7 +220,7 @@ public class FollowerOrderServiceImpl implements FollowerOrderService
         int pageSize = pageVO.getPageSize();
 
         myOrder.setStatusList(OrderUtil.getOrderStatus(myOrder.getOrderStatus()));
-        myOrder.setMemberId(sessionVO.getMyTeamId());
+        myOrder.setMyTeamId(sessionVO.getMyTeamId());
 
         int pageCount = PagingUtil.getCount(orderMapper.countFollowerOrder(myOrder, sessionVO.getUserId()), pageVO.getPageSize());
         List<MyOrder> result = orderMapper.listFollowerOrder(myOrder, sessionVO.getUserId(), pageNum, pageSize);
@@ -248,7 +248,7 @@ public class FollowerOrderServiceImpl implements FollowerOrderService
         int pageSize = pageVO.getPageSize();
 
         MyOrder myOrder = new MyOrder();
-        myOrder.setMemberId(sessionVO.getMyTeamId());
+        myOrder.setMyTeamId(sessionVO.getMyTeamId());
         myOrder.setKeyword(keyword);
         myOrder.setStatusList(OrderUtil.getOrderStatus(myOrder.getOrderStatus()));
 

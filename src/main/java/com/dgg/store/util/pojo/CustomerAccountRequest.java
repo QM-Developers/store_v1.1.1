@@ -34,6 +34,8 @@ public class CustomerAccountRequest {
 
     private String userImage;
 
+    private String myTeamId;
+
     private List<Byte> statusList;
 
     public String getRequestId() {
@@ -172,5 +174,15 @@ public class CustomerAccountRequest {
     public void setCheckerDepartment(String checkerDepartment)
     {
         this.checkerDepartment = checkerDepartment;
+    }
+
+    public String getMyTeamId()
+    {
+        return myTeamId;
+    }
+
+    public void setMyTeamId(String myTeamId)
+    {
+        this.myTeamId = myTeamId;
     }
 }

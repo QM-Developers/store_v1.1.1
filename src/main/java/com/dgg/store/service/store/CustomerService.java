@@ -27,7 +27,7 @@ public interface CustomerService
 
     String insertRepertoryLevel(SessionVO sessionVO, CustomerRepertoryVO repertory);
 
-    String listAccountChecker(SessionVO sessionVO);
+    String listAccountChecker(SessionVO sessionVO, String departmentId);
 
     String insertCustomerAccount(SessionVO sessionVO, CustomerAccountRequest accountRequest);
 

@@ -18,7 +18,11 @@ public class OrderUtil
         {
             orderList = dao.listOrderList(data.get(i).getOrderId());
             for (MyOrderListVO orderListVO : orderList)
+            {
                 orderListVO.setGoodsImage(dao.getImage(orderListVO.getGoodsImage().split(SymbolConstant.REG_VERTICAL)[0]));
+                orderListVO.setGoodsCode(dao.getGoodsCode(orderListVO.getStandardId()));
+                orderListVO.setGoodsType(dao.getGoodsType(orderListVO.getStandardId()));
+            }
             data.get(i).setOrderList(orderList);
         }
 

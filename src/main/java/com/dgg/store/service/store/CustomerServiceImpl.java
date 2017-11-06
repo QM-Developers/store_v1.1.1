@@ -149,7 +149,7 @@ public class CustomerServiceImpl implements CustomerService
         else
             result = 1;
 
-        JSONObject json = (JSONObject) JSONObject.toJSON(new ResultVO(result == 1 ? 1 : 0, sessionVO.getToken()));
+        JSONObject json = (JSONObject) JSONObject.toJSON(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken()));
 
         return json.toJSONString();
     }
@@ -267,9 +267,9 @@ public class CustomerServiceImpl implements CustomerService
     }
 
     @Override
-    public String listAccountChecker(SessionVO sessionVO)
+    public String listAccountChecker(SessionVO sessionVO, String departmentId)
     {
-        List<CustomerVO> result = dao.listAccountChecker(sessionVO.getMyTeamId(), QMPermissionConstant.ACCOUNT_CHECK);
+        List<CustomerVO> result = dao.listAccountChecker(sessionVO.getMyTeamId(), departmentId, QMPermissionConstant.ACCOUNT_CHECK);
 
         return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), result));
     }
@@ -277,7 +277,7 @@ public class CustomerServiceImpl implements CustomerService
     @Override
     public String insertCustomerAccount(SessionVO sessionVO, CustomerAccountRequest accountRequest)
     {
-        if (dao.countCustomerAccount(accountRequest.getCustomerId(), sessionVO.getMyTeamId()) > 0)
+        if (dao.countHadCustomerAccount(accountRequest.getCustomerId(), sessionVO.getMyTeamId()) > 0)
             return JSONObject.toJSONString(new ResultVO(3, sessionVO.getToken()));
 
         accountRequest.setProposerId(sessionVO.getUserId());
@@ -382,9 +382,11 @@ public class CustomerServiceImpl implements CustomerService
         accountRequest.setStatusList(getStatus(accountRequest.getRequestStatus()));
         List<CustomerAccountRequest> result = dao.listCustomerAccount(accountRequest, pageNum, pageSize);
 
+        int pageCount = PagingUtil.getCount(dao.countCustomerAccount(accountRequest), pageSize);
+
         result = getResultParams(result);
 
-        return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), result));
+        return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), result, pageCount));
     }
 
     private List<CustomerAccountRequest> getResultParams(List<CustomerAccountRequest> result)
@@ -430,8 +432,9 @@ public class CustomerServiceImpl implements CustomerService
         List<CustomerAccountRequest> result = dao.listCustomerAccount(accountRequest, pageNum, pageSize);
 
         result = getResultParams(result);
+        int pageCount = PagingUtil.getCount(dao.countCustomerAccount(accountRequest), pageSize);
 
-        return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), result));
+        return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), result, pageCount));
     }
 
     @Override

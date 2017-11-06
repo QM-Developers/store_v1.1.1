@@ -40,7 +40,7 @@ public interface CustomerDao
 
     List<CustomerVO> listMerchandiserSecond(CustomerVO customerVO);
 
-    List<CustomerVO> listAccountChecker(String myTeamId, String accountCheck);
+    List<CustomerVO> listAccountChecker(String myTeamId, String departmentId, String accountCheck);
 
     int insertCustomerAccount(CustomerAccountRequest accountRequest);
 
@@ -66,7 +66,7 @@ public interface CustomerDao
 
     int deleteUser(String customerId);
 
-    int countCustomerAccount(String customerId, String myTeamId);
+    int countHadCustomerAccount(String customerId, String myTeamId);
 
     int getCustomerExist(String userPhone, String myTeamId, String userId);
 
@@ -77,4 +77,6 @@ public interface CustomerDao
     String getUserImage(String userId);
 
     String getDepartmentName(String userId);
+
+    int countCustomerAccount(CustomerAccountRequest accountRequest);
 }

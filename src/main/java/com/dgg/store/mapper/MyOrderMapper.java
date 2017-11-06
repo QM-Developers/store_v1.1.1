@@ -118,4 +118,10 @@ public interface MyOrderMapper
     String getUserName(String userId);
 
     String getPromoterId(String userId);
+
+    int countFreightTemp(String myTeamId);
+
+    String getGoodsType(String standardId);
+
+    String getGoodsCode(String standardId);
 }

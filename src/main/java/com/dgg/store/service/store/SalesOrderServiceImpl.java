@@ -100,6 +100,7 @@ public class SalesOrderServiceImpl implements SalesOrderService
         int pageSize = pageVO.getPageSize();
 
         MyOrder myOrder = new MyOrder();
+        myOrder.setMyTeamId(sessionVO.getMyTeamId());
         myOrder.setKeyword(keyword);
         myOrder.setStatusList(OrderUtil.getOrderStatus(myOrder.getOrderStatus()));
 

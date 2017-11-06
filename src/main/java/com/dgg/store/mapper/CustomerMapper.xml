@@ -344,6 +344,9 @@
         LEFT JOIN qm_branch qb
         ON qb.department_id = t1.team_department_id
         WHERE t1.my_team_id = #{myTeamId}
+        <if test="departmentId != null">
+            AND t1.team_department_id = #{departmentId}
+        </if>
         AND t1.permission_id = #{permissionId}
     </select>
 
@@ -431,7 +434,7 @@
         WHERE user_id = (SELECT user_id FROM customer WHERE customer_id = #{customerId})
     </delete>
 
-    <select id="countCustomerAccount" resultType="java.lang.Integer">
+    <select id="countHadCustomerAccount" resultType="java.lang.Integer">
         SELECT COUNT(0)
         FROM user
         WHERE user_phone =
@@ -497,5 +500,26 @@
         INNER JOIN user u
         ON u.team_department_id = td.team_department_id
         WHERE u.user_id = #{userId}
+    </select>
+
+    <select id="countCustomerAccount" parameterType="com.dgg.store.util.pojo.CustomerAccountRequest" resultType="java.lang.Integer">
+        SELECT COUNT(0)
+        FROM customer_account_request
+        WHERE 1 = 1
+        <if test="customerId != null">
+            AND customer_id = #{customerId}
+        </if>
+        <if test="checkerId != null">
+            AND checker_id = #{checkerId}
+        </if>
+        <if test="merchandiserId != null">
+            AND merchandiser_id = #{merchandiserId}
+        </if>
+        <if test="proposerId != null">
+            AND proposer_id = #{proposerId}
+        </if>
+        <foreach collection="statusList" index="i" close=")" open=" AND request_status IN (" separator="," item="status">
+            #{status}
+        </foreach>
     </select>
 </mapper>

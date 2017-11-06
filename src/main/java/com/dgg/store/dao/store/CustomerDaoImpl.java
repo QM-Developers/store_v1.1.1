@@ -112,9 +112,9 @@ public class CustomerDaoImpl implements CustomerDao
     }
 
     @Override
-    public List<CustomerVO> listAccountChecker(String myTeamId, String accountCheck)
+    public List<CustomerVO> listAccountChecker(String myTeamId, String departmentId, String accountCheck)
     {
-        return mapper.listAccountChecker(myTeamId, accountCheck);
+        return mapper.listAccountChecker(myTeamId, departmentId, accountCheck);
     }
 
     @Override
@@ -190,9 +190,9 @@ public class CustomerDaoImpl implements CustomerDao
     }
 
     @Override
-    public int countCustomerAccount(String customerId, String myTeamId)
+    public int countHadCustomerAccount(String customerId, String myTeamId)
     {
-        return mapper.countCustomerAccount(customerId, myTeamId);
+        return mapper.countHadCustomerAccount(customerId, myTeamId);
     }
 
     @Override
@@ -223,6 +223,12 @@ public class CustomerDaoImpl implements CustomerDao
     public String getDepartmentName(String userId)
     {
         return mapper.getDepartmentName(userId);
+    }
+
+    @Override
+    public int countCustomerAccount(CustomerAccountRequest accountRequest)
+    {
+        return mapper.countCustomerAccount(accountRequest);
     }
 
 }

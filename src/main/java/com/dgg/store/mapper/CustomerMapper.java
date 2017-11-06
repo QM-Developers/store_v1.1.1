@@ -41,7 +41,7 @@ public interface CustomerMapper
 
     List<CustomerVO> listMerchandiserSecond(CustomerVO customerVO);
 
-    List<CustomerVO> listAccountChecker(@Param("myTeamId") String myTeamId, @Param("permissionId") String accountCheck);
+    List<CustomerVO> listAccountChecker(@Param("myTeamId") String myTeamId,@Param("departmentId") String departmentId, @Param("permissionId") String accountCheck);
 
     int insertCustomerAccount(CustomerAccountRequest accountRequest);
 
@@ -67,7 +67,7 @@ public interface CustomerMapper
 
     int deleteUser(@Param("customerId") String customerId);
 
-    int countCustomerAccount(@Param("customerId") String customerId, @Param("myTeamId") String myTeamId);
+    int countHadCustomerAccount(@Param("customerId") String customerId, @Param("myTeamId") String myTeamId);
 
     int getCustomerExist(@Param("userPhone") String userPhone, @Param("myTeamId") String myTeamId, @Param("userId") String userId);
 
@@ -78,4 +78,6 @@ public interface CustomerMapper
     String getUserImage(String userId);
 
     String getDepartmentName(String userId);
+
+    int countCustomerAccount(CustomerAccountRequest accountRequest);
 }

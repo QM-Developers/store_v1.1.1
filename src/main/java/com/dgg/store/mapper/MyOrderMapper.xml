@@ -690,6 +690,8 @@
     FROM customer c
     WHERE c.merchandiser_id = #{userId}
     )
+    ORDER BY mo.create_date DESC
+    LIMIT #{pageNum},#{pageSize}
   </select>
 
   <select id="listSalesOrder" resultMap="BaseResultMap">
@@ -722,6 +724,8 @@
     FROM customer c
     WHERE c.promoter_id = #{userId}
     )
+    ORDER BY mo.create_date DESC
+    LIMIT #{pageNum},#{pageSize}
   </select>
 
   <insert id="insert" parameterType="com.dgg.store.util.pojo.MyOrder">
@@ -772,7 +776,7 @@
     mo.buyer_message,mo.refund_message, mo.freight,
     mo.payment_type, mo.payment_status, mo.shopping_address,
     mo.create_date, mo.refund_date, mo.finish_date,
-    mo.order_number,mo.refund_accept_date
+    mo.order_number,mo.refund_accept_date,
     u.user_id merchandiser_id,u.user_name merchandiser_name
     FROM my_order mo
     INNER JOIN customer c
@@ -799,6 +803,7 @@
       AND u.team_department_id = #{order.departmentId}
     </if>
     ORDER BY mo.create_date DESC
+    LIMIT #{pageNum},#{pageSize}
   </select>
 
   <select id="getFinanceDeviceToken" resultType="java.lang.String">
@@ -911,6 +916,8 @@
     <if test="order.memberId != null">
       AND c.promoter_id = #{order.memberId}
     </if>
+    ORDER BY mo.create_date DESC
+    LIMIT #{pageNum},#{pageSize}
   </select>
 
   <select id="countGoodsStandard" resultType="java.lang.Integer">
@@ -987,5 +994,29 @@
     SELECT u.user_name
     FROM user u
     WHERE u.user_id = #{userId}
+  </select>
+
+  <select id="countFreightTemp" resultType="java.lang.Integer">
+    SELECT COUNT(0)
+    FROM freight_temp
+    WHERE my_team_id = #{myTeamId}
+  </select>
+
+  <select id="getGoodsType" resultType="java.lang.String">
+    SELECT gt.goods_type_name
+    FROM goods_typeinfo gt
+    INNER JOIN goodsinfo gi
+    ON gi.goods_type_id = gt.goods_type_id
+    INNER JOIN goods_standard gs
+    ON gi.goods_id = gs.goods_id
+    WHERE gs.standard_id = #{standardId}
+  </select>
+
+  <select id="getGoodsCode" resultType="java.lang.String">
+    SELECT gi.goods_code
+    FROM goodsinfo gi
+    INNER JOIN goods_standard gs
+    ON gs.goods_id = gi.goods_id
+    WHERE gs.standard_id = #{standardId}
   </select>
 </mapper>

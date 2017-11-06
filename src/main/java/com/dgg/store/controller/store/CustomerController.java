@@ -126,16 +126,17 @@ public class CustomerController
     /**
      * 获取审批人列表
      *
-     * @param request 用户参数
+     * @param request      用户参数
+     * @param departmentId 部门Id
      * @return 审批人列表
      */
     @RequestMapping(value = "/s/listAccountChecker", method = POST, produces = {"application/json;charset=UTF-8"})
     @ResponseBody
-    public String listAccountChecker(HttpServletRequest request)
+    public String listAccountChecker(HttpServletRequest request, String departmentId)
     {
         SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
 
-        return service.listAccountChecker(sessionVO);
+        return service.listAccountChecker(sessionVO, departmentId);
     }
 
     /**

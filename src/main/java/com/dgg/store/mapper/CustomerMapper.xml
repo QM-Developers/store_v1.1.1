@@ -387,7 +387,7 @@
         SELECT request_id, customer_id, customer_name,
         merchandiser_id, merchandiser_name, checker_id,
         checker_name, request_status, create_date,
-        proposer_id,proposer_name
+        proposer_id,proposer_name,request_reason
         FROM customer_account_request
         WHERE request_id = #{requestId}
     </select>

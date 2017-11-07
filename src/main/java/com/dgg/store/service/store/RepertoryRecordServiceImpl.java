@@ -273,6 +273,7 @@ public class RepertoryRecordServiceImpl implements RepertoryRecordService
 
 //        repertoryRecord.setBranchId(StringUtil.isEmpty(repertoryRecord.getBranchId()) ? null : repertoryRecord.getRecordId());
 
+        example.setOrderByClause("create_date DESC");
         example.setStart(PagingUtil.getStart(pageVO.getPageNum(), pageVO.getPageSize()));
         example.setEnd(pageVO.getPageSize());
 
@@ -399,6 +400,7 @@ public class RepertoryRecordServiceImpl implements RepertoryRecordService
         RepertoryRecordExample example = new RepertoryRecordExample();
         RepertoryRecordExample.Criteria criteria = example.createCriteria();
 
+        example.setOrderByClause("create_date DESC");
         example.setStart(PagingUtil.getStart(pageVO.getPageNum(), pageVO.getPageSize()));
         example.setEnd(pageVO.getPageSize());
         criteria.andBranchIdEqualTo(branchId);

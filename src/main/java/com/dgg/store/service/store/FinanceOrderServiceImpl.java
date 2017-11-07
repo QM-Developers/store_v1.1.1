@@ -47,11 +47,22 @@ public class FinanceOrderServiceImpl implements FinanceOrderService
         List<MyOrder> result = orderMapper.listFinanceOrder(myOrder, sessionVO.getMyTeamId(), pageNum, pageSize);
         result = OrderUtil.getOrderList(result, orderMapper);
         result = OrderUtil.getOrderCount(result);
+        result = getMerchandiser(result);
 
         JSONObject json = (JSONObject) JSONObject.toJSON(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), result));
         json.put(KeyConstant.PAGE_COUNT, pageCount);
 
         return json.toJSONString();
+    }
+
+    private List<MyOrder> getMerchandiser(List<MyOrder> result)
+    {
+        for (MyOrder mo : result)
+        {
+            mo.setMerchandiserId(orderMapper.getMerchandiserId(mo.getUserId()));
+            mo.setMerchandiserName(orderMapper.getUserName(mo.getMerchandiserId()));
+        }
+        return result;
     }
 
     @Override
@@ -223,6 +234,7 @@ public class FinanceOrderServiceImpl implements FinanceOrderService
         List<MyOrder> result = orderMapper.listFinanceOrder(myOrder, sessionVO.getMyTeamId(), pageNum, pageSize);
         result = OrderUtil.getOrderList(result, orderMapper);
         result = OrderUtil.getOrderCount(result);
+        result = getMerchandiser(result);
 
         JSONObject json = (JSONObject) JSONObject.toJSON(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), result));
         json.put(KeyConstant.PAGE_COUNT, pageCount);

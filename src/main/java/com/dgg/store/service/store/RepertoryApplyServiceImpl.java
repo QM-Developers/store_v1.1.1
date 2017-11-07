@@ -83,6 +83,7 @@ public class RepertoryApplyServiceImpl implements RepertoryApplyService
 
         criteria.andProposerIdEqualTo(sessionVO.getUserId());
 
+        example.setOrderByClause("create_date DESC");
         example.setPageNum(PagingUtil.getStart(pageVO.getPageNum(), pageVO.getPageSize()));
         example.setPageSize(pageVO.getPageSize());
         List<RepertoryApply> result = mapper.selectByExample(example);
@@ -112,6 +113,7 @@ public class RepertoryApplyServiceImpl implements RepertoryApplyService
         if (apply.getApplyStatus() != null)
             criteria.andApplyStatusEqualTo(apply.getApplyStatus());
 
+        example.setOrderByClause("create_date DESC");
         example.setPageNum(PagingUtil.getStart(pageVO.getPageNum(), pageVO.getPageSize()));
         example.setPageSize(pageVO.getPageSize());
         List<RepertoryApply> result = mapper.selectByExample(example);
@@ -257,6 +259,7 @@ public class RepertoryApplyServiceImpl implements RepertoryApplyService
         if (apply.getApplyStatus() != null)
             criteria.andApplyStatusEqualTo(apply.getApplyStatus());
 
+        example.setOrderByClause("create_date DESC");
         example.setPageNum(PagingUtil.getStart(pageVO.getPageNum(), pageVO.getPageSize()));
         example.setPageSize(pageVO.getPageSize());
         List<RepertoryApply> result = mapper.selectByExample(example);
@@ -282,7 +285,6 @@ public class RepertoryApplyServiceImpl implements RepertoryApplyService
         RepertoryApplyExample example = new RepertoryApplyExample();
         RepertoryApplyExample.Criteria criteria = example.createCriteria();
 
-
         criteria.andBranchIdEqualTo(branchId);
         if (apply.getCreateDate() != null && apply.getFinishDate() != null)
             criteria.andCreateDateBetween(apply.getCreateDate(), apply.getFinishDate());
@@ -291,6 +293,7 @@ public class RepertoryApplyServiceImpl implements RepertoryApplyService
         if (apply.getApplyStatus() != null)
             criteria.andApplyStatusEqualTo(apply.getApplyStatus());
 
+        example.setOrderByClause("create_date DESC");
         example.setPageNum(PagingUtil.getStart(pageVO.getPageNum(), pageVO.getPageSize()));
         example.setPageSize(pageVO.getPageSize());
         List<RepertoryApply> result = mapper.selectByExample(example);

@@ -38,6 +38,8 @@ public class SalesOrderServiceImpl implements SalesOrderService
         int pageSize = pageVO.getPageSize();
 
         myOrder.setStatusList(OrderUtil.getOrderStatus(myOrder.getOrderStatus()));
+        myOrder.setMyTeamId(sessionVO.getMyTeamId());
+        myOrder.setUserId(sessionVO.getUserId());
 
         int pageCount = PagingUtil.getCount(orderMapper.countSalesOrder(myOrder, sessionVO.getUserId()), pageVO.getPageSize());
         List<MyOrder> result = orderMapper.listSalesOrder(myOrder, sessionVO.getUserId(), pageNum, pageSize);
@@ -73,6 +75,8 @@ public class SalesOrderServiceImpl implements SalesOrderService
         int pageSize = pageVO.getPageSize();
 
         myOrder.setStatusList(OrderUtil.getOrderStatus(myOrder.getOrderStatus()));
+        myOrder.setMyTeamId(sessionVO.getMyTeamId());
+        myOrder.setUserId(sessionVO.getUserId());
 
         int pageCount = PagingUtil.getCount(orderMapper.countOrderSelectiveByManager(myOrder, sessionVO.getUserId()), pageVO.getPageSize());
         List<MyOrder> result = orderMapper.listOrderSelectiveByManager(myOrder, sessionVO.getUserId(), pageNum, pageSize);

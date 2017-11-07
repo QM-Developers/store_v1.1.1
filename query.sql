@@ -1,0 +1,1 @@
+alter table repertory_apply add receive_date datetime

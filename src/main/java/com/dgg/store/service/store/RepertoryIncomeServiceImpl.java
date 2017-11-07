@@ -84,6 +84,7 @@ public class RepertoryIncomeServiceImpl implements RepertoryIncomeService
         if (income.getCreateDate() != null && income.getFinishDate() != null)
             criteria.andCreateDateBetween(income.getCreateDate(), income.getFinishDate());
 
+        example.setOrderByClause("create_date DESC");
         example.setPageNum(PagingUtil.getStart(pageVO.getPageNum(), pageVO.getPageSize()));
         example.setPageSize(pageVO.getPageSize());
         criteria.andBranchIdEqualTo(income.getBranchId());
@@ -188,6 +189,7 @@ public class RepertoryIncomeServiceImpl implements RepertoryIncomeService
         if (income.getCreateDate() != null && income.getFinishDate() != null)
             criteria.andCreateDateBetween(income.getCreateDate(), income.getFinishDate());
 
+        example.setOrderByClause("create_date DESC");
         example.setPageNum(PagingUtil.getStart(pageVO.getPageNum(), pageVO.getPageSize()));
         example.setPageSize(pageVO.getPageSize());
         criteria.andBranchIdEqualTo(income.getBranchId());

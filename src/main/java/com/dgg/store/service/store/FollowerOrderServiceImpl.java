@@ -155,6 +155,7 @@ public class FollowerOrderServiceImpl implements FollowerOrderService
         MyOrder record = new MyOrder();
         record.setOrderId(myOrder.getOrderId());
         record.setOrderStatus(OrderConstant.WAITING_DELIVER);
+        record.setSellerMessage(ParameterUtil.getDefault(myOrder.getSellerMessage(), Constant.EMPTY));
 
         if (orderMapper.updateByPrimaryKeySelective(record) < 1)
             throw new RuntimeException(Constant.STR_ADD_FAILED);

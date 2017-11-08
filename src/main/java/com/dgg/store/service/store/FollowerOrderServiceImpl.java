@@ -125,7 +125,9 @@ public class FollowerOrderServiceImpl implements FollowerOrderService
     @Override
     public String updateSalesmanPass(SessionVO sessionVO, MyOrder myOrder)
     {
+        String sellMessage = myOrder.getSellerMessage();
         myOrder = orderMapper.selectByPrimaryKey(myOrder.getOrderId());
+        myOrder.setSellerMessage(sellMessage);
 
         boolean flag = myOrder.getOrderStatus().equals(OrderConstant.WAITING_SALESMAN_CHECK);
 

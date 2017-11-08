@@ -1,7 +1,11 @@
 package com.dgg.store.controller.common;
 
+import com.alibaba.fastjson.JSONObject;
 import com.dgg.store.service.common.LoginService;
+import com.dgg.store.util.core.LoggerUtil;
+import com.dgg.store.util.core.constant.Constant;
 import com.dgg.store.util.vo.core.LoginVO;
+import com.dgg.store.util.vo.core.ResultVO;
 import com.dgg.store.util.vo.core.SessionVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -50,7 +54,7 @@ public class LoginController
     /**
      * 用户登出
      *
-     * @param session 保存登陆状态session
+     * @param session   保存登陆状态session
      * @param sessionVO 账号信息
      * @return 登出结果
      */

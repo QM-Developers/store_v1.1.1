@@ -153,9 +153,9 @@ public class ManageController
      * @param member  成员参数
      * @return 操作的结果
      */
-    @RequestMapping(value = "/s/updateMember", method = RequestMethod.POST)
+    @RequestMapping(value = "/s/updateMember", method = RequestMethod.POST, produces = RequestConstant.CONTENT_TYPE)
     @ResponseBody
-    public ResultVO updateMember(HttpServletRequest request, MemberVO member)
+    public String updateMember(HttpServletRequest request, MemberVO member)
     {
         SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
 
@@ -217,9 +217,9 @@ public class ManageController
      * @param member  成员的用户Id
      * @return 操作的结果
      */
-    @RequestMapping(value = "/s/deleteMember", method = RequestMethod.POST)
+    @RequestMapping(value = "/s/deleteMember", method = RequestMethod.POST, produces = RequestConstant.CONTENT_TYPE)
     @ResponseBody
-    public ResultVO deleteMember(HttpServletRequest request, MemberVO member)
+    public String deleteMember(HttpServletRequest request, MemberVO member)
     {
         SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
 

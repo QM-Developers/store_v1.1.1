@@ -1,1 +1,2 @@
-alter table repertory_apply add receive_date datetime
+select * from user
+;

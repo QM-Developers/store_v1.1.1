@@ -348,8 +348,11 @@ public class ManageServiceImpl implements ManageService
     }
 
     @Override
-    public ResultVO updateMember(SessionVO sessionVO, MemberVO member)
+    public String updateMember(SessionVO sessionVO, MemberVO member)
     {
+        if (isSuper(member.getMemberId()))
+            return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_FAILED, sessionVO.getToken()));
+
         Integer result = 1;
         int i = 0;
         int count = 2;
@@ -379,7 +382,7 @@ public class ManageServiceImpl implements ManageService
         else
             result = 1;
 
-        return new ResultVO(result, sessionVO.getToken(), result);
+        return JSONObject.toJSONString(new ResultVO(result, sessionVO.getToken(), result));
     }
 
     private void insertMemberPermission(String memberId, String jsonString, String jsonDepartment)
@@ -408,8 +411,11 @@ public class ManageServiceImpl implements ManageService
     }
 
     @Override
-    public ResultVO deleteMember(SessionVO sessionVO, MemberVO member)
+    public String deleteMember(SessionVO sessionVO, MemberVO member)
     {
+        if (isSuper(member.getMemberId()))
+            return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_FAILED, sessionVO.getToken()));
+
         Integer result = 1;
         int i = 0;
         int count = 1;
@@ -437,7 +443,13 @@ public class ManageServiceImpl implements ManageService
         else
             result = 1;
 
-        return new ResultVO(result, sessionVO.getToken(), result);
+        return JSONObject.toJSONString(new ResultVO(result, sessionVO.getToken(), result));
+    }
+
+    private boolean isSuper(String memberId)
+    {
+        MemberVO m = dao.findMemberInfo(memberId);
+        return RoleConstant.MANAGER.equals(m.getRoleId());
     }
 
     @Override
@@ -451,6 +463,9 @@ public class ManageServiceImpl implements ManageService
     @Override
     public String updateMemberFreeze(SessionVO sessionVO, MemberVO member)
     {
+        if (isSuper(member.getMemberId()))
+            return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_FAILED, sessionVO.getToken()));
+
         MemberVO condition = new MemberVO();
         condition.setMemberId(member.getMemberId());
         condition.setUserStatus(Constant.USER_STATE_3);

@@ -210,6 +210,7 @@
         SELECT u.user_name,u.user_sex,u.user_phone,
             u.user_identity,u.team_department_id,u.position_id,
             u.user_card_front,u.user_card_back,u.user_status,
+            u.role_id,
             uqpr.qm_permission_id
         FROM user u
         LEFT JOIN user_qm_permission_re uqpr

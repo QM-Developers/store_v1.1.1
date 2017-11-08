@@ -39,9 +39,9 @@ public interface ManageService
 
     String findMemberInfo(SessionVO sessionVO, MemberVO member);
 
-    ResultVO updateMember(SessionVO sessionVO, MemberVO member);
+    String updateMember(SessionVO sessionVO, MemberVO member);
 
-    ResultVO deleteMember(SessionVO sessionVO, MemberVO member);
+    String deleteMember(SessionVO sessionVO, MemberVO member);
 
     String listQmPermission(SessionVO sessionVO);
 

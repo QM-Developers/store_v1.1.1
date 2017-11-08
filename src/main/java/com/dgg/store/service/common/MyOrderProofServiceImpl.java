@@ -58,7 +58,7 @@ public class MyOrderProofServiceImpl implements MyOrderProofService
         updateOrderStatus(proof);
         result = mapper.insert(proof) > 0 ? Constant.REQUEST_SUCCESS : Constant.REQUEST_FAILED;
 
-        return JSONObject.toJSONString(new ResultVO(result, sessionVO.getToken(), proof.getProofUrl()));
+        return JSONObject.toJSONString(new ResultVO(result, sessionVO.getToken(), proof));
     }
 
     private void updateOrderStatus(MyOrderProof proof)

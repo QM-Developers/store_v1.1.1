@@ -415,6 +415,7 @@
                  item="status">
             #{status}
         </foreach>
+        ORDER BY create_date DESC
     </select>
 
     <select id="getDeviceToken" resultType="java.lang.String">

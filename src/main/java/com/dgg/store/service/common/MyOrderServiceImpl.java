@@ -67,7 +67,7 @@ public class MyOrderServiceImpl implements MyOrderService
         myOrder.setOrderId(IDGenerator.generator());
         myOrder.setOrderStatus(myOrder.getPaymentType() != OrderConstant.PAYMENT_TRANSFER ? OrderConstant.WAITING_SALESMAN_CHECK : OrderConstant.WAITING_FINANCE_CHECK_A);
         myOrder.setCreateDate(new Date());
-        myOrder.setBuyerMessage(myOrder.getSellerMessage() == null ? Constant.EMPTY : myOrder.getSellerMessage());
+        myOrder.setBuyerMessage(ParameterUtil.getDefault(myOrder.getBuyerMessage(), Constant.EMPTY));
         myOrder.setSellerMessage(Constant.EMPTY);
         myOrder.setPaymentStatus(OrderConstant.NOT_PAY);
         myOrder.setLogisticsStatus(Constant.EMPTY);

@@ -78,12 +78,17 @@
         INNER JOIN user_view u
         ON u.user_id = c.user_id
         WHERE c.my_team_id = #{customer.myTeamId}
-        AND c.promoter_id = #{customer.userId}
+        <if test="customer.userId != null">
+            AND c.promoter_id = #{customer.userId}
+        </if>
         <if test="customer.customerType != null and customer.customerType != ''">
             AND c.customer_type = #{customer.customerType}
         </if>
         <if test="customer.hadAccount != null">
             AND c.had_account = #{customer.hadAccount}
+        </if>
+        <if test="customer.merchandiserId != null">
+            AND c.merchandiser_id = #{customer.merchandiserId}
         </if>
         <if test="customer.userName != null">
             AND (u.user_name LIKE CONCAT("%",#{customer.userName},"%") OR u.user_phone = #{customer.userName})
@@ -97,7 +102,9 @@
         INNER JOIN user_view u
         ON u.user_id = c.user_id
         WHERE c.my_team_id = #{myTeamId}
-        AND c.promoter_id = #{userId}
+        <if test="userId != null">
+            AND c.promoter_id = #{userId}
+        </if>
         <if test="customerType != null and customerType != ''">
             AND c.customer_type = #{customerType}
         </if>
@@ -237,7 +244,7 @@
     </update>
 
     <select id="getRepertoryLevel" resultType="java.lang.Integer">
-        SELECT repertory_type FROM
+        SELECT IFNULL(MAX(repertory_type),0) FROM
           customer_repertory cr
         WHERE cr.my_team_id = #{myTeamId}
         AND cr.customer_type = #{customerType}
@@ -290,8 +297,7 @@
         </if>
     </select>
 
-    <select id="listMerchandiserSecond" parameterType="com.dgg.store.util.vo.customer.CustomerVO"
-            resultMap="CustomerVO">
+    <select id="listMerchandiserSecond" parameterType="com.dgg.store.util.vo.customer.CustomerVO" resultMap="CustomerVO">
         SELECT t1.user_id ,t1.user_name,t1.user_img
         FROM
         (SELECT u.user_id,u.user_name,u.my_team_id,
@@ -404,9 +410,6 @@
         </if>
         <if test="request.checkerId != null">
             AND checker_id = #{request.checkerId}
-        </if>
-        <if test="request.merchandiserId != null">
-            AND merchandiser_id = #{request.merchandiserId}
         </if>
         <if test="request.proposerId != null">
             AND proposer_id = #{request.proposerId}

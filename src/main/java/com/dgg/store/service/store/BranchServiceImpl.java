@@ -284,6 +284,8 @@ public class BranchServiceImpl implements BranchService
     @Override
     public String getFirstBranchId(SessionVO sessionVO)
     {
-        return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), dao.getFirstBranchId(sessionVO.getMyTeamId(), BranchConstant.BRANCH_FIRST)));
+        BranchVO branchVO = dao.getBranch(dao.getFirstBranchId(sessionVO.getMyTeamId(), BranchConstant.BRANCH_FIRST));
+
+        return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), branchVO));
     }
 }

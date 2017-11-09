@@ -415,6 +415,40 @@ public class CustomerController
     }
 
     /**
+     * 跟单员获取客户列表
+     *
+     * @param request    用户参数
+     * @param customerVO 客户Id
+     * @param pageVO     分页参数
+     * @return 客户列表
+     */
+    @RequestMapping(value = "/s/listMerchandiserCustomer", method = POST, produces = {"application/json;charset=UTF-8"})
+    @ResponseBody
+    public String listMerchandiserCustomer(HttpServletRequest request, CustomerVO customerVO, PageVO pageVO)
+    {
+        SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
+
+        return service.listMerchandiserCustomer(sessionVO, customerVO, pageVO);
+    }
+
+    /**
+     * 跟单员搜索客户
+     *
+     * @param request 用户参数
+     * @param keyword 关键字
+     * @param pageVO  分页参数
+     * @return 客户列表
+     */
+    @RequestMapping(value = "/s/listMerchandiserCustomerByKeyword", method = POST, produces = RequestConstant.CONTENT_TYPE)
+    @ResponseBody
+    public String listMerchandiserCustomerByKeyword(HttpServletRequest request, String keyword, PageVO pageVO)
+    {
+        SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
+
+        return service.listMerchandiserCustomerByKeyword(sessionVO, keyword, pageVO);
+    }
+
+    /**
      * 获取图片
      *
      * @param request  用户参数

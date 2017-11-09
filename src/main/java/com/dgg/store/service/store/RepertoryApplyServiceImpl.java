@@ -54,6 +54,7 @@ public class RepertoryApplyServiceImpl implements RepertoryApplyService
         apply.setApplyId(IDGenerator.generator());
         apply.setApplyStatus(RepertoryConstant.STATUS_CHECK);
         apply.setMyTeamId(sessionVO.getMyTeamId());
+        apply.setApplyRemark(ParameterUtil.getDefault(apply.getApplyRemark(), Constant.EMPTY));
         apply.setCreateDate(new Date());
 
         JSONArray jArr = JSONArray.parseArray(apply.getGoodsInfo());

@@ -335,6 +335,7 @@ public class RepertoryRecordServiceImpl implements RepertoryRecordService
         repertoryRecord.setOperatorName(dao.getUserName(sessionVO.getUserId()));
         repertoryRecord.setRecordId(IDGenerator.generator());
         repertoryRecord.setCreateDate(new Date());
+        repertoryRecord.setRecordRemark(ParameterUtil.getDefault(repertoryRecord.getRecordRemark(), Constant.EMPTY));
         List<RepertoryRecordList> recordList = new ArrayList<>();
         JSONArray jsonArray = JSONArray.parseArray(repertoryRecord.getGoodsInfo());
         RepertoryRecordList record;

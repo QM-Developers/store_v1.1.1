@@ -282,6 +282,7 @@ public class MyOrderServiceImpl implements MyOrderService
                     record.setOrderStatus(OrderConstant.REFUND_WAITING);
                     record.setOrderStatusBefore(myOrder.getOrderStatus());
                     record.setRefundMessage(message);
+                    record.setRefundDate(new Date());
 
                     result = orderMapper.updateByPrimaryKeySelective(record);
                     break;

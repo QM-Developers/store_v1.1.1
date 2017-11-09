@@ -54,4 +54,8 @@ public interface CustomerService
     String listRepertoryLevel(SessionVO sessionVO);
 
     String listCustomerByKeyword(SessionVO sessionVO, String keyword, PageVO pageVO);
+
+    String listMerchandiserCustomer(SessionVO sessionVO, CustomerVO customerVO, PageVO pageVO);
+
+    String listMerchandiserCustomerByKeyword(SessionVO sessionVO, String keyword, PageVO pageVO);
 }

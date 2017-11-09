@@ -284,7 +284,6 @@ public class CustomerServiceImpl implements CustomerService
         accountRequest.setRequestId(IDGenerator.generator());
         accountRequest.setRequestStatus(CustomerConstant.ACCOUNT_STATUS_REQUEST);
         accountRequest.setCreateDate(new Date());
-        accountRequest.setRequestReason(StringUtil.isEmpty(accountRequest.getRequestReason()) ? Constant.LOGININFO : accountRequest.getRequestReason());
 
         if (ReflectUtil.hadNull(accountRequest))
             JSONObject.toJSONString(new ResultVO(Constant.REQUEST_FAILED, sessionVO.getToken()));
@@ -576,6 +575,53 @@ public class CustomerServiceImpl implements CustomerService
         CustomerVO customerVO = new CustomerVO();
         customerVO.setMyTeamId(sessionVO.getMyTeamId());
         customerVO.setUserId(sessionVO.getUserId());
+        customerVO.setUserName(keyword);
+
+        int pageCount = dao.countCustomer(customerVO);
+        pageCount = PagingUtil.getCount(pageCount, pageVO.getPageSize());
+        List<CustomerVO> result = dao.listCustomer(customerVO, start, end);
+
+        JSONObject json = (JSONObject) JSONObject.toJSON(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), result));
+        json.put(KeyConstant.PAGE_COUNT, pageCount);
+
+        return json.toJSONString();
+    }
+
+    @Override
+    public String listMerchandiserCustomer(SessionVO sessionVO, CustomerVO customerVO, PageVO pageVO)
+    {
+        if (ParameterUtil.objectIsNull(pageVO))
+            return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_FAILED, sessionVO.getToken()));
+
+        int start = PagingUtil.getStart(pageVO.getPageNum(), pageVO.getPageSize());
+        int end = pageVO.getPageSize();
+
+        customerVO.setUserId(null);
+        customerVO.setMyTeamId(sessionVO.getMyTeamId());
+        customerVO.setMerchandiserId(sessionVO.getUserId());
+
+        int pageCount = dao.countCustomer(customerVO);
+        pageCount = PagingUtil.getCount(pageCount, pageVO.getPageSize());
+        List<CustomerVO> result = dao.listCustomer(customerVO, start, end);
+
+        JSONObject json = (JSONObject) JSONObject.toJSON(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), result));
+        json.put(KeyConstant.PAGE_COUNT, pageCount);
+
+        return json.toJSONString();
+    }
+
+    @Override
+    public String listMerchandiserCustomerByKeyword(SessionVO sessionVO, String keyword, PageVO pageVO)
+    {
+        if (ParameterUtil.objectIsNull(pageVO))
+            return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_FAILED, sessionVO.getToken()));
+
+        int start = PagingUtil.getStart(pageVO.getPageNum(), pageVO.getPageSize());
+        int end = pageVO.getPageSize();
+
+        CustomerVO customerVO = new CustomerVO();
+        customerVO.setMyTeamId(sessionVO.getMyTeamId());
+        customerVO.setMerchandiserId(sessionVO.getUserId());
         customerVO.setUserName(keyword);
 
         int pageCount = dao.countCustomer(customerVO);

@@ -24,6 +24,8 @@ public class RepertoryIncome {
 
     private String recordRemark;
 
+    private String applyRemark;
+
     private String goodsInfo;
 
     List<RepertoryIncomeList> incomeList;
@@ -128,5 +130,15 @@ public class RepertoryIncome {
     public void setFinishDate(Date finishDate)
     {
         this.finishDate = finishDate;
+    }
+
+    public String getApplyRemark()
+    {
+        return applyRemark;
+    }
+
+    public void setApplyRemark(String applyRemark)
+    {
+        this.applyRemark = applyRemark;
     }
 }

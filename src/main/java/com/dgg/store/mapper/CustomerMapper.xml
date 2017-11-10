@@ -419,6 +419,7 @@
             #{status}
         </foreach>
         ORDER BY create_date DESC
+        LIMIT #{pageNum},#{pageSize}
     </select>
 
     <select id="getDeviceToken" resultType="java.lang.String">

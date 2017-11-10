@@ -17,6 +17,6 @@ public class IDGenerator
     public static String getNow()
     {
         long now = System.currentTimeMillis();
-        return String.format("%d%d%d", TimestampUtil.getYear(now), TimestampUtil.getMonth(now), TimestampUtil.getDayOfMonth(now));
+        return String.format("%d%02d%02d", TimestampUtil.getYear(now), TimestampUtil.getMonth(now), TimestampUtil.getDayOfMonth(now));
     }
 }

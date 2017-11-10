@@ -43,7 +43,7 @@ public class RepertoryIncomeServiceImpl implements RepertoryIncomeService
         income.setMyTeamId(sessionVO.getMyTeamId());
         income.setOperatorId(sessionVO.getUserId());
         income.setOperatorName(sessionVO.getUserName());
-        income.setRecordRemark(ParameterUtil.getDefault(income.getRecordRemark(), Constant.EMPTY));
+        income.setRecordRemark(ParameterUtil.getDefault(income.getApplyRemark(), Constant.EMPTY));
         JSONArray jArr = JSONArray.parseArray(income.getGoodsInfo());
 
         for (Object json : jArr)

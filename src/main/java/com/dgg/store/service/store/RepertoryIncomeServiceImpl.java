@@ -2,6 +2,7 @@ package com.dgg.store.service.store;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.dgg.store.mapper.RepertoryIncomeListMapper;
 import com.dgg.store.mapper.RepertoryIncomeMapper;
 import com.dgg.store.util.core.constant.BranchConstant;
@@ -94,10 +95,7 @@ public class RepertoryIncomeServiceImpl implements RepertoryIncomeService
         List<RepertoryIncome> result = mapper.selectByExample(example);
         result = getIncome(sessionVO, result);
 
-        JSONObject json = (JSONObject) JSONObject.toJSON(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), result));
-        json.put(KeyConstant.PAGE_COUNT, pageCount);
-
-        return json.toJSONString();
+        return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), result,pageCount), SerializerFeature.WriteNullStringAsEmpty);
     }
 
     private List<RepertoryIncomeList> dataTransform(List<RepertoryIncomeList> incomeLists)
@@ -199,10 +197,7 @@ public class RepertoryIncomeServiceImpl implements RepertoryIncomeService
         List<RepertoryIncome> result = mapper.selectByExample(example);
         result = getIncome(sessionVO, result);
 
-        JSONObject json = (JSONObject) JSONObject.toJSON(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), result));
-        json.put(KeyConstant.PAGE_COUNT, pageCount);
-
-        return json.toJSONString();
+        return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), result,pageCount), SerializerFeature.WriteNullStringAsEmpty);
     }
 
     private List<RepertoryIncome> getIncome(SessionVO sessionVO, List<RepertoryIncome> result)

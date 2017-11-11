@@ -2,6 +2,7 @@ package com.dgg.store.service.store;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.dgg.store.dao.store.RepertoryRecordDao;
 import com.dgg.store.mapper.RepertoryRecordListMapper;
 import com.dgg.store.util.core.constant.BranchConstant;
@@ -289,10 +290,7 @@ public class RepertoryRecordServiceImpl implements RepertoryRecordService
 
         int pageCount = PagingUtil.getCount((int) dao.countByExample(example), pageVO.getPageSize());
 
-        JSONObject json = (JSONObject) JSONObject.toJSON(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), result));
-        json.put(KeyConstant.PAGE_COUNT, pageCount);
-
-        return json.toJSONString();
+        return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), result,pageCount), SerializerFeature.WriteNullStringAsEmpty);
     }
 
     private List<RepertoryRecord> getRecord(List<RepertoryRecord> result, SessionVO sessionVO)
@@ -415,10 +413,7 @@ public class RepertoryRecordServiceImpl implements RepertoryRecordService
         List<RepertoryRecord> result = dao.selectByExample(example);
         result = getRecord(result, sessionVO);
 
-        JSONObject json = (JSONObject) JSONObject.toJSON(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), result));
-        json.put(KeyConstant.PAGE_COUNT, pageCount);
-
-        return json.toJSONString();
+        return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), result,pageCount), SerializerFeature.WriteNullStringAsEmpty);
     }
 
     private String getRecordCode(int i, String branchId)

@@ -269,7 +269,7 @@
         SELECT t1.user_id ,t1.user_name,t1.user_img
         FROM
         (SELECT u.user_id,u.user_name,u.my_team_id,
-        u.team_department_id,u.user_img,
+        u.team_department_id,u.user_img,u.role_id,
         qpr.permission_id
         FROM user u
         INNER JOIN position_permission_re ppr
@@ -278,7 +278,7 @@
         ON qpr.qm_permission_id = ppr.qm_permission_id
         UNION
         SELECT u.user_id,u.user_name,u.my_team_id,
-        u.team_department_id,u.user_img,
+        u.team_department_id,u.user_img,u.role_id,
         qpr.permission_id
         FROM user u
         INNER JOIN user_qm_permission_re uqpr
@@ -291,6 +291,7 @@
         SELECT department_id
         FROM qm_branch
         WHERE my_team_id = #{myTeamId}
+        AND role_id != '1002'
         AND branch_type = 2)
         <if test="departmentId != null and departmentId != ''">
             AND t1.team_department_id = #{departmentId}
@@ -301,7 +302,7 @@
         SELECT t1.user_id ,t1.user_name,t1.user_img
         FROM
         (SELECT u.user_id,u.user_name,u.my_team_id,
-        u.team_department_id,u.user_img,
+        u.team_department_id,u.user_img,u.role_id,
         qpr.permission_id
         FROM user u
         INNER JOIN position_permission_re ppr
@@ -310,7 +311,7 @@
         ON qpr.qm_permission_id = ppr.qm_permission_id
         UNION
         SELECT u.user_id,u.user_name,u.my_team_id,
-        u.team_department_id,u.user_img,
+        u.team_department_id,u.user_img,u.role_id,
         qpr.permission_id
         FROM user u
         INNER JOIN user_qm_permission_re uqpr
@@ -320,6 +321,7 @@
         LEFT JOIN qm_branch qb
         ON qb.department_id = t1.team_department_id
         WHERE t1.my_team_id = #{myTeamId}
+        AND role_id != '1002'
         AND t1.permission_id = #{promoterId}
         <if test="departmentId != null and departmentId != ''">
             AND t1.team_department_id = #{departmentId}
@@ -465,7 +467,7 @@
         SELECT t1.user_id ,t1.user_name,t1.user_img
         FROM
         (SELECT u.user_id,u.user_name,u.my_team_id,
-            u.team_department_id,u.user_img,
+            u.team_department_id,u.user_img,u.role_id,
             qpr.permission_id
         FROM user u
         INNER JOIN position_permission_re ppr
@@ -474,7 +476,7 @@
         ON qpr.qm_permission_id = ppr.qm_permission_id
         UNION
         SELECT u.user_id,u.user_name,u.my_team_id,
-            u.team_department_id,u.user_img,
+            u.team_department_id,u.user_img,u.role_id,
             qpr.permission_id
         FROM user u
         INNER JOIN user_qm_permission_re uqpr
@@ -484,6 +486,7 @@
         LEFT JOIN qm_branch qb
         ON qb.department_id = t1.team_department_id
         WHERE t1.my_team_id = #{myTeamId}
+        AND role_id != '1002'
         AND t1.permission_id = #{permissionId}
     </select>
 

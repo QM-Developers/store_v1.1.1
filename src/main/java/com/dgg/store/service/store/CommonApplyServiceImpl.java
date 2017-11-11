@@ -282,7 +282,7 @@ public class CommonApplyServiceImpl implements CommonApplyService
 
         if (!approve.getApproveResult().equals(ApplyConstant.APPROVE_RESULT_APPROVING))
             return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_FAILED, sessionVO.getToken()));
-        if (approvePrev != null && (ApplyConstant.APPROVE_RESULT_SUCCESS == approvePrev.getApproveResult()))
+        if (approvePrev != null && (ApplyConstant.APPROVE_RESULT_SUCCESS != approvePrev.getApproveResult()))
             return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_FAILED, sessionVO.getToken()));
 
         approve.setApproveResult(ApplyConstant.APPROVE_RESULT_FAILED);

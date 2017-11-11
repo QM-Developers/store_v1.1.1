@@ -1,6 +1,7 @@
 package com.dgg.store.service.store;
 
 import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.dgg.store.dao.common.GoodsBrowseDao;
 import com.dgg.store.dao.store.BranchDao;
 import com.dgg.store.util.core.GoodsUtil;
@@ -65,10 +66,7 @@ public class BranchServiceImpl implements BranchService
         List<BranchVO> result = dao.listBranch(condition, start, end);
         pageCount = PagingUtil.getCount(pageCount, pageVO.getPageSize());
 
-        JSONObject json = (JSONObject) JSONObject.toJSON(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), result));
-        json.put(KeyConstant.PAGE_COUNT, pageCount);
-
-        return json.toJSONString();
+        return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), result, pageCount), SerializerFeature.WriteNullStringAsEmpty);
     }
 
     @Override
@@ -122,11 +120,7 @@ public class BranchServiceImpl implements BranchService
                 s.setBranchStandardCount(dao.countBranchStandard(s.getStandardId(), branchVO.getBranchId()));
         }
 
-
-        JSONObject json = (JSONObject) JSONObject.toJSON(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), result));
-        json.put(KeyConstant.PAGE_COUNT, pageCount);
-
-        return json.toJSONString();
+        return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), result, pageCount), SerializerFeature.WriteNullStringAsEmpty);
     }
 
     @Override
@@ -225,12 +219,40 @@ public class BranchServiceImpl implements BranchService
             vo.setStandards(dao.listBranchStandards(vo.getGoodsId(), condition.getBranchId()));
         }
 
-        JSONObject json = (JSONObject) JSONObject.toJSON(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), result));
-        json.put(KeyConstant.PAGE_COUNT, pageCount);
-        json.put(KeyConstant.BRANCH_ID, branchVO.getBranchId());
-        json.put(KeyConstant.BRANCH_NAME, dao.getBranchName(branchVO.getBranchId()));
+        return JSONObject.toJSONString(new Result(Constant.REQUEST_SUCCESS, sessionVO.getToken(), result, pageCount, branchVO.getBranchId(), dao.getBranchName(branchVO.getBranchId())), SerializerFeature.WriteNullStringAsEmpty);
+    }
 
-        return json.toJSONString();
+    private class Result extends ResultVO
+    {
+        private String branchId;
+        private String branchName;
+
+        public Result(Integer state, String token, Object result, Integer pageCount, String branchId, String branchName)
+        {
+            super(state, token, result, pageCount);
+            this.branchId = branchId;
+            this.branchName = branchName;
+        }
+
+        public String getBranchId()
+        {
+            return branchId;
+        }
+
+        public void setBranchId(String branchId)
+        {
+            this.branchId = branchId;
+        }
+
+        public String getBranchName()
+        {
+            return branchName;
+        }
+
+        public void setBranchName(String branchName)
+        {
+            this.branchName = branchName;
+        }
     }
 
     @Override
@@ -275,10 +297,7 @@ public class BranchServiceImpl implements BranchService
             vo.setStandards(dao.listBranchStandards(vo.getGoodsId(), branchVO.getBranchId()));
         }
 
-        JSONObject json = (JSONObject) JSONObject.toJSON(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), result));
-        json.put(KeyConstant.PAGE_COUNT, pageCount);
-
-        return json.toJSONString();
+        return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), result, pageCount), SerializerFeature.WriteNullStringAsEmpty);
     }
 
     @Override

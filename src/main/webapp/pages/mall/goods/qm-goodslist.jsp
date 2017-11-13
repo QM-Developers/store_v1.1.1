@@ -52,6 +52,24 @@
             </ul>
         </div>
     </section>
+    <div class="paging">
+
+        <div class="pagingright" onclick="qm_goodslist.NextPage(this)">
+            下一页
+        </div>
+        <div class="pagingmodle">
+            <span id="pageleft">1</span>/<span id="pageright">4</span>
+        </div>
+        <div class="pagingleft" onclick="qm_goodslist.NextPage(this)">
+            上一页
+        </div>
+
+        <div class="paging-num-box" id="pagebox">
+            列表显示:<span class="paging-num" onclick="qm_goodslist.pageShowNum(this)">30</span>
+            <span class="paging-num" onclick="qm_goodslist.pageShowNum(this)">20</span>
+            <span class="paging-num paging-checked" onclick="qm_goodslist.pageShowNum(this)">10</span>
+        </div>
+    </div>
 </div>
 </body>
 <script type="text/javascript" src="${path}/script/jquery/jquery-3.0.0.min.js"></script>

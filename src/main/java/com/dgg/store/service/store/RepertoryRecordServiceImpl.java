@@ -290,7 +290,7 @@ public class RepertoryRecordServiceImpl implements RepertoryRecordService
 
         int pageCount = PagingUtil.getCount((int) dao.countByExample(example), pageVO.getPageSize());
 
-        return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), result,pageCount), SerializerFeature.WriteNullStringAsEmpty);
+        return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), result, pageCount), SerializerFeature.WriteNullStringAsEmpty);
     }
 
     private List<RepertoryRecord> getRecord(List<RepertoryRecord> result, SessionVO sessionVO)
@@ -351,6 +351,10 @@ public class RepertoryRecordServiceImpl implements RepertoryRecordService
 
             int count = dao.getGoodsCount(repertoryRecord.getBranchId(), list.getStandardId());
             count = list.getRecordType().equals(RepertoryConstant.TYPE_ADD) ? count + list.getStandardCount() : count - list.getStandardCount();
+
+            if (count < 0)
+                return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_FAILED, sessionVO.getToken()));
+
             list.setStandardCount(count);
 
             if (dao.branchGoodsExists(repertoryRecord.getBranchId(), list.getStandardId()) < 1)
@@ -413,7 +417,7 @@ public class RepertoryRecordServiceImpl implements RepertoryRecordService
         List<RepertoryRecord> result = dao.selectByExample(example);
         result = getRecord(result, sessionVO);
 
-        return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), result,pageCount), SerializerFeature.WriteNullStringAsEmpty);
+        return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), result, pageCount), SerializerFeature.WriteNullStringAsEmpty);
     }
 
     private String getRecordCode(int i, String branchId)

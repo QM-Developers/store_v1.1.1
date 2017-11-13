@@ -46,8 +46,8 @@
                 <span>性　　别 : </span>
                 <!--poptwo-c-lia1-->
                 <div class="pop-div2 sex" id="user-sex">
-                    <a href="###" name="male" onclick="PopInput(this)" class="poptwo-c-lia man poptwo-c-lia1">男</a>
-                    <a href="###" onclick="PopInput(this)" name="woman" class="poptwo-c-lia woman">女</a>
+                    <a href="###" name="male" onclick="qm_member.PopInput(this)" class="poptwo-c-lia man poptwo-c-lia1">男</a>
+                    <a href="###" onclick="qm_member.PopInput(this)" name="woman" class="poptwo-c-lia woman">女</a>
                 </div>
             </div>
             <div class="qm-team-input">
@@ -73,7 +73,7 @@
     </div>
 </div>
 <!--上传身份证-->
-<div class="qm-team newdata">
+<div class="qm-team identity-card newdata">
     <div class="am-u-sm-12 newdata-picture-box">
         <div class="groupdata-title-1">
             <div>身份证照片 :</div>
@@ -104,7 +104,7 @@
     </div>
 </div>
 <div class="del-but-box">
-    <button class="del-but" style="color: red" onclick="qm_member.deleteMember();">删除</button>
+    <button class="del-but" style="color: red; display: none;" onclick="qm_member.deleteMember();">删除</button>
     <button class="del-but">返回</button>
     <button class="del-but" onclick="qm_member.saveOrUpdateMember();">提交</button>
 </div>

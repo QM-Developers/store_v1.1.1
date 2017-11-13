@@ -7,16 +7,25 @@ var qm_department = {
 
     init: function ()
     {
+
         qm_department.initPermission();
         if (!myjs.isNull(departmentId))
+        {
             qm_department.findDepartmentInfo();
+            //----------
+            $('#removemessage').css('display', 'block');
+            $('#header-box').css('display', 'none')
+            //----------
+        }
         else
+        {
             Addduty("");
+        }
     },
 
     addOrUpdateDepartment: function ()
     {
-        if ($("#Contbox .position-cont").length < 1)
+        if ($("#Contbox .position-cont").length < 1 || myjs.isNull($('#department-name').val()) && myjs.isNull($('#create-date').val()))
             return;
 
         var url = path;
@@ -32,7 +41,8 @@ var qm_department = {
             var permissions = [];
             var position = {};
             position["positionName"] = $(items[i]).find("input").val();
-            position["positionId"] = $(items[i]).find("input").attr("id");
+            var id = $(items[i]).find("input").attr("id");
+            position["positionId"] = myjs.isNull(id) ? "" : id;
             var arr = $(items[i]).find("hidden").val().split(Constant.COMMA);
             for (var j = 0; j < arr.length - 1; j++)
                 permissions.push({"permissionId": arr[j]});
@@ -47,7 +57,10 @@ var qm_department = {
 
         myjs.ajax_post(url, params, function (data)
         {
-            console.log(data);
+            //----------
+            parent.qm_index.init();
+            qm_department.goBack();
+            //----------
         });
     },
 
@@ -186,12 +199,17 @@ var qm_department = {
         {
             var state = parseInt(data.state);
             if (state == 2)
+            {
                 qm_department.deleteInfo("该部门有成员存在，不能删除");
-            else if (state == 1)
+            } else if (state == 1)
+            {
                 qm_department.deleteInfo("删除成功");
+                parent.qm_index.init();
+                qm_department.goBack();
+            }
+
             PromptOff($("#Delall .prompt-frame-left")[0]);
-            parent.qm_index.init();
-            qm_department.goBack();
+
         });
     },
 

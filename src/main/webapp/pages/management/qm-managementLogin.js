@@ -12,15 +12,21 @@ var qm_login = {
             alert("错误的操作");
             return;
         }
-
         myjs.ajax_post(url,params,function (data)
         {
             data = parseInt(data.result);
             if(data == 1)
             {
+
                 $("body").css({'background': '', 'padding': '0'});
                 $("body").load(path + "/pages/management/qm-index.jsp");
+            }else {
+                $('#hint-text').text('请核对信息');
             }
         });
+    },
+    focus:function ()
+    {
+        $('#hint-text').text('');
     }
 };

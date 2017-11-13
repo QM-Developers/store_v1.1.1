@@ -149,7 +149,8 @@ public class CustomerServiceImpl implements CustomerService
         else
             result = 1;
 
-        JSONObject json = (JSONObject) JSONObject.toJSON(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken()));
+        customerVO = dao.getCustomer(customerVO);
+        JSONObject json = (JSONObject) JSONObject.toJSON(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(),customerVO));
 
         return json.toJSONString();
     }

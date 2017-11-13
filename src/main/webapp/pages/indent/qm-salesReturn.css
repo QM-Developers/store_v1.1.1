@@ -1,0 +1,85 @@
+.header-title {
+    width: 100%;
+    height: 42px;
+    background: #FFFFFF;
+    border-bottom: 2px solid #00abf0;
+}
+
+.header-text {
+    display: inline-block;
+    width: 120px;
+    font-size: 18px;
+    font-weight: 600;
+    color: #000000;
+    line-height: 42px;
+    padding-left: 20px;
+}
+.am-table tr th:first-child{
+    padding-left: 37px;
+}
+.am-table tr td:first-child{
+    padding-left: 37px;
+}
+.tr-bgcolor {
+    background: #f1f0f5;
+}
+
+.am-table {
+    border: 1px solid #CCCCCC;
+    border-top: 0;
+    margin: 0;
+}
+
+.cont-1 {
+    overflow: hidden;
+    padding: 5px 0 5px 37px;
+}
+
+
+.cont-1 .upload-proof {
+    display: inline-block;
+    width: 100px;
+    height: 30px;
+    border: 1px solid #9d9d9d;
+    border-radius: 2px;
+    text-align: center;
+    margin-left: 100px;
+}
+
+.leave-message {
+    padding-left: 37px;
+}
+
+.left-text {
+    width: 80px;
+}
+
+.textarea {
+    height: 100px;
+    margin-top: 5px;
+    resize: none;
+    border-radius: 5px;
+    background: #ffffff;
+
+}
+
+.data-del-off {
+    clear: both;
+    box-sizing: border-box;
+    height: 80px;
+}
+
+.data-del-off :not(:first-child) {
+    display: none;
+}
+
+.del-but {
+    width: 100px;
+    height: 40px;
+    background: #FFF;
+    margin: 10px 0px 0 40px;
+    border: none;
+    float: right;
+    border: 1px solid #CCCCCC;
+    border-radius: 5px;
+}

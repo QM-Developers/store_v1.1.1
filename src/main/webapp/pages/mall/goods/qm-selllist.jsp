@@ -10,6 +10,7 @@
     <script type="text/javascript">
         var path = "${path}";
         var basePath = "${basePath}";
+        var urlParams = document.URL.split("?")[1];
     </script>
 
     <link rel="stylesheet" type="text/css" href="${path}/script/Amaze/assets/css/amazeui.min.css"/>
@@ -123,7 +124,7 @@
                         </li>
                         <li class="poptwo-c-li">
                             <button data-am-modal-close class="poptwo-but">取消</button>
-                            <button class="poptwo-but" onclick="qm_selllist.addBranch();">提交</button>
+                            <button class="poptwo-but" id="submit" onclick="qm_selllist.addBranch();">提交</button>
                         </li>
                     </ul>
                 </div>
@@ -137,18 +138,14 @@
 <script src="//webapi.amap.com/ui/1.0/main.js"></script>
 <%--<script type="text/javascript" src="http://webapi.amap.com/maps?v=1.3&key=b1a08879807aa89903aa4aae1fca4bbf"></script>--%>
 <%--<script type="text/javascript" src="http://cache.amap.com/lbs/static/addToolbar.js"></script>--%>
-
-<script src="${path}/script/jquery/jquery-3.0.0.min.js"></script>
-<script src="${path}/script/Amaze/assets/js/amazeui.min.js"></script>
+<script type="text/javascript" src="${path}/script/jquery/jquery-3.0.0.min.js"></script>
+<script type="text/javascript" src="${path}/script/Amaze/assets/js/amazeui.min.js"></script>
 <script type="text/javascript" src="${path}/script/js/myjs.js"></script>
-
 <script type="text/javascript" src="${path}/script/js/UrlUtil.js"></script>
-
 <script type="text/javascript" src="${path}/pages/common/Constant.js"></script>
 <script type="text/javascript" src="${path}/pages/common/dragMap.js"></script>
+<script type="text/javascript" src="${path}/pages/common/regularandpop.js"></script>
 <script type="text/javascript" src="${path}/pages/mall/goods/qm-selllist.js"></script>
-<script type="text/javascript" src="../../index/regularandpop.js"></script>
-
 <script type="text/javascript">
     qm_selllist.init();
 </script>

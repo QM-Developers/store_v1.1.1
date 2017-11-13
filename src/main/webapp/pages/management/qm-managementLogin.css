@@ -1,109 +1,109 @@
-.opacity-box{
-	width: 360px;
-	height: 450px;
-	margin: 165px 780px;
-	padding: 10px;
-	background:rgba(255,255,255,0.2);
+.opacity-box {
+    width: 360px;
+    height: 450px;
+    margin: 165px 780px;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.2);
 
 }
 
 .Login {
 
-	
-	width: 340px;
-	
-background:rgba(255,255,255,0.8);
+    width: 340px;
+
+    background: rgba(255, 255, 255, 0.8);
 }
 
 .Login-title {
-	width: 100%;
-	height: 50px;
-	text-align: center;
-	line-height: 44px;
+    width: 100%;
+    height: 50px;
+    text-align: center;
+    line-height: 44px;
 
-	
 }
 
 .Login-hint {
-	display: block;
-	width: 100%;
-	font-size: 14px;
-	text-align: center;
-	
+    display: block;
+    width: 100%;
+    font-size: 14px;
+    text-align: center;
+
 }
 
 .Login-img {
-	display: block;
-	width: 100px;
-	height: 100px;
-	margin: auto;
-	border: 1px solid #FFFFFF;
-	border-radius: 75px;
+    display: block;
+    width: 100px;
+    height: 100px;
+    margin: auto;
+    border: 1px solid #FFFFFF;
+    border-radius: 75px;
 }
 
 .Login-name {
-	display: block;
-	width: 100%;
-	line-height: 40px;
-	text-align: center;
+    display: block;
+    width: 100%;
+    line-height: 40px;
+    text-align: center;
 }
 
 .Login-inputbox {
-	width: 268px;
-	height: 40px;
-	margin: auto;	
-	border: 1px solid #674f4f;
-	margin-bottom: 20px;
-	position: relative;
+    width: 268px;
+    height: 40px;
+    margin: auto;
+    border: 1px solid #674f4f;
+    margin-bottom: 20px;
+    position: relative;
 }
 
 .Login-icon-username {
-	display: inline-block;
-	width: 15px;
-	height: 20px;
-	margin: 11px 10px;
-	float: left;
-	background: url(../images/username.png) no-repeat;
+    display: inline-block;
+    width: 15px;
+    height: 20px;
+    margin: 11px 10px;
+    float: left;
+    background: url(../images/username.png) no-repeat;
 }
 
 .Login-icon-password {
-	display: inline-block;
-	width: 15px;
-	height: 20px;
-	margin: 8px 10px;
-	float: left;
-	background: url(../images/password.png) no-repeat;
+    display: inline-block;
+    width: 15px;
+    height: 20px;
+    margin: 8px 10px;
+    float: left;
+    background: url(../images/password.png) no-repeat;
 }
 
 .Login-input {
 
-	width: 230px;
-	height: 38px;
-	border:0;
-	outline:none;	
-	float: left;
+    width: 230px;
+    height: 38px;
+    border: 0;
+    outline: none;
+    float: left;
 }
-.psw-hint{
-	font-size: 12px;
-	color: red;
-	position: absolute;
-	bottom:-20px;
-	left: 0;
+
+.psw-hint {
+    font-size: 12px;
+    color: red;
+    position: absolute;
+    bottom: -20px;
+    left: 0;
 }
+
 .Login-logging {
-	width: 100%;
-	height: 100%;
-	line-height: 40px;
-	cursor: pointer;
-	text-align: center;
+    width: 100%;
+    height: 100%;
+    line-height: 40px;
+    cursor: pointer;
+    text-align: center;
 }
 
 .Login-bottom {
-	text-align: center;
-	line-height: 35px;
-	font-size: 16px;
+    text-align: center;
+    line-height: 35px;
+    font-size: 16px;
 }
 
 .Login-off {
-	cursor: pointer;
+    cursor: pointer;
 }

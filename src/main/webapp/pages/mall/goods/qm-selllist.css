@@ -257,7 +257,7 @@
 .am-popup {
     position: fixed;
     left: 50%;
-    top: 50%;
+    top: 40%;
     margin: -230px 0 0 -225px;
 }
 .amap-sug-result{

@@ -14,6 +14,7 @@
 
     <link rel="stylesheet" type="text/css" href="${path}/script/Amaze/assets/css/amazeui.min.css"/>
     <link rel="stylesheet" type="text/css" href="${path}/pages/common/reset.css"/>
+    <link rel="stylesheet" type="text/css" href="${path}/pages/common/windowstyle.css"/>
     <link rel="stylesheet" type="text/css" href="${path}/pages/management/qm-departments.css"/>
 
     <script type="text/javascript">
@@ -22,32 +23,35 @@
 </head>
 
 <body>
-<div class=" department-header">
-    <!--头部容器-->
-    <div class=" department-header-left">
-        <button class="department-but1"><a href="qm-departments.jsp">添加部门</a></button>
-        <button class="department-but1"><a href="qm-member.jsp">添加成员</a></button>
-    </div>
-</div>
-<div class="Corporation">
-    <div class="qm-team Department">
+<%--<div class=" department-header" id="header-box">--%>
+<%--<!--头部容器-->--%>
+<%----%>
+<%--<button class="department-but1"><a href="qm-departments.jsp">添加部门</a></button>--%>
+<%--<button class="department-but1"><a href="qm-member.jsp">添加成员</a></button>--%>
+<%----%>
+<%--</div>--%>
+<div class="bodybox">
+
         <div class="groupdata-title">
-            <h4 class="qm-c-p">新建部门</h4>
+            <h4 class="header-text">新建部门</h4>
         </div>
         <div class="qm-teambox">
             <div class="qm-team-input">
-                <span class="companyprofile-span">部门名称:</span>
-                <input id="department-name"/>
+                <span class="branch-name">部门名称:</span>
+                <div class="poptime">
+                    <input id="department-name" maxlength="20"/>
+                </div>
             </div>
             <div class=" qm-team-input">
-                <span class="companyprofile-span">成立时间:</span>
+                <span class="branch-name">成立时间:</span>
                 <div class="poptime">
-                    <input id="create-date" class="pop-input"/>
-                    <button onclick="QmTime(this);" class="am-btn am-btn-default databut am-icon-calendar qm-time-but" data-am-datepicker="{format: 'yyyy-mm-dd'}" type="button"></button>
+                    <%--<input id="create-date" class="pop-input"/>--%>
+                    <%--<button onclick="QmTime(this);" class="am-btn am-btn-default databut am-icon-calendar qm-time-but" data-am-datepicker="{format: 'yyyy-mm-dd'}" type="button"></button>--%>
+                    <input id="create-date" type="text" onClick="WdatePicker()"/>
                 </div>
             </div>
         </div>
-    </div>
+
     <div class="position">
         <div class="jurisdiction-box position-box">
             <div class="jurisdiction-but position-but" onclick="Addduty('')"><i></i>添加职位</div>
@@ -55,13 +59,12 @@
         <div class="position-contbox" id="Contbox">
         </div>
     </div>
+    <div class="position-butbox">
+        <div class="position-cancel" onclick="qm_department.goBack()">返回</div>
+        <div class="position-delduty" id="removemessage" onclick="qm_department.deleteWindow()">删除</div>
+        <div class="position-confirm" onclick="qm_department.addOrUpdateDepartment();">确定</div>
+    </div>
 </div>
-<div class="position-butbox">
-    <div class="position-confirm" onclick="qm_department.addOrUpdateDepartment();">确定</div>
-    <div class="position-cancel" onclick="qm_department.goBack()">返回</div>
-    <div class="position-delduty" onclick="qm_department.deleteWindow()">删除</div>
-</div>
-
 <!--删除确认-->
 <div id="Delall" class="prompt-box Del-all">
     <div id="Prompt" class="pop-one pop-one1">
@@ -70,11 +73,12 @@
         </div>
         <div class="prompt-frame2">
             <div class="prompt-frame-box">
-                <div class="prompt-frame-left" onclick="PromptOff(this)">
-                    取消
-                </div>
-                <div onclick="qm_department.onPositiveClick()" class="prompt-frame-right">
+
+                <div onclick="qm_department.onPositiveClick()" class="prompt-frame-left">
                     确定
+                </div>
+                <div class="prompt-frame-right" onclick="PromptOff(this)">
+                    取消
                 </div>
             </div>
         </div>
@@ -129,16 +133,18 @@
 <script type="text/javascript" src="${path}/script/Amaze/assets/js/amazeui.min.js"></script>
 <script type="text/javascript" src="${path}/script/js/date.js"></script>
 <script type="text/javascript" src="${path}/script/js/myjs.js"></script>
+<script type="text/javascript" src="${path}/pages/My97DatePicker/WdatePicker.js"></script>
 <script type="text/javascript" src="${path}/pages/common/control.js"></script>
 <script type="text/javascript" src="${path}/pages/common/Constant.js"></script>
 
 <script type="text/javascript">
-    Addduty = function (name, positionId) {
+    Addduty = function (name, positionId)
+    {
         var count = $(".position-cont").length;
         var id = "position-id-" + count;
         var $dutynode = '<div class="position-cont">' +
             '<div class="position-input">' +
-            '<input id="' + positionId + '" value="' + name + '"/>' +
+            '<input id="' + positionId + '" value="' + name + '" placeholder="请输入职位名称"/>' +
             '</div>' +
             '<hidden id="' + id + '"/>' +
             '<div class="position-duty" onclick="qm_department.permissionWindow(this,\'position-id-' + count + '\')">职位权限</div>' +
@@ -148,30 +154,37 @@
         return id;
     }
 
-    Delduty = function (item) {
+    Delduty = function (item)
+    {
         var $cont = $(item).parents('#Contbox').find(".position-cont").length;
         if ($cont == 1)
             return;
         $(item).parents(".position-cont").remove();
     }
-    PromptOff = function (item) {
+    PromptOff = function (item)
+    {
         $(item).parents(".Del-all").css("display", "none")
     }
-    Delall = function (text) {
+    Delall = function (text)
+    {
         $("#Delall .prompt-frame1").html(text);
         $("#Delall").css("display", "block");
     }
-    DutyPower = function () {
+    DutyPower = function ()
+    {
         $(".duty-Power").css("display", "block")
     }
-    Dutyoff = function () {
+    Dutyoff = function ()
+    {
 
         $(".duty-Power").css("display", "none")
     }
-    Power = function () {
+    Power = function ()
+    {
         $(".department-power").css("display", "block")
     }
-    Poweroff = function () {
+    Poweroff = function ()
+    {
         $(".department-power").css("display", "none")
     }
 

@@ -1,0 +1,88 @@
+/*table {*/
+    /*margin: 0 !important;*/
+/*}*/
+
+/*头部*/
+
+
+
+.tabledata {
+    min-width: 1000px;
+    margin: auto;
+    /*background: #fff;*/
+    padding-bottom: 20px;
+    box-sizing: border-box;
+}
+
+.table-title {
+    height: 50px;
+    line-height: 50px;
+}
+
+.table th {
+    width: 16.66%;
+    padding: 0 0 0 5px;
+    border: 0;
+    text-align: center;
+    border-top: 2px solid #00abea;
+    border-bottom: 1px solid #CCCCCC;
+    background: #f1f0f5;
+    line-height: 40px;
+}
+
+.table tr td {
+    width: 16.66%;
+    padding: 0 0 0 5px;
+    border: 0;
+    text-align: center;
+    line-height: 40px;
+}
+
+.table tr:last-child td {
+    border-bottom: 1px solid #CCCCCC;
+}
+.table tr td:last-child a:last-child {
+    margin-left: 20px;
+}
+
+.paging {
+    padding: 0 41px;
+    width: 100%;
+    height: 35px;
+    margin-top: 10px;
+}
+
+.paging div {
+    border: 1px solid #ccc;
+    width: 90px;
+    height: 100%;
+    line-height: 33px;
+    float: right;
+    text-align: center;
+    background: #f7f7f7;
+}
+
+.paging .pagingmodle {
+    border: 0;
+    background: #FFFFFF;
+}
+
+.paging .paging-num-box {
+    width: 230px;
+    border: 0;
+    line-height: 32px;
+    background: #FFFFFF;
+}
+
+.paging-num {
+    display: inline-block;
+    width: 31px;
+    margin-right: 8px;
+    border: 1px solid #CCCCCC;
+    float: right;
+    background: #f7f7f7;
+}
+.paging-checked {
+    background: #71bcfd;
+}
+

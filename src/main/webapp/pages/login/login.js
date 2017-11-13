@@ -23,7 +23,7 @@ var login = {
                 alert(data);
                 return;
             } else
-                window.location.href = path + "/pages/index/qm-index.jsp";
+                window.location.href = path + "/pages/index/qm-indexLogin.jsp";
         });
     },
 
@@ -46,11 +46,6 @@ var login = {
 
     test: function ()
     {
-        var url = path + "/logoutOnBrowser.action";
-        myjs.ajax_post(url,{},function (data)
-        {
-            console.log(data);
-        })
     }
 
 };

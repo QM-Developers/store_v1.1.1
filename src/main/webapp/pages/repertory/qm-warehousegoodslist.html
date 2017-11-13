@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+
+		<link rel="stylesheet" href="../../script/Amaze/assets/css/amazeui.min.css" />
+		<link rel="stylesheet" type="text/css" href="../../../reset.css" />
+		<link rel="stylesheet" href="qm-warehousegoodslist.css" />
+	</head>
+
+	<body>
+
+		<div class=" bodybox">
+
+			<div class="header-box">
+				<div class="header-title">商品列表</div>
+			</div>
+
+			<table class="am-table" style="width: 100%;">
+				<tr class="list-tr">
+					<td class="list-td1">编号</td>
+					<td class="list-td2">商品名称</td>
+					<td class="list-td3">分类</td>
+					<td class="list-td4">
+						<div class="list-td4-box">
+							<div class="list-td4-1">规格</div>
+							<div class="list-td4-4">库存</div>
+							<div class="list-td4-5">选择区</div>
+						</div>
+					</td>
+
+				</tr>
+				<tr class="list-tr">
+					<td class="list-td1">111111</td>
+					<td class="list-td2">米4T型4%小米牧场猪饲料米4</td>
+					<td class="list-td3">饲料原料</td>
+					<td class="list-td4">
+						<div class="list-td4-box">
+							<div class="list-td4-2">10kg/包</div>
+							<div class="list-td4-4">1000</div>
+							<div class="list-td4-4">
+								<input type="checkbox" name="" id="" value="" />
+							</div>
+						</div>
+						<div class="list-td4-box">
+							<div class="list-td4-2">10kg/包</div>
+							<div class="list-td4-4">1000</div>
+							<div class="list-td4-4">
+								<input type="checkbox" name="" id="" value="" />
+							</div>
+						</div>
+					</td>
+				</tr>
+				<tr class="list-tr">
+					<td class="list-td1">111111</td>
+					<td class="list-td2">米4T型4%小米牧场猪饲料米4</td>
+					<td class="list-td3">饲料原料</td>
+					<td class="list-td4">
+						<div class="list-td4-box">
+							<div class="list-td4-2">10kg/包</div>
+
+							<div class="list-td4-4">1000</div>
+							<div class="list-td4-4">
+								<input type="checkbox" name="" id="" value="" />
+							</div>
+						</div>
+
+					</td>
+				</tr>
+
+			</table>
+
+			<div class="paging">
+				<div class="paging-but" onclick="qm_customerlist.NextPage(this)">
+					取消
+				</div>
+				<div class="paging-but" onclick="qm_customerlist.NextPage(this)">
+					确定
+				</div>
+				<div class="pagingright" onclick="qm_customerlist.NextPage(this)">
+					下一页
+				</div>
+				<div class="pagingmodle">
+					<span id="pageleft">1</span>/<span id="pageright">1</span>
+				</div>
+				<div class="pagingleft" onclick="qm_customerlist.NextPage(this)">
+					上一页
+				</div>
+
+				<div class="paging-num-box" id="pagebox">
+					人数显示:<span class="paging-num" onclick="qm_customerlist.pageShowNum(this)">30</span>
+					<span class="paging-num" onclick="qm_customerlist.pageShowNum(this)">20</span>
+					<span class="paging-num paging-checked" onclick="qm_customerlist.pageShowNum(this)">10</span>
+				</div>
+			</div>
+		</div>
+
+	</body>
+	<script type="text/javascript" src="../../script/jquery/jquery-3.0.0.min.js"></script>
+	<script type="text/javascript" src="../../script/Amaze/assets/js/amazeui.min.js"></script>
+
+</html>

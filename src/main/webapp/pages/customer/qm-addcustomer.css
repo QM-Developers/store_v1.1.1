@@ -1,32 +1,20 @@
-
-
-.bodybox{
-	min-width: 1000px;
-	max-width: 1200px;
-	margin:0 auto;
+.bodybox {
+	min-width: 1100px;
+	max-width: 1300px;
+	margin: 0 auto;
 }
 
-
-
-
-.groupdata div {
+.customerdata div {
 	padding: 0;
 }
 
-
-/*第1块*/
-
-
-
-
-.groupdata_select-ul div {
+.customerdata_select-ul div {
 	cursor: pointer;
 	height: 38px;
 	line-height: 38px;
 }
 
-
-.groupdata {
+.customerdata {
 	display: block;
 	min-width: 1000px;
 	/*max-width: 1267px;*/
@@ -37,42 +25,41 @@
 	background: #fff;
 }
 
-.groupdata-title {
+.customerdata-title {
 	border-bottom: 3px solid #03afef;
 	height: 50px;
 	line-height: 50px;
 }
 
 .qm-c-p {
-	margin-bottom: 16px;
+	margin-bottom: 0px;
 	font-size: 18px;
 }
 
-.groupdata-cont {
-	
-	margin-top: 10px;
-	height: 300px;
+.customerdata-cont {
+	margin-left: 30px;
 }
 
-.groupdata-cont ul {
+.customerdata-cont ul {
 	padding: 0;
 }
 
-.groupdata-cont ul .groupdata-li {
+.customerdata-cont ul .customerdata-li {
+	position: relative;
 	width: 50%;
 	padding: 10px 0;
 	float: left;
 	height: 55px;
 }
 
-.groupdata-sel {
+.customerdata-sel {
 	height: 35px;
 	padding: 0;
-	border-color:#CCCCCC ;
-	border-radius:5px ;
+	border-color: #CCCCCC;
+	border-radius: 5px;
 }
 
-.groupdata-cont span {
+.customerdata-cont span {
 	display: inline-block;
 	float: left;
 	/*height: 35px;*/
@@ -81,14 +68,15 @@
 	padding: 0;
 }
 
-.groupdata-cont input {
+.customerdata-cont input {
 	height: 35px;
-	padding: 0;
-	border:1px solid #CCCCCC;
+	padding: 0 0 0 5px;
+	border: 1px solid #CCCCCC;
 	border-radius: 5px;
+	background-color: #ffffff;
 }
 
-.groupdata-checkbox {
+.customerdata-checkbox {
 	display: inline-block;
 	margin-top: 3px;
 	padding-left: 20px;
@@ -98,66 +86,42 @@
 	color: #989898;
 }
 
-.groupdata-grade {
-	display: block;
-	margin-top: 4px;
-	padding-left: 20px;
-	height: 30px;
-	float: left;
-	margin-right: 10px;
-	color: #333333;
-	
-}
-
-.groupdata-credit-bg {
-	background: url(../../images/uncheck.jpg) 0px 4px no-repeat;
-}
-
-.groupdata-checkbox-bg {
-	display: block;
-	background: url(../../images/checked.jpg) 0px 5px no-repeat;
-}
-
-.groupdata-cont ul li:nth-child(6) div span {
+.customerdata-cont ul li:nth-child(6) div span {
 	display: inline-block;
 	float: left;
 	margin: 0;
 	height: auto;
 }
 
-.groupdata-credit {
-	padding: 0;
-}
-
-.groupdata-li .add-span{
+.customerdata-li .add-span {
 	display: block;
 	width: 100px;
-
 	text-align: center;
 	line-height: 35px;
 	color: #CCCCCC;
 	border: 1px solid #CCCCCC;
 	float: right;
 	margin-right: 85px;
-	
 }
 
-.groupdata-cont .pop-div2 {
+.customerdata-cont .pop-div2 {
 	height: 100%;
 }
 
-.poptwo-c-lia {
+.sex-unchecked {
 	color: #333333;
 	margin-right: 10px;
 	padding-left: 21px;
-	background: url(../../images/uncheckround.jpg) 0px 5px no-repeat;
+	background: url(../images/uncheckround.jpg) 0px 5px no-repeat;
 }
 
-.poptwo-c-lia1 {
-	background: url(../../images/checkround.jpg) 0px 5px no-repeat;
+.sex-checked {
+	background: url(../images/checkround.jpg) 0px 5px no-repeat;
 }
+
 
 /*时间*/
+
 .poptime {
 	width: 100%;
 	height: 37px;
@@ -183,13 +147,12 @@
 	background: #fff;
 }
 
-
 .data-del-off {
 	clear: both;
 	max-width: 1269px;
 	min-width: 1000px;
 	margin: 10px auto;
-	padding: 0 41px;
+	padding: 0px 41px;
 	box-sizing: border-box;
 	height: 80px;
 }
@@ -197,7 +160,7 @@
 .del-but {
 	width: 100px;
 	height: 40px;
-	background: #FFF;
+	background: #f1f0f5;
 	margin: 10px 0px 0 40px;
 	border: none;
 	float: right;

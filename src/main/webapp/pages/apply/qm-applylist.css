@@ -1,0 +1,73 @@
+
+.header {
+
+    height: 42px;
+    background: #f1f0f5;
+}
+
+.header-but {
+    position: relative;
+    display: inline-block;
+    width: 120px;
+    padding-left: 15px;
+    font-size: 18px;
+    float: left;
+    color: #000000;
+    text-align: center;
+    line-height: 42px;
+    cursor: pointer;
+    margin-left: 25px;
+}
+
+.header-but:hover {
+    background-color: #02b4fe;
+    color: #ffffff;
+}
+
+.header-i {
+    position: absolute;
+    top: 12px;
+    left: 0px;
+    display: inline-block;
+    font-style: normal;
+    width: 20px;
+    height: 20px;
+    background: url("../images/css.png") -378px -19px no-repeat;
+}
+
+/*头部*/
+
+.groupheader {
+    min-width: 1000px;
+    height: 42px;
+    margin: 14px 0 11px 0;
+    background: #f2f2f2;
+}
+
+.header-title {
+    height: 50px;
+    line-height: 50px;
+}
+
+.header-text {
+    font-size: 18px;
+    font-weight: 600;
+    width: 120px;
+    height: 50px;
+    line-height: 50px;
+    float: left;
+    margin-left: 20px;
+}
+
+.am-table {
+    border-collapse: collapse;
+    margin-bottom: 0;
+}
+
+.tr-bgcolor {
+    background-color: #f1f0f5;
+}
+
+tr:last-child {
+    border-bottom: 1px solid #cccccc;
+}

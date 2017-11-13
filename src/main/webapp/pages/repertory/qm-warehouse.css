@@ -1,0 +1,254 @@
+.header {
+
+    height: 42px;
+    background: #f1f0f5;
+}
+
+.header-but {
+    position: relative;
+    display: inline-block;
+    width: 120px;
+    padding-left: 15px;
+    font-size: 18px;
+    float: left;
+    color: #000000;
+    text-align: center;
+    line-height: 42px;
+    cursor: pointer;
+    margin-left: 25px;
+}
+
+.header-but:hover {
+    background-color: #02b4fe;
+    color: #ffffff;
+}
+
+.header-i {
+    position: absolute;
+    top: 12px;
+    left: 0px;
+    display: inline-block;
+    font-style: normal;
+    width: 20px;
+    height: 20px;
+    background: url("../images/css.png") -378px -19px no-repeat;
+}
+
+.selbox {
+    width: 480px;
+    height: 35px;
+    float: left;
+    margin-top: 5px;
+
+}
+
+.selseo {
+    position: relative;
+    width: 150px;
+    height: 34px;
+    float: left;
+    margin-left: 10px;
+    background-color: #ffffff;
+    border: 1px solid #CCCCCC;
+    cursor: pointer;
+
+
+}
+
+.selseo span{
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+.selseo .icion-i{
+    position: absolute;
+    right: 0;
+    top: 12px;
+    width: 25px;
+    height: 15px;
+    background: url("../images/css.png") -13px -558px no-repeat;
+}
+.selseo .selseo-ul {
+    display: none;
+    z-index: 9999;
+    position: absolute;
+    top: 31px;
+    left: 0;
+    width: 100%;
+    max-height: 200px;
+    overflow: auto;
+
+    border: 1px solid #cccccc;
+}
+
+.selseo-ul .selseo-li {
+    width: 100%;
+    height: 35px;
+
+}
+
+.selseo-li .selseo-a {
+    display: block;
+    width: 100%;
+    height: 100%;
+    background-color: #ffffff;
+}
+
+.selseo-li .selseo-a:hover {
+    background-color: #02b4fe;
+    color: #ffffff;
+
+}
+
+.reset-but {
+    width: 70px;
+    height: 35px;
+    line-height: 35px;
+    text-align: center;
+    margin: 5px 20px 0 0;
+    background-color: #ffffff;
+    border: 1px solid #cccccc;
+    cursor: pointer;
+}
+
+.seo-box {
+    width: 220px;
+    height: 35px;
+    float: right;
+    margin: 5px 10px 0 0;
+    border: 1px solid #cccccc;
+    border-top-left-radius: 2px;
+    border-bottom-left-radius: 4px;
+}
+
+.seo-put {
+    display: inline-block;
+    float: left;
+    width: 178px;
+    height: 32px;
+    padding-left: 10px;
+    border: none;
+}
+
+.seo-span {
+    display: inline-block;
+    width: 40px;
+    height: 32px;
+    cursor: pointer;
+    background: url(../images/css.png) -172px -74px no-repeat;
+    background-color: #efefef;
+}
+
+.header .header-sel {
+    width: 150px;
+    height: 34px;
+    margin-top: -3px;
+    background: #ffffff;
+    bottom: 2px;
+}
+
+.am-btn-default {
+    background-color: #FFFFFF !important;
+}
+
+.header-box {
+    width: 100%;
+    height: 42px;
+    background: #FFFFFF;
+}
+
+.header-title {
+    float: left;
+    display: inline-block;
+    width: 120px;
+    font-size: 18px;
+    font-weight: 600;
+    color: #000000;
+    text-align: center;
+    line-height: 42px;
+}
+
+.list-li {
+    overflow: hidden;
+    display: flex;
+    border-bottom: 1px solid #CCCCCC;
+}
+
+.list-li div {
+    float: left;
+    text-align: center;
+}
+
+.list-li:nth-child(1) {
+    height: 44px;
+    line-height: 44px;
+    text-align: center;
+    background-color: #f1f0f5;
+    border-bottom: 1px solid #CCCCCC;
+    border-top: 1px solid #00abf0;
+}
+
+.list-li:nth-child(1) .item3-box div {
+    height: 44px;
+    line-height: 44px;
+}
+
+.list-li .item1 {
+    width: 15%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.list-li .item2 {
+    width: 40%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.list-li .item3 {
+    width: 15%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.list-li .item4-frist {
+    width: 30%;
+}
+
+.item4-frist .item4-frist-box {
+    width: 100%;
+    height: 100%;
+}
+
+.item4-frist-box div {
+    width: 50%;
+    height: 100%;
+    line-height: 42px;
+}
+
+.list-li .item4 {
+    width: 30%;
+}
+
+.item4 .item4-box {
+    width: 100%;
+    height: 30px;
+}
+
+.item4-box div {
+    width: 50%;
+    height: 30px;
+    line-height: 30px;
+}
+
+
+.gobockbut{
+    display: none;
+    margin-left: 20px;
+}
+.paging-checked {
+    background: #71bcfd;
+}

@@ -1,10 +1,11 @@
 var qm_selllist = {
     init: function ()
     {
+        qm_selllist.initMap();
         var intnum = $('#shownum').find('.paging-checked').text();
         // console.log(intnum)
         qm_selllist.findDepartment();
-        qm_selllist.initMap();
+
         qm_selllist.getlist(1, intnum);
         qm_selllist.closemodal();
 
@@ -12,7 +13,7 @@ var qm_selllist = {
 
     findDepartment: function ()
     {
-        // console.log('2222')
+        // 获取部门
         $('#popup-title-text').text('添加销售点');
 
         var url = path + "/s/findDepartmentList" + Constant.URL_SUFFIX;
@@ -24,7 +25,7 @@ var qm_selllist = {
             var item = "";
             for (var i = 0; i < data.length; i++)
                 item += '<option value="' + data[i]["departmentId"] + '">' + data[i]["departmentName"] + '</option>';
-            // $("#department-list");
+
             $("#department-list").empty().append(item);
             qm_selllist.findMemberList(data[0]["departmentId"]);
         });
@@ -32,20 +33,23 @@ var qm_selllist = {
 
     findMemberList: function (did, phone)
     {
+        //获取成员
         var url = path + "/s/findMemberList" + Constant.URL_SUFFIX;
         var params = {};
 
         params["departmentId"] = did;
+        params["pageNum"] = 1;
+        params["pageSize"] = 999;
 
         myjs.ajax_post(url, params, function (data)
         {
-
+            console.log(data);
             data = data.result;
             var item = "";
             for (var i = 0; i < data.length; i++)
                 item += '<option value="' + data[i]["userPhone"] + '" id="' + data[i]["userId"] + '">' + data[i]["userName"] + '</option>';
             $("#member-list").empty().append(item);
-            $("#member-list option").each(function (i)
+            $("#member-list option").each(function ()
             {
                 if ($(this).val() == phone)
                     $(this).attr("selected", "selected");
@@ -78,6 +82,8 @@ var qm_selllist = {
 
     addBranch: function ()
     {
+        //提交
+        if (!myjs.isNull($('#branch-name').val())){
         var url = path + "/s/addBranch" + Constant.URL_SUFFIX;
         var params = {};
         params["branchName"] = $("#branch-name").val();
@@ -88,59 +94,32 @@ var qm_selllist = {
         params["managerName"] = $("#member-list option:selected").text();
         params["managerPhone"] = $("#member-phone").val();
         params["latLng"] = $("#branch-lat-lng").val();
-
         console.log(params);
         myjs.ajax_post(url, params, function (data)
         {
+            console.log(data,'aaa')
             var state = data.state;
-            var aid = data.result;
-              // console.log(data)
             if (state == '1')
             {
-                var  pageSize=$.trim( $('#shownum').find('.paging-checked').text());
-                // console.log('这个', pageNum)
-                 var pageNum = $.trim($('#pagenumleft').text());
-                qm_selllist.addlistli(params.branchName, params.managerName, params.managerPhone, aid);
+                console.log(data,'bbb')
                 $("#branch-name").val('');
                 $("#tip").val('');
-                qm_selllist.findDepartment();
-                qm_selllist.getlist(pageNum, pageSize)
+                // qm_selllist.findDepartment();
+                $('#pagenumleft').text('1');
+                var pageNum = $.trim($('#pagenumleft').text());
+                var pageSize = $.trim($('#shownum').find('.paging-checked').text());
+                qm_selllist.getlist(pageNum, pageSize);
+                $('#popup2').modal('close');
             }
         });
-    },
-    addlistli: function (branchName,departmentName, managerName, managerPhone, id)
-    {//添加销售点
-        var  pageSize=$.trim( $('#shownum').find('.paging-checked').text());
-        var item = '';
-        item += "<li id= " + id + " class=goodslist-list-tr>" +
-            "<div>" + branchName + "</div>" +
-            "<div>" + departmentName + "</div>" +
-            "<div>" + managerName + "</div>" +
-            "<div>" + managerPhone + "</div>" +
-            "<div class=item4>" +
-            "<a data-am-modal={target:'#popup2'} onclick=qm_selllist.modification(this)>编辑 </a>" +
-            "<a href=qm-branchlist.html?" + id + ">分配商品 </a>" +
-            "<a href=qm-branchgoodslist.html?" + id + ">查看商品 </a>" +
-            "<a  onclick=qm_selllist.removeBranch(this)>删除</a>" +
-            "</div>" +
-            "</li>";
-
-        var lilenggth = $('#poslist li').length;
-        if (lilenggth <= pageSize)
-        {
-            $("#poslist").append(item);
-        } else
-        {
-            $('#popup2').modal('close');
+        }else {
+            $('#branch-name').focus();
         }
-
-        $('#popup2').modal('close');
     },
+
     getlist: function (pagenum, pagesize)
     {
         //获取列表
-        $('#poslist li').eq(0).nextAll().remove();
-        //    $('#poslist').find('li').eq(0).nextAll().remove();
         var url = path + "/s/listBranch.action" + Constant.URL_SUFFIX;
         var params = {};
         params["pageNum"] = pagenum;//页数
@@ -151,33 +130,50 @@ var qm_selllist = {
             var state = data.state;
             var data = data.result;
             console.log(data);
-            console.log(pageCount);
             if (state == '1')
             {
                 $('#pagenumright').html(pageCount);
                 for (var i = 0; i < data.length; i++)
                 {
-                    if (i < pagesize)
-                    {
-                        qm_selllist.addlistli(data[i].branchName,data[i].departmentName, data[i].managerName, data[i].managerPhone, data[i].branchId);
-                    }
+
+                    qm_selllist.addlistli(data);
+
                 }
             }
         })
     },
+    addlistli: function (data)
+    {//添加销售点
+        $('#poslist li').eq(0).nextAll().remove();
+        var item = '';
+        for (var i = 0; i < data.length; i++)
+        {
+            item += "<li id= " + data[i].branchId + " class=goodslist-list-tr>" +
+                "<div>" + data[i].branchName + "</div>" +
+                "<div>" + data[i].departmentName + "</div>" +
+                "<div>" + data[i].managerName + "</div>" +
+                "<div>" + data[i].managerPhone + "</div>" +
+                "<div class=item4>" +
+                "<a data-am-modal={target:'#popup2'} onclick=qm_selllist.modification(this)>编辑 </a>" +
+                "<a  onclick=qm_selllist.removeBranch(this)>删除</a>" +
+                "</div>" +
+                "</li>";
+        }
+        $("#poslist").append(item);
+    },
     removeBranch: function (item)
     {
         //删除
-         self = item;
+        self = item;
         var titletext = '提示';
         var conttext = '是否删除这个销售点'
         var leftbuttext = '是';
-        var fnleft ='qm_selllist.removeBranchpop()' ;
+        var fnleft = 'qm_selllist.removeBranchpop()';
         var rightbuttext = '否';
         var fnright = 'indenxlogin.ErrorpopRemove(this)';
         indenxlogin.Errorpoptwo(titletext, conttext, leftbuttext, fnleft, rightbuttext, fnright)
     },
-    removeBranchpop:function ()
+    removeBranchpop: function ()
     {
         var anum = $(self).parents('li').attr('id');
         var pageNum = $.trim($('#pagenumleft').text());
@@ -194,12 +190,12 @@ var qm_selllist = {
             }
         });
 
-      $('.password-box').remove();
+        $('.password-box').remove();
     },
     modification: function (item)
     {
         //编辑
-        var amendid = $(item).parents('li').attr('id');
+         amendid = $(item).parents('li').attr('id');
 
         var url = path + "/s/getBranch" + Constant.URL_SUFFIX;
         var params = {};
@@ -208,8 +204,6 @@ var qm_selllist = {
         {
             var state = data.state;
             var data = data.result;
-            // console.log(state);
-            // console.log(data);
             if (state == '1')
             {
                 $('#branch-name').val(data.branchName);
@@ -217,6 +211,41 @@ var qm_selllist = {
                 $("#department-list").val($.trim(data.departmentId));
                 $('#branch-area').val(data.branchArea);
                 $('#popup-title-text').text('编辑销售点');
+                $('#submit').attr('onclick','qm_selllist.modificationSubmit()')
+            }
+        })
+    },
+    modificationSubmit:function ()
+    {
+
+        var url = path +'/s/updateBranch.action';
+        var params ={};
+        params['branchId']=amendid;
+
+        params["branchName"] = $("#branch-name").val();
+        params["branchArea"] = $("#branch-area").val();
+        params["departmentId"] = $("#department-list").val();
+        params["departmentName"] = $("#department-list option:selected").text();
+        params["managerId"] = $("#member-list option:selected").attr("id");
+        params["managerName"] = $("#member-list option:selected").text();
+        params["managerPhone"] = $("#member-phone").val();
+        params["latLng"] = $("#branch-lat-lng").val();
+        console.log(params)
+        myjs.ajax_post(url,params,function (data)
+        {
+            console.log(data,'修改')
+            var state = data.state;
+            var data = data.result;
+
+            if(state =='1'){
+                $("#branch-name").val('');
+                $("#tip").val('');
+                $('#pagenumleft').text('1');
+                var pageNum = $.trim($('#pagenumleft').text());
+                var pageSize = $.trim($('#shownum').find('.paging-checked').text());
+                qm_selllist.getlist(pageNum, pageSize);
+                $('#submit').attr('onclick','qm_selllist.addBranch()');
+                $('#popup2').modal('close');
             }
         })
     },
@@ -236,11 +265,11 @@ var qm_selllist = {
         //选择显示数量
 
         $(item).addClass('paging-checked').siblings().removeClass('paging-checked');
-        var pageSize =$.trim($(item).text());
+        var pageSize = $.trim($(item).text());
         var pageNum = $.trim($('#pagenumleft').text());
         console.log(pageNum)
         var pageCount = $.trim($('#pagenumright').text());
-        var pageresult = (pageNum == pageCount)?1:pageNum;
+        var pageresult = (pageNum == pageCount) ? 1 : pageNum;
         $('#pagenumleft').html(pageresult);
         console.log(pageresult)
         qm_selllist.getlist(pageresult, pageSize)

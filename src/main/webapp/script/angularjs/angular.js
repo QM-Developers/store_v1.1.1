@@ -10345,7 +10345,7 @@ function directiveNormalize(name) {
  *
  * @description
  * A shared object between directive compile / linking functions which contains normalized DOM
- * element attributes. The values parameter current binding state `{{ }}`. The normalization is
+ * element attributes. The values reflect current binding state `{{ }}`. The normalization is
  * needed since all of these are treated as equivalent in Angular:
  *
  * ```
@@ -20001,7 +20001,7 @@ var originUrl = urlResolve(window.location.href);
  * results both in the normalizing and parsing of the URL.  Normalizing means that a relative
  * URL will be resolved into an absolute URL in the context of the application document.
  * Parsing means that the anchor node's host, hostname, protocol, port, pathname and related
- * properties are all populated to parameter the normalized URL.  This approach has wide
+ * properties are all populated to reflect the normalized URL.  This approach has wide
  * compatibility - Safari 1+, Mozilla 1+, Opera 7+,e etc.  See
  * http://www.aptana.com/reference/html/api/HTMLAnchorElement.html
  *
@@ -28441,7 +28441,7 @@ var NgModelController = ['$scope', '$exceptionHandler', '$attrs', '$element', '$
    * Otherwise you may cause the model value on the scope to change incorrectly.
    *
    * <div class="alert alert-info">
-   * In any case, the value passed to the method should always parameter the current value
+   * In any case, the value passed to the method should always reflect the current value
    * of the control. For example, if you are calling `$setViewValue` for an input element,
    * you should pass the input DOM value. Otherwise, the control and the scope model become
    * out of sync. It's also important to note that `$setViewValue` does not call `$render` or change

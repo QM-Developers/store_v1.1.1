@@ -7,6 +7,7 @@ var qm_index = {
         myjs.ajax_post(url, params, function (data)
         {
             data = myjs.replaceNull(data.result);
+            console.log(data);
             var item = "";
             for (var i = 0; i < data.length; i++)
                 item += '<li class="menu-li">' +
@@ -18,5 +19,17 @@ var qm_index = {
         });
     },
 
+    exitSystem:function ()
+    {
+        var url = path +'/logoutOnBrowser.action';
+        var params ={};
+        myjs.ajax_post(url,params,function (data)
+        {
+            var state = data.state;
+            if(state =='1'){
+                top.location.href =path +"/pages/management/qm-sys-iogin.jsp";
+            }
+        })
+    },
 
 };

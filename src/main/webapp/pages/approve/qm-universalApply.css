@@ -1,0 +1,66 @@
+/*头部*/
+.header-nav {
+
+    height: 42px;
+    margin: 14px 0 11px 0;
+    background: #f1f0f5;
+}
+
+.seo-box {
+    width: 300px;
+    height: 35px;
+    float: right;
+    margin: 5px 20px 0 0;
+    border-top-left-radius: 2px;
+    border-bottom-left-radius: 4px;
+}
+
+.seo-put {
+    display: inline-block;
+    float: left;
+    width: 259px;
+    height: 34px;
+    padding-left: 10px;
+    border: none;
+}
+
+.seo-span {
+    display: inline-block;
+    width: 40px;
+    height: 35px;
+    cursor: pointer;
+    background: url(../images/seo.jpg) no-repeat;
+}
+.header-title {
+    height: 50px;
+    line-height: 50px;
+}
+
+.header-text {
+    font-size: 18px;
+    font-weight: 600;
+    width: 120px;
+    height: 50px;
+    line-height: 50px;
+    float: left;
+    margin-left: 20px;
+}
+
+
+.am-table {
+    border-collapse:collapse;
+    margin-bottom: 0;
+}
+.am-table tr th:first-child{
+    padding-left: 37px;
+}
+.am-table tr td:first-child{
+    padding-left: 37px;
+}
+.tr-bgcolor {
+    background-color: #f1f0f5;
+}
+
+tr:last-child {
+    border-bottom: 1px solid #cccccc;
+}

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+规格Id:<input type="text" id="standardId">
+退货数量:<input type="text" id="goodsNum">
+订单Id:<input type="text" id="orderId">
+退款原因:<input type="text" id="refundMessage">
+<button onclick="test()">确定</button>
+</body>
+<script type="text/javascript" src="../script/jquery/jquery-3.0.0.min.js"></script>
+<script type="text/javascript" src="../script/js/myjs.js"></script>
+<script type="text/javascript">
+    function test()
+    {
+        var path = "/store";
+        var url = path + "/user_updateRefund.action";
+        var params = {};
+        var jArr = [];
+        var obj = {};
+
+        obj['standardId'] = $("#standardId").val().trim();
+        obj['goodsNum'] = $("#goodsNum").val().trim();
+        jArr.push(obj);
+
+        params['orderId'] = $("#orderId").val().trim();
+        params['refundMessage'] = $("#refundMessage").val().trim();
+        params['goods'] = JSON.stringify(jArr);
+
+        myjs.ajax_post(url, params, function (data)
+        {
+            console.log(data);
+        });
+    }
+</script>
+</html>

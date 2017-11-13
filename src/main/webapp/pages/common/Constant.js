@@ -11,7 +11,4 @@ var Constant = {
 
     urlOptAdd: "add",
     urlOptUpdate: "update",
-
-    SOCKET_LOCAL:"ws://192.168.1.13:8099/websocket",
-    SOCKET_WEB:"ws://112.74.32.113:8099/websocket",
 };

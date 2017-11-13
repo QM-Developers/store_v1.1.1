@@ -309,6 +309,7 @@ public class CommonApplyServiceImpl implements CommonApplyService
 
         result.setUserImage(dao.getUserImage(result.getProposerId()));
         List<CommonApplyApprove> approveList = dao.listApprove(result.getApplyId());
+        boolean applyResult = result.getApplyResult().equals(ApplyConstant.APPLY_RESULT_APPROVING);
         boolean flag = false;
         boolean b;
 
@@ -323,6 +324,7 @@ public class CommonApplyServiceImpl implements CommonApplyService
             {
                 b = ApplyConstant.APPROVE_RESULT_APPROVING == approve.getApproveResult();
                 b &= sessionVO.getUserId().equals(approve.getApproveId());
+                b &= applyResult;
                 approve.setApprove((byte) (b ? 1 : 2));
                 if (b)
                     flag = true;
@@ -332,6 +334,7 @@ public class CommonApplyServiceImpl implements CommonApplyService
                 b &= prev.getApprove() != null && 1 != prev.getApprove();
                 b &= sessionVO.getUserId().equals(approve.getApproveId());
                 b &= approve.getApproveResult() != null && ApplyConstant.APPROVE_RESULT_APPROVING == approve.getApproveResult();
+                b &= applyResult;
                 approve.setApprove((byte) (b ? 1 : 2));
                 if (b)
                     flag = true;

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<input id="d5221" class="Wdate" type="text" onclick="var d5222=$dp.$('d5222');WdatePicker( { onpicked:function(){d5222.click();},maxDate:'#F{$dp.$D(\'d5222\') }'} )"/>
+		至<input id="d5222" class="Wdate" type="text" onclick="WdatePicker( { onpicked:function(){console.log('1111');},maxDate:'#F{$dp.$D(\'d5222\') }'} )"/>
+		<!--WdatePicker({onpicked:function(){console.log('1111'),minDate:'#F{$dp.$D(\'d5221\') }'})-->
+		<input type="" onchange="aaa()" name="" id="" value="" />
+	</body>
+	<script type="text/javascript" src="jquery-3.0.0.min.js"></script>
+	<script type="text/javascript" src="WdatePicker.js"></script>
+	<script type="text/javascript">
+		 function aaa (){
+		 	console.log('1111')
+		 }
+	</script>
+</html>

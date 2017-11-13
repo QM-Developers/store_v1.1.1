@@ -33,12 +33,12 @@
             <hidden id="user-id" style="display: none">${sessionScope.loginInfo.userId}</hidden>
             <div class="Login-inputbox">
                 <i class="Login-icon-username"></i>
-                <input class="Login-input" readonly value="${sessionScope.loginInfo.userPhone.concat("@").concat(sessionScope.loginInfo.myTeamId)}" placeholder="请输入登录账号"/>
+                <input class="Login-input" readonly value="${sessionScope.loginInfo.userPhone.concat("@").concat(sessionScope.loginInfo.myTeamId)}" onfocus="qm_login.focus()" placeholder="请输入登录账号"/>
             </div>
             <div class="Login-inputbox">
                 <i class="Login-icon-password"></i>
-                <input class="Login-input" onkeypress="if(event.keyCode==13) qm_login.login()" type="password" id="user-password" placeholder="请输入登录密码"/>
-                <span class="psw-hint">密码错误</span>
+                <input class="Login-input" value="dggadmin" onkeypress="if(event.keyCode==13) qm_login.login()" type="password" id="user-password" onfocus="qm_login.focus()" placeholder="请输入登录密码"/>
+                <span class="psw-hint" id="hint-text"></span>
             </div>
             <div class="Login-inputbox">
                 <button type="submit" class="Login-logging" onclick="qm_login.login()">登录</button>

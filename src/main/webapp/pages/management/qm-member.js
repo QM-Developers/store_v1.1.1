@@ -123,20 +123,20 @@ var qm_member = {
 
     initPermission: function ()
     {
-        var url = path + "/s/findQMPermissionTree.action";
+        var url = path + "/s/listQmPermission.action";
         var params = {};
 
         myjs.ajax_post(url, params, function (data)
         {
+            console.log(data);
             data = data.result;
             var item = "";
             for (var i = 0; i < data.length; i++)
             {
-                var permission = data[i]["children"];
-                item += '<tr><td class="describe-td-1"><div class="describe">' + data[i]["name"] + '</div></td>';
-                for (var j = 0; j < permission.length; j++)
-                    item += '<td><div><input type="checkbox"  value="' + permission[j]["id"] + '"/><span>' + permission[j]["name"] + '</span></div></td>' +
-                        '<td><span class="duty-describe">' + permission[j]["url"] + '</span></td></tr>';
+                item += '<tr>' +
+                    '<td><input type="checkbox"  name="' + data[i]["permissionPid"] + '" value="' + data[i]["permissionId"] + '"/></td>' +
+                    '<td class="describe-td-1">' + data[i]["permissionName"] + '</td>' +
+                    '<td>' + data[i]["permissionDescribe"] + '</td></tr>';
             }
             $("#personal-permission").empty();
             $("#personal-permission").append(item);
@@ -194,6 +194,8 @@ var qm_member = {
         myjs.ajax_post(url, params, function (data)
         {
             console.log(data);
+            parent.qm_index.init();
+            location.href = path + '/pages/management/qm-enterpriselistt.jsp';
         });
     },
 
@@ -335,4 +337,11 @@ var qm_member = {
             console.log(data);
         });
     },
+    PopInput: function (item)
+    {
+
+        $(item).addClass("poptwo-c-lia1")
+        $(item).siblings().removeClass("poptwo-c-lia1")
+
+    }
 };

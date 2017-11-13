@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+
+		<link rel="stylesheet" href="../../../script/Amaze/assets/css/amazeui.min.css" />
+		<link rel="stylesheet" type="text/css" href="../../../../reset.css" />
+		<link rel="stylesheet" href="qm-distribution.css" />
+	</head>
+
+	<body>
+
+		<div class="distribution bodybox">
+
+			<section class="distribution-list">
+				<div class="distribution-list-titlebox">
+					<div class="distribution-list-title">
+						<div class="distribution-title-text">分配商品到<span>江门销售点</span></div>
+						<!--<div class="distribution-title-text distribution-title-text1">(江门销售点)</div>-->
+					</div>
+
+				</div>
+				<div class="distribution-list-table">
+					<ul>
+						<li class="distribution-list-tr">
+							<div class="item1">序号</div>
+							<div class="item2">商品名称</div>
+							<div class="item4">分类</div>
+							<div class="item3">
+								<div class="item3-box">
+									<div class="item3-2">规格</div>
+									<div class="item3-3">单价(元)</div>
+									<div class="item3-4">库存</div>
+								</div>
+							</div>
+							
+							<div class="item4">操作区</div>
+
+						</li>
+						<li class="distribution-list-tr">
+							<div class="item1">1</div>
+							<div class="item2">米4T型4%小米牧场猪饲料</div>
+							<div class="item4">饲料原料</div>
+							<div class="item3">
+								<div class="item3-box">
+									<div class="item3-2">10kg/包</div>
+									<div class="item3-3">150</div>
+									<div class="item3-4">1000</div>
+								</div>
+								<div class="item3-box">
+									<div class="item3-2">10kg/包</div>
+									<div class="item3-3">150</div>
+									<div class="item3-4">1000</div>
+								</div>
+							</div>
+							
+							<div class="item4">
+								<input onkeypress="return noNumbers(event)" class="item4-input" type="" name="" id="" value="" />
+							</div>
+						</li>
+						<li class="distribution-list-tr">
+							<div class="item1">1</div>
+							<div class="item2">米4T型4%小米牧场猪饲料</div>
+							<div class="item4">饲料原料</div>
+							<div class="item3">
+								<div class="item3-box">
+									<div class="item3-2">10kg/包</div>
+									<div class="item3-3">150</div>
+									<div class="item3-4">1000</div>
+								</div>
+							</div>
+						
+							<div class="item4">
+								<input onkeypress="return noNumbers(event)" class="item4-input" type="" name="" id="" value="" />
+
+							</div>
+						</li>
+
+					</ul>
+				</div>
+			</section>
+		</div>
+
+	</body>
+	<script type="text/javascript" src="../../../script/jquery/jquery-3.0.0.min.js"></script>
+	<script type="text/javascript">
+		function noNumbers(e) {
+			var keynum;
+			var keychar;
+			var numcheck;
+			if(window.event) // IE
+			{
+				keynum = e.keyCode
+			} else if(e.which) // Netscape/Firefox/Opera
+			{
+				keynum = e.which
+			}
+			keychar = String.fromCharCode(keynum)
+			numcheck = /^[0-9]*$/;
+			return numcheck.test(keychar)
+		}
+
+	</script>
+
+</html>

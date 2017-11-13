@@ -33,7 +33,7 @@
                 <th>每增加距离/公里</th>
                 <th>增加费用/元</th>
                 <th>
-                    <span class="addtemplate" onclick="AddTr()">增加模板</span>
+                    <span class="addtemplate" onclick="qm_template.AddTr()">增加模板</span>
                 </th>
             </tr>
             <%--<tr>--%>
@@ -52,28 +52,30 @@
     </div>
     <div class="paging" >
 
-        <div class="pagingright" onclick="freightNextPage(this)">
+        <div class="pagingright" onclick="qm_template.freightNextPage(this)">
             下一页
         </div>
         <div class="pagingmodle">
             <span id="branchpageleft">1</span>/<span id="branchpageright">1</span>
         </div>
 
-        <div class="pagingright" onclick="freightNextPage(this)">
+        <div class="pagingright" onclick="qm_template.freightNextPage(this)">
             上一页
         </div>
         <div class="paging-num-box" id="branchshownum">
-            显示条数:<span class="paging-num " onclick="freightShowNum(this)">30</span>
-            <span class="paging-num " onclick="freightShowNum(this)">20</span>
-            <span class="paging-num paging-checked" onclick="freightShowNum(this)">10</span>
+            显示条数:<span class="paging-num " onclick="qm_template.freightShowNum(this)">30</span>
+            <span class="paging-num " onclick="qm_template.freightShowNum(this)">20</span>
+            <span class="paging-num paging-checked" onclick="qm_template.freightShowNum(this)">10</span>
         </div>
     </div>
 </div>
 </body>
-<script src="../../../script/jquery/jquery-3.0.0.min.js"></script>
-<script src="../../../script/Amaze/assets/js/amazeui.min.js"></script>
+<script type="text/javascript" src="${path}/script/jquery/jquery-3.0.0.min.js"></script>
 <script type="text/javascript" src="${path}/script/js/myjs.js"></script>
-<script type="text/javascript" src="../../../pages/index/regularandpop.js"></script>
-<script type="text/javascript" src="qm-template.js"></script>
+<script type="text/javascript" src="${path}/pages/common/regularandpop.js"></script>
+<script type="text/javascript" src="${path}/pages/mall/goods/qm-template.js"></script>
+<script>
+    qm_template.inint();
+</script>
 
 </html>

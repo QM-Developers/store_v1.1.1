@@ -1,0 +1,150 @@
+.register {
+	width: 100%;
+	height: 520px;
+	background: rgba(255, 255, 255, 1);
+}
+
+.register-cont-box {
+	padding: 0 30px;
+}
+.register1{
+	padding-top: 26px;
+}
+.register-cont {
+	height: 320px;
+}
+
+.register2 {
+	display: none;
+	position: relative;
+	padding-top: 26px;
+}
+
+.register-title {
+	width: 100%;
+	height: 50px;
+	text-align: center;
+	line-height: 50px;
+	background: #d9d9d9;
+}
+
+.register-name {
+	display: block;
+	width: 100%;
+	line-height: 40px;
+	text-align: center;
+}
+
+.register-inputbox {
+	height: 70px;
+	padding: 15px 0;
+	position: relative;
+}
+
+.register-inputbox span {
+	display: inline-block;
+	height: 40px;
+	line-height: 40px;
+	float: left;
+}
+
+.register-inputbox input {
+	float: left;
+	height: 40px;
+	width: 260px;
+	margin-left: 5px;
+	border: 1px solid #CCCCCC;
+	border-radius: 2px;
+	background: #FFFFFF;
+	padding-left: 5px;
+}
+.register-inputbox .verify-phone-box {
+	float: left;
+	height: 40px;
+	width: 260px;
+	margin-left: 5px;
+	border: 1px solid #CCCCCC;
+	border-radius: 2px;
+}
+.register-inputbox .verify-phone-box input{
+	float: left;
+	height: 38px;
+	width: 50%;
+	margin-left: 0px;
+	border: 0;
+	border-radius: 2px;
+}
+.register-inputbox .verify-phone-box .verify-phone-text{
+	float: left;
+	height: 38px;
+	width: 50%;
+	margin-left: 0px;
+    text-align: center;
+    line-height: 40px;
+    background: #e6e6e6;
+	border: 0;
+	outline: 0;
+}
+.register-inputbox .warn-text {
+	position: absolute;
+	left: 80px;
+	bottom: -5px;
+	font-size: 12px;
+	font-style: normal;
+}
+
+.register-label {
+	position: absolute;
+	right: 0;
+	bottom: 0;
+}
+
+.register-input-radio {
+	width: 100%;
+	height: 25px;
+	margin: 10px 0;
+}
+
+.register-label label {
+	width: 100px;
+	margin: 0;
+	float: left;
+}
+
+.register-label label .a-bg {
+	display: inline-block;
+	padding-left: 20px;
+	height: 25px;
+	float: left;
+	background: url(../images/css.png) -100px -437px no-repeat;
+}
+
+.register-label label .a-bg1 {
+	display: inline-block;
+	padding-left: 20px;
+	height: 25px;
+	float: left;
+	background: url(../images/css.png) -60px -437px no-repeat;
+}
+
+.register-but2 {
+	display: none;
+}
+
+.register-logging {
+	width: 300px;
+	height: 50px;
+	margin: auto;
+	line-height: 50px;
+	margin-bottom: 5px;
+	border: 1px solid #a0a0a0;
+	cursor: pointer;
+	text-align: center;
+	background: #e6e6e6;
+}
+.register-service a:nth-child(1){
+    float: left;
+}
+.register-service a:nth-child(2){
+	float: right;
+}

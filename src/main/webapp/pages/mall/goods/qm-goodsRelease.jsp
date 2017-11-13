@@ -34,20 +34,27 @@
                 <div class="goods-box1-1">类　　目 :</div>
                 <div class="goods-box1-2">
                     <span id="type-text"></span>
-                    <a href="javascript:(0)" onclick="gdReleaseJS.toTypeSelect();" class="goods-box1-a">切换类目</a>
+                    <a  onclick="gdReleaseJS.toTypeSelect();" class="goods-box1-a" id="qiehuan">切换类目</a>
                 </div>
+            </div>
+            <div class="goods-box1">
+                <div class=" goods-box1-1">商品编号 :</div>
+                <div class="goods-box1-2">
+                    <input type="text" id="goods-code"  maxlength="20" placeholder="编号长度不可以超过20个字符" class="am-form-field am-input-sm">
+                </div>
+                <div class=""></div>
             </div>
             <div class="goods-box1">
                 <div class=" goods-box1-1">商品名称 :</div>
                 <div class="goods-box1-2">
-                    <input type="text" id="goods-name" class="am-form-field am-input-sm">
+                    <input type="text" id="goods-name" maxlength="60" placeholder="名称长度不可以超过60个字符" class="am-form-field am-input-sm">
                 </div>
                 <div class=""></div>
             </div>
             <div class="goods-box1">
                 <div class="goods-box1-1">商品品牌 :</div>
                 <div class="goods-box1-2">
-                    <input type="text" id="goods-attr" class="am-form-field am-input-sm">
+                    <input type="text" id="goods-attr" maxlength="50" placeholder="商品长度不可以超过20个字符" class="am-form-field am-input-sm">
                 </div>
                 <div class=""></div>
             </div>
@@ -62,9 +69,9 @@
                                 <th>规格名称</th>
                                 <th>商品重量</th>
                                 <th>单价(元)</th>
-                                <th>库存</th>
+                                <%--<th>库存</th>--%>
                                 <th class="tab4">
-                                    <span class="tab4-span" onclick="gdReleaseJS.addStandard()">增加规格</span>
+                                    <span class="tab4-span" id="addguige" onclick="gdReleaseJS.addStandard()">增加规格</span>
                                 </th>
                             </tr>
                             </thead>
@@ -73,7 +80,7 @@
                                 <td><input/></td>
                                 <td><input/></td>
                                 <td><input/></td>
-                                <td><input/></td>
+                                <%--<td><input/></td>--%>
                                 <td class="tab4">
                                     <a class="tab4-a " onclick="gdReleaseJS.Delall(this)">删除</a>
                                 </td>
@@ -93,7 +100,7 @@
                                 <div class="a-shade">
                                     商品主图
                                 </div>
-                                <a href="###" onclick="gdReleaseJS.test();">
+                                <a  onclick="gdReleaseJS.test();">
                                     <i class="am-icon-plus am-icon-fw add-i"></i>
                                 </a>
                             </div>
@@ -109,7 +116,7 @@
                         </li>
                         <li class="lileft">
                             <div class="add-one">
-                                <a href="###" onclick="gdReleaseJS.test();">
+                                <a  onclick="gdReleaseJS.test();">
                                     <i class="am-icon-plus am-icon-fw add-i"></i>
                                 </a>
                             </div>
@@ -125,7 +132,7 @@
                         </li>
                         <li class="lileft">
                             <div class="add-one">
-                                <a href="###" onclick="gdReleaseJS.test();">
+                                <a  onclick="gdReleaseJS.test();">
                                     <i class="am-icon-plus am-icon-fw add-i"></i>
                                 </a>
                             </div>
@@ -141,7 +148,7 @@
                         </li>
                         <li class="lileft">
                             <div class="add-one">
-                                <a href="###" onclick="gdReleaseJS.test();">
+                                <a  onclick="gdReleaseJS.test();">
                                     <i class="am-icon-plus am-icon-fw add-i"></i>
                                 </a>
                             </div>
@@ -157,7 +164,7 @@
                         </li>
                         <li class="lileft">
                             <div class="add-one">
-                                <a href="###" onclick="gdReleaseJS.test();">
+                                <a  onclick="gdReleaseJS.test();">
                                     <i class="am-icon-plus am-icon-fw add-i"></i>
                                 </a>
                             </div>
@@ -187,7 +194,7 @@
                                 <div class="clear">
                                     <div class="container demo">
                                         <!---->
-                                        <div class="before">
+                                        <div class="before" id="before">
                                             <i class="am-icon-plus"></i>&nbsp;添加
                                         </div>
                                         <div class="after add-after">
@@ -202,18 +209,22 @@
                     </div>
                 </div>
             </div>
-            <div class="am-g  data-del-off ">
+            <div class="am-g  data-del-off " >
                 <div>
                     <button class="del-but" onclick="javascript:history.go(-1);">返回</button>
                 </div>
                 <div>
-                    <button class="del-but" onclick="gdReleaseJS.deleteGoods();">删除</button>
+                    <button class="del-but" onclick="gdReleaseJS.deleteGoodsBut();">删除</button>
                 </div>
 
                 <div>
-                    <button class="del-but" onclick="gdReleaseJS.saveOrUpdateGoods();">保存</button>
+                    <button class="del-but" id="addbox" onclick="gdReleaseJS.saveOrUpdateGoods();">保存</button>
+                </div>
+                <div>
+                    <button class="del-but modification"  id="xqbox" onclick="gdReleaseJS.modification();">编辑</button>
                 </div>
             </div>
+
         </div>
         <!--弹窗-->
         <div class="am-popup" id="my-popup" style="height: auto;">
@@ -300,51 +311,12 @@
 
 <script type="text/javascript" src="${path}/pages/common/Constant.js"></script>
 <script type="text/javascript" src="${path}/pages/mall/goods/qm-url-params.js"></script>
-<script type="text/javascript" src="../../../pages/index/regularandpop.js"></script>
+<script type="text/javascript" src="${path}/pages/common/regularandpop.js"></script>
 
 <script type="text/javascript" src="${path}/pages/mall/goods/qm-goodsRelease.js"></script>
 <script type="text/javascript">
     gdReleaseJS.init();
 </script>
 
-<script type="text/javascript">
-//    var optType = "";
-//    var temp;
-//    var optTypes = {DELETE: "delete"};
-//
-//    Deltr = function (item)
-//    {
-//        $(item).parents("tr").remove()
-//    };
-//    //删除规格
-//    Delall = function (item)
-//    {
-//        if ($("#standard-list tr").length == 1)
-//            return;
-//        $(".Del-all").css("display", "block")
-//        optType = optTypes.DELETE;
-//        temp = item;
-//    };
-//
-//    var _delete = function ()
-//    {
-//        Deltr(temp)
-//    };
-//
-//    var _deleteoff = function ()
-//    {
-//        switch (optType)
-//        {
-//            case optTypes.DELETE:
-//                _delete();
-//                $(".Del-all").css("display", "none")
-//                break;
-//        }
-//    };
-//    DelOff = function (item)
-//    {
-//        $(item).parents(".Del-all").css("display", "none")
-//    }
-</script>
 
 </html>

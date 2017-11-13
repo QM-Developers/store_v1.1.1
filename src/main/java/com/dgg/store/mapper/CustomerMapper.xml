@@ -287,11 +287,11 @@
         ON qpr.qm_permission_id = uqpr.qm_permission_id) t1
         WHERE t1.my_team_id = #{myTeamId}
         AND t1.permission_id = #{promoterId}
+        AND role_id = '1003'
         AND t1.team_department_id NOT IN (
         SELECT department_id
         FROM qm_branch
         WHERE my_team_id = #{myTeamId}
-        AND role_id != '1002'
         AND branch_type = 2)
         <if test="departmentId != null and departmentId != ''">
             AND t1.team_department_id = #{departmentId}
@@ -321,7 +321,7 @@
         LEFT JOIN qm_branch qb
         ON qb.department_id = t1.team_department_id
         WHERE t1.my_team_id = #{myTeamId}
-        AND role_id != '1002'
+        AND role_id = '1003'
         AND t1.permission_id = #{promoterId}
         <if test="departmentId != null and departmentId != ''">
             AND t1.team_department_id = #{departmentId}
@@ -486,7 +486,7 @@
         LEFT JOIN qm_branch qb
         ON qb.department_id = t1.team_department_id
         WHERE t1.my_team_id = #{myTeamId}
-        AND role_id != '1002'
+        AND role_id = '1003'
         AND t1.permission_id = #{permissionId}
     </select>
 

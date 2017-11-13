@@ -1,433 +1,384 @@
-.department-header {
-	min-width: 1000px;
-	height: 42px;
-	padding-left: 20px;
-	margin: 14px 0 11px 0;
-	background: #f2f2f2;
-	
-}
 
-.department-header button {
-	background:#f2f2f2;
-	border: none;
-	font-size: 18px;
-	line-height: initial;
-	text-align: center;
-	color: #535353;
-	outline: none;
-}
 
-.department-but1 {
-	width: 90px;
-	height: 42px;
-}
-.department-but1 a{
-	display: block;
-	width: 100%;
-	height: 100%;
-	color: #000000;
-	text-align: center;
-	line-height: 42px;
-}
-.Corporation {
-	min-width: 1000px;
-	/*height: 150px;*/
-	background: #fff;
-	border: 1px solid #e7e7e7;
-	border-radius: 5px;
-}
-
-.qm-team {
-	height: 150px;
-
-}
 
 .groupdata-title {
-	border-bottom: 3px solid #03afef;
-	height: 50px;
-	line-height: 50px;
-	margin-bottom: 8px;
+    border-bottom: 3px solid #03afef;
+    height: 50px;
+    line-height: 50px;
+    margin-bottom: 8px;
 }
 
-.qm-c-p {
-	padding-left: 20px;
-	font-size: 18px;
+.header-text {
+    padding-left: 20px;
+    font-size: 18px;
 }
 
 .qm-teambox {
-	width: 100%;
-	height: 44px;
+    width: 100%;
+    height: 44px;
 }
 
 .qm-team-input {
-	width: 50%;
-	min-width: 400px;
-	height: 44px;
-	float: left;
-	padding: 5px 0;
+    width: 50%;
+    min-width: 400px;
+    height: 44px;
+    float: left;
+    padding: 5px 0;
 }
 
 .poptime {
-	width: 70%;
-	min-width: 300px;
-	height: 32px;
-	border: 1px solid #CCCCCC;
-	border-radius: 5px;
-	float: left;
+    width: 70%;
+    min-width: 300px;
+    height: 32px;
+    border-radius: 5px;
+    float: left;
 }
 
-.poptime .pop-input {
-	width: 85%;
-	float: left;
-	border: none;
+.poptime input {
+    padding: 0;
+    width: 100%;
+    height: 30px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background: #fff;
+    float: left;
 }
 
 .qm-time-but {
-	border: none;
-	float: right;
-	width: 15%;
-	height: 100%;
-	padding: 0;
-	background: #fff;
+    border: none;
+    float: right;
+    width: 15%;
+    height: 100%;
+    padding: 0;
+    background: #fff;
 }
 
 .qm-time-but:hover {
-	background: #fff;
+    background: #fff;
 }
 
-.qm-team input {
-	padding: 0;
-	width: 70%;
-	height: 30px;
-	border: 1px solid #ccc;
-	border-radius: 5px;
-	background: #fff;
-	float: left;
-}
 
-.companyprofile-span {
-	float: left;
-	width: 15%;
-	height: 30px;
-	line-height: 30px;
-	text-align: center;
-	min-width: 90px;
-	margin: 0 0 0 20px;
+.branch-name {
+    float: left;
+    width: 15%;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    min-width: 90px;
+    margin: 0 0 0 20px;
 }
 
 .jurisdiction-box {
-	width: 100%;
-	height: 42px;
+    width: 100%;
+    height: 42px;
 }
 
 .jurisdiction-but {
-	width: 100px;
-	line-height: 40px;
-	margin: 0 0 0 20px;
-	text-align: center;
-	border: 1px solid #a0a0a0;
-	background: #cccccc;
+    width: 100px;
+    line-height: 40px;
+    margin: 0 0 0 20px;
+    text-align: center;
+    border: 1px solid #a0a0a0;
+    background: #cccccc;
 }
 
 .position {
-	background: #e6e6e6;
-	padding: 10px 41px;
+    background: #e6e6e6;
+    padding: 10px 41px;
 }
 
 .position-but {
-	background: #FFFFFF;
+    background: #FFFFFF;
 }
 
 .position-contbox {
-	width: 100%;
+    width: 100%;
 }
 
 .position-cont {
-	width: 100%;
-	height: 42px;
-	margin-top: 10px;
+    width: 100%;
+    height: 42px;
+    margin-top: 10px;
 }
 
 .position-input {
-	min-width: 600px;
-	height: 42px;
-	float: left;
-	padding-left: 20px;
+    min-width: 600px;
+    height: 42px;
+    float: left;
+    padding-left: 20px;
 }
 
 .position-input input {
-	width: 100%;
-	height: 100%;
-	border: none;
+    width: 100%;
+    height: 100%;
+    border: none;
 }
 
 .position-duty {
-	width: 120px;
-	float: left;
-	margin-left: 10px;
-	text-align: center;
-	line-height: 40px;
-	background: #FFFFFF;
-	border: 1px solid #CCCCCC;
+    width: 120px;
+    float: left;
+    margin-left: 10px;
+    text-align: center;
+    line-height: 40px;
+    background: #FFFFFF;
+    border: 1px solid #CCCCCC;
+    cursor: pointer;
 }
 
 .position-del {
-	width: 120px;
-	float: left;
-	margin-left: 10px;
-	text-align: center;
-	font-size: 30px;
-	line-height: 40px;
-	color: red;
-	background: #FFFFFF;
-	border: 1px solid #CCCCCC;
+    width: 120px;
+    float: left;
+    margin-left: 10px;
+    text-align: center;
+    font-size: 30px;
+    line-height: 40px;
+    color: red;
+    background: #FFFFFF;
+    border: 1px solid #CCCCCC;
+    cursor: pointer;
 }
 
 .position-butbox {
-	width: 100%;
-	height: 42px;
-	margin-top: 10px;
+    width: 100%;
+    height: 42px;
+    margin-top: 10px;
 }
 
 .position-confirm {
-	width: 98px;
-	line-height: 40px;
-	text-align: center;
-	float: right;
-	border: 1px solid #CCCCCC;
-	margin-left: 20px;
+    width: 98px;
+    line-height: 40px;
+    text-align: center;
+    float: right;
+    border: 1px solid #CCCCCC;
+    margin-left: 20px;
+    cursor: pointer;
+
 }
 
 .position-cancel {
-	width: 98px;
-	float: right;
-	text-align: center;
-	line-height: 40px;
-	border: 1px solid #CCCCCC;
-	margin-left: 40px;
+    width: 98px;
+    float: right;
+    text-align: center;
+    line-height: 40px;
+    border: 1px solid #CCCCCC;
+    margin-left: 40px;
+    cursor: pointer;
+
 }
 
 .position-delduty {
-	width: 98px;
-	float: right;
-	text-align: center;
-	line-height: 40px;
-	color: red;
-	border: 1px solid #CCCCCC;
-	margin-left: 40px;
+    display: none;
+    width: 98px;
+    float: right;
+    text-align: center;
+    line-height: 40px;
+    color: red;
+    cursor: pointer;
+    border: 1px solid #CCCCCC;
+    margin-left: 40px;
 }
-
 
 /*弹窗*/
 
 .pop-one {
-	position: fixed;
-	left: 50%;
-	top: 50%;
-	width: 500px;
-	margin: -250px 0 0 -250px;
-	z-index: 25;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    width: 500px;
+    margin: -250px 0 0 -250px;
+    z-index: 25;
 }
 
 .pop-one1 {
-	height: 200px;
-	margin: -180px 0 0 -180px;
-	background: #FFFFFF;
-	border: 1px solid #1345fe;
+    height: 200px;
+    margin: -180px 0 0 -180px;
+    background: #FFFFFF;
+    border: 1px solid #1345fe;
 }
 
 .prompt-title {
-	width: 100%;
-	height: 40px;
-	text-align: center;
-	color: #FFFFFF;
-	background: #1367fe;
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    color: #FFFFFF;
+    background: #1367fe;
 }
 
 .prompt-box {
-	display: none;
-	z-index: 999;
-	position: fixed;
-	top: 0;
-	left: 0;
-	right: 0;
-	bottom: 0;
-	/*background: rgba(0, 0, 0, 0.1);*/
+    display: none;
+    z-index: 999;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    /*background: rgba(0, 0, 0, 0.1);*/
 }
 
 .prompt-frame1 {
-	height: 110px;
-	line-height: 110px;
-	text-align: center;
-	font-size: 20px;
-	border-bottom: 1px solid #fff;
+    height: 110px;
+    line-height: 110px;
+    text-align: center;
+    font-size: 20px;
+    border-bottom: 1px solid #fff;
 }
 
 .prompt-frame2 {
-	box-sizing: border-box;
-	width: 100%;
-	height: 40px;
+    box-sizing: border-box;
+    width: 100%;
+    height: 40px;
 }
 
 .prompt-frame-box {
-	width: 240px;
-	margin: auto;
+    width: 240px;
+    margin: auto;
 }
 
 .prompt-frame2 .prompt-frame-left {
-	height: 40px;
-	width: 100px;
-	cursor: pointer;
-	line-height: 40px;
-	text-align: center;
-	font-size: 20px;
-	float: left;
-	background: #72bbff;
+    height: 40px;
+    width: 100px;
+    cursor: pointer;
+    line-height: 40px;
+    text-align: center;
+    font-size: 20px;
+    float: left;
+    background: #72bbff;
 }
-.prompt-frame2 .prompt-one-left{
-	margin: auto;
-	float: inherit;
-}
-.prompt-frame2 .prompt-frame-right {
-	height: 40px;
-	width: 100px;
-	cursor: pointer;
-	line-height: 40px;
-	text-align: center;
-	font-size: 20px;
-	float: right;
-	background: #72bbff;
+
+.prompt-frame2 .prompt-one-left {
+    margin: auto;
+    float: inherit;
 }
 
 .prompt-frame2 .prompt-frame-right {
-	height: 40px;
-	width: 50%;
-	cursor: pointer;
-	line-height: 40px;
-	text-align: center;
-	font-size: 20px;
-	float: right;
+    height: 40px;
+    width: 100px;
+    cursor: pointer;
+    line-height: 40px;
+    text-align: center;
+    font-size: 20px;
+    float: right;
+    background: #72bbff;
 }
-
 
 /*职位*/
-
 
 /*弹窗*/
 
 .duty-one {
-	position: fixed;
-	left: 50%;
-	top: 50%;
-	width: 740px;
-	margin: -250px 0 0 -250px;
-	z-index: 25;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 25;
 }
 
 .duty-one1 {
-	margin: -340px 0 0 -370px;
-	background: #FFFFFF;
-	border: 1px solid #1345fe;
+
+    background: #FFFFFF;
+
 }
-.duty-one2{
-   max-height: 580px;
-	overflow: auto;
-	font-size: 14px;
+
+.duty-one2 {
+    max-height: 580px;
+    overflow: auto;
+    font-size: 14px;
 }
+
 .duty-title {
-	width: 100%;
-	line-height: 40px;
-	text-align: center;
-	color: #FFFFFF;
-	background: #1367fe;
+    width: 100%;
+    line-height: 40px;
+    text-align: center;
+    color: #FFFFFF;
+    background: #1367fe;
 }
 
 .duty-box {
-	display: none;
-	z-index: 999;
-	position: fixed;
-	top: 0;
-	left: 0;
-	right: 0;
-	bottom: 0;
-	/*background: rgba(0, 0, 0, 0.1);*/
+    display: none;
+    z-index: 999;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    /*background: rgba(0, 0, 0, 0.1);*/
 }
 
 .duty-frame1 {
-	border-bottom: 1px solid #fff;
+    border-bottom: 1px solid #fff;
 }
 
 .duty-input {
-	width: 100%;
-	height: 60px;
-	padding: 14px 0 14px 30px;
+    width: 100%;
+    height: 60px;
+    padding: 14px 0 14px 30px;
 }
 
 .duty-input span {
-	display: inline-block;
-	width: 90px;
-	text-align: center;
+    display: inline-block;
+    width: 90px;
+    text-align: center;
 }
 
-
-
 .duty-frame2 {
-	box-sizing: border-box;
-	width: 100%;
-	height: 40px;
-	margin-top: 20px;
-	margin-bottom: 20px;
+    box-sizing: border-box;
+    width: 100%;
+    height: 40px;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 .duty-frame-box {
-	width: 240px;
-	margin: auto;
+    width: 240px;
+    margin: auto;
 }
 
 .duty-frame2 .duty-frame-left {
-	height: 40px;
-	width: 100px;
-	cursor: pointer;
-	line-height: 40px;
-	text-align: center;
-	font-size: 20px;
-	float: left;
-	background: #72bbff;
+    height: 40px;
+    width: 100px;
+    cursor: pointer;
+    line-height: 40px;
+    text-align: center;
+    font-size: 20px;
+    float: left;
+    background: #72bbff;
 }
 
 .duty-frame2 .duty-frame-right {
-	height: 40px;
-	width: 100px;
-	cursor: pointer;
-	line-height: 40px;
-	text-align: center;
-	font-size: 20px;
-	float: right;
-	background: #72bbff;
+    height: 40px;
+    width: 100px;
+    cursor: pointer;
+    line-height: 40px;
+    text-align: center;
+    font-size: 20px;
+    float: right;
+    background: #72bbff;
 }
 
 .duty-frame2 .duty-frame-right {
-	height: 40px;
-	width: 50%;
-	cursor: pointer;
-	line-height: 40px;
-	text-align: center;
-	font-size: 20px;
-	float: right;
+    height: 40px;
+    width: 50%;
+    cursor: pointer;
+    line-height: 40px;
+    text-align: center;
+    font-size: 20px;
+    float: right;
 }
-.department-power{
-	display: none;
+
+.department-power {
+    display: none;
 }
+
 .duty-box table tr .describe-td-1 {
-	vertical-align: middle;
+    vertical-align: middle;
 }
 
 .duty-box .duty-one table tr:last-child {
-	border-bottom: 1px solid #CCCCCC;
+    border-bottom: 1px solid #CCCCCC;
 }
 
-
-
 .duty-describe {
-	display: block;
+    display: block;
 }

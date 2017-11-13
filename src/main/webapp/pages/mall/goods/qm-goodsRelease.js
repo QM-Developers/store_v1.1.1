@@ -1,20 +1,30 @@
 var gdReleaseJS = {
     uploader: null,
     flag: false,
+    yingcang: true,
 
     init: function ()
     {
         urlParams = urlUtil.paramsToObj(urlParams);
         //      gdReleaseJS.findFreightTemps();
         // gdReleaseJS.findTypeAttr();
-        if (urlParams.option === Constant.urlOptAdd)
+        console.log(urlParams);
+        if (urlParams.option == Constant.urlOptAdd)
+        {
             gdReleaseJS.findTypeAndParents();
+            $('#addbox').css('display', 'block');
+            $('#xqbox').css('display', 'none');
+            gdReleaseJS.initBind();
+            gdReleaseJS.onInitModel();
+            gdReleaseJS.pichandle();
+            gdReleaseJS.findImages();
+            yingcang = true;
+        }
         else
+        {
             gdReleaseJS.findGoodsInfo();
-        gdReleaseJS.onInitModel();
-        gdReleaseJS.pichandle();
-        gdReleaseJS.findImages();
-        gdReleaseJS.initBind();
+            gdReleaseJS.compile()
+        }
     },
 
     initBind: function ()
@@ -22,6 +32,20 @@ var gdReleaseJS = {
         $(".lileft").mouseenter(gdReleaseJS.showDeleteBtn);
         $(".lileft").mouseleave(gdReleaseJS.hideDeleteBtn);
         $(".add-off").click(gdReleaseJS.removeImage);
+    },
+    compile: function ()
+    {
+
+        yingcang = false;//移入移出标记
+        $('#addbox').css('display', 'none');//按钮显示隐藏
+        $('#xqbox').css('display', 'block');
+        $('.goods-box1-2>input').attr('disabled', 'disabled');//禁掉输出框
+        $('#qiehuan').removeAttr('onclick', 'gdReleaseJS.toTypeSelect()');//禁掉选类目的功能
+        $('.b-shade').css('display', 'none');//隐藏图片的左右移
+        $('.add-one a:first-child').removeAttr('onclick', 'gdReleaseJS.test()');//删除图片上传
+        $('#addbut').removeAttr('onclick', 'gdReleaseJS.AppendImg()');//删除图片上传
+        $('#addguige').removeAttr('onclick', 'gdReleaseJS.addStandard()');
+        $('.tab4-a').removeAttr('onclick', 'gdReleaseJS.Delall(this)');
     },
 
     removeImage: function ()
@@ -66,10 +90,11 @@ var gdReleaseJS = {
         myjs.ajax_post(url, params, function (data)
         {
             data = data.result;
-
+            console.log(data, '详情')
             if (myjs.isNull(urlParams.typeId))
                 urlParams.typeId = data["goodsTypeId"];
             gdReleaseJS.findTypeAndParents();
+            $("#goods-code").val(data["goodsCode"]);
             $("#goods-name").val(data["goodsName"]);
             $("#goods-attr").val(data["goodsAttr"].split("?")[1]);
 
@@ -100,7 +125,7 @@ var gdReleaseJS = {
             '<td><hidden value="' + data["standardId"] + '"/><input value="' + data["standardName"] + '"/></td>' +
             '<td><input value="' + data["standardWeight"] + '"/></td>' +
             '<td><input value="' + data["standardPrice"] + '"/></td>' +
-            '<td><input value="' + data["standardCount"] + '"/></td>' +
+            // '<td><input value="' + data["standardCount"] + '"/></td>' +
             '<td class="tab4"><a class="tab4-a " onclick="gdReleaseJS.Delall(this)">删除</a></td>' +
             '</tr>';
         var body = $("#standard-list");
@@ -116,6 +141,8 @@ var gdReleaseJS = {
         {
             body.append(tr);
         }
+        if (urlParams.option != Constant.urlOptAdd)
+        $('#standard-list').find('input').attr('disabled', true);
     },
 
     findFreightTemps: function ()
@@ -262,8 +289,8 @@ var gdReleaseJS = {
             var $list = $("#upload-list");
 
             var $li = $('<div onclick="gdReleaseJS.onSelectImg(this);" class="imgbox am-img-thumbnail">' +
-                '<a id="' + file.id + '"><img style="width: 100%;height: 100%" src=""/></a>' +
-                '</div>'),
+                    '<a id="' + file.id + '"><img style="width: 100%;height: 100%" src=""/></a>' +
+                    '</div>'),
                 $img = $li.find('img');
 
             // $list为容器jQuery实例
@@ -381,7 +408,7 @@ var gdReleaseJS = {
                     gdReleaseJS.insertDescribeImage(attrs[i], path[i]);
                 break;
         }
-        $('#my-popup').modal('close');
+        $('#my-popup').modal('close')
     },
 
     insertDescribeImage: function (src, realPath)
@@ -411,13 +438,21 @@ var gdReleaseJS = {
 
     leftandrigthmove: function (item)
     {
-        var $DisThis = $(item).find(".mid-box");
-        $DisThis.css("display", "block");
+        if (yingcang == true)
+        {
+            var $DisThis = $(item).find(".mid-box");
+            $DisThis.css("display", "block");
+        }
+
     },
     leftandrigthmoveleave: function (item)
     {
-        var $DisThis = $(item).find(".mid-box");
-        $DisThis.css("display", "none");
+        if (yingcang == true)
+        {
+            var $DisThis = $(item).find(".mid-box");
+            $DisThis.css("display", "none");
+        }
+
     },
 
     Moveout: function (item)
@@ -541,7 +576,7 @@ var gdReleaseJS = {
             standard["standardName"] = $(tds[0]).find("input").val();
             standard["standardWeight"] = $(tds[1]).find("input").val();
             standard["standardPrice"] = $(tds[2]).find("input").val();
-            standard["standardCount"] = $(tds[3]).find("input").val();
+            standard["standardCount"] = '0';
             return standard;
         }
 
@@ -556,21 +591,23 @@ var gdReleaseJS = {
         params["goodsId"] = urlParams.goodsId;
         params["goodsTypeId"] = urlParams.typeId;
         params["goodsName"] = $("#goods-name").val();
+        params["goodsCode"] = $("#goods-code").val();
         params["goodsAttr"] = gdReleaseJS.getGoodsAttr();
         params["standards"] = JSON.stringify(gdReleaseJS.getStandard());
         params["goodsImages"] = gdReleaseJS.getImages();
         params["goodsDescribe"] = gdReleaseJS.getDescribe();
-
+        console.log(params, '商品提交')
         if (myjs.isNull(urlParams.goodsId))
             url += "/s/goodsRelease";
         else
             url += "/s/updateGoods";
         url += Constant.URL_SUFFIX;
-
+        console.log(urlParams.goodsId)
         myjs.ajax_post(url, params, function (data)
         {
             console.log(data);
-            location.href = 'qm-goodslist.jsp';
+            if (myjs.isNull(urlParams.goodsId))
+                location.href = 'qm-goodslist.jsp';
         });
     },
 
@@ -621,6 +658,68 @@ var gdReleaseJS = {
     toTypeSelect: function ()
     {
         self.location.href = path + "/pages/mall/goods/qm-typeSelect.jsp?" + urlUtil.objToParams(urlParams);
+    },
+    modificationBut: function ()
+    {
+        var titletext = '提示';
+        var conttext = '是否保存修改';
+        var leftbuttext = '是';
+        var fnleft = 'gdReleaseJS.modificationButCont()';
+        var rightbuttext = '否';
+        var fnright = 'indenxlogin.removepop()';
+        indenxlogin.Errorpoptwo(titletext, conttext, leftbuttext, fnleft, rightbuttext, fnright)
+    },
+    modificationButCont: function ()
+    {
+
+        $('#xqbox').text('编辑').addClass('modification');
+        $('#standard-list').find('input').attr('disabled', true);
+        gdReleaseJS.compile();
+        gdReleaseJS.saveOrUpdateGoods()
+        indenxlogin.removepop();
+       $('.add-off').css('display','none');
+
+
+    },
+    modification: function (item)
+    {
+
+        if ($('#xqbox').hasClass('modification'))
+        {
+            $('#xqbox').text('保存');
+            $('.add-off').css('display','block');
+
+            yingcang = true;
+            $('.goods-box1-2>input').removeAttr('disabled');
+            $('#standard-list').find('input').removeAttr('disabled');
+            $('.b-shade').css('display', 'block');
+            $('.add-one a:first-child').attr('onclick', 'gdReleaseJS.test()');
+            $('#qiehuan').attr('onclick', 'gdReleaseJS.toTypeSelect()');
+            $('#addbut').attr('onclick', 'gdReleaseJS.AppendImg()');
+            $('#addguige').attr('onclick', 'gdReleaseJS.addStandard()');
+            $('.tab4-a').attr('onclick', 'gdReleaseJS.Delall(this)');
+            gdReleaseJS.findImages();
+            gdReleaseJS.pichandle();
+            gdReleaseJS.initBind();
+
+            $('#xqbox').removeClass('modification');
+        } else
+        {
+            gdReleaseJS.modificationBut()
+        }
+
+    },
+
+    deleteGoodsBut: function ()
+    {
+        var titletext = '提示';
+        var conttext = '是否删除这个商品';
+        var leftbuttext = '是';
+        var fnleft = 'gdReleaseJS.deleteGoods()';
+        var rightbuttext = '否';
+        var fnright = 'indenxlogin.removepop()';
+        indenxlogin.Errorpoptwo(titletext, conttext, leftbuttext, fnleft, rightbuttext, fnright)
+
     },
 
     deleteGoods: function ()

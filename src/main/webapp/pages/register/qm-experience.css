@@ -1,0 +1,77 @@
+.experience {
+	width: 100%x;
+	height: 520px;
+	background: rgba(255, 255, 255, 1);
+}
+
+.experience-cont-box {
+	padding: 0 30px;
+}
+.experience1{
+	padding-top: 26px;
+}
+.experience-cont {
+	height: 320px;
+}
+
+.experience-title {
+	width: 100%;
+	height: 50px;
+	text-align: center;
+	line-height: 50px;
+	background: #d9d9d9;
+}
+
+.experience-name {
+	display: block;
+	width: 100%;
+	line-height: 40px;
+	text-align: center;
+}
+
+.experience-inputbox {
+	height: 70px;
+	padding: 15px 0;
+	position: relative;
+}
+
+.experience-inputbox span {
+	display: inline-block;
+	height: 40px;
+	line-height: 40px;
+	float: left;
+}
+
+.experience-inputbox input {
+	float: left;
+	height: 40px;
+	width: 260px;
+	margin-left: 5px;
+	border: 1px solid #CCCCCC;
+	border-radius: 2px;
+	background: #FFFFFF;
+	    padding-left: 10px;
+}
+
+.experience-inputbox .warn-text {
+	position: absolute;
+	left: 80px;
+	bottom: -5px;
+	font-size: 12px;
+	font-style: normal;
+}
+
+.experience-logging {
+	width: 300px;
+	height: 50px;
+	margin: auto;
+	line-height: 50px;
+	margin-bottom: 5px;
+	border: 1px solid #a0a0a0;
+	cursor: pointer;
+	text-align: center;
+	background: #e6e6e6;
+}
+.experience-service{
+	text-align: center;
+}

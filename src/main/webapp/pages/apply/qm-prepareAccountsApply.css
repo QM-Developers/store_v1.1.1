@@ -1,0 +1,30 @@
+/*头部*/
+
+.header-title {
+    height: 50px;
+    line-height: 50px;
+}
+
+.header-text {
+    font-size: 18px;
+    font-weight: 600;
+    width: 120px;
+    height: 50px;
+    line-height: 50px;
+    float: left;
+    margin-left: 20px;
+}
+
+
+.am-table {
+    border-collapse:collapse;
+    margin-bottom: 0;
+}
+
+.tr-bgcolor {
+    background-color: #f1f0f5;
+}
+
+tr:last-child {
+    border-bottom: 1px solid #cccccc;
+}

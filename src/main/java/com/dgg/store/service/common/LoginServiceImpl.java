@@ -37,6 +37,8 @@ public class LoginServiceImpl implements LoginService
             return JSONObject.toJSONString(new ResultVO(LoginConstant.NOT_REGISTER));
         if (!CryptographyUtil.md5(loginVO.getUserPassword(), Constant.SALT).equals(result.getUserPassword()))
             return JSONObject.toJSONString(new ResultVO(LoginConstant.NO_ACCESS));
+        if (RoleConstant.USER.equals(result.getRoleId()))
+            return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_FAILED));
 
         SessionVO sessionVO = new SessionVO();
 

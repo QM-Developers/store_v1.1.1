@@ -1,0 +1,128 @@
+
+/*弹窗*/
+
+.password-box {
+    display: block;
+    z-index: 999;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    /*background: rgba(0, 0, 0, 0.1);*/
+}
+.alter-select {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    width:400px;
+    height: 200px;
+    margin: -200px 0 0 -200px;
+    z-index: 25;
+    background: #FFFFFF;
+    border: 1px solid #cccccc;
+}
+
+.pop-title {
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    color: #FFFFFF;
+    background: #02b4fe;
+}
+
+
+.pop-frame1 {
+    height: 110px;
+    display: flex;
+    padding: 0px 40px;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: column;
+    font-size: 18px;
+    border-bottom: 1px solid #fff;
+}
+
+.pop-frame2 {
+    box-sizing: border-box;
+    width: 100%;
+    height: 40px;
+}
+
+.pop-frame2 .pop-frame-right {
+    height: 40px;
+    width: 100px;
+    margin: auto;
+    cursor: pointer;
+    line-height: 40px;
+    text-align: center;
+    font-size: 18px;
+    border: 1px solid #CCCCCC;
+    border-radius:2px ;
+    background-color: #f1f0f5;
+}
+.pop-frame2-but div:nth-child(1){
+    float: left;
+    margin-left: 80px;
+}
+.pop-frame2-but div:nth-child(2){
+    float: right;
+    margin-right: 80px;
+}
+
+/*翻页*/
+
+.paging {
+    padding: 0 41px;
+    width: 100%;
+    height: 35px;
+    margin-top: 10px;
+}
+
+.paging div {
+    border: 1px solid #ccc;
+    width: 80px;
+    height: 100%;
+    line-height: 33px;
+    float: right;
+    text-align: center;
+    background: #f7f7f7;
+}
+.paging .pagingleft{
+    cursor: pointer;
+}
+.paging .pagingmodle {
+    border: 0;
+    background: #FFFFFF;
+}
+
+.paging .pagingbut{
+    margin-left: 30px;
+}
+.paging .pagingbut button{
+    width: 100%;
+    height: 100%;
+    background: #f7f7f7;
+    border: 0;
+    outline: 0;
+}
+.paging .paging-num-box {
+    width: 230px;
+    border: 0;
+    line-height: 32px;
+    background: #FFFFFF;
+}
+
+.paging-num {
+    display: inline-block;
+    width: 31px;
+    margin-right: 8px;
+    border: 1px solid #CCCCCC;
+    float: right;
+    background: #f7f7f7;
+    cursor: pointer;
+}
+.paging-checked {
+    background: #71bcfd;
+}

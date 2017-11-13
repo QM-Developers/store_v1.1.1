@@ -1,0 +1,120 @@
+.header-box {
+	width: 100%;
+	height: 42px;
+	background: #FFFFFF;
+}
+
+.header-title {
+	float: left;
+	display: inline-block;
+	width: 120px;
+	font-size: 18px;
+	font-weight: 600;
+	color: #000000;
+	text-align: center;
+	line-height: 42px;
+}
+
+.list-tr {
+	overflow: hidden;
+	display: flex;
+	border-bottom: 1px solid #CCCCCC;
+}
+
+.list-tr div {
+	float: left;
+	text-align: center;
+}
+
+.list-tr:nth-child(1) {
+	height: 44px;
+	line-height: 44px;
+	text-align: center;
+	background-color: #f1f0f5;
+	border-bottom: 1px solid #CCCCCC;
+	border-top: 1px solid #00abf0;
+}
+
+.list-tr:nth-child(1) .list-td3-box div {
+	height: 44px;
+	line-height: 44px;
+}
+
+.list-tr .list-td1 {
+	width: 5%;
+	display: flex;
+	align-list-tds: center;
+	justify-content: center;
+}
+
+.list-tr .list-td2 {
+	width: 25%;
+	display: flex;
+	align-list-tds: center;
+	justify-content: center;
+}
+
+.list-tr .list-td3 {
+	width: 10%;
+	display: flex;
+	align-list-tds: center;
+	justify-content: center;
+}
+
+.list-tr .list-td4 {
+	width: 60%;
+}
+
+.list-td4 .list-td4-box {
+	width: 100%;
+	height: 30px;
+}
+
+.list-td4-box div {
+	width: 33.3%;
+	height: 30px;
+	line-height: 30px;
+}
+
+.paging {
+	padding: 0 41px;
+	width: 100%;
+	height: 35px;
+	margin-top: 10px;
+}
+
+.paging div {
+	border: 1px solid #ccc;
+	width: 90px;
+	height: 100%;
+	line-height: 33px;
+	float: right;
+	text-align: center;
+}
+.paging .paging-but{
+	margin-left: 32px;
+	background-color: #F1F0F5;
+}
+.paging .pagingmodle {
+	border: 0;
+	background: #FFFFFF;
+}
+
+.paging .paging-num-box {
+	width: 230px;
+	border: 0;
+	line-height: 32px;
+	background: #FFFFFF;
+}
+
+.paging-num {
+	display: inline-block;
+	width: 31px;
+	margin-right: 8px;
+	border: 1px solid #CCCCCC;
+	float: right;
+}
+
+.paging-checked {
+	background: #71bcfd;
+}

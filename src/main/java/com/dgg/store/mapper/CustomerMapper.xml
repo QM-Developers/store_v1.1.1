@@ -21,6 +21,7 @@
         <result column="update_date" property="userUpdateTime" jdbcType="VARCHAR"/>
         <result column="update_count" property="updateCount" jdbcType="INTEGER"/>
         <result column="user_create_date" property="userCreateDate" jdbcType="VARCHAR"/>
+        <result column="merchandiser_id" property="merchandiserId" jdbcType="VARCHAR"/>
     </resultMap>
 
     <resultMap id="CustomerAccountRequest" type="com.dgg.store.util.pojo.CustomerAccountRequest">
@@ -195,7 +196,7 @@
     <select id="getCustomer" resultMap="CustomerVO">
         SELECT c.customer_id,c.customer_type,c.had_account,
             c.credit_rating,c.business_address,c.station,
-            c.update_count,c.update_date,
+            c.update_count,c.update_date,c.merchandiser_id,
             u.user_name,u.user_phone,
             u.user_address,u.user_sex,u.user_create_date,
             u.user_card_front,u.user_card_back,u.user_card_hand,
@@ -485,9 +486,12 @@
         ON qpr.qm_permission_id = uqpr.qm_permission_id) t1
         LEFT JOIN qm_branch qb
         ON qb.department_id = t1.team_department_id
-        WHERE t1.my_team_id = #{myTeamId}
+        WHERE t1.my_team_id = #{customerVO.myTeamId}
         AND role_id = '1003'
         AND t1.permission_id = #{permissionId}
+        <if test="customerVO.departmentId != null">
+            AND t1.team_department_id = #{customerVO.departmentId}
+        </if>
     </select>
 
     <select id="listRepertoryLevel" resultMap="CustomerRepertoryVO">
@@ -529,5 +533,11 @@
         <foreach collection="statusList" index="i" close=")" open=" AND request_status IN (" separator="," item="status">
             #{status}
         </foreach>
+    </select>
+
+    <select id="getUserName" resultType="java.lang.String">
+        SELECT user_name
+        FROM user
+        WHERE user_id = #{userId}
     </select>
 </mapper>

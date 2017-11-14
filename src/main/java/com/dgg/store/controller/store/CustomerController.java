@@ -116,11 +116,11 @@ public class CustomerController
      */
     @RequestMapping(value = "/s/listPromoter", method = POST, produces = {"application/json;charset=UTF-8"})
     @ResponseBody
-    public String listPromoter(HttpServletRequest request)
+    public String listPromoter(HttpServletRequest request, CustomerVO customerVO)
     {
         SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
 
-        return service.listPromoter(sessionVO);
+        return service.listPromoter(sessionVO, customerVO);
     }
 
     /**

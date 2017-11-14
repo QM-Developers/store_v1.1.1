@@ -83,7 +83,7 @@ var qm_applytransfer = {
         var url = path + '/s/updateCustomerToPromoter.action';
         var params = {};
         params['customerId'] = urlParams.split('=')[1];
-        params['promoterId'] = $('#promoterBranch').val().trim();
+        params['promoterId'] = $('#promoter').val().trim();
 
         console.log(params, '提交数据')
         myjs.ajax_post(url, params, function (data)

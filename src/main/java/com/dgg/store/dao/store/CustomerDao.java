@@ -70,7 +70,7 @@ public interface CustomerDao
 
     int getCustomerExist(String userPhone, String myTeamId, String userId);
 
-    List<CustomerVO> listPromoter(String myTeamId, String pid);
+    List<CustomerVO> listPromoter(CustomerVO customerVO, String pid);
 
     List<CustomerRepertoryVO> listRepertoryLevel(String myTeamId);
 
@@ -79,4 +79,7 @@ public interface CustomerDao
     String getDepartmentName(String userId);
 
     int countCustomerAccount(CustomerAccountRequest accountRequest);
+
+    String getUserName(String userId);
+
 }

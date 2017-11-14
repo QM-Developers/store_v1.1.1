@@ -7,6 +7,7 @@ import com.dgg.store.util.pojo.CommonApplyExample;
 import java.util.List;
 
 import com.dgg.store.util.pojo.CommonApplyImage;
+import com.dgg.store.util.vo.manage.MemberVO;
 import org.apache.ibatis.annotations.Param;
 
 public interface CommonApplyMapper
@@ -58,4 +59,6 @@ public interface CommonApplyMapper
     String getUserImage(String userId);
 
     String getDepartmentName(String userId);
+
+    List<MemberVO> listCommonMember(String departmentId);
 }

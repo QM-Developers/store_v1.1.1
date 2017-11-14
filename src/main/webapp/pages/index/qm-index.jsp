@@ -31,6 +31,9 @@
     <div class="qm-logo" id="loginText">
 
     </div>
+    <div style="width: 200px;float: left" >
+        <span>登录名字</span>：<span id="xingming"></span> <span>切换名字</span>：<span id="xingming1"></span>
+    </div>
     <div class="qm-quit">
         <ul class="header-nav" style="margin: 0;width: 100%;">
             <li>

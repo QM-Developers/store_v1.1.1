@@ -49,7 +49,7 @@ public interface CustomerService
 
     String updateCustomerUnfreeze(SessionVO sessionVO, CustomerVO customerVO);
 
-    String listPromoter(SessionVO sessionVO);
+    String listPromoter(SessionVO sessionVO, CustomerVO customerVO);
 
     String listRepertoryLevel(SessionVO sessionVO);
 

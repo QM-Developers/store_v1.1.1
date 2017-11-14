@@ -3,11 +3,11 @@ package com.dgg.store.controller.store;
 import com.dgg.store.service.store.CommonApplyService;
 import com.dgg.store.util.core.constant.Constant;
 import com.dgg.store.util.core.constant.RequestConstant;
-import com.dgg.store.util.core.constant.SymbolConstant;
 import com.dgg.store.util.pojo.CommonApply;
 import com.dgg.store.util.pojo.CommonApplyApprove;
 import com.dgg.store.util.vo.core.PageVO;
 import com.dgg.store.util.vo.core.SessionVO;
+import com.dgg.store.util.vo.manage.MemberVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -42,6 +42,15 @@ public class CommonApplyController
         SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
 
         return service.insertCommonApplyImage(sessionVO, file);
+    }
+
+    @RequestMapping(value = "/s/listCommonMember", method = POST, produces = {RequestConstant.CONTENT_TYPE})
+    @ResponseBody
+    public String listCommonMember(HttpServletRequest request, MemberVO memberVO)
+    {
+        SessionVO sessionVO = (SessionVO) request.getAttribute(Constant.LOGININFO);
+
+        return service.listCommonMember(sessionVO, memberVO);
     }
 
     /**

@@ -37,16 +37,13 @@ var loginpost = {
 
             myjs.ajax_post(url, params, function (data, status)
             {
-
                 var state = data.state;
                 var data = data.result;
-                console.log(data, '数据')
                 if (status)
                 {
                     switch (state)
                     {
                         case 1 :
-
                             var cookiedata = {
                                 'myTeamName': data.myTeamName,
                                 'userName': data.userName,

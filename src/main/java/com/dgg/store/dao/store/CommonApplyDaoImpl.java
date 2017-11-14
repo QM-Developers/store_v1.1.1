@@ -5,6 +5,7 @@ import com.dgg.store.util.pojo.CommonApply;
 import com.dgg.store.util.pojo.CommonApplyApprove;
 import com.dgg.store.util.pojo.CommonApplyExample;
 import com.dgg.store.util.pojo.CommonApplyImage;
+import com.dgg.store.util.vo.manage.MemberVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -152,6 +153,12 @@ public class CommonApplyDaoImpl implements CommonApplyDao
     public String getDepartmentName(String userId)
     {
         return mapper.getDepartmentName(userId);
+    }
+
+    @Override
+    public List<MemberVO> listCommonMember(String teamDepartmentId)
+    {
+        return mapper.listCommonMember(teamDepartmentId);
     }
 
     @Override

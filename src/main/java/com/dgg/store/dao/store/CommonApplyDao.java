@@ -4,6 +4,7 @@ import com.dgg.store.util.pojo.CommonApply;
 import com.dgg.store.util.pojo.CommonApplyApprove;
 import com.dgg.store.util.pojo.CommonApplyExample;
 import com.dgg.store.util.pojo.CommonApplyImage;
+import com.dgg.store.util.vo.manage.MemberVO;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -57,4 +58,6 @@ public interface CommonApplyDao
     String getUserImage(String proposerId);
 
     String getDepartmentName(String userId);
+
+    List<MemberVO> listCommonMember(String teamDepartmentId);
 }

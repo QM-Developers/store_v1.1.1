@@ -7,12 +7,12 @@ var qm_index = {
         if ($.cookie('logindata') != null)
         {
             cookiedata = JSON.parse($.cookie('logindata'));
-            console.log(cookiedata, '读取');
-            $('#loginText').text(cookiedata.myTeamName)
+            $('#loginText').text(cookiedata.myTeamName);
+
             if ($.cookie('permissiondata') != null)
             {
                 var typeData = JSON.parse($.cookie('permissiondata'));
-                $('#li-name').append('<span class="user-name" id="userName" name="'+cookiedata.userId+'">' + typeData.userName + '</span><span class="position-name" id="positionName" name=' + typeData.positionName + '>(' + typeData.text + ')</span>');
+                $('#li-name').append('<span class="user-name" id="userName" name="'+cookiedata.userId+'">' + cookiedata.userName + '</span><span class="position-name" id="positionName" name=' + typeData.positionName + '>(' + typeData.text + ')</span>');
                 qm_index.getData();
                 qm_index.sign_login = typeData.positionName;
 

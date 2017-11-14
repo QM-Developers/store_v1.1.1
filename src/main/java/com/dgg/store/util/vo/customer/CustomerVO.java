@@ -64,6 +64,8 @@ public class CustomerVO
 
     private String departmentId;
 
+    private String merchandiserName;
+
     public String getUserId()
     {
         return userId;
@@ -362,5 +364,15 @@ public class CustomerVO
     public void setUserBirthday2(Date userBirthday2)
     {
         this.userBirthday2 = userBirthday2;
+    }
+
+    public String getMerchandiserName()
+    {
+        return merchandiserName;
+    }
+
+    public void setMerchandiserName(String merchandiserName)
+    {
+        this.merchandiserName = merchandiserName;
     }
 }

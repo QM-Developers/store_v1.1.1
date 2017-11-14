@@ -71,7 +71,7 @@ public interface CustomerMapper
 
     int getCustomerExist(@Param("userPhone") String userPhone, @Param("myTeamId") String myTeamId, @Param("userId") String userId);
 
-    List<CustomerVO> listPromoter(@Param("myTeamId") String myTeamId, @Param("permissionId") String accountCheck);
+    List<CustomerVO> listPromoter(@Param("customerVO") CustomerVO customerVO, @Param("permissionId") String accountCheck);
 
     List<CustomerRepertoryVO> listRepertoryLevel(String myTeamId);
 
@@ -80,4 +80,6 @@ public interface CustomerMapper
     String getDepartmentName(String userId);
 
     int countCustomerAccount(CustomerAccountRequest accountRequest);
+
+    String getUserName(String userId);
 }

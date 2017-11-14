@@ -33,11 +33,16 @@ import java.util.List;
 @Service
 public class CustomerServiceImpl implements CustomerService
 {
-    @Autowired
-    private CustomerDao dao;
+    private final CustomerDao dao;
+
+    private final PushMessageMapper pushMapper;
 
     @Autowired
-    private PushMessageMapper pushMapper;
+    public CustomerServiceImpl(CustomerDao dao, PushMessageMapper pushMapper)
+    {
+        this.dao = dao;
+        this.pushMapper = pushMapper;
+    }
 
     @Override
     public String insertCustomerRecord(CustomerVO customerVO, SessionVO sessionVO)
@@ -85,10 +90,8 @@ public class CustomerServiceImpl implements CustomerService
 
         if (i - 1 < count)
             throw new RuntimeException(Constant.STR_ADD_FAILED);
-        else
-            result = 1;
 
-        JSONObject json = (JSONObject) JSONObject.toJSON(new ResultVO(result == 1 ? 1 : 0, sessionVO.getToken(), customerVO.getCustomerId()));
+        JSONObject json = (JSONObject) JSONObject.toJSON(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), customerVO.getCustomerId()));
 
         return json.toJSONString();
     }
@@ -150,7 +153,7 @@ public class CustomerServiceImpl implements CustomerService
             result = 1;
 
         customerVO = dao.getCustomer(customerVO);
-        JSONObject json = (JSONObject) JSONObject.toJSON(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(),customerVO));
+        JSONObject json = (JSONObject) JSONObject.toJSON(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), customerVO));
 
         return json.toJSONString();
     }
@@ -209,8 +212,9 @@ public class CustomerServiceImpl implements CustomerService
     public String getCustomer(SessionVO sessionVO, CustomerVO customerVO)
     {
         CustomerVO result = dao.getCustomer(customerVO);
+        result.setMerchandiserName(dao.getUserName(result.getMerchandiserId()));
 
-        return JSONObject.toJSONString(new ResultVO(result == null ? Constant.REQUEST_FAILED : Constant.REQUEST_SUCCESS, sessionVO.getToken(), result));
+        return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), result));
     }
 
     @Override
@@ -324,6 +328,7 @@ public class CustomerServiceImpl implements CustomerService
                     CustomerVO condition = new CustomerVO();
                     condition.setCustomerId(accountRequest.getCustomerId());
                     condition.setHadAccount(CustomerConstant.HAD_ACCOUNT);
+                    condition.setMerchandiserId(accountRequest.getMerchandiserId());
                     result = dao.updateCustomer(condition);
                 default:
                     result = 0;
@@ -549,9 +554,10 @@ public class CustomerServiceImpl implements CustomerService
     }
 
     @Override
-    public String listPromoter(SessionVO sessionVO)
+    public String listPromoter(SessionVO sessionVO, CustomerVO customerVO)
     {
-        List<CustomerVO> result = dao.listPromoter(sessionVO.getMyTeamId(), QMPermissionConstant.CREATE_RECORD);
+        customerVO.setMyTeamId(sessionVO.getMyTeamId());
+        List<CustomerVO> result = dao.listPromoter(customerVO, QMPermissionConstant.CREATE_RECORD);
 
         return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), result));
     }

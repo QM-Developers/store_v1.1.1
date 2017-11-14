@@ -302,6 +302,11 @@
     <result column="approve_advice" jdbcType="VARCHAR" property="approveAdvice" />
   </resultMap>
 
+  <resultMap id="MemberVO" type="com.dgg.store.util.vo.manage.MemberVO">
+    <result column="user_id" property="userId" jdbcType="VARCHAR"/>
+    <result column="user_name" property="userName" jdbcType="VARCHAR"/>
+  </resultMap>
+
   <select id="getUserNameById" resultType="java.lang.String">
     SELECT user_name
     FROM user
@@ -428,4 +433,10 @@
     WHERE u.user_id = #{userId}
   </select>
 
+  <select id="listCommonMember" resultMap="MemberVO">
+    SELECT u.user_id,u.user_name
+    FROM user u
+    WHERE u.team_department_id = #{departmentId}
+    AND u.role_id = '1003'
+  </select>
 </mapper>

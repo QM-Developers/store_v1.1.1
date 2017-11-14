@@ -21,6 +21,7 @@ import com.dgg.store.util.pojo.CommonApplyImage;
 import com.dgg.store.util.vo.core.PageVO;
 import com.dgg.store.util.vo.core.ResultVO;
 import com.dgg.store.util.vo.core.SessionVO;
+import com.dgg.store.util.vo.manage.MemberVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -33,10 +34,15 @@ import java.util.List;
 @Service
 public class CommonApplyServiceImpl implements CommonApplyService
 {
+    private final CommonApplyDao dao;
+    private final PushMessageMapper mapper;
+
     @Autowired
-    private CommonApplyDao dao;
-    @Autowired
-    private PushMessageMapper mapper;
+    public CommonApplyServiceImpl(CommonApplyDao dao, PushMessageMapper mapper)
+    {
+        this.dao = dao;
+        this.mapper = mapper;
+    }
 
     @Override
     public String insertCommonApplyImage(SessionVO sessionVO, MultipartFile file)
@@ -348,6 +354,14 @@ public class CommonApplyServiceImpl implements CommonApplyService
         result.setImageList(dao.listImage(result.getApplyId()));
 
         return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), result), SerializerFeature.WriteNullStringAsEmpty);
+    }
+
+    @Override
+    public String listCommonMember(SessionVO sessionVO, MemberVO memberVO)
+    {
+        List<MemberVO> result = dao.listCommonMember(memberVO.getDepartmentId());
+
+        return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), result));
     }
 
 }

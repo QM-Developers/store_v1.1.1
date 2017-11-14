@@ -202,9 +202,9 @@ public class CustomerDaoImpl implements CustomerDao
     }
 
     @Override
-    public List<CustomerVO> listPromoter(String myTeamId, String pid)
+    public List<CustomerVO> listPromoter(CustomerVO customerVO, String pid)
     {
-        return mapper.listPromoter(myTeamId, pid);
+        return mapper.listPromoter(customerVO, pid);
     }
 
     @Override
@@ -229,6 +229,12 @@ public class CustomerDaoImpl implements CustomerDao
     public int countCustomerAccount(CustomerAccountRequest accountRequest)
     {
         return mapper.countCustomerAccount(accountRequest);
+    }
+
+    @Override
+    public String getUserName(String userId)
+    {
+        return mapper.getUserName(userId);
     }
 
 }

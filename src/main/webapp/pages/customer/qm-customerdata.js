@@ -182,6 +182,7 @@ var qm_customerdata = {
                 }
                 $('#updateCount').text(data.updateCount);
                 $('#userUpdateTime').text(data.userUpdateTime==null?'' :new Date(data.userUpdateTime).format("yyyy/MM/dd"));
+                $('#merchandiserName').text(data.merchandiserName);
             }
         })
     },

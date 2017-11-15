@@ -8,12 +8,17 @@ var qm_member = {
 
     init: function ()
     {
+        $('#identity-card').remove();
         if (!myjs.isNull(userId))
             qm_member.findMemberInfo();
 
         qm_member.findDepartmentList();
         qm_member.initPermission();
         qm_member.initWebUpload();
+        $('.sign_input').focus(function ()
+        {
+            $(this).css('border-color', '#ccc')
+        })
     },
 
     findDepartmentList: function ()
@@ -134,8 +139,8 @@ var qm_member = {
             for (var i = 0; i < data.length; i++)
             {
                 item += '<tr>' +
-                    '<td><input type="checkbox"  name="' + data[i]["permissionPid"] + '" value="' + data[i]["permissionId"] + '"/></td>' +
-                    '<td class="describe-td-1">' + data[i]["permissionName"] + '</td>' +
+                    '<td><input type="checkbox"  name="' + data[i]["permissionPid"] + '" value="' + data[i]["permissionId"] + '"/>' + data[i]["permissionName"] + '</td>' +
+                    // '<td class="describe-td-1">' + data[i]["permissionName"] + '</td>' +
                     '<td>' + data[i]["permissionDescribe"] + '</td></tr>';
             }
             $("#personal-permission").empty();
@@ -166,37 +171,54 @@ var qm_member = {
 
     saveOrUpdateMember: function ()
     {
-        var url = path;
-        if (myjs.isNull(userId))
-            url += "/s/addMember.action";
-        else
-            url += "/s/updateMember.action";
-
-        var params = {};
-        var permissionIdArray = $("#permission").val().split(Constant.COMMA);
-        var permissionArray = [];
-        for (var i = 0; i < permissionIdArray.length - 1; i++)
-            permissionArray.push({"permissionId": permissionIdArray[i]});
-
-        params["memberId"] = userId;
-        params["userName"] = $("#user-name").val();
-        params["userSex"] = $("#user-sex>a.poptwo-c-lia1").text();
-        params["userPhone"] = $("#user-phone").val();
-        params["userIdentity"] = $("#user-identity").val();
-        params["departmentId"] = $("#department-list").val();
-        params["positionId"] = $("#position-list").val();
-        params["userCardFront"] = $("#img-card-front").attr("result");
-        params["userCardBack"] = $("#img-card-back").attr("result");
-        params["permission"] = JSON.stringify(permissionArray);
-
-        // console.log(params);
-
-        myjs.ajax_post(url, params, function (data)
+        var $reg = /^[\u4E00-\u9FA5]{2,20}$/;
+        var $reg2 = /^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1}))+\d{8})$/;
+        var $reg3 = /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/;
+        if ($reg.test($('#user-name').val()) && $reg2.test($('#user-phone').val()) && $reg3.test($('#user-identity').val()))
         {
-            console.log(data);
-            parent.qm_index.init();
-            location.href = path + '/pages/management/qm-enterpriselistt.jsp';
-        });
+            console.log('通过')
+            var url = path;
+            if (myjs.isNull(userId))
+                url += "/s/addMember.action";
+            else
+                url += "/s/updateMember.action";
+
+            var params = {};
+            var permissionIdArray = $("#permission").val().split(Constant.COMMA);
+            var permissionArray = [];
+            for (var i = 0; i < permissionIdArray.length - 1; i++)
+                permissionArray.push({"permissionId": permissionIdArray[i]});
+
+            params["memberId"] = userId;
+            params["userName"] = $("#user-name").val();
+            params["userSex"] = $("#user-sex>a.poptwo-c-lia1").text();
+            params["userPhone"] = $("#user-phone").val();
+            params["userIdentity"] = $("#user-identity").val();
+            params["departmentId"] = $("#department-list").val();
+            params["positionId"] = $("#position-list").val();
+            params["userCardFront"] = $("#img-card-front").attr("result");
+            params["userCardBack"] = $("#img-card-back").attr("result");
+            params["permission"] = JSON.stringify(permissionArray);
+            // console.log(params);
+            myjs.ajax_post(url, params, function (data)
+            {
+                console.log(data);
+                parent.qm_index.init();
+                location.href = path + '/pages/management/qm-enterpriselistt.jsp';
+            });
+        } else
+        {
+            if (!$reg.test($('#user-name').val()))
+                $('#user-name').css('border-color', 'red');
+            if (!$reg2.test($('#user-phone').val()))
+                $('#user-phone').css('border-color', 'red');
+            if (!$reg3.test($('#user-identity').val()))
+                $('#user-identity').css('border-color', 'red');
+            console.log('不通过')
+            var conttext = '提交失败！输入信息不全';
+            var fnright = 'indenxlogin.removepop()';
+            indenxlogin.Errorpopone('提示', conttext, fnright, '返回')
+        }
     },
 
     permissionClick: function ()

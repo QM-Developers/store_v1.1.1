@@ -72,7 +72,7 @@
                 </div>
 
                 <div class="paging-num-box" id="pagebox">
-                    人数显示:<span class="paging-num" onclick="qm_universalApply.pageShowNum(this)">30</span>
+                    列表显示:<span class="paging-num" onclick="qm_universalApply.pageShowNum(this)">30</span>
                     <span class="paging-num" onclick="qm_universalApply.pageShowNum(this)">20</span>
                     <span class="paging-num paging-checked" onclick="qm_universalApply.pageShowNum(this)">10</span>
                 </div>

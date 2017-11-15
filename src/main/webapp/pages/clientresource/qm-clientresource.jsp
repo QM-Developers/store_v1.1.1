@@ -84,7 +84,7 @@
         </div>
         <div class="customerdata-cont customerdata-cont2">
             <div class="am-u-sm-12">
-                <ul>
+                <ul class="frist-ul">
                     <li class="customerdata-li">
                         <span class="am-u-sm-2">建立档案:</span>
                         <span class="customerdata-record" id="userCreateDate"></span>

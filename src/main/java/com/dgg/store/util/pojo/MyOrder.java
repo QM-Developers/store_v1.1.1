@@ -45,7 +45,8 @@ public class MyOrder {
     private Date refundAcceptDate;
     private List<Byte> statusList;
     private List<MyOrderListVO> orderList;
-    private float orderCount;
+    private Float orderCount;
+    private Float refundCount;
     private String keyword;
     private String memberId;
     private String merchandiserId;
@@ -225,16 +226,6 @@ public class MyOrder {
         return orderList;
     }
 
-    public void setOrderCount(float orderCount)
-    {
-        this.orderCount = orderCount;
-    }
-
-    public float getOrderCount()
-    {
-        return orderCount;
-    }
-
     public void setKeyword(String keyword)
     {
         this.keyword = keyword;
@@ -293,5 +284,25 @@ public class MyOrder {
     public void setDepartmentId(String departmentId)
     {
         this.departmentId = departmentId;
+    }
+
+    public Float getOrderCount()
+    {
+        return orderCount;
+    }
+
+    public void setOrderCount(Float orderCount)
+    {
+        this.orderCount = orderCount;
+    }
+
+    public Float getRefundCount()
+    {
+        return refundCount;
+    }
+
+    public void setRefundCount(Float refundCount)
+    {
+        this.refundCount = refundCount;
     }
 }

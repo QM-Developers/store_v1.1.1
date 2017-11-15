@@ -13,8 +13,10 @@ var qm_memberList = {
             }
         }
         //----------
+        var pageNum = $.trim($('#pageleft').text());
+        var pageSize = $.trim($('#pagebox').find('.paging-checked').text());
         qm_memberList.initUI();
-        qm_memberList.findMemberList();
+        qm_memberList.findMemberList(pageNum,pageSize);
     },
 
     initUI: function ()
@@ -23,30 +25,35 @@ var qm_memberList = {
             $("#btn-update-department").hide();
     },
 
-    findMemberList: function ()
+    findMemberList: function (pageNum,pageSize)
     {
         var url = path + "/s/findMemberList.action";
         var params = {};
 
         params["departmentId"] = departmentId;
-        params["pageNum"] = 1;
-        params["pageSize"] = 10;
+        params["pageNum"] = pageNum;
+        params["pageSize"] = pageSize;
 
         myjs.ajax_post(url, params, function (data)
         {
             console.log(data);
+             var pageCount = data.pageCount;
+             $('#pageright').text(pageCount)
             data = data.result;
-            for (var i = 0; i < data.length; i++)
+            qm_memberList.memberList.empty();
+            for (var i = 0; i < data.length; i++){
+
             qm_memberList.insertMemberColumn(
                 data[i]["userName"],data[i]["userSex"],
                 data[i]["userPhone"],data[i]["departmentName"],
                 data[i]["positionName"],data[i]["userId"]
-            );
+            );}
         });
     },
 
     insertMemberColumn: function (name, sex, phone, department, position, id)
     {
+
         var item = "";
         item += '<tr>' +
             '<td>' + name + '</td>' +
@@ -94,7 +101,7 @@ var qm_memberList = {
         var pageCount = $.trim($('#pageright').text());
         var pageresult = (pageNum == pageCount) ? 1 : pageNum;
         $('#branchpageleft').html(pageresult);
-        // qm_universalApply.getAccountApply(pageNum, pageSize);
+        qm_memberList.findMemberList(pageNum, pageSize);
 
     },
     NextPage: function (item)
@@ -110,14 +117,14 @@ var qm_memberList = {
                 return;
             var pageNum = Math.ceil((pageSizetext - 0) + 1);
             $('#pageleft').html(pageNum);
-            // qm_universalApply.getAccountApply(pageNum, pageSize);
+            qm_memberList.findMemberList(pageNum, pageSize);
         } else
         {
             if (pageSizetext <= 1)
                 return;
             var pageNum = Math.ceil((pageSizetext - 0) - 1);
             $('#pageleft').html(pageNum);
-            // qm_universalApply.getAccountApply(pageNum, pageSize);
+            qm_memberList.findMemberList(pageNum, pageSize);
         }
     },
 };

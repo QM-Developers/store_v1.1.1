@@ -11,8 +11,8 @@
         var path = "${path}";
         var basePath = "${basePath}";
     </script>
-    <link rel="icon" type="image/png" href="${path}/script/Amaze/assets/i/favicon.png">
-    <link rel="apple-touch-icon-precomposed" href="${path}/script/Amaze/assets/i/app-icon72x72@2x.png">
+    <%--<link rel="icon" type="image/png" href="${path}/script/Amaze/assets/i/favicon.png">--%>
+    <%--<link rel="apple-touch-icon-precomposed" href="${path}/script/Amaze/assets/i/app-icon72x72@2x.png">--%>
     <link rel="stylesheet" href="${path}/script/Amaze/assets/css/admin.css">
     <link rel="stylesheet" type="text/css" href="${path}/pages/management/qm-index.css"/>
 

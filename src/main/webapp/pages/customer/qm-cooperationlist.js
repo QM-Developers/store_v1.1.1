@@ -10,6 +10,7 @@ var qm_cooperationlist = {
         switch (urltype)
         {
             case 'khid':
+                $('.sel-box select').css('display','none');
                 $.cookie('cFarmerlist', urlParams);
                 qm_cooperationlist.setData(urltype);
                 break;

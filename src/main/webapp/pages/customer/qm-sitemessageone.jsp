@@ -14,6 +14,7 @@
     </script>
     <link rel="stylesheet" type="text/css" href="${path}/script/Amaze/assets/css/amazeui.min.css"/>
     <link rel="stylesheet" type="text/css" href="${path}/pages/common/reset.css"/>
+    <link rel="stylesheet" type="text/css" href="${path}/pages/common/windowstyle.css"/>
     <link rel="stylesheet" type="text/css" href="${path}/pages/customer/qm-sitemessageone.css"/>
 </head>
 

@@ -6,7 +6,6 @@
     position: absolute;
     top:0;
     right: 0;
-
 }
 /*第1块*/
 .customerdata_select {
@@ -31,9 +30,7 @@
 .customerdata {
     display: block;
     min-width: 1000px;
-    /*max-width: 1267px;*/
     box-sizing: border-box;
-    /*margin: 10px auto;*/
     border: 1px solid #fff;
     border-radius: 5px;
     background: #fff;
@@ -113,12 +110,6 @@
     height: auto;
 }
 
-/*.customerdata-li .customerType {*/
-    /*height: 34px;*/
-    /*float: left;*/
-    /*line-height: 34px;*/
-/*}*/
-
 .sex-unchecked {
     color: #000302;
     margin-right: 10px;
@@ -131,9 +122,8 @@
 }
 
 /*第二块*/
-
 .customerdata-cont2 {
-    height: 150px;
+    /*height: 150px;*/
 }
 
 .customerdata-cont .customerdata-time-img {
@@ -268,7 +258,6 @@
     -moz-border-radius: 2px;
     border-radius: 2px;
 }
-
 
 .span3 a img {
     width: 100%;

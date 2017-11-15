@@ -8,36 +8,39 @@ var qm_sitedatalistone = {
         switch (urlParams.split('=')[0])
         {
             case 'grid':
-                $.cookie('grid',urlParams)
+                $.cookie('grid', urlParams)
                 qm_sitedatalistone.setData()
                 break;
             case 'grsiteback':
-                if($.cookie('grid')!=null){
-                    urlParams =$.cookie('grid');
+                if ($.cookie('grid') != null)
+                {
+                    urlParams = $.cookie('grid');
                     qm_sitedatalistone.setData()
                 }
                 break;
             case 'graddsiteback':
-                if($.cookie('grid')!=null){
-                    urlParams =$.cookie('grid');
+                if ($.cookie('grid') != null)
+                {
+                    urlParams = $.cookie('grid');
                     qm_sitedatalistone.setData()
                 }
                 break;
             case 'resource':
-                $.cookie('rindividual',urlParams)
+                $.cookie('rindividual', urlParams)
                 qm_sitedatalistone.setData()
                 $('#removeheader').remove();
                 break;
             case 'rGrSiteMessage':
-              if ($.cookie('rindividual')){
-              urlParams =$.cookie('rindividual');
-                  qm_sitedatalistone.setData()
-                  $('#removeheader').remove();
-              }
+                if ($.cookie('rindividual'))
+                {
+                    urlParams = $.cookie('rindividual');
+                    qm_sitedatalistone.setData()
+                    $('#removeheader').remove();
+                }
                 break;
         }
     },
-    setData:function ()
+    setData: function ()
     {
         $('#addsite').attr('href', 'qm-sitemessageone.jsp?graddsite=' + urlParams.split('=')[1]);
         var pageNum = $.trim($('#pageleft').text());
@@ -53,13 +56,13 @@ var qm_sitedatalistone = {
         params['pageSize'] = pageSize;
         myjs.ajax_post(url, params, function (data)
         {
-
+            console.log(data)
             var pageCount = data.pageCount;
             var state = data.state;
             var data = data.result;
             if (state == '1')
             {
-                var sign = urlParams.split('=')[0] != 'resource' ? 'grsite' : 'rGrSite';
+                // var sign = urlParams.split('=')[0] != 'resource' ? 'grsite' : 'rGrSite';
                 $('#pageright').text(pageCount);
                 $('#table tr:first-child').nextAll().remove();
                 for (var i = 0; i < data.length; i++)
@@ -68,8 +71,9 @@ var qm_sitedatalistone = {
                         '<td>' + data[i].userPlaceArea + '</td>' +
                         '<td>' + qm_sitedatalistone.userPlaceType(data[i].userPlaceType) + '</td>' +
                         '<td>' + data[i].userEmployeeNum + '</td>' +
-                        '<td>' +
-                        '<a class="personnel-details" href=qm-sitemessageone.jsp?'+sign+'=' + data[i].userPlaceId + '&userid=' + urlParams.split('=')[1] + '>详细信息</a>' +
+                        '<td onclick="qm_sitedatalistone.removeSiteBut(this)">' +
+                        '<a class="personnel-details" id=' + data[i].userPlaceId + '>删除</a>' +
+                        // '<a class="personnel-details" href=qm-sitemessageone.jsp?'+sign+'=' + data[i].userPlaceId + '&userid=' + urlParams.split('=')[1] + '>详细信息</a>' +
                         '</td>' +
                         '</tr>';
                     $('#table').append($tr);
@@ -94,6 +98,39 @@ var qm_sitedatalistone = {
                 return data = '禁养区';
                 break;
         }
+    },
+    removeSiteBut: function (item)
+    {
+
+        var $item = $(item).find('a').attr('id')
+        self =$item;
+        var cont = '是否要删除该场地';
+        var leftfn = 'qm_sitedatalistone.removeSite()';
+        var rightfn = 'indenxlogin.removepop()';
+        indenxlogin.Errorpoptwo('提示', cont, '是', leftfn, '否', rightfn)
+    },
+    removeSite: function ()
+    {
+
+        var url = path + '/s/removeUserPlace.action';
+        var params = {};
+        params['userPlaceId'] = self;
+        console.log(params)
+        myjs.ajax_post(url, params, function (data)
+        {
+            console.log(data)
+            var state = data.state;
+            var data = data.result;
+
+            if (state == '1')
+            {
+                indenxlogin.removepop();
+                $('#pageleft').text('1');
+                var pageNum = $.trim($('#pageleft').text());
+                var pageSize = $.trim($('#pagebox').find('.paging-checked').text());
+                qm_sitedatalistone.getData(pageNum, pageSize);
+            }
+        })
     },
     pageShowNum: function (item)
     {

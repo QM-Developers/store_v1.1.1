@@ -8,6 +8,7 @@ public class SessionVO
     private String userImg;
     private String roleId;
     private String myTeamId;
+    private String myTeamName;
     private String token;
     private String departmentId;
     private String departmentType;
@@ -100,5 +101,15 @@ public class SessionVO
     public void setUserPhone(String userPhone)
     {
         this.userPhone = userPhone;
+    }
+
+    public String getMyTeamName()
+    {
+        return myTeamName;
+    }
+
+    public void setMyTeamName(String myTeamName)
+    {
+        this.myTeamName = myTeamName;
     }
 }

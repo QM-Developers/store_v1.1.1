@@ -59,6 +59,10 @@ var qm_cooperationfarmer = {
                 break;
         }
         console.log(urltype)
+        $('.disable-sign').focus(function ()
+        {
+            $(this).css('border-color', '#ccc');
+        })
     },
     setData: function ()
     {
@@ -93,15 +97,19 @@ var qm_cooperationfarmer = {
                 inputval += 1;
             }
         });
-        if (inputval == 0)
+
+        var $reg = /^[\u4E00-\u9FA5]{2,20}$/;
+        var $phonetreaty = /^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1}))+\d{8})$/;
+        if (inputval == 0 && $reg.test($('farmerName').val()) && $phonetreaty.test($('#farmerPhone').val()))
         {
-            var titletext = '提示';
             var conttext = '是否要添加新的农户资源';
-            var leftbuttext = '是';
             var fnleft = 'qm_cooperationfarmer.submitData()';
-            var rightbuttext = '否';
             var fnright = 'indenxlogin.removepop()';
-            indenxlogin.Errorpoptwo(titletext, conttext, leftbuttext, fnleft, rightbuttext, fnright)
+            indenxlogin.Errorpoptwo('提示', conttext, '是', fnleft, '否', fnright)
+        }else {
+            var conttext = '请填写正确信息';
+            var fnclick = 'indenxlogin.removepop()';
+            indenxlogin.Errorpopone('提示', conttext, fnclick, '确定')
         }
 
     },
@@ -174,7 +182,7 @@ var qm_cooperationfarmer = {
                         '<td>' + qm_cooperationfarmer.userPlaceType(data[i].userPlaceType) + '</td>' +
                         '<td>' + data[i].userEmployeeNum + '</td>' +
                         '<td>' +
-                        '<a class="personnel-details" href=qm-sitemessageone.jsp?'+sign+'=' + data[i].userPlaceId + '&nhid=' + urlParams.split('&')[0].split('=')[1] + '&hzsid=' + urlParams.split('&')[1].split('=')[1] + '> 详细信息 </a> ' +
+                        '<a class="personnel-details" href=qm-sitemessageone.jsp?' + sign + '=' + data[i].userPlaceId + '&nhid=' + urlParams.split('&')[0].split('=')[1] + '&hzsid=' + urlParams.split('&')[1].split('=')[1] + '> 详细信息 </a> ' +
                         '</td>' +
                         '</tr>';
                     $('#table').append($tr);

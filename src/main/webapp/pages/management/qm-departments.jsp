@@ -45,8 +45,6 @@
             <div class=" qm-team-input">
                 <span class="branch-name">成立时间:</span>
                 <div class="poptime">
-                    <%--<input id="create-date" class="pop-input"/>--%>
-                    <%--<button onclick="QmTime(this);" class="am-btn am-btn-default databut am-icon-calendar qm-time-but" data-am-datepicker="{format: 'yyyy-mm-dd'}" type="button"></button>--%>
                     <input id="create-date" type="text" onClick="WdatePicker()"/>
                 </div>
             </div>
@@ -54,7 +52,7 @@
 
     <div class="position">
         <div class="jurisdiction-box position-box">
-            <div class="jurisdiction-but position-but" onclick="Addduty('')"><i></i>添加职位</div>
+            <div class="jurisdiction-but " onclick="Addduty('')"><i class="but-i"></i>添加职位</div>
         </div>
         <div class="position-contbox" id="Contbox">
         </div>

@@ -75,7 +75,7 @@ public class GoodsBrowseDaoImpl implements GoodsBrowseDao
     @Override
     public int getRepertoryLevel(String userId, String myTeamId)
     {
-        return 0;
+        return mapper.getRepertoryLevel(userId,myTeamId);
     }
 
     @Override

@@ -65,13 +65,11 @@ var qm_application = {
     getBranchOption: function (thisval)
     {
         //获取部门下的成员
-        var url = path + "/s/findMemberList.action";
+        var url = path + "/s/listCommonMember.action";
         var params = {};
         var num = $('.branchoption').length;
+        console.log(num,'数量')
         params["departmentId"] = thisval;
-        params['pageNum'] = '1';
-        params['pageSize'] = '999';
-        console.log(params, '成员id')
         myjs.ajax_post(url, params, function (data)
         {
             console.log(data, '成员')
@@ -86,12 +84,10 @@ var qm_application = {
     {
         //改变的成员列表
         var itemval = $(item).val();
-        var $ieem = $(item).parents('.goods-box1-2').next().find('.branchoption');
-        var url = path + "/s/findMemberList.action";
+        var $item = $(item).parent('.goods-box1-2').next().find('.branchoption');
+        var url = path + "/s/listCommonMember.action";
         var params = {};
         params["departmentId"] = itemval;
-        params['pageNum'] = '1';
-        params['pageSize'] = '999';
         console.log(params, '成员id')
         myjs.ajax_post(url, params, function (data)
         {
@@ -100,7 +96,7 @@ var qm_application = {
             var item = "";
             for (var i = 0; i < data.length; i++)
                 item += '<option value="' + data[i]["userId"] + '">' + data[i]["userName"] + '</option>';
-            $ieem.empty().append(item);
+            $item.empty().append(item);
 
         });
     },
@@ -115,7 +111,7 @@ var qm_application = {
         var $Approver = '<div class="goods-box1 branchbox">' +
             '<div class="goods-box1-1">审批人员:</div>' +
             '<div class="goods-box1-2">' +
-            '<select name="" class="branch" id="branch' + parseInt($element + 1) + '" onchange="qm_application.getBranchOption(this.value)">' +
+            '<select name="" class="branch" id="branch' + parseInt($element + 1) + '" onchange="qm_application.onChangeVal(this)">' +
             '<option value=""></option>' +
             '</select>' +
             '</div>' +
@@ -351,7 +347,8 @@ var qm_application = {
                 {
                     console.log('1111')
                     $('#disagree,#consent').css('display','none').attr('disabled', true).css('background', '#ccc');
-                }else {
+                }
+                else {
                     $('#disagree,#consent').css('display','block')
                 }
 
@@ -374,7 +371,6 @@ var qm_application = {
                         '</div>';
                 }
                 $('#approver').append($itemMember);
-                // var pathImg = path + '/user_getHeadPortrait.action\?path=';
                 for (var j = 0; j < imageId.length; j++)
                 {
                     var $img = '<a class="img-a">' +
@@ -392,7 +388,8 @@ var qm_application = {
                         '<div >' + approve[k].departmentName + '</div><div>' + approve[k].approveName + '</div><div>(' + qm_application.statusType(approve[k].approveResult) + ')</div></div>' +
                         '<div class="am-g goods-box2">' +
                         '<div class="goods-box1-1">审批意见:</div>';
-                    if (approve[k].approveId == parent.document.getElementById('userName').getAttribute('name') && urlParams.split('=')[0] == 'approveApply' && approve[k].approveResult == '20')
+                    // if (approve[k].approveId == parent.document.getElementById('userName').getAttribute('name') && urlParams.split('=')[0] == 'approveApply' && approve[k].approveResult == '20')
+                    if(data.approve =='1' && approve[k].approveId == parent.document.getElementById('userName').getAttribute('name'))
                     {
                         $itemScheme += '<textarea  maxlength="500" class="goods-box2-2 " id="approveText" name="' + approve[k].approveSequence + '">' + approve[k].approveAdvice + '</textarea>';
                         // $('#disagree,#consent').attr('disabled', true).css('background', '#ccc');

@@ -297,6 +297,7 @@
         INNER JOIN goods_standard gs
         ON gs.standard_id = qbg.standard_id
         WHERE qbg.branch_id = #{branchId}
+        AND qbg.standard_count > 0
         <if test="type.keyword != null and type.keyword != ''">
             AND (gi.goods_name LIKE CONCAT('%', #{type.keyword}, '%') OR gi.goods_name = #{type.keyword})
         </if>
@@ -340,7 +341,7 @@
         LIMIT 1
     </select>
 
-    <select id="getCurrentBranchId" resultType="java.lang.Integer">
+    <select id="getCurrentBranchId" resultType="java.lang.String">
         SELECT branch_id
         FROM qm_branch qb
         INNER JOIN user u
@@ -377,4 +378,12 @@
         ORDER BY gimg.sort
     </select>
 
+    <select id="getRepertoryLevel" resultType="java.lang.Integer">
+        SELECT IFNULL(MAX(repertory_type),0)
+        FROM customer_repertory cr
+        INNER JOIN customer c
+        ON c.customer_type = cr.customer_type
+        WHERE cr.my_team_id = #{myTeamId}
+        AND c.user_id = #{userId}
+    </select>
 </mapper>

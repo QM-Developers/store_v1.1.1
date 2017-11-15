@@ -3,40 +3,29 @@ var qm_index = {
     inint: function ()
     {
 
-        console.log(urlParams)
-        if ($.cookie('logindata') != null)
+        var urltype = urlParams.split('=')[1];
+        if (urlParams.split('=')[0] == 'login')
         {
-            cookiedata = JSON.parse($.cookie('logindata'));
-            $('#loginText').text(cookiedata.myTeamName);
-
-            if ($.cookie('permissiondata') != null)
-            {
-                var typeData = JSON.parse($.cookie('permissiondata'));
-                $('#li-name').append('<span class="user-name" id="userName" name="'+cookiedata.userId+'">' + cookiedata.userName + '</span><span class="position-name" id="positionName" name=' + typeData.positionName + '>(' + typeData.text + ')</span>');
-                qm_index.getData();
-                qm_index.sign_login = typeData.positionName;
-
-            } else
-            {
-                var urltype = urlParams.split('=')[1];
-                console.log(urltype)
-                switch (urltype)
-                {
-                    case '1002':
-                        qm_index.sign_login = '1002';
-                        $('#li-name').append('<span class="user-name" id="userName" name="'+cookiedata.userId+'">' + cookiedata.userName + '</span><span class="position-name" id="positionName" name="1002">(管理员)</span>');
-                        $('.untreated-2,.untreated-3,.untreated-4,.untreated-5').remove();
-                        $('.work-2,.work-3,.work-5,.work-6,.work-7,.work-8,work-9').remove();
-                        $('.work-4-2,.work-4-4').remove();
-                        $('.work-8-1,.work-8-2,.work-8-5').remove();
-                        break;
-                    case '1003':
-
-                        qm_index.getData();
-                        break;
-                }
-            }
+            $.cookie('permissiondata', null, {expires: -1});
+            console.log($.cookie('permissiondata'))
         }
+        switch (urltype)
+        {
+            case '1002':
+                //管理员
+                qm_index.sign_login = '1002';
+                $('#li-name').append('<span class="user-name" id="userName" name="' + userNameId + '">' + userNameText + '</span><span class="position-name" id="positionName" name="1002">(管理员)</span>');
+                $('.untreated-2,.untreated-3,.untreated-4,.untreated-5').remove();
+                $('.work-2,.work-3,.work-5,.work-6,.work-7,.work-8,work-9').remove();
+                $('.work-4-2,.work-4-4').remove();
+                $('.work-8-1,.work-8-2,.work-8-5').remove();
+                break;
+            case '1003':
+                //商家
+                qm_index.getData();
+                break;
+        }
+
         $(".am-panel").click(function ()
         {
             $(".am-panel>.active").removeClass("active")
@@ -84,9 +73,9 @@ var qm_index = {
 
     getData: function ()
     {
+        //登录
         var url = path + '/user_listPermissionModel.action';
         var params = {};
-        console.log(params)
         myjs.ajax_post(url, params, function (data)
         {
             console.log(data, '登录返回')
@@ -95,6 +84,14 @@ var qm_index = {
 
             if (state == '1')
             {
+                if ($.cookie('permissiondata') != null)
+                {
+                    var typeData = JSON.parse($.cookie('permissiondata'));
+                    $('#li-name').append('<span class="user-name" id="userName" name="' + userNameId + '">' + userNameText + '</span><span class="position-name" id="positionName" name=' + typeData.positionName + '>(' + typeData.text + ')</span>');
+                } else
+                {
+                    $('#li-name').append('<span class="user-name" id="userName" name="' + userNameId + '">' + userNameText + '</span><span class="position-name" id="positionName" name=' + data[0].permissionType + '>(' + qm_index.getpermissionType(data[0].permissionType) + ')</span>');
+                }
                 var $li = '';
                 for (var i = 0; i < data.length; i++)
                 {
@@ -103,28 +100,24 @@ var qm_index = {
                         '</li>';
                 }
                 $('#user-nav0').append($li);
-                if ($.cookie('permissiondata') == null)
-                {
-                    $('#li-name').append('<span class="user-name" id="userName" name="'+cookiedata.userId+'">' + cookiedata.userName + '</span><span class="position-name" id="positionName" name=' + $("#user-nav0 li:first-child").find('a').attr("name") + '>(' + $("#user-nav0 li:first-child").text() + ')</span>');
-                    var signName = $("#li-name").find('.position-name').attr('name');
-                    console.log(signName)
-                    qm_index.sign_login = signName;
-                    console.log(qm_index.sign_login, '生成')
-                }
+                var signName = $("#li-name").find('.position-name').attr('name');
+                qm_index.sign_login = signName;
                 qm_index.showStyle();
             }
         })
     },
     liSelect: function (item)
     {
+        console.log('111111111')
+        console.log(roleId, '标记');
         var permissiondata = {
             'text': $(item).text().trim(),
             'userName': $(item).parents('#user-nav0').prev().find('.user-name').text(),
             'positionName': $(item).attr('name')
         };
-        $.cookie('permissiondata', JSON.stringify(permissiondata))
-        location.href = "qm-index.jsp?login=" + cookiedata.roleId;
-        console.log(qm_index.sign_login, 'biaoji')
+        $.cookie('permissiondata', JSON.stringify(permissiondata));
+        console.log($.cookie('permissiondata'), '标记啊')
+        location.href = "qm-index.jsp?loginrefresh =" + roleId;
     },
     getpermissionType: function (data)
     {
@@ -163,7 +156,6 @@ var qm_index = {
     showStyle: function ()
     {
         var data = qm_index.sign_login;
-        console.log(data, '删除')
         switch (data)
         {
             case 'salesman'://业务员
@@ -218,25 +210,28 @@ var qm_index = {
         var skip = $('#positionName').attr('name');
         if (skip == 'salesman' || skip == 'salesman_manager')
         {
-            $('#skipBranch').attr('href', path+'/pages/repertory/qm-warehouse.jsp?single=1')
+            $('#skipBranch').attr('href', path + '/pages/repertory/qm-warehouse.jsp?single=1')
         } else
         {
-            $('#skipBranch').attr('href', path+'/pages/repertory/qm-branchwarehouse.jsp')
+            $('#skipBranch').attr('href', path + '/pages/repertory/qm-branchwarehouse.jsp')
         }
     },
     toManage: function ()
     {
         window.open(path + "/qm-sys-login.jsp");
     },
-    exitSystem:function ()
+    exitSystem: function ()
     {
-        var url = path +'/logoutOnBrowser.action';
-        var params ={};
-        myjs.ajax_post(url,params,function (data)
+        var url = path + '/logoutOnBrowser.action';
+        var params = {};
+        myjs.ajax_post(url, params, function (data)
         {
             var state = data.state;
-            if(state =='1'){
-                top.location.href = "../index/qm-indexLogin.jsp";
+            if (state == '1')
+            {
+                $.cookie('permissiondata', null, {expires: -1});
+                top.location.href = path + "/login.jsp";
+
             }
         })
     },
@@ -278,10 +273,6 @@ function iFrameHeight()
 }
 
 
-Menu = function ()
-{
-    $(".client").css("display", "block")
-}
 
 
 

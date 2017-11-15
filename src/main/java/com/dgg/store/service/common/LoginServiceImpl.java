@@ -49,6 +49,7 @@ public class LoginServiceImpl implements LoginService
         sessionVO.setUserImg(result.getUserImg());
         sessionVO.setMyTeamId(result.getMyTeamId());
         sessionVO.setDepartmentId(result.getDepartmentId());
+        sessionVO.setMyTeamName(result.getMyTeamName());
 
         session.setAttribute(Constant.LOGININFO, sessionVO);
 

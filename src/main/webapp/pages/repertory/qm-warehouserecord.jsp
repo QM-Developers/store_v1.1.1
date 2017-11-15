@@ -67,7 +67,7 @@
 
     <div class="paging">
 
-        <div class="pagingright" onclick="qm_warehouserecord.NextPage(this)">
+        <div class="pagingleft" onclick="qm_warehouserecord.NextPage(this)">
             下一页
         </div>
         <div class="pagingmodle">

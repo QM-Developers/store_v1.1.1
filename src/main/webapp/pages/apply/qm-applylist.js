@@ -89,7 +89,7 @@ var qm_applylist = {
                 return;
             var pageNum = Math.ceil((pageSizetext - 0) + 1);
             $('#pageleft').html(pageNum);
-            qm_applylist.getFarmer(pageNum, pageSize);
+            qm_applylist.getMyApply(pageNum, pageSize);
         } else
         {
             if (pageSizetext <= 1)

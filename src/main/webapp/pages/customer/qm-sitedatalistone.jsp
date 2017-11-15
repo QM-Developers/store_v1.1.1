@@ -21,7 +21,7 @@
 </head>
 
 <body>
-<div class="bodybox">
+<div class="bodybox opacity-box">
     <div class="sitelistbox">
         <div class="site-header" id="removeheader">
             <a class="site-header-but" id="addsite" ><i class="site-header-i"></i>添加场地</a>
@@ -78,7 +78,7 @@
 <script type="text/javascript" src="${path}/script/js/jquery.cookie.js"></script>
 <script type="text/javascript" src="${path}/script/Amaze/assets/js/amazeui.min.js"></script>
 <script type="text/javascript" src="${path}/script/js/myjs.js"></script>
-<script type="text/javascript" src="${path}/pages/common/control.js"></script>
+<script type="text/javascript" src="${path}/pages/common/regularandpop.js"></script>
 <script type="text/javascript" src="${path}/pages/customer/qm-sitedatalistone.js"></script>
 <script>
     qm_sitedatalistone.inint()

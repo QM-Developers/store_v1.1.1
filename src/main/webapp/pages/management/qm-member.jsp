@@ -13,6 +13,7 @@
     </script>
     <link rel="stylesheet" type="text/css" href="${path}/script/Amaze/assets/css/amazeui.min.css"/>
     <link rel="stylesheet" type="text/css" href="${path}/pages/common/reset.css"/>
+    <link rel="stylesheet" type="text/css" href="${path}/pages/common/windowstyle.css"/>
     <link rel="stylesheet" href="${path}/script/webuploader-0.1.5/webuploader.css">
     <link rel="stylesheet" type="text/css" href="${path}/pages/management/qm-member.css"/>
 
@@ -21,26 +22,25 @@
     </script>
 </head>
 
-<body>
-<div class=" department-header">
-    <!--头部容器-->
-    <div class=" department-header-left">
-        <button class="department-but1"><a href="qm-departments.jsp">添加部门</a></button>
-        <button class="department-but1"><a href="qm-member.jsp">添加成员</a></button>
-    </div>
-</div>
+<body class="bodybox opacity-box">
+<%--<div class=" department-header ">--%>
+<%--<!--头部容器-->--%>
+<%--<div class=" department-header-left">--%>
+<%--<button class="department-but1"><a href="qm-departments.jsp">添加部门</a></button>--%>
+<%--<button class="department-but1"><a href="qm-member.jsp">添加成员</a></button>--%>
+<%--</div>--%>
+<%--</div>--%>
 <div class="qm-team newdata" id="Personal">
     <div class="groupdata-title">
-        <div style="font-size: 18px;font-weight: 600;">添加成员</div>
+        <div class="header-title">添加成员</div>
     </div>
     <div class="member-title">
-        <div class="member-title-left">基本信息</div>
-        <div class="member-title-right" onclick="qm_member.permissionWindow(this)">个人权限</div>
+        基本信息
     </div>
-    <div class="am-g ">
+    <div class="am-g " style="padding-left: 37px;">
         <div class="am-u-sm-10 ">
-            <div class="qm-team-input">
-                <span>姓　　名 : </span><input id="user-name" class=" am-u-sm-4 am-u-end"/>
+            <div class="qm-team-input ">
+                <span>姓　　名 : </span><input id="user-name" class=" am-u-sm-4 am-u-end sign_input"/>
             </div>
             <div class="qm-team-input">
                 <span>性　　别 : </span>
@@ -51,15 +51,23 @@
                 </div>
             </div>
             <div class="qm-team-input">
-                <span>手机号码 : </span><input id="user-phone" placeholder="登录账号"/>
+                <span>手机号码 : </span>
+                <input id="user-phone" class="sign_input" maxlength="11" onkeyup="indenxlogin.inputVal(this)"
+                       contentEditable="indenxlogin.inputVal(this)" onblur="indenxlogin.inputVal
+(this)"/>
+
             </div>
             <div class="qm-team-input">
-                <span>身份证号 : </span><input id="user-identity"/>
+                <span>身份证号 : </span>
+                <input id="user-identity" class="sign_input" maxlength="18" onkeyup="indenxlogin.inputVal(this)"
+                       contentEditable="indenxlogin.inputVal(this)" onblur="indenxlogin.inputVal
+(this)"/>
             </div>
             <div class="qm-team-input">
                 <span>所属部门 : </span>
                 <div class="qm-team-div">
-                    <select id="department-list" onchange="qm_member.findPositionList(value)" style="height: 100%;"></select>
+                    <select id="department-list" onchange="qm_member.findPositionList(value)"
+                            style="height: 100%;"></select>
                 </div>
             </div>
             <div class="qm-team-input">
@@ -71,9 +79,12 @@
             <hidden id="permission"/>
         </div>
     </div>
+    <div class="am-g" style="padding-left: 37px;">
+        <div class="member-title-right" onclick="qm_member.permissionWindow(this)">个人权限</div>
+    </div>
 </div>
 <!--上传身份证-->
-<div class="qm-team identity-card newdata">
+<div class="qm-team identity-card newdata" id="identity-card">
     <div class="am-u-sm-12 newdata-picture-box">
         <div class="groupdata-title-1">
             <div>身份证照片 :</div>
@@ -105,25 +116,19 @@
 </div>
 <div class="del-but-box">
     <button class="del-but" style="color: red; display: none;" onclick="qm_member.deleteMember();">删除</button>
-    <button class="del-but">返回</button>
+    <button class="del-but" onclick="javascript:history.back(-1)">返回</button>
     <button class="del-but" onclick="qm_member.saveOrUpdateMember();">提交</button>
 </div>
 <!--权限-->
 <div class="duty-box duty-Power">
     <div class="duty-one duty-one1 ">
-        <div class="duty-title">个人权限选择</div>
         <div class="duty-frame1 duty-one2">
-            <div class="duty-input">
-                <span>个人名称</span>
-                <span id="member-name"></span>
-            </div>
             <div>
-                <table class="am-table" style="border-collapse: collapse;">
+                <table class="am-table">
                     <thead>
                     <tr style="background: #f7f7f7;">
-                        <th class="duty-rights-1">办事权</th>
-                        <th class="duty-rights-2">权限</th>
-                        <th class="duty-rights-3">权限描述</th>
+                        <th class="duty-rights-1">角色选择</th>
+                        <th class="duty-rights-3">角色描述</th>
                     </tr>
                     </thead>
                     <tbody id="personal-permission"></tbody>
@@ -131,13 +136,11 @@
             </div>
         </div>
         <div class="duty-frame2 duty-Power">
-            <div class="duty-frame-box">
-                <div class="duty-frame-left" onclick="qm_member.permissionClick()">
-                    确定
-                </div>
-                <div class="duty-frame-right" onclick="Dutyoff()">
-                    取消
-                </div>
+            <div class="duty-frame-but" onclick="Dutyoff()">
+                关闭
+            </div>
+            <div class="duty-frame-but" onclick="qm_member.permissionClick()">
+                确定
             </div>
         </div>
     </div>
@@ -148,7 +151,8 @@
 <script type="text/javascript" src="${path}/script/Amaze/assets/js/amazeui.min.js"></script>
 <script type="text/javascript" src="${path}/script/webuploader-0.1.5/webuploader.min.js"></script>
 <script type="text/javascript" src="${path}/script/js/myjs.js"></script>
-<script type="text/javascript" src="${path}/pages/common/control.js"></script>
+<script type="text/javascript" src="${path}/pages/common/regularandpop.js"></script>
+<%--<script type="text/javascript" src="${path}/pages/common/control.js"></script>--%>
 <script type="text/javascript" src="${path}/pages/common/Constant.js"></script>
 
 <script type="text/javascript">

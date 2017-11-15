@@ -41,7 +41,10 @@ public class OrderUtil
     public static MyOrder getOrderCount(MyOrder myOrder)
     {
         for (MyOrderListVO list : myOrder.getOrderList())
+        {
             myOrder.setOrderCount(list.getBuyNum() * list.getGoodsPrice());
+            myOrder.setRefundCount(list.getRefundNum() * list.getGoodsPrice());
+        }
         return myOrder;
     }
 

@@ -9,9 +9,7 @@ var loginpost = {
 
     IndexSubmit: function ()
     {//登录
-        console.log(indenxlogin.usename_val)
-        console.log(indenxlogin.myteamid_val)
-        console.log(indenxlogin.password_val)
+
         var titletext = '提示';
         var fnclick = 'indenxlogin.ErrorpopRemove(this)';
         var buttext = '确定';
@@ -25,16 +23,12 @@ var loginpost = {
 
         if (indenxlogin.usename_val && indenxlogin.myteamid_val && indenxlogin.password_val)
         {
-            console.log(indenxlogin.usename_val)
-            console.log(indenxlogin.myteamid_val)
-            console.log(indenxlogin.password_val)
+
             var url = path + "/login_on_browser.action";
             var params = {};
-
             params["userPhone"] = $('#indexphone').val();
             params["myTeamId"] = $('#indexteamnum').val();
             params["userPassword"] = md5($('#indexpsw').val());
-
             myjs.ajax_post(url, params, function (data, status)
             {
                 var state = data.state;
@@ -44,19 +38,8 @@ var loginpost = {
                     switch (state)
                     {
                         case 1 :
-                            var cookiedata = {
-                                'myTeamName': data.myTeamName,
-                                'userName': data.userName,
-                                'userId': data.userId,
-                                'roleId': data.roleId
-                            };
-
-                            $.cookie('logindata', JSON.stringify(cookiedata));
-                            if ($.cookie('permissiondata') != null)
-                            {
-                                $.cookie('permissiondata', '', {expires: -1})
-                            }
-                            location.href = path + "/pages/index/qm-index.jsp?login=" + data.roleId;
+                            console.log(data, '数据')
+                                location.href = path + "/pages/index/qm-index.jsp?login=" + data.roleId;
                             break;
                         case 2 :
                             var conttext = '请核对信息';
@@ -76,7 +59,6 @@ var loginpost = {
             });
         } else
         {
-            console.log('111');
             indenxlogin.Errorpopone(titletext, conttext, fnclick, buttext);
             return false;
         }
@@ -113,11 +95,9 @@ var loginpost = {
         params["myTeamId"] = $('#myTeamId').val();
         if (indenxlogin.usename_val && indenxlogin.myteamid_val)
         {
-            $(item).attr('disabled','disabled');
+            $(item).attr('disabled', 'disabled');
             myjs.ajax_post(url, params, function (data, status)
             {
-                console.log('状态:', data)
-                console.log('状态:', status)
                 var titletext = '提示';
                 var fnclick = 'indenxlogin.ErrorpopRemove(this)';//删除提示框
                 var buttext = '确定';
@@ -160,10 +140,6 @@ var loginpost = {
         var conttext = '信息错误，请核对信息';
         var fnclick = 'indenxlogin.ErrorpopRemove(this)';
         var buttext = '确定';
-        console.log(indenxlogin.usename_val)
-        console.log(indenxlogin.myteamid_val)
-        console.log(indenxlogin.verify_val)
-
         if (indenxlogin.usename_val && indenxlogin.myteamid_val && indenxlogin.verify_val)
         {
             var url = path + "/registerVerify.action";
@@ -177,8 +153,6 @@ var loginpost = {
                 if (status == 'success')
                 {
                     var state = data.state;
-                    console.log(data)
-                    console.log(state);
                     var data = data.result;
                     if (state == 1)
                     {
@@ -203,8 +177,7 @@ var loginpost = {
     },
     RegisterSubmit: function ()
     {
-        console.log(indenxlogin.password_val)
-        console.log(indenxlogin.password_repetval)
+
         var titletext = '提示';
         var conttext = '信息错误，请核对信息';
         var fnclick = 'indenxlogin.ErrorpopRemove(this)';
@@ -213,14 +186,14 @@ var loginpost = {
 
         if (indenxlogin.password_val && indenxlogin.RepetiPsw_val)
         {
-            console.log('111')
+
             var url = path + "/register.action";
             var params = {};
             params["userId"] = loginpost.RegisterUserId;
             params["userPassword"] = md5($('#userPassword').val());
             myjs.ajax_post(url, params, function (data, status)
             {
-                console.log(data, status);
+
                 if (status == "success")
                 {
                     var state = data.state;
@@ -237,10 +210,7 @@ var loginpost = {
             return false;
         }
     },
-
-
 //    var userId = "48712ee959b24af69d5ede3d941f572e";
-
     ForgetGoNext: function (item)
     {
         //下一步
@@ -270,15 +240,13 @@ var loginpost = {
         var buttext = '确定';
         if (indenxlogin.usename_val && indenxlogin.myteamid_val)
         {
-            $(item).attr('disabled','disabled');
+            $(item).attr('disabled', 'disabled');
             var url = path + "/retrieveGetPasswordVerify.action";
             var params = {};
             params["userPhone"] = $('#Forgetphone').val();
             params["myTeamId"] = $('#Forgetmyteam').val();
             myjs.ajax_post(url, params, function (data, status)
             {
-                console.log('状态:', data)
-                console.log('状态:', status)
                 var state = data.state;
                 switch (state)
                 {
@@ -321,10 +289,9 @@ var loginpost = {
                 if (status == 'success')
                 {
                     var state = data.state;
-
                     if (state == 1)
                     {
-                        var  data = data.result;
+                        var data = data.result;
                         var userId = data.userId;
                         loginpost.ForgetGoNext(self);
                         loginpost.Forget_ID = userId;
@@ -348,7 +315,6 @@ var loginpost = {
         var buttext = '确定';
         if (indenxlogin.password_val && indenxlogin.RepetiPsw_val)
         {
-            console.log('111')
             var url = path + "/updatePassword.action";
             var params = {};
             params["userId"] = loginpost.Forget_ID;
@@ -356,16 +322,11 @@ var loginpost = {
             params["userPassword"] = md5($('#setpassword').val());
             myjs.ajax_post(url, params, function (data, status)
             {
-                console.log(data, status);
                 if (status == "success")
                 {
                     var state = data.state;
-                    console.log(data)
-                    console.log(state)
-
                     if (state == 1)
                     {
-
                         var conttext = '密码修改成功';
                         indenxlogin.Errorpopone(titletext, conttext, fnclick, buttext);
                     }
@@ -396,7 +357,6 @@ var loginpost = {
             params["contacts"] = $('#contacts').val();
             params["position"] = $('#position').val();
             params["phone"] = $('#phone').val();
-
             myjs.ajax_post(url, params, function (data, status)
             {
                 if (status)
@@ -414,6 +374,4 @@ var loginpost = {
             return false;
         }
     }
-
-
 }

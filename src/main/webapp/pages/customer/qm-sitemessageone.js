@@ -5,24 +5,26 @@ var qm_sitemessageone = {
 
     inint: function ()
     {
-        qm_sitemessageone.initMap();
+        // qm_sitemessageone.initMap();
 
         var urltype = urlParams.split('=')[0];
         switch (urltype)
         {
             //个体 过来的添加
             case 'graddsite':
+                qm_sitemessageone.initMap();
                 $('#sitemessagebox').css('display', 'block');
                 $('.site-li input').css('border-color', '#ccc');
-                $('#butbox').css('display','block');
+                $('#butbox').css('display', 'block');
                 $('#compilebox').remove();
                 break;
             case 'grsite':
                 //个体场地过来的
+                qm_sitemessageone.initMap();
                 $('#siteheader').css('display', 'block');
                 $('#sitemessagebox').css('display', 'block');
                 $('#sitelistbox').css('display', 'block');
-                $('#compilebox').css('display','block');
+                $('#compilebox').css('display', 'block');
                 $('#butbox').remove();
                 $.cookie('grsite', urlParams);
                 qm_sitemessageone.setDataOne();
@@ -39,15 +41,19 @@ var qm_sitemessageone = {
             //合作社
             case 'addsite':
                 //合作社 添加进来的
+                qm_sitemessageone.initMap();
+                $('.site-li input').css('border-color', '#ccc');
                 $('#sitemessagebox').css('display', 'block');
                 break;
 
             case 'cdid':
                 // 合作社详情进来的
                 $.cookie('changdiid', urlParams);
+                $('#siteheader').css('display','block');
+                $('#sitemessagebox').css('display','block');
+                $('#sitelistbox').css('display','block');
                 qm_sitemessageone.setDataTwo();
                 break;
-
             case 'yzbock':
                 //合作社 详细过去的养殖返回
                 if ($.cookie('changdiid') != null)
@@ -64,7 +70,6 @@ var qm_sitemessageone = {
                     qm_sitemessageone.setDataTwo();
                 }
                 break;
-
             case 'rSitebreed':
                 //客户资源
                 $.cookie('rSitebreed', urlParams);
@@ -148,10 +153,10 @@ var qm_sitemessageone = {
         })
         if (inputval == 0)
         {
-            qm_sitemessageone.butshow();
-            qm_sitemessageone.submitData();
-        }else {
-
+            var conttext = '是否要建立场地档案';
+            var fnleft = 'qm_sitemessageone.submitData()';
+            var fnright = 'indenxlogin.removepop()';
+            indenxlogin.Errorpoptwo('提示', conttext, '是', fnleft, '否', fnright)
         }
     },
     butshow: function ()
@@ -163,6 +168,7 @@ var qm_sitemessageone = {
     },
     changeCompile: function ()
     {
+
         if ($('.disable-sign').attr("disabled"))
         {
             $('.shade-sel').css('display', 'none').parent('div').css("border-color", "#ccc");
@@ -215,18 +221,10 @@ var qm_sitemessageone = {
             var state = data.state;
             if (state == '1')
             {
-                // var pageNum = $.trim($('#pageleft').text());
-                // var pageSize = $.trim($('#pagebox').find('.paging-checked').text());
-                // $('#sitelistbox').css('display', 'block');
-                // var id = data.result;
-                // var sign = urlParams.split('=')[0] != 'graddsite' ? 'siteid' : 'grsiteid';
-                // $('#siteheader').css('display', 'block').find('a').attr('href', 'qm-addBreed.jsp?' + sign + '=' + id);
-                // $('#sitetitle>a').attr('id', id)
-                // qm_sitemessageone.getUserBreed(pageNum, pageSize)
-                if (urlParams.split('=')[0] == 'cdid' )
-                    location.href = "qm-cooperationfarmer.jsp?cdid=2";
-                if (urlParams.split('=')[0] == 'grsite' )
-                    location.href = "qm-sitedatalistone.jsp?graddsiteback=4";
+                if (urlParams.split('=')[0] == 'addsite' )
+                    location.href = "qm-cooperationfarmer.jsp?addsiteback=1";//合作社场地添加
+                if (urlParams.split('=')[0] == 'graddsite')
+                    location.href = "qm-sitedatalistone.jsp?graddsiteback=4";//个人场地添加
             }
         })
     },
@@ -460,6 +458,7 @@ var qm_sitemessageone = {
         switch (url)
         {
             case 'addsite':
+                //合作社场地添加返回
                 location.href = "qm-cooperationfarmer.jsp?addsiteback=1";
                 break;
             case 'cdid':

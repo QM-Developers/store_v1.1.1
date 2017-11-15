@@ -388,7 +388,7 @@ public class RepertoryRecordServiceImpl implements RepertoryRecordService
 
         result.setRecordList(recordLists);
 
-        return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), result));
+        return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), result),SerializerFeature.WriteNullStringAsEmpty);
     }
 
     @Override

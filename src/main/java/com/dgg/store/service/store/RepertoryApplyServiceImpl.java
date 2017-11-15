@@ -240,7 +240,7 @@ public class RepertoryApplyServiceImpl implements RepertoryApplyService
         result.add(apply);
         getApplyList(result, sessionVO);
 
-        return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), result.get(0)));
+        return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), result.get(0)), SerializerFeature.WriteNullStringAsEmpty);
     }
 
     @Override

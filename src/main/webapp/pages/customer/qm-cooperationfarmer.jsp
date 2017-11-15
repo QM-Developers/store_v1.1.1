@@ -36,7 +36,7 @@ request.setAttribute("basePath", basePath);
             </li>
             <li class="site-li" style="position: relative;">
                 <span class="am-u-sm-2 span">联系电话 :</span>
-                <input class="am-u-sm-8 am-u-end disable-sign"   id="farmerPhone"/>
+                <input class="am-u-sm-8 am-u-end disable-sign" maxlength="11"  onkeyup="indenxlogin.inputVal(this)" contentEditable="indenxlogin.inputVal(this)" onblur="indenxlogin.inputVal(this)" id="farmerPhone"/>
 
             </li>
         </ul>
@@ -80,13 +80,12 @@ request.setAttribute("basePath", basePath);
             </table>
             <div class="paging">
 
-                <div class="goback pagingright" id="goback" onclick="qm_cooperationfarmer.gobock()">
+                <div class="goback pageleft" id="goback" onclick="qm_cooperationfarmer.gobock()">
                    返回
                 </div>
-                <div class="goback pagingright" id="removedata" onclick="qm_cooperationfarmer.removeFarmerBut()">
+                <div class="goback pageleft" id="removedata" onclick="qm_cooperationfarmer.removeFarmerBut()">
                     删除
                 </div>
-
                 <div class="pagingright" onclick="qm_cooperationfarmer.NextPage(this)">
                     下一页
                 </div>
@@ -96,9 +95,8 @@ request.setAttribute("basePath", basePath);
                 <div class="pagingleft" onclick="qm_cooperationfarmer.NextPage(this)">
                     上一页
                 </div>
-
                 <div class="paging-num-box" id="pagebox">
-                    人数显示:<span class="paging-num" onclick="qm_cooperationfarmer.pageShowNum(this)">30</span>
+                    列表显示:<span class="paging-num" onclick="qm_cooperationfarmer.pageShowNum(this)">30</span>
                     <span class="paging-num" onclick="qm_cooperationfarmer.pageShowNum(this)">20</span>
                     <span class="paging-num paging-checked" onclick="qm_cooperationfarmer.pageShowNum(this)">10</span>
                 </div>

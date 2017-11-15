@@ -2,20 +2,21 @@
 .customerdata div {
     padding: 0;
 }
-#sitelist{
+
+#sitelist {
     position: absolute;
-    top:0;
+    top: 0;
     right: 0;
 
 }
+
 /*第1块*/
 .customerdata_select {
     display: none;
     width: 120px;
     height: 34px;
-    border-radius: 5px;
+
     margin-bottom: 1px;
-    border: 1px solid #CCCCCC;
     margin-top: 10px;
     margin-left: 10px;
 }
@@ -27,7 +28,15 @@
     line-height: 34px;
     text-align: center;
     background: #f1f0f5;
+    border: 1px solid #CCCCCC;
+    border-radius: 5px;
     color: #000000;
+}
+
+.customerdata_select a:hover {
+    background: #fff;
+    border-color: #208efd;
+    color: #208efd;
 }
 
 .customerdata {
@@ -63,10 +72,12 @@
 .customerdata-cont ul {
     padding: 0;
 }
-.customerdata-cont .frist-ul{
+
+.customerdata-cont .frist-ul {
     width: 80%;
     padding-left: 35px;
 }
+
 .customerdata-cont ul .customerdata-li {
     position: relative;
     width: 50%;
@@ -74,10 +85,12 @@
     float: left;
     height: 44px;
 }
-.customerdata-li i{
+
+.customerdata-li i {
     font-style: normal;
 }
-.customerdata-li .li-shade{
+
+.customerdata-li .li-shade {
     position: absolute;
     right: 0;
     top: 0;
@@ -85,6 +98,7 @@
     background: #ffffff;
     height: 100%;
 }
+
 .customerdata-sel {
     height: 35px;
     padding: 0;
@@ -129,11 +143,11 @@
     display: none;
 
     position: absolute;
-    top:0;
+    top: 0;
     right: 0;
     width: 80px;
-    height:34px;
-    margin: 12px 20px 0 0 ;
+    height: 34px;
+    margin: 12px 20px 0 0;
     line-height: 34px;
     text-align: center;
     background: #f1f0f5;
@@ -210,7 +224,7 @@
 /*第二块*/
 
 .customerdata-cont2 {
-    height: 150px;
+    /*height: 150px;*/
 }
 
 .customerdata-cont .customerdata-time-img {
@@ -245,6 +259,12 @@
     float: right;
     border: 1px solid #CCCCCC;
     border-radius: 5px;
+}
+
+.del-but:hover {
+    border-color: #1f8fff;
+    background: #ffffff;
+    color: #1f8fff;
 }
 
 /*分页*/
@@ -300,13 +320,15 @@
     float: left;
     position: relative;
 }
-.span3 .span3-shade{
+
+.span3 .span3-shade {
     position: absolute;
-    top:0;
-    left:0;
+    top: 0;
+    left: 0;
     width: 0;
     height: 0;
 }
+
 .imgbox {
     width: 310px;
     height: 170px;

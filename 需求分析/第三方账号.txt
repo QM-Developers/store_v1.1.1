@@ -4,3 +4,16 @@
 网易云信账号密码
 账号：GDnongxun@163.com
 密码：xun123456
+阿里云账号
+账号：15207504054
+密码：962704yy
+
+========================== 农销云ESC ==========================
+用户名：root
+密码：nongxiaoyun!@#123
+公网IP：120.78.151.254 
+安装信息:
+Tomcat:     版本:8.5.8  目录:/home/tomcat/apache-tomcat-default/      使用:systemctl (start|stop|restart|status) tomcat.service 
+MySQL:    版本: 5.7.16  目录:/etc/my.cnf     使用:systemctl (start|stop|restart|status) mysqld
+Mysql：   用户名:root    默认密码:uAiqwVwjJ8-i
+===============================================================

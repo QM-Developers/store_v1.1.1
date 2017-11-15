@@ -3,38 +3,25 @@
  */
 var qm_warehouserecord =
     {
+        sign_seo: '',
         inint: function ()
         {
-
-                var pageNum = $.trim($('#pageleft').text());
-                var pageSize = $.trim($('#pagebox').find('.paging-checked').text());
-                qm_warehouserecord.getFirstBranchId(pageNum, pageSize);
+            sign_seo = '';
+            var pageNum = $.trim($('#pageleft').text());
+            var pageSize = $.trim($('#pagebox').find('.paging-checked').text());
+            qm_warehouserecord.getData(pageNum, pageSize);
 
         },
-        getFirstBranchId: function (pageNum, pageSize)
+
+        getData: function (pageNum, pageSize)
         {
-            var url = path + '/s/getFirstBranchId.action';
+            var url = path + '/s/listCurrentRepertoryIncome.action';
             var params = {};
-            console.log(params)
-            myjs.ajax_post(url, params, function (data)
+            if (sign_seo == 'timeSeo')
             {
-
-                var state = data.state;
-                var dataid = data.result;
-                console.log(dataid, '记录')
-                if (state == '1')
-                {
-                    $('#headerName').attr('name', dataid)
-
-                    qm_warehouserecord.getData(pageNum, pageSize, dataid);
-                }
-            })
-        },
-        getData: function (pageNum, pageSize, dataid)
-        {
-            var url = path + '/s/listRepertoryIncome.action';
-            var params = {};
-            params['branchId'] = dataid;
+                params['createDate'] = $('#d5221').val().trim();
+                params['finishDate'] = $('#d5222').val().trim();
+            }
             params['pageNum'] = pageNum;
             params['pageSize'] = pageSize;
             console.log(params, '获取数据')
@@ -54,34 +41,10 @@ var qm_warehouserecord =
         },
         timeSeo: function ()
         {
+            sign_seo = 'timeSeo';
             var pageNum = '1';
             var pageSize = $.trim($('#pagebox').find('.paging-checked').text());
-            qm_warehouserecord.seoResult(pageNum, pageSize)
-        },
-        seoResult: function (pageNum, pageSize)
-        {
-            var url = path + '/s/listRepertoryIncome.action';
-            var params = {};
-            params['branchId'] = $('#headerName').attr('name').trim();
-            params['pageNum'] = pageNum;
-            params['pageSize'] = pageSize;
-            params['createDate'] = $('#d5221').val().trim();
-            params['finishDate'] = $('#d5222').val().trim();
-
-
-            console.log(params)
-            myjs.ajax_post(url, params, function (data)
-            {
-                console.log(data, '搜索返回值')
-                var state = data.state;
-                var pageCount = data.pageCount;
-                var data = data.result;
-                $('#pageright').text(pageCount)
-                if (state == '1')
-                {
-                    qm_warehouserecord.listData(data)
-                }
-            })
+            qm_warehouserecord.getData(pageNum, pageSize)
         },
 
         listData: function (data)
@@ -100,33 +63,30 @@ var qm_warehouserecord =
                     '<a href="qm-addwarehouse.jsp?record=' + data[i]["recordId"] + '">查看详情</a>' +
                     '</td>' +
                     '</tr>';
-
             }
             $('#ul-table').append(item)
         },
 
         resetBut: function ()
         {
+            sign_seo = '';
             $('#d5221').val('');
             $('#d5222').val('');
             var pageNum = '1';
             var pageSize = $.trim($('#pagebox').find('.paging-checked').text());
-            qm_warehouserecord.getFirstBranchId(pageNum, pageSize);
+            qm_warehouserecord.getData(pageNum, pageSize);
         },
         pageShowNum: function (item)
         {
             //选择显示数量
             $(item).addClass('paging-checked').siblings().removeClass('paging-checked');
+            $('#pageleft').text('1');
             var pageNum = '1';
             var pageSize = $.trim($(item).text());
             var pageCount = $.trim($('#pageright').text());
             var pageresult = (pageNum == pageCount) ? 1 : pageNum;
             $('#branchpageleft').html(pageresult);
-            if (myjs.isNull($('#d5222').val()))
-                qm_warehouserecord.getFirstBranchId(pageNum, pageSize);
-            else
-                qm_warehouserecord.timeSeo(pageNum, pageSize);
-            $.trim($('#pageleft').text('1'))
+            qm_warehouserecord.getData(pageNum, pageSize);
         },
         NextPage: function (item)
         {
@@ -141,20 +101,15 @@ var qm_warehouserecord =
                     return;
                 var pageNum = Math.ceil((pageSizetext - 0) + 1);
                 $('#pageleft').html(pageNum);
-                if (myjs.isNull($('#d5222').val()))
-                    qm_warehouserecord.getFirstBranchId(pageNum, pageSize);
-                else
-                    qm_warehouserecord.timeSeo(pageNum, pageSize);
+                qm_warehouserecord.getData(pageNum, pageSize);
             } else
             {
                 if (pageSizetext <= 1)
                     return;
                 var pageNum = Math.ceil((pageSizetext - 0) - 1);
                 $('#pageleft').html(pageNum);
-                if (myjs.isNull($('#d5222').val()))
-                    qm_warehouserecord.getFirstBranchId(pageNum, pageSize);
-                else
-                    qm_warehouserecord.timeSeo(pageNum, pageSize);
+                qm_warehouserecord.getData(pageNum, pageSize);
+
             }
         },
     }

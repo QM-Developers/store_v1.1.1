@@ -241,7 +241,7 @@ var qm_clientresource = {
             if(state =='1'){
                 indenxlogin.removepop();
                 $('#hadAccount').text('成功建账').css('color','#000');
-                $('#freeze').css('display','block').attr('onclick','qm_clientresource.freezeIdBut()');
+                $('#freeze').text('冻结账号').css('display','block').attr('onclick','qm_clientresource.freezeIdBut()');
             }
         })
     },

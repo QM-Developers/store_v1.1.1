@@ -5,6 +5,7 @@ import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.dgg.store.dao.common.GoodsBrowseDao;
 import com.dgg.store.util.core.constant.*;
 import com.dgg.store.util.core.page.PagingUtil;
+import com.dgg.store.util.core.parameter.ParameterUtil;
 import com.dgg.store.util.core.string.StringUtil;
 import com.dgg.store.util.vo.core.PageVO;
 import com.dgg.store.util.vo.core.ResultVO;
@@ -68,6 +69,9 @@ public class GoodsBrowseServiceImpl implements GoodsBrowseService
     @Override
     public String findGoodsList(SessionVO sessionVO, GoodsTypeVO goodsTypeVO, PageVO pageVO)
     {
+        if (ParameterUtil.objectIsNull(pageVO))
+            return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_FAILED, sessionVO.getToken()));
+
         int repertoryLevel = dao.getRepertoryLevel(sessionVO.getUserId(), sessionVO.getMyTeamId());
         pageVO.setPageNum(PagingUtil.getStart(pageVO.getPageNum(), pageVO.getPageSize()));
         goodsTypeVO.setMyTeamId(sessionVO.getMyTeamId());
@@ -95,7 +99,7 @@ public class GoodsBrowseServiceImpl implements GoodsBrowseService
         for (GoodsInfoVO info : result)
             info.setGoodsImages(dao.getGoodsImage(info.getGoodsId()));
 
-        return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_SUCCESS,sessionVO.getToken(),result,pageCount),SerializerFeature.WriteNullStringAsEmpty);
+        return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), result, pageCount), SerializerFeature.WriteNullStringAsEmpty);
     }
 
 //    private String listGoods2(SessionVO sessionVO, GoodsTypeVO goodsTypeVO, PageVO pageVO)
@@ -131,7 +135,7 @@ public class GoodsBrowseServiceImpl implements GoodsBrowseService
         for (GoodsInfoVO info : result)
             info.setGoodsImages(dao.getGoodsImage(info.getGoodsId()));
 
-        return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_SUCCESS,sessionVO.getToken(),result,pageCount),SerializerFeature.WriteNullStringAsEmpty);
+        return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), result, pageCount), SerializerFeature.WriteNullStringAsEmpty);
     }
 
 //    private String listGoods1(SessionVO sessionVO, GoodsTypeVO goodsTypeVO, PageVO pageVO)
@@ -200,7 +204,7 @@ public class GoodsBrowseServiceImpl implements GoodsBrowseService
 
         result.setGoodsAttr(StringUtil.isEmpty(result.getGoodsAttr()) ? Constant.EMPTY : result.getGoodsAttr().split(SymbolConstant.QUESTION)[1]);
 
-        return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_SUCCESS,sessionVO.getToken(),result),SerializerFeature.WriteNullStringAsEmpty);
+        return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), result), SerializerFeature.WriteNullStringAsEmpty);
     }
 
 //    @Override

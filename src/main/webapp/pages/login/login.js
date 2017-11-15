@@ -23,7 +23,7 @@ var login = {
                 alert(data);
                 return;
             } else
-                window.location.href = path + "/pages/index/qm-indexLogin.jsp";
+                top.location.href = path + "login.jsp";
         });
     },
 

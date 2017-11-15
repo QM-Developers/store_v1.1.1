@@ -52,6 +52,7 @@
         INNER JOIN qm_branch qb
         ON qb.branch_id = qbg.branch_id
         WHERE qb.department_id = (SELECT team_department_id FROM user WHERE user_id = #{type.userId})
+        AND qbg.standard_count > 0
         <if test="childType != null">
             AND gd.goods_type_id IN
             <foreach collection="childType" item="typeId" separator="," open="(" close=")" index="i">

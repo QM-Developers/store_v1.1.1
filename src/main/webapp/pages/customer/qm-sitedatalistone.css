@@ -15,6 +15,10 @@
     cursor: pointer;
     margin-left: 25px;
 }
+.site-header-but:hover{
+    background: #02b4fe;
+    color: #ffffff;
+}
 .site-header-i{
     position: absolute;
     top: 12px;

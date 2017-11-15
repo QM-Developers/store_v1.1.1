@@ -20,20 +20,23 @@
     <link rel="stylesheet" href="${path}/script/Amaze/assets/css/amazeui.css"/>
     <link rel="stylesheet" href="${path}/script/Amaze/assets/css/admin.css">
     <link rel="stylesheet" type="text/css" href="${path}/pages/index/qm-index.css"/>
+    <link href="${path}/pages/images/favicon.ico" rel="icon" type="image/x-icon">
 
     <script type="text/javascript">
         var roleId = "${sessionScope.loginInfo.roleId}";
+        var userNameText = '${sessionScope.loginInfo.userName}';
+        var userNameId = '${sessionScope.loginInfo.userId}';
     </script>
 </head>
 
 <body>
 <div class="qm-header">
     <div class="qm-logo" id="loginText">
-
+        ${sessionScope.loginInfo.myTeamName}
     </div>
-    <div style="width: 200px;float: left" >
-        <span>登录名字</span>：<span id="xingming"></span> <span>切换名字</span>：<span id="xingming1"></span>
-    </div>
+    <%--<div>用户Id = ${sessionScope.loginInfo.userId}</div>--%>
+    <%--<div>用户名 = ${sessionScope.loginInfo.userName}</div>--%>
+    <%--<div>企业名称 = ${sessionScope.loginInfo.myTeamName}</div>--%>
     <div class="qm-quit">
         <ul class="header-nav" style="margin: 0;width: 100%;">
             <li>
@@ -50,22 +53,14 @@
 <!--////////-->
 <div class="main">
     <div class="main_left" id="frmTitle" name="fmTitle">
-        <!--1-->
-        <%--<div class="user-name" id="userName" style="display: none;">--%>
-        <%--梦悠然--%>
 
-        <%--</div>--%>
-        <!--2-->
         <div id="menu-list-box" style="height: 795px;overflow: auto">
             <ul class="am-list admin-sidebar-list menu-list" id="collapase-nav-1">
                 <li class="am-panel">
                     <a class="panel-a" id="li-name" style="padding-left: 37px;">
-
                         <i class="am-icon-angle-double-right am-fr am-margin-right"></i>
                     </a>
                     <ul class=" fristul am-list admin-sidebar-sub" id="user-nav0">
-
-
                     </ul>
                 </li>
                 <li class="am-panel">
@@ -88,19 +83,19 @@
                             </a>
                         </li>
                         <li class="menu-li untreated-3">
-                            <a target="iFrame0" href="${path}/pages/repertory/qm-transferapprove.jsp" class="am-cf menu-li-a">
+                            <a target="iframepage" href="${path}/pages/repertory/qm-transferapprove.jsp" class="am-cf menu-li-a">
 
                                 调货审批
                             </a>
                         </li>
                         <li class="menu-li untreated-4">
-                            <a target="iFrame0" href="javascript:void(0)" class="am-cf menu-li-a">
+                            <a target="iframepage"  href="${path}/pages/indent/qm-salesOrderList.jsp" class="am-cf menu-li-a">
 
                                 订单跟进
                             </a>
                         </li>
                         <li class="menu-li untreated-5">
-                            <a target="iFrame0" href="javascript:void(0)" class="am-cf menu-li-a">
+                            <a target="iframepage" href="${path}/pages/indent/qm-salesOrderList.jsp" class="am-cf menu-li-a">
 
                                 回款订单
                             </a>
@@ -207,15 +202,13 @@
                             </ul>
                         </li>
                         <li class="menu-li work-6">
-                            <a target="iframepage" href="../indent/qm-salesOrderList.jsp" class="am-cf menu-lia">
+                            <a target="iframepage" href="${path}/pages/indent/qm-salesOrderList.jsp" class="am-cf menu-lia">
 
                                 业务订单
                             </a>
                         </li>
-
                         <li class="menu-li work-7">
-                            <a target="iframepage" href="../indent/qm-salesOrderList.jsp" class="am-cf menu-lia">
-
+                            <a target="iframepage" href="${path}/pages/indent/qm-salesOrderList.jsp" class="am-cf menu-lia">
                                 财务订单
                             </a>
 
@@ -288,7 +281,6 @@
                 scrolling="0" width="100%"
                 height="99.99%"></iframe>
     </div>
-
 </div>
 
 </body>

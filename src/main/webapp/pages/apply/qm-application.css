@@ -212,11 +212,8 @@
 }
 
 .data-del-off {
-	clear: both;
-	max-width: 1269px;
-	min-width: 1000px;
-	box-sizing: border-box;
-	height: 60px;
+
+	height:100px;
 	padding-right: 25px;
 }
 

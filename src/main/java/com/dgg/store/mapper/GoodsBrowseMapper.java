@@ -51,4 +51,6 @@ public interface GoodsBrowseMapper
     List<GoodsStandard> listGoodsStandard(@Param("goodsId") String goodsId,@Param("branchId") String branchId);
 
     List<String> listGoodsImage(String goodsId);
+
+    int getRepertoryLevel(@Param("userId") String userId,@Param("myTeamId") String myTeamId);
 }

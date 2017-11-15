@@ -52,10 +52,10 @@
                             <li class="customerdata-li"><span class="am-u-sm-2">客户评级 :</span>
                                 <select name="" class="customerdata-sel am-u-sm-8 am-u-end disable-sign" id="creditRating"  >
                                     <option value="0">无级别</option>
-                                    <option value="1">初级型</option>
-                                    <option value="2">技术型</option>
-                                    <option value="3">诚信型</option>
-                                    <option value="4">赖账型</option>
+                                    <option value="1">技术型</option>
+                                    <option value="2">资本型</option>
+                                    <option value="3">资源型</option>
+                                    <option value="4">实干型</option>
                                 </select>
                                 <i class="li-shade"></i>
 
@@ -126,8 +126,8 @@
                     <h4 class="h4">客户状态</h4>
                 </div>
                 <div class="customerdata-cont customerdata-cont2">
-                    <div class="frist-ul">
-                        <ul>
+                    <div >
+                        <ul class="frist-ul">
                             <li class="customerdata-li"><span class="am-u-sm-2">建立档案:</span><span class="customerdata-record" id="userCreateDate"></span></li>
 
                             <li class="customerdata-li"><span class="am-u-sm-2">建立账号:</span>
@@ -140,10 +140,10 @@
                             <li class="customerdata-li">
                                 <span class="am-u-sm-2">更新次数:</span><span class="deal-state2" id="updateCount">5</span>
                             </li>
-                            <%--<li class="customerdata-li">--%>
-                                <%--<span class="am-u-sm-2">跟单人员:</span><span class="deal-state2">张三and李四</span>--%>
+                            <li class="customerdata-li">
+                                <span class="am-u-sm-2">跟单人员:</span><span class="deal-state2" id="merchandiserName"></span>
 
-                            <%--</li>--%>
+                            </li>
                             <li class="customerdata-li">
                                 <span class="am-u-sm-2">更新时间:</span><span class="deal-state2" id="userUpdateTime"></span>
 

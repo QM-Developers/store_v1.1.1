@@ -41,12 +41,13 @@
                 </div>
             </li>
             <li class="site-li">
-                <span class="am-u-sm-2 span">从事岗位 :</span>
+                <span class="am-u-sm-2 span">曾经从事 :</span>
                 <div class="am-u-sm-8 am-u-end sel-box">
                     <select id="userPlaceType" class="disable-sign" disabled="disabled" onchange="qm_cooperationlist.SearchChange()">
                         <option value="">经销商</option>
                         <option value="">养殖户</option>
-                        <option value="userdefined">自定义</option>
+                        <option value="">其他</option>
+                        <%--<option value="userdefined">自定义</option>--%>
                     </select>
                     <input id="userdefined" class="disable-sign" >
                     <div class="shade-sel"></div>

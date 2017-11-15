@@ -25,8 +25,8 @@
 <div class=" department-header">
     <!--头部容器-->
     <div class=" department-header-left">
-        <button class="department-but1"><a href="qm-departments.jsp">添加部门</a></button>
-        <button class="department-but1"><a href="qm-member.jsp">添加成员</a></button>
+        <button class="department-but1"><i class="but-i"></i><a href="qm-departments.jsp">添加部门</a></button>
+        <button class="department-but1"><i class="but-i"></i><a href="qm-member.jsp">添加成员</a></button>
         <div class="qm-compile-seek"><input id="search-keyword"/><span onclick="qm_memberList.searchMember();"></span></div>
     </div>
 </div>
@@ -38,9 +38,7 @@
                 <div class="qm-compile" id="btn-update-department" onclick="qm_memberList.toDepartmentInfo();">
                     <span  class="qm-compile-but">编辑部门</span><i class="compile-icon"></i>
                 </div>
-
             </div>
-
             <div class="am-u-sm-12 qm-team1-box">
 
                 <table class="am-table ">
@@ -58,7 +56,7 @@
                 </table>
                 <div class="paging">
 
-                    <div class="paginglight" onclick="qm_memberList.NextPage(this)">
+                    <div class="pagingleft" onclick="qm_memberList.NextPage(this)">
                         下一页
                     </div>
                     <div class="pagingmodle">

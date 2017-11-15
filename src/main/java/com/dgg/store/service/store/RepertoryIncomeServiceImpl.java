@@ -166,7 +166,7 @@ public class RepertoryIncomeServiceImpl implements RepertoryIncomeService
 
         result.setIncomeList(incomeLists);
 
-        return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), result));
+        return JSONObject.toJSONString(new ResultVO(Constant.REQUEST_SUCCESS, sessionVO.getToken(), result),SerializerFeature.WriteNullStringAsEmpty);
     }
 
     @Override
